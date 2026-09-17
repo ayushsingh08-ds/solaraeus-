@@ -1,0 +1,26 @@
+name: solaraeus
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pytorch
+  - torchvision
+  - numpy
+  - rasterio
+  - geopandas
+  - pyproj
+  - shapely
+  - xarray
+  - netcdf4
+  - cdsapi
+  - matplotlib
+  - trimesh
+  - pytest
+  - jupyter
+  - streamlit
+  - pip
+  - pip:
+      - pythermalcomfort
+      - overturemaps
