@@ -37,3 +37,5 @@ One or two sentences describing what was actually put on trial, so a reader in s
 **Open questions carried forward:**
 
 - One loose end per bullet. The number of bullets must match `open_questions` above.
+
+<!-- Invariants, enforced by tests/test_roast_log.py: frontmatter values stay on one line and contain no `|`; the verdict is uppercase and identical in the frontmatter and the Judge section; the open-questions list is the last thing in the file; delete this comment when you fill the template. -->

@@ -22,6 +22,7 @@ from scripts.roast_index import (
     discover_rulings,
     find_problems,
     load_ruling,
+    main,
     parse_frontmatter,
     render_index,
 )
@@ -284,3 +285,57 @@ def test_render_index_creates_a_file_from_scratch() -> None:
     rendered = render_index(None, [])
     assert rendered.startswith("# Ruling Index")
     assert INDEX_BEGIN in rendered and INDEX_END in rendered
+
+
+# --- the CLI contract that /roast branches on -----------------------------------
+
+
+def test_cli_check_returns_zero_when_in_sync(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    ruling = load_ruling(write_ruling(tmp_path, ruling_text()))
+    (tmp_path / "INDEX.md").write_text(index_with([ruling.index_row()]), encoding="utf-8")
+    assert main(["--check", "--roasts-dir", str(tmp_path)]) == 0
+    assert "agree" in capsys.readouterr().out
+
+
+def test_cli_check_returns_one_on_drift(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    write_ruling(tmp_path, ruling_text())
+    (tmp_path / "INDEX.md").write_text(index_with([]), encoding="utf-8")
+    assert main(["--check", "--roasts-dir", str(tmp_path)]) == 1
+    assert "row(s)" in capsys.readouterr().err
+
+
+def test_cli_check_returns_one_when_the_index_is_missing(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    write_ruling(tmp_path, ruling_text())
+    assert main(["--check", "--roasts-dir", str(tmp_path)]) == 1
+    assert "does not exist" in capsys.readouterr().err
+
+
+def test_cli_check_returns_two_on_a_malformed_ruling(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    write_ruling(tmp_path, ruling_text(verdict="MAYBE"))
+    assert main(["--check", "--roasts-dir", str(tmp_path)]) == 2
+    assert "verdict" in capsys.readouterr().err
+
+
+def test_cli_write_mode_regenerates_the_table(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    ruling = load_ruling(write_ruling(tmp_path, ruling_text()))
+    assert main(["--roasts-dir", str(tmp_path)]) == 0
+    assert ruling.link in (tmp_path / "INDEX.md").read_text(encoding="utf-8")
+    assert "wrote" in capsys.readouterr().out
+
+
+def test_repo_paths_do_not_depend_on_the_working_directory(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.chdir(tmp_path)
+    assert REPO_ROOT.is_dir()
+    assert find_problems(ROASTS_DIR) == []
