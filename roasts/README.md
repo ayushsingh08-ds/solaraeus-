@@ -40,7 +40,7 @@ python scripts/roast_index.py            # regenerate INDEX.md from the rulings
 python scripts/roast_index.py --check    # exit 1 if the index has drifted
 ```
 
-`pytest tests/test_roast_log.py` runs the same checks, so a malformed ruling or a stale index fails the suite rather than quietly rotting. Nothing here is faked at write time: if `--check` passes, the index matches the rulings.
+The Judge hand-writes its own row, from the cell format documented in `.claude/agents/judge.md`, and the script is the authority that catches any disagreement — so a passing `--check` is the proof the row is right. `pytest tests/test_roast_log.py` runs the same checks, so a malformed ruling or a stale index fails the suite rather than quietly rotting. Nothing here is faked at write time: if `--check` passes, the index matches the rulings.
 
 ## Rules the council keeps
 
