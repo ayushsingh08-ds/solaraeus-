@@ -12,6 +12,9 @@ The shared note the council reads and writes. Two jobs: ideas waiting their turn
 
 Loose ends from rulings, still unproven. One bullet per question, tagged with the ruling it came from. A question leaves this list when a later ruling answers it or the idea is abandoned.
 
+- **[004]** Does the 4 m height raster clear the pre-registered 3 m RMSE bar in dense Delhi, or does the audit force the pivot to a reconstruction-error paper? Five buildings, checked before any kernel is written, settles it.
+- **[004]** Is the intervention ranking stable once the uncertainty band is applied — or are the top sites statistically indistinguishable, which would make the instrument's headline answer noise?
+- **[004]** Will component-level agreement with the reference implementation hold within the stated tolerance on reconstructed inputs, or does the comparison itself become the paper's finding?
 - **[002]** Does publishing an unknown single-author package produce any observable lead within 90 days, or is it invisible without a distribution channel?
 - **[001]** Will anyone pay for the interactive view when the raster output is free? Untested, and it is the load-bearing bet of both rulings — the five-email test answers it.
 - **[001]** Does adding canopy change the headline Washington Square Park numbers enough to invalidate the figures committed in `outputs/`?
