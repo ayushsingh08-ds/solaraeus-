@@ -1,0 +1,15 @@
+metric,value
+total_cells,6400
+reused_cells,3651
+recomputed_cells,2749
+reused_fraction,0.57046875
+certificate_violations,0
+max_violation_k,0.0
+mean_predicted_bound_k,8.375175902359965
+max_predicted_bound_k,62.25619096855087
+mean_actual_error_k,0.0037541466641635244
+max_actual_error_k,0.1620604310322733
+mean_slack_k,8.371421755695803
+min_slack_k,0.0
+median_bound_to_error_ratio,1405704.5263035663
+90th_percentile_bound_to_error_ratio,30091153.538556796

@@ -1,0 +1,5 @@
+test_name,analytical_value,numerical_value,absolute_error,relative_error,tolerance,passed
+analytical_wall_shadow_length,20.0,20.000000000000004,3.552713678800501e-15,1.7763568394002506e-16,1e-09,True
+analytical_view_factor_finite_wall,0.36680098382639154,0.36680098382639154,0.0,0.0,1e-07,True
+unobstructed_sky_view_factor,1.0,1.0,0.0,0.0,1e-12,True
+stefan_boltzmann_exact_inversion,33.28584632003276,33.28584632003276,0.0,0.0,1e-09,True

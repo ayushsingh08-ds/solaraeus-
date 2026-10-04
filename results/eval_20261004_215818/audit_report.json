@@ -1,0 +1,197 @@
+{
+  "physics_and_implementation_audit": [
+    {
+      "item_number": 1,
+      "item": "Solar azimuth convention",
+      "current_implementation": "Clockwise from True North (0=North, 90=East, 180=South, 270=West). sx=cos(alt)*sin(az), sy=cos(alt)*cos(az)",
+      "expected_definition": "Standard navigation/meteorology azimuth (clockwise from True North)",
+      "status": "correct",
+      "recommended_action": "Retain. Perfectly aligns with standard solar physics."
+    },
+    {
+      "item_number": 2,
+      "item": "Coordinate-system orientation",
+      "current_implementation": "Local Cartesian grid: +X = East, +Y = North, +Z = Upward elevation",
+      "expected_definition": "Right-handed East-North-Up (ENU) Cartesian frame",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 3,
+      "item": "Ray direction",
+      "current_implementation": "Rays traced from receptor points towards the sun vector (sx, sy, sz)",
+      "expected_definition": "Vector from ground point pointing towards sun for line-of-sight visibility",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 4,
+      "item": "Ray origin offset",
+      "current_implementation": "Origin placed at receptor center (x_pt, y_pt, z_ped=1.1m) with building footprint containment checks",
+      "expected_definition": "Pedestrian height receptor (1.1m a.g.l.) with zero self-intersection",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 5,
+      "item": "Grid-cell center versus grid-cell corner sampling",
+      "current_implementation": "Grid cell centers evaluated at (i + 0.5)*dx and (j + 0.5)*dy",
+      "expected_definition": "Finite volume / cell-centered raster representation",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 6,
+      "item": "Building-height interpretation",
+      "current_implementation": "zmin = 0.0m to zmax = height; differential height slice for height edits delta_h = |h1 - h0|",
+      "expected_definition": "Vertical building extrusion above flat ground level (z=0)",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 7,
+      "item": "Wall and ground visibility logic",
+      "current_implementation": "Hemispherical multi-azimuth horizon elevation search for SVF; cardinal wall view factors",
+      "expected_definition": "Standard Lindberg et al. (2008) multi-azimuth horizon scanning",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 8,
+      "item": "Sky-patch weights",
+      "current_implementation": "Equal azimuthal weighting (1/N) with cos^2(elev) solid-angle projection",
+      "expected_definition": "Continuous azimuthal integration across upper hemisphere",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 9,
+      "item": "Human directional weighting factors",
+      "current_implementation": "f_up = f_down = 0.06, f_north = f_south = f_east = f_west = 0.22 (sum = 1.0)",
+      "expected_definition": "Rotationally symmetric standing human cylinder (H\u00f6ppe 1992)",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 10,
+      "item": "Stefan\u2013Boltzmann constants",
+      "current_implementation": "sigma = 5.670374419e-8 W/(m^2 K^4) (CODATA 2018)",
+      "expected_definition": "5.670374419e-8 W/(m^2 K^4)",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 11,
+      "item": "Emissivity assumptions",
+      "current_implementation": "a_k = 0.70 (shortwave absorptivity), a_l = 0.97 (longwave emissivity), Prata (1996) clear-sky air emissivity",
+      "expected_definition": "Standard biometeorological human clothing/skin values and empirical clear-sky emissivity",
+      "status": "correct",
+      "recommended_action": "Updated README documentation to correctly cite Prata (1996)."
+    },
+    {
+      "item_number": 12,
+      "item": "Surface-temperature assumptions",
+      "current_implementation": "Wall Ts = 305.15 K (32 C), Ground Ts = 308.15 K (35 C) under steady-state daytime conditions",
+      "expected_definition": "Estimated diurnal surface temperatures in absence of coupled transient heat balance",
+      "status": "correct",
+      "recommended_action": "Explicitly document as a physical limitation of single-timestep modeling."
+    },
+    {
+      "item_number": 13,
+      "item": "UTCI input units",
+      "current_implementation": "Ta (deg C), Tmrt (deg C), v10 (m/s), RH (%)",
+      "expected_definition": "Celsius, Celsius, m/s, percent [0..100]",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 14,
+      "item": "UTCI valid input range",
+      "current_implementation": "Wind speed clamped to minimum 0.5 m/s; RH clamped to [0, 100]%",
+      "expected_definition": "v10 >= 0.5 m/s, 0 <= RH <= 100%",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 15,
+      "item": "Handling of missing or invalid values",
+      "current_implementation": "Building interior cells masked with SVF=0, shadow=0, Tmrt computed safely with lower bound S_str >= 1.0",
+      "expected_definition": "Finite numerical values across all grid receptors with zero NaN or Inf propagation",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 16,
+      "item": "Low-solar-altitude fallback",
+      "current_implementation": "Solar altitude threshold alpha < 5.0 deg triggers sound full fallback (is_fallback=True)",
+      "expected_definition": "Safe threshold where shadow plume approaches infinite length",
+      "status": "correct",
+      "recommended_action": "Retain and document consistently."
+    },
+    {
+      "item_number": 17,
+      "item": "Floating-point tolerances",
+      "current_implementation": "Numerical verification slack threshold = 1e-6 K",
+      "expected_definition": "Accommodate IEEE-754 double precision roundoff in trigonometric and power operations",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 18,
+      "item": "Cache invalidation after repeated edits",
+      "current_implementation": "SHA-256 fingerprinting on scene JSON and weather data; verified across sequential edits in test_adv_10",
+      "expected_definition": "Immediate invalidation of cached hashes upon any geometric mutation",
+      "status": "correct",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 19,
+      "item": "Accumulation of error after approximate reuse",
+      "current_implementation": "Tested in test_adv_10: sequential edits track accumulated predicted bounds and preserve validity",
+      "expected_definition": "Bounding error drift over multi-step editing sessions",
+      "status": "correct",
+      "recommended_action": "Recommend re-grounding to full recompute after N consecutive approximate edits."
+    },
+    {
+      "item_number": 20,
+      "item": "Whether every enabled radiation dependency is included in the certificate",
+      "current_implementation": "Direct beam, diffuse sky, wall longwave, and atmospheric sky longwave all bounded via Minkowski plume and SVF decay",
+      "expected_definition": "All modified radiative flux components must have closed-form conservative upper bounds",
+      "status": "correct",
+      "recommended_action": "Fixed side direct beam factor from max(|sx|, |sy|) to (|sx| + |sy|) ensuring strict conservativeness."
+    }
+  ],
+  "external_solweig_audit": {
+    "target_model": "Official SOLWEIG / UMEP (Urban Multi-scale Environmental Predictor)",
+    "official_version": "UMEP v2.1+ / SOLWEIG v2023a",
+    "host_platform": "QGIS Python Plugin / Standalone UMEP Core",
+    "compatibility_matrix": {
+      "spatial_input_format": {
+        "our_format": "Discrete Vector 3D Primitives / Axis-Aligned Bounding Boxes rasterized onto 2D Grid",
+        "umep_format": "2D GeoTIFF raster Digital Surface Model (DSM) and Canopy Digital Elevation Model (CDEM)",
+        "status": "Mismatch: Requires rasterization adapter from vector buildings to GeoTIFF DSM."
+      },
+      "coordinate_conventions": {
+        "our_format": "Local Cartesian (u, v) in meters, flat terrain z=0",
+        "umep_format": "Projected CRS (e.g. UTM / EPSG:32633) with georeferenced raster headers",
+        "status": "Mismatch: Requires EPSG coordinate projection metadata in raster headers."
+      },
+      "sky_discretization": {
+        "our_format": "Multi-azimuth horizon elevation angle search (16, 32, 64 rays)",
+        "umep_format": "153-patch Tregenza sky discretization / Shadow casting algorithm (Lindberg et al., 2008)",
+        "status": "Conceptual match: Both use angular horizon elevation tracing."
+      },
+      "meteorological_forcing": {
+        "our_format": "Single-timestep static Weather dataclass (Ta, RH, DNI, DHI, Wind)",
+        "umep_format": "Continuous tabular CSV (hourly/minutely) with global solar radiation and diurnal cycles",
+        "status": "Compatible: Can be evaluated at a single row matching our Weather parameters."
+      },
+      "human_body_weighting": {
+        "our_format": "Standing rotationally symmetric cylinder (f_up=0.06, f_down=0.06, f_side=0.22)",
+        "umep_format": "Standing cylinder (f_up=0.06, f_down=0.06, f_side=0.22) (H\u00f6ppe 1992)",
+        "status": "Exact Match."
+      },
+      "integration_status": "External executable integration is not currently possible without installing QGIS and UMEP plugin dependencies in this lightweight Python environment. Analytical reference cases serve as independent ground truth."
+    }
+  }
+}

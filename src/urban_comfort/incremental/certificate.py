@@ -136,20 +136,25 @@ def generate_error_certificate(scene_before: Scene,
     alt_rad = solar_pos.altitude_rad
     sin_alt = math.sin(alt_rad)
     sx, sy, _ = solar_pos.sun_vector
-    cos_side_max = max(0.0, abs(sx), abs(sy))
-
     # Direct shortwave flux received by standing human in full sunlight
     f_up = 0.06
     f_down = 0.06
     f_side = 0.22
     a_k = 0.70
     a_l = 0.97
-    albedo_ground = 0.15
-    albedo_wall = 0.20
 
+    # Extract materials from scene (or fall back to defaults)
+    from urban_comfort.config import DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    wall_mat = scene_after.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
+    ground_mat = scene_after.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
+    albedo_ground = ground_mat.albedo
+    albedo_wall = wall_mat.albedo
+
+    # Human standing cylinder sums direct beam across exposed vertical cardinal faces: |sx| + |sy|
+    side_direct_factor = abs(sx) + abs(sy)
     k_dir_max_step = weather.direct_normal_irradiance * (
         f_up * sin_alt +
-        f_side * cos_side_max +
+        f_side * side_direct_factor +
         f_down * albedo_ground * sin_alt
     )
     delta_s_dir = np.where(cand_res.candidate_mask, a_k * k_dir_max_step, 0.0)
@@ -169,7 +174,7 @@ def generate_error_certificate(scene_before: Scene,
 
     eps_air = compute_air_emissivity(weather.air_temperature, weather.relative_humidity)
     l_sky = eps_air * SIGMA * (weather.air_temperature ** 4)
-    l_wall = 0.90 * SIGMA * (305.15 ** 4)
+    l_wall = wall_mat.emissivity * SIGMA * (wall_mat.surface_temperature ** 4)
     l_contrast = abs(l_sky - l_wall)
 
     c_long = (f_up + 2.0 * f_side) * l_contrast
