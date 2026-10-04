@@ -1,0 +1,54 @@
+{
+  "coordinate_system": "EPSG:32633_LOCAL",
+  "metadata": {
+    "description": "Baseline canonical test scene: flat ground with a single 16x16x18m building at center",
+    "generator": "create_single_box_scene"
+  },
+  "ground": {
+    "z_elevation": 0.0,
+    "material_id": "default_ground"
+  },
+  "pedestrian_grid": {
+    "extent_x": 80.0,
+    "extent_y": 80.0,
+    "origin_x": 0.0,
+    "origin_y": 0.0,
+    "resolution": 1.0,
+    "pedestrian_height": 1.1
+  },
+  "materials": {
+    "default_wall": {
+      "id": "default_wall",
+      "albedo": 0.2,
+      "emissivity": 0.9,
+      "surface_temperature": 305.15,
+      "is_opaque": true
+    },
+    "default_ground": {
+      "id": "default_ground",
+      "albedo": 0.15,
+      "emissivity": 0.95,
+      "surface_temperature": 308.15,
+      "is_opaque": true
+    }
+  },
+  "buildings": [
+    {
+      "id": "bldg_center",
+      "footprint": {
+        "xmin": 32.0,
+        "xmax": 48.0,
+        "ymin": 32.0,
+        "ymax": 48.0
+      },
+      "height": 18.0,
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "material_id": "default_wall",
+      "enabled": true
+    }
+  ]
+}

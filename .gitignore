@@ -1,0 +1,165 @@
+# ==============================================================================
+# SENSITIVE DATA, SECRETS, CREDENTIALS & API KEYS
+# ==============================================================================
+# Environment variable files containing secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# Authentication, Private Keys, Certificates, & Tokens
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.pub
+id_rsa*
+id_ed25519*
+secrets.*
+*.secret
+*.secret.*
+*.secrets
+
+# Cloud Provider & OAuth Credentials
+credentials.json
+client_secret*.json
+google_credentials.json
+firebase-*.json
+service-account*.json
+.aws/
+.gcp/
+.azure/
+
+# Token / Auth storage
+*.token
+*.auth
+auth.json
+token.json
+
+# ==============================================================================
+# PYTHON CACHES, BYTECODE & RUNTIMES
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / Packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+ENV/
+env/
+
+# ==============================================================================
+# TESTING, LINTING & COVERAGE
+# ==============================================================================
+.pytest_cache/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.dmypy.json
+dmypy.json
+
+# ==============================================================================
+# IDE, EDITORS & AGENTS
+# ==============================================================================
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+*.code-workspace
+
+# JetBrains (PyCharm, IntelliJ)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Antigravity IDE / Gemini Agent artifacts
+.gemini/
+.agents/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ==============================================================================
+# OPERATING SYSTEM ARTIFACTS
+# ==============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+desktop.ini
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ==============================================================================
+# TEMPORARY, SCRATCH & LOG FILES
+# ==============================================================================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+scratch/
+tmp/
+temp/

@@ -1,0 +1,36 @@
+{
+  "benchmark_metadata": {
+    "timestamp": "2026-10-04 16:03:01 UTC",
+    "domain_extent_x_m": 80.0,
+    "domain_extent_y_m": 80.0,
+    "grid_resolution_m": 1.0,
+    "total_cells": 6400,
+    "tolerance_k": 0.5
+  },
+  "timings_sec": {
+    "baseline_full_recompute": 1.6273217999842018,
+    "edited_full_recompute": 0.26452129997778684,
+    "certified_incremental": 0.2169984000211116,
+    "speedup_ratio": 1.219
+  },
+  "domain_partition": {
+    "reused_cells": 1764,
+    "recomputed_dirty_cells": 4636,
+    "reused_fraction": 0.2756,
+    "dirty_fraction": 0.7244
+  },
+  "error_metrics_k": {
+    "max_actual_error_overall": 0.0,
+    "mean_actual_error_overall": 0.0,
+    "max_actual_error_reused": 0.0,
+    "max_predicted_bound": 58.8472118437744,
+    "mean_slack": 7.5937649831623135,
+    "min_slack": 0.0
+  },
+  "soundness_audit": {
+    "is_valid": true,
+    "num_violations": 0,
+    "violation_rate": 0.0,
+    "is_within_tolerance": true
+  }
+}

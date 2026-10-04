@@ -1,0 +1,24 @@
+{
+  "certificate_id": "CERT-1791129781",
+  "status": "certified",
+  "tolerance_k": 0.5,
+  "total_cells": 6400,
+  "reused_cells": 1764,
+  "affected_cells": 4636,
+  "reused_fraction": 0.2756,
+  "max_predicted_bound_k": 58.8472,
+  "mathematical_assumptions": [
+    "Standing rotationally symmetric cylinder with f_up=f_down=0.06, f_side=0.22",
+    "Shortwave absorption a_k=0.70, longwave absorption a_l=0.97",
+    "Direct shadow bounded by directional frustum Minkowski envelope + safety margin",
+    "SVF bounded by solid-angle distance decay proportional to W*delta_h / (2*pi*r^2)",
+    "Concave Stefan-Boltzmann interval propagation guarantees upper-bounding of both warming and cooling"
+  ],
+  "verification": {
+    "verified": true,
+    "num_violations": 0,
+    "max_violation_k": 0.0,
+    "reused_cells_max_error_k": 0.0,
+    "is_strictly_within_tolerance": true
+  }
+}
