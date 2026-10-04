@@ -1,3 +1,0 @@
-"""
-Solaraeus test suite.
-"""
