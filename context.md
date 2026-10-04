@@ -432,7 +432,7 @@ To ensure scientific integrity, the project strictly distinguishes four distinct
 | **Independent Reference Validation** | Does the implementation agree with independent analytical solutions and established reference models? | **PARTIALLY ASSESSED** | 4 independent analytical benchmarks match to $< 10^{-7}$. External UMEP plugin boundary documented (requires QGIS environment). |
 | **Physical Validation** | Does the simulated thermal field accurately match real-world physical sensor measurements under field conditions? | **UNVALIDATED** | No physical empirical sensor data was used. All conclusions are strictly mathematical and numerical. |
 
-### Empirical Multi-Trial Scaling Summary ($N = 5$ Trials, 95% Confidence Intervals)
+### 4.1 Multi-Trial Scaling Summary ($N = 5$ Trials, 95% Confidence Intervals)
 
 | Domain Scale | Grid Cells | Full Recompute (Median $\pm \text{CI}_{95}$) | Incremental Total (Median $\pm \text{CI}_{95}$) | Speedup (Median) | Reused Cells (%) | Certificate Violations Observed |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -445,6 +445,62 @@ To ensure scientific integrity, the project strictly distinguishes four distinct
 | $320\,\text{m} \times 320\,\text{m}$ (Low) | 102,400 | $11.49\,\text{s} \pm 12.56\,\text{s}$ | $0.729\,\text{s} \pm 1.181\,\text{s}$ | **$15.77\times$** | $92.7\%$ | **0** |
 | $320\,\text{m} \times 320\,\text{m}$ (Medium) | 102,400 | $43.75\,\text{s} \pm 0.33\,\text{s}$ | $3.009\,\text{s} \pm 0.080\,\text{s}$ | **$14.54\times$** | $92.7\%$ | **0** |
 | $320\,\text{m} \times 320\,\text{m}$ (High) | 102,400 | $44.76\,\text{s} \pm 3.92\,\text{s}$ | $3.056\,\text{s} \pm 0.280\,\text{s}$ | **$14.65\times$** | $92.7\%$ | **0** |
+
+### 4.2 Timing Overhead Breakdown Across Computational Phases
+Isolated phase instrumentation confirms bounding overhead introduces minimal computational penalty ($\le 1.60\%$):
+
+| Scene Configuration | Full Recompute | Dependency Query | Candidate Plume | Certificate Eval | Selective Recompute | Result Assembly | Overhead Ratio (%) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :---: |
+| **80m Low Density** | $0.4994\,\text{s}$ | $47.1\,\mu\text{s}$ | $132.0\,\mu\text{s}$ | $2.684\,\text{ms}$ | $0.5605\,\text{s}$ | $111.6\,\mu\text{s}$ | **$0.53\%$** |
+| **80m Medium Density** | $0.5800\,\text{s}$ | $41.5\,\mu\text{s}$ | $127.8\,\mu\text{s}$ | $2.300\,\text{ms}$ | $0.5263\,\text{s}$ | $106.2\,\mu\text{s}$ | **$0.49\%$** |
+| **80m High Density** | $0.4717\,\text{s}$ | $43.4\,\mu\text{s}$ | $129.6\,\mu\text{s}$ | $2.347\,\text{ms}$ | $0.4505\,\text{s}$ | $85.8\,\mu\text{s}$ | **$0.57\%$** |
+| **160m Low Density** | $0.8182\,\text{s}$ | $16.6\,\mu\text{s}$ | $46.6\,\mu\text{s}$ | $2.181\,\text{ms}$ | $0.2289\,\text{s}$ | $53.1\,\mu\text{s}$ | **$0.99\%$** |
+| **160m Medium Density** | $0.8487\,\text{s}$ | $15.4\,\mu\text{s}$ | $44.5\,\mu\text{s}$ | $2.122\,\text{ms}$ | $0.2399\,\text{s}$ | $51.6\,\mu\text{s}$ | **$0.92\%$** |
+| **160m High Density** | $0.8827\,\text{s}$ | $14.9\,\mu\text{s}$ | $44.8\,\mu\text{s}$ | $2.126\,\text{ms}$ | $0.2494\,\text{s}$ | $52.3\,\mu\text{s}$ | **$0.89\%$** |
+| **320m Low Density** | $11.4886\,\text{s}$ | $21.3\,\mu\text{s}$ | $134.2\,\mu\text{s}$ | $11.389\,\text{ms}$ | $0.7143\,\text{s}$ | $133.8\,\mu\text{s}$ | **$1.60\%$** |
+| **320m Medium Density** | $43.7479\,\text{s}$ | $58.1\,\mu\text{s}$ | $347.3\,\mu\text{s}$ | $31.585\,\text{ms}$ | $2.9697\,\text{s}$ | $519.6\,\mu\text{s}$ | **$1.08\%$** |
+| **320m High Density** | $44.7628\,\text{s}$ | $51.2\,\mu\text{s}$ | $201.3\,\mu\text{s}$ | $33.175\,\text{ms}$ | $3.0220\,\text{s}$ | $475.3\,\mu\text{s}$ | **$1.11\%$** |
+
+### 4.3 Comparison with Non-Certified Dirty-Region Baseline
+Comparison of ground-truth full recompute, naive 5m buffer heuristic, exact incremental, and certified incremental:
+
+| Method | Wall-Clock Time | Measured Speedup | Reused Cells (%) | Max Actual Error | Violations Observed ($\varepsilon_T = 0.5\,\text{K}$) | Soundness Verdict |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Full Recomputation** | $0.434\,\text{s}$ | $1.00\times$ | $0$ ($0.0\%$) | $0.000\,\text{K}$ | 0 | Ground Truth Reference |
+| **Non-Certified Dirty Box (5m margin)** | $0.055\,\text{s}$ | $7.95\times$ | $5,775$ ($90.2\%$) | **$20.818\,\text{K}$** | **685 violations** | **FAILED (Unsound)** |
+| **Exact Incremental** | $0.411\,\text{s}$ | $1.06\times$ | $448$ ($7.0\%$) | $0.000\,\text{K}$ | 0 | Verified Sound |
+| **Certified Incremental** | $0.456\,\text{s}$ | $0.95\times$ | $200$ ($3.1\%$) | $0.000\,\text{K}$ | **0 (Zero)** | **VERIFIED SOUND** |
+
+### 4.4 Repeated Edit Cycle & Cumulative Drift Evaluation
+5-step sequential edit cycle testing numerical drift and error accumulation:
+
+| Step | Operation Description | Full Time | Inc Time | Speedup | Reused Cells | Max Error $e_{\max}$ | Max Bound $B_{\max}$ | Violations | Drift vs Step 0 |
+| :---: | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **0** | Baseline Scene | $1.576\,\text{s}$ | $1.576\,\text{s}$ | $1.00\times$ | $0$ ($0\%$) | $0.0000\,\text{K}$ | $0.000\,\text{K}$ | 0 | $0.0000\,\text{K}$ |
+| **1** | Height Increase ($+6\,\text{m}$) | $0.164\,\text{s}$ | $0.133\,\text{s}$ | $1.24\times$ | $1,613$ ($25.2\%$) | $0.0307\,\text{K}$ | $63.172\,\text{K}$ | 0 | — |
+| **2** | Translation ($+10\,\text{m}, +5\,\text{m}$) | $0.144\,\text{s}$ | $0.158\,\text{s}$ | $0.91\times$ | $0$ ($0.0\%$) | $0.0000\,\text{K}$ | $63.475\,\text{K}$ | 0 | — |
+| **3** | Height Decrease ($-6\,\text{m}$) | $0.169\,\text{s}$ | $0.123\,\text{s}$ | $1.37\times$ | $1,667$ ($26.0\%$) | $0.0307\,\text{K}$ | $63.111\,\text{K}$ | 0 | — |
+| **4** | Building Removal | $0.009\,\text{s}$ | $0.013\,\text{s}$ | $0.76\times$ | $392$ ($6.1\%$) | $0.0000\,\text{K}$ | $63.453\,\text{K}$ | 0 | — |
+| **5** | Return to Baseline Geometry | $0.160\,\text{s}$ | $0.166\,\text{s}$ | $0.96\times$ | $60$ ($0.9\%$) | $0.0000\,\text{K}$ | $47.261\,\text{K}$ | 0 | **$0.0000\,\text{K}$** |
+
+### 4.5 Error Tolerance Sensitivity Sweep ($\varepsilon_T \in [0.10\,\text{K}, 2.00\,\text{K}]$)
+
+| Target Tolerance $\varepsilon_T$ | Full Time | Inc Time | Measured Speedup | Reused Cells | Reused Fraction | Max Actual Error | Contract Violations |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **$0.10\,\text{K}$** | $0.0994\,\text{s}$ | $0.0962\,\text{s}$ | $1.03\times$ | 216 | $3.38\%$ | $0.0000\,\text{K}$ | 0 |
+| **$0.25\,\text{K}$** | $0.1022\,\text{s}$ | $0.0957\,\text{s}$ | $1.07\times$ | 216 | $3.38\%$ | $0.0000\,\text{K}$ | 0 |
+| **$0.50\,\text{K}$** | $0.1015\,\text{s}$ | $0.1023\,\text{s}$ | $0.99\times$ | 216 | $3.38\%$ | $0.0000\,\text{K}$ | 0 |
+| **$1.00\,\text{K}$** | $0.1012\,\text{s}$ | $0.0898\,\text{s}$ | $1.13\times$ | 856 | $13.38\%$ | $0.0000\,\text{K}$ | 0 |
+| **$2.00\,\text{K}$** | $0.0960\,\text{s}$ | $0.0654\,\text{s}$ | **$1.47\times$** | 2,685 | **$41.95\%$** | **$0.1543\,\text{K}$** | 0 |
+
+### 4.6 Independent Analytical Reference Verification
+
+| Analytical Benchmark Test | Closed-Form Solution | Prototype Numerical Value | Absolute Error | Relative Error | Tolerance | Status |
+| :--- | :--- | :--- | :--- | :--- | :---: | :---: |
+| **Wall Shadow Length** ($h=20\,\text{m}, \alpha=45^\circ$) | $20.000000000\,\text{m}$ | $20.000000000\,\text{m}$ | $3.55 \times 10^{-15}\,\text{m}$ | $1.78 \times 10^{-16}$ | $10^{-9}$ | **PASSED** |
+| **Finite Wall View Factor** ($20\text{m} \times 10\text{m}$ at $5\text{m}$) | $0.366800984$ | $0.366800984$ | $0.00 \times 10^{0}$ | $0.00 \times 10^{0}$ | $10^{-7}$ | **PASSED** |
+| **Unobstructed Flat Terrain SVF** | $1.000000000$ | $1.000000000$ | $0.00 \times 10^{0}$ | $0.00 \times 10^{0}$ | $10^{-12}$ | **PASSED** |
+| **Stefan-Boltzmann Inversion** ($S_{\mathrm{str}}=500\,\text{W/m}^2$) | $33.285846320^\circ\text{C}$ | $33.285846320^\circ\text{C}$ | $0.00 \times 10^{0}$ | $0.00 \times 10^{0}$ | $10^{-9}$ | **PASSED** |
 
 ---
 
@@ -591,4 +647,4 @@ python examples/compare_full_incremental.py
 | :--- | :--- | :--- |
 | `587e537` | 2026-10-04 | `feat: implement certified incremental SOLWEIG microclimate simulation prototype` (Milestones 1–12, 82 tests, core engine, cache, certificates) |
 | `ed25431` | 2026-10-04 | `feat(eval): complete comprehensive research evaluation (Work Packages 1-10)` (Extended benchmark harness, parametric scenes, 12 new adversarial tests, independent analytical verification, 20-item physics audit, 7 publication plots, 94 tests) |
-| `HEAD` | 2026-10-04 | `feat(audit): publication-quality validation, multi-trial reproducibility, and scientific audit` (Milestone 13, multi-trial N=5 statistics, timing breakdown instrumentation, non-certified baseline comparison, tightness analysis, repeated edit cycle with zero drift, 9 publication figures, 94 tests) |
+| `7413bf4` | 2026-10-04 | `feat(audit): publication-quality validation, multi-trial reproducibility, and scientific audit` (Milestone 13, multi-trial N=5 statistics, timing breakdown instrumentation, non-certified baseline comparison, tightness analysis, repeated edit cycle with zero drift, 9 publication figures, 94 tests) |
