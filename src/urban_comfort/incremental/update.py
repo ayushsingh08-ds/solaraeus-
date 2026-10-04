@@ -362,6 +362,9 @@ def incremental_update_certified(previous_scene: Scene,
         )
         return update_res, cert
 
+    t_cand = cert.timing_candidate_region_sec
+    t_cert_eval = cert.timing_certificate_eval_sec
+
     # 2. Identify Dirty Cells (where B_T(x) > tolerance)
     dirty_mask = cert.predicted_error_bound > config.tmrt_tolerance
 
@@ -399,8 +402,9 @@ def incremental_update_certified(previous_scene: Scene,
         relative_humidity=weather.relative_humidity
     )
     t_recomp = time.perf_counter() - t0_recomp
-    t_total = time.perf_counter() - t_start
 
+    # 4. Result Assembly
+    t0_assembly = time.perf_counter()
     recomputed_count = int(np.sum(dirty_mask))
     reused_count = grid.total_cells - recomputed_count
     reused_mask = ~dirty_mask
@@ -409,9 +413,11 @@ def incremental_update_certified(previous_scene: Scene,
         "is_incremental": True,
         "is_certified": True,
         "edit_type": edit.edit_type,
-        "timing_certificate_sec": t_cert,
+        "timing_candidate_region_sec": t_cand,
+        "timing_certificate_sec": t_cert_eval,
         "timing_selective_recompute_sec": t_recomp,
-        "timing_total_sec": t_total,
+        "timing_assembly_sec": 0.0,
+        "timing_total_sec": 0.0,
         "recomputed_cells": recomputed_count,
         "reused_cells": reused_count,
         "total_cells": grid.total_cells,
@@ -431,6 +437,11 @@ def incremental_update_certified(previous_scene: Scene,
         metadata=metadata
     )
 
+    t_assembly = time.perf_counter() - t0_assembly
+    t_total = time.perf_counter() - t_start
+    metadata["timing_assembly_sec"] = t_assembly
+    metadata["timing_total_sec"] = t_total
+
     update_res = IncrementalUpdateResult(
         result=result,
         recomputed_mask=dirty_mask,
@@ -439,7 +450,7 @@ def incremental_update_certified(previous_scene: Scene,
         total_cells=grid.total_cells,
         reused_fraction=reused_count / float(grid.total_cells),
         time_incremental_sec=t_total,
-        time_candidate_region_sec=t_cert,
+        time_candidate_region_sec=t_cand,
         time_selective_recompute_sec=t_recomp
     )
 

@@ -1,0 +1,22 @@
+{
+  "timestamp": "20261004_224305",
+  "total_experiments_evaluated": 34,
+  "total_trials_executed": 130,
+  "total_test_suite_size": 94,
+  "test_suite_status": "ALL_94_TESTS_PASSING",
+  "scaling_median_speedups": {
+    "scale_80m_low": 0.8838300293975201,
+    "scale_80m_medium": 1.0944275544611268,
+    "scale_80m_high": 1.039309016714498,
+    "scale_160m_low": 3.534363860399332,
+    "scale_160m_medium": 3.501539867937999,
+    "scale_160m_high": 3.503532120143325,
+    "scale_320m_low": 15.765396457385709,
+    "scale_320m_medium": 14.539334870505,
+    "scale_320m_high": 14.647497223678474
+  },
+  "certificate_soundness_audit": {
+    "total_certificate_violations": 0,
+    "soundness_rate": 1.0
+  }
+}

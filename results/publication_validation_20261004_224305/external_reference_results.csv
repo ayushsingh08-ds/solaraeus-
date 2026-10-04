@@ -1,0 +1,8 @@
+dimension,prototype_specification,external_reference_specification,status,discrepancy_analysis
+Target External System,SOLARAUES Certified Incremental Prototype,Official SOLWEIG / UMEP plugin (v2023a / QGIS v3.x),Target defined,Official SOLWEIG is distributed as a QGIS Python plugin.
+Spatial Data Format,Vector 3D AABBs rasterized directly to PedestrianGrid,2D GeoTIFF raster Digital Surface Model (DSM) and Canopy DEM,Format mismatch,Requires vector-to-raster GeoTIFF converter with projected CRS.
+Coordinate System,"Local Cartesian (u, v) in meters, flat terrain z=0",Projected Coordinate Reference System (e.g. UTM / EPSG:32633),Projection mismatch,UMEP requires valid EPSG spatial metadata in raster header.
+Sky Discretization,"Multi-azimuth horizon elevation search (16, 32, 64 rays)",153 Tregenza sky patches / shadow casting algorithm,Algorithmic match,Both trace horizon obstruction angles across discrete azimuths.
+Meteorological Input,"Single-timestep static Weather dataclass (Ta, RH, DNI, DHI, v)",Continuous tabular CSV time-series with diurnal forcing,Compatible,Single row in UMEP tabular file matches our static Weather input.
+Human Body Geometry,"Standing cylinder (f_up=0.06, f_down=0.06, f_side=0.22)",Standing rotationally symmetric cylinder (Hoppe 1992),Exact Match,"Identical angular weighting factors and absorptivities (ak=0.7, al=0.97)."
+Runtime Integration,"Pure CPU Python (NumPy, SciPy, Shapely)",QGIS Desktop application runtime environment,Platform boundary,External headless runtime requires full QGIS desktop installation. Analytical tests serve as independent ground truth.

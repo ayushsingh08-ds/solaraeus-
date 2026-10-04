@@ -143,6 +143,23 @@ def run_analytical_reference_suite() -> List[AnalyticalBenchmarkResult]:
     return results
 
 
+def run_independent_reference_tests() -> List[Dict[str, Any]]:
+    """Executes analytical reference tests and returns serializable dicts."""
+    results = run_analytical_reference_suite()
+    return [
+        {
+            "test_name": r.test_name,
+            "analytical_value": r.analytical_value,
+            "numerical_value": r.numerical_value,
+            "absolute_error": r.absolute_error,
+            "relative_error": r.relative_error,
+            "tolerance": r.tolerance,
+            "passed": r.passed
+        }
+        for r in results
+    ]
+
+
 EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT = {
     "target_model": "Official SOLWEIG / UMEP (Urban Multi-scale Environmental Predictor)",
     "official_version": "UMEP v2.1+ / SOLWEIG v2023a",

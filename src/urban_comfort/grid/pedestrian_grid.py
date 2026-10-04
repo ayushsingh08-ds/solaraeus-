@@ -39,6 +39,14 @@ class PedestrianGrid:
         return (self.ny, self.nx)
 
     @property
+    def extent_x(self) -> float:
+        return self.config.extent_x
+
+    @property
+    def extent_y(self) -> float:
+        return self.config.extent_y
+
+    @property
     def total_cells(self) -> int:
         return self.ny * self.nx
 

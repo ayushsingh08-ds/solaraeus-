@@ -144,12 +144,11 @@ def run_benchmark_trial(scene_before: Scene,
 
     res_inc = inc_update_res.result
 
-    # Phase timings extracted from incremental metadata
+    # Exact phase timings extracted directly from incremental instrumentation
     t_cert = float(res_inc.metadata.get("timing_certificate_sec", 0.0))
     t_recomp = float(res_inc.metadata.get("timing_selective_recompute_sec", 0.0))
-    # Affected region is computed inside certificate generation; estimate it as half of certificate time or measure directly
-    t_affected = t_cert * 0.45
-    t_assembly = max(0.0, incremental_total_time - (t_cert + t_recomp + t_dep))
+    t_affected = float(res_inc.metadata.get("timing_candidate_region_sec", 0.0))
+    t_assembly = float(res_inc.metadata.get("timing_assembly_sec", 0.0))
 
     # 3. Verification & Error Audit
     verif = verify_certificate(cert, res_inc.tmrt, res_full.tmrt)
@@ -202,3 +201,153 @@ def run_benchmark_trial(scene_before: Scene,
     )
 
     return rec, res_full, res_inc, cert
+
+
+@dataclass
+class ReproducibilityRecord:
+    """Aggregated statistical metrics across N benchmark repetitions."""
+    scene_id: str
+    num_trials: int
+    full_time_mean_sec: float
+    full_time_std_sec: float
+    full_time_median_sec: float
+    full_time_min_sec: float
+    full_time_max_sec: float
+    full_time_ci95_sec: float
+    inc_time_mean_sec: float
+    inc_time_std_sec: float
+    inc_time_median_sec: float
+    inc_time_min_sec: float
+    inc_time_max_sec: float
+    inc_time_ci95_sec: float
+    speedup_median: float
+    speedup_mean: float
+    reused_cells: int
+    recomputed_cells: int
+    reused_fraction: float
+    max_actual_error_k: float
+    violations_observed: int
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class TimingBreakdownRecord:
+    """Detailed median phase timing audit for incremental vs full recomputation."""
+    scene_id: str
+    full_recompute_median_sec: float
+    dependency_analysis_median_sec: float
+    candidate_region_median_sec: float
+    certificate_eval_median_sec: float
+    selective_recompute_median_sec: float
+    result_assembly_median_sec: float
+    total_incremental_median_sec: float
+    primary_end_to_end_speedup: float
+    certificate_and_overhead_percentage: float
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+def run_repeated_benchmark_trials(scene_before: Scene,
+                                  edit: GeometricEdit,
+                                  weather: Weather,
+                                  config: SimulationConfig,
+                                  n_trials: int = 5,
+                                  scene_id: str = "custom_scene",
+                                  edit_magnitude: float = 1.0) -> Tuple[ReproducibilityRecord, TimingBreakdownRecord, BenchmarkRecord, SimulationResult, SimulationResult, ErrorCertificate]:
+    """
+    Executes N identical trials of a benchmark scenario to measure statistical
+    reproducibility and granular timing distributions.
+    """
+    full_times: List[float] = []
+    inc_times: List[float] = []
+    dep_times: List[float] = []
+    cand_times: List[float] = []
+    cert_times: List[float] = []
+    recomp_times: List[float] = []
+    assembly_times: List[float] = []
+
+    last_rec: Optional[BenchmarkRecord] = None
+    last_res_full: Optional[SimulationResult] = None
+    last_res_inc: Optional[SimulationResult] = None
+    last_cert: Optional[ErrorCertificate] = None
+
+    for _ in range(n_trials):
+        rec, res_full, res_inc, cert = run_benchmark_trial(
+            scene_before, edit, weather, config,
+            scene_id=scene_id, edit_magnitude=edit_magnitude
+        )
+        full_times.append(rec.full_recompute_time)
+        inc_times.append(rec.incremental_total_time)
+        dep_times.append(rec.dependency_analysis_time)
+        cand_times.append(rec.affected_region_time)
+        cert_times.append(rec.certificate_time)
+        recomp_times.append(rec.selective_recompute_time)
+        assembly_times.append(rec.result_assembly_time)
+
+        last_rec = rec
+        last_res_full = res_full
+        last_res_inc = res_inc
+        last_cert = cert
+
+    # Statistical aggregations
+    full_arr = np.array(full_times)
+    inc_arr = np.array(inc_times)
+    speedup_arr = full_arr / np.maximum(inc_arr, 1e-9)
+
+    # 95% confidence interval half-width: 1.96 * std / sqrt(N)
+    full_ci95 = float(1.96 * np.std(full_arr, ddof=1) / np.sqrt(n_trials)) if n_trials > 1 else 0.0
+    inc_ci95 = float(1.96 * np.std(inc_arr, ddof=1) / np.sqrt(n_trials)) if n_trials > 1 else 0.0
+
+    med_full = float(np.median(full_arr))
+    med_inc = float(np.median(inc_arr))
+    med_speedup = med_full / med_inc if med_inc > 0 else 1.0
+
+    repro_rec = ReproducibilityRecord(
+        scene_id=scene_id,
+        num_trials=n_trials,
+        full_time_mean_sec=float(np.mean(full_arr)),
+        full_time_std_sec=float(np.std(full_arr, ddof=1)) if n_trials > 1 else 0.0,
+        full_time_median_sec=med_full,
+        full_time_min_sec=float(np.min(full_arr)),
+        full_time_max_sec=float(np.max(full_arr)),
+        full_time_ci95_sec=full_ci95,
+        inc_time_mean_sec=float(np.mean(inc_arr)),
+        inc_time_std_sec=float(np.std(inc_arr, ddof=1)) if n_trials > 1 else 0.0,
+        inc_time_median_sec=med_inc,
+        inc_time_min_sec=float(np.min(inc_arr)),
+        inc_time_max_sec=float(np.max(inc_arr)),
+        inc_time_ci95_sec=inc_ci95,
+        speedup_median=med_speedup,
+        speedup_mean=float(np.mean(speedup_arr)),
+        reused_cells=last_rec.reused_cell_count,
+        recomputed_cells=last_rec.recomputed_cell_count,
+        reused_fraction=last_rec.reused_fraction,
+        max_actual_error_k=last_rec.maximum_tmrt_error,
+        violations_observed=last_rec.certificate_violations
+    )
+
+    med_cand = float(np.median(cand_times))
+    med_cert = float(np.median(cert_times))
+    med_dep = float(np.median(dep_times))
+    med_recomp = float(np.median(recomp_times))
+    med_assembly = float(np.median(assembly_times))
+    overhead_sum = med_cand + med_cert + med_dep + med_assembly
+    overhead_pct = (overhead_sum / med_inc * 100.0) if med_inc > 0 else 0.0
+
+    timing_rec = TimingBreakdownRecord(
+        scene_id=scene_id,
+        full_recompute_median_sec=med_full,
+        dependency_analysis_median_sec=med_dep,
+        candidate_region_median_sec=med_cand,
+        certificate_eval_median_sec=med_cert,
+        selective_recompute_median_sec=med_recomp,
+        result_assembly_median_sec=med_assembly,
+        total_incremental_median_sec=med_inc,
+        primary_end_to_end_speedup=med_speedup,
+        certificate_and_overhead_percentage=overhead_pct
+    )
+
+    return repro_rec, timing_rec, last_rec, last_res_full, last_res_inc, last_cert

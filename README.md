@@ -140,11 +140,20 @@ solaraeus/
 │       │   ├── certificate.py       # Computable error certificate engine & verification
 │       │   ├── cache.py             # SHA-256 state hashing & simulation cache
 │       │   └── dependency_graph.py  # DAG reachability and selective invalidation
+│       ├── benchmark/
+│       │   ├── baseline_comparison.py # Non-certified dirty box vs certified comparative harness
+│       │   ├── harness.py           # Multi-trial statistical benchmarking engine (N=5, 95% CI)
+│       │   ├── repeated_edits.py    # Sequential edit sequence and drift evaluation
+│       │   ├── tightness.py         # Cell-by-cell certificate slack and ratio analysis
+│       │   └── independent_reference.py # Analytical and external reference test harness
 │       └── validation/
 │           ├── comparisons.py       # Pointwise array comparison and error statistics
 │           └── metrics.py           # Shadow IoU, UTCI agreement, percentiles
-└── tests/
-    ├── test_adversarial_cases.py    # 8 adversarial stress test cases
+└── tests/                           # 94 automated tests (unit, integration, adversarial)
+    ├── test_adversarial_cases.py    # 8 canonical adversarial stress test cases
+    ├── test_adversarial_suite.py    # Parameterized adversarial suites
+    ├── test_extended_adversarial.py # 12 extended stress test cases
+    ├── test_certificate_soundness.py# Empirical certificate bounds verification
     ├── test_error_bounds.py         # Mathematical soundness unit tests
     ├── test_incremental_updates.py  # Exact zero-error update tests
     ├── test_affected_region.py      # Shadow plume projection and fallback tests
@@ -155,7 +164,8 @@ solaraeus/
     ├── test_pedestrian_grid.py      # Grid index and coordinate mapping tests
     ├── test_ray_intersections.py    # Vectorized ray-AABB intersection tests
     ├── test_shadows.py              # Direct shadow raycasting tests
-    └── test_solar_position.py       # Astronomical solar position verification tests
+    ├── test_solar_position.py       # Astronomical solar position verification tests
+    └── test_solweig_reference.py    # Analytical reference comparisons
 ```
 
 ---
@@ -178,26 +188,19 @@ pip install numpy scipy pytest pythermalcomfort shapely matplotlib
 
 ## 6. How to Run Tests and Examples
 
-### 6.1 Run the Full Test Suite (82 Tests)
-To execute all 82 unit, integration, and mathematical soundness tests:
+### 6.1 Run the Full Test Suite (94 Tests)
+To execute all 94 unit, integration, adversarial, and reference tests:
 ```bash
 python -m pytest -o pythonpath=src -v
 ```
-*Expected result: 82 passed in ~24s with zero errors or failures.*
+*Expected result: 94 passed with zero errors or failures.*
 
-### 6.2 Run the 8 Adversarial Stress Test Cases
+### 6.2 Run the Master Publication Validation Suite
+To execute the comprehensive multi-trial benchmarking and validation suite (evaluates 34 experiments, 130 trials, repeated edits, baseline comparison, and tightness analysis):
 ```bash
-python -m pytest -o pythonpath=src tests/test_adversarial_cases.py -v
+python examples/run_publication_validation.py
 ```
-Covers:
-1. Small height delta ($20\,\text{m} \to 21\,\text{m}$)
-2. 50m perpendicular wide wall
-3. 1m thin obstacle aligned with solar rays
-4. Occlusion reveal (removing foreground building)
-5. Low sun altitude ($15^\circ$) long shadow
-6. Diffuse/longwave perturbation outside direct shadow
-7. Grid-cell boundary alignment
-8. Full-domain invalidation fallback
+Outputs complete CSV telemetry, JSON audit logs, and 9 publication-grade figures in `results/publication_validation_<timestamp>/`.
 
 ### 6.3 Run the Single-Building Reference Example
 ```bash
@@ -209,29 +212,48 @@ Outputs solar altitude, azimuth, direct shadow ratio, mean sunlit vs. shaded $T_
 ```bash
 python examples/compare_full_incremental.py
 ```
-This script executes the Section 15 comparative protocol on an $80\,\text{m} \times 80\,\text{m}$ urban domain, comparing full recomputation against certified incremental updates, auditing mathematical soundness, and automatically exporting all 7 evaluation artifacts into `results/`:
-- `results/baseline_result.npz`: Baseline scene simulation arrays.
-- `results/edited_full_result.npz`: Ground-truth full recomputation arrays.
-- `results/edited_incremental_result.npz`: Incremental update arrays with certificate bound and reuse masks.
-- `results/error_map.png`: Publication-grade $2 \times 2$ visualization comparing full vs. incremental $T_{\mathrm{mrt}}$, actual error, and the certificate bound.
-- `results/affected_region.png`: Spatial partition plot showing direct shadows, SVF, and reused vs. recomputed cells.
-- `results/performance.json`: Wall-clock timing telemetry, speedup ratios, and cell partition metrics.
-- `results/certificate.json`: Audit record containing certificate parameters, assumptions, and verification proofs.
+This script executes the baseline comparative protocol on an $80\,\text{m} \times 80\,\text{m}$ urban domain, comparing full recomputation against certified incremental updates, auditing empirical soundness, and exporting evaluation artifacts into `results/`.
 
 ---
 
-## 7. Benchmark Results & Speedup Analysis
+## 7. Empirical Benchmark Results & Speedup Analysis
 
-Evaluating an infill building addition on an $80\,\text{m} \times 80\,\text{m}$ domain (6,400 cells) at $\varepsilon_T = 0.5\,\text{K}$:
+### 7.1 Multi-Trial Scaling Benchmark ($N = 5$ Trials, 95% Confidence Intervals)
 
-| Metric | Full Recomputation | Certified Incremental | Result / Improvement |
-| :--- | :--- | :--- | :--- |
-| **Solver Execution Time** | $0.265\,\text{s}$ | $0.217\,\text{s}$ | **$1.22\times$ Speedup** |
-| **Reused Cells (Safe)** | $0$ ($0\%$) | **$1,764$ ($27.6\%$)** | $1,764$ cells bypassed |
-| **Recomputed Cells (Dirty)**| $6,400$ ($100\%$) | **$4,636$ ($72.4\%$)** | Selective recomputation |
-| **Max Error on Reused Cells** | $0.0\,\text{K}$ | **$0.0000\,\text{K}$** | $\leq \varepsilon_T = 0.5\,\text{K}$ contract satisfied |
-| **Certificate Violations** | N/A | **0 (Zero)** | **100% Soundness Guaranteed** |
-| **Minimum Bound Slack** | N/A | **$\geq 0.0000\,\text{K}$** | Upper bound never violated |
+Evaluating central infill additions across domain dimensions and building packing densities ($0.5\,\text{K}$ error tolerance):
+
+| Domain Size | Building Density | Reused Cells (%) | Full Recompute (Median $\pm \text{CI}_{95}$) | Certified Incremental (Median $\pm \text{CI}_{95}$) | Measured Speedup |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **$80\,\text{m} \times 80\,\text{m}$** (6,400 cells) | Low | $200$ ($3.1\%$) | $0.499\,\text{s} \pm 0.019\,\text{s}$ | $0.565\,\text{s} \pm 0.056\,\text{s}$ | **$0.88\times$** |
+| | Medium | $200$ ($3.1\%$) | $0.580\,\text{s} \pm 0.090\,\text{s}$ | $0.530\,\text{s} \pm 0.061\,\text{s}$ | **$1.09\times$** |
+| | High | $200$ ($3.1\%$) | $0.472\,\text{s} \pm 0.043\,\text{s}$ | $0.454\,\text{s} \pm 0.089\,\text{s}$ | **$1.04\times$** |
+| **$160\,\text{m} \times 160\,\text{m}$** (25,600 cells) | Low | $18,156$ ($70.9\%$) | $0.818\,\text{s} \pm 1.098\,\text{s}$ | $0.231\,\text{s} \pm 0.177\,\text{s}$ | **$3.53\times$** |
+| | Medium | $18,156$ ($70.9\%$) | $0.849\,\text{s} \pm 0.011\,\text{s}$ | $0.242\,\text{s} \pm 0.012\,\text{s}$ | **$3.50\times$** |
+| | High | $18,156$ ($70.9\%$) | $0.883\,\text{s} \pm 0.011\,\text{s}$ | $0.252\,\text{s} \pm 0.005\,\text{s}$ | **$3.50\times$** |
+| **$320\,\text{m} \times 320\,\text{m}$** (102,400 cells) | Low | $94,956$ ($92.7\%$) | $11.49\,\text{s} \pm 12.56\,\text{s}$ | $0.729\,\text{s} \pm 1.181\,\text{s}$ | **$15.77\times$** |
+| | Medium | $94,956$ ($92.7\%$) | $43.75\,\text{s} \pm 0.33\,\text{s}$ | $3.009\,\text{s} \pm 0.080\,\text{s}$ | **$14.54\times$** |
+| | High | $94,956$ ($92.7\%$) | $44.76\,\text{s} \pm 3.92\,\text{s}$ | $3.056\,\text{s} \pm 0.280\,\text{s}$ | **$14.65\times$** |
+
+*Note on scaling transition*: On compact $80\,\text{m}$ domains, a central $18\,\text{m}$ building casts a $39.5\,\text{m}$ shadow plume and $30\,\text{m}$ SVF perturbation radius that covers $96.9\%$ of the domain, yielding near-parity ($0.88\times - 1.09\times$). As the domain scales to $160\,\text{m}$ and $320\,\text{m}$, the localized perturbation leaves $70.9\%$ and $92.7\%$ of cells clean, unlocking **$3.5\times$** and **$14.6\times$** speedups.
+
+### 7.2 Timing Overhead Breakdown
+The incremental pipeline records isolated wall-clock overhead across all phases:
+- **Dependency & Candidate Region**: $\le 0.0003\,\text{s}$ ($< 0.01\%$ of runtime).
+- **Certificate Evaluation**: $0.002\,\text{s} - 0.033\,\text{s}$ ($0.5\% - 1.1\%$ of runtime).
+- **Result Assembly**: $< 0.0005\,\text{s}$ ($< 0.02\%$ of runtime).
+- **Total Overhead Ratio**: Total overhead (certificate + candidate + assembly) constitutes **$\le 1.6\%$** of incremental execution time, confirming that bounding calculations introduce minimal computational penalty.
+
+### 7.3 Comparison with Non-Certified Dirty-Region Baseline
+To evaluate whether mathematical certification is necessary versus heuristic bounding boxes:
+
+| Method | Wall-Clock Time | Measured Speedup | Reused Cells | Max Actual Error | Violations Observed ($\varepsilon_T = 0.5\,\text{K}$) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Full Recomputation** | $0.434\,\text{s}$ | $1.00\times$ | $0$ ($0\%$) | $0.000\,\text{K}$ | 0 |
+| **Non-Certified Dirty Box (5m margin)** | $0.055\,\text{s}$ | $7.95\times$ | $5,775$ ($90.2\%$) | **$20.818\,\text{K}$** | **685 violations** |
+| **Exact Incremental** | $0.411\,\text{s}$ | $1.06\times$ | $448$ ($7.0\%$) | $0.000\,\text{K}$ | 0 |
+| **Certified Incremental** | $0.456\,\text{s}$ | $0.95\times$ | $200$ ($3.1\%$) | $0.000\,\text{K}$ | **0 (Zero)** |
+
+*Finding*: While a naive fixed-margin dirty box achieves rapid recomputation, it unacceptably introduces severe microclimate errors up to **$20.82\,\text{K}$** and violates error thresholds across 685 pedestrian cells. The certified incremental method strictly enforces error bounds with zero observed violations across all evaluated configurations.
 
 ---
 

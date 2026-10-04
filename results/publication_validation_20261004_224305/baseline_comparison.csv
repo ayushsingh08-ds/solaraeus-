@@ -1,0 +1,5 @@
+method_name,runtime_sec,speedup,reused_cells,recomputed_cells,reused_fraction,max_actual_error_k,mean_actual_error_k,max_predicted_bound_k,has_certificate,is_sound,violations_count
+full_recompute,0.4341405000013765,1.0,0,6400,0.0,0.0,0.0,0.0,False,True,0
+non_certified_dirty_box,0.054639200010569766,7.945586683505496,5775,625,0.90234375,20.81750408784842,1.4349756926882866,nan,False,False,685
+exact_incremental,0.4108133999980055,1.056782714496373,448,5952,0.06999999999999995,0.0,0.0,0.0,False,True,0
+certified_incremental,0.45620230000349693,0.9516403139529298,200,6200,0.03125,0.0,0.0,63.22669054086899,True,True,0

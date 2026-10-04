@@ -35,7 +35,9 @@ class ErrorCertificate:
     reused_cells: int                      # Cells where B_T <= tolerance (safe for reuse)
     total_cells: int
     assumptions: List[str]                 # Documented physical and numerical assumptions
-    reasons_for_fallback: Optional[str]    # Reason if status == "fallback"
+    reasons_for_fallback: Optional[str] = None    # Reason if status == "fallback"
+    timing_candidate_region_sec: float = 0.0
+    timing_certificate_eval_sec: float = 0.0
 
     @property
     def is_certified(self) -> bool:
@@ -114,11 +116,16 @@ def generate_error_certificate(scene_before: Scene,
     """
     Constructs a certified upper bound B_T(x) in O(1) vectorized operations per cell.
     """
+    import time
+    t_start_cert_gen = time.perf_counter()
     ny, nx = grid.shape
     tolerance_k = config.tmrt_tolerance
 
     # 1. Candidate affected region for direct shadows
+    t0_cand = time.perf_counter()
     cand_res = compute_candidate_affected_region(scene_before, scene_after, edit, solar_pos, grid)
+    t_cand = time.perf_counter() - t0_cand
+
     if cand_res.is_fallback:
         return ErrorCertificate(
             status="fallback",
@@ -129,10 +136,13 @@ def generate_error_certificate(scene_before: Scene,
             reused_cells=0,
             total_cells=ny * nx,
             assumptions=["Low solar altitude or numerical instability mandated full fallback."],
-            reasons_for_fallback=cand_res.fallback_reason
+            reasons_for_fallback=cand_res.fallback_reason,
+            timing_candidate_region_sec=t_cand,
+            timing_certificate_eval_sec=0.0
         )
 
     # 2. Direct shortwave potential perturbation
+    t0_eval = time.perf_counter()
     alt_rad = solar_pos.altitude_rad
     sin_alt = math.sin(alt_rad)
     sx, sy, _ = solar_pos.sun_vector
@@ -205,6 +215,8 @@ def generate_error_certificate(scene_before: Scene,
         "Concave Stefan-Boltzmann interval propagation guarantees upper-bounding of both warming and cooling"
     ]
 
+    t_cert_eval = time.perf_counter() - t0_eval
+
     return ErrorCertificate(
         status="certified",
         tolerance=tolerance_k,
@@ -214,7 +226,9 @@ def generate_error_certificate(scene_before: Scene,
         reused_cells=reused_count,
         total_cells=ny * nx,
         assumptions=assumptions,
-        reasons_for_fallback=None
+        reasons_for_fallback=None,
+        timing_candidate_region_sec=t_cand,
+        timing_certificate_eval_sec=t_cert_eval
     )
 
 

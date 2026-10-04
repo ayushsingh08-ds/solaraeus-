@@ -1,0 +1,157 @@
+{
+  "scientific_implementation_audit": [
+    {
+      "item_number": 1,
+      "item": "Solar azimuth convention",
+      "current_implementation": "Clockwise from True North (0=North, 90=East, 180=South, 270=West). sx=cos(alt)*sin(az), sy=cos(alt)*cos(az)",
+      "expected_definition": "Standard meteorological / solar navigation azimuth (clockwise from True North)",
+      "status": "correct",
+      "evidence": "solar_position.py matches NOAA astronomical equations",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 2,
+      "item": "Coordinate orientation",
+      "current_implementation": "Local Cartesian ENU: +X = East, +Y = North, +Z = Upward elevation",
+      "expected_definition": "Right-handed East-North-Up (ENU) Cartesian coordinate frame",
+      "status": "correct",
+      "evidence": "Grid X and Y meshgrids align with East and North vectors",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 3,
+      "item": "Sun-ray direction",
+      "current_implementation": "Rays traced from ground receptor points towards the sun vector (sx, sy, sz)",
+      "expected_definition": "Vector pointing from receptor toward sun for line-of-sight visibility",
+      "status": "correct",
+      "evidence": "shadow.py ray origin at (x, y, 1.1m) with ray direction +sun_vector",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 4,
+      "item": "Ray-origin offset",
+      "current_implementation": "Receptor center placed at pedestrian height z_ped = 1.1m a.g.l.",
+      "expected_definition": "Standard biometeorological center-of-gravity height for standing human (1.1m)",
+      "status": "correct",
+      "evidence": "pedestrian_grid.py sets z_ped = 1.1m",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 5,
+      "item": "Pedestrian-grid sampling",
+      "current_implementation": "Cell-centered sampling: (i + 0.5)*dx and (j + 0.5)*dy",
+      "expected_definition": "Finite volume cell-centered 2D raster representation",
+      "status": "correct",
+      "evidence": "pedestrian_grid.py meshgrid evaluation",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 6,
+      "item": "Building-height interpretation",
+      "current_implementation": "Vertical extrusion from flat ground z=0 to zmax=height; differential slice for height edits",
+      "expected_definition": "Flat-roof vertical building prism above flat ground",
+      "status": "correct",
+      "evidence": "primitives.py Building.bounds_3d = (xmin, xmax, ymin, ymax, 0, height)",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 7,
+      "item": "Sky-patch weights",
+      "current_implementation": "Equal azimuthal spacing (1/N) with cos^2(elevation) upper hemispherical projection",
+      "expected_definition": "Continuous azimuthal integration across upper hemisphere",
+      "status": "correct",
+      "evidence": "directional_visibility.py compute_sky_view_factor",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 8,
+      "item": "Directional human weighting factors",
+      "current_implementation": "f_up = f_down = 0.06, f_side = 0.22 (North, South, East, West); sum = 1.0",
+      "expected_definition": "Rotationally symmetric standing cylinder (Hoppe 1992)",
+      "status": "correct",
+      "evidence": "shortwave.py, longwave.py, certificate.py",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 9,
+      "item": "Emissivity",
+      "current_implementation": "a_k = 0.70 (human shortwave absorptivity), a_l = 0.97 (human longwave emissivity), Prata (1996) clear-sky air emissivity",
+      "expected_definition": "Standard bio-meteorological human surface properties and atmospheric longwave model",
+      "status": "correct",
+      "evidence": "config.py, longwave.py",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 10,
+      "item": "Stefan-Boltzmann constants",
+      "current_implementation": "sigma = 5.670374419e-8 W/(m^2 K^4) (CODATA 2018)",
+      "expected_definition": "CODATA internationally recommended physical constant",
+      "status": "correct",
+      "evidence": "config.py SIGMA constant",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 11,
+      "item": "Surface-temperature assumptions",
+      "current_implementation": "Wall Ts = 305.15 K (32 C), Ground Ts = 308.15 K (35 C) under daytime conditions",
+      "expected_definition": "Estimated diurnal surface temperatures in single-timestep static simulation",
+      "status": "correct",
+      "evidence": "Extracted dynamically from scene.materials in certificate.py",
+      "recommended_action": "Document as single-timestep simplification."
+    },
+    {
+      "item_number": 12,
+      "item": "UTCI units and valid ranges",
+      "current_implementation": "Ta (deg C), Tmrt (deg C), wind v10 (m/s clamped >= 0.5), RH (0..100 %)",
+      "expected_definition": "Valid input ranges for polynomial UTCI regression equation",
+      "status": "correct",
+      "evidence": "utci.py compute_utci",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 13,
+      "item": "Low-solar-altitude fallback",
+      "current_implementation": "Solar altitude alpha < 5.0 deg triggers sound full fallback (is_fallback=True)",
+      "expected_definition": "Safe numerical cutoff where shadow plume cot(alpha) approaches infinity",
+      "status": "correct",
+      "evidence": "affected_region.py compute_candidate_affected_region",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 14,
+      "item": "Floating-point tolerance",
+      "current_implementation": "Numerical verification slack threshold = 1e-6 K for IEEE-754 roundoff",
+      "expected_definition": "Standard tolerance for double-precision trigonometric and power operations",
+      "status": "correct",
+      "evidence": "certificate.py verify_certificate",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 15,
+      "item": "Cache invalidation",
+      "current_implementation": "SHA-256 fingerprinting across scene geometry, weather, and config parameters",
+      "expected_definition": "Cryptographic or hash-based invalidation upon any scene mutation",
+      "status": "correct",
+      "evidence": "cache.py SimulationCache and compute_combined_hash",
+      "recommended_action": "Retain."
+    },
+    {
+      "item_number": 16,
+      "item": "Repeated-edit error handling",
+      "current_implementation": "Tested across sequential edits; bounds track accumulated perturbation and preserve validity",
+      "expected_definition": "Tracking error drift and forcing full refresh if accumulated bound exceeds tolerance",
+      "status": "correct",
+      "evidence": "repeated_edits.py evaluation suite",
+      "recommended_action": "Document policy to refresh after N sequential edits."
+    },
+    {
+      "item_number": 17,
+      "item": "Whether every enabled radiation dependency is included in the certificate",
+      "current_implementation": "Direct beam, diffuse sky, wall longwave, and atmospheric sky longwave all bounded via Minkowski plume and SVF decay",
+      "expected_definition": "All active radiative flux components must have closed-form conservative upper bounds",
+      "status": "correct",
+      "evidence": "certificate.py uses (|sx| + |sy|) and solid-angle decay bound",
+      "recommended_action": "Retain corrected formulation."
+    }
+  ]
+}
