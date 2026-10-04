@@ -50,7 +50,7 @@ def cast_shadows(
         transform: Optional rasterio.Affine transform mapping pixel coords to UTM coordinates.
         alt_rad: Solar altitude angle in radians above horizon (0 to pi/2).
         az_rad: Solar azimuth angle in radians. Supports both standard compass (0=N, 90=E, 180=S, 270=W)
-                and the masterbackendsteps convention (~135-145° for afternoon southwest sun).
+                and the README.md convention (~135-145° for afternoon southwest sun).
         max_distance: Maximum distance to search for shadow-casting obstacles in meters (default 200m).
         resolution_m: Grid resolution in meters per cell (default 1.0m).
         points_3d: Optional (N, 3) coordinates [X, Y, Z] to evaluate illumination at.

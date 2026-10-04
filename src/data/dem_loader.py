@@ -149,5 +149,5 @@ def load_dem(
     return dem_utm_1m, dst_transform
 
 
-# Convenience alias matching mainbackendpart.md
+# Convenience alias for the documented public API
 load = load_dem

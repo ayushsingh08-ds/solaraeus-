@@ -144,5 +144,5 @@ def create_pedestrian_grid(
     return pedestrian_points, pedestrian_mask, transform, (H, W)
 
 
-# Convenience alias matching mainbackendpart.md
+# Convenience alias for the documented public API
 create = create_pedestrian_grid

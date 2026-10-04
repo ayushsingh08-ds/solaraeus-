@@ -10,7 +10,7 @@ from src.physics.solar import compute_solar_position, solar_position_degrees
 
 def test_solar_position_nyc_july_afternoon():
     """
-    Test case specified in masterbackendsteps.md:
+    Test case specified in the validation criteria in README.md:
     For NYC (40.7308°N, -73.9975°W) on July 15 (day 196) at 14:00 local (18:00 UTC):
     Altitude should be ~60-65° (or up to ~68° with EoT), azimuth should be ~135-145°.
     """
@@ -26,7 +26,7 @@ def test_solar_position_nyc_july_afternoon():
     assert math.isclose(alt_deg, math.degrees(alt_rad), rel_tol=1e-5)
     assert math.isclose(az_deg, math.degrees(az_rad), rel_tol=1e-5)
 
-    # Verify expected bounds from masterbackendsteps.md
+    # Verify expected bounds from the validation criteria in README.md
     assert 60.0 <= alt_deg <= 70.0, f"Altitude {alt_deg:.1f}° out of expected range [60°, 70°]"
     assert 135.0 <= az_deg <= 146.0, f"Azimuth {az_deg:.1f}° out of expected range [135°, 146°]"
 

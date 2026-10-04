@@ -11,7 +11,7 @@
 
 ## 1. Pipeline Execution & Output Validation Audit
 
-All physical bounds and microclimate criteria specified in `masterbackendsteps.md` were evaluated and strictly verified:
+All physical bounds and microclimate criteria specified in `README.md` were evaluated and strictly verified:
 
 | Test / Assertion | Target Condition | Measured Value | Validation Status |
 |---|---|---|:---:|

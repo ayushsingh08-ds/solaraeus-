@@ -11,7 +11,7 @@ from src.physics.tmrt import compute_tmrt
 
 def test_tmrt_sunlit_open_area():
     """
-    Test case 1 (masterbackendsteps.md):
+    Test case 1 (validation criteria in README.md):
     Sunlit point in open area on hot summer afternoon:
     Tmrt should be > 50°C, typically 52°C to 68°C.
     """
@@ -36,7 +36,7 @@ def test_tmrt_sunlit_open_area():
 
 def test_tmrt_shaded_area():
     """
-    Test case 2 (masterbackendsteps.md):
+    Test case 2 (validation criteria in README.md):
     Shaded urban canyon:
     Tmrt should be < 40°C, noticeably lower than sunlit area.
     """
@@ -83,7 +83,7 @@ def test_tmrt_contrast_sun_vs_shade():
 
 def test_tmrt_nighttime():
     """
-    Test case 4 (masterbackendsteps.md):
+    Test case 4 (validation criteria in README.md):
     Nighttime (zero solar radiation) -> Tmrt close to air temperature (+/- 5°C).
     """
     sunlit = np.array([False])

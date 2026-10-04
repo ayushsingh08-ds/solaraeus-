@@ -173,5 +173,5 @@ def build_building_meshes(
     return combined
 
 
-# Convenience alias matching mainbackendpart.md
+# Convenience alias for the documented public API
 build = build_building_meshes

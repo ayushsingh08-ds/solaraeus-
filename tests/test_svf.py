@@ -10,7 +10,7 @@ from src.physics.svf import compute_svf
 
 def test_svf_flat_ground():
     """
-    Test case 1 (masterbackendsteps.md):
+    Test case 1 (validation criteria in README.md):
     Flat ground with no buildings -> SVF = 1.0 everywhere.
     """
     H, W = 40, 40
@@ -24,7 +24,7 @@ def test_svf_flat_ground():
 
 def test_svf_deep_canyon():
     """
-    Test case 2 (masterbackendsteps.md):
+    Test case 2 (validation criteria in README.md):
     Deep urban canyon: 10m wide canyon floor enclosed by 20m tall building walls.
     At the canyon center, SVF should be substantially reduced (< 0.40).
     """
@@ -47,7 +47,7 @@ def test_svf_deep_canyon():
 
 def test_svf_isolated_building():
     """
-    Test case 3 (masterbackendsteps.md):
+    Test case 3 (validation criteria in README.md):
     Flat ground with a single 20m building in the center.
     At 40m distance, SVF should be slightly reduced but close to 1.0 (~0.95+).
     Immediately next to the building wall, SVF should drop significantly (~0.6-0.75).

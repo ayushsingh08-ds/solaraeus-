@@ -248,5 +248,5 @@ def _extract_from_netcdf(nc_path: Path, date_str: str, utc_hour: int) -> Dict[st
         }
 
 
-# Convenience alias matching mainbackendpart.md
+# Convenience alias for the documented public API
 load = load_era5

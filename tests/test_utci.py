@@ -10,7 +10,7 @@ from src.physics.utci import compute_utci, classify_utci_stress
 
 def test_utci_hot_sunny_conditions():
     """
-    Test case 1 (masterbackendsteps.md):
+    Test case 1 (validation criteria in README.md):
     Hot sunny summer conditions (Ta = 33°C, Tmrt = 60°C, v = 1.2 m/s, RH = 50%):
     UTCI should be > 40°C (very strong heat stress).
     """
@@ -33,7 +33,7 @@ def test_utci_hot_sunny_conditions():
 
 def test_utci_shaded_conditions():
     """
-    Test case 2 (masterbackendsteps.md):
+    Test case 2 (validation criteria in README.md):
     Same conditions but shaded (Tmrt = 35°C):
     UTCI should be around 34-39°C.
     """
@@ -74,7 +74,7 @@ def test_utci_contrast_sun_vs_shade():
 
 def test_utci_cold_conditions():
     """
-    Test case 4 (masterbackendsteps.md):
+    Test case 4 (validation criteria in README.md):
     Cold conditions (Ta = 2°C, Tmrt = 5°C, v = 3.0 m/s, RH = 70%):
     UTCI should be < 10°C (slight to moderate/strong cold stress).
     """

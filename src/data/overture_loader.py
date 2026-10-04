@@ -87,5 +87,5 @@ def load_buildings(
     return buildings
 
 
-# Convenience alias matching mainbackendpart.md
+# Convenience alias for the documented public API
 load = load_buildings

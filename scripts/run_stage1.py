@@ -68,7 +68,7 @@ def validate_outputs(
     Performs rigorous physical and statistical sanity checks across all model outputs.
     Raises ValueError / AssertionError if any check fails.
 
-    Validation criteria (per masterbackendsteps.md):
+    Validation criteria (per README.md):
       1. SVF range: 0.0 <= SVF <= 1.0; open areas > 0.8; canyons < 0.5.
       2. Shadow direction: Sun altitude > 0; azimuth in target quadrant; shadow points opposite sun.
       3. Tmrt range: Walkable Tmrt within physical limits [20°C, 85°C]; sunlit > 50°C; shaded < 45°C.
@@ -250,7 +250,7 @@ def write_validation_report(
 
 ## 1. Pipeline Execution & Output Validation Audit
 
-All physical bounds and microclimate criteria specified in `masterbackendsteps.md` were evaluated and strictly verified:
+All physical bounds and microclimate criteria specified in `README.md` were evaluated and strictly verified:
 
 | Test / Assertion | Target Condition | Measured Value | Validation Status |
 |---|---|---|:---:|

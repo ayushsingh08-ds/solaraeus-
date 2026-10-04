@@ -24,7 +24,7 @@ def compute_solar_position(
         day_of_year: Day of the year (1 to 365/366, e.g. 196 for July 15).
         lon: Longitude in degrees (East positive, West negative, e.g. -73.9975 for NYC).
         use_standard_compass: If True, azimuth is clockwise from North (0°=N, 90°=E, 180°=S, 270°=W).
-                              If False (default, matching masterbackendsteps.md), azimuth is defined
+                              If False (default, matching the README.md convention), azimuth is defined
                               relative to the solar meridian giving ~135°-145° for afternoon sun.
 
     Returns:
@@ -72,7 +72,7 @@ def compute_solar_position(
             else:          # Morning (sun in east)
                 azimuth = math.pi - az_meridian
         else:
-            # masterbackendsteps.md convention:
+            # README.md convention:
             # In afternoon, produces ~135°-145° (e.g. pi - az_meridian)
             azimuth = math.pi - az_meridian
 

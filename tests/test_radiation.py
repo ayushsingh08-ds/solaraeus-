@@ -10,7 +10,7 @@ from src.physics.radiation import compute_radiation
 
 def test_radiation_sunlit_open_area():
     """
-    Test case 1 (masterbackendsteps.md):
+    Test case 1 (validation criteria in README.md):
     Sunlit point in open area at midday on a clear summer day:
     Total shortwave flux K_total should be roughly 400-600 W/m^2.
     Direct solar flux should be dominant (>300 W/m^2).
@@ -44,7 +44,7 @@ def test_radiation_sunlit_open_area():
 
 def test_radiation_shaded_canyon():
     """
-    Test case 2 (masterbackendsteps.md):
+    Test case 2 (validation criteria in README.md):
     Shaded point in deep canyon (SVF = 0.35, sunlit = False):
     Direct solar flux must be strictly 0.0 W/m^2.
     Total shortwave should be much lower (< 100 W/m^2, only diffuse sky radiation).

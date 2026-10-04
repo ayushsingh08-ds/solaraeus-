@@ -11,7 +11,7 @@ from src.physics.shadows import cast_shadows
 
 def test_shadow_length_and_direction_single_building():
     """
-    Test case 1 (masterbackendsteps.md):
+    Test case 1 (validation criteria in README.md):
     A 20m building at 60° sun altitude casts a shadow ~11.5m long in the direction opposite the sun.
     With sun due South (azimuth = 180°), shadows point due North.
     - Point 5m to the north of the building (in shadow direction) -> SHADED.
