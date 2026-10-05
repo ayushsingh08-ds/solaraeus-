@@ -828,5 +828,5 @@ The CPU-based, single-timestep, SOLWEIG-compatible certified incremental prototy
 | `855a99d` | 2026-10-04 | `docs: synchronize context.md with publication validation artifacts and multi-trial results` |
 | `c5bf5af` | 2026-10-06 | `feat(audit): independent certificate audit, mutation testing, and claim defensibility` (Milestone 14, decoupled certificate audit, 4 mutation sensitivity checks, dependency coverage matrix, timing overhead audit, zero-drift reversion, claim rectification, 8 plots) |
 | `fa5a5d2` | 2026-10-06 | `docs: add Milestone 14 audit results, mutation benchmarks, and timing tables to context.md` |
-| `pending` | 2026-10-05 | `feat(audit): clean, verify, and freeze audit with UTC provenance and canonical benchmarks` (Milestone 15, UTC timestamp provenance, 4 repaired mutations, canonical benchmark table, 5-tier analytical verification, 99 tests passing, frozen cleanup artifacts) |
+| `2e1c98d` | 2026-10-05 | `feat(audit): clean, verify, and freeze audit with UTC provenance and canonical benchmarks` (Milestone 15, UTC timestamp provenance, 4 repaired mutations, canonical benchmark table, 5-tier analytical verification, 99 tests passing, frozen cleanup artifacts) |
 
