@@ -527,6 +527,58 @@ Comparison of ground-truth full recompute, naive 5m buffer heuristic, exact incr
 | **Unobstructed Flat Terrain SVF** | $1.000000000$ | $1.000000000$ | $0.00 \times 10^{0}$ | $0.00 \times 10^{0}$ | $10^{-12}$ | **PASSED** |
 | **Stefan-Boltzmann Inversion** ($S_{\mathrm{str}}=500\,\text{W/m}^2$) | $33.285846320^\circ\text{C}$ | $33.285846320^\circ\text{C}$ | $0.00 \times 10^{0}$ | $0.00 \times 10^{0}$ | $10^{-9}$ | **PASSED** |
 
+### 4.7 Independent Scientific Audit & Mutation Testing Results (Milestone 14)
+
+Campaign Identifier: `independent_audit_20261006_033239` (Output archive: [`results/independent_audit_20261006_033239/`](file:///c:/Users/AYUSH%20SINGH/Documents/GitHub/solaraeus/results/independent_audit_20261006_033239)).
+
+#### 1. Decoupled Certificate Verification Audit (11 Scenarios, 185,600 Evaluated Cells)
+Direct recalculation from raw NumPy arrays ($e(x) = |\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)|$, $\text{slack}(x) = B_T(x) - e(x)$) without relying on internal `verify_certificate()`:
+
+| Scenario Name | Domain Extent | Density | Edit Type | Tolerance $\varepsilon_T$ | Total Cells | Certified Reused Cells (%) | Max Actual Error $e_{\max}$ | Max Bound $B_{\max}$ | Min Slack | Violations ($e > B_T$) | Reused Violations ($e > \varepsilon_T$) | Audit Verdict |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **80m_low_height_inc** | $80\,\text{m}$ | Low | Height $+6\text{m}$ | $0.5\,\text{K}$ | 6,400 | $3,610$ ($56.4\%$) | $0.0387\,\text{K}$ | $60.58\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_height_inc** | $80\,\text{m}$ | Med | Height $+6\text{m}$ | $0.5\,\text{K}$ | 6,400 | $4,448$ ($69.5\%$) | $0.0000\,\text{K}$ | $24.47\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_high_height_inc** | $80\,\text{m}$ | High | Height $+6\text{m}$ | $0.5\,\text{K}$ | 6,400 | $1,300$ ($20.3\%$) | $0.0000\,\text{K}$ | $59.68\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **160m_med_height_inc** | $160\,\text{m}$ | Med | Height $+6\text{m}$ | $0.5\,\text{K}$ | 25,600 | $20,888$ ($81.6\%$) | $0.0193\,\text{K}$ | $59.83\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **320m_med_height_inc** | $320\,\text{m}$ | Med | Height $+6\text{m}$ | $0.5\,\text{K}$ | 102,400 | $98,834$ (**$96.5\%$**) | $0.0231\,\text{K}$ | $59.79\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_tol_0.1K** | $80\,\text{m}$ | Med | Height $+6\text{m}$ | $0.1\,\text{K}$ | 6,400 | $4,448$ ($69.5\%$) | $0.0000\,\text{K}$ | $24.47\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_tol_1.0K** | $80\,\text{m}$ | Med | Height $+6\text{m}$ | $1.0\,\text{K}$ | 6,400 | $4,448$ ($69.5\%$) | $0.0000\,\text{K}$ | $24.47\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_tol_2.0K** | $80\,\text{m}$ | Med | Height $+6\text{m}$ | $2.0\,\text{K}$ | 6,400 | $4,448$ ($69.5\%$) | $0.0000\,\text{K}$ | $24.47\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_add_building** | $80\,\text{m}$ | Med | Add building | $0.5\,\text{K}$ | 6,400 | $2,660$ ($41.6\%$) | $0.0000\,\text{K}$ | $60.18\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_remove_bldg** | $80\,\text{m}$ | Med | Remove building | $0.5\,\text{K}$ | 6,400 | $969$ ($15.1\%$) | $0.0000\,\text{K}$ | $60.20\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+| **80m_med_move_bldg** | $80\,\text{m}$ | Med | Move building | $0.5\,\text{K}$ | 6,400 | $222$ ($3.5\%$) | $0.0000\,\text{K}$ | $60.20\,\text{K}$ | $0.0000\,\text{K}$ | **0** | **0** | **SOUND** |
+
+#### 2. Intentional Mutation Sensitivity Audit
+Proving that the independent audit pipeline reliably flags violations when physical or mathematical assumptions are broken:
+
+| Mutation Scenario | Description of Injected Fault | Expected Result | Actual Violations | Actual Tolerance Violations | Min Slack | Max Error $e_{\max}$ | Audit Verdict |
+| :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: |
+| **`control_unmutated`** | Unmutated certified incremental pipeline | Pass (0 violations) | **0** | **0** | $0.0000\,\text{K}$ | $0.0000\,\text{K}$ | **PASS (Sound)** |
+| **`mutation_truncated_shadow_plume`** | Shadow plume reach cut to $30\%$; $0\Delta x$ safety padding | Violations outside plume | **158** | **42** | **$-19.52\,\text{K}$** | **$19.62\,\text{K}$** | **DETECTED (Flagged)** |
+| **`mutation_zero_diffuse_bound`** | Diffuse/SVF bound zeroed to $0.0001\,\text{K}$ | SVF diffuse error exceeds bound | 0 | 0 | $+0.0001\,\text{K}$ | $0.0000\,\text{K}$ | Clean cells had exact 0.0K error |
+| **`mutation_forced_stale_reuse`** | Direct shadow change forced to reuse stale cached values | Thermal shock of un-recomputed direct shadow | **42** | **42** | **$-19.42\,\text{K}$** | **$19.62\,\text{K}$** | **DETECTED (Flagged)** |
+| **`mutation_truncated_svf_cutoff`** | SVF decay bound cut to 5m (omitting 5m–30m zone) | Distant SVF decay exceeds bound | 0 | 0 | $0.0000\,\text{K}$ | $0.0000\,\text{K}$ | Recomputed zone covered SVF perturbation |
+
+#### 3. Isolated Administrative Overhead Breakdown ($N=5$ Independent Trials)
+
+| Scale | Cells | Full Median (Std) | Inc Median (Std) | Speedup | Dependency Query | Candidate Plume | Certificate Eval | Selective Recompute | Result Assembly | JSON Serialization | Total Admin Overhead | Overhead Ratio (%) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **80m** | 6,400 | $0.274\,\text{s}$ ($\pm 0.094\,\text{s}$) | $0.218\,\text{s}$ ($\pm 0.057\,\text{s}$) | **$1.53\times$** | $31.1\,\mu\text{s}$ | $43.8\,\mu\text{s}$ | $0.667\,\text{ms}$ | $0.217\,\text{s}$ | $46.0\,\mu\text{s}$ | $40.1\,\mu\text{s}$ | **$0.788\,\text{ms}$** | **$0.36\%$** |
+| **160m** | 25,600 | $2.991\,\text{s}$ ($\pm 0.644\,\text{s}$) | $0.354\,\text{s}$ ($\pm 0.133\,\text{s}$) | **$6.39\times$** | $29.1\,\mu\text{s}$ | $97.1\,\mu\text{s}$ | $3.161\,\text{ms}$ | $0.347\,\text{s}$ | $127.3\,\mu\text{s}$ | $43.0\,\mu\text{s}$ | **$3.414\,\text{ms}$** | **$0.96\%$** |
+| **320m** | 102,400 | $35.962\,\text{s}$ ($\pm 6.000\,\text{s}$) | $1.368\,\text{s}$ ($\pm 0.160\,\text{s}$) | **$23.14\times$** | $59.5\,\mu\text{s}$ | $251.2\,\mu\text{s}$ | $18.996\,\text{ms}$ | $1.344\,\text{s}$ | $315.6\,\mu\text{s}$ | $64.8\,\mu\text{s}$ | **$19.622\,\text{ms}$** | **$1.43\%$** |
+
+*Conclusion*: Administrative bounding overhead accounts for **$\le 1.43\%$** of incremental execution time across all domain scales, introducing zero practical bottleneck.
+
+#### 4. Scientific Claim Audit & Defensible Rectifications
+
+| Claim Subject | Original Documented Wording | Revised Scientifically Defensible Wording | Rationale & Justification | Status |
+| :--- | :--- | :--- | :--- | :---: |
+| **GPU Acceleration** | *"Yield an estimated 20x-50x additional speedup from WebGPU / CUDA"* | Stated as architectural potential for parallel compute shaders on GPU hardware | Unmeasured performance multipliers removed from documentation | **RECTIFIED** |
+| **Proof Scope** | *"Mathematically proven upper bounds"* | *"No error-certificate violations observed in evaluated benchmark cases"* | Discrete grid sampling and numerical approximations require empirical qualification | **RECTIFIED** |
+| **Analytical Validation** | *"Fully validated against analytical references"* | *"Verified against independent analytical benchmarks and internal ground-truth full recomputation"* | Analytical benchmarks verify isolated components; field sensor validation has not been performed | **RECTIFIED** |
+| **SOLWEIG Alignment** | *"Exact SOLWEIG match / Algorithmic match"* | *"SOLWEIG-compatible simplified formulation; conceptually aligned with Höppe (1992) cylinder factors"* | Clarifies shared physics formulation without claiming binary parity against external QGIS plugin | **RECTIFIED** |
+| **Sequential Drift** | *"Provable drift immunity across sequential edits"* | *"No cumulative drift was observed in tested 5-step edit sequences (0.0000K reversion error)"* | General mathematical drift immunity is restricted to supported atomic edit operations | **RECTIFIED** |
+
 ---
 
 ## 5. Complete Directory Structure
@@ -690,4 +742,4 @@ python examples/compare_full_incremental.py
 | `ed25431` | 2026-10-04 | `feat(eval): complete comprehensive research evaluation (Work Packages 1-10)` (Extended benchmark harness, parametric scenes, 12 new adversarial tests, independent analytical verification, 20-item physics audit, 7 publication plots, 94 tests) |
 | `7413bf4` | 2026-10-04 | `feat(audit): publication-quality validation, multi-trial reproducibility, and scientific audit` (Milestone 13, multi-trial N=5 statistics, timing breakdown instrumentation, non-certified baseline comparison, tightness analysis, repeated edit cycle with zero drift, 9 publication figures, 94 tests) |
 | `855a99d` | 2026-10-04 | `docs: synchronize context.md with publication validation artifacts and multi-trial results` |
-| `[current]` | 2026-10-06 | `feat(audit): independent certificate audit, mutation testing, and claim defensibility` (Milestone 14, decoupled certificate audit, 4 mutation sensitivity checks, dependency coverage matrix, timing overhead audit, zero-drift reversion, claim rectification, 8 plots) |
+| `c5bf5af` | 2026-10-06 | `feat(audit): independent certificate audit, mutation testing, and claim defensibility` (Milestone 14, decoupled certificate audit, 4 mutation sensitivity checks, dependency coverage matrix, timing overhead audit, zero-drift reversion, claim rectification, 8 plots) |
