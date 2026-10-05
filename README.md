@@ -259,17 +259,21 @@ To evaluate whether mathematical certification is necessary versus heuristic bou
 
 ## 8. Documented Assumptions & Known Limitations
 
-1. **CPU-Only Execution**: The current implementation is written in pure Python with NumPy/SciPy vectorization.
+1. **CPU-Only Execution**: The current prototype is implemented in pure Python with NumPy/SciPy vectorization.
 2. **Single Timestep**: Boundary weather conditions and solar astronomical angles are evaluated at a single static instant.
 3. **Flat Terrain**: Ground elevation is currently modeled at $z = 0.0\,\text{m}$.
 4. **Axis-Aligned Prisms**: Buildings are represented as axis-aligned bounding boxes (AABBs); complex curved geometry is approximated via bounding boxes.
 5. **Low-Sun Fallback**: At solar altitudes $\alpha < 5.0^\circ$, shadow lengths grow towards infinity ($h / \tan\alpha$), triggering an automatic, sound fallback to full-domain recomputation.
+6. **No Physical Field Sensor Validation**: The current implementation has been audited and verified against analytical solutions, mathematical bounds, and ground-truth full recomputations. It has not been validated against in-situ physical microclimate sensor instrumentation or weather station field campaigns.
+7. **UMEP / SOLWEIG Reference Parity Scope**: The prototype implements a simplified, single-timestep, SOLWEIG-compatible formulation (Hoppe 1992 angular cylinder factors, Brutsaert atmospheric emissivity, 6-direction flux integration). Parity is established at the mathematical formulation level; full numerical cross-validation against the official QGIS UMEP plugin across identical real-world raster inputs has not been conducted due to external desktop platform boundaries.
+8. **Microclimate Physics Exclusions**: The current model focuses strictly on radiative fluxes ($K_i, L_i$), $T_{\mathrm{mrt}}$, and UTCI. It excludes spatially varying computational fluid dynamics (CFD) wind fields (using uniform meteorological wind), dynamic transient wall thermal storage/mass, surface evapotranspiration, and multi-layer vegetative foliage physics.
+9. **Domain Geometry & Error Scope**: Error certificates and bounding guarantees apply strictly to the discrete pedestrian grid, axis-aligned bounding box building representations, and single-timestep calculations on flat terrain.
 
 ---
 
 ## 9. Future Acceleration Pathways
 
-- **WebGPU / CUDA Acceleration**: Multi-azimuth horizon elevation searches and shadow raycasting are embarrassingly parallel; migrating grid sweeps to compute shaders will yield an estimated $20\times - 50\times$ additional speedup.
+- **WebGPU / CUDA Acceleration**: Multi-azimuth horizon elevation searches and shadow raycasting are embarrassingly parallel; migrating grid sweeps to compute shaders offers significant parallel acceleration potential on GPU hardware.
 - **Bounding Volume Hierarchies (BVH)**: Implementing a 2D/3D BVH (R-tree) will reduce shadow and SVF intersection tests from $O(N_{\mathrm{buildings}})$ to $O(\log N_{\mathrm{buildings}})$.
 - **Multi-Timestep Temporal Caching**: Extending the certificate bound across diurnal solar trajectories to reuse microclimate calculations across adjacent time steps.
 - **Non-Flat Topography & Arbitrary Meshes**: Generalizing the shadow frustum projection to digital elevation models (DEM) and arbitrary 3D triangular meshes.

@@ -1,0 +1,6 @@
+mutation_id,description,expected_result,actual_violations,actual_tolerance_violations,min_slack_k,max_actual_error_k,detection_status,audit_passed
+control_unmutated,Standard certified incremental pipeline (no mutation),"PASS (0 violations, sound)",0,0,0.0,0.0,"CORRECT (Sound, 0 violations)",True
+mutation_truncated_shadow_plume,"Severely truncated shadow plume (30% reach, 0 safety margin)",VIOLATION DETECTED (Error exceeds bound outside truncated plume),158,42,-19.524535817032096,19.624535817032097,DETECTED (Flagged by independent audit),True
+mutation_zero_diffuse_bound,Artificially zeroed diffuse/SVF bound outside direct shadow,VIOLATION DETECTED (Subtle SVF error exceeds 0.0001K bound),0,0,0.0001,0.0,MISSED,False
+mutation_forced_stale_reuse,Forced full reuse of stale previous result across direct shadow change,VIOLATION DETECTED (Massive shadow error ~20K exceeds 0.2K bound & tolerance),42,42,-19.424535817032098,19.624535817032097,DETECTED (Flagged by independent audit),True
+mutation_truncated_svf_cutoff,Truncated SVF decay radius to 5m (omitting 5m-30m horizon zone),VIOLATION DETECTED (SVF decay between 5m-30m exceeds 0.0K bound),0,0,0.0,0.0,MISSED,False

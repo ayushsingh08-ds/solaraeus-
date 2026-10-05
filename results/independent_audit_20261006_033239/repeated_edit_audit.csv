@@ -1,0 +1,7 @@
+step_number,step_name,edit_description,full_runtime_sec,incremental_runtime_sec,speedup,reused_cells,recomputed_cells,reused_fraction,max_actual_error_k,mean_actual_error_k,max_predicted_bound_k,baseline_reversion_error_k,certificate_violations,is_sound
+0,baseline,Initial central building (16x16x18m),0.13573550002183765,0.13573550002183765,1.0,0,6400,0.0,0.0,0.0,0.0,0.0,0,True
+1,height_increase,Height increase: 18m -> 24m (+6m),0.1437772000208497,0.08745990000898018,1.6439213857560664,1607,4793,0.25109375,0.01548166479989277,0.0002523386924508486,60.77218109868909,nan,0,True
+2,building_move,"Translation: +10m East, +5m North",0.12798180000390857,0.1033245999715291,1.2386382336749788,0,6400,0.0,0.0,0.0,61.278204570836806,nan,0,True
+3,height_decrease,Height decrease: 24m -> 18m (-6m),0.09554569999454543,0.10696030000690371,0.8932818998112241,2028,4372,0.316875,0.01548166479989277,0.0001619985809303337,60.72177527893916,nan,0,True
+4,building_removal,Removal: Remove building completely,0.005774299963377416,0.006223400007002056,0.9278368668060306,392,6008,0.06125,0.0,0.0,60.964466107652356,nan,0,True
+5,return_to_baseline,Return: Re-add initial building at original position,0.16238400002475828,0.15344250004272908,1.0582726427133242,60,6340,0.009375,0.0,0.0,46.27565104309076,0.0,0,True

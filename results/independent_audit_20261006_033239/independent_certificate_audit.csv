@@ -1,0 +1,12 @@
+scenario_name,domain_extent_m,density,edit_type,tolerance_k,total_cells,certified_reused_cells,recomputed_cells,reused_fraction,max_actual_error_k,reused_max_actual_error_k,max_predicted_bound_k,min_slack_k,median_slack_k,num_negative_slacks,num_certificate_violations,num_tolerance_violations,is_sound,is_within_tolerance
+80m_low_height_inc,80.0,low,height_inc,0.5,6400,3610,2790,0.5640625,0.03865429628825723,0.03865429628825723,60.58187664086165,0.0,0.35107379200997,0,0,0,True,True
+80m_med_height_inc,80.0,medium,height_inc,0.5,6400,4448,1952,0.695,0.0,0.0,24.465888126967343,0.0,0.0,0,0,0,True,True
+80m_high_height_inc,80.0,high,height_inc,0.5,6400,1300,5100,0.203125,0.0,0.0,59.68081167745291,0.0,8.734379634931543,0,0,0,True,True
+160m_med_height_inc,160.0,medium,height_inc,0.5,25600,20888,4712,0.8159375,0.01926038887967252,0.01926038887967252,59.83283641876466,0.0,0.0,0,0,0,True,True
+320m_med_height_inc,320.0,medium,height_inc,0.5,102400,98834,3566,0.96517578125,0.023137684852940765,0.023137684852940765,59.786852808062264,0.0,0.0,0,0,0,True,True
+80m_med_tol_0.1K,80.0,medium,height_inc,0.1,6400,4448,1952,0.695,0.0,0.0,24.465888126967343,0.0,0.0,0,0,0,True,True
+80m_med_tol_1.0K,80.0,medium,height_inc,1.0,6400,4448,1952,0.695,0.0,0.0,24.465888126967343,0.0,0.0,0,0,0,True,True
+80m_med_tol_2.0K,80.0,medium,height_inc,2.0,6400,4448,1952,0.695,0.0,0.0,24.465888126967343,0.0,0.0,0,0,0,True,True
+80m_med_add_building,80.0,medium,add,0.5,6400,2660,3740,0.415625,0.0,0.0,60.177343790983116,0.0,0.9990420933204689,0,0,0,True,True
+80m_med_remove_building,80.0,medium,remove,0.5,6400,969,5431,0.15140625,0.0,0.0,60.19757142167458,0.0,5.397350946222275,0,0,0,True,True
+80m_med_move_building,80.0,medium,move,0.5,6400,222,6178,0.0346875,0.0,0.0,60.19757142167458,0.0,17.05058096583113,0,0,0,True,True

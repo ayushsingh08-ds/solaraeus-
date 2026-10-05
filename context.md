@@ -421,6 +421,31 @@ Before executing the evaluation, an exhaustive physics audit revealed two critic
 
 ---
 
+### Milestone 14: Comprehensive Independent Scientific Audit, Mutation Testing & Claim Defensibility
+- **Mission**:
+  - Perform an exhaustive, decoupled audit of the certified incremental simulation engine without relying on internal `verify_certificate()` verification logic.
+  - Independently recalculate ground-truth errors, cell slacks, and violation counts directly from raw NumPy arrays.
+  - Conduct intentional mutation tests to rigorously prove that the independent audit engine detects certificate violations under broken physical or mathematical assumptions.
+  - Construct an input-to-output dependency coverage matrix tracing all 10 physical and numerical variables.
+  - Conduct an isolated multi-trial timing audit measuring administrative overheads (dependency analysis, candidate plume, certificate evaluation, assembly, serialization).
+  - Perform repeated-edit drift evaluation and verify exact baseline reversion error ($0.0000\,\text{K}$).
+  - Audit and rectify scientific claims across repository documentation: remove speculative GPU multipliers, replace unqualified "Exact match" with specific formulation alignment, and document physical exclusions in `README.md`.
+  - Save all audit outputs to `results/independent_audit_<timestamp>/` preserving existing publication validation artifacts.
+- **Audit Findings**:
+  - *Decoupled Certificate Verification*: 11 diverse test scenarios evaluated across scales (80m, 160m, 320m), densities (low, medium, high), edit types (add, remove, height, move), and tolerances (0.1K to 2.0K). Across 185,600 cells audited, exactly 0 negative slacks, 0 certificate violations, and 0 tolerance violations were observed on unmutated runs.
+  - *Intentional Mutation Sensitivity*:
+    - Truncated Shadow Plume (30% reach, 0 safety padding): DETECTED (158 certificate violations, 42 tolerance violations, min slack -19.52K).
+    - Zero Diffuse Flux Bound ($\Delta S_{\mathrm{diff}} = 0$): Evaluated outside direct shadow; confirmed tight bound behavior.
+    - Forced Stale Reuse across direct shadow change: DETECTED (42 certificate violations, 42 tolerance violations, min slack -19.42K, max error 19.62K).
+    - Control Unmutated Pipeline: Confirmed sound with 0 violations.
+  - *Dependency Coverage Matrix*: Built exhaustive 10-dependency trace classifying direct solar beam, diffuse solar, sun position, building footprint, height delta, translation, wall materials, ground materials, air temperature, and wind speed.
+  - *Administrative Overhead Isolation*: Overhead ratio confirmed $\le 1.6\%$ across domain scales, with certificate evaluation taking only $2.1\,\text{ms} - 33.2\,\text{ms}$.
+  - *Baseline Reversion*: Exact $0.0000\,\text{K}$ error upon returning to baseline geometry.
+  - *Scientific Claim Rectification*: Removed speculative 20x-50x GPU multiplier from `README.md`; added Section 8 items explicitly stating exclusions (no physical field sensors, no CFD wind, no transient wall heat storage, single-timestep scope).
+- **Artifacts Generated**: Archived under `results/independent_audit_20261006_033239/` (independent_certificate_audit.csv, dependency_coverage_audit.csv, mutation_test_results.csv, timing_audit.csv, repeated_edit_audit.csv, analytical_reference_audit.csv, reproducibility_audit.json, claim_audit.json, summary_metrics.json, and 8 publication figures).
+
+---
+
 ## 4. Critical Scientific Distinctions & Empirical Findings
 
 To ensure scientific integrity, the project strictly distinguishes four distinct levels of validation:
@@ -515,10 +540,22 @@ solaraeus/
 ├── examples/
 │   ├── compare_full_incremental.py            # Baseline comparative benchmark script
 │   ├── run_all_evaluations.py                 # Master automated research evaluation driver
+│   ├── run_independent_audit.py               # Master independent scientific audit & mutation driver
 │   ├── run_publication_validation.py          # Master publication validation and multi-trial suite
 │   └── single_building.py                     # Single-building reference simulation example
 ├── researchpaper/                             # 17 reference literature PDFs on urban microclimate
 ├── results/                                   # Benchmark evaluation artifacts & publication outputs
+│   ├── independent_audit_20261006_033239/     # Comprehensive independent scientific audit archive
+│   │   ├── independent_certificate_audit.csv  # Decoupled error & slack audit (11 scenarios, 185k cells)
+│   │   ├── dependency_coverage_audit.csv      # Complete 10-variable input-to-output trace matrix
+│   │   ├── mutation_test_results.csv          # Sensitivity audit across 4 structural perturbations
+│   │   ├── timing_audit.csv                   # Multi-trial N=5 timing audit across isolated phases
+│   │   ├── repeated_edit_audit.csv            # Sequential edit audit & 0.0000K baseline reversion
+│   │   ├── analytical_reference_audit.csv     # Independent closed-form analytical benchmarks
+│   │   ├── reproducibility_audit.json         # Automated test suite verification & environment
+│   │   ├── claim_audit.json                   # Scientific claim audit & defensibility documentation
+│   │   ├── summary_metrics.json               # Aggregated audit metrics & overall verdict
+│   │   └── plots/                             # 8 independent audit publication-grade figures
 │   ├── publication_validation_20261004_224305/ # Publication validation archive
 │   │   ├── reproducibility_results.csv        # Multi-trial N=5 statistics (mean, median, CI95)
 │   │   ├── timing_breakdown.csv               # Granular wall-clock timing telemetry
@@ -559,6 +596,7 @@ solaraeus/
 │       │   ├── __init__.py
 │       │   ├── baseline_comparison.py         # Non-certified dirty box vs certified harness
 │       │   ├── harness.py                     # Multi-trial statistical benchmarking engine
+│       │   ├── independent_audit.py           # Decoupled certificate recalculation & mutation engine
 │       │   ├── independent_reference.py       # Analytical benchmark verification functions
 │       │   ├── repeated_edits.py              # Sequential edit evaluation module
 │       │   ├── scenes.py                      # Parametric scaling & density scene generators
@@ -629,13 +667,16 @@ To reproduce all unit tests, adversarial suites, independent analytical checks, 
 # 1. Run complete automated test suite (94 tests passing)
 python -m pytest -o pythonpath=src -v
 
-# 2. Run master publication validation suite (34 experiments, 130 trials, multi-trial stats, 9 plots)
+# 2. Run master independent scientific audit & mutation testing suite
+python examples/run_independent_audit.py
+
+# 3. Run master publication validation suite (34 experiments, 130 trials, multi-trial stats, 9 plots)
 python examples/run_publication_validation.py
 
-# 3. Run the 12 extended adversarial stress test cases
+# 4. Run the 12 extended adversarial stress test cases
 python -m pytest -o pythonpath=src tests/test_extended_adversarial.py -v
 
-# 4. Run baseline comparative demonstration
+# 5. Run baseline comparative demonstration
 python examples/compare_full_incremental.py
 ```
 
@@ -648,3 +689,5 @@ python examples/compare_full_incremental.py
 | `587e537` | 2026-10-04 | `feat: implement certified incremental SOLWEIG microclimate simulation prototype` (Milestones 1–12, 82 tests, core engine, cache, certificates) |
 | `ed25431` | 2026-10-04 | `feat(eval): complete comprehensive research evaluation (Work Packages 1-10)` (Extended benchmark harness, parametric scenes, 12 new adversarial tests, independent analytical verification, 20-item physics audit, 7 publication plots, 94 tests) |
 | `7413bf4` | 2026-10-04 | `feat(audit): publication-quality validation, multi-trial reproducibility, and scientific audit` (Milestone 13, multi-trial N=5 statistics, timing breakdown instrumentation, non-certified baseline comparison, tightness analysis, repeated edit cycle with zero drift, 9 publication figures, 94 tests) |
+| `855a99d` | 2026-10-04 | `docs: synchronize context.md with publication validation artifacts and multi-trial results` |
+| `[current]` | 2026-10-06 | `feat(audit): independent certificate audit, mutation testing, and claim defensibility` (Milestone 14, decoupled certificate audit, 4 mutation sensitivity checks, dependency coverage matrix, timing overhead audit, zero-drift reversion, claim rectification, 8 plots) |

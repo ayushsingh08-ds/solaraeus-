@@ -1,0 +1,28 @@
+{
+  "audit_timestamp": "20261006_033239",
+  "environment": {
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+    "operating_system": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "git_commit": "855a99d2dd243f880714cf52ff8dbbd915e40c67",
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.17.1",
+      "shapely": "2.1.2",
+      "pythermalcomfort": "4.5.0",
+      "pytest": "8.3.4",
+      "matplotlib": "3.10.0"
+    }
+  },
+  "test_suite": {
+    "command": "python -m pytest -o pythonpath=src -v",
+    "total_tests": 94,
+    "status": "ALL_94_TESTS_PASSING",
+    "exit_code": 0
+  },
+  "benchmark_verification": {
+    "publication_validation_dir": "results/publication_validation_20261004_224305",
+    "publication_scaling_speedups_match": true,
+    "reproducibility_consistency": "Consistent across multi-trial medians within 95% confidence intervals"
+  }
+}

@@ -188,7 +188,7 @@ EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT = {
         "human_body_weighting": {
             "our_format": "Standing rotationally symmetric cylinder (f_up=0.06, f_down=0.06, f_side=0.22)",
             "umep_format": "Standing cylinder (f_up=0.06, f_down=0.06, f_side=0.22) (Höppe 1992)",
-            "status": "Exact Match."
+            "status": "Identical Hoppe (1992) formulation: angular cylinder weighting factors and absorptivities."
         },
         "integration_status": "External executable integration is not currently possible without installing QGIS and UMEP plugin dependencies in this lightweight Python environment. Analytical reference cases serve as independent ground truth."
     }
