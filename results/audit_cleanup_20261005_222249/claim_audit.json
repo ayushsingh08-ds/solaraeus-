@@ -1,0 +1,60 @@
+{
+  "audit_objective": "Identify, qualify, and rectify unsupported, overstated, or speculative scientific claims",
+  "scientific_wording_standards": {
+    "certificate_soundness_standard": "No certificate violations were observed in the evaluated configurations.",
+    "certificate_conditions_standard": "The certificate is conditional on the documented discrete grid, supported geometry, fixed materials, fixed surface temperatures, single timestep, and configured visibility horizon.",
+    "solweig_compatibility_standard": "The prototype is compatible with selected SOLWEIG conventions but has not been numerically cross-validated against official SOLWEIG outputs.",
+    "utci_standard": "UTCI is recomputed from the updated Tmrt under fixed air temperature, humidity, and wind inputs.",
+    "coverage_standard": "The core modules were exercised by the automated test suite."
+  },
+  "claims_evaluated": [
+    {
+      "claim_id": "c1_mathematical_proof",
+      "original_wording": "Mathematically proven upper bounds",
+      "revised_wording": "No certificate violations were observed in the evaluated configurations.",
+      "rationale": "While the concave interval propagation is mathematically sound, overall simulation accuracy depends on discrete grid sampling and physical model assumptions."
+    },
+    {
+      "claim_id": "c2_full_validation",
+      "original_wording": "Fully validated against analytical references",
+      "revised_wording": "Verified against independent analytical benchmarks and internal ground-truth full recomputation.",
+      "rationale": "Analytical solutions verify isolated geometric components (shadow length, view factor); no real-world empirical sensor field validation has been conducted."
+    },
+    {
+      "claim_id": "c3_solweig_parity",
+      "original_wording": "Exact SOLWEIG match / Algorithmic match",
+      "revised_wording": "The prototype is compatible with selected SOLWEIG conventions but has not been numerically cross-validated against official SOLWEIG outputs.",
+      "rationale": "Numerical cross-validation against the official QGIS UMEP plugin is constrained by desktop platform boundaries; analytical reference tests serve as ground truth."
+    },
+    {
+      "claim_id": "c4_drift_immunity",
+      "original_wording": "Provable drift immunity across sequential edits",
+      "revised_wording": "No cumulative drift was observed in the tested 5-step edit sequence (0.000000K baseline reversion error).",
+      "rationale": "Empirical testing on a 5-step sequence demonstrates exact cache refresh, but general mathematical drift immunity requires qualification to supported edit operations."
+    },
+    {
+      "claim_id": "c5_gpu_acceleration_estimate",
+      "original_wording": "Yield an estimated 20x-50x additional speedup from WebGPU / CUDA",
+      "revised_wording": "Removed speculative performance multipliers; stated as architectural potential for parallel compute shaders.",
+      "rationale": "Unmeasured performance estimates should not appear in scientific documentation."
+    },
+    {
+      "claim_id": "c6_coverage_claim",
+      "original_wording": "100% core coverage",
+      "revised_wording": "The core modules were exercised by the automated test suite.",
+      "rationale": "coverage.py was not configured in the test harness; test suite exercises core paths across 99 automated test cases."
+    },
+    {
+      "claim_id": "c7_utci_monotonicity",
+      "original_wording": "UTCI monotonically tracks Tmrt with Lipschitz bounds",
+      "revised_wording": "UTCI is recomputed from the updated Tmrt under fixed air temperature, humidity, and wind inputs.",
+      "rationale": "UTCI is an empirical 6th-order 4-variable polynomial whose formal error bound is not derived; the certificate is restricted strictly to Tmrt."
+    }
+  ],
+  "mandatory_limitations_stated": [
+    "No field validation has been performed with physical microclimate sensor instrumentation.",
+    "Official SOLWEIG output parity has not been established via identical raster input files.",
+    "Current prototype excludes spatially varying CFD wind fields, dynamic facade thermal mass, evapotranspiration, and vegetative canopies.",
+    "Error certificates apply strictly to the discrete grid, axis-aligned geometry, single timestep, and configured horizon search radius."
+  ]
+}

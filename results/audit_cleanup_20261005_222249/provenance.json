@@ -1,0 +1,30 @@
+{
+  "provenance_version": "1.0",
+  "audit_phase": "audit_cleanup_and_freezing",
+  "timestamp_utc": "2026-10-05T22:22:49.899669+00:00",
+  "timestamp_local": "2026-10-06T03:52:49.899669",
+  "timestamp_source": "datetime.now(timezone.utc)",
+  "output_directory": "results\\audit_cleanup_20261005_222249",
+  "historical_timestamp_inconsistency_note": "The historical artifact 'results/independent_audit_20261006_033239/' was generated using datetime.now() in Indian Standard Time (UTC+05:30), where the local calendar day had crossed midnight into October 6, 2026, while the UTC calendar day was October 5, 2026. The historical artifact is preserved untouched, and this cleanup audit establishes explicit UTC provenance.",
+  "git": {
+    "branch": "main",
+    "commit": "a25213a304140bd3d8ea7ba0a4931e379049bf29",
+    "dirty_working_tree": true
+  },
+  "environment": {
+    "operating_system": "Windows",
+    "os_release": "11",
+    "os_version": "10.0.26300",
+    "python_version": "3.12.6",
+    "packages": {
+      "numpy": "2.2.6",
+      "scipy": "1.17.1",
+      "shapely": "2.1.2",
+      "pythermalcomfort": "4.5.0",
+      "matplotlib": "3.10.0",
+      "pytest": "8.3.4"
+    }
+  },
+  "execution_command": "python examples/run_independent_audit.py",
+  "is_automated_timestamp": true
+}

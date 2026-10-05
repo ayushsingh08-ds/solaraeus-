@@ -1,0 +1,6 @@
+mutation_id,description,dependency_affected,scene_id,full_result_changed,incremental_result_changed,actual_error,predicted_bound,minimum_slack,certificate_violations,tolerance_violations,status
+control_unmutated,Standard certified incremental pipeline (no mutation),None (unmutated baseline control),scaling_80m_medium,True,True,0.0,60.43337266218981,0.0,0,0,effective
+mutation_truncated_shadow_plume,"Severely truncated shadow plume reach (30% reach, 0 safety padding)",Direct Solar Shadow (candidate shadow plume envelope),scaling_80m_medium,True,True,19.74735706723004,60.0,-19.64735706723004,1183,84,effective
+mutation_zero_diffuse_bound,Artificially zeroed diffuse/SVF bound (0.0001K) with un-recomputed SVF decay,Diffuse Shortwave & Longwave Fluxes (SVF solid-angle decay),scaling_80m_medium,True,True,0.20359410680578094,60.0,-0.20349410680578095,2342,0,effective
+mutation_forced_stale_reuse,Forced full reuse of stale previous result across direct shadow change,Direct Solar Shadow (heuristic invalidation bypass),scaling_80m_medium,True,False,19.74735706723004,0.2,-19.547357067230042,88,84,effective
+mutation_truncated_svf_cutoff,Truncated SVF decay radius to 5m (omitting 5m-30m horizon zone),Sky View Factor (horizon search radius r_max),scaling_80m_medium,True,True,0.20359410680578094,60.0,-0.20359410680578094,1867,0,effective
