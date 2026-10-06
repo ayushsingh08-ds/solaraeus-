@@ -829,6 +829,7 @@ The CPU-based, single-timestep, SOLWEIG-compatible certified incremental prototy
 | `c5bf5af` | 2026-10-06 | `feat(audit): independent certificate audit, mutation testing, and claim defensibility` (Milestone 14, decoupled certificate audit, 4 mutation sensitivity checks, dependency coverage matrix, timing overhead audit, zero-drift reversion, claim rectification, 8 plots) |
 | `fa5a5d2` | 2026-10-06 | `docs: add Milestone 14 audit results, mutation benchmarks, and timing tables to context.md` |
 | `2e1c98d` | 2026-10-05 | `feat(audit): clean, verify, and freeze audit with UTC provenance and canonical benchmarks` (Milestone 15, UTC timestamp provenance, 4 repaired mutations, canonical benchmark table, 5-tier analytical verification, 99 tests passing, frozen cleanup artifacts) |
+| `05d9b4d` | 2026-10-06 | `feat(mesh): complete controlled triangular-mesh generalization stage (Milestones 1-12 freeze)` (Milestones 1–12, 173 tests passing, exact shadow IoU 1.0, 0 violations on 24 audit runs, scaling to 3072 triangles, frozen report) |
 
 ---
 
