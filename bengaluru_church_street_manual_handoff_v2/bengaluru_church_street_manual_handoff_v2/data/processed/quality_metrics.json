@@ -1,0 +1,42 @@
+{
+  "scope": "37 source footprint records intersecting study boundary; no clipping, repair, deduplication or deletion was applied",
+  "core_count": 37,
+  "core_centroid_inside_count": 28,
+  "shadow_context_count_including_core": 123,
+  "raw_download_count": 227,
+  "height_m_present_count": 0,
+  "height_m_missing_rate": 1.0,
+  "floor_count_present_count": 17,
+  "invalid_polygons": [],
+  "exact_geometry_duplicates": [],
+  "duplicate_ids": 0,
+  "small_footprints_under_20_m2": [
+    {
+      "id": "a4508836-4e70-4190-9644-1815380b7313",
+      "area_m2": 15.266610003203894
+    }
+  ],
+  "large_footprints_over_5000_m2": [],
+  "footprint_overlaps_over_1_m2": [],
+  "source_counts": {
+    "OpenStreetMap": 33,
+    "Microsoft ML Buildings": 1,
+    "Google Open Buildings": 3
+  },
+  "terrain_missing_sample_count": 0,
+  "selected_weather_all_essential_variables_QC1": true,
+  "selected_solar_all_requested_values_present": true,
+  "coordinate_transform_roundtrip_max_error_degrees": 3.552713678800501e-15,
+  "manual_georegistration_review": "pending independent georeferenced imagery or field evidence; same-source map is not independent registration proof",
+  "agent_visual_map_review": {
+    "status": "completed_desktop_source_map_review_only",
+    "reviewer": "tuna",
+    "reviewed_at_utc": "2026-10-06T19:18:38.596323+00:00",
+    "findings": "Boundary and footprint labels readable; one canopy inside boundary, no visible source-footprint collision. This is not independent georegistration, a site visit or human researcher sign-off."
+  },
+  "researcher_signoff": null,
+  "site_visit_performed": false,
+  "coding_ready": false,
+  "google_temporal_core_estimates_present": 33,
+  "google_temporal_high_priority_core_reviews": 9
+}

@@ -1,0 +1,241 @@
+{
+  "schema_version": "2.0",
+  "intervention_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "edit_type": "add_simple_shade_structure",
+  "intervention_count": 1,
+  "status": "proposed_hypothetical_simulation_scenario_pending_researcher_review",
+  "baseline_object_exists": false,
+  "original_geometry": null,
+  "original_geometry_reason": "New object: absent in the proposed baseline; not a claim that no existing real canopy is present. Verify on site.",
+  "modified_geometry": {
+    "crs": "EPSG:4326",
+    "coordinate_order": "longitude,latitude",
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            77.60564375654845,
+            12.97484672571326
+          ],
+          [
+            77.60558990994315,
+            12.974858944419422
+          ],
+          [
+            77.60559613949353,
+            12.97488534823953
+          ],
+          [
+            77.6056499861037,
+            12.974873129531076
+          ],
+          [
+            77.60564375654845,
+            12.97484672571326
+          ]
+        ]
+      ]
+    }
+  },
+  "modified_geometry_local": {
+    "crs": "local UTM 43N metres",
+    "origin_easting_northing_m": [
+      782541.8055380594,
+      1435736.1103432046
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            134.39648094400764,
+            61.89602924324572
+          ],
+          [
+            128.53740462847054,
+            63.18878781609237
+          ],
+          [
+            129.18378391489387,
+            66.11832597386092
+          ],
+          [
+            135.04286023043096,
+            64.82556740101427
+          ],
+          [
+            134.39648094400764,
+            61.89602924324572
+          ]
+        ]
+      ]
+    }
+  },
+  "edit_magnitude": {
+    "length_m": 6.0,
+    "width_m": 3.0,
+    "footprint_area_m2": 18.0,
+    "underside_height_above_ground_m": 3.5,
+    "panel_thickness_m": 0.1,
+    "top_height_above_ground_m": 3.6,
+    "opacity": 1.0
+  },
+  "candidate_center": {
+    "longitude": 77.60561994802289,
+    "latitude": 12.974866036977149
+  },
+  "orientation": "parallel to local Church Street centerline tangent",
+  "placement_assumptions": {
+    "offset_from_mapped_centerline_m": 4.5,
+    "side": "north-facing side of mapped centerline",
+    "clearance_to_nearest_source_building_footprint_m": 1.751,
+    "footprint_collision_count": 0,
+    "surveyed_sidewalk_position": false
+  },
+  "reason_realistic": "A single small reversible overhead shade module is a plausible pedestrian shading concept. Location, supports, permissions, tree interference and traffic clearances are not verified.",
+  "shade_material": {
+    "albedo": {
+      "value": 0.6,
+      "status": "assumed"
+    },
+    "emissivity": {
+      "value": 0.9,
+      "status": "assumed"
+    },
+    "initial_surface_temperature_c": {
+      "value": 35.0,
+      "status": "assumed_initial_condition_not_measurement"
+    }
+  },
+  "supports": "Support columns omitted in geometric pilot; structural design not performed.",
+  "non_changes": [
+    "No building modification",
+    "No tree or vegetation intervention",
+    "No meteorological forcing change between scenarios"
+  ],
+  "required_approval": [
+    "Verify candidate location against independent imagery and on-site walkway access",
+    "Check existing vegetation/canopies and avoid confounding shadows",
+    "Confirm overhead clearance, supports and permissions if any physical installation is considered"
+  ],
+  "authorized_activity": "Local data preparation and a proposed simulation definition only; no physical or external edits.",
+  "type": "overhead_shade_panel",
+  "length_m": 6.0,
+  "width_m": 3.0,
+  "underside_height_m": 3.5,
+  "thickness_m": 0.1,
+  "top_height_m": 3.6,
+  "orientation_deg": 103.02790844205674,
+  "orientation_reference": "clockwise from true north, bearing of long axis; reciprocal bearing defines the same rectangle",
+  "orientation_grid_north_deg": 102.44250192876865,
+  "orientation_grid_reference": "clockwise from EPSG:32643 UTM grid north",
+  "location": {
+    "crs": "EPSG:4326",
+    "coordinate_order": "longitude,latitude",
+    "center": {
+      "longitude": 77.60561994802289,
+      "latitude": 12.974866036977149
+    },
+    "corners": [
+      [
+        77.60564375654845,
+        12.97484672571326
+      ],
+      [
+        77.60558990994315,
+        12.974858944419422
+      ],
+      [
+        77.60559613949353,
+        12.97488534823953
+      ],
+      [
+        77.6056499861037,
+        12.974873129531076
+      ]
+    ],
+    "complete_polygon": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            77.60564375654845,
+            12.97484672571326
+          ],
+          [
+            77.60558990994315,
+            12.974858944419422
+          ],
+          [
+            77.60559613949353,
+            12.97488534823953
+          ],
+          [
+            77.6056499861037,
+            12.974873129531076
+          ],
+          [
+            77.60564375654845,
+            12.97484672571326
+          ]
+        ]
+      ]
+    },
+    "metric_geometry": {
+      "crs": "local UTM 43N metres",
+      "origin_easting_northing_m": [
+        782541.8055380594,
+        1435736.1103432046
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              134.39648094400764,
+              61.89602924324572
+            ],
+            [
+              128.53740462847054,
+              63.18878781609237
+            ],
+            [
+              129.18378391489387,
+              66.11832597386092
+            ],
+            [
+              135.04286023043096,
+              64.82556740101427
+            ],
+            [
+              134.39648094400764,
+              61.89602924324572
+            ]
+          ]
+        ]
+      }
+    },
+    "ground_reference": "assumed flat model-relative z=0"
+  },
+  "material": {
+    "id": "SHADE_PANEL_ASSUMED_001",
+    "description": "Generic opaque solid rectangular panel; no specific construction material or structural design inferred",
+    "albedo": 0.6,
+    "emissivity": 0.9,
+    "surface_temperature_assumption_c": 35.0,
+    "value_status": "assumed_not_measured",
+    "surface_temperature_status": "initial_condition_only_not_observed_or_equilibrated"
+  },
+  "opaque_or_transmissive": "opaque",
+  "opacity": 1.0,
+  "shortwave_transmissivity": 0.0,
+  "supporting_posts_included": false,
+  "supporting_posts_reason": "Omitted from the first geometric comparison; not a claim that a physical panel can stand without supports.",
+  "intervention_status": "proposed",
+  "researcher_approval": null,
+  "physical_installation_authorized": false,
+  "geometry_dimension_reference": "6 x 3 m dimensions are defined in UTM metre coordinates. The corresponding WGS84 geodesic edge lengths differ slightly by projection scale.",
+  "orientation_note": "Coordinates are authoritative; distinguish true-north azimuth from UTM-grid rotation in any later mesh engine."
+}

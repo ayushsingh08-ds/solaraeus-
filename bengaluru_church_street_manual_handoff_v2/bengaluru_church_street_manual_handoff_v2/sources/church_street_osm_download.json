@@ -1,0 +1,6 @@
+{
+  "url": "https://overpass.kumi.systems/api/interpreter?data=%5Bout%3Ajson%5D%5Btimeout%3A40%5D%3Bway%5B%22name%22%3D%22Church%20Street%22%5D(12.969%2C77.597%2C12.980%2C77.610)%3Bout%20meta%20geom%3B",
+  "query": "[out:json][timeout:40];way[\"name\"=\"Church Street\"](12.969,77.597,12.980,77.610);out meta geom;",
+  "http_status": 429,
+  "retrieved_at_utc": "2026-10-06T18:44:16.074Z"
+}

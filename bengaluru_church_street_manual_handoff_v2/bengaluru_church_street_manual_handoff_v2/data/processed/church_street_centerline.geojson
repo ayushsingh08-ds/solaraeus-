@@ -1,0 +1,875 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "4eaaa8b8-095e-40a7-a77f-40180d901657",
+      "properties": {
+        "id": "4eaaa8b8-095e-40a7-a77f-40180d901657",
+        "names": {
+          "primary": "Church Street",
+          "common": [
+            [
+              "kn",
+              "ಚರ್ಚ್ ಬೀದಿ"
+            ]
+          ],
+          "rules": [
+            {
+              "variant": "common",
+              "language": null,
+              "perspectives": null,
+              "value": "Church Street",
+              "between": null,
+              "side": null
+            }
+          ]
+        },
+        "subtype": "road",
+        "class": "unclassified",
+        "subclass": null,
+        "subclass_rules": null,
+        "connectors": [
+          {
+            "connector_id": "2e5ba5d5-7340-470e-9602-75c735a4310f",
+            "at": 0.0
+          },
+          {
+            "connector_id": "eae681e4-f5f3-440d-aaa9-1c6bcedaafd3",
+            "at": 0.063922257
+          },
+          {
+            "connector_id": "e6837ec8-9be6-4681-b94b-84326ed81387",
+            "at": 0.785607347
+          },
+          {
+            "connector_id": "298bfc87-9c3c-4f64-9df9-5dd13b5acb99",
+            "at": 1.0
+          }
+        ],
+        "road_surface": [
+          {
+            "value": "paving_stones",
+            "between": null
+          }
+        ],
+        "road_flags": null,
+        "rail_flags": null,
+        "width_rules": [
+          {
+            "value": 5.5,
+            "between": null
+          }
+        ],
+        "level_rules": null,
+        "access_restrictions": [
+          {
+            "access_type": "denied",
+            "when": {
+              "during": null,
+              "heading": "backward",
+              "using": null,
+              "recognized": null,
+              "mode": null,
+              "vehicle": null
+            },
+            "between": null
+          },
+          {
+            "access_type": "allowed",
+            "when": {
+              "during": null,
+              "heading": null,
+              "using": null,
+              "recognized": null,
+              "mode": [
+                "foot",
+                "bicycle",
+                "motor_vehicle"
+              ],
+              "vehicle": null
+            },
+            "between": null
+          }
+        ],
+        "speed_limits": [
+          {
+            "min_speed": null,
+            "max_speed": {
+              "value": 20,
+              "unit": "km/h"
+            },
+            "is_max_speed_variable": null,
+            "when": null,
+            "between": null
+          }
+        ],
+        "prohibited_transitions": null,
+        "routes": null,
+        "destinations": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1049316087@11",
+            "update_time": "2026-01-15T17:48:14Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-09"
+          }
+        ],
+        "version": 4,
+        "bbox": {
+          "xmin": 77.6016616821289,
+          "xmax": 77.60256958007812,
+          "ymin": 12.975577354431152,
+          "ymax": 12.975799560546875
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6016681,
+            12.9757991
+          ],
+          [
+            77.601725,
+            12.9757854
+          ],
+          [
+            77.6023651,
+            12.9756218
+          ],
+          [
+            77.6025567,
+            12.975579
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "35507f6e-a82d-4831-9dd3-dbb6a471ff4e",
+      "properties": {
+        "id": "35507f6e-a82d-4831-9dd3-dbb6a471ff4e",
+        "names": {
+          "primary": "Church Street",
+          "common": [
+            [
+              "kn",
+              "ಚರ್ಚ್ ಬೀದಿ"
+            ]
+          ],
+          "rules": [
+            {
+              "variant": "common",
+              "language": null,
+              "perspectives": null,
+              "value": "Church Street",
+              "between": null,
+              "side": null
+            }
+          ]
+        },
+        "subtype": "road",
+        "class": "unclassified",
+        "subclass": null,
+        "subclass_rules": null,
+        "connectors": [
+          {
+            "connector_id": "418603f7-ed9e-4aaa-b542-d15ed09a9d5f",
+            "at": 0.0
+          },
+          {
+            "connector_id": "83e92fbc-3643-4472-8241-03ce7f1a892c",
+            "at": 1.0
+          }
+        ],
+        "road_surface": [
+          {
+            "value": "paving_stones",
+            "between": null
+          }
+        ],
+        "road_flags": null,
+        "rail_flags": null,
+        "width_rules": null,
+        "level_rules": null,
+        "access_restrictions": [
+          {
+            "access_type": "denied",
+            "when": {
+              "during": null,
+              "heading": "backward",
+              "using": null,
+              "recognized": null,
+              "mode": null,
+              "vehicle": null
+            },
+            "between": null
+          }
+        ],
+        "speed_limits": null,
+        "prohibited_transitions": null,
+        "routes": null,
+        "destinations": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1093603997@6",
+            "update_time": "2026-01-15T17:48:14Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-09"
+          }
+        ],
+        "version": 3,
+        "bbox": {
+          "xmin": 77.60260772705078,
+          "xmax": 77.60279846191406,
+          "ymin": 12.97538948059082,
+          "ymax": 12.9755277633667
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6027863,
+            12.9755262
+          ],
+          [
+            77.6026932,
+            12.9754955
+          ],
+          [
+            77.6026633,
+            12.9754795
+          ],
+          [
+            77.6026381,
+            12.9754487
+          ],
+          [
+            77.6026113,
+            12.975391
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a78e8e86-a8ef-4394-9cb4-89a5b25b9a26",
+      "properties": {
+        "id": "a78e8e86-a8ef-4394-9cb4-89a5b25b9a26",
+        "names": {
+          "primary": "Church Street",
+          "common": [
+            [
+              "kn",
+              "ಚರ್ಚ್ ಬೀದಿ"
+            ]
+          ],
+          "rules": [
+            {
+              "variant": "common",
+              "language": null,
+              "perspectives": null,
+              "value": "Church Street",
+              "between": null,
+              "side": null
+            }
+          ]
+        },
+        "subtype": "road",
+        "class": "unclassified",
+        "subclass": null,
+        "subclass_rules": null,
+        "connectors": [
+          {
+            "connector_id": "c0452d56-cef5-4afe-b82e-31125851ec3a",
+            "at": 0.0
+          },
+          {
+            "connector_id": "6f21756b-2b17-48e8-a05d-389d9a092528",
+            "at": 0.056305413
+          },
+          {
+            "connector_id": "7ee07fc6-99b8-43ac-a088-bf1c33c1cb40",
+            "at": 0.43018913
+          },
+          {
+            "connector_id": "607b7b68-5c0d-494d-96a2-96c7bb965c51",
+            "at": 0.577468773
+          },
+          {
+            "connector_id": "9bfcea12-5b97-414c-b338-4de9a2024d09",
+            "at": 0.797568029
+          },
+          {
+            "connector_id": "09c93608-8cef-4431-ac1a-165bd91c031e",
+            "at": 0.989592421
+          },
+          {
+            "connector_id": "418603f7-ed9e-4aaa-b542-d15ed09a9d5f",
+            "at": 1.0
+          }
+        ],
+        "road_surface": [
+          {
+            "value": "paving_stones",
+            "between": null
+          }
+        ],
+        "road_flags": null,
+        "rail_flags": null,
+        "width_rules": [
+          {
+            "value": 5.5,
+            "between": null
+          }
+        ],
+        "level_rules": null,
+        "access_restrictions": [
+          {
+            "access_type": "denied",
+            "when": {
+              "during": null,
+              "heading": "backward",
+              "using": null,
+              "recognized": null,
+              "mode": null,
+              "vehicle": null
+            },
+            "between": null
+          },
+          {
+            "access_type": "allowed",
+            "when": {
+              "during": null,
+              "heading": null,
+              "using": null,
+              "recognized": null,
+              "mode": [
+                "foot",
+                "bicycle",
+                "motor_vehicle"
+              ],
+              "vehicle": null
+            },
+            "between": null
+          }
+        ],
+        "speed_limits": [
+          {
+            "min_speed": null,
+            "max_speed": {
+              "value": 30,
+              "unit": "km/h"
+            },
+            "is_max_speed_variable": null,
+            "when": null,
+            "between": null
+          }
+        ],
+        "prohibited_transitions": null,
+        "routes": null,
+        "destinations": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w48166762@52",
+            "update_time": "2026-08-18T13:20:50Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-09"
+          }
+        ],
+        "version": 3,
+        "bbox": {
+          "xmin": 77.602783203125,
+          "xmax": 77.60415649414062,
+          "ymin": 12.975186347961426,
+          "ymax": 12.9755277633667
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6041502,
+            12.9751867
+          ],
+          [
+            77.6040731,
+            12.9752046
+          ],
+          [
+            77.6035633,
+            12.9753321
+          ],
+          [
+            77.6033625,
+            12.9753824
+          ],
+          [
+            77.6030624,
+            12.9754575
+          ],
+          [
+            77.6028006,
+            12.9755231
+          ],
+          [
+            77.6027863,
+            12.9755262
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "af5de45b-b3c3-4274-8870-32ce2d0587f5",
+      "properties": {
+        "id": "af5de45b-b3c3-4274-8870-32ce2d0587f5",
+        "names": {
+          "primary": "Church Street",
+          "common": [
+            [
+              "kn",
+              "ಚರ್ಚ್ ಬೀದಿ"
+            ]
+          ],
+          "rules": [
+            {
+              "variant": "common",
+              "language": null,
+              "perspectives": null,
+              "value": "Church Street",
+              "between": null,
+              "side": null
+            }
+          ]
+        },
+        "subtype": "road",
+        "class": "unclassified",
+        "subclass": null,
+        "subclass_rules": null,
+        "connectors": [
+          {
+            "connector_id": "418603f7-ed9e-4aaa-b542-d15ed09a9d5f",
+            "at": 0.0
+          },
+          {
+            "connector_id": "298bfc87-9c3c-4f64-9df9-5dd13b5acb99",
+            "at": 1.0
+          }
+        ],
+        "road_surface": [
+          {
+            "value": "paving_stones",
+            "between": null
+          }
+        ],
+        "road_flags": null,
+        "rail_flags": null,
+        "width_rules": [
+          {
+            "value": 5.5,
+            "between": null
+          }
+        ],
+        "level_rules": null,
+        "access_restrictions": [
+          {
+            "access_type": "denied",
+            "when": {
+              "during": null,
+              "heading": "backward",
+              "using": null,
+              "recognized": null,
+              "mode": null,
+              "vehicle": null
+            },
+            "between": null
+          },
+          {
+            "access_type": "allowed",
+            "when": {
+              "during": null,
+              "heading": null,
+              "using": null,
+              "recognized": null,
+              "mode": [
+                "foot",
+                "bicycle",
+                "motor_vehicle"
+              ],
+              "vehicle": null
+            },
+            "between": null
+          }
+        ],
+        "speed_limits": [
+          {
+            "min_speed": null,
+            "max_speed": {
+              "value": 20,
+              "unit": "km/h"
+            },
+            "is_max_speed_variable": null,
+            "when": null,
+            "between": null
+          }
+        ],
+        "prohibited_transitions": null,
+        "routes": null,
+        "destinations": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1093604004@2",
+            "update_time": "2026-01-15T17:48:14Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-09"
+          }
+        ],
+        "version": 3,
+        "bbox": {
+          "xmin": 77.60255432128906,
+          "xmax": 77.60279846191406,
+          "ymin": 12.975525856018066,
+          "ymax": 12.975579261779785
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6027863,
+            12.9755262
+          ],
+          [
+            77.602629,
+            12.9755624
+          ],
+          [
+            77.6025567,
+            12.975579
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "f217be57-cdff-4d81-adc6-baaf0a40c424",
+      "properties": {
+        "id": "f217be57-cdff-4d81-adc6-baaf0a40c424",
+        "names": {
+          "primary": "Church Street",
+          "common": [
+            [
+              "kn",
+              "ಚರ್ಚ್ ಬೀದಿ"
+            ]
+          ],
+          "rules": [
+            {
+              "variant": "common",
+              "language": null,
+              "perspectives": null,
+              "value": "Church Street",
+              "between": null,
+              "side": null
+            }
+          ]
+        },
+        "subtype": "road",
+        "class": "unclassified",
+        "subclass": null,
+        "subclass_rules": null,
+        "connectors": [
+          {
+            "connector_id": "59d259b8-286c-4009-ae73-0d2915b406d6",
+            "at": 0.0
+          },
+          {
+            "connector_id": "04000544-6dd5-4160-b1e6-3bc8ab6c8e89",
+            "at": 0.025525781
+          },
+          {
+            "connector_id": "e2a46d9b-9fbc-472f-9546-a4fb870b889c",
+            "at": 0.218039724
+          },
+          {
+            "connector_id": "ce6a3f28-65bb-4f0a-b48e-b6fa0f8ab71a",
+            "at": 0.226934035
+          },
+          {
+            "connector_id": "165a3477-5145-46d9-956e-50540e2395c6",
+            "at": 0.256473977
+          },
+          {
+            "connector_id": "06d1a11b-c028-4a59-965a-8f3f71071253",
+            "at": 0.33201246
+          },
+          {
+            "connector_id": "eb18eb5b-7810-48b8-80a9-eb947f907a0e",
+            "at": 0.39403035
+          },
+          {
+            "connector_id": "c0383df7-7606-45e4-81a5-89b4d6ce0bb0",
+            "at": 0.410232287
+          },
+          {
+            "connector_id": "8b56458d-00da-4e68-99f6-291240b0e611",
+            "at": 0.446535612
+          },
+          {
+            "connector_id": "8ebc1420-19c7-48f4-9d10-e7df3f7ec38c",
+            "at": 0.496780279
+          },
+          {
+            "connector_id": "5d417f59-d3a2-4308-ab61-46f1072559a2",
+            "at": 0.548855058
+          },
+          {
+            "connector_id": "b0ed22de-5d3c-4957-82c8-f07a0fd6419e",
+            "at": 0.563420029
+          },
+          {
+            "connector_id": "7bbbd2c4-b71f-49a1-ba20-d2462843b053",
+            "at": 0.598986626
+          },
+          {
+            "connector_id": "75206728-57da-4a4e-9b65-54e7e6e6417e",
+            "at": 0.616533767
+          },
+          {
+            "connector_id": "4402c872-a6d2-4dff-bd9e-c7934d75d278",
+            "at": 0.666027965
+          },
+          {
+            "connector_id": "e08336f8-a97a-434c-bd77-df74cfd6b7c2",
+            "at": 0.722695081
+          },
+          {
+            "connector_id": "4a07d588-7f06-40fc-b97c-23e9c363a2fe",
+            "at": 0.724578619
+          },
+          {
+            "connector_id": "1e3090c3-91e6-44ac-9958-d95062598906",
+            "at": 0.822075203
+          },
+          {
+            "connector_id": "1a58dcb1-e29a-42dd-a467-422317fe1150",
+            "at": 0.847589592
+          },
+          {
+            "connector_id": "46ab5644-5aba-42bf-90ee-0040ec30d89f",
+            "at": 0.854943552
+          },
+          {
+            "connector_id": "c8b4e272-c510-4854-a670-471b1d9bb31c",
+            "at": 0.963237187
+          },
+          {
+            "connector_id": "c0452d56-cef5-4afe-b82e-31125851ec3a",
+            "at": 1.0
+          }
+        ],
+        "road_surface": [
+          {
+            "value": "paving_stones",
+            "between": null
+          }
+        ],
+        "road_flags": null,
+        "rail_flags": null,
+        "width_rules": [
+          {
+            "value": 5.5,
+            "between": null
+          }
+        ],
+        "level_rules": null,
+        "access_restrictions": [
+          {
+            "access_type": "denied",
+            "when": {
+              "during": null,
+              "heading": "backward",
+              "using": null,
+              "recognized": null,
+              "mode": null,
+              "vehicle": null
+            },
+            "between": null
+          },
+          {
+            "access_type": "allowed",
+            "when": {
+              "during": null,
+              "heading": null,
+              "using": null,
+              "recognized": null,
+              "mode": [
+                "foot",
+                "bicycle",
+                "motor_vehicle"
+              ],
+              "vehicle": null
+            },
+            "between": null
+          }
+        ],
+        "speed_limits": [
+          {
+            "min_speed": null,
+            "max_speed": {
+              "value": 30,
+              "unit": "km/h"
+            },
+            "is_max_speed_variable": null,
+            "when": null,
+            "between": null
+          }
+        ],
+        "prohibited_transitions": null,
+        "routes": null,
+        "destinations": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w48166762@52",
+            "update_time": "2026-08-18T13:20:50Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-09"
+          }
+        ],
+        "version": 1,
+        "bbox": {
+          "xmin": 77.6041488647461,
+          "xmax": 77.60773468017578,
+          "ymin": 12.974327087402344,
+          "ymax": 12.975188255310059
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            77.6077326,
+            12.9743274
+          ],
+          [
+            77.6076409,
+            12.9743483
+          ],
+          [
+            77.6069506,
+            12.9745113
+          ],
+          [
+            77.6069187,
+            12.9745188
+          ],
+          [
+            77.6068128,
+            12.9745439
+          ],
+          [
+            77.606542,
+            12.9746081
+          ],
+          [
+            77.6063194,
+            12.9746597
+          ],
+          [
+            77.6062613,
+            12.9746734
+          ],
+          [
+            77.6061309,
+            12.9747032
+          ],
+          [
+            77.605951,
+            12.9747468
+          ],
+          [
+            77.6057645,
+            12.9747918
+          ],
+          [
+            77.6057121,
+            12.9748034
+          ],
+          [
+            77.6055843,
+            12.9748324
+          ],
+          [
+            77.6055212,
+            12.9748465
+          ],
+          [
+            77.6053438,
+            12.9748887
+          ],
+          [
+            77.6051418,
+            12.9749413
+          ],
+          [
+            77.6051351,
+            12.9749431
+          ],
+          [
+            77.6047852,
+            12.9750244
+          ],
+          [
+            77.6046942,
+            12.9750479
+          ],
+          [
+            77.6046678,
+            12.975054
+          ],
+          [
+            77.6042812,
+            12.9751524
+          ],
+          [
+            77.6041502,
+            12.9751867
+          ]
+        ]
+      }
+    }
+  ]
+}

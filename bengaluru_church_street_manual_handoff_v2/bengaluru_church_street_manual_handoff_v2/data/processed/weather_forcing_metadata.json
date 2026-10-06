@@ -1,0 +1,136 @@
+{
+  "selected_instant_utc": "2024-04-15T09:00:00Z",
+  "selected_local_time": "2024-04-15T14:30:00+05:30",
+  "timezone": "Asia/Kolkata UTC+05:30; no daylight saving",
+  "station": {
+    "noaa_isd_station_id": "43295099999",
+    "usaf": "432950",
+    "wban": "99999",
+    "wmo": "43295",
+    "name": "BANGALORE, IN",
+    "latitude": 12.9666666,
+    "longitude": 77.5833333,
+    "elevation_m": 921.0,
+    "elevation_datum": "not specified in downloaded station file",
+    "site_center_distance_km_geodesic": 2.5615953303512633,
+    "source": "https://www.ncei.noaa.gov/data/global-hourly/access/2024/43295099999.csv",
+    "observation_report_type": "FM-12",
+    "observed_cadence_selected_day_seconds": 10800,
+    "wind_measurement_height_m": null
+  },
+  "quality_codes": {
+    "TMP": "1",
+    "DEW": "1",
+    "WND_direction": "1",
+    "WND_speed": "1",
+    "meaning": "1 = passed all ISD quality control checks"
+  },
+  "relative_humidity_derivation": {
+    "equation": "RH = 100 * exp(17.625*Td/(243.04+Td) - 17.625*T/(243.04+T))",
+    "temperature_units": "deg C",
+    "status": "derived, not directly observed RH",
+    "unrounded_value": 19.729121965807092
+  },
+  "solar": {
+    "source_url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN,ALLSKY_SFC_SW_DNI,ALLSKY_SFC_SW_DIFF&community=RE&longitude=77.6045&latitude=12.9755&start=20240415&end=20240415&format=JSON&time-standard=UTC",
+    "api_version": "v2.10.2",
+    "sources": [
+      "SYN1DEG",
+      "POWER"
+    ],
+    "provider_hour_label_utc": "2024041509",
+    "original_units": "Wh/m^2 over one hour",
+    "conversion": "Mean W/m2 = energy Wh/m2 / 1 h; numerical values therefore remain the same. Do not use as instantaneous irradiance.",
+    "temporal_status": "Start/end convention of provider hourly label not independently verified; preserve label and resolve before time-aligned radiation simulation.",
+    "spatial_status": "CERES SYN1deg is regional (~1 degree) satellite/model-derived surface flux, not a Church Street station.",
+    "requested_point": {
+      "latitude": 12.9755,
+      "longitude": 77.6045
+    },
+    "returned_point": [
+      77.605,
+      12.976,
+      841.72
+    ],
+    "requested_point_distance_from_site_center_m": 118.07114586099111,
+    "grid_elevation_not_local_terrain": "POWER returned elevation is not used as the local ground elevation.",
+    "fill_value": -999,
+    "missing_values_at_selected_label": 0,
+    "direct_normal_is_not_horizontal": "Use DNI with cos(zenith) for horizontal projection; DHI is diffuse horizontal. Do not treat DNI as direct horizontal.",
+    "hourly_flux_consistency_note": "Hourly energies and instantaneous solar angles need an explicit averaging/time convention; check GHI versus time-averaged DNI*cos(zenith)+DHI rather than silently forcing closure."
+  },
+  "license": {
+    "NOAA": {
+      "license": "No separate record-specific SPDX license identified for the externally contributed international station observations",
+      "policy_url": "https://www.ncei.noaa.gov/sites/default/files/2023-12/NCEI%20PD-10-2-02%20-%20Open%20Data%20Policy%20Signed.pdf",
+      "policy_scope": "NOAA/Federal-produced data are public-domain; externally contributed records are not automatically proven CC0 by this policy",
+      "attribution": "NOAA/NCEI Integrated Surface Database and originating station/provider; do not imply NOAA endorsement",
+      "redistribution_terms_status": "Record-specific license clarification remains open before public redistribution"
+    },
+    "NASA_POWER": {
+      "license": "CC-BY-4.0 as listed for NASA POWER by the NASA-managed AWS Open Data Registry; original point API response contains no separate SPDX label",
+      "license_evidence_url": "https://registry.opendata.aws/nasa-power/",
+      "attribution_guide_url": "https://power.larc.nasa.gov/docs/referencing/",
+      "attribution": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. POWER Hourly API v2.10.2, accessed 2026-10-06 UTC / 2026-10-07 IST; source CERES SYN1deg.",
+      "scope_note": "Registry license listing retained as evidence; do not claim the original API embeds license metadata."
+    }
+  },
+  "limitations": [
+    "Off-site station observations are boundary forcing, not local microclimate validation.",
+    "Geometry release 2026 and weather 2024 are non-contemporaneous; scenario is a controlled forcing experiment, not a verified historical reconstruction.",
+    "No observed site radiation, pedestrian wind, surface temperature or comfort-validation measurements are provided."
+  ],
+  "forcing_description": "Bengaluru City station observations applied as spatially uniform forcing at the Church Street site.",
+  "spatial_application": "spatially_uniform_external_forcing_not_site_microclimate_measurement",
+  "station_timestamp_original": "2024-04-15T09:00:00",
+  "station_timestamp_time_standard": "UTC; the original DATE field has no timezone suffix, but ISD observation timestamps use UTC",
+  "station_timestamp_not_local_time": true,
+  "time_conversion": {
+    "source_utc": "2024-04-15T09:00:00Z",
+    "offset_hours": 5.5,
+    "local_ist": "2024-04-15T14:30:00+05:30",
+    "timezone": "Asia/Kolkata",
+    "daylight_saving_applied": false
+  },
+  "variable_classification": [
+    {
+      "variable": "air_temperature",
+      "value": 35.0,
+      "units": "degC",
+      "classification": "Observed off-site"
+    },
+    {
+      "variable": "dew_point",
+      "value": 8.5,
+      "units": "degC",
+      "classification": "Observed off-site"
+    },
+    {
+      "variable": "relative_humidity",
+      "value": 19.729121965807092,
+      "units": "percent",
+      "classification": "Derived from observations"
+    },
+    {
+      "variable": "wind_speed",
+      "value": 1.5,
+      "units": "m/s",
+      "classification": "Observed off-site"
+    },
+    {
+      "variable": "wind_direction",
+      "value": 90.0,
+      "units": "degrees clockwise from true north, direction from",
+      "classification": "Observed off-site",
+      "interpretation": "from east"
+    },
+    {
+      "variable": "solar_radiation",
+      "value": null,
+      "classification": "Regional satellite/model estimate",
+      "values_file": "data/raw/weather/solar_estimates.csv",
+      "not_an_on_site_observation": true
+    }
+  ],
+  "timestep_contract": "One station-observation instant, not a continuous hourly transient forcing series; original station reports on this day are three-hourly."
+}

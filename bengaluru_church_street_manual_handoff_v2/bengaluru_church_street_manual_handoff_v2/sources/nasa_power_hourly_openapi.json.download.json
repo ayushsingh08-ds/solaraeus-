@@ -1,0 +1,7 @@
+{
+  "url": "https://power.larc.nasa.gov/api/temporal/hourly/openapi.json",
+  "path": "sources/nasa_power_hourly_openapi.json",
+  "status": 200,
+  "bytes": 12564,
+  "retrieved_at_utc": "2026-10-06T18:53:50.457Z"
+}

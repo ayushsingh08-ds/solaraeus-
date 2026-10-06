@@ -1,0 +1,49 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "buffer_m": 75,
+        "purpose": "additional shadow-casting geometry, not the core building-count boundary",
+        "adequacy_status": "requires shadow-reach and boundary-convergence check after height verification",
+        "domain_role": "shadow_casting_geometry_selection_extent_only",
+        "construction": "Transform main polygon to EPSG:32643; outward buffer 75.0 m with mitred/squared corners; transform back to EPSG:4326",
+        "buffer_distance_measured_from": "Each main polygon edge, not the centre and not a 75 m radius",
+        "corner_rule": "Squared/miter corners; diagonal corner reach may exceed 75 m",
+        "buffer_reference_crs": "EPSG:32643",
+        "main_boundary_file": "site_boundary.geojson",
+        "results_reporting_boundary_expanded": false,
+        "building_count_including_main": 123,
+        "geometry_rule": "Keep complete footprints intersecting this context; do not clip their roofs or walls"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.60709086169929,
+              12.973622462146462
+            ],
+            [
+              77.60370913789363,
+              12.973622460407592
+            ],
+            [
+              77.60370913082609,
+              12.976177532346302
+            ],
+            [
+              77.60709086876683,
+              12.976177530607453
+            ],
+            [
+              77.60709086169929,
+              12.973622462146462
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

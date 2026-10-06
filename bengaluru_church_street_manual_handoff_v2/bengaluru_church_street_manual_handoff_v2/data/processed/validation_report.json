@@ -1,0 +1,65 @@
+{
+  "checked_at_utc": "2026-10-06T20:12:00.174501+00:00",
+  "checks": [
+    {
+      "check": "All 17 requested data files besides the separately generated provenance manifest exist",
+      "passed": true,
+      "details": {
+        "count": 17
+      }
+    },
+    {
+      "check": "Main reporting polygon unchanged and shadow context equals 75 m outward squared-corner metric buffer",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "37 main and 123 context complete footprints retained; context selection matches expanded area",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "All 37 labelled review rows preserve source/derived/ML distinction and unapproved model heights",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Height evidence counts and flags verified",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Elevation TIFF retains every original HGT value, correct point centres, CRS, NoData and units",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Canonical GeoParquet has valid geometry metadata and all 227 source rows/values",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Weather classifications, UTC/IST conversion and unresolved solar endpoints remain explicit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Exactly one opaque 18 m2 proposed no-posts panel; numerical azimuths and material assumptions explicit",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "Four material classes remain explicitly assumed",
+      "passed": true,
+      "details": null
+    },
+    {
+      "check": "All nine original data exports/downloads remain byte-identical",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "human_review_not_performed": true,
+  "simulation_not_started": true,
+  "status": "AUTOMATED_CHECKS_PASSED_MANUAL_SIGNOFF_STILL_REQUIRED"
+}

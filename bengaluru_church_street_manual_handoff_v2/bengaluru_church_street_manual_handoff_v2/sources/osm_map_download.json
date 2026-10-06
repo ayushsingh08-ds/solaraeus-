@@ -1,0 +1,9 @@
+{
+  "id": "osm_map",
+  "url": "https://api.openstreetmap.org/api/0.6/map?bbox=77.6015,12.9735,77.6075,12.9770",
+  "http_status": 429,
+  "retrieved_at_utc": "2026-10-06T18:43:41.792Z",
+  "bytes": 436,
+  "etag": null,
+  "last_modified": null
+}

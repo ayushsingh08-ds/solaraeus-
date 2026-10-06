@@ -1,0 +1,228 @@
+building_id,source_num_floors,classification,overture_release,source_datasets,source_record_ids,in_main_analysis
+e0a8da87-812d-4d12-a6de-c05015e4afc7,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w182486682@10,False
+cc4d2583-69fe-4749-a0b6-6bc2740a4997,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1384492967@3,False
+6d6bbb17-ea3f-41fb-b24c-61e460d1826d,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w372508007@3,False
+21367c1a-bd7b-443d-97d6-02a9087f3b6f,,unknown,2026-09-23.1,OpenStreetMap,w327542018@3,False
+0bfa3bd2-8304-4bc5-97bd-501fc20d59f5,,unknown,2026-09-23.1,OpenStreetMap,w1550571387@1,False
+229e7349-2ffd-41bc-b459-a7e26cf63394,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534052@5,False
+9c810512-cc8a-42f8-8cf6-f75a4d27bc0e,7,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w372503377@4,False
+e97c68cb-7cb7-4015-8c6e-3363fcc1e28e,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w372503632@3,False
+73dfce7d-f27d-4fd1-aee3-d69c142e39dc,,unknown,2026-09-23.1,Microsoft ML Buildings,,False
+23af1e50-9635-4a55-9017-0fd60bcd9384,6,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534041@7,False
+a6c7269b-d0d4-4ac0-a565-93b96208f26a,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534055@3,False
+2fbfd93c-704f-4403-9c04-45cfc477cbd8,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w320711088@7,False
+aa6369b5-6c67-419a-8b97-1024834a83b6,,unknown,2026-09-23.1,OpenStreetMap,w1308720286@2,False
+21e7ac98-724a-48a1-bd8e-86527a0ab7d2,,unknown,2026-09-23.1,OpenStreetMap,w1308720293@1,False
+fa8ca778-359e-4ee8-bf86-d85185707ca2,,unknown,2026-09-23.1,OpenStreetMap,w327535540@1,False
+b4c8315c-4bc6-45d6-bcd8-7505cd69a8ad,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+M27X,False
+2223843b-7ba2-4a17-914b-b596c9c6e5da,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+P376,False
+331490a1-8def-49aa-9a36-e10e6af9bf35,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+P427,False
+1570d613-60ea-41d2-9b3c-28e670d8979a,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+C8X6,False
+dc959d1e-bdeb-4c62-bf8d-e29e387e9d20,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+CCCV,False
+9694ab17-7e0a-462b-8090-826a851802db,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+CF8M,False
+e862c635-0e18-41af-8c1a-70dc08978a60,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+2XCQ,False
+96d01673-f77a-415d-8cfa-631b0b2283f2,,unknown,2026-09-23.1,OpenStreetMap,w1284657938@2,False
+27fc0df0-69c3-410f-b1db-76b6bc75db05,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534045@4,False
+3875bd17-9ce5-4f7b-b750-a5cd2be4cac8,6,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534056@6,False
+7cdd716e-d308-4365-88ec-0dfa1bcfe9e0,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534068@5,False
+d6054974-3a34-4012-a64e-e427942e3193,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534054@4,False
+bcd32c61-1c86-428b-9938-d96a87e5fc6a,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698923@3,False
+4682b123-3c61-4ad1-b2fc-3806f896ea5a,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1304116275@2,False
+c9093240-9e65-45f5-a0e4-cc2cfafc3a14,,unknown,2026-09-23.1,OpenStreetMap,w349698871@1,False
+dcf97aa2-d2b2-4493-9651-cf0ea2eb8fdf,,unknown,2026-09-23.1,OpenStreetMap,w1304116274@2,False
+5031f416-1d63-4ec8-bbc6-7a0f67fcfc84,,unknown,2026-09-23.1,OpenStreetMap,w1304116273@1,False
+6bdebb2f-733d-47c1-ad7d-05dda3ab8017,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698876@2,False
+c034458e-9e3f-4ae0-b068-4aee1d100feb,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698894@3,False
+fd3c390a-9587-4a3c-8e27-17c6a8566e50,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698913@5,False
+bfb1773e-af9f-42c7-afe7-540b0fdf7093,,unknown,2026-09-23.1,OpenStreetMap,w1385089162@1,False
+ce4078ae-adc1-4161-806e-60a35bcf1965,,unknown,2026-09-23.1,OpenStreetMap,w349698925@1,False
+601a3fc9-e88d-465a-b1bd-7cc144143699,,unknown,2026-09-23.1,OpenStreetMap,w1466955061@1,False
+2c6118dd-afb2-41f8-b380-8fc1ca4e7cbd,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698864@3,False
+accc0636-00f2-45c3-ab9c-5ae6b7eefb60,,unknown,2026-09-23.1,OpenStreetMap,w349698963@3,False
+466877bc-228c-4308-a7f9-a2a209c21f6a,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1281995555@3,False
+a581494e-c24e-4cb3-80b0-be715c7d4628,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+CW2W,False
+9bf996a2-2165-4d41-9b9e-d357ab3c3b07,,unknown,2026-09-23.1,OpenStreetMap,w1035562481@1,False
+77155ad2-475a-4037-9eec-e47f08114800,,unknown,2026-09-23.1,OpenStreetMap,w1207728413@1,False
+4732de74-5269-4b2f-92a9-ca856d5a3785,,unknown,2026-09-23.1,OpenStreetMap,w1207728411@1,False
+bbe68b3b-0ab2-41de-ae3c-cc305000f07c,,unknown,2026-09-23.1,OpenStreetMap,w1207728412@1,False
+48bcceb8-6c80-4ef3-bdf1-9de0660cc20e,,unknown,2026-09-23.1,OpenStreetMap,w328747355@1,False
+81d49e29-8870-40a5-87b3-5ebd6155465d,,unknown,2026-09-23.1,OpenStreetMap,w327553601@3,True
+ae72700f-c10f-43ff-be9b-2dca6c64f824,,unknown,2026-09-23.1,OpenStreetMap,w327553603@2,True
+933a85f1-2236-4666-8fea-c4eea0b7037d,,unknown,2026-09-23.1,OpenStreetMap,w327553599@4,True
+2b8a538c-b9a3-44ab-a8fa-1d6c7799459c,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+J225,False
+a9a89544-142e-45af-9da3-a552a2d61655,,unknown,2026-09-23.1,OpenStreetMap,r20071916@1,True
+3761c330-0bb5-4222-896f-7decce6ceb38,,unknown,2026-09-23.1,OpenStreetMap,w327553602@4,True
+a619c0f2-f3fd-4fa1-a1da-994607bd9bbf,,unknown,2026-09-23.1,OpenStreetMap,w1393103486@1,True
+bb5dfffb-c9ea-482e-b3bd-45b374348aa6,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+Q88M,True
+210df0cd-d537-402e-a40b-04262339a436,,unknown,2026-09-23.1,OpenStreetMap,w1089717999@2,True
+3ebbedfa-d60f-4cba-95a1-a1fd3d766e8d,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698888@5,True
+7f252566-d31e-4758-bf3d-5a372705f643,,unknown,2026-09-23.1,OpenStreetMap,w349698899@2,False
+674b4ecc-11dc-461f-a374-ff65566e6af2,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+F7HP,False
+4e439487-1fbb-44d0-b045-6a4f8a9c01ce,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+F7M7,False
+b24c1d65-75a6-40dd-97cc-31f9aff99b4f,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+F7J6,False
+52b61569-1aab-4dbd-99bd-6de08bb90edf,,unknown,2026-09-23.1,OpenStreetMap,w350554832@1,False
+e82b59fc-1991-4285-913f-aa35a20a76b2,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+H64C,False
+d2726f48-1429-4cb0-8e53-6d336104b13f,,unknown,2026-09-23.1,OpenStreetMap,w350554788@1,False
+e2572407-f720-4e69-a33e-49cc189540a1,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+F6GC,False
+75d6312f-62f2-40e4-a1c7-ca78a968ae26,,unknown,2026-09-23.1,OpenStreetMap,w328747368@1,False
+bff54113-576a-45d9-9da9-6dfffe9ac837,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w350554834@11,False
+d4b016ed-3436-490e-9825-580082fe3b46,,unknown,2026-09-23.1,Microsoft ML Buildings,,False
+c46fb814-676c-4758-a620-3381612d5926,,unknown,2026-09-23.1,OpenStreetMap,w328747367@1,False
+b38086b0-88c7-4611-b0ec-9bd7c5948cd3,,unknown,2026-09-23.1,OpenStreetMap,w349698973@2,False
+2c1a0f60-5a91-4a67-8a7e-1ec1f29d7324,,unknown,2026-09-23.1,OpenStreetMap,w1342685779@1,False
+c5e566e9-7c4d-402a-af79-b633740e6a23,,unknown,2026-09-23.1,OpenStreetMap,w349698924@2,False
+1a8fc2fa-1d75-4ad7-9ef0-fce4c11a7c56,,unknown,2026-09-23.1,OpenStreetMap,w349698867@2,False
+0c981778-0213-462a-9cec-39375fe9c338,,unknown,2026-09-23.1,OpenStreetMap,w349698931@4,False
+94d9c932-53e4-41e1-9912-90d46bf91ec9,,unknown,2026-09-23.1,OpenStreetMap,w1281995556@3,False
+7cd771f6-1db0-485b-95ea-5ad241632d3b,,unknown,2026-09-23.1,OpenStreetMap,w349698857@3,False
+d802b242-0323-4154-941f-ac399704e177,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+FRCM,False
+3e4f51ab-3242-4266-bf2a-94fe40821813,,unknown,2026-09-23.1,OpenStreetMap,w349698938@2,False
+ae6521a0-b859-465b-8b0b-293c5b2537d5,,unknown,2026-09-23.1,OpenStreetMap,w349698884@3,False
+3ec2d212-26df-47ac-98e2-cc5f600de59f,,unknown,2026-09-23.1,OpenStreetMap,w349698882@2,False
+7f2a33e0-40a9-4392-8afe-0d1d07303edf,,unknown,2026-09-23.1,OpenStreetMap,w349698939@2,False
+3b930c7d-4ccd-48ff-b5a0-fb4c95648890,6,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698856@5,False
+848cfde9-952e-4e62-99de-d2c5015d3be2,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698917@3,False
+0431ea35-97d6-4cec-8352-3c466cc86ce6,,unknown,2026-09-23.1,OpenStreetMap,w349698971@1,False
+6cb2f4e3-1fe0-4062-8e51-4618f8fb4c8d,,unknown,2026-09-23.1,OpenStreetMap,w349698958@3,True
+3acc0505-729f-4947-9f7e-2f4f4b4bc079,,unknown,2026-09-23.1,OpenStreetMap,w1412295513@1,True
+a4508836-4e70-4190-9644-1815380b7313,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+39RC,True
+a277aeb6-f951-49a4-8f4f-198b9d37ac65,,unknown,2026-09-23.1,OpenStreetMap,w327534063@2,True
+624e83ef-7035-4668-9384-d2de83dfb2f5,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+XCMG,True
+4fa4c63f-4645-4b1e-8707-4ea7dfcf2810,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,r20071915@1,True
+7da194cd-6a51-4dd4-9938-6be00166fbd5,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534062@5,True
+c52bd3e7-0ae4-4695-9fab-f93329a865b3,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1350409197@1,True
+a31b12ed-f8cb-43d1-972a-f1aac8549842,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF4+VJJV,False
+ab6e6a51-0ceb-4284-b9ce-353bc043e1e3,1,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1217769155@2,False
+b44551eb-568e-4040-9409-7c5140ba6c08,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534064@4,False
+13ac065a-2986-4d33-aa5c-1143c8c32e61,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1350409159@1,False
+9dd84594-3128-4f9a-b1f1-390fd2fce74e,,unknown,2026-09-23.1,OpenStreetMap,w327534060@3,False
+e7086d18-fe92-4a75-8656-14045fb439ae,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534065@5,False
+5fe532b7-e1a9-43e5-b80c-4e6bf8374146,,unknown,2026-09-23.1,OpenStreetMap,w1284657939@2,False
+f0473ba8-c911-447d-bd83-9c3a1ce93233,,unknown,2026-09-23.1,OpenStreetMap,w1284657940@2,False
+b59869b7-e4fd-4f68-8f53-fa6606fd890a,,unknown,2026-09-23.1,OpenStreetMap,w327534061@6,False
+939b1ff4-2f63-4ac4-a57f-9971000e6882,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534050@3,True
+ce66601a-ca65-47d4-9de0-1d637b39e3b4,,unknown,2026-09-23.1,OpenStreetMap,w1354573716@1,False
+e8efc906-827f-4bce-9886-3838830ad8d1,,unknown,2026-09-23.1,OpenStreetMap,w348854341@12,False
+bb6cee37-57ec-4ca0-b65d-11fa268d0181,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534051@5,True
+51affa39-675c-4110-8e37-257c1b3785e7,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1304116268@1,True
+6e0f585f-000f-4f69-98ec-4bb662238faa,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+89JW,False
+2febf00f-3e1c-4efc-849a-3ad61176e04b,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534047@3,True
+39e6e603-9eb3-4e74-85eb-1da56481f262,7,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1304116269@2,True
+0b6594d3-332f-4d43-b874-d575e502be91,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534053@4,True
+5a04242f-b5b0-4f2a-8b9a-66a496613408,,unknown,2026-09-23.1,OpenStreetMap,w1412295514@1,True
+4ed407a7-a8bd-4dbb-9244-25465b5c7235,,unknown,2026-09-23.1,OpenStreetMap,w327534069@3,True
+01edc8ba-e07a-4453-b17f-25f1771d79a3,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w349698909@3,True
+b64c8dc6-602c-447b-b05e-42ab0858ce59,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534067@6,True
+17e6e014-cdfd-4f9e-a8a7-de1a3b46dfae,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w319385961@2,True
+bbdcbacc-5e92-4a79-af41-70a064ce516f,,unknown,2026-09-23.1,OpenStreetMap,w327553590@2,True
+303b78f1-b00b-4d54-b301-e871334fa9ac,,unknown,2026-09-23.1,OpenStreetMap,w1035562483@3,True
+726d166e-edae-4ba0-bf15-14f5331634ce,,unknown,2026-09-23.1,OpenStreetMap,w207901098@2,True
+30a23f8d-824e-4820-83c1-022fc18d55ca,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1089718001@1,True
+0a37c790-2a4e-4082-a53b-6db6a65d90d9,14,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534043@7,True
+d05978f4-0be3-40d8-8cfb-fbf753213b4f,,unknown,2026-09-23.1,OpenStreetMap,w1308735400@2,False
+e7d2ee4e-cb50-4c70-b731-46ba9119a942,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG4+63G6,False
+0f882c34-cee9-49a0-b815-e53c57dabf68,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534049@4,False
+a6548d0a-b337-4e42-883d-0421f4626058,1,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1304116271@3,False
+6cfcea3e-d007-400f-aa33-5007b01676b9,7,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327534044@5,False
+ed8377d2-272f-43cc-821b-49fc34e87a99,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w319365068@6,True
+6dd055bc-153e-4b64-a89f-5abe740000a7,,unknown,2026-09-23.1,OpenStreetMap,w327534048@2,False
+84951d84-22c5-4b2f-bcfc-ea20aef417a8,,unknown,2026-09-23.1,OpenStreetMap,w320711085@7,False
+271c0481-7f53-46a8-b9af-8b2b976ff134,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814306@4,False
+f8189f1a-d23e-42c7-94b1-8a27a3af94ff,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814315@4,False
+00353717-5a82-4398-bec4-caaec5a68a7a,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553597@3,False
+2e3d5556-456b-4721-9909-3a277221234d,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553595@3,False
+68c9c321-4cca-47ae-a88b-2fd3d5322011,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1304116272@1,False
+8717769f-fdff-46eb-a4b2-45908928d99d,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553596@3,False
+f3c2e885-fcd7-4715-b6b7-efefbf60c5b9,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553593@3,False
+3e95d87a-1301-4e9a-a9cb-49b765102002,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+XFVG,False
+661e1603-1d8b-4604-8ee4-40419faf2248,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553605@2,False
+a203de37-fb1b-44ba-96df-29c958c1ae3c,,unknown,2026-09-23.1,OpenStreetMap,w327553600@1,False
+e56d1886-0152-4178-b30f-f8917227c717,,unknown,2026-09-23.1,OpenStreetMap,w327553592@2,False
+c67f3ab1-bf8e-432d-80cc-60560b9584ca,,unknown,2026-09-23.1,OpenStreetMap,w1304116267@2,False
+f2c93ce0-61dd-44f1-84c8-f9758dc235ed,,unknown,2026-09-23.1,OpenStreetMap,w328747362@2,False
+539d7422-aef4-469c-a965-f0aa7fb7bd8d,,unknown,2026-09-23.1,OpenStreetMap,w1035320472@2,False
+65d0175e-5fe0-42de-a955-fff258f4c6c8,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1119219759@2,True
+ef5d616d-eab5-4d91-8ed5-af5fbbff9a09,,unknown,2026-09-23.1,OpenStreetMap,w328747356@3,True
+bc1f849d-1a35-4ce1-90a6-8aacb167ee39,,unknown,2026-09-23.1,OpenStreetMap,w1224538509@1,False
+4c9f7fdb-f180-4126-b49b-e7b28765737d,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+PMR6,False
+d4d722ff-30c0-485b-940d-d90820f04fc6,,unknown,2026-09-23.1,OpenStreetMap,w1207728414@2,False
+b0565044-cf8a-4295-ac8a-78ca571c32ee,,unknown,2026-09-23.1,OpenStreetMap,w1224538503@1,False
+c3a51366-ad61-40f8-909e-c72d3f699092,,unknown,2026-09-23.1,OpenStreetMap,w1224538507@2,False
+963df15f-19f2-47fd-914d-7b80db9d335f,,unknown,2026-09-23.1,Microsoft ML Buildings,,True
+095f309c-d0f2-47f7-bbdf-5469e94bcc80,,unknown,2026-09-23.1,OpenStreetMap,w1224538506@1,False
+c8094181-bcb4-455f-9c93-ad93c0a6e20b,,unknown,2026-09-23.1,OpenStreetMap,w1224538504@1,False
+53582359-2502-4195-b8ab-ce12f4c28961,,unknown,2026-09-23.1,OpenStreetMap,w1224538505@1,False
+45ea7150-f6b0-4d88-ae9c-9eaab12671c6,,unknown,2026-09-23.1,OpenStreetMap,w327589100@1,False
+df608000-30f7-420b-9bc9-e3d1d650cc85,,unknown,2026-09-23.1,OpenStreetMap,w327589077@1,False
+1ce23b26-a7cb-4e98-a5cb-bf03f9d4986a,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327589110@2,False
+7d827240-f61e-411d-a9d9-b04f9e3a5be4,,unknown,2026-09-23.1,OpenStreetMap,w327589091@2,False
+c5bc75ca-d1a0-48db-8741-b993b1b07099,,unknown,2026-09-23.1,OpenStreetMap,w327589079@1,False
+6df2ba37-25ad-404c-a968-f7b2bc783f25,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w319452867@3,False
+5522bab2-82ea-45fc-b26a-5dbc05a632cd,,unknown,2026-09-23.1,OpenStreetMap,w327589088@1,False
+f24a56bd-e341-4d69-ae32-1e57e624dac5,,unknown,2026-09-23.1,OpenStreetMap,w1307397843@1,False
+80e70298-7b08-4f0d-8fbb-6b562bf4b697,,unknown,2026-09-23.1,OpenStreetMap,w327589093@3,False
+0252fd24-0fef-4934-805e-fa9aef8485cb,,unknown,2026-09-23.1,OpenStreetMap,w327589081@1,False
+543acbcb-fc66-4b0f-b226-21704c35c844,,unknown,2026-09-23.1,OpenStreetMap,w327553594@1,False
+34fa2f9a-8f96-4d53-aa3c-9c2638e5d80c,,unknown,2026-09-23.1,OpenStreetMap,w325781815@2,False
+b8c8261f-f165-4d01-b053-8c73927c8268,,unknown,2026-09-23.1,OpenStreetMap,w325781829@2,False
+90f36804-ae3d-46fa-8f95-95fefb0cecdd,,unknown,2026-09-23.1,OpenStreetMap,w350558587@2,False
+343f68d0-696f-4ed9-9fcf-d5b7ea3a6ded,6,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w185964976@5,False
+62896b63-3c64-4725-beca-635517e3723e,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+M7C8,False
+15bb66bb-67e9-4874-82df-ad8725694d48,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+M7PJ,False
+0f4045f4-9f36-47d2-80e5-061df277bb1b,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1137187617@2,False
+94655ea0-d2b3-48da-aaea-d26a2ba14c40,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+M92C,False
+5ef1c457-168c-4901-8ed4-dbcab85c8d21,,unknown,2026-09-23.1,OpenStreetMap,w1307397844@1,False
+433f7ea8-d40b-4ad6-a21a-e62fdb95d386,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1307397845@1,False
+374c852e-2cb4-40fe-af5c-11331c833023,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327589076@2,False
+0b612cdc-e3a7-4c9f-b89d-8977b742a0f8,,unknown,2026-09-23.1,OpenStreetMap,w1297594210@1,False
+93385d58-94eb-4fb3-ab4a-c4a21a19413e,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327589097@5,False
+7741bd2a-b120-44aa-93bb-c34ed09ab103,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w330238683@3,False
+90eb0440-1541-4ed1-855c-ec9d0fa7dd10,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w185964974@3,False
+0eba2750-2ca0-4918-a334-fd25830cdb75,,unknown,2026-09-23.1,OpenStreetMap,w167542039@3,False
+7ed5fe99-e4ac-41a5-9de8-c8d73f1a916d,,unknown,2026-09-23.1,Microsoft ML Buildings,,False
+51b26d55-7209-49c4-9ae4-051bb325bdba,,unknown,2026-09-23.1,OpenStreetMap,w327589084@2,False
+6084efc5-293a-4aa7-892a-1953972b7bd8,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF2+CW35,False
+0bfad99d-ef57-419e-8a0b-8edad743a0f3,,unknown,2026-09-23.1,OpenStreetMap,w1297594209@2,False
+18852c01-3548-4e29-ab62-e3fb7f3cf7bc,,unknown,2026-09-23.1,OpenStreetMap,w1188468892@2,False
+122d20ee-0b63-4588-8c56-971629e10fa4,,unknown,2026-09-23.1,OpenStreetMap,w1207728415@2,False
+b7dc56c0-33bc-4a2f-9779-1bfacc8aa8dd,,unknown,2026-09-23.1,OpenStreetMap,w1188468889@2,False
+b372a407-97ba-47a1-b1a6-2cbb5eaac4ea,,unknown,2026-09-23.1,Microsoft ML Buildings,,False
+babb68bd-9e57-490d-a05b-ae36442ba494,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w350558591@3,False
+fcb5ee3d-f2bc-40a7-99d2-b39bca09a39b,,unknown,2026-09-23.1,Microsoft ML Buildings,,False
+dde911a0-8b88-4378-a033-e3ea037269f4,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF3+W2W7,False
+77cf54b2-613c-4cae-9441-481d40f4536d,,unknown,2026-09-23.1,Microsoft ML Buildings,,False
+9e597420-ab4d-4df1-a90c-2383e24be8d0,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w325781830@4,False
+f4dc3915-2d0e-480f-80a1-607f5150ad72,,unknown,2026-09-23.1,OpenStreetMap,w287428585@5,False
+66af6b12-aa64-4ea7-9ddd-10c946a7500d,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553604@4,False
+0a74cd2d-8a79-4db3-8358-4a9d08f8173f,,unknown,2026-09-23.1,OpenStreetMap,w327553598@1,False
+b910975a-cde5-46de-b1b5-0e52458d1444,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG3+38PC,False
+477b8ee4-52db-4cc4-80a5-0403d446dd8a,1,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327553589@3,False
+529bd274-7a26-46fc-8e5c-2b3851758370,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w325781807@4,False
+6cb32b04-ea4b-430e-858d-aa08b0c4a66c,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w325781823@5,False
+1450431a-7075-4e28-ab3e-616c748a3e79,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG3+47C8,False
+b03ee509-df0c-4e52-9168-e037647fea85,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJG3+484X,False
+5f245849-14c6-4e0d-8fdd-e9d2ddd6bf03,8,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w320711090@4,False
+09c5da9d-d3e6-4ab9-8063-f3ac9b3ce623,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w350558593@3,False
+85f57da8-53df-4ab1-9e8a-161caa26924c,5,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814307@4,False
+ec6b8a7f-fb8a-4db7-8e7d-ffc9a3219498,,unknown,2026-09-23.1,OpenStreetMap,w350558595@2,False
+cff71f88-6deb-4b2d-b386-9707cc4c8812,,unknown,2026-09-23.1,OpenStreetMap,w372502404@3,False
+381cd70f-32b6-4e70-a3a5-b58afab111fa,7,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w372502294@5,False
+b86b5537-5db0-4f17-b458-2f14d355480d,,unknown,2026-09-23.1,OpenStreetMap,w1308735401@2,False
+e9dde913-8774-44f0-b72e-10d4777fe592,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814313@4,False
+08d8afb2-c81d-4abd-b426-3f222b0c0c06,,unknown,2026-09-23.1,OpenStreetMap,w1308459549@2,False
+de091e15-bfe1-4342-9a1b-94e80010c8b0,,unknown,2026-09-23.1,OpenStreetMap,w1427541061@1,False
+3aa28ca8-626f-463d-8df1-55f04ac619b0,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814305@3,False
+4fbfa6df-94b6-4628-a585-007c40e654f4,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814303@7,False
+53d4c2ca-c80b-4ddc-b664-5fda3ab6f40d,2,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1384663853@1,False
+fec71fac-bc84-40ff-882c-1363750d84bb,3,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1308647754@4,False
+2846173e-ba33-4cbd-a6ae-188aca519695,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w323814308@4,False
+477f2b73-68d2-4c06-8c4c-faf5bafbcef8,6,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w724588287@9,False
+35cecf14-cd7e-4490-aa36-b4b510c9f499,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF2+XWJ3,False
+7119b586-bd71-4a8d-913e-d70804b8fe88,4,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w327542031@4,False
+1d01a453-a73a-4bf3-a315-5e1992f143d9,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF2+PRGX,False
+54fefb63-9fe2-4d8f-b98a-cd942889c8ba,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF2+RV3C,False
+63f8ba8c-24ee-43f6-992e-57bb73b8a4e7,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF2+RV6J,False
+27806f2e-59db-4652-b4ce-4643c8e3a1af,,unknown,2026-09-23.1,Google Open Buildings,7J4VXJF2+JRPH,False
+51dea4ec-1e5a-4727-acdc-f4853741a371,,unknown,2026-09-23.1,OpenStreetMap,w1188468890@2,False
+353a31f7-a128-4bd2-9471-c4a75dde81af,9,Overture-provided_source_attribute_not_manually_verified,2026-09-23.1,OpenStreetMap,w1119414333@3,False
+4b3ce832-517a-4cea-99f1-572d3443aa5f,,unknown,2026-09-23.1,OpenStreetMap,w1188468891@2,False

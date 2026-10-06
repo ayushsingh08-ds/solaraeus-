@@ -1,0 +1,61 @@
+{
+  "type": "building",
+  "release": "2026-09-23.1",
+  "bbox_west_south_east_north": [
+    77.602,
+    12.9735,
+    77.6075,
+    12.977
+  ],
+  "retrieved_at_utc": "2026-10-06T18:49:37.499730+00:00",
+  "method": "Public HTTPS byte ranges, Parquet row-group predicate pruning, exact row bbox filter",
+  "software": {
+    "pyarrow": "25.0.1"
+  },
+  "files": [
+    {
+      "url": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-09-23.1/theme=buildings/type=building/part-00282-f31b56fa-75d0-5bf6-af43-afa388e93a42-c000.zstd.parquet",
+      "etag": "\"054de4e6f9d9ea8a6c4f259918cd4aba-8\"",
+      "source_file_bytes": 496925673,
+      "source_last_modified": "Fri, 25 Sep 2026 16:04:44 GMT",
+      "total_rows": 4921260,
+      "total_row_groups": 128,
+      "selected_groups": [
+        {
+          "row_group": 53,
+          "rows": 32297,
+          "compressed_bytes": 3309038,
+          "extent": {
+            "xmin": 77.58964538574219,
+            "ymin": 12.944550514221191,
+            "xmax": 77.62894439697266,
+            "ymax": 12.986419677734375
+          }
+        }
+      ],
+      "selected_compressed_bytes": 3309038,
+      "range_requests": [
+        {
+          "start": 496860137,
+          "end": 496925672,
+          "bytes": 65536
+        },
+        {
+          "start": 496245736,
+          "end": 496925664,
+          "bytes": 679929
+        },
+        {
+          "start": 203738734,
+          "end": 207052855,
+          "bytes": 3314122
+        }
+      ],
+      "downloaded_bytes": 4059587
+    }
+  ],
+  "license": "ODbL-1.0; retain Overture and original source attribution",
+  "rows": 227,
+  "height_present": 1,
+  "church_street_segments": null
+}

@@ -1,0 +1,9 @@
+{
+  "id": "noaa_city_2024",
+  "url": "https://www.ncei.noaa.gov/data/global-hourly/access/2024/43295099999.csv",
+  "http_status": 200,
+  "retrieved_at_utc": "2026-10-06T18:43:45.886Z",
+  "bytes": 1257600,
+  "etag": "\"133080-62f27571cd000\"",
+  "last_modified": "Thu, 27 Feb 2025 22:37:52 GMT"
+}

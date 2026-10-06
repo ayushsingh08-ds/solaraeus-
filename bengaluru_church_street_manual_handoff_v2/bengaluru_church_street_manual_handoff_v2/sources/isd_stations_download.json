@@ -1,0 +1,8 @@
+{
+  "id": "isd_stations",
+  "url": "https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv",
+  "http_status": 200,
+  "retrieved_at_utc": "2026-10-06T18:43:14.331Z",
+  "bytes": 2914601,
+  "query": null
+}

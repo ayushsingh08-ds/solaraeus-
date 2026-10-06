@@ -1,0 +1,38 @@
+{
+  "solar_interval_utc": "09:00-10:00 UTC",
+  "solar_interval_ist": "14:30-15:30 IST",
+  "solar_position_time_utc": "09:00:00 UTC",
+  "source": "NASA POWER hourly solar radiation estimates (April 15, 2024)",
+  "irradiance_components_w_m2": {
+    "ghi": 755.97,
+    "dni": 728.31,
+    "dhi": 172.18
+  },
+  "solar_angles_at_0900_utc": {
+    "altitude_deg": 57.9159576593304,
+    "zenith_deg": 32.0840423406696,
+    "azimuth_true_north_deg": 268.16554681339886,
+    "azimuth_grid_north_deg": 267.58018081339884,
+    "sun_vector": [
+      -0.5308903985979673,
+      -0.017003460098223216,
+      0.8472698903072029
+    ]
+  },
+  "radiation_consistency": {
+    "instantaneous_check_0900_utc": {
+      "dni_cos_zenith_plus_dhi_w_m2": 789.2551338096389,
+      "reported_ghi_w_m2": 755.97,
+      "difference_w_m2": 33.285133809638864,
+      "relative_difference_pct": 4.4029701985050815
+    },
+    "interval_midpoint_check_0930_utc": {
+      "zenith_deg": 39.3915138573219,
+      "dni_cos_zenith_plus_dhi_w_m2": 735.0380516400087,
+      "reported_ghi_w_m2": 755.97,
+      "difference_w_m2": -20.93194835999134,
+      "relative_difference_pct": -2.7688861145272083
+    },
+    "interpretation": "NASA POWER hourly radiation represents the integrated energy over 09:00-10:00 UTC, while solar position is evaluated instantaneously at 09:00 UTC. The +4.4% instantaneous and -2.8% midpoint deviations reflect normal satellite hourly modeling approximations and solar zenith progression, well within standard numerical tolerance."
+  }
+}

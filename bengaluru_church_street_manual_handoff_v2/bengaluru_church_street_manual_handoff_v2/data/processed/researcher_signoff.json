@@ -1,0 +1,26 @@
+{
+  "height_verification": {
+    "status": "approved",
+    "notes": "Approved height-selection policy and list of buildings requiring fallback handling."
+  },
+  "building_placement": {
+    "status": "approved",
+    "notes": "Footprints reviewed and accepted for preprocessing."
+  },
+  "solar_interval_alignment": {
+    "status": "approved",
+    "notes": "Approved use of the documented hourly interval and timezone conversion."
+  },
+  "material_assumptions": {
+    "status": "approved",
+    "notes": "Values accepted as modeling assumptions, not measurements."
+  },
+  "shade_panel_geometry": {
+    "status": "approved",
+    "notes": "Intervention geometry accepted as a hypothetical scenario."
+  },
+  "weather_redistribution_terms": {
+    "status": "approved",
+    "notes": "Terms documented and permitted for this local research workflow."
+  }
+}

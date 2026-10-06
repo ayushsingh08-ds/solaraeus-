@@ -1,0 +1,33 @@
+{
+  "main_analysis_boundary": {
+    "bbox_west_south_east_north": [
+      77.6044,
+      12.9743,
+      77.6064,
+      12.9755
+    ],
+    "file": "data/processed/site_boundary.geojson",
+    "role": "pedestrian reporting domain"
+  },
+  "shadow_context_boundary": {
+    "bbox_west_south_east_north": [
+      77.60370913082609,
+      12.973622460407592,
+      77.60709086876683,
+      12.976177532346302
+    ],
+    "file": "data/processed/shadow_context_boundary.geojson",
+    "buffer_m": 75.0,
+    "metric_crs": "EPSG:32643",
+    "construction": "main polygon outward edge buffer, squared/miter corners",
+    "area_m2": 103833.89395282997,
+    "building_count_including_core": 123,
+    "context_only_building_count": 86
+  },
+  "casting_geometry_rule": "Use all complete buildings intersecting the expanded context for shadow casting, after heights are reviewed. Do not clip geometry at either domain edge.",
+  "pedestrian_reporting_mask": "Intersection of main analysis polygon and the proposed pedestrian-analysis area; report no outside receptors or context-only pedestrian statistics.",
+  "height_policy": "All model heights remain null until researcher-approved. Unknown context heights must not be silently omitted or assigned defaults.",
+  "adequacy": "75 m is a proposed acquisition buffer, not a proven shadow cutoff; perform shadow-reach and buffer-convergence checks after heights and solar geometry are available.",
+  "coordinate_order": "GeoJSON longitude,latitude; metric geometry UTM easting,northing; always_xy=True",
+  "simulation_engine_status": "No engine was inspected or run. These are handoff requirements, not claims that an existing engine implements them."
+}

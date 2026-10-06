@@ -1,0 +1,80 @@
+{
+  "package_id": "bengaluru-church-street-manual-handoff-v2",
+  "handoff_version": "2.0",
+  "prepared_at_utc": "2026-10-06T20:12:00.174501+00:00",
+  "prepared_at_ist": "2026-10-07T01:42:00.174501+05:30",
+  "datasets": [
+    {
+      "dataset_id": "overture_buildings",
+      "dataset_name": "Overture Maps buildings bounded acquisition",
+      "dataset_version": "2026-09-23.1",
+      "license": "ODbL-1.0",
+      "source_url": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+      "attribution": "Overture Maps Foundation plus underlying OpenStreetMap, Google Open Buildings and Microsoft ML Buildings; retain source-record license and attribution fields",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (ODbL-1.0); retain attribution."
+    },
+    {
+      "dataset_id": "overture_roads",
+      "dataset_name": "Overture Maps transportation bounded acquisition",
+      "dataset_version": "2026-09-23.1",
+      "license": "ODbL-1.0",
+      "source_url": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+      "attribution": "Overture Maps Foundation and underlying OpenStreetMap attribution",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (ODbL-1.0); retain attribution."
+    },
+    {
+      "dataset_id": "google_ml_heights",
+      "dataset_name": "Google Open Buildings 2.5D Temporal Dataset v1",
+      "dataset_version": "v1, imagery/year 2023",
+      "license": "Dual CC-BY-4.0 / ODbL-1.0 per Google dataset documentation",
+      "source_url": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+      "attribution": "Google Research / Google Open Buildings 2.5D Temporal Dataset; retain compatible original-source notices",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (Dual CC-BY-4.0 / ODbL-1.0 per Google dataset documentation); retain attribution."
+    },
+    {
+      "dataset_id": "skadi_elevation",
+      "dataset_name": "Mapzen/Tilezen Skadi elevation terrain tiles",
+      "dataset_version": "Exact published tile snapshot pinned by S3 ETag, Last-Modified and SHA256; no tile-level semantic version declared. Documentation describes releases built 2016/2017.",
+      "license": "SRTM/GMTED public-domain source terms and Tilezen provider attribution; see sources/terrain_attribution.md. Do not imply a single newly assigned license for the composite.",
+      "source_url": "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N12/N12E077.hgt.gz",
+      "attribution": "Mapzen/Tilezen; SRTM/GMTED data courtesy of the U.S. Geological Survey.",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (SRTM/GMTED public-domain source terms and Tilezen provider attribution; see sources/terrain_attribution.md. Do not imply a single newly assigned license for the composite.); retain attribution."
+    },
+    {
+      "dataset_id": "noaa_station_observations",
+      "dataset_name": "NOAA/NCEI Integrated Surface Database Bengaluru City station",
+      "dataset_version": "2024 annual file; snapshot ETag \"133080-62f27571cd000\"",
+      "license": "No separate record-specific SPDX license identified for the externally contributed international station observations",
+      "source_url": "https://www.ncei.noaa.gov/data/global-hourly/access/2024/43295099999.csv",
+      "attribution": "NOAA/NCEI Integrated Surface Database and originating station/provider; do not imply NOAA endorsement",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (No separate record-specific SPDX license identified for the externally contributed international station observations); retain attribution."
+    },
+    {
+      "dataset_id": "noaa_station_catalogue",
+      "dataset_name": "NOAA ISD station catalogue",
+      "dataset_version": "Unversioned live catalogue snapshot pinned by file hash",
+      "license": "Public NOAA/NCEI metadata; source file contains no separate SPDX label",
+      "source_url": "https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv",
+      "attribution": "NOAA/NCEI Integrated Surface Database station history",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (Public NOAA/NCEI metadata; source file contains no separate SPDX label); retain attribution."
+    },
+    {
+      "dataset_id": "nasa_power_solar",
+      "dataset_name": "NASA POWER / CERES SYN1deg regional solar estimates",
+      "dataset_version": "POWER Hourly API v2.10.2; requested 2024-04-15",
+      "license": "CC-BY-4.0 as listed for NASA POWER by the NASA-managed AWS Open Data Registry; original point API response contains no separate SPDX label",
+      "source_url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN,ALLSKY_SFC_SW_DNI,ALLSKY_SFC_SW_DIFF&community=RE&longitude=77.6045&latitude=12.9755&start=20240415&end=20240415&format=JSON&time-standard=UTC",
+      "attribution": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. POWER Hourly API v2.10.2, accessed 2026-10-06 UTC / 2026-10-07 IST; source CERES SYN1deg.",
+      "licensing_status": "pass",
+      "licensing_notes": "Standard open license (CC-BY-4.0 as listed for NASA POWER by the NASA-managed AWS Open Data Registry; original point API response contains no separate SPDX label); retain attribution."
+    }
+  ],
+  "overall_provenance_status": "requires_researcher_signoff",
+  "redistribution_risk_flag": "NOAA international station records lack explicit SPDX license; public distribution paused."
+}

@@ -1,0 +1,88 @@
+{
+  "site_id": "BLR_CHURCH_STREET_01",
+  "name": "Church Street central/eastern study block",
+  "city": "Bengaluru, Karnataka, India",
+  "simulation_status": "preprocessing_only",
+  "scientific_qualification": "The Church Street scene has been converted into an exploratory local-coordinate triangular-mesh representation using approved but partly uncertain building-height estimates.",
+  "core_scene": {
+    "building_count": 37,
+    "total_vertices": 448,
+    "total_triangles": 748,
+    "bounds_local_m": {
+      "xmin": -16.72,
+      "xmax": 238.82,
+      "ymin": -29.11,
+      "ymax": 151.09,
+      "zmin": 0.0,
+      "zmax": 52.5
+    },
+    "height_distribution_m": {
+      "min": 2.5,
+      "max": 52.5,
+      "mean": 13.01,
+      "median": 12.0
+    },
+    "total_footprint_area_m2": 17510.92,
+    "total_surface_area_m2": 83041.95
+  },
+  "shadow_context_scene": {
+    "building_count": 123,
+    "total_vertices": 1314,
+    "total_triangles": 2136,
+    "bounds_local_m": {
+      "xmin": -197.7,
+      "xmax": 339.09,
+      "ymin": -125.37,
+      "ymax": 252.04,
+      "zmin": 0.0,
+      "zmax": 52.5
+    },
+    "height_distribution_m": {
+      "min": 1.5,
+      "max": 52.5,
+      "mean": 10.04,
+      "median": 9.0
+    },
+    "total_footprint_area_m2": 49875.81,
+    "total_surface_area_m2": 208225.96
+  },
+  "pedestrian_grid_config": {
+    "main_scene": {
+      "extent_x": 230.0,
+      "extent_y": 145.0,
+      "origin_x": -10.0,
+      "origin_y": -5.0,
+      "resolution": 1.0,
+      "nx": 230,
+      "ny": 145,
+      "pedestrian_height": 1.1,
+      "total_cells": 33350,
+      "dimensions_note": "230.0m x 145.0m at 1.0m resolution = 230 * 145 = 33,350 cells.",
+      "bounds_local_m": {
+        "xmin": -10.0,
+        "xmax": 220.0,
+        "ymin": -5.0,
+        "ymax": 140.0
+      }
+    },
+    "shadow_context_scene": {
+      "extent_x": 380.0,
+      "extent_y": 296.0,
+      "origin_x": -85.0,
+      "origin_y": -80.0,
+      "resolution": 2.0,
+      "nx": 190,
+      "ny": 148,
+      "pedestrian_height": 1.1,
+      "total_cells": 28120,
+      "dimensions_note": "Exact discrete calculation: 380.0m x 296.0m at 2.0m resolution: nx = 380/2 = 190, ny = 296/2 = 148 -> 190 * 148 = 28,120 cells. (380.0 * 296.0) / (2.0^2) = 112,480 / 4 = 28,120 cells with zero rounding.",
+      "bounds_local_m": {
+        "xmin": -85.0,
+        "xmax": 295.0,
+        "ymin": -80.0,
+        "ymax": 216.0
+      },
+      "coverage_status": "Fully encloses analytical 75m shadow-context boundary ([-77.12, 292.87] x [-75.76, 210.81] m) with uniform margin."
+    }
+  }
+}

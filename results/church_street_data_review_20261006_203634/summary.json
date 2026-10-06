@@ -1,0 +1,47 @@
+{
+  "review_id": "church_street_data_review_20261006_203634",
+  "executed_at_utc": "2026-10-06T20:36:34.880051+00:00",
+  "site_id": "BLR_CHURCH_STREET_01",
+  "site_name": "Church Street central/eastern study block",
+  "city": "Bengaluru, Karnataka, India",
+  "center_coordinates": {
+    "latitude": 12.9749,
+    "longitude": 77.6054
+  },
+  "study_boundary_dimensions_m": {
+    "geodesic_east_west": 216.99,
+    "geodesic_north_south": 132.76,
+    "projected_utm_area_m2": 28840.88
+  },
+  "shadow_context_buffer_m": 75.0,
+  "building_counts": {
+    "core_site_buildings": 37,
+    "shadow_context_buildings": 123,
+    "context_only_buildings": 86
+  },
+  "building_height_evidence_counts": {
+    "total_buildings": 37,
+    "source_metre_heights": 0,
+    "source_floor_counts": 17,
+    "google_ml_height_candidates": 33,
+    "missing_ml_candidates": 4,
+    "high_priority_review_buildings": 9,
+    "verified_or_model_heights": 0
+  },
+  "file_inventory_counts": {
+    "total_files_audited": 91,
+    "sha256_checksum_passes": 91,
+    "sha256_checksum_failures": 0
+  },
+  "status_classification_counts": {
+    "pass": 11,
+    "warning": 4,
+    "requires_researcher_signoff": 6,
+    "blocking": 5
+  },
+  "unresolved_signoff_items_count": 6,
+  "blocking_signoff_items_count": 5,
+  "simulation_readiness_decision": "NOT_READY_FOR_SIMULATION",
+  "preprocessing_status": "READY_FOR_PREPROCESSING_ONLY",
+  "decision_rationale": "All 11 automated verification checks pass and SHA256 integrity is 100%. However, 0/37 building heights are verified, solar integration alignment is unconfirmed, material properties are assumed, and shade panel geometry is hypothetical. Under strict review protocols, thermal simulation (Tmrt, UTCI) must NOT proceed until the researcher provides explicit sign-off in data/processed/researcher_signoff.json."
+}

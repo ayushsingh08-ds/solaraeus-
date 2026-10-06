@@ -1,0 +1,41 @@
+{
+  "dataset_name": "Mapzen/Tilezen Skadi elevation terrain tiles",
+  "source_tile": "N12E077",
+  "raw_file": "data/raw/terrain/N12E077.hgt.gz",
+  "lossless_conversion_format": "GeoTIFF point-aligned int16",
+  "horizontal_crs": "EPSG:4326 WGS84",
+  "vertical_reference": "EGM96 orthometric heights in metres as specified by Tilezen Skadi documentation",
+  "vertical_datum": "EGM96 orthometric",
+  "units": "metres",
+  "nodata_value": -32768,
+  "pixel_resolution_arcseconds": 1.0,
+  "approximate_resolution_m_at_site": {
+    "east_west": 30.137679933791333,
+    "north_south": 30.73063168271035
+  },
+  "site_sample_count": 32,
+  "site_missing_samples": 0,
+  "site_elevation_statistics_m": {
+    "min": 916,
+    "max": 934,
+    "median": 922.0
+  },
+  "elevation_product_classification": "composite_elevation_DEM_not_certified_bare_earth",
+  "solver_treatment": "flat z=0 m model-relative ground is an explicit assumption; DEM retained for later use",
+  "critical_caveats": [
+    "DEM values are not local surveyed bare-earth DTM, LiDAR, roof elevations or usable building heights.",
+    "Buildings/vegetation/radar and merging artifacts can affect elevation samples.",
+    "About 30 m source sampling cannot resolve curb or sidewalk elevations.",
+    "No resampling or terrain-to-roof subtraction was performed.",
+    "Actual source acquisition date is older than current buildings/weather and is not the download date."
+  ],
+  "compliance_summary": {
+    "tile_covers_site": true,
+    "egm96_datum_documented": true,
+    "no_data_defined": true,
+    "zero_missing_samples": true,
+    "solver_incorporation_status": "EXCLUDED_FROM_SOLVER_z0_FLAT_GROUND_ASSUMED"
+  },
+  "status": "pass",
+  "warning_notes": "Coarse ~30m resolution radar composite DEM; does not resolve street curb elevations, pavement grades, or building bases. Appropriate solely for regional elevation contextualization, not microclimate terrain relief."
+}

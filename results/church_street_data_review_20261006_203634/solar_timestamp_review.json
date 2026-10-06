@@ -1,0 +1,34 @@
+{
+  "solar_source": "NASA POWER / CERES hourly satellite/model assimilation",
+  "solar_status": "estimated_satellite_model_gridded_not_site_measurement",
+  "classification": "Regional satellite/model estimate",
+  "irradiance_components_W_m2": {
+    "global_horizontal_irradiance_GHI": 755.97,
+    "direct_normal_irradiance_DNI": 728.31,
+    "diffuse_horizontal_irradiance_DHI": 172.18
+  },
+  "energy_values_Wh_m2": {
+    "GHI_energy": 755.97,
+    "DNI_energy": 728.31,
+    "DHI_energy": 172.18
+  },
+  "time_conventions": {
+    "utc_timestamp": "2024-04-15T09:00:00Z",
+    "local_ist_timestamp": "2024-04-15T14:30:00+05:30",
+    "provider_hour_label_utc": "2024041509",
+    "utc_offset_hours": 5.5
+  },
+  "unresolved_interval_issue": {
+    "issue": "NASA POWER hourly fluxes represent 60-minute time-integrated energy values. The provider label '2024041509' does not declare whether the window is [08:00, 09:00] UTC (hour-ending), [09:00, 10:00] UTC (hour-beginning), or [08:30, 09:30] UTC (hour-centered).",
+    "impact": "Pairing time-integrated radiation with instantaneous solar geometry (altitude ~52.8 deg, azimuth ~264.4 deg) at 09:00 UTC introduces solar position discrepancy.",
+    "status": "requires_researcher_signoff",
+    "blocking": true
+  },
+  "solar_azimuth_grid_convergence_impact": {
+    "true_north_azimuth_deg": 264.4,
+    "grid_convergence_deg": 0.585,
+    "utm_grid_azimuth_deg": 263.815,
+    "note": "Radiation solver rays must be computed using Grid North azimuth in UTM Zone 43N space."
+  },
+  "status": "requires_researcher_signoff"
+}

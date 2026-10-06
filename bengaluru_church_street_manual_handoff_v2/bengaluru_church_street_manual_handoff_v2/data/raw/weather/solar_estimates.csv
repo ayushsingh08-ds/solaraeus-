@@ -1,0 +1,25 @@
+provider_hour_label_utc,time_standard,energy_period_hours,global_horizontal_energy_Wh_m2,direct_normal_energy_Wh_m2,diffuse_horizontal_energy_Wh_m2,global_horizontal_mean_W_m2,direct_normal_mean_W_m2,diffuse_horizontal_mean_W_m2,classification,source,api_version,interval_start_utc,interval_end_utc,interval_status,not_instantaneous_irradiance
+2024041500,UTC,1.0,4.03,2.2,6.77,4.03,2.2,6.77,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041501,UTC,1.0,125.82,238.13,81.53,125.82,238.13,81.53,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041502,UTC,1.0,351.15,534.4,159.07,351.15,534.4,159.07,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041503,UTC,1.0,583.28,613.75,264.24,583.28,613.75,264.24,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041504,UTC,1.0,792.4,562.1,288.84,792.4,562.1,288.84,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041505,UTC,1.0,953.0,713.22,235.02,953.0,713.22,235.02,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041506,UTC,1.0,1031.5,759.56,200.39,1031.5,759.56,200.39,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041507,UTC,1.0,996.88,760.1,198.85,996.88,760.1,198.85,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041508,UTC,1.0,919.5,776.42,177.65,919.5,776.42,177.65,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041509,UTC,1.0,755.97,728.31,172.18,755.97,728.31,172.18,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041510,UTC,1.0,534.5,635.42,144.38,534.5,635.42,144.38,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041511,UTC,1.0,284.4,456.35,118.32,284.4,456.35,118.32,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041512,UTC,1.0,60.45,126.64,42.97,60.45,126.64,42.97,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041513,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041514,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041515,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041516,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041517,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041518,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041519,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041520,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041521,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041522,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True
+2024041523,UTC,1.0,0.0,0.0,0.0,0.0,0.0,0.0,Regional satellite/model estimate,NASA POWER / CERES SYN1deg,v2.10.2,,,provider_hour_label_preserved_start_end_convention_unverified,True

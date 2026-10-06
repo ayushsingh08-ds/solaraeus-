@@ -1,0 +1,164 @@
+{
+  "items": [
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2016_06_30.json",
+      "size": "260182",
+      "updated": "2024-10-31T09:40:24.449Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2017_06_30.json",
+      "size": "257230",
+      "updated": "2024-10-31T09:40:24.767Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2018_06_30.json",
+      "size": "260550",
+      "updated": "2024-10-31T09:40:25.510Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2019_06_30.json",
+      "size": "259813",
+      "updated": "2024-10-31T09:40:25.324Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2020_06_30.json",
+      "size": "260181",
+      "updated": "2024-10-31T09:40:25.492Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2021_06_30.json",
+      "size": "377435",
+      "updated": "2024-10-31T09:40:24.522Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2022_06_30.json",
+      "size": "377804",
+      "updated": "2024-10-31T09:40:24.647Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32642_2023_06_30.json",
+      "size": "377435",
+      "updated": "2024-10-31T09:40:24.895Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2016_06_30.json",
+      "size": "3046106",
+      "updated": "2024-10-31T09:40:25.428Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2017_06_30.json",
+      "size": "3094631",
+      "updated": "2024-10-31T09:40:24.692Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2018_06_30.json",
+      "size": "3101258",
+      "updated": "2024-10-31T09:40:24.612Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2019_06_30.json",
+      "size": "3099788",
+      "updated": "2024-10-31T09:40:25.428Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2020_06_30.json",
+      "size": "3099788",
+      "updated": "2024-10-31T09:40:25.521Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2021_06_30.json",
+      "size": "3514313",
+      "updated": "2024-10-31T09:40:24.034Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2022_06_30.json",
+      "size": "3514306",
+      "updated": "2024-10-31T09:40:24.895Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32643_2023_06_30.json",
+      "size": "3514313",
+      "updated": "2024-10-31T09:40:24.120Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2016_06_30.json",
+      "size": "2865205",
+      "updated": "2024-10-31T09:40:24.708Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2017_06_30.json",
+      "size": "2860025",
+      "updated": "2024-10-31T09:40:24.997Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2018_06_30.json",
+      "size": "2862245",
+      "updated": "2024-10-31T09:40:25.222Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2019_06_30.json",
+      "size": "2861875",
+      "updated": "2024-10-31T09:40:24.829Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2020_06_30.json",
+      "size": "2862245",
+      "updated": "2024-10-31T09:40:25.518Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2021_06_30.json",
+      "size": "2861875",
+      "updated": "2024-10-31T09:40:25.491Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2022_06_30.json",
+      "size": "2862615",
+      "updated": "2024-10-31T09:40:24.323Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32644_2023_06_30.json",
+      "size": "2862985",
+      "updated": "2024-10-31T09:40:25.042Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2016_06_30.json",
+      "size": "654970",
+      "updated": "2024-10-31T09:40:24.895Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2017_06_30.json",
+      "size": "654232",
+      "updated": "2024-10-31T09:40:25.536Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2018_06_30.json",
+      "size": "654970",
+      "updated": "2024-10-31T09:40:25.499Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2019_06_30.json",
+      "size": "654970",
+      "updated": "2024-10-31T09:40:25.251Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2020_06_30.json",
+      "size": "654970",
+      "updated": "2024-10-31T09:40:23.886Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2021_06_30.json",
+      "size": "654601",
+      "updated": "2024-10-31T09:40:25.423Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2022_06_30.json",
+      "size": "654970",
+      "updated": "2024-10-31T09:40:25.139Z"
+    },
+    {
+      "name": "v1/manifests/3b_EPSG_32645_2023_06_30.json",
+      "size": "654970",
+      "updated": "2024-10-31T09:40:24.215Z"
+    }
+  ]
+}

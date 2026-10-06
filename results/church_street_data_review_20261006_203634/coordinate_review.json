@@ -1,0 +1,60 @@
+{
+  "source_crs": "EPSG:4326 (WGS84 lon, lat)",
+  "metric_calculation_crs": "EPSG:32643 (UTM Zone 43N, metres)",
+  "axis_order": "always_xy=True (longitude, latitude -> easting, northing)",
+  "roundtrip_transform_max_error_deg": 3.552713678800501e-15,
+  "roundtrip_transform_pass": true,
+  "local_origin_utm_m": {
+    "easting": 782541.8055380594,
+    "northing": 1435736.1103432046
+  },
+  "central_meridian_deg": 75.0,
+  "grid_convergence_angle_deg": 0.5849753064701455,
+  "grid_convergence_arcmin": 35.09851838820873,
+  "solar_azimuth_bearing_reference": "Astronomical solar position requires correction from True North to UTM Grid North (+0.585 deg).",
+  "site_boundary": {
+    "geographic_bbox_west_south_east_north": [
+      77.6044,
+      12.9743,
+      77.6064,
+      12.9755
+    ],
+    "projected_utm_bounds": [
+      782540.4489729255,
+      1435736.1103432046,
+      782758.9137111322,
+      1435871.156028109
+    ],
+    "projected_dimensions_m": {
+      "width_east_west": 218.46473820670508,
+      "height_north_south": 135.04568490432575,
+      "area_m2": 28840.879739821816
+    },
+    "valid_polygon": true
+  },
+  "shadow_context_boundary": {
+    "geographic_bbox_west_south_east_north": [
+      77.60370913082609,
+      12.973622460407592,
+      77.60709086876683,
+      12.976177532346302
+    ],
+    "projected_utm_bounds": [
+      782464.6869530999,
+      1435660.3480603623,
+      782834.6763206188,
+      1435946.9183745766
+    ],
+    "projected_dimensions_m": {
+      "width_east_west": 369.98936751892325,
+      "height_north_south": 286.57031421433203,
+      "area_m2": 103833.89395282997
+    },
+    "expansion_buffer_m": 75.0,
+    "corner_style": "mitre_squared",
+    "symmetric_difference_vs_analytical_buffer_m2": 2.0105349640127206e-07,
+    "exact_expansion_verified": true,
+    "valid_polygon": true
+  },
+  "status": "pass"
+}

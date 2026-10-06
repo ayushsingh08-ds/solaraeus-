@@ -1,0 +1,66 @@
+[
+  {
+    "source_url": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+    "crs": "EPSG:32643",
+    "source": {
+      "uris": [
+        "ae4_2023_06_30/tile_hXqKtZuLh78.tif"
+      ],
+      "affineTransform": {
+        "scaleX": 0.5,
+        "translateX": 774780,
+        "scaleY": -0.5,
+        "translateY": 1444900
+      },
+      "dimensions": {
+        "width": 25000,
+        "height": 25000
+      }
+    },
+    "bounds": [
+      782339.1061592062,
+      1435605.743339114,
+      782885.891031716,
+      1435993.1501028454
+    ],
+    "bands": [
+      {
+        "id": "building_fractional_count",
+        "tilesetId": "a0",
+        "missingData": {
+          "values": [
+            -99
+          ]
+        }
+      },
+      {
+        "id": "building_height",
+        "tilesetId": "a0",
+        "tilesetBandIndex": 1,
+        "missingData": {
+          "values": [
+            -99
+          ]
+        }
+      },
+      {
+        "id": "building_presence",
+        "tilesetId": "a0",
+        "tilesetBandIndex": 2,
+        "missingData": {
+          "values": [
+            -99
+          ]
+        }
+      }
+    ],
+    "properties": {
+      "inference_time_epoch_s": 1688108400,
+      "imagery_start_time_epoch_s": 1672560000,
+      "s2cell_token": "3b",
+      "imagery_end_time_epoch_s": 1703664000
+    },
+    "startTime": "2023-06-30T07:00:00Z",
+    "endTime": "2023-06-30T07:00:00Z"
+  }
+]

@@ -1,0 +1,141 @@
+{
+  "preprocessing_directory": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_preprocessing_20261006_224238",
+  "preprocessing_files_loaded": [
+    "main_scene_mesh.json",
+    "shadow_context_mesh.json",
+    "scene_summary.json",
+    "accepted_height_policy.json",
+    "coordinate_validation.json",
+    "geometry_validation_report.json",
+    "mesh_statistics.csv",
+    "uncertain_buildings.csv",
+    "preprocessing_report.md"
+  ],
+  "total_context_buildings": 123,
+  "total_core_buildings": 37,
+  "height_policy_summary": {
+    "total_buildings_processed": 123,
+    "core_buildings_count": 37,
+    "context_buildings_count": 123,
+    "decision_status_classification": {
+      "approved_core_count": 30,
+      "accepted_context_count": 77,
+      "total_approved_or_accepted": 107,
+      "uncertain_core_count": 7,
+      "uncertain_context_count": 9,
+      "total_uncertain_status": 16,
+      "rejected_count": 0
+    },
+    "uncertainty_tier_classification": {
+      "moderate_uncertainty_count": 83,
+      "high_uncertainty_count": 29,
+      "extreme_uncertainty_count": 11,
+      "high_or_extreme_sensitivity_cohort": 40
+    },
+    "cross_tabulation": {
+      "approved_core_moderate": 28,
+      "approved_core_high": 2,
+      "accepted_context_moderate": 55,
+      "accepted_context_high": 22,
+      "uncertain_core_high": 5,
+      "uncertain_core_extreme": 2,
+      "uncertain_context_extreme": 9
+    },
+    "commercial_canyon_fallback_height_m": 9.6,
+    "scientific_framing": "The Church Street scene has been converted into an exploratory local-coordinate triangular-mesh representation using approved but partly uncertain building-height estimates."
+  },
+  "coordinate_reference_system": "EPSG:32643",
+  "local_origin": {
+    "x_utm_m": 782541.8055380594,
+    "y_utm_m": 1435736.1103432046,
+    "z_m": 0.0
+  },
+  "terrain_elevation_policy": "Flat model ground plane z = 0.0 m. DEM reviewed for metadata only.",
+  "weather_forcing_summary": {
+    "description": "Bengaluru City station observations applied as spatially uniform forcing at the Church Street study site.",
+    "station_id": "NOAA_43295099999",
+    "station_name": "Bengaluru City Station",
+    "date": "2024-04-15",
+    "time_utc": "09:00:00",
+    "time_ist": "14:30:00",
+    "air_temperature_c": 35.0,
+    "dew_point_c": 8.5,
+    "relative_humidity_pct": 19.729,
+    "wind_speed_ms": 1.5,
+    "wind_direction_deg": 90.0,
+    "wind_direction_cardinal": "E",
+    "data_provenance": "Observed weather at Bengaluru City station, spatially uniform boundary forcing."
+  },
+  "solar_forcing_summary": {
+    "solar_interval_utc": "09:00-10:00 UTC",
+    "solar_interval_ist": "14:30-15:30 IST",
+    "solar_position_time_utc": "09:00:00 UTC",
+    "source": "NASA POWER hourly solar radiation estimates (April 15, 2024)",
+    "irradiance_components_w_m2": {
+      "ghi": 755.97,
+      "dni": 728.31,
+      "dhi": 172.18
+    },
+    "solar_angles_at_0900_utc": {
+      "altitude_deg": 57.9159576593304,
+      "zenith_deg": 32.0840423406696,
+      "azimuth_true_north_deg": 268.16554681339886,
+      "azimuth_grid_north_deg": 267.58018081339884,
+      "sun_vector": [
+        -0.5308903985979673,
+        -0.017003460098223216,
+        0.8472698903072029
+      ]
+    },
+    "radiation_consistency": {
+      "instantaneous_check_0900_utc": {
+        "dni_cos_zenith_plus_dhi_w_m2": 789.2551338096389,
+        "reported_ghi_w_m2": 755.97,
+        "difference_w_m2": 33.285133809638864,
+        "relative_difference_pct": 4.4029701985050815
+      },
+      "interval_midpoint_check_0930_utc": {
+        "zenith_deg": 39.3915138573219,
+        "dni_cos_zenith_plus_dhi_w_m2": 735.0380516400087,
+        "reported_ghi_w_m2": 755.97,
+        "difference_w_m2": -20.93194835999134,
+        "relative_difference_pct": -2.7688861145272083
+      },
+      "interpretation": "NASA POWER hourly radiation represents the integrated energy over 09:00-10:00 UTC, while solar position is evaluated instantaneously at 09:00 UTC. The +4.4% instantaneous and -2.8% midpoint deviations reflect normal satellite hourly modeling approximations and solar zenith progression, well within standard numerical tolerance."
+    }
+  },
+  "material_assumptions": {
+    "status": "approved_assumptions_not_field_measurements",
+    "classes": {
+      "building_wall": {
+        "albedo": 0.3,
+        "emissivity": 0.9,
+        "initial_temperature_c": 35.0,
+        "initial_temperature_k": 308.15,
+        "status": "assumed"
+      },
+      "building_roof": {
+        "albedo": 0.2,
+        "emissivity": 0.9,
+        "initial_temperature_c": 35.0,
+        "initial_temperature_k": 308.15,
+        "status": "assumed"
+      },
+      "ground": {
+        "albedo": 0.2,
+        "emissivity": 0.95,
+        "initial_temperature_c": 35.0,
+        "initial_temperature_k": 308.15,
+        "status": "assumed"
+      },
+      "pavement": {
+        "albedo": 0.3,
+        "emissivity": 0.95,
+        "initial_temperature_c": 35.0,
+        "initial_temperature_k": 308.15,
+        "status": "assumed"
+      }
+    },
+    "solver_application": "Solver applies building_wall and ground properties to mesh facades and ground plane."
+  }
+}

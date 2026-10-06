@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-10-06T20:12:00.174501+00:00",
+  "checked_at_ist": "2026-10-07T01:42:00.174501+05:30",
+  "method": "Three policy pages reached via source extraction; summaries below are review notes, not provider-original downloads.",
+  "policies": [
+    {
+      "url": "https://www.ncei.noaa.gov/sites/default/files/2023-12/NCEI%20PD-10-2-02%20-%20Open%20Data%20Policy%20Signed.pdf",
+      "finding": "NOAA/Federal-produced data are open/public-domain; the policy encourages CC0 for external records but does not automatically prove every international station record is CC0."
+    },
+    {
+      "url": "https://power.larc.nasa.gov/docs/referencing/",
+      "finding": "Retain the POWER reference statement, service/version and access date. Publication/redistribution notifications are requested; none were sent."
+    },
+    {
+      "url": "https://registry.opendata.aws/nasa-power/",
+      "finding": "NASA-managed registry lists CC-BY-4.0 and requests NASA POWER citation. Preserve this scope and do not invent an in-file SPDX label."
+    }
+  ]
+}

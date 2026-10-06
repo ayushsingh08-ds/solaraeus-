@@ -1,0 +1,41 @@
+building_id,is_core,height_m,uncertainty_flag,status,method,notes
+65d0175e-5fe0-42de-a955-fff258f4c6c8,True,18.5,HIGH,UNCERTAIN,core_approved_table,"Discrepancy between floor tag (3 fl = 9.6m) and ML (18.5m, pix 49.4%). Adopted ML height 18.5m for shadow conservative analysis; marked uncertain with floor bounds [9.6m, 18.5m]."
+963df15f-19f2-47fd-914d-7b80db9d335f,True,2.5,HIGH,UNCERTAIN,core_approved_table,Small structure (57.4 m2) with sparse ML pixel coverage (7.4%). Adopted ML height 2.5m marked uncertain.
+2febf00f-3e1c-4efc-849a-3ad61176e04b,True,16.0,HIGH,UNCERTAIN,core_approved_table,"Discrepancy between floor tag (3 fl = 9.6m) and ML (16.0m, pix 21.0%). Adopted ML height 16.0m for shadow conservative analysis; marked uncertain with floor bounds [9.6m, 16.0m]."
+3ebbedfa-d60f-4cba-95a1-a1fd3d766e8d,True,6.4,HIGH,APPROVED,core_approved_table,Google ML estimate missing; approved floor-based height (2 floors x 3.2m = 6.4m).
+bb5dfffb-c9ea-482e-b3bd-45b374348aa6,True,9.6,EXTREME,UNCERTAIN,core_approved_table,Missing both ML estimate and floor count. Assigned 9.6m (3 floors commercial canyon median) as fallback candidate.
+6cb2f4e3-1fe0-4062-8e51-4618f8fb4c8d,True,4.5,HIGH,UNCERTAIN,core_approved_table,Low ML pixel coverage (31.2%) with no floor record. Adopted ML height 4.5m marked uncertain.
+624e83ef-7035-4668-9384-d2de83dfb2f5,True,9.6,EXTREME,UNCERTAIN,core_approved_table,Missing both ML estimate and floor count. Assigned 9.6m (3 floors commercial canyon median) as fallback candidate.
+c52bd3e7-0ae4-4695-9fab-f93329a865b3,True,6.4,HIGH,APPROVED,core_approved_table,Google ML estimate missing; approved floor-based height (2 floors x 3.2m = 6.4m).
+939b1ff4-2f63-4ac4-a57f-9971000e6882,True,8.0,HIGH,UNCERTAIN,core_approved_table,"Discrepancy between floor tag (5 fl = 16.0m) and ML (8.0m, pix 85.1%). Adopted ML height 8.0m for shadow conservative analysis; marked uncertain with floor bounds [16.0m, 8.0m]."
+aa6369b5-6c67-419a-8b97-1024834a83b6,False,4.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (4.5m, pixel coverage 0.0184)"
+21e7ac98-724a-48a1-bd8e-86527a0ab7d2,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+1570d613-60ea-41d2-9b3c-28e670d8979a,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+dc959d1e-bdeb-4c62-bf8d-e29e387e9d20,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+9694ab17-7e0a-462b-8090-826a851802db,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+96d01673-f77a-415d-8cfa-631b0b2283f2,False,13.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (13.0m, pixel coverage 0.4356)"
+3875bd17-9ce5-4f7b-b750-a5cd2be4cac8,False,11.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (11.0m, pixel coverage 0.6596)"
+2b8a538c-b9a3-44ab-a8fa-1d6c7799459c,False,4.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (4.0m, pixel coverage 0.0341)"
+7f252566-d31e-4758-bf3d-5a372705f643,False,1.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (1.5m, pixel coverage 0.0061)"
+674b4ecc-11dc-461f-a374-ff65566e6af2,False,4.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (4.0m, pixel coverage 0.3333)"
+4e439487-1fbb-44d0-b045-6a4f8a9c01ce,False,4.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (4.0m, pixel coverage 0.4074)"
+b24c1d65-75a6-40dd-97cc-31f9aff99b4f,False,3.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (3.5m, pixel coverage 0.1848)"
+d2726f48-1429-4cb0-8e53-6d336104b13f,False,7.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (7.5m, pixel coverage 0.1067)"
+e2572407-f720-4e69-a33e-49cc189540a1,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+d4b016ed-3436-490e-9825-580082fe3b46,False,5.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (5.0m, pixel coverage 0.1008)"
+d802b242-0323-4154-941f-ac399704e177,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+a31b12ed-f8cb-43d1-972a-f1aac8549842,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+ab6e6a51-0ceb-4284-b9ce-353bc043e1e3,False,6.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (6.0m, pixel coverage 0.2299)"
+b44551eb-568e-4040-9409-7c5140ba6c08,False,7.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (7.5m, pixel coverage 0.7811)"
+13ac065a-2986-4d33-aa5c-1143c8c32e61,False,7.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (7.0m, pixel coverage 0.4639)"
+6e0f585f-000f-4f69-98ec-4bb662238faa,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+d05978f4-0be3-40d8-8cfb-fbf753213b4f,False,9.6,EXTREME,UNCERTAIN,commercial_canyon_fallback,Missing both ML estimate and floor count in context; assigned 9.6m canyon fallback
+e7d2ee4e-cb50-4c70-b731-46ba9119a942,False,13.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (13.0m, pixel coverage 0.1143)"
+0f882c34-cee9-49a0-b815-e53c57dabf68,False,19.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (19.0m, pixel coverage 0.9049)"
+a6548d0a-b337-4e42-883d-0421f4626058,False,15.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (15.5m, pixel coverage 0.0335)"
+6cfcea3e-d007-400f-aa33-5007b01676b9,False,35.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (35.0m, pixel coverage 0.7057)"
+271c0481-7f53-46a8-b9af-8b2b976ff134,False,8.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (8.5m, pixel coverage 0.8392)"
+f8189f1a-d23e-42c7-94b1-8a27a3af94ff,False,10.5,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (10.5m, pixel coverage 0.833)"
+539d7422-aef4-469c-a965-f0aa7fb7bd8d,False,6.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (6.0m, pixel coverage 0.3654)"
+4c9f7fdb-f180-4126-b49b-e7b28765737d,False,4.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (4.0m, pixel coverage 0.2017)"
+c8094181-bcb4-455f-9c93-ad93c0a6e20b,False,5.0,HIGH,ACCEPTED,google_ml_estimate,"Google 2023 ML estimate (5.0m, pixel coverage 0.3738)"

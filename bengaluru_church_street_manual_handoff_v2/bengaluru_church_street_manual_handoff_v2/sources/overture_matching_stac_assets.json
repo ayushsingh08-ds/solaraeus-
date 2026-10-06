@@ -1,0 +1,154 @@
+[
+  {
+    "type": "Feature",
+    "stac_version": "1.1.0",
+    "stac_extensions": [
+      "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
+      "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    ],
+    "id": "00282",
+    "storage:schemes": {
+      "aws": {
+        "type": "aws-s3",
+        "platform": "https://{bucket}.s3.{region}.amazonaws.com",
+        "bucket": "overturemaps-us-west-2",
+        "region": "us-west-2",
+        "requester_pays": false
+      },
+      "azure": {
+        "type": "ms-azure",
+        "platform": "https://{account}.blob.core.windows.net",
+        "account": "overturemapswestus2",
+        "requester_pays": false
+      }
+    },
+    "num_row_groups": 128,
+    "links": [],
+    "assets": {
+      "aws": {
+        "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-09-23.1/theme=buildings/type=building/part-00282-f31b56fa-75d0-5bf6-af43-afa388e93a42-c000.zstd.parquet",
+        "title": "GeoParquet on AWS S3",
+        "description": "Zstd-compressed GeoParquet in the overturemaps-us-west-2 bucket, served over HTTPS.",
+        "type": "application/vnd.apache.parquet",
+        "roles": [
+          "data"
+        ],
+        "storage:refs": [
+          "aws"
+        ],
+        "file:size": 496925673,
+        "alternate:name": "HTTPS",
+        "alternate": {
+          "s3": {
+            "href": "s3://overturemaps-us-west-2/release/2026-09-23.1/theme=buildings/type=building/part-00282-f31b56fa-75d0-5bf6-af43-afa388e93a42-c000.zstd.parquet",
+            "alternate:name": "S3",
+            "description": "Access the files via regular Amazon AWS S3 tooling.",
+            "roles": [
+              "data"
+            ]
+          }
+        }
+      },
+      "azure": {
+        "href": "https://overturemapswestus2.blob.core.windows.net/release/2026-09-23.1/theme=buildings/type=building/part-00282-f31b56fa-75d0-5bf6-af43-afa388e93a42-c000.zstd.parquet",
+        "title": "GeoParquet on Azure Blob Storage",
+        "description": "Zstd-compressed GeoParquet in the overturemapswestus2 storage account (West US 2), served over HTTPS.",
+        "type": "application/vnd.apache.parquet",
+        "roles": [
+          "data"
+        ],
+        "storage:refs": [
+          "azure"
+        ],
+        "file:size": 496925673
+      }
+    },
+    "collection": "building",
+    "datetime": "2026-09-23 00:00:00+00:00",
+    "num_rows": 4921260,
+    "bbox": {
+      "xmin": 76.7574462890625,
+      "ymin": 12.128223419189453,
+      "xmax": 78.52001190185547,
+      "ymax": 13.373754501342773
+    },
+    "geometry": "b'\\x01\\x03\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x05\\x00\\x00\\x00\\x00\\x00\\x00\\x00z0S@\\x00\\x00\\x00\\x80\\xa6A(@\\x00\\x00\\x00\\xe0G\\xa1S@\\x00\\x00\\x00\\x80\\xa6A(@\\x00\\x00\\x00\\xe0G\\xa1S@\\x00\\x00\\x00\\xc0\\\\\\xbf*@\\x00\\x00\\x00\\x00z0S@\\x00\\x00\\x00\\xc0\\\\\\xbf*@\\x00\\x00\\x00\\x00z0S@\\x00\\x00\\x00\\x80\\xa6A(@'"
+  },
+  {
+    "type": "Feature",
+    "stac_version": "1.1.0",
+    "stac_extensions": [
+      "https://stac-extensions.github.io/storage/v2.0.0/schema.json",
+      "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+      "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+    ],
+    "id": "00104",
+    "storage:schemes": {
+      "aws": {
+        "type": "aws-s3",
+        "platform": "https://{bucket}.s3.{region}.amazonaws.com",
+        "bucket": "overturemaps-us-west-2",
+        "region": "us-west-2",
+        "requester_pays": false
+      },
+      "azure": {
+        "type": "ms-azure",
+        "platform": "https://{account}.blob.core.windows.net",
+        "account": "overturemapswestus2",
+        "requester_pays": false
+      }
+    },
+    "num_row_groups": 128,
+    "links": [],
+    "assets": {
+      "aws": {
+        "href": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-09-23.1/theme=transportation/type=segment/part-00104-9a174867-7723-5586-b523-c15a560d496a-c000.zstd.parquet",
+        "title": "GeoParquet on AWS S3",
+        "description": "Zstd-compressed GeoParquet in the overturemaps-us-west-2 bucket, served over HTTPS.",
+        "type": "application/vnd.apache.parquet",
+        "roles": [
+          "data"
+        ],
+        "storage:refs": [
+          "aws"
+        ],
+        "file:size": 447233599,
+        "alternate:name": "HTTPS",
+        "alternate": {
+          "s3": {
+            "href": "s3://overturemaps-us-west-2/release/2026-09-23.1/theme=transportation/type=segment/part-00104-9a174867-7723-5586-b523-c15a560d496a-c000.zstd.parquet",
+            "alternate:name": "S3",
+            "description": "Access the files via regular Amazon AWS S3 tooling.",
+            "roles": [
+              "data"
+            ]
+          }
+        }
+      },
+      "azure": {
+        "href": "https://overturemapswestus2.blob.core.windows.net/release/2026-09-23.1/theme=transportation/type=segment/part-00104-9a174867-7723-5586-b523-c15a560d496a-c000.zstd.parquet",
+        "title": "GeoParquet on Azure Blob Storage",
+        "description": "Zstd-compressed GeoParquet in the overturemapswestus2 storage account (West US 2), served over HTTPS.",
+        "type": "application/vnd.apache.parquet",
+        "roles": [
+          "data"
+        ],
+        "storage:refs": [
+          "azure"
+        ],
+        "file:size": 447233599
+      }
+    },
+    "collection": "segment",
+    "datetime": "2026-09-23 00:00:00+00:00",
+    "num_rows": 2737893,
+    "bbox": {
+      "xmin": 73.47269439697266,
+      "ymin": 11.251558303833008,
+      "xmax": 79.7342529296875,
+      "ymax": 17.56179428100586
+    },
+    "geometry": "b'\\x01\\x03\\x00\\x00\\x00\\x01\\x00\\x00\\x00\\x05\\x00\\x00\\x00\\x00\\x00\\x00\\xa0@^R@\\x00\\x00\\x00@\\xcc\\x80&@\\x00\\x00\\x00\\x00\\xfe\\xeeS@\\x00\\x00\\x00@\\xcc\\x80&@\\x00\\x00\\x00\\x00\\xfe\\xeeS@\\x00\\x00\\x00\\xc0\\xd1\\x8f1@\\x00\\x00\\x00\\xa0@^R@\\x00\\x00\\x00\\xc0\\xd1\\x8f1@\\x00\\x00\\x00\\xa0@^R@\\x00\\x00\\x00@\\xcc\\x80&@'"
+  }
+]

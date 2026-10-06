@@ -1,0 +1,81 @@
+{
+  "source_crs": "EPSG:4326",
+  "metric_crs": "EPSG:32643",
+  "local_origin": {
+    "x_utm_m": 782541.8055380594,
+    "y_utm_m": 1435736.1103432046,
+    "z_m": 0.0
+  },
+  "grid_convergence_degrees": 0.585366,
+  "grid_convergence_arcmin": 35.12,
+  "study_area_extent_local_m": {
+    "xmin": -197.7,
+    "xmax": 339.09,
+    "ymin": -125.37,
+    "ymax": 252.04,
+    "width_m": 536.78,
+    "length_m": 377.41
+  },
+  "terrain_policy": {
+    "model_ground_elevation_z": 0.0,
+    "terrain_status": "retained_for_metadata_only_flat_model_ground_in_solver"
+  },
+  "study_boundary_local_polygon": [
+    {
+      "x_m": 217.108,
+      "y_m": 2.218
+    },
+    {
+      "x_m": 215.751,
+      "y_m": 135.046
+    },
+    {
+      "x_m": -1.357,
+      "y_m": 132.827
+    },
+    {
+      "x_m": 0.0,
+      "y_m": 0.0
+    },
+    {
+      "x_m": 217.108,
+      "y_m": 2.218
+    }
+  ],
+  "shadow_context_boundary_local_polygon": [
+    {
+      "x_m": 292.871,
+      "y_m": -72.012
+    },
+    {
+      "x_m": -74.23,
+      "y_m": -75.762
+    },
+    {
+      "x_m": -77.119,
+      "y_m": 207.057
+    },
+    {
+      "x_m": 289.98,
+      "y_m": 210.808
+    },
+    {
+      "x_m": 292.871,
+      "y_m": -72.012
+    }
+  ],
+  "grid_convergence_details": {
+    "convergence_angle_degrees": 0.585366,
+    "convergence_angle_arcmin": 35.12,
+    "grid_north_vs_true_north": "Grid North (UTM Y) points +0.585 degrees clockwise relative to True North. Solar azimuth calculations in True North must be adjusted by -0.585 degrees when mapping into the local Cartesian grid."
+  },
+  "terrain_elevation_handling": {
+    "model_ground_plane_z_m": 0.0,
+    "dem_mean_elevation_wgs84_m": 917.43,
+    "dem_elevation_range_m": [
+      916.18,
+      918.68
+    ],
+    "solver_terrain_policy": "flat_ground_z0_retained_for_metadata_only"
+  }
+}

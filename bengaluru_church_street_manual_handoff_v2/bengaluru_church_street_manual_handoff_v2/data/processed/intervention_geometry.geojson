@@ -1,0 +1,42 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "object_id": "CANOPY_001",
+        "edit_type": "add_simple_shade_structure",
+        "status": "proposed_not_surveyed",
+        "underside_height_m": 3.5,
+        "thickness_m": 0.1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.60564375654845,
+              12.97484672571326
+            ],
+            [
+              77.60558990994315,
+              12.974858944419422
+            ],
+            [
+              77.60559613949353,
+              12.97488534823953
+            ],
+            [
+              77.6056499861037,
+              12.974873129531076
+            ],
+            [
+              77.60564375654845,
+              12.97484672571326
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

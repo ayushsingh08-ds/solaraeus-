@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "status": "proposed_assumptions_pending_researcher_acceptance",
+  "inference_performed": false,
+  "temperature_note": "35 C is an assumed initial surface temperature equal to the selected off-site air temperature. It is not a measured surface temperature and not a validated equilibrated temperature. Keep initial assumptions identical in both scenarios.",
+  "classes": {
+    "building_wall": {
+      "description": "Generic wall; no per-building material classification",
+      "albedo": {
+        "value": 0.3,
+        "status": "assumed",
+        "source_url": null
+      },
+      "emissivity": {
+        "value": 0.9,
+        "status": "assumed",
+        "source_url": null
+      },
+      "surface_temperature_c": {
+        "value": 35.0,
+        "status": "assumed_initial_condition",
+        "source_url": null
+      },
+      "measured_at_site": false
+    },
+    "building_roof": {
+      "description": "Generic roof; no roof-material inference",
+      "albedo": {
+        "value": 0.2,
+        "status": "assumed",
+        "source_url": null
+      },
+      "emissivity": {
+        "value": 0.9,
+        "status": "assumed",
+        "source_url": null
+      },
+      "surface_temperature_c": {
+        "value": 35.0,
+        "status": "assumed_initial_condition",
+        "source_url": null
+      },
+      "measured_at_site": false
+    },
+    "ground": {
+      "description": "Generic non-paved exposed ground; map actual extent before use",
+      "albedo": {
+        "value": 0.2,
+        "status": "assumed",
+        "source_url": null
+      },
+      "emissivity": {
+        "value": 0.95,
+        "status": "assumed",
+        "source_url": null
+      },
+      "surface_temperature_c": {
+        "value": 35.0,
+        "status": "assumed_initial_condition",
+        "source_url": null
+      },
+      "measured_at_site": false
+    },
+    "pavement": {
+      "description": "Generic paved surface; Church Street granite/cobblestone context does not establish measured optical values",
+      "albedo": {
+        "value": 0.3,
+        "status": "assumed",
+        "source_url": null
+      },
+      "emissivity": {
+        "value": 0.95,
+        "status": "assumed",
+        "source_url": null
+      },
+      "surface_temperature_c": {
+        "value": 35.0,
+        "status": "assumed_initial_condition",
+        "source_url": null
+      },
+      "measured_at_site": false
+    }
+  },
+  "physical_context_source": "https://www.vagroup.com/projects/redevelopment-of-church-street-bengaluru/",
+  "baseline_vegetation_policy": "No vegetation intervention. Existing trees/canopies are not mapped; a canopy-free simplified baseline is an unverified assumption, not a representation of observed real vegetation."
+}

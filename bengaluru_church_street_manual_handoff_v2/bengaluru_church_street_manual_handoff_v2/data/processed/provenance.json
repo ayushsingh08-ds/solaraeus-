@@ -1,0 +1,1924 @@
+{
+  "schema_version": "2.0",
+  "package_id": "bengaluru-church-street-manual-handoff-v2",
+  "prepared_at_utc": "2026-10-06T20:12:00.174501+00:00",
+  "prepared_at_ist": "2026-10-07T01:42:00.174501+05:30",
+  "current_date_ist": "2026-10-07",
+  "base_package": "Preserved Bengaluru Church Street A1–A9 v1 project; a separate revision, not a simulation result",
+  "datasets": [
+    {
+      "dataset_id": "overture_buildings",
+      "dataset_name": "Overture Maps buildings bounded acquisition",
+      "source_url": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+      "downloaded_at_utc": "2026-10-06T18:49:37.499730+00:00",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "2026-09-23.1",
+      "license": "ODbL-1.0",
+      "attribution_requirement": "Overture Maps Foundation plus underlying OpenStreetMap, Google Open Buildings and Microsoft ML Buildings; retain source-record license and attribution fields",
+      "original_files": [
+        {
+          "path": "data/raw/buildings/overture_building_context_original.parquet",
+          "original_filename": "overture_building_context_original.parquet",
+          "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+          "bytes": 46657
+        },
+        {
+          "path": "data/raw/buildings/overture_building_context_original.geojson",
+          "original_filename": "overture_building_context_original.geojson",
+          "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+          "bytes": 478493
+        }
+      ],
+      "processing_operation": "Original acquisition: HTTPS Parquet ranges plus bbox row selection yielding 227 whole geometries; core/context selected by intersection, not clipping. Canonical aliases, source-floor extraction and separate ML joins in v2.",
+      "provider_original_assets": [
+        {
+          "source_url": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-09-23.1/theme=buildings/type=building/part-00282-f31b56fa-75d0-5bf6-af43-afa388e93a42-c000.zstd.parquet",
+          "provider_original_filename": "part-00282-f31b56fa-75d0-5bf6-af43-afa388e93a42-c000.zstd.parquet",
+          "etag": "\"054de4e6f9d9ea8a6c4f259918cd4aba-8\"",
+          "last_modified": "Fri, 25 Sep 2026 16:04:44 GMT"
+        }
+      ],
+      "bounded_acquisition_not_complete_provider_shard": true,
+      "horizontal_crs": "EPSG:4326"
+    },
+    {
+      "dataset_id": "overture_roads",
+      "dataset_name": "Overture Maps transportation bounded acquisition",
+      "source_url": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+      "downloaded_at_utc": "2026-10-06T18:49:57.943765+00:00",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "2026-09-23.1",
+      "license": "ODbL-1.0",
+      "attribution_requirement": "Overture Maps Foundation and underlying OpenStreetMap attribution",
+      "original_files": [
+        {
+          "path": "data/raw/buildings/overture_segment_context_original.parquet",
+          "original_filename": "overture_segment_context_original.parquet",
+          "sha256": "0a9ba868958a32c2cb16a8a02da3a40606c2d25d87c278057070cbefb7210089",
+          "bytes": 133489
+        },
+        {
+          "path": "data/raw/buildings/overture_segment_context_original.geojson",
+          "original_filename": "overture_segment_context_original.geojson",
+          "sha256": "24abb314e5d4df08c87881a9d3b60f6f8e17878a6ff472aca0cac5884cd99c4e",
+          "bytes": 761235
+        }
+      ],
+      "processing_operation": "159 bounded road records retained; Church Street centreline extracted; proposed receptor envelope and panel placement are geometry-derived assumptions.",
+      "provider_original_assets": [
+        {
+          "source_url": "https://overturemaps-us-west-2.s3.us-west-2.amazonaws.com/release/2026-09-23.1/theme=transportation/type=segment/part-00104-9a174867-7723-5586-b523-c15a560d496a-c000.zstd.parquet",
+          "provider_original_filename": "part-00104-9a174867-7723-5586-b523-c15a560d496a-c000.zstd.parquet",
+          "etag": "\"62c61f182edb10ae14f911f273d58e15-7\""
+        }
+      ],
+      "horizontal_crs": "EPSG:4326"
+    },
+    {
+      "dataset_id": "google_ml_heights",
+      "dataset_name": "Google Open Buildings 2.5D Temporal Dataset v1",
+      "source_url": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+      "downloaded_at_utc": "2026-10-06T19:14:04.547770+00:00",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "v1, imagery/year 2023",
+      "license": "Dual CC-BY-4.0 / ODbL-1.0 per Google dataset documentation",
+      "attribution_requirement": "Google Research / Google Open Buildings 2.5D Temporal Dataset; retain compatible original-source notices",
+      "original_files": [
+        {
+          "path": "data/raw/buildings/google_open_buildings_temporal_2023_context_window.tif",
+          "original_filename": "google_open_buildings_temporal_2023_context_window.tif",
+          "sha256": "f37f1bf087fd2825e8dc31ca813d24b0838944a5be4094d52ca5e63262d9b8f5",
+          "bytes": 681969
+        }
+      ],
+      "processing_operation": "Native 3-band window export; footprint median using presence >=0.5 and height 0–100 m; no resampling; P10/P90 are spatial summaries, not confidence bounds. No model-height promotion.",
+      "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+      "provider_original_filename": "tile_hXqKtZuLh78.tif",
+      "source_year": 2023,
+      "horizontal_crs": "EPSG:32643",
+      "vertical_quantity": "ML-estimated building height above ground in metres",
+      "native_window_not_complete_provider_tile": true,
+      "stored_resolution_m": 0.5,
+      "effective_resolution_m_approx": 4
+    },
+    {
+      "dataset_id": "skadi_elevation",
+      "dataset_name": "Mapzen/Tilezen Skadi elevation terrain tiles",
+      "source_url": "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N12/N12E077.hgt.gz",
+      "downloaded_at_utc": "2026-10-06T18:45:24.540Z",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "Exact published tile snapshot pinned by S3 ETag, Last-Modified and SHA256; no tile-level semantic version declared. Documentation describes releases built 2016/2017.",
+      "license": "SRTM/GMTED public-domain source terms and Tilezen provider attribution; see sources/terrain_attribution.md. Do not imply a single newly assigned license for the composite.",
+      "attribution_requirement": "Mapzen/Tilezen; SRTM/GMTED data courtesy of the U.S. Geological Survey.",
+      "original_files": [
+        {
+          "path": "data/raw/terrain/N12E077.hgt.gz",
+          "original_filename": "N12E077.hgt.gz",
+          "sha256": "9485ba04696bbe2074a0b6cab79d0f12ecca79ad05b19d676ea35056beafd14e",
+          "bytes": 11122631
+        }
+      ],
+      "processing_operation": "Preserve original HGT; lossless GeoTIFF conversion only; native coarse point samples; metadata/validation use only, flat simulation ground remains proposed.",
+      "etag": "\"aa5a55bec32991bfd7342680776edff0-2\"",
+      "source_last_modified": "Tue, 26 Apr 2016 21:29:59 GMT",
+      "horizontal_crs": "EPSG:4326",
+      "vertical_datum": "EGM96 orthometric",
+      "license_source_file": "sources/terrain_attribution.md",
+      "underlying_source_trace_status": "Exact contributing images not independently traced"
+    },
+    {
+      "dataset_id": "noaa_station_observations",
+      "dataset_name": "NOAA/NCEI Integrated Surface Database Bengaluru City station",
+      "source_url": "https://www.ncei.noaa.gov/data/global-hourly/access/2024/43295099999.csv",
+      "downloaded_at_utc": "2026-10-06T18:43:45.886Z",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "2024 annual file; snapshot ETag \"133080-62f27571cd000\"",
+      "license": "No separate record-specific SPDX license identified for the externally contributed international station observations",
+      "attribution_requirement": "NOAA/NCEI Integrated Surface Database and originating station/provider; do not imply NOAA endorsement",
+      "original_files": [
+        {
+          "path": "data/raw/weather/noaa_43295099999_2024_original.csv",
+          "original_filename": "noaa_43295099999_2024_original.csv",
+          "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+          "bytes": 1257600
+        }
+      ],
+      "processing_operation": "Byte-identical canonical alias; select 2024-04-15 09 UTC record, decode documented temperature/dewpoint/wind scales and QC; derive RH with Magnus equation.",
+      "station_id": "43295099999",
+      "license_policy": {
+        "license": "No separate record-specific SPDX license identified for the externally contributed international station observations",
+        "policy_url": "https://www.ncei.noaa.gov/sites/default/files/2023-12/NCEI%20PD-10-2-02%20-%20Open%20Data%20Policy%20Signed.pdf",
+        "policy_scope": "NOAA/Federal-produced data are public-domain; externally contributed records are not automatically proven CC0 by this policy",
+        "attribution": "NOAA/NCEI Integrated Surface Database and originating station/provider; do not imply NOAA endorsement",
+        "redistribution_terms_status": "Record-specific license clarification remains open before public redistribution"
+      },
+      "source_last_modified": "Thu, 27 Feb 2025 22:37:52 GMT"
+    },
+    {
+      "dataset_id": "noaa_station_catalogue",
+      "dataset_name": "NOAA ISD station catalogue",
+      "source_url": "https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv",
+      "downloaded_at_utc": "2026-10-06T18:43:14.331Z",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "Unversioned live catalogue snapshot pinned by file hash",
+      "license": "Public NOAA/NCEI metadata; source file contains no separate SPDX label",
+      "attribution_requirement": "NOAA/NCEI Integrated Surface Database station history",
+      "original_files": [
+        {
+          "path": "data/raw/weather/isd-history.csv",
+          "original_filename": "isd-history.csv",
+          "sha256": "1994747ab4af1b97e63adb434b4d0d022f2daee76f0c144ea9ab46be2d906604",
+          "bytes": 2914601
+        }
+      ],
+      "processing_operation": "Locate station identifiers; selected station coordinates verified against the observation record; WGS84 geodesic station-to-site distance."
+    },
+    {
+      "dataset_id": "nasa_power_solar",
+      "dataset_name": "NASA POWER / CERES SYN1deg regional solar estimates",
+      "source_url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN,ALLSKY_SFC_SW_DNI,ALLSKY_SFC_SW_DIFF&community=RE&longitude=77.6045&latitude=12.9755&start=20240415&end=20240415&format=JSON&time-standard=UTC",
+      "downloaded_at_utc": "2026-10-06T18:45:17.523Z",
+      "download_date_utc": "2026-10-06",
+      "download_date_ist": "2026-10-07",
+      "dataset_version": "POWER Hourly API v2.10.2; requested 2024-04-15",
+      "license": "CC-BY-4.0 as listed for NASA POWER by the NASA-managed AWS Open Data Registry; original point API response contains no separate SPDX label",
+      "attribution_requirement": "The data was obtained from National Aeronautics and Space Administration (NASA) Langley Research Center's Prediction Of Worldwide Energy Resources (POWER) project funded through the NASA Earth Science Division. POWER Hourly API v2.10.2, accessed 2026-10-06 UTC / 2026-10-07 IST; source CERES SYN1deg.",
+      "original_files": [
+        {
+          "path": "data/raw/weather/nasa_power_solar_20240415_original.json",
+          "original_filename": "nasa_power_solar_20240415_original.json",
+          "sha256": "ec61199f3913c940d90f514a871760dc29b4529053597c07e98da2e2392c8b83",
+          "bytes": 2108
+        }
+      ],
+      "processing_operation": "Extract all 24 UTC-labelled GHI/DNI/DHI hourly energies and one candidate forcing label; mean W/m2 = Wh/m2 / 1 h; preserve unresolved interval endpoints.",
+      "license_evidence_url": "https://registry.opendata.aws/nasa-power/",
+      "citation_guide_url": "https://power.larc.nasa.gov/docs/referencing/",
+      "time_standard": "UTC",
+      "interval_alignment_verified": false
+    }
+  ],
+  "file_inventory_excluding_provenance_and_checksum_index": [
+    {
+      "path": "data/data_quality_report.md",
+      "bytes": 7577,
+      "sha256": "e030de3995fff576ff74597b979f3ed6034410fd2a12987611c87f6a5e10dc9c",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Human-readable handoff documentation assembled from preserved sources and explicit assumptions",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/manual_checklist.md",
+      "bytes": 2587,
+      "sha256": "e5111a0ea9615b26f38df2ed94bc72a5af467f4649a3c3a9c28c5b7402db51b1",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Human-readable handoff documentation assembled from preserved sources and explicit assumptions",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/analysis_domains.json",
+      "bytes": 1714,
+      "sha256": "39276191e9090b9628c4885f84f23bced90505a36cedb8bbf146972aa19d6117",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/building_height_review.csv",
+      "bytes": 21970,
+      "sha256": "ef3b67cc419db8fe433b31e34da90a8bf708ffc3bde54295e4fdcaff43355335",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings",
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Join all 37 existing records to separate source, inferred, ML and approval fields; no promotion or missing-height filling",
+        "inputs": [
+          "data/processed/buildings_site.geojson",
+          "data/processed/estimated_building_heights.csv"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/building_height_review_schema.json",
+      "bytes": 1417,
+      "sha256": "8bfa63837327d7f9d86f9930257c8b343a447b8e9fb4f34a8a59e6d716c88064",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings",
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/buildings_shadow_context.geojson",
+      "bytes": 304244,
+      "sha256": "372eb7bc2ae293f872cf344e4fbb526d9e2a4d4f1946e3db1e963e7f1d3a6e90",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings",
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/buildings_shadow_context.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/buildings_site.geojson",
+      "bytes": 109297,
+      "sha256": "f18d313a078769f30e02d683278823385d9a753b1fdd2cceef701fe8839b3463",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings",
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/buildings_site.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/church_street_centerline.geojson",
+      "bytes": 22386,
+      "sha256": "d12a26dccc4e7f9747561ac901f124abff65754e786b957f7e5c3408902dcb6b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_roads"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/church_street_centerline.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/context_height_review.csv",
+      "bytes": 25081,
+      "sha256": "10e6511da069e7adab5efa8c72af98b07d74b8e7343b5e58fd4de7079ebe14d6",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings",
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Static source extraction or documented derived table",
+        "inputs": [
+          "data/processed/buildings_shadow_context.geojson",
+          "data/processed/estimated_building_heights.csv"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/estimated_building_heights.csv",
+      "bytes": 23072,
+      "sha256": "5ad9bcb8a991792689564302c48c5944fed1e82195dd8edfbfbd88f9104b1e74",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/estimated_building_heights.csv (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "package method, derived output or supporting source",
+          "created_or_checked_at_utc": "2026-10-06T19:17:23.401263+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/estimated_heights_metadata.json",
+      "bytes": 4424,
+      "sha256": "df04c876cff07d94a61538a9a3c49637d622a8b015ce6e251425541f3206fcc6",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/estimated_heights_metadata.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "data/processed/intervention_definition.json",
+      "bytes": 7256,
+      "sha256": "7330e1144c7c17f5e44c3b4a949424d73d1af138c498eae430518b0286f93739",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Retain candidate polygon; compute numeric true/grid bearings; expose exact proposed dimensions, opacity, materials and omitted-post policy",
+        "inputs": [
+          "data/processed/intervention_geometry.geojson"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/intervention_geometry.geojson",
+      "bytes": 938,
+      "sha256": "0bd9632e120a68dd8e8fc9f3f0ab32b90262113a1291995a6f3685c008cb840b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/intervention_geometry.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/local_scene_geometry.json",
+      "bytes": 127312,
+      "sha256": "9c82689fb9274149da3ce2983e94385315f1187948f7784bd8855a819e3c177b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/local_scene_geometry.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/material_assumptions.json",
+      "bytes": 2827,
+      "sha256": "23d5d0e60ca68075ceb057a8db248199b2338911ba182d27b68fcbfafffef26e",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/material_assumptions.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/package_status.json",
+      "bytes": 1627,
+      "sha256": "33eb9bcd952626e26f6f1006e03547dd82d17adca6f8e6445877da633e7e3977",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/pedestrian_analysis_area.geojson",
+      "bytes": 5411,
+      "sha256": "c3f2cb7abf87630947b21a4b9ef4ad8cbcee53798471f562bd1c5d6dc26be967",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/pedestrian_analysis_area.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/quality_metrics.json",
+      "bytes": 1769,
+      "sha256": "74a1a217a2b223e32c042c9a928317c2aa7ebc4881c662bbf69a88534c62185b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/quality_metrics.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/shadow_context_boundary.geojson",
+      "bytes": 1709,
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Verify existing geometry equals 75 m squared-corner UTM buffer; clarify its role",
+        "inputs": [
+          "data/processed/site_boundary.geojson"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/site_boundary.geojson",
+      "bytes": 1158,
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Retain identical main polygon; add explicit reporting-domain metadata",
+        "inputs": [
+          "site_boundary.geojson"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/site_selection.json",
+      "bytes": 3261,
+      "sha256": "d4d5360c91a4020020c2e120a6f23e77fcefc6617014d0d4e0d7c30d4bc89061",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/terrain_metadata.json",
+      "bytes": 4415,
+      "sha256": "841d7859e05e1604119fa9b0e8bcbedacd44a28fc9750f35bdaf6674cb03de4e",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [
+          "data/raw/terrain/N12E077.hgt.gz",
+          "data/raw/terrain/elevation_original.tif"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/terrain_site_samples.csv",
+      "bytes": 3958,
+      "sha256": "560284a2d5f63f4bbcf0801778891b3d6f894b96f6778fb5a459a0d4464d9511",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/terrain_site_samples.csv (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/validation_report.json",
+      "bytes": 2032,
+      "sha256": "1ccabd5c7ec55c4dc872e29e0c5327eef228715a276c5551ff65b0106065e17c",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/weather_forcing.csv",
+      "bytes": 1708,
+      "sha256": "c1c819f453bac690bbf6f99481faf9d11200b1c549093ae326571aecd87009a7",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "noaa_station_observations",
+        "noaa_station_catalogue",
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Retain one-row forcing values; add explicit observation/derived/estimate, station and timezone classification fields",
+        "inputs": [
+          "data/raw/weather/noaa_43295099999_2024_original.csv",
+          "data/raw/weather/nasa_power_solar_20240415_original.json"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/weather_forcing_metadata.json",
+      "bytes": 6738,
+      "sha256": "38ba1696eaa3434abadf31b391cf8cecb7211bc221e5f41859fdf78964b2d562",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "noaa_station_observations",
+        "noaa_station_catalogue",
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/processed/weather_observations_selected_day.csv",
+      "bytes": 3435,
+      "sha256": "b11041ef9b01ba9acbc78ba3ca34dcca0845f1577200ecbdc06a06d0da29fbc4",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "noaa_station_observations",
+        "noaa_station_catalogue",
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/weather_observations_selected_day.csv (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/processed/weather_selected_observation.json",
+      "bytes": 944,
+      "sha256": "2eea04c278f51182671c826412c64a110b8a83cc569e337c87e574d363b049cb",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "noaa_station_observations",
+        "noaa_station_catalogue",
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/processed/weather_selected_observation.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "data/raw/buildings/floor_counts.csv",
+      "bytes": 25704,
+      "sha256": "b2a9c6ce018129925c36629aaba98a546cc86958c5438999830a074b0bdd47a5",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Extract floor-count attributes for all 227 acquired footprint records; generated table, not a vendor-original CSV",
+        "inputs": [
+          "data/raw/buildings/overture_building_context_original.geojson"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/buildings/google_ml_height_estimates.csv",
+      "bytes": 23072,
+      "sha256": "5ad9bcb8a991792689564302c48c5944fed1e82195dd8edfbfbd88f9104b1e74",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical copy of locally generated 123-footprint raster-summary CSV; not a vendor-original CSV; raster original window is separately preserved",
+        "inputs": [
+          "data/processed/estimated_building_heights.csv"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/buildings/google_open_buildings_temporal_2023_context_window.tif",
+      "bytes": 681969,
+      "sha256": "f37f1bf087fd2825e8dc31ca813d24b0838944a5be4094d52ca5e63262d9b8f5",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/buildings/google_open_buildings_temporal_2023_context_window.tif (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "data/raw/buildings/overture_building_context_original.geojson",
+      "bytes": 478493,
+      "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/buildings/overture_building_context_original.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Overture Maps",
+          "release": "2026-09-23.1",
+          "source_catalog": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+          "source_assets": "sources/overture_matching_stac_assets.json",
+          "acquisition_record": "sources/overture_building_acquisition.json",
+          "license": "ODbL-1.0",
+          "horizontal_crs": "EPSG:4326 WGS84",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/buildings/overture_building_context_original.parquet",
+      "bytes": 46657,
+      "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/buildings/overture_building_context_original.parquet (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Overture Maps",
+          "release": "2026-09-23.1",
+          "source_catalog": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+          "source_assets": "sources/overture_matching_stac_assets.json",
+          "acquisition_record": "sources/overture_building_acquisition.json",
+          "license": "ODbL-1.0",
+          "horizontal_crs": "EPSG:4326 WGS84",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/buildings/overture_buildings_2026-09-23.1.geoparquet",
+      "bytes": 46657,
+      "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical handoff filename alias; no new download or content change",
+        "inputs": [
+          "data/raw/buildings/overture_building_context_original.parquet"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/buildings/overture_buildings_raw.geojson",
+      "bytes": 478493,
+      "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical handoff filename alias; no new download or content change",
+        "inputs": [
+          "data/raw/buildings/overture_building_context_original.geojson"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/buildings/overture_segment_context_original.geojson",
+      "bytes": 761235,
+      "sha256": "24abb314e5d4df08c87881a9d3b60f6f8e17878a6ff472aca0cac5884cd99c4e",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "overture_roads"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/buildings/overture_segment_context_original.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Overture Maps",
+          "release": "2026-09-23.1",
+          "source_catalog": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+          "source_assets": "sources/overture_matching_stac_assets.json",
+          "acquisition_record": "sources/overture_segment_acquisition.json",
+          "license": "ODbL-1.0",
+          "horizontal_crs": "EPSG:4326 WGS84",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/buildings/overture_segment_context_original.parquet",
+      "bytes": 133489,
+      "sha256": "0a9ba868958a32c2cb16a8a02da3a40606c2d25d87c278057070cbefb7210089",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "overture_roads"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/buildings/overture_segment_context_original.parquet (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Overture Maps",
+          "release": "2026-09-23.1",
+          "source_catalog": "https://stac.overturemaps.org/2026-09-23.1/catalog.json",
+          "source_assets": "sources/overture_matching_stac_assets.json",
+          "acquisition_record": "sources/overture_segment_acquisition.json",
+          "license": "ODbL-1.0",
+          "horizontal_crs": "EPSG:4326 WGS84",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/terrain/elevation_metadata.json",
+      "bytes": 4415,
+      "sha256": "841d7859e05e1604119fa9b0e8bcbedacd44a28fc9750f35bdaf6674cb03de4e",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [
+          "data/raw/terrain/N12E077.hgt.gz",
+          "data/raw/terrain/elevation_original.tif"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/terrain/elevation_original.tif",
+      "bytes": 7207710,
+      "sha256": "616caab132c3353efba0ee8cff9f9dccccdbe7eb5cd149eb205b547f53c92a40",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Decompress original HGT; lossless signed-int16 GeoTIFF format conversion with point-grid georeferencing; no resampling, interpolation, clipping or vertical datum transformation",
+        "inputs": [
+          "data/raw/terrain/N12E077.hgt.gz"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/terrain/N12E077.hgt.gz",
+      "bytes": 11122631,
+      "sha256": "9485ba04696bbe2074a0b6cab79d0f12ecca79ad05b19d676ea35056beafd14e",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/terrain/N12E077.hgt.gz (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Mapzen/Tilezen Skadi",
+          "source_url": "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N12/N12E077.hgt.gz",
+          "acquisition_record": "sources/terrain_download.json",
+          "license": "See sources/terrain_attribution.md; SRTM/GMTED public-domain source terms with attribution",
+          "horizontal_crs": "EPSG:4326",
+          "vertical_reference": "EGM96",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/weather/bengaluru_station_observations.csv",
+      "bytes": 1257600,
+      "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "noaa_station_catalogue"
+      ],
+      "processing": {
+        "operation": "Byte-identical handoff filename alias; no new download or content change",
+        "inputs": [
+          "data/raw/weather/noaa_43295099999_2024_original.csv"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "data/raw/weather/isd-history.csv",
+      "bytes": 2914601,
+      "sha256": "1994747ab4af1b97e63adb434b4d0d022f2daee76f0c144ea9ab46be2d906604",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "noaa_station_catalogue"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/weather/isd-history.csv (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "NOAA ISD station history",
+          "source_url": "https://www.ncei.noaa.gov/pub/data/noaa/isd-history.csv",
+          "license": "Publicly accessible government data; exact source terms/acknowledgments in weather_forcing_metadata.json",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/weather/nasa_power_solar_20240415_original.json",
+      "bytes": 2108,
+      "sha256": "ec61199f3913c940d90f514a871760dc29b4529053597c07e98da2e2392c8b83",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/weather/nasa_power_solar_20240415_original.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "NASA POWER/CERES",
+          "source_url": "https://power.larc.nasa.gov/api/temporal/hourly/point?parameters=ALLSKY_SFC_SW_DWN,ALLSKY_SFC_SW_DNI,ALLSKY_SFC_SW_DIFF&community=RE&longitude=77.6045&latitude=12.9755&start=20240415&end=20240415&format=JSON&time-standard=UTC",
+          "license": "Publicly accessible government data; exact source terms/acknowledgments in weather_forcing_metadata.json",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/weather/noaa_43295099999_2024_original.csv",
+      "bytes": 1257600,
+      "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+      "data_role": "provider_original_or_original_bounded_acquisition_export",
+      "dataset_ids": [
+        "noaa_station_observations"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "data/raw/weather/noaa_43295099999_2024_original.csv (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "NOAA ISD Global Hourly",
+          "source_url": "https://www.ncei.noaa.gov/data/global-hourly/access/2024/43295099999.csv",
+          "license": "Publicly accessible government data; exact source terms/acknowledgments in weather_forcing_metadata.json",
+          "download_date_ist": "2026-10-07"
+        }
+      }
+    },
+    {
+      "path": "data/raw/weather/solar_estimates.csv",
+      "bytes": 4911,
+      "sha256": "6639e51cc05efbd9c2892cda0142a2f22f4b93243e962c050c19418c00962426",
+      "data_role": "generated_raw_folder_handoff_table_or_format_conversion",
+      "dataset_ids": [
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Extract all 24 provider hourly labels and GHI/DNI/DHI energies; mean W/m2 equals Wh/m2 divided by 1 hour; no interval endpoints guessed; generated table, not vendor-original CSV",
+        "inputs": [
+          "data/raw/weather/nasa_power_solar_20240415_original.json"
+        ],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "manual_completion_checklist.md",
+      "bytes": 2587,
+      "sha256": "e5111a0ea9615b26f38df2ed94bc72a5af467f4649a3c3a9c28c5b7402db51b1",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Human-readable handoff documentation assembled from preserved sources and explicit assumptions",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "preparation/refine_handoff_v2.py",
+      "bytes": 63292,
+      "sha256": "950c78417d7519cf1e5549a11aad9890b3162740cd49c33ad693e1aef89865e3",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "preparation/refine_handoff_v2.py (v1 source package)"
+        ],
+        "original_provenance": null
+      }
+    },
+    {
+      "path": "README.md",
+      "bytes": 10795,
+      "sha256": "49cfb7149e061912fbd009b4123cd8902562812fa9b8fc2c70108d4942985ff4",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Human-readable handoff documentation assembled from preserved sources and explicit assumptions",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "site_boundary.geojson",
+      "bytes": 961,
+      "sha256": "444e42d81c2515203d8f265891e4dfba1b0121fdb745a02bc3ce037f6e7b31e6",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "site_boundary.geojson (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "site_inspection_map.png",
+      "bytes": 134737,
+      "sha256": "19fc36fc2cbcf77f85bb06b54444c795b50bd7741757b3d087d8766123cb8b4b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "site_inspection_map.png (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "derived package file",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/acquisition_failures/osm_map_http_429_response.html",
+      "bytes": 436,
+      "sha256": "8fe96d98abc77cd918752168542c668715035e54763d53afc6799250214987b9",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/acquisition_failures/osm_map_http_429_response.html (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/acquisition_failures/overpass_http_429_response.txt",
+      "bytes": 89,
+      "sha256": "78d737bddfa4d6e31202fae8845585d40db35847b0d14d41b0da7701609ad79c",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/acquisition_failures/overpass_http_429_response.txt (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/alternate_height_source_review.json",
+      "bytes": 2822,
+      "sha256": "284a8837b66578f7590ab1d97dbe130a38c882f40d5870ed9397c0b737613048",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/alternate_height_source_review.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "package method, derived output or supporting source",
+          "created_or_checked_at_utc": "2026-10-06T19:17:23.401263+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/church_street_osm_download.json",
+      "bytes": 389,
+      "sha256": "9819ca580e8947a0077d843728eb7f5dbc067746a24f1a6d213fadbbc4b56509",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/church_street_osm_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/google_height_manifest_2023_original.json",
+      "bytes": 3514313,
+      "sha256": "cd4f2f0bb0dd6eda9a8b8e3a8194b20cc9d84c7098a9a2d9a477283929bdb0cf",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/google_height_manifest_2023_original.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "sources/google_height_manifest_download.json",
+      "bytes": 311,
+      "sha256": "e3a6018e575436fddc980331cf49d7cc02e5bcfb58dc2548678cf17e216b7804",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/google_height_manifest_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "sources/google_height_manifest_index_original.json",
+      "bytes": 4548,
+      "sha256": "3f87241828c1f1afb4cacdb2ba94550184cdead2126f5af5add2b4ca271ba85b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/google_height_manifest_index_original.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "sources/google_height_selected_assets.json",
+      "bytes": 1456,
+      "sha256": "7e60ffb5a70979b2041c615111d64b447d180e2143eb5229cc31eacda0a418c4",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/google_height_selected_assets.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "sources/google_open_buildings_download_notebook.ipynb",
+      "bytes": 19744,
+      "sha256": "1c219d10b88de5c2a78bb9256fe31def9e056f18b078df3b58a3a0c696130e43",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "google_ml_heights"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/google_open_buildings_download_notebook.ipynb (v1 source package)"
+        ],
+        "original_provenance": {
+          "dataset": "Google Open Buildings 2.5D Temporal v1 or related acquisition/review output",
+          "source_documentation": "https://sites.research.google/gr/open-buildings/temporal",
+          "source_asset": "https://storage.googleapis.com/open-buildings-temporal-data/v1/geotiffs/3bae4_2023_06_30/tile_hXqKtZuLh78.tif",
+          "source_year": 2023,
+          "license": "CC-BY-4.0 / ODbL-1.0; Google Research attribution",
+          "download_record": "data/processed/estimated_heights_metadata.json",
+          "horizontal_crs": "EPSG:32643 for raster, EPSG:4326 for footprint coordinates",
+          "vertical_quantity": "predicted height above ground, not measured"
+        }
+      }
+    },
+    {
+      "path": "sources/isd_stations_download.json",
+      "bytes": 203,
+      "sha256": "9094cff68c67493ce2774897f83239b8592cc0b3111cee31791403ac283495fd",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "noaa_station_catalogue"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/isd_stations_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/licensing_review_v2.json",
+      "bytes": 1080,
+      "sha256": "9380e811b85b7b3d019fb02cc3a3c9e2bc2325f4c030aa3f91bd98811287cab1",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Documented metadata or assumption revision",
+        "inputs": [],
+        "processed_at_utc": "2026-10-06T20:12:00.174501+00:00"
+      }
+    },
+    {
+      "path": "sources/nasa_power_hourly_openapi.json",
+      "bytes": 12564,
+      "sha256": "27dda6980eaa434a4019a4b507f88b83cf9f2fb5689bb36254b1e4d0202adccd",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/nasa_power_hourly_openapi.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/nasa_power_hourly_openapi.json.download.json",
+      "bytes": 212,
+      "sha256": "5d096548f4d8799b9f3fa952f318064a0e801dc4f3ea7f2134f9b3d1baee33f8",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/nasa_power_hourly_openapi.json.download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/nasa_power_solar_download.json",
+      "bytes": 329,
+      "sha256": "aeb14ccfd96df63087d5bd8e54f3833d3afa96e11f24fea6904413c59180ce81",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "nasa_power_solar"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/nasa_power_solar_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/noaa_city_2024_download.json",
+      "bytes": 295,
+      "sha256": "ed5aefed7a7a371e8ee86d4d7af4e2e69e6745dd22c24696c5c6aeb7695ed6a9",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/noaa_city_2024_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/noaa_isd_format_document.pdf",
+      "bytes": 1187390,
+      "sha256": "1be604b08b5f7c2429e6aef178ff8893019c234bc7bc51bfb7ec1e16a6682f04",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/noaa_isd_format_document.pdf (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/noaa_isd_format_document.pdf.download.json",
+      "bytes": 215,
+      "sha256": "5646b47ea1ec8f97126b212662edb20e46d80537ea6625cc0b3c88e6984e2857",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/noaa_isd_format_document.pdf.download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/osm_map_download.json",
+      "bytes": 241,
+      "sha256": "549c5b505cbe372f2b8b118bd960884263f2c4c237d409f5c1a43f41a5fab34b",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/osm_map_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_building_acquisition.json",
+      "bytes": 1753,
+      "sha256": "b532681ef58aa46ca55922c5ac44a1a39a91a67998095c1a9ec71adb535ba2e4",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_building_acquisition.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_building_file_metadata.json",
+      "bytes": 333,
+      "sha256": "3cb2b348134be5412f7a249971eb4c11ed6f4ec6c98b9d09b52f0653f480c6cc",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_building_file_metadata.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_buildings_catalog.json",
+      "bytes": 962,
+      "sha256": "25b231671813d5f61f1a90732b77e50496177f126f7116445b9624d41c2eb00c",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_buildings"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_buildings_catalog.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_cli_core.py",
+      "bytes": 19235,
+      "sha256": "ca2ac0be68e1fda78e523dca299686bd80a3474c83041d8b45b6ac0d7699724e",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_cli_core.py (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_cli_source_download.json",
+      "bytes": 326,
+      "sha256": "5929459ea7c4e3c9a37c559f7fec2045aa3a4ba1c8c24e64efb2ede812fb9949",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_cli_source_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_collections.parquet",
+      "bytes": 182960,
+      "sha256": "f1c036050dea1a689456c5e95382b0665fc3afc8750892ee5f8e5e9ead9089df",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_collections.parquet (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_matching_stac_assets.json",
+      "bytes": 6217,
+      "sha256": "8ca0b5d5769ab5d17138b151a7d968173887045188c85a4e5d267bcaf119c5b1",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_matching_stac_assets.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_release_catalog.json",
+      "bytes": 1534,
+      "sha256": "2cb87fbd6ab8fdf8272d8a3c5cbaf6b1f3b7aedebffe9ba122670138308d6946",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_release_catalog.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_release_download.json",
+      "bytes": 291,
+      "sha256": "62711e62c11b52b723a3d981e59558b0f446a97f1d4f946a21965868b7739a4a",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_release_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_segment_acquisition.json",
+      "bytes": 25885,
+      "sha256": "cc484085f180d95646150a77c9066d618c28568b52e60aed8db9f04868e30f23",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "overture_roads"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_segment_acquisition.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_stac_catalog.json",
+      "bytes": 6529,
+      "sha256": "5336b76af0b630f05c51c8c8bf3106a2466f7a5110df28081202c7c1775bd7f3",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_stac_catalog.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overture_stac_download.json",
+      "bytes": 188,
+      "sha256": "b5d1df8af46425d83ed518eb1fa35f72839d3bed35275cd082e0187ca831aee6",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overture_stac_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/overturemaps_pyproject.toml",
+      "bytes": 1929,
+      "sha256": "7f6d2cf491492a3ec205d62bc282e9c48e873b94cc425098f1adafd4dbc86ca0",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/overturemaps_pyproject.toml (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_attribution.md",
+      "bytes": 12300,
+      "sha256": "2ce4d3414b4592d17ad56a5af57feb480686ddcfb0a3e4ea0b566d28cde13567",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_attribution.md (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_attribution.md.download.json",
+      "bytes": 218,
+      "sha256": "b7d55e9af859abd391cd7e801ea5608aa509b7bde526daf2e77bc206ffbbea2f",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_attribution.md.download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_data_sources.md",
+      "bytes": 12162,
+      "sha256": "dcf07b156bc25930dfe3e1a55d8efd4a2e3b5376393d23bf24d1fc1dd02c5948",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_data_sources.md (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_data_sources.md.download.json",
+      "bytes": 220,
+      "sha256": "6c5980242e0929f150c5043f7be9d21d4a9c38ae3d2c5c8a1af632419661c83f",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_data_sources.md.download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_download.json",
+      "bytes": 446,
+      "sha256": "2b45d0eaf8b566fd2327157d89d9d8334cd65edf1f805ccc82d52077a17e43d5",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_formats.md",
+      "bytes": 5392,
+      "sha256": "f37b923b033ddb90ed454902c20a248b0f75985df1129dc2899c8ddf14459c8c",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_formats.md (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    },
+    {
+      "path": "sources/terrain_tile_metadata_download.json",
+      "bytes": 317,
+      "sha256": "2117d4778fcef2e55279693aa5f277f3a735065dd2fed3d744fd68ecc97f1fb9",
+      "data_role": "supporting_or_processed_file",
+      "dataset_ids": [
+        "skadi_elevation"
+      ],
+      "processing": {
+        "operation": "Byte-identical preservation from original v1 acquisition/preparation package",
+        "inputs": [
+          "sources/terrain_tile_metadata_download.json (v1 source package)"
+        ],
+        "original_provenance": {
+          "type": "preparation method or supporting source evidence",
+          "derived_at_utc": "2026-10-06T19:05:29.824237+00:00"
+        }
+      }
+    }
+  ],
+  "checksum_policy": "SHA256SUMS.txt includes this manifest and every other handoff file; the manifest excludes itself and SHA256SUMS.txt to avoid recursive hashes.",
+  "coordinate_transformation": {
+    "source": "EPSG:4326 WGS84 longitude,latitude",
+    "target": "EPSG:32643 UTM zone 43N easting,northing in metres",
+    "software": "pyproj/PROJ Transformer.from_crs(always_xy=True)",
+    "origin_easting_northing_m": [
+      782541.8055380594,
+      1435736.1103432046
+    ],
+    "local_coordinates": "x=easting-origin_easting; y=northing-origin_northing; z=height above assumed flat ground",
+    "grid_convergence_degrees": 0.585365869298587,
+    "vertical_transformation_performed": false,
+    "terrain_vertical_reference": "EGM96; not converted to ellipsoidal heights"
+  },
+  "analysis_domains": {
+    "main_analysis_boundary": {
+      "bbox_west_south_east_north": [
+        77.6044,
+        12.9743,
+        77.6064,
+        12.9755
+      ],
+      "file": "data/processed/site_boundary.geojson",
+      "role": "pedestrian reporting domain"
+    },
+    "shadow_context_boundary": {
+      "bbox_west_south_east_north": [
+        77.60370913082609,
+        12.973622460407592,
+        77.60709086876683,
+        12.976177532346302
+      ],
+      "file": "data/processed/shadow_context_boundary.geojson",
+      "buffer_m": 75.0,
+      "metric_crs": "EPSG:32643",
+      "construction": "main polygon outward edge buffer, squared/miter corners",
+      "area_m2": 103833.89395282997,
+      "building_count_including_core": 123,
+      "context_only_building_count": 86
+    },
+    "casting_geometry_rule": "Use all complete buildings intersecting the expanded context for shadow casting, after heights are reviewed. Do not clip geometry at either domain edge.",
+    "pedestrian_reporting_mask": "Intersection of main analysis polygon and the proposed pedestrian-analysis area; report no outside receptors or context-only pedestrian statistics.",
+    "height_policy": "All model heights remain null until researcher-approved. Unknown context heights must not be silently omitted or assigned defaults.",
+    "adequacy": "75 m is a proposed acquisition buffer, not a proven shadow cutoff; perform shadow-reach and buffer-convergence checks after heights and solar geometry are available.",
+    "coordinate_order": "GeoJSON longitude,latitude; metric geometry UTM easting,northing; always_xy=True",
+    "simulation_engine_status": "No engine was inspected or run. These are handoff requirements, not claims that an existing engine implements them."
+  },
+  "building_height_sources_and_approval": {
+    "categories": [
+      "observed",
+      "Overture-provided",
+      "floor-count-derived",
+      "Google/ML-estimated",
+      "manual estimate",
+      "unknown"
+    ],
+    "categories_are_separate_evidence_types_not_a_quality_ranking": true,
+    "source_vs_measurement": "Overture-provided identifies provenance; it does not imply surveyed measurement. Floor counts are source tags, not verified metre heights.",
+    "google_use_fields": "used_for_review means a separate ML candidate is included; used_in_model is false for every building.",
+    "null_contract": "Blank CSV numeric/evidence fields mean missing, not zero. JSON uses null.",
+    "confidence": "No site-calibrated statistical confidence is available. Presence-mask coverage is not probability/confidence; P10/P90 are spatial prediction summaries, not uncertainty bounds.",
+    "approval_fields": "Researcher must record accepted height, source category, evidence, reviewer and review date before model_height_m becomes non-null.",
+    "core_counts": {
+      "buildings": 37,
+      "source_metre_heights": 0,
+      "floor_counts": 17,
+      "ml_candidates": 33,
+      "observed_heights": 0,
+      "approved_model_heights": 0
+    },
+    "no_ml_estimate_labels": [
+      "B19",
+      "B23",
+      "B32",
+      "B36"
+    ],
+    "high_priority_ml_review_labels": [
+      "B02",
+      "B03",
+      "B17",
+      "B19",
+      "B23",
+      "B31",
+      "B32",
+      "B36",
+      "B37"
+    ]
+  },
+  "weather_station": {
+    "noaa_isd_station_id": "43295099999",
+    "usaf": "432950",
+    "wban": "99999",
+    "wmo": "43295",
+    "name": "BANGALORE, IN",
+    "latitude": 12.9666666,
+    "longitude": 77.5833333,
+    "elevation_m": 921.0,
+    "elevation_datum": "not specified in downloaded station file",
+    "site_center_distance_km_geodesic": 2.5615953303512633,
+    "source": "https://www.ncei.noaa.gov/data/global-hourly/access/2024/43295099999.csv",
+    "observation_report_type": "FM-12",
+    "observed_cadence_selected_day_seconds": 10800,
+    "wind_measurement_height_m": null
+  },
+  "selected_instant_utc": "2024-04-15T09:00:00Z",
+  "selected_local_time": "2024-04-15T14:30:00+05:30",
+  "forcing_description": "Bengaluru City station observations applied as spatially uniform forcing at the Church Street site.",
+  "manual_assumptions_files": [
+    "data/processed/material_assumptions.json",
+    "data/processed/intervention_definition.json",
+    "data/processed/terrain_metadata.json",
+    "data/processed/pedestrian_analysis_area.geojson"
+  ],
+  "missing_data_handling": "Missing heights, measurements, approvals, confidence and solar interval endpoints remain null/blank. No blanket height or invented observation is substituted.",
+  "intervention_description": {
+    "id": "BLR_SHADE_001",
+    "type": "overhead_shade_panel",
+    "count": 1,
+    "status": "proposed",
+    "posts_included": false,
+    "researcher_approval": null
+  },
+  "license_caveats": [
+    "Specific external NOAA station SPDX license not established; no universal CC0 claim; clarify before public redistribution.",
+    "NASA CC-BY-4.0 evidence is a provider-managed registry listing, not an embedded point-API label.",
+    "Skadi exact contributing source images not independently traced; retain provider source/attribution evidence."
+  ],
+  "download_date_note": "Original downloads are 2026-10-06 UTC / 2026-10-07 IST; revision date is separately recorded; these are not source acquisition or observation dates.",
+  "noncontemporaneous_inputs": "2026 geometry, 2023 ML imagery, 2024 forcing and older DEM are controlled-scenario inputs, not a validated historical reconstruction.",
+  "researcher_manual_signoff": null,
+  "status": "REVIEW_DRAFT_NOT_READY_FOR_SIMULATION_CODING"
+}

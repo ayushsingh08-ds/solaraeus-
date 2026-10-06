@@ -1,0 +1,41 @@
+{
+  "site_id": "BLR_CHURCH_STREET_01",
+  "name": "Church Street central/eastern study block",
+  "city": "Bengaluru, Karnataka, India",
+  "simulation_status": "static_full_recomputation_baseline",
+  "scientific_qualification": "The Church Street baseline is an exploratory static simulation using approved but partly uncertain building-height estimates, off-site weather forcing, estimated solar radiation, and assumed material properties.",
+  "total_context_buildings": 123,
+  "core_buildings_count": 37,
+  "total_context_triangles": 2136,
+  "total_core_triangles": 748,
+  "pedestrian_grid": {
+    "origin_x_m": -85.0,
+    "origin_y_m": -80.0,
+    "extent_x_m": 380.0,
+    "extent_y_m": 296.0,
+    "resolution_m": 2.0,
+    "nx": 190,
+    "ny": 148,
+    "total_cells": 28120,
+    "receptor_height_m": 1.1
+  },
+  "timing_breakdown_sec": {
+    "solar_altitude_deg": 57.9159576593304,
+    "solar_azimuth_deg": 268.16554681339886,
+    "solar_zenith_deg": 32.0840423406696,
+    "sun_vector": [
+      -0.5308903985979673,
+      -0.017003460098223216,
+      0.8472698903072029
+    ],
+    "is_daylight": true,
+    "timing_shadow_sec": 0.3656410000039614,
+    "timing_svf_sec": 2.809800000002724,
+    "timing_radiation_sec": 0.0046285999997053295,
+    "timing_utci_sec": 0.4517663000005996,
+    "timing_total_sec": 3.6351625000024796,
+    "num_buildings": 0,
+    "total_cells": 28120,
+    "air_temperature_c": 35.0
+  }
+}

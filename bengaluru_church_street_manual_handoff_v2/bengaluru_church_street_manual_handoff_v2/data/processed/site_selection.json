@@ -1,0 +1,68 @@
+{
+  "site_id": "BLR_CHURCH_STREET_01",
+  "site_name": "Church Street central/eastern study block",
+  "city": "Bengaluru (Bangalore)",
+  "state": "Karnataka",
+  "country": "India",
+  "site_type": "compact street-canyon / commercial block, not an entire city",
+  "approximate_center": {
+    "latitude": 12.9749,
+    "longitude": 77.60539999999999
+  },
+  "study_boundary_file": "data/processed/site_boundary.geojson",
+  "bbox_west_south_east_north": [
+    77.6044,
+    12.9743,
+    77.6064,
+    12.9755
+  ],
+  "horizontal_crs": "EPSG:4326 for GeoJSON; EPSG:32643 UTM zone 43N for metric calculations",
+  "coordinate_order": "longitude,latitude in GeoJSON; always_xy=True in transformations",
+  "dimensions_m": {
+    "east_west_geodesic": 216.9912955187513,
+    "north_south_geodesic": 132.7563274554665,
+    "projected_area_m2": 28840.879739821816
+  },
+  "building_count_rule": "whole source geometries intersecting the boundary, including edge-crossing buildings; do not cut their roofs/walls at the boundary",
+  "building_count": 37,
+  "building_centroids_inside_boundary": 28,
+  "shadow_context": {
+    "buffer_m": 75,
+    "building_count_including_core": 123,
+    "boundary_file": "data/processed/shadow_context_boundary.geojson",
+    "adequacy_status": "pending height verification and boundary-sensitivity check",
+    "construction": "main polygon outward edge buffer, squared/miter corners",
+    "bbox_west_south_east_north": [
+      77.60370913082609,
+      12.973622460407592,
+      77.60709086876683,
+      12.976177532346302
+    ],
+    "results_reporting_expanded": false
+  },
+  "reason_selected": [
+    "Contains 37 source building records: within the requested 10–50 target.",
+    "A short paved Church Street segment provides a bounded receptor area and one simple shade-structure scenario.",
+    "Public Overture footprints, source floor tags, NOAA Bengaluru City observations and global elevation data are downloadable without a paid GIS account.",
+    "No campus entry permission is assumed; real public access and temporary installation permissions still require checking."
+  ],
+  "availability": {
+    "building_footprints": "downloaded current release 2026-09-23.1",
+    "height_in_metres": "0/37 available in source; major data gap",
+    "source_floor_counts": 17,
+    "terrain": "downloaded Skadi ~1 arcsecond DEM; not local surveyed DTM/LiDAR",
+    "weather": "observed NOAA off-site station T/Td/wind, selected 2024-04-15 09 UTC",
+    "radiation": "NASA POWER/CERES hourly gridded estimates, not site measurements",
+    "satellite_estimated_heights": "Google Open Buildings 2.5D v1 (2023): 33/37 core estimates, not measured or approved"
+  },
+  "site_context_sources": [
+    "https://www.vagroup.com/projects/redevelopment-of-church-street-bengaluru/",
+    "https://bycs.org/church-street-bengaluru/"
+  ],
+  "status": "recommended candidate; manual data package remains a review draft",
+  "data_prepared_at_utc": "2026-10-06T19:05:29.824237+00:00",
+  "data_prepared_at_ist": "2026-10-07T00:35:29.824237+05:30",
+  "handoff_version": "2.0",
+  "handoff_prepared_at_utc": "2026-10-06T20:12:00.174501+00:00",
+  "handoff_prepared_at_ist": "2026-10-07T01:42:00.174501+05:30"
+}

@@ -1,0 +1,44 @@
+{
+  "timestep_utc": "2024-04-15T09:00:00Z",
+  "timestep_local_ist": "2024-04-15T14:30:00+05:30",
+  "station_id": "43295099999",
+  "station_name": "BANGALORE, IN",
+  "station_latitude": 12.9666666,
+  "station_longitude": 77.5833333,
+  "station_distance_km": 2.562,
+  "spatially_uniform_forcing_description": "Bengaluru City station observations applied as spatially uniform forcing at the Church Street site.",
+  "mandatory_framing_statement": "Bengaluru City station observations are applied as spatially uniform forcing at the Church Street study site.",
+  "variables": {
+    "air_temperature_c": {
+      "value": 35.0,
+      "classification": "Observed off-site",
+      "qc_status": "observed_offsite_QC1"
+    },
+    "dew_point_c": {
+      "value": 8.5,
+      "classification": "Observed off-site",
+      "qc_status": "observed_offsite_QC1"
+    },
+    "relative_humidity_pct": {
+      "value": 19.729,
+      "classification": "Derived from observations",
+      "derivation_formula": "Magnus formula (Alduchov and Eskridge 1996) evaluated from T and Td",
+      "calculated_value_matches": true
+    },
+    "wind_speed_m_s": {
+      "value": 1.5,
+      "classification": "Observed off-site",
+      "qc_status": "observed_offsite_QC1_not_pedestrian_wind",
+      "measurement_height_m": "undocumented_assumed_10m_synoptic"
+    },
+    "wind_direction_deg_true_north": {
+      "value": 90.0,
+      "classification": "Observed off-site",
+      "qc_status": "observed_offsite_QC1_not_pedestrian_wind",
+      "direction_description": "from the East (90 deg)"
+    }
+  },
+  "station_offsite_distance_adequacy": "Station is ~2.56 km south-southwest from the site; records capture regional synoptic conditions rather than Church Street urban canyon microclimate.",
+  "status": "pass",
+  "warning_notes": "Weather forcing is strictly off-site synoptic data; do not represent as site-measured Church Street weather. Pedestrian wind field will differ substantially from 10m open-air airport/synoptic observation."
+}

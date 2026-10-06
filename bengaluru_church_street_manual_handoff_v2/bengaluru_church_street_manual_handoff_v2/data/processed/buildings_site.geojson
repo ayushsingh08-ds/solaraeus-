@@ -1,0 +1,3909 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "ef5d616d-eab5-4d91-8ed5-af5fbbff9a09",
+      "properties": {
+        "id": "ef5d616d-eab5-4d91-8ed5-af5fbbff9a09",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w328747356@3",
+            "update_time": "2025-01-11T17:28:34.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "residential",
+        "class": "apartments",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60424041748047,
+          "xmax": 77.60454559326172,
+          "ymin": 12.974365234375,
+          "ymax": 12.974624633789062
+        },
+        "review": {
+          "map_label": "B01",
+          "footprint_area_m2": 595.401,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 19.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.7152,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.604534,
+              12.9745646
+            ],
+            [
+              77.6043011,
+              12.9746245
+            ],
+            [
+              77.6042473,
+              12.9744256
+            ],
+            [
+              77.6044802,
+              12.9743657
+            ],
+            [
+              77.604534,
+              12.9745646
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "65d0175e-5fe0-42de-a955-fff258f4c6c8",
+      "properties": {
+        "id": "65d0175e-5fe0-42de-a955-fff258f4c6c8",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1119219759@2",
+            "update_time": "2023-09-24T13:34:21.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 3,
+        "num_floors_underground": 1,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.6043472290039,
+          "xmax": 77.60462951660156,
+          "ymin": 12.974639892578125,
+          "ymax": 12.97504711151123
+        },
+        "review": {
+          "map_label": "B02",
+          "footprint_area_m2": 933.209,
+          "source_height_m": null,
+          "source_num_floors": 3,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 9.6,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 18.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.4942,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6045315,
+              12.9746416
+            ],
+            [
+              77.6046285,
+              12.974982
+            ],
+            [
+              77.6043881,
+              12.975047
+            ],
+            [
+              77.6043474,
+              12.9746936
+            ],
+            [
+              77.6045315,
+              12.9746416
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "963df15f-19f2-47fd-914d-7b80db9d335f",
+      "properties": {
+        "id": "963df15f-19f2-47fd-914d-7b80db9d335f",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "Microsoft ML Buildings",
+            "license": "ODbL-1.0",
+            "record_id": null,
+            "update_time": null,
+            "confidence": null,
+            "between": null,
+            "provider": "microsoft",
+            "resource": "ml_buildings",
+            "version": "2026-08-11"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 4,
+        "bbox": {
+          "xmin": 77.60447692871094,
+          "xmax": 77.60454559326172,
+          "ymin": 12.974212646484375,
+          "ymax": 12.97432804107666
+        },
+        "review": {
+          "map_label": "B03",
+          "footprint_area_m2": 57.439,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 2.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.0742,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6044888,
+              12.9742165
+            ],
+            [
+              77.6045313,
+              12.9742127
+            ],
+            [
+              77.6045418,
+              12.9743241
+            ],
+            [
+              77.6044992,
+              12.9743279
+            ],
+            [
+              77.6044888,
+              12.9742165
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ed8377d2-272f-43cc-821b-49fc34e87a99",
+      "properties": {
+        "id": "ed8377d2-272f-43cc-821b-49fc34e87a99",
+        "names": {
+          "primary": "Spencer Building",
+          "common": null,
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w319365068@6",
+            "update_time": "2024-08-19T05:21:20.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 5,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": "brick",
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60425567626953,
+          "xmax": 77.60478973388672,
+          "ymin": 12.97515869140625,
+          "ymax": 12.975664138793945
+        },
+        "review": {
+          "map_label": "B04",
+          "footprint_area_m2": 1719.791,
+          "source_height_m": null,
+          "source_num_floors": 5,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 16.0,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 18.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.9339,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6046741,
+              12.9751604
+            ],
+            [
+              77.6047894,
+              12.9755967
+            ],
+            [
+              77.604522,
+              12.9756638
+            ],
+            [
+              77.6044577,
+              12.9754205
+            ],
+            [
+              77.6043114,
+              12.9754572
+            ],
+            [
+              77.6042616,
+              12.9752686
+            ],
+            [
+              77.6043976,
+              12.9752345
+            ],
+            [
+              77.6044178,
+              12.9753107
+            ],
+            [
+              77.6045429,
+              12.9752794
+            ],
+            [
+              77.6045215,
+              12.9751986
+            ],
+            [
+              77.6046741,
+              12.9751604
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "30a23f8d-824e-4820-83c1-022fc18d55ca",
+      "properties": {
+        "id": "30a23f8d-824e-4820-83c1-022fc18d55ca",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1089718001@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 3,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60475158691406,
+          "xmax": 77.60489654541016,
+          "ymin": 12.97508430480957,
+          "ymax": 12.975201606750488
+        },
+        "review": {
+          "map_label": "B05",
+          "footprint_area_m2": 128.703,
+          "source_height_m": null,
+          "source_num_floors": 3,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 9.6,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 7.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.6226,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6047761,
+              12.9751997
+            ],
+            [
+              77.6047543,
+              12.9751149
+            ],
+            [
+              77.6048732,
+              12.9750859
+            ],
+            [
+              77.604895,
+              12.9751706
+            ],
+            [
+              77.6047761,
+              12.9751997
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "726d166e-edae-4ba0-bf15-14f5331634ce",
+      "properties": {
+        "id": "726d166e-edae-4ba0-bf15-14f5331634ce",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w207901098@2",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "office",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60469055175781,
+          "xmax": 77.60507202148438,
+          "ymin": 12.974499702453613,
+          "ymax": 12.974885940551758
+        },
+        "review": {
+          "map_label": "B06",
+          "footprint_area_m2": 1160.177,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 18.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8872,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6050663,
+              12.9748098
+            ],
+            [
+              77.604773,
+              12.9748842
+            ],
+            [
+              77.6046906,
+              12.974576
+            ],
+            [
+              77.6049839,
+              12.9745015
+            ],
+            [
+              77.6050663,
+              12.9748098
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "303b78f1-b00b-4d54-b301-e871334fa9ac",
+      "properties": {
+        "id": "303b78f1-b00b-4d54-b301-e871334fa9ac",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1035562483@3",
+            "update_time": "2026-04-18T14:22:41.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6047592163086,
+          "xmax": 77.60509490966797,
+          "ymin": 12.974815368652344,
+          "ymax": 12.974967002868652
+        },
+        "review": {
+          "map_label": "B07",
+          "footprint_area_m2": 292.286,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 11.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.5813,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6047719,
+              12.9748881
+            ],
+            [
+              77.6050624,
+              12.9748158
+            ],
+            [
+              77.605083,
+              12.9748944
+            ],
+            [
+              77.6047925,
+              12.9749667
+            ],
+            [
+              77.6047719,
+              12.9748881
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "933a85f1-2236-4666-8fea-c4eea0b7037d",
+      "properties": {
+        "id": "933a85f1-2236-4666-8fea-c4eea0b7037d",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327553599@4",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "residential",
+        "class": "apartments",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6048583984375,
+          "xmax": 77.6051025390625,
+          "ymin": 12.974098205566406,
+          "ymax": 12.974321365356445
+        },
+        "review": {
+          "map_label": "B08",
+          "footprint_area_m2": 356.917,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 12.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.7722,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6049791,
+              12.9741179
+            ],
+            [
+              77.6050423,
+              12.9740986
+            ],
+            [
+              77.6050958,
+              12.9742653
+            ],
+            [
+              77.605059,
+              12.9742766
+            ],
+            [
+              77.6050537,
+              12.9742601
+            ],
+            [
+              77.6050245,
+              12.974269
+            ],
+            [
+              77.6050224,
+              12.9742624
+            ],
+            [
+              77.6049759,
+              12.9742766
+            ],
+            [
+              77.604978,
+              12.9742832
+            ],
+            [
+              77.6049515,
+              12.9742913
+            ],
+            [
+              77.6049567,
+              12.9743077
+            ],
+            [
+              77.6049131,
+              12.974321
+            ],
+            [
+              77.6048596,
+              12.9741543
+            ],
+            [
+              77.6049194,
+              12.9741361
+            ],
+            [
+              77.604927,
+              12.9741598
+            ],
+            [
+              77.6049867,
+              12.9741416
+            ],
+            [
+              77.6049791,
+              12.9741179
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "81d49e29-8870-40a5-87b3-5ebd6155465d",
+      "properties": {
+        "id": "81d49e29-8870-40a5-87b3-5ebd6155465d",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327553601@3",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "residential",
+        "class": "apartments",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6049575805664,
+          "xmax": 77.60515594482422,
+          "ymin": 12.974298477172852,
+          "ymax": 12.974452018737793
+        },
+        "review": {
+          "map_label": "B09",
+          "footprint_area_m2": 211.311,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 5.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.5142,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6049691,
+              12.9743448
+            ],
+            [
+              77.6051193,
+              12.9743
+            ],
+            [
+              77.605153,
+              12.974407
+            ],
+            [
+              77.6050027,
+              12.9744518
+            ],
+            [
+              77.6049691,
+              12.9743448
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "0a37c790-2a4e-4082-a53b-6db6a65d90d9",
+      "properties": {
+        "id": "0a37c790-2a4e-4082-a53b-6db6a65d90d9",
+        "names": {
+          "primary": "Barton Centre",
+          "common": null,
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534043@7",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 14,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": "stone",
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 3,
+        "bbox": {
+          "xmin": 77.6048355102539,
+          "xmax": 77.60528564453125,
+          "ymin": 12.975098609924316,
+          "ymax": 12.975530624389648
+        },
+        "review": {
+          "map_label": "B10",
+          "footprint_area_m2": 1433.414,
+          "source_height_m": null,
+          "source_num_floors": 14,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 44.8,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 52.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8624,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.605238,
+              12.9753442
+            ],
+            [
+              77.6052226,
+              12.9753482
+            ],
+            [
+              77.6052352,
+              12.9753944
+            ],
+            [
+              77.6052048,
+              12.9754024
+            ],
+            [
+              77.6052241,
+              12.9754729
+            ],
+            [
+              77.6050562,
+              12.9755165
+            ],
+            [
+              77.6050029,
+              12.9755304
+            ],
+            [
+              77.6049839,
+              12.9754609
+            ],
+            [
+              77.6049233,
+              12.9754766
+            ],
+            [
+              77.6049164,
+              12.9754513
+            ],
+            [
+              77.6049001,
+              12.9754555
+            ],
+            [
+              77.6048431,
+              12.9752473
+            ],
+            [
+              77.6049651,
+              12.9752155
+            ],
+            [
+              77.6049891,
+              12.9752093
+            ],
+            [
+              77.6049717,
+              12.9751458
+            ],
+            [
+              77.6051461,
+              12.9751004
+            ],
+            [
+              77.6051674,
+              12.9751781
+            ],
+            [
+              77.6051933,
+              12.9751714
+            ],
+            [
+              77.6052261,
+              12.9751628
+            ],
+            [
+              77.6052733,
+              12.975335
+            ],
+            [
+              77.605238,
+              12.9753442
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ae72700f-c10f-43ff-be9b-2dca6c64f824",
+      "properties": {
+        "id": "ae72700f-c10f-43ff-be9b-2dca6c64f824",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327553603@2",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6050033569336,
+          "xmax": 77.6052474975586,
+          "ymin": 12.974445343017578,
+          "ymax": 12.974709510803223
+        },
+        "review": {
+          "map_label": "B11",
+          "footprint_area_m2": 453.158,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 13.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8024,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6051377,
+              12.9744551
+            ],
+            [
+              77.6051753,
+              12.9744455
+            ],
+            [
+              77.6052353,
+              12.9746679
+            ],
+            [
+              77.6051833,
+              12.9746812
+            ],
+            [
+              77.6051855,
+              12.9746894
+            ],
+            [
+              77.6051452,
+              12.9746997
+            ],
+            [
+              77.605143,
+              12.9746915
+            ],
+            [
+              77.6050731,
+              12.9747095
+            ],
+            [
+              77.6050155,
+              12.9744962
+            ],
+            [
+              77.6051401,
+              12.9744643
+            ],
+            [
+              77.6051377,
+              12.9744551
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bbdcbacc-5e92-4a79-af41-70a064ce516f",
+      "properties": {
+        "id": "bbdcbacc-5e92-4a79-af41-70a064ce516f",
+        "names": {
+          "primary": "Asha Enclave",
+          "common": null,
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327553590@2",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60511016845703,
+          "xmax": 77.60529327392578,
+          "ymin": 12.97469425201416,
+          "ymax": 12.974873542785645
+        },
+        "review": {
+          "map_label": "B12",
+          "footprint_area_m2": 261.671,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 13.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8278,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6051103,
+              12.9747287
+            ],
+            [
+              77.6052538,
+              12.9746944
+            ],
+            [
+              77.6052898,
+              12.9748376
+            ],
+            [
+              77.6051463,
+              12.9748718
+            ],
+            [
+              77.6051103,
+              12.9747287
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a9a89544-142e-45af-9da3-a552a2d61655",
+      "properties": {
+        "id": "a9a89544-142e-45af-9da3-a552a2d61655",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "r20071916@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "residential",
+        "class": "apartments",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 3,
+        "bbox": {
+          "xmin": 77.6051254272461,
+          "xmax": 77.60549926757812,
+          "ymin": 12.974027633666992,
+          "ymax": 12.974339485168457
+        },
+        "review": {
+          "map_label": "B13",
+          "footprint_area_m2": 741.388,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 12.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.7806,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6054173,
+              12.9740294
+            ],
+            [
+              77.6054937,
+              12.9742388
+            ],
+            [
+              77.6052084,
+              12.9743376
+            ],
+            [
+              77.605132,
+              12.9741282
+            ],
+            [
+              77.6054173,
+              12.9740294
+            ]
+          ],
+          [
+            [
+              77.6053073,
+              12.9741157
+            ],
+            [
+              77.6053228,
+              12.9741612
+            ],
+            [
+              77.6053519,
+              12.9741518
+            ],
+            [
+              77.6053364,
+              12.9741063
+            ],
+            [
+              77.6053073,
+              12.9741157
+            ]
+          ],
+          [
+            [
+              77.6052381,
+              12.9741583
+            ],
+            [
+              77.6052493,
+              12.9741546
+            ],
+            [
+              77.6052599,
+              12.9741848
+            ],
+            [
+              77.6052888,
+              12.9741752
+            ],
+            [
+              77.6052728,
+              12.9741294
+            ],
+            [
+              77.6052326,
+              12.9741428
+            ],
+            [
+              77.6052381,
+              12.9741583
+            ]
+          ],
+          [
+            [
+              77.6053561,
+              12.9741783
+            ],
+            [
+              77.605336,
+              12.9741848
+            ],
+            [
+              77.6053504,
+              12.9742268
+            ],
+            [
+              77.6053705,
+              12.9742202
+            ],
+            [
+              77.6053561,
+              12.9741783
+            ]
+          ],
+          [
+            [
+              77.6053108,
+              12.9742438
+            ],
+            [
+              77.6052962,
+              12.9742032
+            ],
+            [
+              77.6052676,
+              12.9742129
+            ],
+            [
+              77.6052756,
+              12.974235
+            ],
+            [
+              77.6052653,
+              12.9742385
+            ],
+            [
+              77.605272,
+              12.974257
+            ],
+            [
+              77.6053108,
+              12.9742438
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "39e6e603-9eb3-4e74-85eb-1da56481f262",
+      "properties": {
+        "id": "39e6e603-9eb3-4e74-85eb-1da56481f262",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1304116269@2",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 7,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60527801513672,
+          "xmax": 77.60543823242188,
+          "ymin": 12.975384712219238,
+          "ymax": 12.975627899169922
+        },
+        "review": {
+          "map_label": "B14",
+          "footprint_area_m2": 244.586,
+          "source_height_m": null,
+          "source_num_floors": 7,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 22.4,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 21.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8066,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6053644,
+              12.9753862
+            ],
+            [
+              77.6054364,
+              12.9756047
+            ],
+            [
+              77.6053491,
+              12.9756276
+            ],
+            [
+              77.6052801,
+              12.9754102
+            ],
+            [
+              77.6053644,
+              12.9753862
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "3761c330-0bb5-4222-896f-7decce6ceb38",
+      "properties": {
+        "id": "3761c330-0bb5-4222-896f-7decce6ceb38",
+        "names": {
+          "primary": "Brigade Gardens",
+          "common": null,
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327553602@4",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60520935058594,
+          "xmax": 77.60563659667969,
+          "ymin": 12.974320411682129,
+          "ymax": 12.974759101867676
+        },
+        "review": {
+          "map_label": "B15",
+          "footprint_area_m2": 1344.774,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 13.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8611,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6053281,
+              12.9747575
+            ],
+            [
+              77.6052156,
+              12.974414
+            ],
+            [
+              77.6055112,
+              12.974322
+            ],
+            [
+              77.6056237,
+              12.9746656
+            ],
+            [
+              77.6054743,
+              12.9747121
+            ],
+            [
+              77.6053281,
+              12.9747575
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "b64c8dc6-602c-447b-b05e-42ab0858ce59",
+      "properties": {
+        "id": "b64c8dc6-602c-447b-b05e-42ab0858ce59",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534067@6",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": 1,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 3,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60523986816406,
+          "xmax": 77.6058578491211,
+          "ymin": 12.974869728088379,
+          "ymax": 12.975398063659668
+        },
+        "review": {
+          "map_label": "B16",
+          "footprint_area_m2": 1547.784,
+          "source_height_m": null,
+          "source_num_floors": 3,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 9.6,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 10.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8393,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6053712,
+              12.9753962
+            ],
+            [
+              77.6052416,
+              12.9749917
+            ],
+            [
+              77.6057213,
+              12.9748716
+            ],
+            [
+              77.6058542,
+              12.9752893
+            ],
+            [
+              77.6057566,
+              12.9753084
+            ],
+            [
+              77.605675,
+              12.9750336
+            ],
+            [
+              77.6053902,
+              12.9751112
+            ],
+            [
+              77.6054641,
+              12.9753718
+            ],
+            [
+              77.6053712,
+              12.9753962
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "2febf00f-3e1c-4efc-849a-3ad61176e04b",
+      "properties": {
+        "id": "2febf00f-3e1c-4efc-849a-3ad61176e04b",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534047@3",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 3,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60543823242188,
+          "xmax": 77.60565948486328,
+          "ymin": 12.975359916687012,
+          "ymax": 12.975591659545898
+        },
+        "review": {
+          "map_label": "B17",
+          "footprint_area_m2": 365.054,
+          "source_height_m": null,
+          "source_num_floors": 3,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 9.6,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 16.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.2103,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6054564,
+              12.9754032
+            ],
+            [
+              77.6055879,
+              12.9753617
+            ],
+            [
+              77.6056475,
+              12.9755412
+            ],
+            [
+              77.6054883,
+              12.9755913
+            ],
+            [
+              77.6054415,
+              12.9754503
+            ],
+            [
+              77.6054691,
+              12.9754416
+            ],
+            [
+              77.6054564,
+              12.9754032
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "17e6e014-cdfd-4f9e-a8a7-de1a3b46dfae",
+      "properties": {
+        "id": "17e6e014-cdfd-4f9e-a8a7-de1a3b46dfae",
+        "names": {
+          "primary": "Shrungar Shopping Center",
+          "common": null,
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w319385961@2",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 4,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "retail",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60546112060547,
+          "xmax": 77.60567474365234,
+          "ymin": 12.975107192993164,
+          "ymax": 12.975312232971191
+        },
+        "review": {
+          "map_label": "B18",
+          "footprint_area_m2": 394.981,
+          "source_height_m": null,
+          "source_num_floors": 4,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 12.8,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 15.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.7603,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6056712,
+              12.9752285
+            ],
+            [
+              77.6056596,
+              12.9752602
+            ],
+            [
+              77.605638,
+              12.9752865
+            ],
+            [
+              77.6056088,
+              12.9753044
+            ],
+            [
+              77.6055752,
+              12.9753121
+            ],
+            [
+              77.6055408,
+              12.9753088
+            ],
+            [
+              77.6055096,
+              12.9752948
+            ],
+            [
+              77.6054848,
+              12.9752718
+            ],
+            [
+              77.6054689,
+              12.9752421
+            ],
+            [
+              77.6054637,
+              12.9752091
+            ],
+            [
+              77.6054698,
+              12.9751762
+            ],
+            [
+              77.6054865,
+              12.975147
+            ],
+            [
+              77.605512,
+              12.9751246
+            ],
+            [
+              77.6055435,
+              12.9751115
+            ],
+            [
+              77.6055777,
+              12.975109
+            ],
+            [
+              77.6056111,
+              12.9751175
+            ],
+            [
+              77.6056399,
+              12.9751362
+            ],
+            [
+              77.6056608,
+              12.9751629
+            ],
+            [
+              77.6056716,
+              12.9751949
+            ],
+            [
+              77.6056712,
+              12.9752285
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "3ebbedfa-d60f-4cba-95a1-a1fd3d766e8d",
+      "properties": {
+        "id": "3ebbedfa-d60f-4cba-95a1-a1fd3d766e8d",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w349698888@5",
+            "update_time": "2025-01-11T17:28:34.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 2,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60549926757812,
+          "xmax": 77.60569763183594,
+          "ymin": 12.97402286529541,
+          "ymax": 12.974347114562988
+        },
+        "review": {
+          "map_label": "B19",
+          "footprint_area_m2": 395.971,
+          "source_height_m": null,
+          "source_num_floors": 2,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 6.4,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": null,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.0,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6055948,
+              12.9743467
+            ],
+            [
+              77.605503,
+              12.9740711
+            ],
+            [
+              77.6056505,
+              12.9740245
+            ],
+            [
+              77.6056916,
+              12.9741482
+            ],
+            [
+              77.6056204,
+              12.9741707
+            ],
+            [
+              77.605671,
+              12.9743226
+            ],
+            [
+              77.6056214,
+              12.9743383
+            ],
+            [
+              77.6055948,
+              12.9743467
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a619c0f2-f3fd-4fa1-a1da-994607bd9bbf",
+      "properties": {
+        "id": "a619c0f2-f3fd-4fa1-a1da-994607bd9bbf",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1393103486@1",
+            "update_time": "2025-06-07T19:00:47.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60569763183594,
+          "xmax": 77.60586547851562,
+          "ymin": 12.974501609802246,
+          "ymax": 12.97463321685791
+        },
+        "review": {
+          "map_label": "B20",
+          "footprint_area_m2": 152.68,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 7.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.7537,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6058533,
+              12.9745998
+            ],
+            [
+              77.6057304,
+              12.9746317
+            ],
+            [
+              77.605704,
+              12.9745352
+            ],
+            [
+              77.605827,
+              12.9745033
+            ],
+            [
+              77.6058533,
+              12.9745998
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "210df0cd-d537-402e-a40b-04262339a436",
+      "properties": {
+        "id": "210df0cd-d537-402e-a40b-04262339a436",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1089717999@2",
+            "update_time": "2025-01-11T17:28:34.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60564422607422,
+          "xmax": 77.60591125488281,
+          "ymin": 12.974112510681152,
+          "ymax": 12.974319458007812
+        },
+        "review": {
+          "map_label": "B21",
+          "footprint_area_m2": 382.452,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 8.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.5288,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6059079,
+              12.9742496
+            ],
+            [
+              77.6056962,
+              12.974318
+            ],
+            [
+              77.6056501,
+              12.9741825
+            ],
+            [
+              77.6058618,
+              12.9741142
+            ],
+            [
+              77.6059079,
+              12.9742496
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "0b6594d3-332f-4d43-b874-d575e502be91",
+      "properties": {
+        "id": "0b6594d3-332f-4d43-b874-d575e502be91",
+        "names": {
+          "primary": "Raymonds",
+          "common": null,
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534053@4",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 3,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60565185546875,
+          "xmax": 77.60591888427734,
+          "ymin": 12.975287437438965,
+          "ymax": 12.97553539276123
+        },
+        "review": {
+          "map_label": "B22",
+          "footprint_area_m2": 507.094,
+          "source_height_m": null,
+          "source_num_floors": 3,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 9.6,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 12.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8693,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.605715,
+              12.9755352
+            ],
+            [
+              77.6056583,
+              12.9753355
+            ],
+            [
+              77.6057566,
+              12.9753084
+            ],
+            [
+              77.6058542,
+              12.9752893
+            ],
+            [
+              77.6059128,
+              12.9754867
+            ],
+            [
+              77.605715,
+              12.9755352
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bb5dfffb-c9ea-482e-b3bd-45b374348aa6",
+      "properties": {
+        "id": "bb5dfffb-c9ea-482e-b3bd-45b374348aa6",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "Google Open Buildings",
+            "license": null,
+            "record_id": "7J4VXJF4+Q88M",
+            "update_time": "2023-05-01T00:00:00.000Z",
+            "confidence": 0.6687,
+            "between": null,
+            "provider": "google",
+            "resource": "open_buildings",
+            "version": "2024-04-16"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60578155517578,
+          "xmax": 77.60586547851562,
+          "ymin": 12.974367141723633,
+          "ymax": 12.974465370178223
+        },
+        "review": {
+          "map_label": "B23",
+          "footprint_area_m2": 45.845,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": null,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.0,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6057873,
+              12.974383
+            ],
+            [
+              77.6058287,
+              12.9743688
+            ],
+            [
+              77.605858,
+              12.9744509
+            ],
+            [
+              77.6058166,
+              12.9744651
+            ],
+            [
+              77.6057873,
+              12.974383
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "01edc8ba-e07a-4453-b17f-25f1771d79a3",
+      "properties": {
+        "id": "01edc8ba-e07a-4453-b17f-25f1771d79a3",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w349698909@3",
+            "update_time": "2025-06-07T19:00:47.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 5,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60575103759766,
+          "xmax": 77.60590362548828,
+          "ymin": 12.974596977233887,
+          "ymax": 12.97472095489502
+        },
+        "review": {
+          "map_label": "B24",
+          "footprint_area_m2": 140.946,
+          "source_height_m": null,
+          "source_num_floors": 5,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 16.0,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 12.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8696,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6059025,
+              12.9746873
+            ],
+            [
+              77.605779,
+              12.9747193
+            ],
+            [
+              77.6057548,
+              12.9746306
+            ],
+            [
+              77.6058783,
+              12.9745986
+            ],
+            [
+              77.6059025,
+              12.9746873
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "5a04242f-b5b0-4f2a-8b9a-66a496613408",
+      "properties": {
+        "id": "5a04242f-b5b0-4f2a-8b9a-66a496613408",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1412295514@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60578155517578,
+          "xmax": 77.60590362548828,
+          "ymin": 12.975005149841309,
+          "ymax": 12.975167274475098
+        },
+        "review": {
+          "map_label": "B25",
+          "footprint_area_m2": 144.681,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 13.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8941,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6058187,
+              12.9751657
+            ],
+            [
+              77.6057824,
+              12.9750274
+            ],
+            [
+              77.6058641,
+              12.975007
+            ],
+            [
+              77.6059004,
+              12.9751453
+            ],
+            [
+              77.6058187,
+              12.9751657
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "4ed407a7-a8bd-4dbb-9244-25465b5c7235",
+      "properties": {
+        "id": "4ed407a7-a8bd-4dbb-9244-25465b5c7235",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534069@3",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 3,
+        "bbox": {
+          "xmin": 77.6057357788086,
+          "xmax": 77.60596466064453,
+          "ymin": 12.974815368652344,
+          "ymax": 12.975028991699219
+        },
+        "review": {
+          "map_label": "B26",
+          "footprint_area_m2": 380.998,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 20.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.9351,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6058641,
+              12.975007
+            ],
+            [
+              77.6057824,
+              12.9750274
+            ],
+            [
+              77.6057388,
+              12.9748615
+            ],
+            [
+              77.6059182,
+              12.9748168
+            ],
+            [
+              77.6059618,
+              12.9749826
+            ],
+            [
+              77.6058641,
+              12.975007
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a4508836-4e70-4190-9644-1815380b7313",
+      "properties": {
+        "id": "a4508836-4e70-4190-9644-1815380b7313",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "Google Open Buildings",
+            "license": null,
+            "record_id": "7J4VXJG4+39RC",
+            "update_time": "2023-05-01T00:00:00.000Z",
+            "confidence": 0.6525,
+            "between": null,
+            "provider": "google",
+            "resource": "open_buildings",
+            "version": "2024-04-16"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60584259033203,
+          "xmax": 77.60590362548828,
+          "ymin": 12.975214004516602,
+          "ymax": 12.975260734558105
+        },
+        "review": {
+          "map_label": "B27",
+          "footprint_area_m2": 15.267,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 12.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 1.0,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6058543,
+              12.9752234
+            ],
+            [
+              77.6058856,
+              12.9752143
+            ],
+            [
+              77.6058968,
+              12.9752517
+            ],
+            [
+              77.6058655,
+              12.9752607
+            ],
+            [
+              77.6058543,
+              12.9752234
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "51affa39-675c-4110-8e37-257c1b3785e7",
+      "properties": {
+        "id": "51affa39-675c-4110-8e37-257c1b3785e7",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1304116268@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 2,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6058578491211,
+          "xmax": 77.60596466064453,
+          "ymin": 12.9752836227417,
+          "ymax": 12.975494384765625
+        },
+        "review": {
+          "map_label": "B28",
+          "footprint_area_m2": 115.058,
+          "source_height_m": null,
+          "source_num_floors": 2,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 6.4,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 10.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.9478,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6059629,
+              12.9754806
+            ],
+            [
+              77.6059172,
+              12.9754925
+            ],
+            [
+              77.6058634,
+              12.975297
+            ],
+            [
+              77.6059091,
+              12.9752851
+            ],
+            [
+              77.6059629,
+              12.9754806
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "3acc0505-729f-4947-9f7e-2f4f4b4bc079",
+      "properties": {
+        "id": "3acc0505-729f-4947-9f7e-2f4f4b4bc079",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1412295513@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60591125488281,
+          "xmax": 77.60601806640625,
+          "ymin": 12.974801063537598,
+          "ymax": 12.975043296813965
+        },
+        "review": {
+          "map_label": "B29",
+          "footprint_area_m2": 146.43,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 19.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.7347,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6059618,
+              12.9749826
+            ],
+            [
+              77.6059182,
+              12.9748168
+            ],
+            [
+              77.6059797,
+              12.9748014
+            ],
+            [
+              77.6060177,
+              12.9750322
+            ],
+            [
+              77.6059783,
+              12.9750417
+            ],
+            [
+              77.6059618,
+              12.9749826
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "a277aeb6-f951-49a4-8f4f-198b9d37ac65",
+      "properties": {
+        "id": "a277aeb6-f951-49a4-8f4f-198b9d37ac65",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534063@2",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60588073730469,
+          "xmax": 77.60616302490234,
+          "ymin": 12.97511100769043,
+          "ymax": 12.975388526916504
+        },
+        "review": {
+          "map_label": "B30",
+          "footprint_area_m2": 480.262,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 10.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8678,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.60596,
+              12.9753869
+            ],
+            [
+              77.6058925,
+              12.9751854
+            ],
+            [
+              77.6061286,
+              12.9751111
+            ],
+            [
+              77.6061601,
+              12.975206
+            ],
+            [
+              77.6060521,
+              12.97524
+            ],
+            [
+              77.606087,
+              12.9753514
+            ],
+            [
+              77.60596,
+              12.9753869
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "6cb2f4e3-1fe0-4062-8e51-4618f8fb4c8d",
+      "properties": {
+        "id": "6cb2f4e3-1fe0-4062-8e51-4618f8fb4c8d",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w349698958@3",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "residential",
+        "class": "house",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60594177246094,
+          "xmax": 77.60613250732422,
+          "ymin": 12.974418640136719,
+          "ymax": 12.97462272644043
+        },
+        "review": {
+          "map_label": "B31",
+          "footprint_area_m2": 286.965,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 4.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.3118,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.606127,
+              12.9745872
+            ],
+            [
+              77.6059929,
+              12.9746212
+            ],
+            [
+              77.6059483,
+              12.9744545
+            ],
+            [
+              77.6060824,
+              12.9744204
+            ],
+            [
+              77.606127,
+              12.9745872
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "624e83ef-7035-4668-9384-d2de83dfb2f5",
+      "properties": {
+        "id": "624e83ef-7035-4668-9384-d2de83dfb2f5",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "Google Open Buildings",
+            "license": null,
+            "record_id": "7J4VXJF4+XCMG",
+            "update_time": "2023-05-01T00:00:00.000Z",
+            "confidence": 0.7857,
+            "between": null,
+            "provider": "google",
+            "resource": "open_buildings",
+            "version": "2024-04-16"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": null,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": null,
+        "class": null,
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60599517822266,
+          "xmax": 77.60610961914062,
+          "ymin": 12.974864959716797,
+          "ymax": 12.975059509277344
+        },
+        "review": {
+          "map_label": "B32",
+          "footprint_area_m2": 130.644,
+          "source_height_m": null,
+          "source_num_floors": null,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": null,
+          "proposed_height_status": "missing",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": null,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.0,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6060073,
+              12.9748763
+            ],
+            [
+              77.6060655,
+              12.9748665
+            ],
+            [
+              77.6060971,
+              12.9750482
+            ],
+            [
+              77.606039,
+              12.9750579
+            ],
+            [
+              77.6060073,
+              12.9748763
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "bb6cee37-57ec-4ca0-b65d-11fa268d0181",
+      "properties": {
+        "id": "bb6cee37-57ec-4ca0-b65d-11fa268d0181",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534051@5",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 2,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "office",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": "hipped",
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6059341430664,
+          "xmax": 77.6062240600586,
+          "ymin": 12.975318908691406,
+          "ymax": 12.975483894348145
+        },
+        "review": {
+          "map_label": "B33",
+          "footprint_area_m2": 297.973,
+          "source_height_m": null,
+          "source_num_floors": 2,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 6.4,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 11.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.9286,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.606087,
+              12.9753514
+            ],
+            [
+              77.6061963,
+              12.9753208
+            ],
+            [
+              77.6062228,
+              12.9754107
+            ],
+            [
+              77.605968,
+              12.975482
+            ],
+            [
+              77.6059415,
+              12.9753921
+            ],
+            [
+              77.60596,
+              12.9753869
+            ],
+            [
+              77.606087,
+              12.9753514
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "4fa4c63f-4645-4b1e-8707-4ea7dfcf2810",
+      "properties": {
+        "id": "4fa4c63f-4645-4b1e-8707-4ea7dfcf2810",
+        "names": {
+          "primary": "Higginbotham's",
+          "common": [
+            [
+              "kn",
+              "ಹಿಗ್ಗಿನ್ ಬೊಥಮ್ಸ್"
+            ]
+          ],
+          "rules": null
+        },
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "r20071915@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 2,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.6061782836914,
+          "xmax": 77.60640716552734,
+          "ymin": 12.975079536437988,
+          "ymax": 12.975397109985352
+        },
+        "review": {
+          "map_label": "B34",
+          "footprint_area_m2": 419.848,
+          "source_height_m": null,
+          "source_num_floors": 2,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 6.4,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 6.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.6546,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6063955,
+              12.97536
+            ],
+            [
+              77.606262,
+              12.9753967
+            ],
+            [
+              77.6061814,
+              12.9751176
+            ],
+            [
+              77.6063149,
+              12.975081
+            ],
+            [
+              77.6063955,
+              12.97536
+            ]
+          ],
+          [
+            [
+              77.6062816,
+              12.9751564
+            ],
+            [
+              77.6062232,
+              12.9751724
+            ],
+            [
+              77.6062474,
+              12.975256
+            ],
+            [
+              77.6063058,
+              12.97524
+            ],
+            [
+              77.6062816,
+              12.9751564
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "7da194cd-6a51-4dd4-9938-6be00166fbd5",
+      "properties": {
+        "id": "7da194cd-6a51-4dd4-9938-6be00166fbd5",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534062@5",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 5,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "office",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 1,
+        "bbox": {
+          "xmin": 77.60623931884766,
+          "xmax": 77.60648345947266,
+          "ymin": 12.974757194519043,
+          "ymax": 12.975198745727539
+        },
+        "review": {
+          "map_label": "B35",
+          "footprint_area_m2": 592.531,
+          "source_height_m": null,
+          "source_num_floors": 5,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 16.0,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 15.5,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8811,
+            "review_priority": "normal",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6063605,
+              12.975197
+            ],
+            [
+              77.6062464,
+              12.9747783
+            ],
+            [
+              77.6062864,
+              12.974768
+            ],
+            [
+              77.6063274,
+              12.9747574
+            ],
+            [
+              77.6063601,
+              12.9748778
+            ],
+            [
+              77.6063793,
+              12.9748728
+            ],
+            [
+              77.606401,
+              12.9748671
+            ],
+            [
+              77.6064822,
+              12.9751654
+            ],
+            [
+              77.6063605,
+              12.975197
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "c52bd3e7-0ae4-4695-9fab-f93329a865b3",
+      "properties": {
+        "id": "c52bd3e7-0ae4-4695-9fab-f93329a865b3",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w1350409197@1",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 2,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60636901855469,
+          "xmax": 77.60649871826172,
+          "ymin": 12.974710464477539,
+          "ymax": 12.97488784790039
+        },
+        "review": {
+          "map_label": "B36",
+          "footprint_area_m2": 172.062,
+          "source_height_m": null,
+          "source_num_floors": 2,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 6.4,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": null,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.0,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6064584,
+              12.9747123
+            ],
+            [
+              77.6064975,
+              12.9748643
+            ],
+            [
+              77.6064089,
+              12.974886
+            ],
+            [
+              77.6063698,
+              12.9747339
+            ],
+            [
+              77.6064584,
+              12.9747123
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "939b1ff4-2f63-4ac4-a57f-9971000e6882",
+      "properties": {
+        "id": "939b1ff4-2f63-4ac4-a57f-9971000e6882",
+        "names": null,
+        "sources": [
+          {
+            "property": "",
+            "dataset": "OpenStreetMap",
+            "license": "ODbL-1.0",
+            "record_id": "w327534050@3",
+            "update_time": "2026-01-12T05:30:39.000Z",
+            "confidence": null,
+            "between": null,
+            "provider": "osm",
+            "resource": "planet",
+            "version": "2026-09-06T00:00:00.000Z"
+          }
+        ],
+        "level": null,
+        "height": null,
+        "min_height": null,
+        "is_underground": false,
+        "num_floors": 5,
+        "num_floors_underground": null,
+        "min_floor": null,
+        "subtype": "commercial",
+        "class": "commercial",
+        "facade_color": null,
+        "facade_material": null,
+        "roof_material": null,
+        "roof_shape": null,
+        "roof_direction": null,
+        "roof_orientation": null,
+        "roof_color": null,
+        "roof_height": null,
+        "has_parts": false,
+        "version": 2,
+        "bbox": {
+          "xmin": 77.60637664794922,
+          "xmax": 77.60661315917969,
+          "ymin": 12.975173950195312,
+          "ymax": 12.975359916687012
+        },
+        "review": {
+          "map_label": "B37",
+          "footprint_area_m2": 330.608,
+          "source_height_m": null,
+          "source_num_floors": 5,
+          "model_height_m": null,
+          "proposed_height_from_floors_m": 16.0,
+          "proposed_height_status": "estimated_unapproved",
+          "height_review_status": "pending",
+          "geometry_clipped": false,
+          "google_temporal_height_estimate": {
+            "year": 2023,
+            "median_m": 8.0,
+            "status": "estimated_not_measured_unapproved",
+            "valid_pixel_fraction": 0.8513,
+            "review_priority": "high",
+            "metadata_file": "data/processed/estimated_heights_metadata.json"
+          }
+        }
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6064194,
+              12.9753596
+            ],
+            [
+              77.6063828,
+              12.9752251
+            ],
+            [
+              77.606574,
+              12.9751758
+            ],
+            [
+              77.6066105,
+              12.9753103
+            ],
+            [
+              77.6064194,
+              12.9753596
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

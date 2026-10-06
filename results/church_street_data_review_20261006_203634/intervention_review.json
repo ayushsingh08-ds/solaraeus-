@@ -1,0 +1,55 @@
+{
+  "intervention_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "intervention_type": "overhead_shade_panel",
+  "intervention_count": 1,
+  "status": "requires_researcher_signoff",
+  "geometry": {
+    "length_m": 6.0,
+    "width_m": 3.0,
+    "footprint_area_m2": 18.0,
+    "underside_height_m": 3.5,
+    "thickness_m": 0.1,
+    "top_height_m": 3.6,
+    "opacity": 1.0,
+    "support_posts": "Support columns omitted in geometric pilot; structural design not performed."
+  },
+  "orientation": {
+    "true_north_bearing_deg": 103.02790844205674,
+    "grid_north_bearing_deg": 102.44250192876865,
+    "grid_convergence_difference_deg": 0.5854,
+    "alignment_description": "parallel to local Church Street centerline tangent"
+  },
+  "placement_and_clearance": {
+    "offset_from_centerline_m": 4.5,
+    "side": "north-facing side of mapped centerline",
+    "clearance_to_nearest_building_m": 1.751,
+    "footprint_collision_count": 0,
+    "surveyed_sidewalk_verified": false
+  },
+  "material_properties": {
+    "albedo": {
+      "value": 0.6,
+      "status": "assumed"
+    },
+    "emissivity": {
+      "value": 0.9,
+      "status": "assumed"
+    },
+    "initial_surface_temperature_c": {
+      "value": 35.0,
+      "status": "assumed_initial_condition_not_measurement"
+    }
+  },
+  "non_changes": [
+    "No building modification",
+    "No tree or vegetation intervention",
+    "No meteorological forcing change between scenarios"
+  ],
+  "researcher_approval_gates": [
+    "Verify candidate location against independent imagery and on-site walkway access",
+    "Check existing vegetation/canopies and avoid confounding shadows",
+    "Confirm overhead clearance, supports and permissions if any physical installation is considered"
+  ],
+  "blocking": true
+}

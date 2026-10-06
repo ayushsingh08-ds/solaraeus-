@@ -1,0 +1,10 @@
+{
+  "dataset": "Mapzen/Tilezen Skadi elevation terrain tiles",
+  "url": "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N12/N12E077.hgt.gz",
+  "file": "data/raw/terrain/N12E077.hgt.gz",
+  "retrieved_at_utc": "2026-10-06T18:45:24.540Z",
+  "bytes": 11122631,
+  "sha256": "9485ba04696bbe2074a0b6cab79d0f12ecca79ad05b19d676ea35056beafd14e",
+  "etag": "\"aa5a55bec32991bfd7342680776edff0-2\"",
+  "last_modified": "Tue, 26 Apr 2016 21:29:59 GMT"
+}

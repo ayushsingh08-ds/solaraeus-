@@ -1,0 +1,76 @@
+{
+  "dataset": "Mapzen/Tilezen Skadi elevation terrain tiles",
+  "source_url": "https://s3.amazonaws.com/elevation-tiles-prod/skadi/N12/N12E077.hgt.gz",
+  "raw_file": "data/raw/terrain/N12E077.hgt.gz",
+  "tile": "N12E077",
+  "tile_bounds_west_south_east_north": [
+    77,
+    12,
+    78,
+    13
+  ],
+  "tile_rows": 3601,
+  "tile_columns": 3601,
+  "horizontal_crs": "EPSG:4326 WGS84",
+  "vertical_reference": "EGM96 orthometric heights in metres as specified by Tilezen Skadi documentation",
+  "resolution_arcseconds": 1.0,
+  "resolution_m_at_site": {
+    "east_west": 30.137679933791333,
+    "north_south": 30.73063168271035
+  },
+  "format": "gzip compressed, headerless signed int16 big-endian, row-major, north to south rows, west to east columns",
+  "nodata": -32768,
+  "coverage": "entire proposed site and 75 m context covered by tile extent",
+  "site_native_sample_count": 32,
+  "site_missing_sample_count": 0,
+  "site_sample_statistics_m": {
+    "min": 916,
+    "max": 934,
+    "median": 922.0
+  },
+  "download_metadata": "sources/terrain_download.json",
+  "dataset_version": "Exact published tile snapshot pinned by S3 ETag, Last-Modified and SHA256; no tile-level semantic version declared. Documentation describes releases built 2016/2017.",
+  "underlying_source": "SRTM expected for Bengaluru by global source coverage; exact contributing images not independently traced against provider footprint database.",
+  "license": "SRTM/GMTED public-domain source terms and Tilezen provider attribution; see sources/terrain_attribution.md. Do not imply a single newly assigned license for the composite.",
+  "attribution": "Mapzen/Tilezen; SRTM/GMTED data courtesy of the U.S. Geological Survey.",
+  "initial_simulation_terrain": "flat z=0 m model-relative ground is an explicit assumption; DEM retained for later use",
+  "caveats": [
+    "DEM values are not local surveyed bare-earth DTM, LiDAR, roof elevations or usable building heights.",
+    "Buildings/vegetation/radar and merging artifacts can affect elevation samples.",
+    "About 30 m source sampling cannot resolve curb or sidewalk elevations.",
+    "No resampling or terrain-to-roof subtraction was performed.",
+    "Actual source acquisition date is older than current buildings/weather and is not the download date."
+  ],
+  "dataset_name": "Mapzen/Tilezen Skadi elevation terrain tiles",
+  "units": "metres",
+  "vertical_datum": "EGM96 orthometric",
+  "pixel_resolution": {
+    "angular_degrees": 0.0002777777777777778,
+    "arcseconds": 1.0,
+    "approximate_metres_at_site": {
+      "east_west": 30.137679933791333,
+      "north_south": 30.73063168271035
+    }
+  },
+  "nodata_value": -32768,
+  "elevation_product_classification": "composite_elevation_DEM_not_certified_bare_earth",
+  "represents": "Composite Skadi elevation product. SRTM/radar-derived elevations are expected here but contributing images are not independently traced. Building/vegetation signals and merging artifacts may be present; do not label as surveyed bare-earth DTM or building roof heights.",
+  "original_provider_format": "gzip-compressed SRTM-style HGT signed int16 big-endian point grid",
+  "original_download_filename": "N12E077.hgt.gz",
+  "original_download_file": "data/raw/terrain/N12E077.hgt.gz",
+  "original_download_sha256": "9485ba04696bbe2074a0b6cab79d0f12ecca79ad05b19d676ea35056beafd14e",
+  "requested_tiff_filename": "data/raw/terrain/elevation_original.tif",
+  "requested_tiff_sha256": "616caab132c3353efba0ee8cff9f9dccccdbe7eb5cd149eb205b547f53c92a40",
+  "requested_filename_warning": "elevation_original.tif is a lossless conversion of the preserved native HGT, not an original provider-delivered TIFF.",
+  "native_sample_grid": "Point samples: first centre (77 E,13 N), last centre (78 E,12 N), 3601 x 3601 including shared tile edges. GeoTIFF pixel-corner transform is half a sample outside centres.",
+  "initial_engine_use": "Metadata, extent and coarse elevation validation only. Do not modify a flat-ground mesh or use DEM-minus-roof building heights.",
+  "flat_ground_model": {
+    "enabled_as_proposal": true,
+    "ground_z_m": 0.0,
+    "reference": "model-relative, not an absolute orthometric altitude",
+    "researcher_acceptance": null
+  },
+  "source_morphology_or_slope_verified": false,
+  "no_horizontal_resampling": true,
+  "no_vertical_transformation": true
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "height_verification",
+    "name": "Building-Height Evidence Verification",
+    "severity": "blocking",
+    "status": "requires_researcher_signoff",
+    "description": "All 37 site buildings have 0 verified surveyed heights. 33 Google/ML satellite estimates exist, 17 floor records exist, 4 buildings lack ML estimates (B19, B23, B32, B36), and 9 high-priority review buildings require explicit validation. No heights may be silently merged.",
+    "action_required": "Researcher must review building_height_review.csv and approve explicit model heights."
+  },
+  {
+    "id": "building_placement",
+    "name": "Building Placement & Footprint Registration",
+    "severity": "blocking",
+    "status": "requires_researcher_signoff",
+    "description": "Footprint alignment has not been independently registered against dated high-resolution orthophotography. Potential shifts, courtyard omissions, or edge-crossing building approximations require sign-off.",
+    "action_required": "Researcher must inspect footprint overlay against date-documented aerial imagery."
+  },
+  {
+    "id": "solar_interval_alignment",
+    "name": "Solar Interval & Timestamp Alignment",
+    "severity": "blocking",
+    "status": "requires_researcher_signoff",
+    "description": "NASA POWER hourly radiation fluxes (GHI 755.97, DNI 728.31, DHI 172.18 W/m2) represent time-integrated energy values. Hour label '09' is unverified as hour-ending, hour-beginning, or hour-centered relative to 09:00 UTC (14:30 IST).",
+    "action_required": "Researcher must specify the exact solar integration convention or accept instantaneous point-in-time pairing."
+  },
+  {
+    "id": "material_assumptions",
+    "name": "Material & Initial Thermal Property Assumptions",
+    "severity": "blocking",
+    "status": "requires_researcher_signoff",
+    "description": "Four material classes (wall, roof, ground, pavement) plus shade panel use assumed albedo, emissivity, and uniform initial temperatures (35.0 deg C). Existing trees/canopies are unmapped (canopy-free baseline simplification).",
+    "action_required": "Researcher must formally accept default optical/thermal properties and unmapped vegetation policy."
+  },
+  {
+    "id": "shade_panel_geometry",
+    "name": "Overhead Shade Panel Geometry & Placement",
+    "severity": "blocking",
+    "status": "requires_researcher_signoff",
+    "description": "Single 6.0m x 3.0m x 0.10m opaque shade panel with 3.5m underside clearance, oriented 103.028 deg True North (102.443 deg Grid North), with support posts omitted. Placement is hypothetical and unverified against pedestrian walkways.",
+    "action_required": "Researcher must approve hypothetical shade structure dimensions, orientation, and no-posts simplification."
+  },
+  {
+    "id": "weather_redistribution_terms",
+    "name": "NOAA Station Redistribution & Licensing Terms",
+    "severity": "warning",
+    "status": "requires_researcher_signoff",
+    "description": "NOAA Bengaluru City station (43295099999) records originate from international exchange. Downstream publication and public redistribution terms require verification.",
+    "action_required": "Researcher must review institutional redistribution terms before public release."
+  }
+]

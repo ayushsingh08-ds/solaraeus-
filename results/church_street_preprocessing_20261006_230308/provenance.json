@@ -1,0 +1,106 @@
+{
+  "pipeline_name": "church_street_exploratory_preprocessing",
+  "execution_timestamp_utc": "2026-10-06T23:03:08.908005+00:00",
+  "platform": {
+    "os": "win32",
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]"
+  },
+  "library_versions": {
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.0",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "mapbox_earcut": "2.1.0"
+  },
+  "coordinate_definition": {
+    "source_crs": "EPSG:4326",
+    "metric_crs": "EPSG:32643",
+    "local_origin": {
+      "x_utm_m": 782541.8055380594,
+      "y_utm_m": 1435736.1103432046,
+      "z_m": 0.0
+    },
+    "grid_convergence_deg": 0.585366
+  },
+  "researcher_signoff_verification": {
+    "all_gates_approved": true,
+    "gates": {
+      "height_verification": {
+        "status": "approved",
+        "notes": "Approved height-selection policy and list of buildings requiring fallback handling."
+      },
+      "building_placement": {
+        "status": "approved",
+        "notes": "Footprints reviewed and accepted for preprocessing."
+      },
+      "solar_interval_alignment": {
+        "status": "approved",
+        "notes": "Approved use of the documented hourly interval and timezone conversion."
+      },
+      "material_assumptions": {
+        "status": "approved",
+        "notes": "Values accepted as modeling assumptions, not measurements."
+      },
+      "shade_panel_geometry": {
+        "status": "approved",
+        "notes": "Intervention geometry accepted as a hypothetical scenario."
+      },
+      "weather_redistribution_terms": {
+        "status": "approved",
+        "notes": "Terms documented and permitted for this local research workflow."
+      }
+    }
+  },
+  "source_data_manifest": [
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/site_boundary.geojson",
+      "size_bytes": 1158,
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/shadow_context_boundary.geojson",
+      "size_bytes": 1709,
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/buildings_site.geojson",
+      "size_bytes": 109297,
+      "sha256": "f18d313a078769f30e02d683278823385d9a753b1fdd2cceef701fe8839b3463"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/buildings_shadow_context.geojson",
+      "size_bytes": 304244,
+      "sha256": "372eb7bc2ae293f872cf344e4fbb526d9e2a4d4f1946e3db1e963e7f1d3a6e90"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/pedestrian_analysis_area.geojson",
+      "size_bytes": 5411,
+      "sha256": "c3f2cb7abf87630947b21a4b9ef4ad8cbcee53798471f562bd1c5d6dc26be967"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/context_height_review.csv",
+      "size_bytes": 25081,
+      "sha256": "10e6511da069e7adab5efa8c72af98b07d74b8e7343b5e58fd4de7079ebe14d6"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/material_assumptions.json",
+      "size_bytes": 2827,
+      "sha256": "23d5d0e60ca68075ceb057a8db248199b2338911ba182d27b68fcbfafffef26e"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_forcing.csv",
+      "size_bytes": 1708,
+      "sha256": "c1c819f453bac690bbf6f99481faf9d11200b1c549093ae326571aecd87009a7"
+    },
+    {
+      "path": "data/processed/approved_building_heights.csv",
+      "size_bytes": 7841,
+      "sha256": "9699c2706f3230f3ed165dbc8260c60086ebcdf45ca2fc39f1d4032700119de4"
+    },
+    {
+      "path": "data/processed/researcher_signoff.json",
+      "size_bytes": 873,
+      "sha256": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d"
+    }
+  ]
+}

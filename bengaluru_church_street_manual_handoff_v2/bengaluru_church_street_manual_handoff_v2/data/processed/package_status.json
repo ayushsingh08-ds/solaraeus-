@@ -1,0 +1,29 @@
+{
+  "schema_version": "2.0",
+  "handoff_version": "2.0",
+  "prepared_at_utc": "2026-10-06T20:12:00.174501+00:00",
+  "prepared_at_ist": "2026-10-07T01:42:00.174501+05:30",
+  "status": "REVIEW_DRAFT_NOT_READY_FOR_SIMULATION_CODING",
+  "all_requested_handoff_fields_populated_or_explicitly_missing": true,
+  "simulation_coding_started": false,
+  "simulation_engine_inspected": false,
+  "researcher_manual_signoff": null,
+  "building_height_counts": {
+    "buildings": 37,
+    "source_metre_heights": 0,
+    "floor_counts": 17,
+    "ml_candidates": 33,
+    "observed_heights": 0,
+    "approved_model_heights": 0
+  },
+  "blocking_items": [
+    "Researcher review/acceptance of source floors and separate ML or replacement heights for all relevant core/context casters; all approved model heights remain null.",
+    "Independent footprint registration, geometry completeness, outlier and edge-crossing checks.",
+    "Field/imagery confirmation of the proposed panel location, walkway, existing trees/awnings/canopies and clearances.",
+    "NASA POWER hourly interval convention and temporal averaging alignment before solar use.",
+    "Researcher acceptance or replacement of assumed materials, initial temperatures, flat ground and simplified unmapped-vegetation baseline.",
+    "Shadow-reach and context-boundary convergence check after heights and solar geometry are known.",
+    "Record researcher sign-off before simulator coding."
+  ],
+  "public_redistribution_note": "NOAA international-station record-specific license clarification remains open; no public publishing or sending was performed."
+}

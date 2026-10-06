@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "site_id": "BLR_CHURCH_STREET_01",
+        "name": "Church Street central/eastern study block",
+        "crs": "EPSG:4326",
+        "coordinate_order": "longitude,latitude",
+        "boundary_status": "proposed_research_boundary",
+        "width_m_geodesic": 216.991,
+        "height_m_geodesic": 132.756
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6064,
+              12.9743
+            ],
+            [
+              77.6064,
+              12.9755
+            ],
+            [
+              77.6044,
+              12.9755
+            ],
+            [
+              77.6044,
+              12.9743
+            ],
+            [
+              77.6064,
+              12.9743
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "description": "Bengaluru City station observations applied as spatially uniform forcing at the Church Street study site.",
+  "station_id": "NOAA_43295099999",
+  "station_name": "Bengaluru City Station",
+  "date": "2024-04-15",
+  "time_utc": "09:00:00",
+  "time_ist": "14:30:00",
+  "air_temperature_c": 35.0,
+  "dew_point_c": 8.5,
+  "relative_humidity_pct": 19.729,
+  "wind_speed_ms": 1.5,
+  "wind_direction_deg": 90.0,
+  "wind_direction_cardinal": "E",
+  "data_provenance": "Observed weather at Bengaluru City station, spatially uniform boundary forcing."
+}

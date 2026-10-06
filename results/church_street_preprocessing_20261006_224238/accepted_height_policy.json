@@ -1,0 +1,104 @@
+{
+  "policy_title": "Church Street Approved Height Selection Policy",
+  "description": "Multi-tier height evidence assignment separating Google ML estimates, source floor counts, and commercial canyon defaults.",
+  "scientific_qualification": "The Church Street scene has been converted into an exploratory local-coordinate triangular-mesh representation using approved but partly uncertain building-height estimates.",
+  "summary": {
+    "total_buildings_processed": 123,
+    "core_buildings_count": 37,
+    "context_buildings_count": 123,
+    "decision_status_classification": {
+      "approved_core_count": 30,
+      "accepted_context_count": 77,
+      "total_approved_or_accepted": 107,
+      "uncertain_core_count": 7,
+      "uncertain_context_count": 9,
+      "total_uncertain_status": 16,
+      "rejected_count": 0
+    },
+    "uncertainty_tier_classification": {
+      "moderate_uncertainty_count": 83,
+      "high_uncertainty_count": 29,
+      "extreme_uncertainty_count": 11,
+      "high_or_extreme_sensitivity_cohort": 40
+    },
+    "cross_tabulation": {
+      "approved_core_moderate": 28,
+      "approved_core_high": 2,
+      "accepted_context_moderate": 55,
+      "accepted_context_high": 22,
+      "uncertain_core_high": 5,
+      "uncertain_core_extreme": 2,
+      "uncertain_context_extreme": 9
+    },
+    "commercial_canyon_fallback_height_m": 9.6,
+    "scientific_framing": "The Church Street scene has been converted into an exploratory local-coordinate triangular-mesh representation using approved but partly uncertain building-height estimates."
+  },
+  "classification_axes_explained": {
+    "axis_1_decision_status": {
+      "purpose": "Formal gate determining whether building height is approved/accepted for simulation or marked uncertain",
+      "categories": {
+        "approved_core": 30,
+        "accepted_context": 77,
+        "total_approved_or_accepted": 107,
+        "uncertain_core": 7,
+        "uncertain_context": 9,
+        "total_uncertain": 16,
+        "rejected": 0,
+        "total_buildings": 123
+      }
+    },
+    "axis_2_uncertainty_tier": {
+      "purpose": "Evidence quality rating based on source corroboration and pixel coverage",
+      "categories": {
+        "moderate_uncertainty": 83,
+        "high_uncertainty": 29,
+        "extreme_uncertainty": 11,
+        "total_buildings": 123
+      }
+    },
+    "sensitivity_cohort_definition": {
+      "description": "The 40 buildings represents the union of High Uncertainty (29) + Extreme Uncertainty (11) tiers. This cohort comprises all 16 Uncertain status buildings plus 24 Approved/Accepted buildings with high uncertainty (2 core floor fallbacks lacking ML + 22 context ML estimates with <50% pixel coverage).",
+      "total_count": 40,
+      "breakdown": {
+        "uncertain_status": 16,
+        "approved_or_accepted_with_high_uncertainty": 24
+      }
+    },
+    "cross_tabulation_matrix": {
+      "approved_core": {
+        "moderate": 28,
+        "high": 2,
+        "extreme": 0,
+        "total": 30
+      },
+      "accepted_context": {
+        "moderate": 55,
+        "high": 22,
+        "extreme": 0,
+        "total": 77
+      },
+      "uncertain_core": {
+        "moderate": 0,
+        "high": 5,
+        "extreme": 2,
+        "total": 7
+      },
+      "uncertain_context": {
+        "moderate": 0,
+        "high": 0,
+        "extreme": 9,
+        "total": 9
+      },
+      "column_totals": {
+        "moderate": 83,
+        "high": 29,
+        "extreme": 11,
+        "total": 123
+      }
+    }
+  },
+  "fallback_parameters": {
+    "commercial_canyon_height_m": 9.6,
+    "rationale": "3 commercial floors x 3.2m typical Church Street commercial canyon height"
+  }
+}

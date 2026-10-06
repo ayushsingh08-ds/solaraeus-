@@ -1,0 +1,39 @@
+{
+  "execution_timestamp_utc": "20261006_232110",
+  "git_commit": "487f275f6d146d69e8288d4ffebf5d330c975ef9",
+  "python_version": "3.12.6",
+  "operating_system": "Windows 11",
+  "package_versions": {
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.0"
+  },
+  "input_file_hashes": {
+    "preprocessing/main_scene_mesh.json": "6dbaa914e7427445a808daef84a990ce524f64524c2d3293aa0a1da4cca300b6",
+    "preprocessing/shadow_context_mesh.json": "33c9ca008a6fa20e5155fb54652a7d3f2f31c5d20928c2cd0e1ecc360f47104e",
+    "preprocessing/scene_summary.json": "b884feff98e3d9f2712604f952578ebca6541fdc3d672ab78dd7bc5dbc9fad88",
+    "preprocessing/accepted_height_policy.json": "b0eab59cd623026bbfb708d742ee1a9480f4b66aed74dc31ff9693c0a0788f87",
+    "preprocessing/coordinate_validation.json": "33f0e6fe61dcb934c07c8dae34595d9443607271ddf9e0e5c240ff430b7ac62a",
+    "preprocessing/geometry_validation_report.json": "669d7977e95f83c6df8ccbc9a9643c5f96d25098eae78b18b655203af2616c5a",
+    "preprocessing/mesh_statistics.csv": "66f24059c7a031c88d01215ee2e218258e6ee175c4bffaaeb4d5a7271c6aebcd",
+    "preprocessing/uncertain_buildings.csv": "cc2aa444f705913d363bccda52e4c30df2e249e62ae8e8bfec6fb0313b43b5e7",
+    "preprocessing/preprocessing_report.md": "ee6cc8c5b3b943f93b957ad2977634fe342c8dddbd7814defe51a5e8296cd3c9",
+    "handoff/data/processed/researcher_signoff.json": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d",
+    "handoff/data/processed/material_assumptions.json": "23d5d0e60ca68075ceb057a8db248199b2338911ba182d27b68fcbfafffef26e",
+    "handoff/data/processed/pedestrian_analysis_area.geojson": "c3f2cb7abf87630947b21a4b9ef4ad8cbcee53798471f562bd1c5d6dc26be967",
+    "handoff/site_boundary.geojson": "444e42d81c2515203d8f265891e4dfba1b0121fdb745a02bc3ce037f6e7b31e6"
+  },
+  "preprocessing_artifact_path": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_preprocessing_20261006_224238",
+  "weather_timestamp": "2024-04-15 09:00:00 UTC",
+  "solar_interval": "2024-04-15 09:00-10:00 UTC",
+  "coordinate_reference_system": "EPSG:32643",
+  "local_origin": {
+    "x_utm_m": 782541.8055380594,
+    "y_utm_m": 1435736.1103432046,
+    "z_m": 0.0
+  },
+  "grid_resolution": 2.0,
+  "grid_cell_count": 28120,
+  "material_assumption_version": "v2_approved_assumptions",
+  "terrain_policy": "flat_ground_z0_retained_for_metadata_only",
+  "command_executed": "python scripts/run_church_street_static_simulation.py"
+}

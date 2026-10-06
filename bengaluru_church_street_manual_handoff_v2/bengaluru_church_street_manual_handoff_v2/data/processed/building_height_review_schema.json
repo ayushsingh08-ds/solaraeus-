@@ -1,0 +1,41 @@
+{
+  "categories": [
+    "observed",
+    "Overture-provided",
+    "floor-count-derived",
+    "Google/ML-estimated",
+    "manual estimate",
+    "unknown"
+  ],
+  "categories_are_separate_evidence_types_not_a_quality_ranking": true,
+  "source_vs_measurement": "Overture-provided identifies provenance; it does not imply surveyed measurement. Floor counts are source tags, not verified metre heights.",
+  "google_use_fields": "used_for_review means a separate ML candidate is included; used_in_model is false for every building.",
+  "null_contract": "Blank CSV numeric/evidence fields mean missing, not zero. JSON uses null.",
+  "confidence": "No site-calibrated statistical confidence is available. Presence-mask coverage is not probability/confidence; P10/P90 are spatial prediction summaries, not uncertainty bounds.",
+  "approval_fields": "Researcher must record accepted height, source category, evidence, reviewer and review date before model_height_m becomes non-null.",
+  "core_counts": {
+    "buildings": 37,
+    "source_metre_heights": 0,
+    "floor_counts": 17,
+    "ml_candidates": 33,
+    "observed_heights": 0,
+    "approved_model_heights": 0
+  },
+  "no_ml_estimate_labels": [
+    "B19",
+    "B23",
+    "B32",
+    "B36"
+  ],
+  "high_priority_ml_review_labels": [
+    "B02",
+    "B03",
+    "B17",
+    "B19",
+    "B23",
+    "B31",
+    "B32",
+    "B36",
+    "B37"
+  ]
+}
