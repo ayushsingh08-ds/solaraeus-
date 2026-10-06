@@ -115,6 +115,8 @@ dmypy.json
 # Antigravity IDE / Gemini Agent artifacts
 .gemini/
 .agents/
+context.md
+*context.md
 
 # Jupyter Notebooks
 .ipynb_checkpoints
