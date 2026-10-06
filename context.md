@@ -2,6 +2,17 @@
 
 This document provides a comprehensive, chronological, and technical record of all engineering steps, mathematical formulations, architectural decisions, verification procedures, and empirical research evaluation experiments executed for the **Certified Incremental SOLWEIG-Compatible Urban Thermal-Comfort Simulation** prototype.
 
+> **Repository Status: CONTROLLED TRIANGULAR-MESH GENERALIZATION FROZEN (173 Tests Passing)**  
+> - **Direct Shadow Parity**: $\text{IoU} = 1.000000$ (0 pixel mismatches against AABB).  
+> - **Sky View Factor Fidelity**: $\text{MAE} = 0.000258$ (order of magnitude below $0.005$ tolerance).  
+> - **Mean Radiant Temperature**: $\text{MAE} = 0.0101\,\text{K}$ (well below $0.05\,\text{K}$ tolerance).  
+> - **UTCI Category Agreement**: $100.00\%$ across all benchmark scenes.  
+> - **Certificate Soundness**: **0 violations detected across 24 audit runs** ($100.0\%$ sound).  
+> - **Non-Vacuous Mutation Testing**: $100\%$ detection rate on corrupted diffuse and shadow bounds.  
+> - **Peak Memory Boundedness**: Max $\le 8.34\,\text{MB}$ across scaling trials up to 3,072 triangles and 25,600 cells.  
+> - **Incremental Speedup**: Up to **$15.14\times$** ($77.7\%$ cell reuse).  
+> - **Primary Scientific Claim**: *"No certificate violations were observed in the evaluated synthetic configurations."*
+
 ---
 
 ## 1. Project Objective & Core Mathematical Guarantee
@@ -813,8 +824,8 @@ Directory: `results/audit_cleanup_20261005_222249/`
   - `speedup_canonical_benchmark.png`
 
 ### 7.8 Final Readiness Decision
-**`READY_FOR_CONTROLLED_TRIANGULAR_MESH_STAGE`**
-The CPU-based, single-timestep, SOLWEIG-compatible certified incremental prototype has been independently audited, mathematically defended, proven sensitive to bugs via effective mutations, and reconciled across all benchmark configurations. The codebase is clean, frozen, and ready for triangular-mesh geometric generalization.
+**`CONTROLLED_TRIANGULAR_MESH_STAGE_COMPLETED_AND_FROZEN`**
+The CPU-based, single-timestep, SOLWEIG-compatible certified incremental prototype has completed both its AABB foundation phase (99 tests) and its Controlled Triangular-Mesh Generalization stage (173 tests). The entire suite has been independently audited, mathematically defended, verified against mutations, and frozen. See Section 9 for full technical details.
 
 ---
 
@@ -830,6 +841,7 @@ The CPU-based, single-timestep, SOLWEIG-compatible certified incremental prototy
 | `fa5a5d2` | 2026-10-06 | `docs: add Milestone 14 audit results, mutation benchmarks, and timing tables to context.md` |
 | `2e1c98d` | 2026-10-05 | `feat(audit): clean, verify, and freeze audit with UTC provenance and canonical benchmarks` (Milestone 15, UTC timestamp provenance, 4 repaired mutations, canonical benchmark table, 5-tier analytical verification, 99 tests passing, frozen cleanup artifacts) |
 | `05d9b4d` | 2026-10-06 | `feat(mesh): complete controlled triangular-mesh generalization stage (Milestones 1-12 freeze)` (Milestones 1–12, 173 tests passing, exact shadow IoU 1.0, 0 violations on 24 audit runs, scaling to 3072 triangles, frozen report) |
+| `9013aee` | 2026-10-06 | `docs: record commit 05d9b4d in version control history` |
 
 ---
 
@@ -908,4 +920,45 @@ Directory: `results/mesh_validation_20261006_092428/`
 - **Post-Mesh Extension**: **173 passing automated tests** (+74 new tests covering geometry, ray intersection, shadows, visibility, affected regions, incremental updates, certificate audits, adversarial edge cases, AABB benchmarks, scaling benchmarks, and mutation audits).
 - **Failures / Errors**: 0.
 - **Status**: **COMPLETE AND AUDIT FROZEN**.
+
+### 9.10 Architecture Map & Module Inventory
+The triangular-mesh generalization was integrated seamlessly into the existing pipeline without architectural bifurcations:
+
+```
+src/urban_comfort/
+├── geometry/
+│   ├── primitives.py                     # AABB prisms, bounding boxes
+│   ├── mesh.py                           # TriangleMesh data model & 6 synthetic constructors
+│   └── scene.py                          # Unified scene container supporting both buildings & meshes
+├── visibility/
+│   ├── ray_intersection.py               # Kay-Kajiya slab ray-AABB intersection
+│   ├── mesh_ray_intersection.py          # Vector-batch Möller-Trumbore ray-triangle intersection
+│   ├── shadow.py                         # Unified shadow dispatcher (AABB / mesh)
+│   ├── mesh_shadow.py                    # Direct solar raycasting for mesh geometry
+│   ├── directional_visibility.py         # Unified SVF dispatcher (AABB / mesh)
+│   └── mesh_visibility.py                # Top-envelope DSM rasterization & multi-azimuth horizon scan
+├── incremental/
+│   ├── affected_region.py                # Unified dirty region dispatcher
+│   ├── mesh_affected_region.py           # Conservative bounding volume plume & horizon radius
+│   ├── update.py                         # Certified incremental updates with ErrorCertificate
+│   └── mesh_update.py                    # Mesh edit operations (Add, Remove, Replace, Move, ChangeHeight)
+└── benchmark/
+    ├── independent_audit.py              # Decoupled certificate audit engine
+    ├── mesh_certificate_audit.py         # 24-run independent audit runner for meshes
+    ├── aabb_vs_mesh_benchmark.py         # 4-scene canonical AABB vs mesh parity benchmark
+    └── mesh_scaling_benchmark.py         # Triangle scaling & resolution scaling benchmark
+
+tests/ (173 tests total: 99 baseline + 74 mesh extension)
+├── test_mesh_geometry.py                 # 14 tests: data model, normals, areas, constructors
+├── test_ray_triangle_intersection.py     # 10 tests: Möller-Trumbore, two-sided, backface, AABB culling
+├── test_mesh_shadows.py                  # 8 tests: raycasting shadows, parity with AABB, night
+├── test_mesh_visibility.py               # 7 tests: DSM rasterization, SVF parity, horizon occlusion
+├── test_mesh_affected_region.py          # 7 tests: plume conservatism, zero false negatives
+├── test_mesh_incremental_updates.py      # 7 tests: exact recompute zero drift, certified reuse > 84%
+├── test_mesh_certificate_audits.py       # 1 test: end-to-end 24-configuration audit soundness
+├── test_mesh_adversarial.py              # 8 tests: sliver triangles, grazing sun, revert drift < 1e-10K
+├── test_aabb_vs_mesh_benchmarks.py       # 5 tests: 4-scene parity, IoU 1.0, SVF MAE < 0.005, Tmrt MAE < 0.05K
+├── test_mesh_scaling_benchmarks.py       # 4 tests: M in [12..3072], dx in [0.5..2.0m], peak mem < 50MB
+└── test_mesh_mutation_audit.py           # 3 tests: non-vacuous mutation audit (100% violation detection)
+```
 
