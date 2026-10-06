@@ -3,6 +3,19 @@
   "solar_interval_ist": "14:30-15:30 IST",
   "solar_position_time_utc": "09:00:00 UTC",
   "source": "NASA POWER hourly solar radiation estimates (April 15, 2024)",
+  "authoritative_solar_position": {
+    "timestamp_utc": "2024-04-15T09:00:00Z",
+    "timestamp_ist": "2024-04-15T14:30:00+05:30",
+    "latitude": 12.974900,
+    "longitude": 77.605400,
+    "timezone": "UTC / IST (UTC+05:30)",
+    "solar_altitude": 57.916,
+    "solar_zenith": 32.084,
+    "solar_azimuth_true_north": 268.1655,
+    "solar_azimuth_grid_north": 267.5802,
+    "algorithm_module": "urban_comfort.solar.solar_position (NOAA Solar Calculations)",
+    "discrepancy_explanation": "Earlier review drafting reported approximately altitude 52.82 deg and azimuth 264.4 deg. Mathematical analysis confirms that earlier figure was a preliminary uncorrected estimate based on 2.5 hours past solar noon (H = 37.5 deg) assuming noon at 12:00 clock time without local longitude offset or Equation of Time. Because Bengaluru (77.6054 deg E) is 4.895 deg west of the IST meridian (82.5 deg E), local solar noon occurs at 12:20 IST (06:50 UTC). At 14:30 IST, only 2.17 hours have elapsed since solar noon, yielding solar altitude 57.9160 deg. Evaluating the sun position 2.5 hours after true solar noon (at 14:51 IST / 09:21 UTC) yields altitude 52.8011 deg, matching the earlier uncorrected record. The authoritative NOAA solar algorithm evaluated at 09:00:00 UTC / 14:30:00 IST correctly establishes altitude 57.9160 deg and azimuth 268.1655 deg True North."
+  },
   "irradiance_components_w_m2": {
     "ghi": 755.97,
     "dni": 728.31,

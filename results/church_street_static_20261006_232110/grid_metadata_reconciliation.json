@@ -24,6 +24,9 @@
       "ymax": 216.0
     }
   },
-  "mathematical_reconciliation": "The discrete grid extent is strictly 380.0 m x 296.0 m at 2.0 m resolution. nx = 380.0 / 2.0 = 190 columns, ny = 296.0 / 2.0 = 148 rows. Total cells = 190 * 148 = 28,120. The nominal preprocessing text citing '295 m' was an unrounded envelope approximation (295 / 2 = 147.5 cells). Because non-integer grid cells cannot exist, the discrete grid snapped to 148 rows (296.0 m). Formula (380.0 * 296.0) / (2.0^2) = 112,480 / 4 = 28,120 cells is exact with zero fractional truncation. The discrepancy was an informal report text rounding; the actual serialized simulation mesh and grid are exact.",
+  "nominal_rounded_bounds": "380 m × 295 m",
+  "actual_discrete_grid_extent": "380 m × 296 m",
+  "actual_grid": "190 × 148 cells = 28,120 cells",
+  "mathematical_reconciliation": "The discrete grid extent is strictly 380.0 m x 296.0 m at 2.0 m resolution. nx = 380.0 / 2.0 = 190 columns, ny = 296.0 / 2.0 = 148 rows. Total cells = 190 * 148 = 28,120. The nominal preprocessing text citing '380 m x 295 m' was an unrounded envelope approximation (295 / 2 = 147.5 cells). Because non-integer grid cells cannot exist, the discrete grid snapped to 148 rows (296.0 m). Formula (380.0 * 296.0) / (2.0^2) = 112,480 / 4 = 28,120 cells is exact with zero fractional truncation. The discrepancy was an informal report text rounding; the actual serialized simulation mesh and grid are exact.",
   "affects_actual_simulation_grid": false
 }

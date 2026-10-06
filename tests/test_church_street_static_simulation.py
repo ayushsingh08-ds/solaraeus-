@@ -74,6 +74,9 @@ def test_grid_metadata_reconciliation(static_run_dir):
     recon = json.loads(recon_path.read_text(encoding="utf-8"))
     assert recon["status"] == "reconciled_and_verified"
     assert recon["affects_actual_simulation_grid"] is False
+    assert recon["nominal_rounded_bounds"] == "380 m × 295 m"
+    assert recon["actual_discrete_grid_extent"] == "380 m × 296 m"
+    assert recon["actual_grid"] == "190 × 148 cells = 28,120 cells"
     
     grid = recon["discrete_simulation_grid"]
     assert grid["extent_x_m"] == 380.0
@@ -88,7 +91,7 @@ def test_grid_metadata_reconciliation(static_run_dir):
 
 
 def test_solar_radiation_consistency(static_run_dir):
-    """Verifies that GHI ≈ DNI * cos(zenith) + DHI holds within satellite hourly tolerance."""
+    """Verifies that GHI ≈ DNI * cos(zenith) + DHI holds within satellite hourly tolerance and authoritative solar position is recorded."""
     solar_path = static_run_dir / "solar_summary.json"
     assert solar_path.exists()
     
@@ -97,6 +100,20 @@ def test_solar_radiation_consistency(static_run_dir):
     dni = solar["irradiance_components_w_m2"]["dni"]
     dhi = solar["irradiance_components_w_m2"]["dhi"]
     zenith = solar["solar_angles_at_0900_utc"]["zenith_deg"]
+    
+    # Authoritative solar position checks
+    assert "authoritative_solar_position" in solar
+    auth_solar = solar["authoritative_solar_position"]
+    assert auth_solar["timestamp_utc"] == "2024-04-15T09:00:00Z"
+    assert auth_solar["timestamp_ist"] == "2024-04-15T14:30:00+05:30"
+    assert auth_solar["latitude"] == 12.974900
+    assert auth_solar["longitude"] == 77.605400
+    assert abs(auth_solar["solar_altitude"] - 57.916) < 0.01
+    assert abs(auth_solar["solar_zenith"] - 32.084) < 0.01
+    assert abs(auth_solar["solar_azimuth_true_north"] - 268.1655) < 0.01
+    assert abs(auth_solar["solar_azimuth_grid_north"] - 267.5802) < 0.01
+    assert "urban_comfort.solar.solar_position" in auth_solar["algorithm_module"]
+    assert "52.82" in auth_solar["discrepancy_explanation"]
     
     # Instantaneous calculation at 09:00 UTC
     calc_ghi_inst = dni * math.cos(math.radians(zenith)) + dhi
@@ -215,3 +232,51 @@ def test_quality_checks_json_overall_status(static_run_dir):
     assert checks["direct_flux_zero_in_shadow"] is True
     assert checks["tmrt_lit_warmer_than_shade"] is True
     assert checks["utci_lit_warmer_than_shade"] is True
+
+
+def test_weather_station_distance_and_framing(static_run_dir):
+    """Verifies that station distance (2.56 km) and mandatory weather framing are strictly reconciled."""
+    weather_path = static_run_dir / "weather_summary.json"
+    assert weather_path.exists()
+    weather = json.loads(weather_path.read_text(encoding="utf-8"))
+    
+    assert weather["station_distance_km"] == 2.56
+    assert abs(weather["station_distance_m"] - 2561.6) < 1.0
+    assert weather["station_latitude"] == 12.9666666
+    assert weather["station_longitude"] == 77.5833333
+    assert weather["site_latitude"] == 12.974900
+    assert weather["site_longitude"] == 77.605400
+    
+    expected_framing = "Bengaluru City station observations applied as spatially uniform forcing at the Church Street study site."
+    assert weather["description"] == expected_framing
+    
+    # Check input_summary.json
+    input_summary_path = static_run_dir / "input_summary.json"
+    assert input_summary_path.exists()
+    input_summary = json.loads(input_summary_path.read_text(encoding="utf-8"))
+    assert input_summary["weather_forcing_summary"]["station_distance_km"] == 2.56
+    assert input_summary["weather_forcing_summary"]["description"] == expected_framing
+    
+    # Check static_simulation_report.md
+    report_path = static_run_dir / "static_simulation_report.md"
+    assert report_path.exists()
+    report_text = report_path.read_text(encoding="utf-8")
+    assert "2.56 km" in report_text
+    assert expected_framing in report_text
+    # Ensure obsolete 4.5 km is completely gone
+    assert "4.5 km" not in report_text
+
+
+def test_readiness_decision_reconciled(static_run_dir):
+    """Verifies that readiness decision is updated to READY_FOR_SHADE_PANEL_FULL_RECOMPUTATION_AFTER_METADATA_RECONCILIATION."""
+    report_path = static_run_dir / "static_simulation_report.md"
+    assert report_path.exists()
+    report_text = report_path.read_text(encoding="utf-8")
+    
+    expected_decision = "READY_FOR_SHADE_PANEL_FULL_RECOMPUTATION_AFTER_METADATA_RECONCILIATION"
+    assert expected_decision in report_text
+    
+    # Ensure old standalone readiness token does not exist without the reconciliation suffix
+    old_decision_only = "`READY_FOR_SHADE_PANEL_FULL_RECOMPUTATION`"
+    assert old_decision_only not in report_text
+

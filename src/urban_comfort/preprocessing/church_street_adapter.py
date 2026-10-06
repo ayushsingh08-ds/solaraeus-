@@ -120,7 +120,11 @@ class ChurchStreetAdapter:
         """Loads approved height policy for the 37 core study buildings."""
         path = self.config.approved_heights_path
         if not path.exists():
-            raise FileNotFoundError(f"Core approved heights file not found at: {path}")
+            candidate = self.config.handoff_dir / path.name
+            if candidate.exists():
+                path = candidate
+            else:
+                raise FileNotFoundError(f"Core approved heights file not found at: {path}")
 
         heights: Dict[str, Dict[str, Any]] = {}
         with open(path, mode="r", encoding="utf-8") as f:
