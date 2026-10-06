@@ -118,24 +118,57 @@ def compute_candidate_affected_region(scene_before: Scene,
             new_projection_bbox=empty_bbox
         )
 
-    # 2. Extract Old and New Geometry 3D Bounding Boxes
+    # 2. Extract Geometry and Project Shadows
     if isinstance(edit, AddBuildingEdit):
         old_box = (edit.building.xmin, edit.building.xmax, edit.building.ymin, edit.building.ymax, 0.0, 0.0)
         new_box = edit.building.bounds_3d
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
     elif isinstance(edit, RemoveBuildingEdit):
         bldg_old = scene_before.buildings[edit.building_id]
         old_box = bldg_old.bounds_3d
         new_box = (bldg_old.xmin, bldg_old.xmax, bldg_old.ymin, bldg_old.ymax, 0.0, 0.0)
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
     elif isinstance(edit, ChangeHeightEdit):
         bldg_old = scene_before.buildings[edit.building_id]
         old_box = bldg_old.bounds_3d
         new_box = (bldg_old.xmin, bldg_old.xmax, bldg_old.ymin, bldg_old.ymax, bldg_old.zmin, edit.new_height)
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
     elif isinstance(edit, MoveBuildingEdit):
         bldg_old = scene_before.buildings[edit.building_id]
         old_box = bldg_old.bounds_3d
         new_box = (bldg_old.xmin + edit.shift_x, bldg_old.xmax + edit.shift_x,
                    bldg_old.ymin + edit.shift_y, bldg_old.ymax + edit.shift_y,
                    bldg_old.zmin, bldg_old.zmax)
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
+    elif type(edit).__name__ in ("AddMeshEdit", "RemoveMeshEdit", "ReplaceMeshEdit", "MoveMeshEdit", "ChangeMeshHeightEdit"):
+        from urban_comfort.incremental.mesh_affected_region import project_mesh_shadow
+        if type(edit).__name__ == "AddMeshEdit":
+            mesh_old = None
+            mesh_new = getattr(edit, "mesh")
+        elif type(edit).__name__ == "RemoveMeshEdit":
+            mesh_old = scene_before.meshes.get(getattr(edit, "mesh_id"))
+            mesh_new = None
+        elif type(edit).__name__ == "ReplaceMeshEdit":
+            mesh_old = scene_before.meshes.get(getattr(edit, "mesh_id"))
+            mesh_new = getattr(edit, "new_mesh")
+        else: # MoveMeshEdit, ChangeMeshHeightEdit
+            mesh_old = scene_before.meshes.get(getattr(edit, "mesh_id"))
+            new_scene, _ = edit.apply(scene_before)
+            mesh_new = new_scene.meshes.get(getattr(edit, "mesh_id"))
+
+        if mesh_old is not None and mesh_old.enabled:
+            p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_mesh_shadow(mesh_old, solar_pos, grid.z_ped)
+        else:
+            p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = 0.0, 0.0, 0.0, 0.0, 0.0
+
+        if mesh_new is not None and mesh_new.enabled:
+            p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_mesh_shadow(mesh_new, solar_pos, grid.z_ped)
+        else:
+            p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = 0.0, 0.0, 0.0, 0.0, 0.0
     else:
         # Fallback for unknown edit type
         return AffectedRegionResult(
@@ -150,19 +183,25 @@ def compute_candidate_affected_region(scene_before: Scene,
             new_projection_bbox=empty_bbox
         )
 
-    # 3. Project Old and New Shadows
-    p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
-    p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
-
     old_proj_bbox = (p_old_x1, p_old_x2, p_old_y1, p_old_y2)
     new_proj_bbox = (p_new_x1, p_new_x2, p_new_y1, p_new_y2)
 
     # 4. Encompassing Envelope + Safety Margin
     margin_m = safety_margin_cells * grid.dx
-    cand_x1 = min(p_old_x1, p_new_x1) - margin_m
-    cand_x2 = max(p_old_x2, p_new_x2) + margin_m
-    cand_y1 = min(p_old_y1, p_new_y1) - margin_m
-    cand_y2 = max(p_old_y2, p_new_y2) + margin_m
+    if old_proj_bbox != empty_bbox and new_proj_bbox != empty_bbox:
+        comb_x1 = min(p_old_x1, p_new_x1)
+        comb_x2 = max(p_old_x2, p_new_x2)
+        comb_y1 = min(p_old_y1, p_new_y1)
+        comb_y2 = max(p_old_y2, p_new_y2)
+    elif old_proj_bbox != empty_bbox:
+        comb_x1, comb_x2, comb_y1, comb_y2 = p_old_x1, p_old_x2, p_old_y1, p_old_y2
+    else:
+        comb_x1, comb_x2, comb_y1, comb_y2 = p_new_x1, p_new_x2, p_new_y1, p_new_y2
+
+    cand_x1 = comb_x1 - margin_m
+    cand_x2 = comb_x2 + margin_m
+    cand_y1 = comb_y1 - margin_m
+    cand_y2 = comb_y2 + margin_m
 
     slice_y, slice_x = grid.bounding_box_slices(cand_x1, cand_x2, cand_y1, cand_y2)
     candidate_mask = np.zeros((ny, nx), dtype=bool)

@@ -11,6 +11,7 @@ from urban_comfort.config import (
     Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
 from urban_comfort.geometry.primitives import Building, BoundingBox2D
+from urban_comfort.geometry.mesh import TriangleMesh
 
 
 @dataclass
@@ -47,6 +48,7 @@ class PedestrianGridConfig:
 class Scene:
     """Complete urban scene representation."""
     buildings: Dict[str, Building] = field(default_factory=dict)
+    meshes: Dict[str, TriangleMesh] = field(default_factory=dict)
     ground: GroundPlane = field(default_factory=GroundPlane)
     pedestrian_grid: PedestrianGridConfig = field(default_factory=PedestrianGridConfig)
     materials: Dict[str, Material] = field(default_factory=dict)
@@ -72,6 +74,19 @@ class Scene:
 
     def get_active_buildings(self) -> List[Building]:
         return [b for b in self.buildings.values() if b.enabled]
+
+    def add_mesh(self, mesh: TriangleMesh):
+        if mesh.id in self.meshes:
+            raise ValueError(f"Mesh ID '{mesh.id}' already exists in scene.")
+        self.meshes[mesh.id] = mesh
+
+    def remove_mesh(self, mesh_id: str) -> TriangleMesh:
+        if mesh_id not in self.meshes:
+            raise KeyError(f"Mesh ID '{mesh_id}' not found in scene.")
+        return self.meshes.pop(mesh_id)
+
+    def get_active_meshes(self) -> List[TriangleMesh]:
+        return [m for m in self.meshes.values() if m.enabled]
 
     def to_dict(self) -> Dict[str, Any]:
         """Serializes scene to a JSON-compatible dictionary."""
@@ -115,6 +130,10 @@ class Scene:
                     "enabled": b.enabled
                 }
                 for b in self.buildings.values()
+            ],
+            "meshes": [
+                m.to_dict()
+                for m in self.meshes.values()
             ]
         }
 
@@ -167,8 +186,14 @@ class Scene:
             )
             buildings[b.id] = b
 
+        meshes = {}
+        for m_data in data.get("meshes", []):
+            m = TriangleMesh.from_dict(m_data)
+            meshes[m.id] = m
+
         return cls(
             buildings=buildings,
+            meshes=meshes,
             ground=ground,
             pedestrian_grid=ped_grid,
             materials=materials,

@@ -17,6 +17,18 @@ from urban_comfort.benchmark.independent_audit import (
     run_detailed_timing_audit,
 )
 
+from urban_comfort.benchmark.mesh_certificate_audit import run_mesh_certificate_audit
+from urban_comfort.benchmark.aabb_vs_mesh_benchmark import (
+    run_aabb_vs_mesh_benchmark,
+    get_canonical_benchmark_scenes,
+    run_single_comparison,
+)
+
+from urban_comfort.benchmark.mesh_scaling_benchmark import (
+    run_mesh_scaling_benchmark,
+    create_mesh_scaling_scene,
+)
+
 __all__ = [
     "BenchmarkRecord",
     "ReproducibilityRecord",
@@ -30,4 +42,10 @@ __all__ = [
     "build_dependency_coverage_audit",
     "run_mutation_tests",
     "run_detailed_timing_audit",
+    "run_mesh_certificate_audit",
+    "run_aabb_vs_mesh_benchmark",
+    "get_canonical_benchmark_scenes",
+    "run_single_comparison",
+    "run_mesh_scaling_benchmark",
+    "create_mesh_scaling_scene",
 ]

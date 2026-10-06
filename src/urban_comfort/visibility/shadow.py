@@ -37,7 +37,8 @@ def compute_direct_shadow_mask(scene: Scene, grid: PedestrianGrid,
         return np.zeros((ny, nx), dtype=np.float64)
 
     active_buildings = scene.get_active_buildings()
-    if not active_buildings:
+    active_meshes = scene.get_active_meshes() if hasattr(scene, "get_active_meshes") else []
+    if not active_buildings and not active_meshes:
         return shadow_mask
 
     # Determine cells to evaluate
@@ -72,6 +73,12 @@ def compute_direct_shadow_mask(scene: Scene, grid: PedestrianGrid,
             (origins[:, 2] <= bounds[5])
         )
         is_occluded |= inside_footprint
+
+    # Test occlusion against triangular meshes
+    if active_meshes:
+        from urban_comfort.visibility.mesh_ray_intersection import intersect_rays_scene_meshes
+        mesh_hits, _ = intersect_rays_scene_meshes(origins, sun_dir, active_meshes, early_exit=True)
+        is_occluded |= mesh_hits
 
     # Apply occlusion results
     shadowed_y = eval_indices_y[is_occluded]

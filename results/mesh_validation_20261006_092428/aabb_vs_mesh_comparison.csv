@@ -1,0 +1,5 @@
+scene_id,display_name,description,domain_size_m,grid_resolution_m,aabb_building_count,mesh_triangle_count,shadow_iou,shadow_mismatch_cells,svf_mae,svf_rmse,svf_max_diff,tmrt_mae_k,tmrt_rmse_k,tmrt_max_diff_k,utci_category_agreement,runtime_aabb_sec,runtime_mesh_sec,overhead_ratio
+isolated_building,Isolated Building,"Single central high-rise block (20m x 20m, height 25m)",60x60,1.0,1,12,1.0,0,0.000145,0.000327,0.000849,0.005894,0.01328,0.042577,1.0,0.2431,0.2335,0.96
+urban_canyon,Urban Canyon,"Two parallel slabs (40m x 15m, height 20m) separated by 20m street canyon",80x80,1.0,2,24,1.0,0,0.000285,0.000513,0.001074,0.011196,0.020239,0.053181,1.0,0.3034,0.6341,2.09
+enclosed_courtyard,Enclosed Courtyard,Four perimeter blocks (height 18m) enclosing a 20m x 20m courtyard,80x80,1.0,4,48,1.0,0,0.000334,0.000671,0.002402,0.013033,0.025706,0.092906,1.0,0.5348,0.7367,1.38
+dense_3x3_grid,Dense 3x3 Grid,"Nine urban blocks (16m x 16m, height 15-24m) in a 3x3 regular grid",80x80,1.0,9,108,1.0,0,0.000269,0.000507,0.001459,0.010422,0.019656,0.06889,1.0,0.716,0.7175,1.0

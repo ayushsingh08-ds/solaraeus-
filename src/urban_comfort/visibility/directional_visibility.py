@@ -33,7 +33,8 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
     svf = np.ones((ny, nx), dtype=np.float64)
 
     active_buildings = scene.get_active_buildings()
-    if not active_buildings:
+    active_meshes = scene.get_active_meshes()
+    if not active_buildings and not active_meshes:
         return svf
 
     if roi_mask is not None:
@@ -52,6 +53,12 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
 
     # Building bounding boxes: (xmin, xmax, ymin, ymax, zmin, zmax)
     bldg_boxes = [b.bounds_3d for b in active_buildings]
+
+    # Pre-rasterize meshes to height grid if meshes are present
+    h_mesh_grid: Optional[np.ndarray] = None
+    if active_meshes:
+        from urban_comfort.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+        h_mesh_grid = rasterize_scene_meshes_to_height_grid(scene, grid)
 
     # Precompute azimuth unit vectors
     azimuths_deg = np.linspace(0.0, 360.0, num_azimuths, endpoint=False)
@@ -83,7 +90,7 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
 
             max_tan_elev = np.zeros(b_count, dtype=np.float64)
 
-            # Check obstacle heights
+            # Check AABB obstacle heights
             for bounds in bldg_boxes:
                 xmin, xmax, ymin, ymax, _, zmax = bounds
                 in_bldg = (
@@ -98,16 +105,50 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
                 tan_elev = np.where(in_bldg, delta_h / steps[None, :], 0.0)
                 max_tan_elev = np.maximum(max_tan_elev, np.max(tan_elev, axis=1))
 
+            # Check mesh obstacle heights if meshes are present
+            if h_mesh_grid is not None:
+                sample_ix = np.clip(
+                    np.floor((sample_x - grid.origin_x) / grid.dx).astype(np.int64),
+                    0, nx - 1
+                )
+                sample_iy = np.clip(
+                    np.floor((sample_y - grid.origin_y) / grid.dx).astype(np.int64),
+                    0, ny - 1
+                )
+                in_bounds = (
+                    (sample_x >= grid.origin_x) &
+                    (sample_x <= grid.origin_x + grid.extent_x) &
+                    (sample_y >= grid.origin_y) &
+                    (sample_y <= grid.origin_y + grid.extent_y)
+                )
+                sample_h = np.where(in_bounds, h_mesh_grid[sample_iy, sample_ix], 0.0)
+                delta_h_mesh = np.maximum(0.0, sample_h - z_ped)
+                tan_elev_mesh = delta_h_mesh / steps[None, :]
+                max_tan_elev = np.maximum(max_tan_elev, np.max(tan_elev_mesh, axis=1))
+
             # cos^2(elev) = 1 / (1 + tan^2(elev))
             batch_cos2 += 1.0 / (1.0 + max_tan_elev ** 2)
 
         batch_svf = batch_cos2 / float(num_azimuths)
 
-        # Inside building footprint check: if receptor is inside a building, SVF = 0.0
+        # Inside AABB building footprint check: if receptor is inside a building, SVF = 0.0
         for bounds in bldg_boxes:
             xmin, xmax, ymin, ymax, _, _ = bounds
             inside = (bx >= xmin) & (bx <= xmax) & (by >= ymin) & (by <= ymax)
             batch_svf[inside] = 0.0
+
+        # Inside mesh footprint check: if receptor is inside or under a mesh envelope, SVF = 0.0
+        if h_mesh_grid is not None:
+            recept_ix = np.clip(
+                np.floor((bx - grid.origin_x) / grid.dx).astype(np.int64),
+                0, nx - 1
+            )
+            recept_iy = np.clip(
+                np.floor((by - grid.origin_y) / grid.dx).astype(np.int64),
+                0, ny - 1
+            )
+            inside_mesh = h_mesh_grid[recept_iy, recept_ix] > z_ped
+            batch_svf[inside_mesh] = 0.0
 
         svf[eval_indices_y[b_start:b_end], eval_indices_x[b_start:b_end]] = np.clip(batch_svf, 0.0, 1.0)
 

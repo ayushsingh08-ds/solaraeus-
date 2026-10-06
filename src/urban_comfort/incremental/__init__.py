@@ -18,6 +18,12 @@ from urban_comfort.incremental.update import (
 from urban_comfort.incremental.affected_region import (
     AffectedRegionResult, compute_candidate_affected_region, project_box_shadow
 )
+from urban_comfort.incremental.mesh_affected_region import (
+    project_mesh_shadow, compute_mesh_candidate_affected_region
+)
+from urban_comfort.incremental.mesh_update import (
+    AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
+)
 from urban_comfort.incremental.certificate import (
     ErrorCertificate, CertificateVerification, CertificateViolationError,
     generate_error_certificate, verify_certificate
@@ -37,12 +43,19 @@ __all__ = [
     "RemoveBuildingEdit",
     "ChangeHeightEdit",
     "MoveBuildingEdit",
+    "AddMeshEdit",
+    "RemoveMeshEdit",
+    "ReplaceMeshEdit",
+    "MoveMeshEdit",
+    "ChangeMeshHeightEdit",
     "IncrementalUpdateResult",
     "incremental_update_exact",
     "incremental_update_certified",
     "AffectedRegionResult",
     "compute_candidate_affected_region",
     "project_box_shadow",
+    "project_mesh_shadow",
+    "compute_mesh_candidate_affected_region",
     "ErrorCertificate",
     "CertificateVerification",
     "CertificateViolationError",

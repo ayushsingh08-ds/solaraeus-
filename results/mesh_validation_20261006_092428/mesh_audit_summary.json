@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-06T09:24:28.912711+00:00",
+  "total_scenarios": 8,
+  "total_runs": 24,
+  "total_violations": 0,
+  "all_sound": true,
+  "output_directory": "results\\mesh_validation_20261006_092428",
+  "csv_path": "results\\mesh_validation_20261006_092428\\mesh_dependency_audit.csv",
+  "mean_reused_fraction": 0.20835833333333334,
+  "max_reused_fraction": 0.6252,
+  "mean_speedup_ratio": 1.235
+}

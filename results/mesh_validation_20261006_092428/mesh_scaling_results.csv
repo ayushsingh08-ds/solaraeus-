@@ -1,0 +1,9 @@
+config_type,tier_id,building_count,mesh_triangle_count,domain_extent_m,grid_resolution_m,grid_cells_total,peak_memory_mb,time_shadow_sec,time_svf_sec,time_full_recompute_sec,time_incremental_sec,time_selective_recompute_sec,reused_cell_fraction,recomputed_cells,speedup_ratio
+triangle_scaling,T1_12_tri,1,12,100.0,1.0,10000,8.28,0.0192,1.451,3.1876,1.1119,1.1053,0.0,10000,2.88
+triangle_scaling,T2_48_tri,4,48,100.0,1.0,10000,8.21,0.0356,1.0475,2.6065,1.2674,1.2645,0.0,10000,2.06
+triangle_scaling,T3_192_tri,16,192,100.0,1.0,10000,8.21,0.2265,1.2335,3.1373,1.3965,1.3922,0.021,9790,2.25
+triangle_scaling,T4_768_tri,64,768,100.0,1.0,10000,8.22,0.8081,1.5231,5.364,1.0908,1.0735,0.5014,4986,5.0
+triangle_scaling,T5_3072_tri,256,3072,100.0,1.0,10000,8.22,3.0198,3.4571,13.1783,0.9742,0.8703,0.777,2230,15.14
+resolution_scaling,R1_2.0m,16,192,80.0,2.0,1600,3.1,0.1963,0.2523,0.985,0.1929,0.1848,0.0013,1598,5.33
+resolution_scaling,R2_1.0m,16,192,80.0,1.0,6400,6.43,0.219,0.8729,2.0482,0.6907,0.6867,0.0009,6394,2.98
+resolution_scaling,R3_0.5m,16,192,80.0,0.5,25600,8.34,0.2279,3.0856,7.6067,3.7039,3.6978,0.001,25575,2.06
