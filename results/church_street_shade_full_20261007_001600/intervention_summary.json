@@ -1,0 +1,39 @@
+{
+  "intervention_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "edit_type": "add_overhead_shade_panel",
+  "dimensions_m": [
+    6.0,
+    3.0,
+    0.1
+  ],
+  "height_m": {
+    "underside": 3.5,
+    "top": 3.6
+  },
+  "footprint_area_m2": 17.99999999947704,
+  "material": {
+    "id": "SHADE_PANEL_ASSUMED_001",
+    "albedo": 0.6,
+    "emissivity": 0.9,
+    "surface_temperature_c": 35.0
+  },
+  "bearing_deg": {
+    "true_north": 103.02790844205674,
+    "grid_north": 102.44250192876865
+  },
+  "timing_sec": {
+    "baseline_full_recompute": 6.232955999999831,
+    "intervention_full_recompute": 6.038027599999623
+  },
+  "cells_changed": {
+    "shadow_changed_cells": 6,
+    "svf_changed_cells": 104,
+    "tmrt_changed_cells": 39
+  },
+  "cooling_magnitude": {
+    "max_tmrt_cooling_k": -12.616308183378294,
+    "max_utci_cooling_k": -3.1000000000000014
+  },
+  "incremental_computation_used": false
+}

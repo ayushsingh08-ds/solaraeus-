@@ -1,0 +1,71 @@
+{
+  "status": "PASSED",
+  "baseline_array_shapes": [
+    148,
+    190
+  ],
+  "intervention_array_shapes": [
+    148,
+    190
+  ],
+  "shape_equality": true,
+  "nan_counts": {
+    "baseline_shadow": 0,
+    "intervention_shadow": 0,
+    "baseline_svf": 0,
+    "intervention_svf": 0,
+    "baseline_tmrt": 0,
+    "intervention_tmrt": 0,
+    "baseline_utci": 0,
+    "intervention_utci": 0
+  },
+  "infinite_value_counts": {
+    "baseline_tmrt": 0,
+    "intervention_tmrt": 0,
+    "baseline_utci": 0,
+    "intervention_utci": 0
+  },
+  "svf_range_checks": {
+    "baseline_svf_min": 0.0,
+    "baseline_svf_max": 0.9948493964510167,
+    "intervention_svf_min": 0.0,
+    "intervention_svf_max": 0.9948493964510167,
+    "svf_valid_interval": true
+  },
+  "shadow_mask_validity": {
+    "baseline_binary_only": true,
+    "intervention_binary_only": true
+  },
+  "tmrt_range_checks": {
+    "baseline_tmrt_min": 31.15530302402459,
+    "baseline_tmrt_max": 50.11692887980803,
+    "intervention_tmrt_min": 31.15530302402459,
+    "intervention_tmrt_max": 50.68413317757205
+  },
+  "utci_range_checks": {
+    "baseline_utci_min": 32.9,
+    "baseline_utci_max": 37.5,
+    "intervention_utci_min": 32.9,
+    "intervention_utci_max": 37.7
+  },
+  "panel_mesh_validity": {
+    "vertices": 8,
+    "triangles": 12,
+    "watertight": true,
+    "degenerate_triangles": 0
+  },
+  "changed_cells_summary": {
+    "total_cells_evaluated": 28120,
+    "cells_with_shadow_change": 6,
+    "cells_with_svf_change": 104,
+    "cells_with_tmrt_change_gt_0_01k": 39,
+    "max_tmrt_cooling_k": -12.616308183378294,
+    "max_tmrt_warming_k": 4.3870083990067315,
+    "max_utci_cooling_k": -3.1000000000000014,
+    "max_utci_warming_k": 1.1000000000000014
+  },
+  "main_boundary_mask_consistency": true,
+  "corridor_mask_consistency": true,
+  "configuration_equality": true,
+  "incremental_computation_used": false
+}

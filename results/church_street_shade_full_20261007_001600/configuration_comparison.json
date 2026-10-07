@@ -1,0 +1,50 @@
+{
+  "status": "identical_except_intervention_panel",
+  "grid_origin": [
+    -85.0,
+    -80.0
+  ],
+  "grid_resolution": 2.0,
+  "receptor_height": 1.1,
+  "solar_timestamp": "2024-04-15 09:00:00 UTC",
+  "solar_altitude_deg": 57.916,
+  "solar_azimuth_true_north_deg": 268.1655,
+  "solar_azimuth_grid_north_deg": 267.5802,
+  "weather_forcing": {
+    "air_temperature_c": 35.0,
+    "relative_humidity_pct": 19.729,
+    "wind_speed_m_s": 1.5,
+    "wind_direction_deg": 90.0,
+    "dni_w_m2": 728.31,
+    "dhi_w_m2": 172.18,
+    "station_distance_km": 2.56
+  },
+  "material_properties": {
+    "building_wall": {
+      "albedo": 0.3,
+      "emissivity": 0.9
+    },
+    "building_roof": {
+      "albedo": 0.2,
+      "emissivity": 0.9
+    },
+    "ground": {
+      "albedo": 0.2,
+      "emissivity": 0.95
+    },
+    "pavement": {
+      "albedo": 0.3,
+      "emissivity": 0.95
+    },
+    "panel": {
+      "albedo": 0.6,
+      "emissivity": 0.9
+    }
+  },
+  "svf_azimuth_count": 32,
+  "svf_search_radius_m": 120.0,
+  "terrain_policy": "flat_ground_z0",
+  "context_building_count": 123,
+  "intervention_panel_count": 1,
+  "incremental_computation_used": false
+}

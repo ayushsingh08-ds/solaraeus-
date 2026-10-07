@@ -1,0 +1,22 @@
+{
+  "panel_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "vertices": 8,
+  "triangles": 12,
+  "dimensions": [
+    6.0,
+    3.0,
+    0.1
+  ],
+  "area": 18.0,
+  "total_surface_area": 37.79999999893016,
+  "underside_height": 3.5,
+  "top_height": 3.6,
+  "bearing_true_north": 103.02790844205674,
+  "bearing_grid_north": 102.44250192876865,
+  "material_id": "SHADE_PANEL_ASSUMED_001",
+  "watertight_status": true,
+  "degenerate_triangle_count": 0,
+  "placement_status": "valid_non_colliding",
+  "mesh_hash": "bf5bf74da7a2ba1d820edcffe0d34dbe04864ac949b7d8ccdd0fe3a57a0ce757"
+}
