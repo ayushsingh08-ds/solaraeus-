@@ -1,10 +1,10 @@
 """
-Refined, Publication-Grade IEEE-Style Vector Diagrams (PNG at 300 DPI)
-Strictly adheres to:
-- Pure orthogonal routing with ZERO crossing lines throughout.
-- Generous box margins, crisp typography, and 100% grayscale-safety.
-- Project taxonomy: Implemented (solid) vs. Planned/Proposed (dashed).
-- Parallelograms for Data Products, Rectangles for Computational Processes.
+Generate 4 Modular, Publication-Grade IEEE Figures for Solaraeus (300 DPI)
+Divides the tasks cleanly into 4 focused, compact diagrams:
+  - Fig 1: End-to-End System Architecture & Dataflow
+  - Fig 2: Certified Incremental Radiative Transfer & Error Bounding
+  - Fig 3: CUDA GPU Acceleration Engine & Resident-Memory Pipeline
+  - Fig 4: Active Surrogate Multi-Intervention Optimization Loop
 """
 
 import matplotlib.pyplot as plt
@@ -20,7 +20,7 @@ out_dir = Path("research_paper_sol")
 out_dir.mkdir(parents=True, exist_ok=True)
 
 # Helper: Draw Process Rectangle
-def draw_rect(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='#F3F4F6', border_color='#374151', font_size=7.5, bold_title=True):
+def draw_rect(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='#F3F4F6', border_color='#374151', font_size=7.5, bold_title=True, zorder=3):
     ls = (0, (4, 3)) if is_dashed else '-'
     lw = 0.95
     rect = patches.Rectangle(
@@ -29,7 +29,7 @@ def draw_rect(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='#F3F4F6',
         edgecolor=border_color,
         linestyle=ls,
         linewidth=lw,
-        zorder=3
+        zorder=zorder
     )
     ax.add_patch(rect)
     
@@ -40,13 +40,13 @@ def draw_rect(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='#F3F4F6',
         ax.text(x + w / 2.0, y + h - (i + 1.0) * line_spacing, line,
                 ha='center', va='center',
                 fontsize=font_size, fontweight=fw,
-                color='#111827', zorder=4)
+                color='#111827', zorder=zorder+1)
 
 # Helper: Draw Data Product Parallelogram
-def draw_parallelogram(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='#E5E7EB', border_color='#1F2937', font_size=7.5, bold_title=True):
+def draw_parallelogram(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='#E5E7EB', border_color='#1F2937', font_size=7.5, bold_title=True, zorder=3):
     ls = (0, (4, 3)) if is_dashed else '-'
     lw = 0.95
-    skew = h * 0.28
+    skew = h * 0.26
     points = [
         [x + skew, y],
         [x + w, y],
@@ -59,7 +59,7 @@ def draw_parallelogram(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='
         edgecolor=border_color,
         linestyle=ls,
         linewidth=lw,
-        zorder=3
+        zorder=zorder
     )
     ax.add_patch(poly)
     
@@ -70,10 +70,10 @@ def draw_parallelogram(ax, x, y, w, h, text_lines, is_dashed=False, fill_color='
         ax.text(x + w / 2.0, y + h - (i + 1.0) * line_spacing, line,
                 ha='center', va='center',
                 fontsize=font_size, fontweight=fw,
-                color='#111827', zorder=4)
+                color='#111827', zorder=zorder+1)
 
 # Helper: Draw Orthogonal Arrow
-def draw_arrow(ax, p1, p2, label=None, label_side='above', is_dashed=False, label_fontsize=6.6, label_dx=0.0, label_dy=0.0):
+def draw_arrow(ax, p1, p2, label=None, label_side='above', is_dashed=False, label_fontsize=6.5, label_dx=0.0, label_dy=0.0, zorder=5):
     ls = (0, (4, 3)) if is_dashed else '-'
     col = '#374151' if not is_dashed else '#6B7280'
     ax.annotate(
@@ -87,7 +87,7 @@ def draw_arrow(ax, p1, p2, label=None, label_side='above', is_dashed=False, labe
             shrinkA=0,
             shrinkB=0
         ),
-        zorder=5
+        zorder=zorder
     )
     if label:
         lx = (p1[0] + p2[0]) / 2.0 + label_dx
@@ -98,364 +98,275 @@ def draw_arrow(ax, p1, p2, label=None, label_side='above', is_dashed=False, labe
                 fontsize=label_fontsize, fontstyle='italic',
                 color='#1F2937',
                 bbox=dict(boxstyle='round,pad=0.2', facecolor='#FFFFFF', edgecolor='#D1D5DB', lw=0.6, alpha=0.95),
-                zorder=6)
+                zorder=zorder+1)
 
 # =========================================================================
-# FIGURE 1: SYSTEM ARCHITECTURE (FULL WIDTH, 5 LAYERS)
+# FIGURE 1: END-TO-END MODULAR SYSTEM ARCHITECTURE
 # =========================================================================
 def generate_figure_1():
     print("Generating Figure 1: System Architecture...")
-    fig_w, fig_h = 14.0, 8.2
+    fig_w, fig_h = 7.6, 3.8
     fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=300)
     ax.set_xlim(0, 100)
-    ax.set_ylim(0, 80)
+    ax.set_ylim(0, 52)
     ax.axis('off')
     
-    col_w = 16.8
-    gap_x = 2.4
+    col_w = 21.5
+    gap_x = 3.0
     layer_names = [
-        "1. Data Inputs",
-        "2. Preprocessing",
-        "3. Physics Engine",
-        "4. Export & Contracts",
-        "5. Visualization Frontend"
+        "1. Geospatial Ingestion",
+        "2. Physics Preprocessing",
+        "3. Dual-Backend Physics",
+        "4. WebGL Digital Twin"
     ]
     
-    xs = [1.5 + i * (col_w + gap_x) for i in range(5)]
+    xs = [2.0 + i * (col_w + gap_x) for i in range(4)]
     
-    # Draw Background Columns
-    for i in range(5):
+    # Background Columns
+    for i in range(4):
         bg = patches.Rectangle(
-            (xs[i], 19.0), col_w, 58.5,
+            (xs[i], 1.5), col_w, 48.5,
             facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1
         )
         ax.add_patch(bg)
         header = patches.Rectangle(
-            (xs[i], 73.0), col_w, 4.5,
+            (xs[i], 46.0), col_w, 4.0,
             facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2
         )
         ax.add_patch(header)
-        ax.text(xs[i] + col_w / 2.0, 75.25, layer_names[i],
-                ha='center', va='center', fontsize=8.2, fontweight='bold', color='#111827', zorder=3)
+        ax.text(xs[i] + col_w / 2.0, 48.0, layer_names[i],
+                ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
 
-    box_w = 14.8
-    bx_offsets = [x + (col_w - box_w) / 2.0 for x in xs]
+    box_w = 18.5
+    bx = [x + (col_w - box_w) / 2.0 for x in xs]
     
     # Layer 1: Inputs
-    draw_rect(ax, bx_offsets[0], 61.5, box_w, 7.5, ["LiDAR DEM", "1 m Spatial Elevation Grid"], fill_color='#FFFFFF')
-    draw_rect(ax, bx_offsets[0], 48.5, box_w, 7.5, ["Overture Footprints", "2D Building Polygons"], fill_color='#FFFFFF')
-    draw_rect(ax, bx_offsets[0], 35.5, box_w, 7.5, ["ERA5 Meteorology", "Hourly Atmospheric Vectors"], fill_color='#FFFFFF')
+    draw_parallelogram(ax, bx[0], 34.0, box_w, 9.5, ["Overture Buildings", "& Open Buildings ML", "123 structures, heights"], font_size=6.8)
+    draw_parallelogram(ax, bx[0], 19.5, box_w, 9.5, ["NOAA & NASA POWER", "Atmospheric Vectors", "Ta=35C, GHI=756 W/m2"], font_size=6.8)
+    draw_parallelogram(ax, bx[0], 5.0, box_w, 9.5, ["Topography & Trees", "FABDEM & BBMP Data", "14 census trees (LOD-1)"], font_size=6.8)
     
     # Layer 2: Preprocessing
-    draw_rect(ax, bx_offsets[1], 59.0, box_w, 7.5, ["CRS Harmonization", "Projected Metric Grid Alignment"])
-    draw_rect(ax, bx_offsets[1], 47.5, box_w, 7.5, ["DSM Construction", "Building Footprint Extrusion"])
-    draw_rect(ax, bx_offsets[1], 36.0, box_w, 7.5, ["Planned: L3 Trees", "Canopy Extrusion in DSM"], is_dashed=True, fill_color='#FFFFFF')
+    draw_rect(ax, bx[1], 31.0, box_w, 11.5, ["CRS Harmonization", "UTM Zone 43N metric grid", "gamma = +0.5854 deg"], font_size=7.0)
+    draw_rect(ax, bx[1], 11.0, box_w, 12.0, ["3D Triangular Mesh", "2,136 watertight triangles", "37 core + 86 context"], font_size=7.0)
     
-    # Layer 3: Physics Engine (Implemented)
-    draw_rect(ax, bx_offsets[2], 65.0, box_w, 5.6, ["Sky View Factor (SVF)", "Steyn 1980, 36 Radials"], fill_color='#F3F4F6', font_size=7.2)
-    draw_rect(ax, bx_offsets[2], 57.8, box_w, 5.6, ["Directional Shadows", "Ray-Traced Horizon Occlusion"], fill_color='#F3F4F6', font_size=7.2)
-    draw_rect(ax, bx_offsets[2], 50.6, box_w, 5.6, ["Mean Radiant Temp T_mrt", "Stefan-Boltzmann, Fiala Model"], fill_color='#F3F4F6', font_size=7.2)
-    draw_rect(ax, bx_offsets[2], 43.4, box_w, 5.6, ["UTCI Heat Stress", "pythermalcomfort Implementation"], fill_color='#F3F4F6', font_size=7.2)
-    
-    # Layer 3: Planned & Proposed Modules
-    draw_rect(ax, bx_offsets[2], 35.8, box_w, 5.6, ["Planned: L1 Diurnal &", "L2 Multi-Day Time Loop"], is_dashed=True, fill_color='#FFFFFF', font_size=7.2)
-    draw_rect(ax, bx_offsets[2], 28.6, box_w, 5.6, ["Planned: L3 Beer-Lambert", "& L4 Surrogate Optimization"], is_dashed=True, fill_color='#FFFFFF', font_size=7.2)
-    draw_rect(ax, bx_offsets[2], 21.4, box_w, 5.6, ["Proposed: Dependency-Aware", "Incremental Recomputation"], is_dashed=True, fill_color='#FFFFFF', font_size=7.0)
-    
-    # Validation & Reproducibility Block (Under Physics Engine)
-    val_x = xs[2] - 0.5
-    val_w = col_w + 1.0
-    val_y = 0.8
-    val_h = 16.5
-    val_bg = patches.Rectangle(
-        (val_x, val_y), val_w, val_h,
-        facecolor='#F3F4F6', edgecolor='#4B5563', lw=0.9, zorder=2
-    )
-    ax.add_patch(val_bg)
-    vh = patches.Rectangle(
-        (val_x, val_y + val_h - 3.2), val_w, 3.2,
-        facecolor='#E5E7EB', edgecolor='#4B5563', lw=0.9, zorder=3
-    )
-    ax.add_patch(vh)
-    ax.text(val_x + val_w / 2.0, val_y + val_h - 1.6, "Validation & Reproducibility",
-            ha='center', va='center', fontsize=7.8, fontweight='bold', color='#111827', zorder=4)
-    
-    draw_rect(ax, val_x + 1.0, val_y + 8.4, val_w - 2.0, 3.8, ["pytest Physics Suite (Unit & System)"], fill_color='#FFFFFF', font_size=7.0, bold_title=False)
-    draw_rect(ax, val_x + 1.0, val_y + 4.0, val_w - 2.0, 3.8, ["reproduce_all.py / reproduce.sh Scripts"], fill_color='#FFFFFF', font_size=7.0, bold_title=False)
-    
-    ax.text(val_x + val_w / 2.0, val_y + 2.3, "WSP Benchmark: Sunlit vs. Shaded",
-            ha='center', va='center', fontsize=6.2, fontweight='bold', color='#374151', zorder=4)
-    ax.text(val_x + val_w / 2.0, val_y + 1.0, "T_mrt 57.5 vs 42.8 C; UTCI 39.6 vs 36.2 C",
-            ha='center', va='center', fontsize=5.8, color='#4B5563', zorder=4)
+    # Connections: Layer 1 -> Layer 2
+    draw_arrow(ax, (bx[0] + box_w, 38.75), (bx[1], 36.75))
+    draw_arrow(ax, (bx[0] + box_w, 24.25), (bx[1] - 1.2, 24.25))
+    ax.plot([bx[0] + box_w, bx[1] - 1.2], [24.25, 24.25], color='#374151', lw=0.9)
+    ax.plot([bx[1] - 1.2, bx[1] - 1.2], [24.25, 17.0], color='#374151', lw=0.9)
+    draw_arrow(ax, (bx[1] - 1.2, 17.0), (bx[1], 17.0))
+    draw_arrow(ax, (bx[0] + box_w, 9.75), (bx[1], 14.0))
 
-    # Layer 4: Export & Data Contracts (Reordered to guarantee ZERO line crossings)
-    # Box 1: Watertight 3D Meshes (aligned with 3D geometry / Shadows)
-    draw_rect(ax, bx_offsets[3], 63.5, box_w, 7.5, ["Watertight 3D Meshes", "OBJ / JSON Geometry Assets"], fill_color='#F3F4F6')
-    # Box 2: CF-Compliant NetCDF (aligned with climate physics rasters)
-    draw_rect(ax, bx_offsets[3], 52.0, box_w, 7.5, ["CF-Compliant NetCDF", "Standardized Climate Raster"], fill_color='#F3F4F6')
-    # Box 3: Publication Figures
-    draw_rect(ax, bx_offsets[3], 40.5, box_w, 7.5, ["Publication Figures", "Vector PDF / 300 DPI PNG"], fill_color='#F3F4F6')
-    # Box 4: Typed JSON Contracts
-    draw_rect(ax, bx_offsets[3], 29.0, box_w, 7.5, ["Typed JSON Contracts", "Frontend State Interfaces"], fill_color='#F3F4F6')
+    # Layer 3: Physics Engine
+    draw_rect(ax, bx[2], 34.5, box_w, 8.5, ["Steyn 36-Radial SVF", "& Moller-Trumbore Ray", "Directional cast shadows"], font_size=6.8)
+    draw_rect(ax, bx[2], 20.0, box_w, 9.5, ["Stefan-Boltzmann 6-Flux", "Radiant balance: T_mrt", "UTCI pythermalcomfort"], font_size=6.8)
+    draw_rect(ax, bx[2], 5.0, box_w, 10.0, ["Certified Incremental", "& CUDA GPU Kernels", "99.74% cell reuse, 11.4 ms"], font_size=6.8)
     
-    # Layer 5: Visualization Frontend
-    draw_rect(ax, bx_offsets[4], 64.5, box_w, 5.6, ["React 19 + TypeScript", "Vite Production Tooling"], fill_color='#F3F4F6', font_size=7.2)
-    draw_rect(ax, bx_offsets[4], 57.5, box_w, 5.6, ["Three.js WebGL Engine", "Hardware-Accelerated Viewport"], fill_color='#F3F4F6', font_size=7.2)
-    draw_rect(ax, bx_offsets[4], 50.5, box_w, 5.6, ["Layer Switching System", "DSM / SVF / Shadows / T_mrt / UTCI"], fill_color='#F3F4F6', font_size=7.0)
-    draw_rect(ax, bx_offsets[4], 43.5, box_w, 5.6, ["Sun Position Indicator", "Diurnal Timeline Scrubber"], fill_color='#F3F4F6', font_size=7.2)
-    draw_rect(ax, bx_offsets[4], 36.5, box_w, 5.6, ["Pedestrian Avatar", "Real-Time Comfort HUD"], fill_color='#F3F4F6', font_size=7.2)
+    # Connections: Layer 2 -> Layer 3
+    draw_arrow(ax, (bx[1] + box_w, 36.75), (bx[2], 38.75))
+    draw_arrow(ax, (bx[1] + box_w, 17.0), (bx[2], 10.0))
+    draw_arrow(ax, (bx[2] + box_w / 2.0, 34.5), (bx[2] + box_w / 2.0, 29.5))
+    draw_arrow(ax, (bx[2] + box_w / 2.0, 20.0), (bx[2] + box_w / 2.0, 15.0))
     
-    # Connections: Layer 1 -> Layer 2 (Pure Orthogonal)
-    draw_arrow(ax, (bx_offsets[0] + box_w, 65.25), (bx_offsets[1], 62.75))
-    ax.plot([bx_offsets[0] + box_w, bx_offsets[1] - 1.2], [52.25, 52.25], color='#374151', lw=0.9)
-    draw_arrow(ax, (bx_offsets[1] - 1.2, 52.25), (bx_offsets[1], 51.25))
+    # Layer 4: Visualization & Contracts
+    draw_parallelogram(ax, bx[3], 32.0, box_w, 10.5, ["Typed JSON Contracts", "& NetCDF Rasters", "Direct API schema"], font_size=6.8)
+    draw_rect(ax, bx[3], 15.0, box_w, 12.0, ["3D WebGL Digital Twin", "Three.js r128 browser runtime", "GLSL Thermal Heatmap Shader"], font_size=7.0)
+    draw_rect(ax, bx[3], 4.5, box_w, 6.5, ["Pedestrian Avatar HUD", "Interactive comfort timeline"], font_size=6.6)
     
-    draw_arrow(ax, (bx_offsets[1] + box_w / 2.0, 59.0), (bx_offsets[1] + box_w / 2.0, 55.0))
-    draw_arrow(ax, (bx_offsets[1] + box_w / 2.0, 47.5), (bx_offsets[1] + box_w / 2.0, 43.5), is_dashed=True)
+    # Connections: Layer 3 -> Layer 4
+    draw_arrow(ax, (bx[2] + box_w, 24.75), (bx[3], 37.25))
+    draw_arrow(ax, (bx[3] + box_w / 2.0, 32.0), (bx[3] + box_w / 2.0, 27.0))
+    draw_arrow(ax, (bx[3] + box_w / 2.0, 15.0), (bx[3] + box_w / 2.0, 11.0))
     
-    # Layer 2 -> Layer 3 (Orthogonal)
-    ax.plot([bx_offsets[1] + box_w, bx_offsets[1] + box_w + 1.2], [51.25, 51.25], color='#374151', lw=0.9)
-    ax.plot([bx_offsets[1] + box_w + 1.2, bx_offsets[1] + box_w + 1.2], [60.6, 67.8], color='#374151', lw=0.9)
-    draw_arrow(ax, (bx_offsets[1] + box_w + 1.2, 67.8), (bx_offsets[2], 67.8))
-    draw_arrow(ax, (bx_offsets[1] + box_w + 1.2, 60.6), (bx_offsets[2], 60.6))
-    
-    # Meteorology channel from Layer 1 to Physics (Pure orthogonal via bottom channel)
-    ax.plot([bx_offsets[0] + box_w, bx_offsets[0] + box_w + 1.0], [39.25, 39.25], color='#374151', lw=0.9)
-    ax.plot([bx_offsets[0] + box_w + 1.0, bx_offsets[0] + box_w + 1.0], [39.25, 29.0], color='#374151', lw=0.9)
-    ax.plot([bx_offsets[0] + box_w + 1.0, bx_offsets[2] - 1.2], [29.0, 29.0], color='#374151', lw=0.9)
-    ax.plot([bx_offsets[2] - 1.2, bx_offsets[2] - 1.2], [29.0, 53.4], color='#374151', lw=0.9)
-    draw_arrow(ax, (bx_offsets[2] - 1.2, 53.4), (bx_offsets[2], 53.4))
-
-    # Physics internal
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 65.0), (bx_offsets[2] + box_w / 2.0, 63.4))
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 57.8), (bx_offsets[2] + box_w / 2.0, 56.2))
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 50.6), (bx_offsets[2] + box_w / 2.0, 49.0))
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 43.4), (bx_offsets[2] + box_w / 2.0, 41.4), is_dashed=True)
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 35.8), (bx_offsets[2] + box_w / 2.0, 34.2), is_dashed=True)
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 28.6), (bx_offsets[2] + box_w / 2.0, 27.0), is_dashed=True)
-    
-    # Physics to Validation
-    draw_arrow(ax, (bx_offsets[2] + box_w / 2.0, 21.4), (bx_offsets[2] + box_w / 2.0, 17.3))
-
-    # Connections: Layer 3 -> Layer 4 (Pure Orthogonal, ZERO crossings!)
-    # Directional Shadows -> Watertight Meshes (both at ~60-67)
-    draw_arrow(ax, (bx_offsets[2] + box_w, 60.6), (bx_offsets[3], 67.25))
-    
-    # Mean Radiant Temp Tmrt -> CF NetCDF (both at ~53-56)
-    draw_arrow(ax, (bx_offsets[2] + box_w, 53.4), (bx_offsets[3], 55.75))
-    
-    # UTCI -> Publication Figures & Typed JSON Contracts
-    ax.plot([bx_offsets[2] + box_w, bx_offsets[2] + box_w + 1.0], [46.2, 46.2], color='#374151', lw=0.9)
-    draw_arrow(ax, (bx_offsets[2] + box_w + 1.0, 46.2), (bx_offsets[3], 44.25))
-    ax.plot([bx_offsets[2] + box_w + 1.0, bx_offsets[2] + box_w + 1.0], [46.2, 32.75], color='#374151', lw=0.9)
-    draw_arrow(ax, (bx_offsets[2] + box_w + 1.0, 32.75), (bx_offsets[3], 32.75))
-    
-    # Connections: Layer 4 -> Layer 5 (Pure Orthogonal, ZERO crossings!)
-    # Watertight Meshes (Y=67.25) -> Three.js Engine (Y=60.3)
-    draw_arrow(ax, (bx_offsets[3] + box_w, 67.25), (bx_offsets[4], 60.3))
-    
-    # CF NetCDF (Y=55.75) -> Layer Switching System (Y=53.3)
-    draw_arrow(ax, (bx_offsets[3] + box_w, 55.75), (bx_offsets[4], 53.3))
-    
-    # Typed JSON Contracts (Y=32.75) -> Pedestrian Avatar HUD (Y=39.3)
-    draw_arrow(ax, (bx_offsets[3] + box_w, 32.75), (bx_offsets[4], 39.3))
-    
-    # Frontend internal
-    draw_arrow(ax, (bx_offsets[4] + box_w / 2.0, 64.5), (bx_offsets[4] + box_w / 2.0, 63.1))
-    draw_arrow(ax, (bx_offsets[4] + box_w / 2.0, 57.5), (bx_offsets[4] + box_w / 2.0, 56.1))
-    draw_arrow(ax, (bx_offsets[4] + box_w / 2.0, 50.5), (bx_offsets[4] + box_w / 2.0, 49.1))
-    draw_arrow(ax, (bx_offsets[4] + box_w / 2.0, 43.5), (bx_offsets[4] + box_w / 2.0, 42.1))
-    
-    # Legend (Bottom Left: 2 Clean Rows, ZERO text collisions)
-    leg_x = xs[0]
-    leg_y = 1.0
-    leg_w = col_w * 2.0 + gap_x
-    leg_h = 13.0
-    ax.add_patch(patches.Rectangle((leg_x, leg_y), leg_w, leg_h, facecolor='#FFFFFF', edgecolor='#9CA3AF', lw=0.8, zorder=2))
-    ax.text(leg_x + 2.5, leg_y + leg_h - 2.8, "Figure 1 Legend (Taxonomy):", fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
-    
-    # Row 1: Implemented Component
-    ax.add_patch(patches.Rectangle((leg_x + 2.5, leg_y + 5.8), 5.5, 3.4, facecolor='#F3F4F6', edgecolor='#374151', lw=0.95, zorder=3))
-    ax.text(leg_x + 9.5, leg_y + 7.5, "Implemented Component (Active System)", fontsize=7.2, va='center', color='#111827', zorder=3)
-    
-    # Row 2: Planned / Proposed Module
-    ax.add_patch(patches.Rectangle((leg_x + 2.5, leg_y + 1.4), 5.5, 3.4, facecolor='#FFFFFF', edgecolor='#6B7280', linestyle=(0, (4, 3)), lw=0.95, zorder=3))
-    ax.text(leg_x + 9.5, leg_y + 3.1, "Planned / Proposed Module", fontsize=7.2, va='center', color='#111827', zorder=3)
-
     plt.tight_layout()
     f1_path = out_dir / "fig1_architecture.png"
-    plt.savefig(f1_path, dpi=300, bbox_inches='tight', pad_inches=0.04)
+    plt.savefig(f1_path, dpi=300, bbox_inches='tight', pad_inches=0.03)
     plt.close()
     print(f"Saved: {f1_path} ({f1_path.stat().st_size} bytes)")
 
 # =========================================================================
-# FIGURE 2: METHODOLOGY & DATA FLOW PIPELINE (ZERO CROSSING LINES)
+# FIGURE 2: CERTIFIED INCREMENTAL RADIATIVE TRANSFER & ERROR BOUNDING
 # =========================================================================
 def generate_figure_2():
-    print("Generating Figure 2: Methodology & Data Flow...")
-    fig_w, fig_h = 11.5, 14.0
+    print("Generating Figure 2: Certified Incremental Framework...")
+    fig_w, fig_h = 7.6, 3.8
     fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=300)
     ax.set_xlim(0, 100)
-    ax.set_ylim(0, 148)
+    ax.set_ylim(0, 52)
     ax.axis('off')
     
-    # Main column shifted right so left margin has dedicated ERA5 channel
-    cx = 12.0
-    pw = 41.0  # process width
-    dw = 41.0  # data product width
-    ph = 6.4   # process height
-    dh = 6.0   # data height
+    # Column 1: Scene & Intervention Input (X=3 to 26)
+    bg1 = patches.Rectangle((2.0, 1.5), 24.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg1)
+    h1 = patches.Rectangle((2.0, 46.0), 24.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h1)
+    ax.text(14.0, 48.0, "1. Urban Domain & Edit", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
     
-    # Top Inputs:
-    # ERA5 on the left (X = 2.0 to 14.5)
-    draw_parallelogram(ax, 1.5, 134.0, 13.0, 6.2, ["ERA5 Weather", "(Solar & Wind)"], font_size=6.8)
-    # LiDAR DEM in center (X = 16.5 to 31.0)
-    draw_parallelogram(ax, 16.0, 134.0, 16.5, 6.2, ["LiDAR DEM", "(1 m Elevation Grid)"], font_size=7.0)
-    # Overture Footprints on right of inputs (X = 34.0 to 52.0)
-    draw_parallelogram(ax, 34.0, 134.0, 17.5, 6.2, ["Overture Footprints", "(2D Building Polygons)"], font_size=7.0)
+    draw_rect(ax, 4.0, 27.5, 20.0, 14.0, ["Static Baseline Scene", "Church Street: 28,120 cells", "123 context buildings", "Precomputed T_mrt & SVF"], font_size=6.8)
+    draw_parallelogram(ax, 4.0, 6.0, 20.0, 15.0, ["Shade Canopy Intervention", "BLR_SHADE_001 (6m x 3m)", "Underside clearance: 3.5m", "Local coordinate anchor"], font_size=6.8)
     
-    # Process: CRS Harmonization
-    draw_rect(ax, cx, 120.0, pw, ph, ["CRS Harmonization & Metric Resampling", "Reprojects vectors and DEM to uniform projected coordinate system"])
+    # Column 2: Mathematical Error Certificate (X=29 to 68)
+    bg2 = patches.Rectangle((28.0, 1.5), 40.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg2)
+    h2 = patches.Rectangle((28.0, 46.0), 40.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h2)
+    ax.text(48.0, 48.0, "2. Closed-Form Error Certificate & Spatial Bounds", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
     
-    # Process: DSM Build
-    draw_rect(ax, cx, 107.0, pw, ph, ["DSM Construction & Height Extrusion", "Rasterizes footprints and extrudes building heights onto DEM surface"])
+    draw_rect(ax, 30.5, 30.5, 35.0, 11.5, ["Shadow Frustum & SVF Horizon Decay", "Delta_Psi_svf <= min(1.0, W*H / (2*pi*r^2))", "Casts beam cone along sun vector s(alpha, phi)"], font_size=6.8)
+    draw_rect(ax, 30.5, 7.0, 35.0, 18.5, ["Concave Stefan-Boltzmann Bound (Theorem 1)", "|T_mrt_inc(x) - T_mrt_full(x)| <= B_T(x) <= eps_T", "B_T(x) = Delta_Phi_max(x) / (4 * sigma * T_min^3)", "Target tolerance: eps_T = 0.50 K"], font_size=6.8)
     
-    # Data Product: DSM
-    draw_parallelogram(ax, cx, 94.0, dw, dh, ["Digital Surface Model (DSM)", "Unified 1-metre resolution elevation raster grid"])
+    # Column 3: Domain Partitioning & Parity Verification (X=71 to 98)
+    bg3 = patches.Rectangle((70.5, 1.5), 27.5, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg3)
+    h3 = patches.Rectangle((70.5, 46.0), 27.5, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h3)
+    ax.text(84.25, 48.0, "3. Certified Execution", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
     
-    # Split Processes: SVF and Shadows
-    sw = 19.5
-    gap = 2.0
-    draw_rect(ax, cx, 79.5, sw, 7.4, ["Sky View Factor (SVF)", "Ray-Marching Angular Quadrature", "(Steyn 1980, 36 radials)"], font_size=6.7)
-    draw_rect(ax, cx + sw + gap, 79.5, sw, 7.4, ["Directional Shadows", "Horizon Obstruction Ray Cast", "Calculates sunlit vs shaded state"], font_size=6.7)
+    draw_rect(ax, 72.5, 31.0, 23.5, 11.0, ["Dirty Cells Omega_dirty", "Recomputed: 72 cells (0.26%)", "2,376 rays evaluated"], font_size=6.8, fill_color='#FEE2E2', border_color='#B91C1C')
+    draw_rect(ax, 72.5, 17.5, 23.5, 10.5, ["Clean Cells Omega_clean", "Reused: 28,048 cells (99.74%)", "925,584 rays avoided"], font_size=6.8, fill_color='#ECFDF5', border_color='#047857')
+    draw_rect(ax, 72.5, 4.0, 23.5, 10.5, ["Verified Parity", "Max Error: 0.0289 K << 0.5 K", "0 Violations (18 Audited)"], font_size=6.8, fill_color='#FFFFFF')
     
-    # Data Products: SVF and Shadow Mask
-    draw_parallelogram(ax, cx, 67.0, sw, dh, ["Sky View Factor Raster", "Continuous [0, 1] obstruction field"], font_size=6.6)
-    draw_parallelogram(ax, cx + sw + gap, 67.0, sw, dh, ["Binary Shadow Mask", "Discrete sunlit (1) vs shaded (0)"], font_size=6.6)
+    # Connections
+    draw_arrow(ax, (24.0, 34.5), (30.5, 36.25))
+    draw_arrow(ax, (24.0, 13.5), (30.5, 16.25))
+    draw_arrow(ax, (48.0, 30.5), (48.0, 25.5), label="Flux decay", label_side='above', label_fontsize=6.2)
+    draw_arrow(ax, (65.5, 36.25), (72.5, 36.5), label="B_T > eps_T", label_side='above', label_fontsize=6.0)
+    draw_arrow(ax, (65.5, 16.25), (72.5, 22.75), label="B_T <= eps_T", label_side='above', label_fontsize=6.0)
     
-    # Process: Radiation & Tmrt
-    draw_rect(ax, cx, 52.0, pw, 7.6, ["Multi-Directional Radiant Balance & T_mrt Calculation", "Stefan-Boltzmann 6-flux balance: T_mrt = (Phi_tot / sigma)^0.25"])
-    
-    # Data Product: Tmrt Field
-    draw_parallelogram(ax, cx, 39.5, dw, dh, ["Mean Radiant Temperature (T_mrt) Field", "Pedestrian-level thermal radiation raster (Celsius)"])
-    
-    # Process: UTCI
-    draw_rect(ax, cx, 27.5, pw, ph, ["UTCI Heat Stress Assessment", "pythermalcomfort multi-node human thermoregulation model"])
-    
-    # Data Product: UTCI Field
-    draw_parallelogram(ax, cx, 15.5, dw, dh, ["Universal Thermal Climate Index (UTCI) Field", "Categorical pedestrian physiological heat strain raster"])
-    
-    # Process: Export & 3D WebGL Digital Twin
-    draw_rect(ax, cx, 3.5, pw, 7.0, ["Data Serialization & 3D WebGL Viewer Ingestion", "CF-compliant NetCDF, OBJ meshes, React 19 + Three.js digital twin"])
-    
-    # Side Column: Planned and Proposed Modules (Right Side: X = 63 to 97)
-    rx = 63.0
-    rw = 34.0
-    draw_rect(ax, rx, 107.0, rw, 6.4, ["Planned: L3 Trees in DSM", "Leaf canopy extrusion into surface grid"], is_dashed=True, fill_color='#FFFFFF', font_size=7.2)
-    draw_rect(ax, rx, 79.5, rw, 7.4, ["Planned: L3 Canopy Attenuation", "Beer-Lambert radiation & evapotranspiration"], is_dashed=True, fill_color='#FFFFFF', font_size=7.2)
-    draw_rect(ax, rx, 52.0, rw, 7.6, ["Planned: L1 Diurnal & L2 Multi-Day", "Continuous diurnal time-stepping cycle"], is_dashed=True, fill_color='#FFFFFF', font_size=7.2)
-    draw_rect(ax, rx, 35.5, rw, 8.8, ["Proposed: Incremental Recomputation", "Dependency-aware invalidation of SOLWEIG fields", "(Research direction: subject to proof of benefit)"], is_dashed=True, fill_color='#FFFFFF', font_size=6.8)
-    draw_rect(ax, rx, 18.0, rw, 6.4, ["Planned: L4 Candidate Optimization", "Surrogate-assisted microclimate search"], is_dashed=True, fill_color='#FFFFFF', font_size=7.2)
-
-    # Connections: Top Inputs -> Preprocessing
-    draw_arrow(ax, (24.25, 134.0), (24.25, 126.4), label="EPSG target", label_side='above')
-    draw_arrow(ax, (42.75, 134.0), (38.0, 126.4))
-    
-    # Dedicated Left-Side ERA5 Channel (Completely isolated, ZERO crossings!)
-    met_x = 7.0
-    ax.plot([8.0, met_x], [134.0, 134.0], color='#374151', lw=0.9)
-    ax.plot([met_x, met_x], [134.0, 55.8], color='#374151', lw=0.9)
-    draw_arrow(ax, (met_x, 55.8), (cx, 55.8))
-    # Place weather label on the long vertical segment on the left
-    ax.text(met_x + 0.3, 100.0, "ERA5 Forcing:\nTa, RH, I_dir, I_diff",
-            ha='left', va='center', fontsize=6.5, fontstyle='italic',
-            bbox=dict(boxstyle='round,pad=0.25', facecolor='#FFFFFF', edgecolor='#D1D5DB', lw=0.6, alpha=0.95),
-            zorder=6)
-
-    # CRS Harmonization -> DSM build
-    draw_arrow(ax, (cx + pw / 2.0, 120.0), (cx + pw / 2.0, 113.4), label="Extrusion: DSM = DEM + H_bldg", label_side='above')
-    
-    # DSM build -> DSM raster
-    draw_arrow(ax, (cx + pw / 2.0, 107.0), (cx + pw / 2.0, 100.0))
-    
-    # Planned L3 tree connection: (rx, 110.2) to (cx + pw, 110.2)
-    # Gap is 63.0 - 53.0 = 10.0 units. Pure horizontal, zero crossings!
-    draw_arrow(ax, (rx, 110.2), (cx + pw, 110.2), is_dashed=True, label="Tree height", label_side='above', label_fontsize=6.5)
-    
-    # DSM raster -> SVF and Shadows (T-junction)
-    ax.plot([cx + dw / 2.0, cx + dw / 2.0], [94.0, 89.5], color='#374151', lw=0.9)
-    ax.plot([cx + sw / 2.0, cx + sw + gap + sw / 2.0], [89.5, 89.5], color='#374151', lw=0.9)
-    draw_arrow(ax, (cx + sw / 2.0, 89.5), (cx + sw / 2.0, 86.9), label="Steyn (1980): 36 radials", label_side='above', label_fontsize=6.4)
-    draw_arrow(ax, (cx + sw + gap + sw / 2.0, 89.5), (cx + sw + gap + sw / 2.0, 86.9), label="Ray-casting along s(alpha, gamma)", label_side='above', label_fontsize=6.4)
-    
-    # SVF proc -> SVF raster; Shadows proc -> Shadow mask
-    draw_arrow(ax, (cx + sw / 2.0, 79.5), (cx + sw / 2.0, 73.0))
-    draw_arrow(ax, (cx + sw + gap + sw / 2.0, 79.5), (cx + sw + gap + sw / 2.0, 73.0))
-    
-    # SVF & Shadows -> Multi-Directional Radiant Balance
-    ax.plot([cx + sw / 2.0, cx + sw / 2.0], [67.0, 62.5], color='#374151', lw=0.9)
-    ax.plot([cx + sw + gap + sw / 2.0, cx + sw + gap + sw / 2.0], [67.0, 62.5], color='#374151', lw=0.9)
-    ax.plot([cx + sw / 2.0, cx + sw + gap + sw / 2.0], [62.5, 62.5], color='#374151', lw=0.9)
-    draw_arrow(ax, (cx + pw / 2.0, 62.5), (cx + pw / 2.0, 59.6), label="Radiation Integration: K_i + L_i", label_side='above', label_fontsize=6.8)
-    
-    # Planned L3 Canopy Attenuation -> Shadows / Balance (Pure horizontal, zero crossings)
-    draw_arrow(ax, (rx, 83.2), (cx + pw, 83.2), is_dashed=True, label="Transmittance", label_side='above', label_fontsize=6.5)
-
-    # Planned L1/L2 Diurnal Loop -> Radiant Balance (Pure horizontal, zero crossings)
-    draw_arrow(ax, (rx, 55.8), (cx + pw, 55.8), is_dashed=True, label="Time loop", label_side='above', label_fontsize=6.5)
-
-    # Tmrt proc -> Tmrt raster
-    draw_arrow(ax, (cx + pw / 2.0, 52.0), (cx + pw / 2.0, 45.5))
-    
-    # Proposed Incremental update to Tmrt Field (Pure horizontal, zero crossings)
-    draw_arrow(ax, (rx, 42.5), (cx + dw, 42.5), is_dashed=True, label="Affected cells", label_side='above', label_fontsize=6.5)
-    
-    # Proposed to Planned L4 Surrogate Optimization (Pure vertical dashed arrow)
-    draw_arrow(ax, (rx + rw / 2.0, 35.5), (rx + rw / 2.0, 24.4), is_dashed=True, label="Surrogate search", label_side='above', label_fontsize=6.5, label_dx=7.2, label_dy=1.0)
-
-    # Tmrt raster -> UTCI proc
-    draw_arrow(ax, (cx + pw / 2.0, 39.5), (cx + pw / 2.0, 33.9), label="pythermalcomfort (Fiala polynomial)", label_side='above', label_fontsize=6.8)
-    
-    # UTCI proc -> UTCI raster
-    draw_arrow(ax, (cx + pw / 2.0, 27.5), (cx + pw / 2.0, 21.5))
-    
-    # UTCI raster -> Export proc
-    draw_arrow(ax, (cx + pw / 2.0, 15.5), (cx + pw / 2.0, 10.5), label="CF-1.8 metadata & watertight meshing", label_side='above', label_fontsize=6.8)
-    
-    # Legend (Top Right: X = rx to 97, Y = 122 to 144)
-    leg_x = rx
-    leg_y = 122.0
-    leg_w = rw
-    leg_h = 22.0
-    ax.add_patch(patches.Rectangle((leg_x, leg_y), leg_w, leg_h, facecolor='#FFFFFF', edgecolor='#9CA3AF', lw=0.8, zorder=2))
-    ax.text(leg_x + 2.5, leg_y + leg_h - 2.8, "Figure 2 Legend (Taxonomy):", fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
-    
-    # Legend Item 1: Process Rectangle
-    ax.add_patch(patches.Rectangle((leg_x + 3.0, leg_y + 13.5), 6.5, 4.0, facecolor='#F3F4F6', edgecolor='#374151', lw=0.95, zorder=3))
-    ax.text(leg_x + 11.5, leg_y + 15.5, "Computational Process (Step)", fontsize=7.2, va='center', color='#111827', zorder=3)
-    
-    # Legend Item 2: Data Product Parallelogram
-    skew_leg = 4.0 * 0.28
-    leg_poly = patches.Polygon([
-        [leg_x + 3.0 + skew_leg, leg_y + 7.5],
-        [leg_x + 9.5, leg_y + 7.5],
-        [leg_x + 9.5 - skew_leg, leg_y + 11.5],
-        [leg_x + 3.0, leg_y + 11.5]
-    ], closed=True, facecolor='#E5E7EB', edgecolor='#1F2937', lw=0.95, zorder=3)
-    ax.add_patch(leg_poly)
-    ax.text(leg_x + 11.5, leg_y + 9.5, "Data Product (Raster / Asset)", fontsize=7.2, va='center', color='#111827', zorder=3)
-    
-    # Legend Item 3: Planned / Proposed Step
-    ax.add_patch(patches.Rectangle((leg_x + 3.0, leg_y + 1.8), 4.0, 4.0, facecolor='#FFFFFF', edgecolor='#6B7280', linestyle=(0, (4, 3)), lw=0.95, zorder=3))
-    ax.text(leg_x + 11.5, leg_y + 3.8, "Planned / Proposed Step", fontsize=7.2, va='center', color='#111827', zorder=3)
-
     plt.tight_layout()
-    f2_path = out_dir / "fig2_methodology.png"
-    plt.savefig(f2_path, dpi=300, bbox_inches='tight', pad_inches=0.04)
+    f2_path = out_dir / "fig2_incremental.png"
+    plt.savefig(f2_path, dpi=300, bbox_inches='tight', pad_inches=0.03)
     plt.close()
     print(f"Saved: {f2_path} ({f2_path.stat().st_size} bytes)")
+
+# =========================================================================
+# FIGURE 3: CUDA GPU ACCELERATION ARCHITECTURE & PIPELINE
+# =========================================================================
+def generate_figure_3():
+    print("Generating Figure 3: CUDA GPU Acceleration Pipeline...")
+    fig_w, fig_h = 7.6, 3.8
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=300)
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 52)
+    ax.axis('off')
+    
+    # Left: Host CPU Side (X=2 to 28)
+    bg1 = patches.Rectangle((2.0, 1.5), 26.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg1)
+    h1 = patches.Rectangle((2.0, 46.0), 26.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h1)
+    ax.text(15.0, 48.0, "Host (Intel CPU / RAM)", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 4.5, 31.0, 21.0, 11.0, ["Simulation Orchestrator", "Candidate geometry parsing", "Dirty mask determination"], font_size=6.8)
+    draw_parallelogram(ax, 4.5, 10.0, 21.0, 14.0, ["Candidate Geometry Stream", "Intervention triangle buffer", "Transferred once on update (<1 ms)"], font_size=6.8)
+
+    # Middle: Resident Device VRAM (X=31 to 65)
+    bg2 = patches.Rectangle((31.0, 1.5), 35.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg2)
+    h2 = patches.Rectangle((31.0, 46.0), 35.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h2)
+    ax.text(48.5, 48.0, "Resident VRAM (NVIDIA RTX 4050)", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 33.5, 32.5, 30.0, 10.5, ["Persistent Domain Tensors", "Watertight mesh: 2,136 triangles", "Sensor grid: 28,120 pedestrian points", "Zero CPU-GPU memory ping-pong"], font_size=6.8)
+    draw_rect(ax, 33.5, 19.0, 30.0, 10.5, ["moller_trumbore_shadow_kernel", "Parallel ray-triangle intersection", "Evaluates Omega_dirty active blocks", "Bit-identical shadow mask (0.000000)"], font_size=6.8)
+    draw_rect(ax, 33.5, 5.5, 30.0, 10.5, ["compute_svf_horizon_kernel", "Warp-level 36-radial horizon reduction", "Double-precision parity (1.05e-14)"], font_size=6.8)
+    
+    # Right: Benchmark Speedup & Profiling (X=68 to 98)
+    bg3 = patches.Rectangle((68.0, 1.5), 30.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg3)
+    h3 = patches.Rectangle((68.0, 46.0), 30.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h3)
+    ax.text(83.0, 48.0, "Performance & Speedup", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 70.0, 32.5, 26.0, 10.5, ["Full Recomputation", "CPU: 5.71 s | GPU: 133 ms", "Speedup: 69.1x vs CPU"], font_size=6.8)
+    draw_rect(ax, 70.0, 19.0, 26.0, 10.5, ["Incremental Recomputation", "CPU Inc: 420 ms", "GPU Kernel: 11.40 ms", "Speedup: 500.87x vs CPU Full"], font_size=6.8, fill_color='#FEF3C7', border_color='#B45309')
+    draw_rect(ax, 70.0, 5.5, 26.0, 10.5, ["Memory Footprint", "Peak VRAM: 1,089 MB", "Bound well within 6 GB VRAM"], font_size=6.8)
+    
+    # Connections
+    draw_arrow(ax, (25.5, 17.0), (33.5, 24.25), label="Stream delta", label_side='above', label_fontsize=6.2)
+    draw_arrow(ax, (48.5, 32.5), (48.5, 29.5))
+    draw_arrow(ax, (48.5, 19.0), (48.5, 16.0))
+    draw_arrow(ax, (63.5, 37.75), (70.0, 37.75))
+    draw_arrow(ax, (63.5, 24.25), (70.0, 24.25))
+    
+    plt.tight_layout()
+    f3_path = out_dir / "fig3_gpu_engine.png"
+    plt.savefig(f3_path, dpi=300, bbox_inches='tight', pad_inches=0.03)
+    plt.close()
+    print(f"Saved: {f3_path} ({f3_path.stat().st_size} bytes)")
+
+# =========================================================================
+# FIGURE 4: ACTIVE SURROGATE MULTI-INTERVENTION OPTIMIZATION
+# =========================================================================
+def generate_figure_4():
+    print("Generating Figure 4: Active Surrogate Optimization Loop...")
+    fig_w, fig_h = 7.6, 3.8
+    fig, ax = plt.subplots(figsize=(fig_w, fig_h), dpi=300)
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 52)
+    ax.axis('off')
+    
+    # Step 1: Proposal Generator (X=2 to 24)
+    bg1 = patches.Rectangle((2.0, 1.5), 22.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg1)
+    h1 = patches.Rectangle((2.0, 46.0), 22.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h1)
+    ax.text(13.0, 48.0, "1. Proposal Generator", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 3.5, 25.0, 19.0, 17.5, ["Parameter Search Space", "Panel 1: (x1, y1, L1, W1, H1)", "Panel 2: (x2, y2, L2, W2, H2)", "Headings: theta in [0, 180]", "Albedo: alpha in [0.2, 0.8]"], font_size=6.6)
+    draw_rect(ax, 3.5, 5.5, 19.0, 15.5, ["Acquisition Strategy", "Upper Confidence Bound:", "alpha_ucb = J_hat + kappa*sigma", "Balancing explore/exploit"], font_size=6.6)
+    
+    # Step 2: 4-Stage Feasibility Screening (X=26 to 48)
+    bg2 = patches.Rectangle((26.0, 1.5), 22.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg2)
+    h2 = patches.Rectangle((26.0, 46.0), 22.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h2)
+    ax.text(37.0, 48.0, "2. Feasibility Filter", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 27.5, 30.5, 19.0, 12.0, ["Corridor & Setback", "Walkway containment", "Facade setback > 1.0 m"], font_size=6.8)
+    draw_rect(ax, 27.5, 17.0, 19.0, 11.0, ["Clearance & Area", "Clearway H >= 3.5 m", "Total Area <= 30 m2"], font_size=6.8)
+    draw_rect(ax, 27.5, 4.5, 19.0, 10.0, ["Screening Ledger", "129 candidates screened", "55 feasible | 74 rejected"], font_size=6.8, fill_color='#FFFFFF')
+    
+    # Step 3: Fast Incremental Objective Evaluation (X=50 to 74)
+    bg3 = patches.Rectangle((50.0, 1.5), 24.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg3)
+    h3 = patches.Rectangle((50.0, 46.0), 24.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h3)
+    ax.text(62.0, 48.0, "3. Physics Evaluation", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 51.5, 27.0, 21.0, 15.5, ["Incremental Simulation", "GPU 11.4 ms per candidate", "99.74% ray work avoidance", "Direct T_mrt field update"], font_size=6.8)
+    draw_rect(ax, 51.5, 5.5, 21.0, 17.5, ["Multi-Panel Objective", "J = sum(Delta_T_mrt)", "  - lambda_area*(A1+A2)", "  - lambda_cost*Cost", "  - lambda_overlap*|S1 cap S2|"], font_size=6.6)
+    
+    # Step 4: Pareto Optimal Discovery (X=76 to 98)
+    bg4 = patches.Rectangle((76.0, 1.5), 22.0, 48.5, facecolor='#F9FAFB', edgecolor='#D1D5DB', lw=0.8, zorder=1)
+    ax.add_patch(bg4)
+    h4 = patches.Rectangle((76.0, 46.0), 22.0, 4.0, facecolor='#E5E7EB', edgecolor='#D1D5DB', lw=0.8, zorder=2)
+    ax.add_patch(h4)
+    ax.text(87.0, 48.0, "4. Optimal Layout", ha='center', va='center', fontsize=7.6, fontweight='bold', color='#111827', zorder=3)
+    
+    draw_rect(ax, 77.5, 26.5, 19.0, 16.0, ["Best Proposal:", "CAND_4196_SURR", "Panel 1: 14.01 m2 (H=3.79m)", "Panel 2: 8.86 m2 (H=4.16m)", "Total Area: 22.87 m2"], font_size=6.8, fill_color='#ECFDF5', border_color='#047857')
+    draw_rect(ax, 77.5, 5.5, 19.0, 17.0, ["Physical Impact", "Peak T_mrt: -12.68 K", "Corridor Delta: -0.05 K", "Zero shadow overlap", "Evaluated in 0.33 s"], font_size=6.8, fill_color='#FFFFFF')
+    
+    # Connections
+    draw_arrow(ax, (22.5, 33.75), (27.5, 36.5))
+    draw_arrow(ax, (46.5, 22.5), (51.5, 34.75), label="Feasible proposals", label_side='above', label_fontsize=5.8)
+    draw_arrow(ax, (62.0, 27.0), (62.0, 23.0))
+    draw_arrow(ax, (72.5, 34.75), (77.5, 34.5), label="Surrogate model", label_side='above', label_fontsize=5.8)
+    
+    # Feedback loop: from Step 3/4 back to Proposal Generator (Acquisition update)
+    ax.plot([62.0, 62.0], [5.5, 3.2], color='#374151', lw=0.8)
+    ax.plot([62.0, 13.0], [3.2, 3.2], color='#374151', lw=0.8)
+    draw_arrow(ax, (13.0, 3.2), (13.0, 5.5), label="Surrogate retraining & active acquisition", label_side='above', label_fontsize=5.6, label_dx=18.0)
+    
+    plt.tight_layout()
+    f4_path = out_dir / "fig4_optimization.png"
+    plt.savefig(f4_path, dpi=300, bbox_inches='tight', pad_inches=0.03)
+    plt.close()
+    print(f"Saved: {f4_path} ({f4_path.stat().st_size} bytes)")
 
 if __name__ == "__main__":
     generate_figure_1()
     generate_figure_2()
-    print("All figures regenerated successfully.")
+    generate_figure_3()
+    generate_figure_4()
+    print("All 4 publication figures generated successfully.")

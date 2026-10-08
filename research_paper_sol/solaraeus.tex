@@ -84,17 +84,17 @@ To overcome these barriers, this paper presents \textbf{Solaraeus}, an end-to-en
     \item \textbf{Interactive 3D WebGL Digital Twin:} A production Three.js r128 web digital twin that ingests typed JSON data contracts, rendering interactive physical layers (DSM, SVF, shadows, $T_{\mathrm{mrt}}$, UTCI), real-time sun tracking, and a pedestrian comfort HUD.
 \end{itemize}
 
-The remainder of this paper is structured as follows. Section~II reviews related literature. Section~III describes the Church Street study site and geospatial harmonization. Section~IV details the governing physics engine. Section~V formalizes the certified incremental solver and mathematical error bounds. Section~VI details the CUDA GPU acceleration architecture. Section~VII presents the active surrogate optimization framework. Section~VIII reports comprehensive empirical baseline and intervention results. Section~IX concludes the paper.
+The end-to-end modular system architecture of Solaraeus is illustrated in Fig.~\ref{fig:arch}. The remainder of this paper is structured as follows. Section~II reviews related literature. Section~III describes the Church Street study site and geospatial harmonization. Section~IV details the governing physics engine. Section~V formalizes the certified incremental solver and mathematical error bounds (Fig.~\ref{fig:incremental}). Section~VI details the CUDA GPU acceleration architecture (Fig.~\ref{fig:gpu_engine}). Section~VII presents the active surrogate optimization framework (Fig.~\ref{fig:optimization}). Section~VIII reports comprehensive empirical baseline and intervention results. Section~IX concludes the paper.
 
 % =========================================================================
-% FIGURE 1: SYSTEM ARCHITECTURE (FULL WIDTH)
+% FIGURE 1: MODULAR SYSTEM ARCHITECTURE (COLUMN WIDTH)
 % =========================================================================
-\begin{figure*}[!t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=\textwidth]{fig1_architecture.png}
-\caption{Solaraeus system architecture. Five cohesive layers (data inputs, preprocessing, physics engine, export and data contracts, visualization frontend) are anchored by an automated validation and reproducibility block. The physics engine integrates certified incremental updates, CUDA GPU kernels, and active surrogate optimization.}
+\includegraphics[width=\columnwidth]{fig1_architecture.png}
+\caption{Solaraeus modular system architecture. Four cohesive layers link geospatial data ingestion, automated mesh preprocessing, dual-backend radiative solvers, and the interactive 3D WebGL digital twin.}
 \label{fig:arch}
-\end{figure*}
+\end{figure}
 
 % =========================================================================
 % SECTION II: RELATED WORK
@@ -112,16 +112,6 @@ In computer graphics and computational geometry, hardware-accelerated ray tracin
 
 \subsection{Surrogate-Assisted Spatial Optimization}
 Optimizing microclimatic interventions across complex urban canyons is intrinsically challenging due to non-convex physical objective landscapes, geometric canyon boundaries, and significant evaluation latency \cite{forrester2008engineering}. Surrogate-assisted optimization replaces computationally expensive simulation evaluations with statistical response surfaces (e.g., Gaussian processes, radial basis functions, or polynomial models) guided by exploration-exploitation acquisition functions \cite{forrester2008engineering}. Applying active surrogate modeling to certified incremental microclimate simulations offers unprecedented potential for multi-intervention urban design.
-
-% =========================================================================
-% FIGURE 2: METHODOLOGY AND DATA FLOW (FULL WIDTH)
-% =========================================================================
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=0.92\textwidth]{fig2_methodology.png}
-\caption{End-to-end methodology and data flow of Solaraeus. Parallelograms denote data products and rectangles denote computational processes. The pipeline seamlessly integrates geospatial ingestion, certified incremental recomputation, GPU CUDA execution, and active surrogate optimization.}
-\label{fig:methodology}
-\end{figure*}
 
 % =========================================================================
 % SECTION III: STUDY SITE AND GEOSPATIAL HARMONIZATION
@@ -302,6 +292,18 @@ where $\Delta \mathcal{S}(x) = 1$ if cell $x$ lies in the shadow frustum cast by
 \end{equation}
 where $W_{\mathcal{P}}$ and $H_{\mathcal{P}}$ are the projected width and height of the canopy. Cells where $B_T(x) > \varepsilon_T$ or $\Delta \mathcal{S}(x) = 1$ are assigned to $\Omega_{\mathrm{dirty}}$ and recomputed; all remaining cells retain baseline values with certified zero error.
 
+The certified incremental recomputation workflow and closed-form error bounding mechanism are illustrated in Fig.~\ref{fig:incremental}.
+
+% =========================================================================
+% FIGURE 2: CERTIFIED INCREMENTAL RECOMPUTATION (COLUMN WIDTH)
+% =========================================================================
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig2_incremental.png}
+\caption{Certified incremental recomputation workflow. Local canopy intervention ($\mathrm{BLR\_SHADE\_001}$) is bounded via solid-angle SVF decay and concave Stefan--Boltzmann linearization ($B_T(x) \le \varepsilon_T = 0.50\,\mathrm{K}$), recomputing $72$ cells ($0.26\%$) and reusing $28{,}048$ cells ($99.74\%$) with zero certificate violations.}
+\label{fig:incremental}
+\end{figure}
+
 % =========================================================================
 % SECTION VI: CUDA GPU ACCELERATION ARCHITECTURE
 % =========================================================================
@@ -318,7 +320,17 @@ The GPU pipeline executes two specialized CUDA kernels:
     \item \texttt{moller\_trumbore\_shadow\_kernel}: Dispatches 1D thread blocks where each thread casts a direct solar beam from a sensor cell against triangle bounding boxes and primitives in parallel, outputting a bitmask array.
     \item \texttt{compute\_svf\_horizon\_kernel}: Evaluates 36 horizon elevation radials concurrently per sensor cell using warp-level parallel reduction.
 \end{itemize}
-As profiled in Section~VIII, this architecture executes certified incremental recomputation in $11.40\,\mathrm{ms}$, enabling dynamic interactive optimization.
+As profiled in Section~VIII, this architecture executes certified incremental recomputation in $11.40\,\mathrm{ms}$, enabling dynamic interactive optimization. The hardware-software execution pipeline on the NVIDIA RTX 4050 GPU is illustrated in Fig.~\ref{fig:gpu_engine}.
+
+% =========================================================================
+% FIGURE 3: CUDA GPU ACCELERATION PIPELINE (COLUMN WIDTH)
+% =========================================================================
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_gpu_engine.png}
+\caption{CUDA GPU acceleration and resident-memory pipeline on NVIDIA RTX 4050. Watertight meshes and sensor points reside permanently in device VRAM; parallel ray-triangle and horizon reduction kernels execute incremental updates in $11.40\,\mathrm{ms}$ ($500.87\times$ speedup over full CPU recomputation).}
+\label{fig:gpu_engine}
+\end{figure}
 
 % =========================================================================
 % SECTION VII: ACTIVE SURROGATE OPTIMIZATION
@@ -353,7 +365,17 @@ To accelerate the optimization, Solaraeus trains a gradient-boosted surrogate re
     \alpha_{\mathrm{ucb}}(\mathbf{p}) = \widehat{\mathcal{J}}(\mathbf{p}) + \kappa \widehat{\sigma}(\mathbf{p}),
     \label{eq:acquisition}
 \end{equation}
-with $\kappa = 1.96$ to balance exploitation of proven cooling zones with exploration of unvisited corridor segments.
+with $\kappa = 1.96$ to balance exploitation of proven cooling zones with exploration of unvisited corridor segments. The active surrogate multi-intervention optimization loop is illustrated in Fig.~\ref{fig:optimization}.
+
+% =========================================================================
+% FIGURE 4: ACTIVE SURROGATE OPTIMIZATION LOOP (COLUMN WIDTH)
+% =========================================================================
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{fig4_optimization.png}
+\caption{Active surrogate multi-intervention optimization loop. Proposals undergo 4-stage corridor feasibility filtering, high-speed incremental evaluation, and surrogate model acquisition, discovering optimal dual-canopy configuration $\mathrm{CAND\_4196\_SURR}$ ($22.87\,\mathrm{m}^2$, $12.68\,\mathrm{K}$ peak cooling, zero overlap).}
+\label{fig:optimization}
+\end{figure}
 
 % =========================================================================
 % SECTION VIII: RESULTS AND DISCUSSION
@@ -445,7 +467,7 @@ UTCI Thermal Comfort & $\degC$ & $0.50$ & $\mathbf{0.100000}$ & $3.56 \times 10^
 \end{tabular}
 \end{table}
 
-The numerical results demonstrate exceptional fidelity:
+As illustrated in Fig.~\ref{fig:incremental}, the numerical results demonstrate exceptional fidelity:
 \begin{itemize}
     \item \textbf{Zero Discrepant Shadow Cells:} The direct shadow mask and direct shortwave flux are bit-identical ($0.000000$ error) across all $28{,}120$ cells.
     \item \textbf{Certified $T_{\mathrm{mrt}}$ Boundedness:} The maximum observed $T_{\mathrm{mrt}}$ deviation across the entire geographic domain is $0.028902\,\mathrm{K}$, well within the certified tolerance bound $\varepsilon_T = 0.50\,\mathrm{K}$. The mean absolute error across all cells is $1.39 \times 10^{-5}\,\mathrm{K}$.
@@ -474,7 +496,7 @@ GPU Incremental & $\mathbf{0.0114} \pm 0.001$ & $\mathbf{11.40}$ & $\mathbf{500.
 \end{tabular}
 \end{table}
 
-Key performance findings include:
+Key performance findings (Fig.~\ref{fig:gpu_engine}) include:
 \begin{itemize}
     \item \textbf{CPU Speedup:} CPU certified incremental updates achieve a $13.6\times$ speedup ($0.42\,\mathrm{s}$ vs.\ $5.71\,\mathrm{s}$). On extended $320\,\mathrm{m}$ grids ($102{,}400$ cells, 65 buildings), incremental recomputation scales to $2.88\,\mathrm{s}$ vs.\ $40.82\,\mathrm{s}$ full recomputation ($14.2\times$ speedup, $92.7\%$ cell reuse).
     \item \textbf{GPU Incremental Kernel Throughput:} The GPU resident incremental kernel executes in \textbf{$11.40\,\mathrm{ms}$}, delivering a \textbf{$500.87\times$} speedup over full CPU recomputation and a \textbf{$36.84\times$} speedup over CPU incremental recomputation.
@@ -482,7 +504,7 @@ Key performance findings include:
 \end{itemize}
 
 \subsection{Multi-Intervention Two-Panel Surrogate Optimization}
-The active surrogate optimizer was tasked with finding an optimal two-panel shade layout along Church Street under geometric setback constraints and overlap penalties ($\lambda_{\mathrm{overlap}} = 0.5$). Across 4,196 proposal iterations, the surrogate model converged to candidate $\mathrm{CAND\_4196\_SURR}$:
+The active surrogate optimizer was tasked with finding an optimal two-panel shade layout along Church Street under geometric setback constraints and overlap penalties ($\lambda_{\mathrm{overlap}} = 0.5$). Across 4,196 proposal iterations (Fig.~\ref{fig:optimization}), the surrogate model converged to candidate $\mathrm{CAND\_4196\_SURR}$:
 \begin{itemize}
     \item \textbf{Panel 1:} Located at $(x = 124.02\,\mathrm{m}, y = 59.63\,\mathrm{m})$; length $6.76\,\mathrm{m}$, width $2.07\,\mathrm{m}$, height $3.79\,\mathrm{m}$, heading $113.8^\circ$, albedo $\alpha = 0.56$ (area $14.01\,\mathrm{m}^2$).
     \item \textbf{Panel 2:} Located at $(x = 151.94\,\mathrm{m}, y = 59.04\,\mathrm{m})$; length $3.85\,\mathrm{m}$, width $2.30\,\mathrm{m}$, height $4.16\,\mathrm{m}$, heading $93.7^\circ$, albedo $\alpha = 0.47$ (area $8.86\,\mathrm{m}^2$).
@@ -490,7 +512,7 @@ The active surrogate optimizer was tasked with finding an optimal two-panel shad
 \end{itemize}
 
 \subsection{Interactive 3D WebGL Digital Twin}
-To bridge simulation outputs with municipal stakeholders, Solaraeus serializes physical arrays into typed JSON contracts, CF-compliant NetCDF files, and watertight OBJ meshes. These assets are ingested by an interactive browser runtime in `simulation_3d/` built on React 19, TypeScript, and Three.js r128 (Fig.~\ref{fig:arch}, Layer~5). The digital twin features:
+To bridge simulation outputs with municipal stakeholders, Solaraeus serializes physical arrays into typed JSON contracts, CF-compliant NetCDF files, and watertight OBJ meshes. These assets are ingested by an interactive browser runtime in `simulation_3d/` built on React 19, TypeScript, and Three.js r128 (Fig.~\ref{fig:arch}, Layer~4). The digital twin features:
 \begin{enumerate}
     \item \textit{GLSL Thermal Heatmap Shader:} Real-time GPU interpolation of scalar microclimatic fields ($T_{\mathrm{mrt}}$, UTCI, SVF, shadow masks) mapped onto terrain and building geometry.
     \item \textit{Solar Timeline Scrubber:} Dynamic solar vector adjustment recalculating shadow projections in real time.
