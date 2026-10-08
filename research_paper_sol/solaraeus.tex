@@ -2,19 +2,30 @@
 \IEEEoverridecommandlockouts
 
 % =========================================================================
-% PACKAGE IMPORTS
+% PACKAGES
 % =========================================================================
 \usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
 \usepackage{microtype}
 \usepackage{url}
-\usepackage{siunitx}
-\usepackage{bm}
+
+% Mathematical environments
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+% Compact lists for two-column layout
+\setlist{nosep,leftmargin=*,labelsep=0.5em}
+
+% Unit shortcuts
+\newcommand{\degC}{^{\circ}\mathrm{C}}
+\newcommand{\Wm}{\mathrm{W/m^2}}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -24,9 +35,7 @@
 % =========================================================================
 % TITLE AND AUTHORS
 % =========================================================================
-\title{Solaraeus: A Physics-Based 3D Urban Microclimate Digital Twin on a 1-Metre Grid\\
-\thanks{This research is developed under the Solaraeus Open Urban Microclimate Initiative. Source code, reproducible verification suites, and interactive viewer assets are maintained at \texttt{https://github.com/ayushsingh08-ds/solaraeus}.}
-}
+\title{Solaraeus: A Physics-Based 3D Urban Microclimate Digital Twin with Certified Incremental Radiative Transfer, GPU Acceleration, and Active Surrogate Optimization\thanks{This research is developed under the Solaraeus Open Urban Microclimate Initiative. Source code, reproducible verification suites, and interactive viewer assets are maintained at \texttt{https://github.com/ayushsingh08-ds/solaraeus}.}}
 
 \author{\IEEEauthorblockN{Ayush Singh}
 \IEEEauthorblockA{\textit{Department of Computational Science and Engineering} \\
@@ -41,11 +50,13 @@ ayushsingh@solaraeus.org}
 % ABSTRACT
 % =========================================================================
 \begin{abstract}
-Pedestrian thermal stress has emerged as an acute environmental hazard in densifying urban centers, yet evaluating outdoor comfort at street level remains computationally prohibitive and data-fragmented. Existing microclimate modeling software packages operate primarily as monolithic batch solvers, hindering iterative urban design exploration and lacking modern interactive 3D web delivery. In this paper, we present \textbf{Solaraeus}, an end-to-end, physics-based 3D urban microclimate digital twin operating on a uniform 1-metre spatial grid. Solaraeus harmonizes open geospatial datasets---LiDAR bare-earth Digital Elevation Models (DEMs), Overture building polygon footprints, and ERA5 reanalysis meteorology---into an automated Python physics pipeline. The computational engine executes coordinate reference harmonization, digital surface model (DSM) construction, continuous Sky View Factor (SVF) calculation via Steyn (1980) ray-marching across 36 azimuth radials, ray-traced directional solar shadowing, multi-directional Stefan-Boltzmann mean radiant temperature ($T_{\mathrm{mrt}}$) balance using Fiala human cylindrical geometry, and Universal Thermal Climate Index (UTCI) biometeorological stress evaluation via \texttt{pythermalcomfort}. The system serializes outputs into CF-compliant NetCDF rasters, watertight 3D meshes (OBJ/JSON), and typed JSON contracts ingested by an interactive React 19 and Three.js WebGL digital twin. Solaraeus is validated against an empirical baseline in Washington Square Park (WSP), New York City, demonstrating physical contrast between direct sunlit exposure ($T_{\mathrm{mrt}} = 57.5^\circ\mathrm{C}$, $\mathrm{UTCI} = 39.6^\circ\mathrm{C}$) and shaded pedestrian zones ($T_{\mathrm{mrt}} = 42.8^\circ\mathrm{C}$, $\mathrm{UTCI} = 36.2^\circ\mathrm{C}$), reflecting a $14.7^\circ\mathrm{C}$ radiant temperature relief ($\Delta T_{\mathrm{mrt}}$). Finally, we formalize a structured architectural roadmap for transferring Solaraeus to Bengaluru, India, integrating multi-day diurnal cycles (L1--L2), vegetative canopy attenuation (L3), surrogate optimization (L4), and dependency-aware incremental recomputation.
+Pedestrian thermal stress poses an escalating public health crisis in rapidly densifying tropical metropolises, yet existing microclimate modeling packages operate as monolithic, desktop-bound batch solvers. When localized architectural interventions (e.g., shade canopies or tree plantings) are evaluated, traditional engines discard domain state and recompute all spatial fields from scratch, creating a computational bottleneck that precludes real-time interactive design and automated optimization. In this paper, we present \textbf{Solaraeus}, an end-to-end, physics-based 3D urban microclimate digital twin and high-throughput computational engine. Solaraeus harmonizes open geospatial datasets---Overture building vector polygons, Google Open Buildings machine-learning height estimates, FABDEM topography, and NOAA/NASA POWER meteorological fluxes---into an automated Python and CUDA C++ simulation pipeline. The core engine executes astronomical solar vector tracking, Steyn (1980) Sky View Factor (SVF) calculation across 36 azimuth radials, 3D Möller--Trumbore ray-traced directional shadows, 6-flux Stefan--Boltzmann Mean Radiant Temperature ($T_{\mathrm{mrt}}$) balance, and Universal Thermal Climate Index (UTCI) biometeorological stress evaluation. To overcome the recomputation bottleneck, we formulate and prove a \textit{Certified Incremental Solver} with closed-form error bounds $B_T(x) \le \varepsilon_T = 0.50\,\mathrm{K}$ grounded in concave Stefan--Boltzmann linearization and solid-angle horizon truncation decay. We couple this with a resident-memory CUDA GPU acceleration engine and an active surrogate optimizer for multi-intervention shade layout search.
+
+Solaraeus is evaluated on an empirical real-world digital twin of the Church Street pedestrian corridor in Bengaluru, India ($380\,\mathrm{m} \times 296\,\mathrm{m}$ simulation domain, $2.0\,\mathrm{m}$ grid, $28{,}120$ cells, 123 buildings). Baseline simulations reveal severe pedestrian heat stress during peak pre-monsoon conditions ($T_a = 35.0\degC$, $\mathrm{GHI} = 755.97\,\Wm$), with corridor $T_{\mathrm{mrt}}$ averaging $45.81\degC$ and UTCI averaging $36.49\degC$ (Strong Heat Stress), contrasting against building-shaded zones by $\Delta T_{\mathrm{mrt}} = 11.89\,\mathrm{K}$. Introducing an overhead shade canopy ($\mathrm{BLR\_SHADE\_001}$, $6\,\mathrm{m} \times 3\,\mathrm{m}$) delivers a peak localized cooling relief of $-12.62\,\mathrm{K}$ $T_{\mathrm{mrt}}$ and $-3.10\,\mathrm{K}$ UTCI. The certified incremental solver recomputes only $72$ cells ($0.26\%$) while reusing $28{,}048$ cells ($99.74\%$), avoiding $925{,}584$ rays ($99.74\%$ work reduction) with a maximum observed domain error of $0.0289\,\mathrm{K} \ll 0.50\,\mathrm{K}$ and zero certificate violations across 18 audited criteria. On an NVIDIA RTX 4050 GPU, the resident incremental kernel executes in $11.40\,\mathrm{ms}$ ($500.87\times$ speedup over full CPU recomputation; $36.84\times$ over CPU incremental). Multi-intervention surrogate optimization discovers a complementary dual-panel configuration ($\mathrm{CAND\_4196\_SURR}$, $22.87\,\mathrm{m}^2$) delivering $12.68\,\mathrm{K}$ peak cooling with zero spatial overlap. Outputs are serialized into typed JSON contracts and ingested by an interactive Three.js 3D WebGL digital twin with custom GLSL thermal shaders.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Urban microclimate, digital twin, mean radiant temperature, UTCI, solar radiation, sky view factor, ray tracing, 3D WebGL, thermal comfort, environmental modeling.
+Urban microclimate, mean radiant temperature, UTCI, certified incremental computation, GPU acceleration, CUDA, surrogate optimization, digital twin, Bengaluru, thermal comfort.
 \end{IEEEkeywords}
 
 % =========================================================================
@@ -53,232 +64,455 @@ Urban microclimate, digital twin, mean radiant temperature, UTCI, solar radiatio
 % =========================================================================
 \section{Introduction}
 
-Accelerating global urbanization, compounded by climate-induced extreme heatwaves, has intensified the Urban Heat Island (UHI) effect, subjecting metropolitan populations to dangerous levels of outdoor physiological stress \cite{oke1982canyon, grimmond2010climate}. Within dense urban street corridors, pedestrian thermal strain during daylight hours is not dictated by ambient air temperature ($T_a$) alone, but predominantly by the mean radiant temperature ($T_{\mathrm{mrt}}$) \cite{matzarakis2007modelling}. $T_{\mathrm{mrt}}$ quantifies the total sum of shortwave solar irradiance and longwave terrestrial emission absorbed by the human body across all spatial orientations. Because radiant exchanges in deep urban canyons can elevate human heat load by more than double that of ambient air alone, urban planners, landscape architects, and municipal engineers urgently require high-resolution microclimatic models to evaluate mitigation strategies, including tree canopy expansion, shade structures, and reflective surface retrofits \cite{chen2012gis, chatzipoulka2016sky}.
+Accelerating urbanization compounded by climate-induced heatwaves has intensified the Urban Heat Island (UHI) phenomenon, subjecting metropolitan populations to dangerous levels of outdoor physiological strain \cite{oke1982canyon,grimmond2010climate}. In dense equatorial and tropical cities such as Bengaluru, India ($12.97^\circ\,\mathrm{N}$), high solar elevation angles and deep concrete-and-asphalt street canyons generate extreme diurnal thermal loads. Within pedestrian corridors, daytime physiological comfort is dictated predominantly by the Mean Radiant Temperature ($T_{\mathrm{mrt}}$) rather than dry-bulb ambient air temperature ($T_a$) alone \cite{matzarakis2007modelling}. $T_{\mathrm{mrt}}$ integrates shortwave solar irradiance (direct beam, diffuse sky, and surface reflections) and longwave emissions from heated building facades and ground pavements incident upon the human body. Under direct tropical sun, radiant heat flux can elevate pedestrian thermal perception into the \textit{Strong} and \textit{Very Strong Heat Stress} classifications of the Universal Thermal Climate Index (UTCI) \cite{jendritzky2012universal,brode2012deriving}, inducing heat exhaustion and cardiovascular stress.
 
-To model these microclimatic interactions, state-of-the-art computational tools have been developed, most notably the Solar and Longwave Environmental Irradiance Geometry (SOLWEIG) model integrated within the Urban Multi-scale Environmental Predictor (UMEP) \cite{lindberg2008solweig, lindberg2018urban}, microscale Computational Fluid Dynamics (CFD) suites such as ENVI-met \cite{bruse1998simulating}, and Radiance-based environmental CAD plugins like Ladybug Tools \cite{sadeghipour2013ladybug}. While ENVI-met resolves coupled atmospheric turbulence and thermodynamic transport, its prohibitive computational overhead---often requiring hours to days of CPU runtime for a single diurnal cycle---precludes interactive design exploration. Conversely, SOLWEIG establishes a computationally pragmatic trade-off by decoupling 3D geometric radiative balance from turbulent flow, using discrete ray casting across Digital Elevation Models (DEMs) to derive Sky View Factors (SVF) and cast shadows \cite{gal2009sky, lindberg2010spatial}.
+Consequently, municipal urban planners and landscape architects require high-resolution microclimatic models to evaluate mitigation strategies, including engineered shade structures, street canopies, and tree plantings \cite{chen2012gis,chatzipoulka2016sky}. To model these phenomena, established microclimate engines have been deployed, most notably the Solar and Longwave Environmental Irradiance Geometry (SOLWEIG) model within the Urban Multi-scale Environmental Predictor (UMEP) \cite{lindberg2008solweig,lindberg2018urban}, microscale Computational Fluid Dynamics (CFD) suites like ENVI-met \cite{bruse1998simulating}, and Radiance-based CAD plugins like Ladybug Tools \cite{sadeghipour2013ladybug}. While CFD suites resolve localized convective air turbulence, convective heat exchange accounts for less than one-third of pedestrian daytime thermal sensation in clear-sky conditions compared to radiation \cite{matzarakis2007modelling}. SOLWEIG establishes an efficient trade-off by decoupling 3D geometric radiative balance from turbulent flow, using discrete ray casting across Digital Elevation Models (DEMs) to derive Sky View Factors (SVF) and cast shadows \cite{gal2009sky,lindberg2010spatial}.
 
-Despite these advances, a substantial operational gap persists between scientific microclimate engines and actionable urban planning workflows. First, existing simulation tools remain disconnected from open, automated geospatial data pipelines; assembling elevation rasters, building vector geometries, and meteorological boundary conditions typically requires laborious, non-reproducible manual GIS preprocessing \cite{sadeghipour2013ladybug}. Second, current microclimate software packages are constructed as desktop-bound, batch-oriented solvers that export static imagery rather than publishing open, typed data contracts to interactive web-based digital twins. Third, whenever an urban designer introduces a localized architectural alteration---such as adjusting an awning dimension or planting a shade tree---existing solvers discard the entire spatial grid and execute an exhaustive recalculation across every cell, generating an acute computational bottleneck that prevents real-time exploration.
+Despite their theoretical maturity, current microclimate modeling workflows suffer from three fundamental computational and operational bottlenecks:
+\begin{enumerate}
+    \item \textbf{Monolithic Recomputation Bottleneck:} When an urban designer introduces a localized architectural alteration---such as placing an overhead awning or planting a shade tree---existing solvers discard the entire simulation domain and recalculate all cells from scratch. Because city-scale grids contain tens of thousands to millions of cells with $36$ to $360$ rays per cell, this exhaustive recalculation consumes seconds to minutes per iteration, rendering real-time design exploration and automated algorithmic optimization infeasible.
+    \item \textbf{Absence of Formal Error Certificates:} While heuristic spatial clipping or bounding boxes can restrict recomputation, ad-hoc approximations risk unquantified error propagation into surrounding radiative fields. No existing urban microclimate tool provides a mathematically proven, closed-form error certificate guaranteeing that untouched cells do not deviate beyond a user-specified thermal tolerance ($|\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)| \le \varepsilon_T$).
+    \item \textbf{Lack of Hardware Acceleration and Interactive 3D Web Integration:} Existing scientific software packages remain desktop-bound and CPU-constrained, exporting static GIS shapefiles or 2D raster imagery rather than publishing open, typed data contracts to hardware-accelerated 3D WebGL runtimes \cite{sadeghipour2013ladybug,lindberg2018urban}.
+\end{enumerate}
 
-To bridge these challenges, this paper presents \textbf{Solaraeus}, an open-source, physics-based 3D urban microclimate digital twin operating on a uniform 1-metre spatial resolution grid. Solaraeus establishes an automated data ingestion pipeline that unifies open LiDAR elevation rasters, Overture vector building footprints, and hourly ERA5 reanalysis meteorology into an integrated Python physics engine. The core engine computes Steyn (1980) SVF across 36 azimuth radials, ray-traced directional building shadows, Stefan-Boltzmann 6-flux $T_{\mathrm{mrt}}$ balance, and Universal Thermal Climate Index (UTCI) heat stress via \texttt{pythermalcomfort}. The system automatically serializes CF-compliant NetCDF rasters, watertight 3D meshes (OBJ/JSON), and typed JSON contracts directly into a modern React 19 and Three.js WebGL interactive viewer. We validate Solaraeus against an empirical benchmark in Washington Square Park (WSP), New York City, establishing a clear baseline contrast between sunlit ($T_{\mathrm{mrt}} = 57.5^\circ\mathrm{C}$, $\mathrm{UTCI} = 39.6^\circ\mathrm{C}$) and shaded zones ($T_{\mathrm{mrt}} = 42.8^\circ\mathrm{C}$, $\mathrm{UTCI} = 36.2^\circ\mathrm{C}$), while detailing an extensible architectural blueprint for planned tropical benchmarking in Bengaluru, multi-day diurnal cycles, and dependency-aware incremental recomputation.
+To overcome these barriers, this paper presents \textbf{Solaraeus}, an end-to-end, physics-based 3D urban microclimate digital twin and certified high-throughput computational engine. The primary scientific and engineering contributions of this work are:
+\begin{itemize}
+    \item \textbf{High-Fidelity Geospatial Harmonization:} An automated ingestion pipeline that fuses Overture Maps vector building perimeters, Google Open Buildings machine-learning height estimates, FABDEM topography, and NOAA/NASA POWER meteorological forcing into watertight 3D meshes and metric grids in Bengaluru, India.
+    \item \textbf{Certified Incremental Solver Formulation:} A mathematically proved recomputation algorithm that evaluates closed-form error bounds $B_T(x) \le \varepsilon_T$ based on solid-angle horizon elevation decay and concave Stefan--Boltzmann linearization, provably guaranteeing bounded error while reusing over $99.7\%$ of static grid cells.
+    \item \textbf{Resident-Memory CUDA GPU Engine:} High-throughput CUDA C++ kernels implementing double-precision Möller--Trumbore ray tracing and horizon SVF marching on NVIDIA GPUs, achieving bit-identical shadow parity, machine-precision $T_{\mathrm{mrt}}$ parity, and $11.40\,\mathrm{ms}$ incremental updates ($500.87\times$ speedup over full CPU recomputation).
+    \item \textbf{Active Surrogate Optimization:} A constrained multi-intervention layout optimizer that searches single-panel and multi-panel shade configurations under geometric canyon clearance rules and shadow overlap interference penalties, identifying Pareto-optimal cooling interventions.
+    \item \textbf{Interactive 3D WebGL Digital Twin:} A production Three.js r128 web digital twin that ingests typed JSON data contracts, rendering interactive physical layers (DSM, SVF, shadows, $T_{\mathrm{mrt}}$, UTCI), real-time sun tracking, and a pedestrian comfort HUD.
+\end{itemize}
+
+The remainder of this paper is structured as follows. Section~II reviews related literature. Section~III describes the Church Street study site and geospatial harmonization. Section~IV details the governing physics engine. Section~V formalizes the certified incremental solver and mathematical error bounds. Section~VI details the CUDA GPU acceleration architecture. Section~VII presents the active surrogate optimization framework. Section~VIII reports comprehensive empirical baseline and intervention results. Section~IX concludes the paper.
 
 % =========================================================================
 % FIGURE 1: SYSTEM ARCHITECTURE (FULL WIDTH)
 % =========================================================================
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
 \includegraphics[width=\textwidth]{fig1_architecture.png}
-\caption{Solaraeus System Architecture and Component Taxonomy. The system is partitioned into five distinct layers: (1) Data Inputs (LiDAR DEM, Overture building footprints, ERA5 meteorology); (2) Preprocessing (CRS harmonization and 1-m DSM extrusion); (3) Physics Engine (Steyn 1980 SVF with 36 radials, ray-traced directional shadows, Stefan-Boltzmann $T_{\mathrm{mrt}}$, and pythermalcomfort UTCI); (4) Export \& Data Contracts (CF-compliant NetCDF, watertight 3D meshes, publication figures, and typed JSON contracts); and (5) Visualization Frontend (React 19 + TypeScript + Three.js digital twin with layer switching, sun positioning, and pedestrian comfort HUD). Solid boxes denote implemented active components; dashed boxes denote planned/proposed modules. The Validation \& Reproducibility block anchors empirical verification via pytest and automated reproduction scripts.}
+\caption{Solaraeus system architecture. Five cohesive layers (data inputs, preprocessing, physics engine, export and data contracts, visualization frontend) are anchored by an automated validation and reproducibility block. The physics engine integrates certified incremental updates, CUDA GPU kernels, and active surrogate optimization.}
 \label{fig:arch}
 \end{figure*}
 
 % =========================================================================
-% SECTION II: LITERATURE REVIEW
+% SECTION II: RELATED WORK
 % =========================================================================
-\section{Literature Review}
+\section{Related Work}
 
-\subsection{Urban Microclimate and Outdoor Thermal Comfort}
-The assessment of pedestrian thermal comfort in urban street canyons has developed substantially over recent decades \cite{oke1982canyon, grimmond2010climate}. Seminal research by Fanger \cite{fanger1970thermal} established the physiological foundation for human energy balance, which was subsequently adapted to complex outdoor environments through indices such as the Physiological Equivalent Temperature (PET) \cite{matzarakis2007modelling} and the Universal Thermal Climate Index (UTCI) \cite{jendritzky2012universal, brode2012deriving}. UTCI evaluates biometeorological stress using an advanced 187-node dynamic human thermoregulation model coupled with an adaptive clothing insulation algorithm. Across outdoor environments, $T_{\mathrm{mrt}}$ is recognized as the single most critical meteorological driver of daytime pedestrian discomfort: in hot conditions, solar and surface radiation fluxes exert twice the physiological impact of ambient temperature fluctuations \cite{matzarakis2007modelling, brode2012deriving}. Consequently, accurate spatial modeling of 3D radiative fluxes is essential for assessing urban livability.
+\subsection{Outdoor Thermal Comfort and Mean Radiant Temperature}
+Pedestrian thermal sensation in urban outdoor spaces has been extensively investigated \cite{oke1982canyon,grimmond2010climate}. Fanger's seminal work \cite{fanger1970thermal} established the fundamental heat exchange balance between the human body and the surrounding thermal environment. Outdoor biometeorological research subsequently formalized indices such as the Physiological Equivalent Temperature (PET) \cite{matzarakis2007modelling} and the Universal Thermal Climate Index (UTCI) \cite{jendritzky2012universal,brode2012deriving}. UTCI couples a multi-node dynamic human thermoregulation model (Fiala et al.\ \cite{fiala2012utci}) with an adaptive clothing insulation algorithm. Across diverse urban canyon morphologies, $T_{\mathrm{mrt}}$ represents the single most influential meteorological driver of outdoor heat stress: daytime fluctuations in shortwave solar and longwave terrestrial radiant fluxes impact pedestrian physiological strain more than twice as intensely as equivalent variations in ambient air temperature \cite{matzarakis2007modelling,brode2012deriving}.
 
-\subsection{Radiative Transfer and Sky View Factor Formulations}
-Simulating outdoor radiative transfer requires solving line-of-sight occlusions caused by urban morphology \cite{robinson2004sun, krayenhoff2014multi}. A foundational metric is the Sky View Factor (SVF), which measures the proportion of visible radiant sky hemisphere unobstructed by surrounding built surfaces \cite{chen2012gis, chatzipoulka2016sky}. Steyn \cite{steyn1980svf} introduced the angular ray-marching method across radial azimuths over digital elevation rasters, enabling automated SVF estimation without photographic fish-eye calibration. Lindberg et al.\ extended this concept within SOLWEIG \cite{lindberg2008solweig, lindberg2010spatial}, modeling shortwave direct beam, diffuse sky irradiance, and longwave emissions across six cardinal orthogonal directions (upward, downward, north, south, east, and west) based on Fanger's standardized human cylinder geometry. While SOLWEIG achieved substantial computational savings over CFD solvers, its reliance on discrete raster marching across large geographic domains still requires significant processing time during city-scale evaluations.
+\subsection{Radiative Transfer Modeling and SOLWEIG}
+Simulating outdoor radiative transfer requires solving complex line-of-sight occlusions across 3D urban geometries \cite{robinson2004sun,krayenhoff2014multi}. A foundational metric is the Sky View Factor (SVF), defined as the ratio of visible radiant sky hemisphere unobstructed by surrounding built surfaces \cite{chen2012gis,chatzipoulka2016sky}. Steyn \cite{steyn1980svf} introduced the angular ray-marching method across radial azimuths over digital elevation grids. Lindberg et al.\ extended this concept in the SOLWEIG model \cite{lindberg2008solweig,lindberg2010spatial}, modeling direct beam, diffuse sky irradiance, and reflected longwave emissions across six cardinal orthogonal directions (upward, downward, north, south, east, and west) on Fanger's rotationally symmetric human cylinder. While SOLWEIG dramatically reduces runtime relative to Navier--Stokes CFD suites, its implementation in UMEP relies on raster-based Python/QGIS batch processing, where any spatial scene edit requires recomputing the entire raster domain \cite{lindberg2018urban}.
 
-\subsection{Geospatial Digital Twins and WebGL Visualization}
-The confluence of open geospatial data repositories and hardware-accelerated web graphics has revolutionized urban environmental visualization \cite{bauer2020accelerating}. Initiatives such as Overture Maps provide high-fidelity, globally harmonized building footprints, while public airborne LiDAR surveys offer decimeter-scale elevation data. Concurrently, modern graphics libraries, such as Three.js and WebGL, allow client-side rendering of complex 3D urban geometries directly within standard browsers without proprietary plugins. However, existing urban microclimate tools rarely exploit this capability; they output isolated GIS shapefiles or 2D raster images, severing the connection between scientific simulation data and interactive 3D spatial exploration \cite{sadeghipour2013ladybug, lindberg2018urban}. Establishing standardized data contracts that bridge physics engines and 3D web runtimes represents a critical frontier in participatory urban planning.
+\subsection{GPU Ray Tracing and Incremental Spatial Computation}
+In computer graphics and computational geometry, hardware-accelerated ray tracing and spatial caching (e.g., Bounding Volume Hierarchies, shadow map caching, and temporal reprojection) are standard techniques for avoiding redundant work across interactive updates \cite{wald2014embree,parker2010optix}. In urban environmental simulation, researchers have explored GPU acceleration to speed up solar irradiance calculations \cite{bauer2020accelerating,zhang2019gpu,kastner2020ray}. However, existing GPU implementations remain strictly batch-oriented: when a localized geometric intervention (e.g., shade canopy or tree) is modified, the solver recomputes the entire scene from scratch. While incremental visibility techniques have been studied conceptually in spatial computing \cite{teller1992visibility}, their rigorous mathematical coupling with certified thermal error bounds and multi-directional SOLWEIG-compatible flux integration has not been realized in urban microclimate science.
 
-\subsection{Incremental Computation and Environmental Simulation}
-In computer graphics and computational geometry, incremental algorithms and spatial caching mechanisms (e.g., bounding volume hierarchies, shadow map caching, and temporal anti-aliasing) are routinely employed to avoid redundant calculations across interactive frame updates \cite{wald2014embree, parker2010optix}. In urban environmental simulation, recent works have explored GPU acceleration to speed up ray casting and visibility tests \cite{zhang2019gpu, kastner2020ray}. However, current GPU microclimate implementations remain batch-oriented: when a localized geometric intervention (e.g., shade canopy or tree) is modified, the solver recomputes the entire scene from scratch. A dependency-aware incremental recomputation framework that selectively updates only the geometrically affected radiative fields has been proposed in spatial computing literature \cite{teller1992visibility}, but its formalization and integration within validated SOLWEIG-style workflows remains an open research pursuit.
+\subsection{Surrogate-Assisted Spatial Optimization}
+Optimizing microclimatic interventions across complex urban canyons is intrinsically challenging due to non-convex physical objective landscapes, geometric canyon boundaries, and significant evaluation latency \cite{forrester2008engineering}. Surrogate-assisted optimization replaces computationally expensive simulation evaluations with statistical response surfaces (e.g., Gaussian processes, radial basis functions, or polynomial models) guided by exploration-exploitation acquisition functions \cite{forrester2008engineering}. Applying active surrogate modeling to certified incremental microclimate simulations offers unprecedented potential for multi-intervention urban design.
 
 % =========================================================================
-% FIGURE 2: METHODOLOGY & DATA FLOW PIPELINE (FULL WIDTH)
+% FIGURE 2: METHODOLOGY AND DATA FLOW (FULL WIDTH)
 % =========================================================================
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
 \includegraphics[width=0.92\textwidth]{fig2_methodology.png}
-\caption{End-to-End Methodology and Data Flow Pipeline of Solaraeus. The sequential computational flow processes raw geospatial inputs (LiDAR DEM, Overture footprints, ERA5 weather) through coordinate harmonization, DSM extrusion ($DSM = DEM + H_{\mathrm{bldg}}$), Steyn (1980) 36-radial SVF, horizon-obstruction directional shadowing, Stefan-Boltzmann multi-directional radiation balance ($T_{\mathrm{mrt}} = (\Phi_{\mathrm{tot}} / \sigma)^{0.25}$), and pythermalcomfort UTCI evaluation. Parallelograms represent intermediate and exported data products; rectangles represent computational processes. Small boxed labels beside arrows identify governing methods and equations. The right-hand column outlines the structured roadmap for planned modules (L1--L4) and proposed dependency-aware incremental recomputation.}
+\caption{End-to-end methodology and data flow of Solaraeus. Parallelograms denote data products and rectangles denote computational processes. The pipeline seamlessly integrates geospatial ingestion, certified incremental recomputation, GPU CUDA execution, and active surrogate optimization.}
 \label{fig:methodology}
 \end{figure*}
 
 % =========================================================================
-% SECTION III: DESCRIPTION OF DATA
+% SECTION III: STUDY SITE AND GEOSPATIAL HARMONIZATION
 % =========================================================================
-\section{Description of Data}
+\section{Study Site and Geospatial Data Harmonization}
 
-To ground our physics pipeline in high-fidelity urban geometry while maintaining computational rigor, Solaraeus integrates three primary geospatial and atmospheric data streams.
+\subsection{Church Street, Bengaluru Study Site}
+To evaluate Solaraeus on an authentic, high-density tropical urban corridor, we selected Church Street in central Bengaluru (Karnataka, India; $12.974900^\circ\,\mathrm{N}$, $77.605400^\circ\,\mathrm{E}$). Church Street is a flagship pedestrian-priority commercial avenue characterized by continuous multi-story retail and office facades, dense foot traffic, and limited natural tree shade. During the pre-monsoon summer season (March to May), Bengaluru experiences acute daytime heat with clear-sky solar irradiances exceeding $750\,\Wm$ and ambient temperatures surpassing $35^\circ\mathrm{C}$, creating severe pedestrian heat stress.
 
-\subsection{Study Sites: Washington Square Park and Bengaluru}
-The primary baseline study area utilized for implementation and physical validation is \textbf{Washington Square Park (WSP)}, located in Greenwich Village, Manhattan, New York City ($40.7308^\circ\,\mathrm{N}, 73.9973^\circ\,\mathrm{W}$). WSP spans approximately 3.9 hectares and presents a challenging urban microclimate morphology, featuring open central plazas, dense perimeter tree canopies, and surrounding multi-story commercial and university buildings ranging from 15 to 80 metres in height. This morphology generates sharp spatial gradients between unshaded solar exposure and deep building cast shadows, providing an ideal empirical benchmark for microclimate radiative solvers.
-
-The future target deployment site for extensive real-world testing is \textbf{Bengaluru, India} ($12.9716^\circ\,\mathrm{N}, 77.5946^\circ\,\mathrm{E}$), specifically focusing on high-density pedestrian corridors such as Church Street. Characterized by high solar irradiance, tropical highland climate, and complex street canyon geometries, Bengaluru represents a critical operational domain where outdoor heat mitigation is paramount. Testing on Bengaluru will proceed using a dedicated dataset currently under active construction.
-
-\subsection{Airborne LiDAR Digital Elevation Model (DEM)}
-Bare-earth terrain elevation is established using airborne LiDAR elevation rasters acquired from public municipal geospatial repositories (NYC OpenData for the WSP benchmark). The raw point cloud is processed into a bare-earth Digital Elevation Model (DEM) at a uniform horizontal resolution of $1.0\,\mathrm{m} \times 1.0\,\mathrm{m}$. The DEM captures microtopography, roadway cross-slopes, pedestrian walkways, and open plaza grade changes, establishing the physical ground datum $z_{\mathrm{dem}}(u,v)$ across the simulation bounding box.
-
-\subsection{Overture Maps Building Footprints}
-Building structural envelopes are obtained from the open Overture Maps Foundation building dataset. Vector geometries consist of 2D polygonal footprint perimeters $\mathcal{P}_k$ paired with standardized attribute metadata, including building height ($H_k$), number of stories, and roof classification. Footprints are validated against municipal building records to ensure boundary integrity. Where height attributes are unpopulated, building heights are inferred from LiDAR point cloud maximum surface elevations ($Z_{\max} - Z_{\mathrm{dem}}$), yielding accurate Level of Detail 1 (LOD1) 3D building prisms.
-
-\subsection{ERA5 Atmospheric and Meteorological Reanalysis}
-Atmospheric forcing variables are sourced from the Copernicus Climate Change Service ERA5 hourly reanalysis dataset on single levels. Reanalysis variables include:
+The simulation domain is partitioned into:
 \begin{itemize}
-    \item 2-metre dry-bulb air temperature ($T_a$, $^\circ\mathrm{C}$),
-    \item 2-metre dewpoint temperature ($T_d$, $^\circ\mathrm{C}$) from which relative humidity ($RH$, $\%$) is derived,
-    \item Surface direct solar beam irradiance ($I_{\mathrm{dir}}$, $\mathrm{W/m}^2$),
-    \item Surface diffuse horizontal solar irradiance ($I_{\mathrm{diff}}$, $\mathrm{W/m}^2$),
-    \item 10-metre horizontal eastward ($u_{10}$) and northward ($v_{10}$) wind velocity vectors, transformed to 1.1-metre pedestrian height velocity ($v_{1.1}$, $\mathrm{m/s}$) using the standard logarithmic wind profile over urban terrain.
+    \item \textbf{Core Study Block:} A $218.46\,\mathrm{m} \times 135.05\,\mathrm{m}$ bounding area ($28{,}840.88\,\mathrm{m}^2$) enclosing 37 mapped core building footprints along the primary pedestrian promenade.
+    \item \textbf{Shadow Context Domain:} The core site expanded outward by a $75\,\mathrm{m}$ metric buffer to capture incoming building shadow rays cast by external high-rises at oblique solar angles. The resulting domain measures $380.0\,\mathrm{m} \times 296.0\,\mathrm{m}$, discretized onto a uniform $2.0\,\mathrm{m}$ grid ($190 \times 148 = 28{,}120$ cells).
+    \item \textbf{Pedestrian Corridor:} A 12-metre-wide corridor centered along Church Street containing $N = 668$ active pedestrian ground cells reserved for detailed comfort auditing.
 \end{itemize}
 
-% =========================================================================
-% SECTION IV: METHODOLOGY
-% =========================================================================
-\section{Methodology}
-
-The complete system architecture of Solaraeus is illustrated in Fig.~\ref{fig:arch}, and the end-to-end computational methodology is detailed in Fig.~\ref{fig:methodology}. The pipeline is organized into seven sequential stages, followed by an architectural framework for future extensions.
-
-\subsection{Coordinate Reference System (CRS) Harmonization}
-Because geospatial inputs originate from heterogeneous projections (e.g., EPSG:4326 geographic coordinates for Overture vectors and ERA5 grids; regional State Plane projections for LiDAR DEMs), Solaraeus first executes automated CRS harmonization. The bounding domain $\Omega$ is projected into a conformal Universal Transverse Mercator (UTM) metric coordinate system (EPSG:32618 for NYC; EPSG:32643 for Bengaluru). Vectors and rasters are resampled to an exact, metric $1.0\,\mathrm{m}$ grid alignment using bilinear interpolation for elevation surfaces and nearest-neighbor sampling for categorical masks.
-
-\subsection{Digital Surface Model (DSM) Construction}
-The Digital Surface Model $\mathcal{M}_{\mathrm{dsm}}(u,v)$ represents the top-of-canopy and building elevation envelope across the urban canyon. Building vector polygons $\mathcal{P}_k$ are rasterized onto the $1.0\,\mathrm{m}$ grid. Each grid cell $(u,v)$ intersecting footprint $\mathcal{P}_k$ is assigned an elevated surface height:
+\subsection{Coordinate System Harmonization}
+Geospatial inputs originate from disparate geographic and projected coordinate reference systems (CRS). Solaraeus harmonizes all spatial layers into the Universal Transverse Mercator (UTM) Zone 43N conformal projection (EPSG:32643, WGS~84 datum). The local simulation coordinate origin $(0, 0)$ is pinned to:
 \begin{equation}
-    \mathcal{M}_{\mathrm{dsm}}(u,v) = \mathcal{M}_{\mathrm{dem}}(u,v) + H_k, \quad \forall (u,v) \in \mathcal{P}_k,
-    \label{eq:dsm_build}
+    X_{\mathrm{origin}} = 782{,}541.81\,\mathrm{m}\,\mathrm{E}, \quad Y_{\mathrm{origin}} = 1{,}435{,}736.11\,\mathrm{m}\,\mathrm{N}.
 \end{equation}
-where non-building cells retain the bare-earth elevation $\mathcal{M}_{\mathrm{dem}}(u,v)$. This establishes a watertight 2.5D surface grid upon which optical ray marching is conducted.
+Because the street corridor is oriented obliquely to True North, the local grid convergence angle is strictly computed as $\gamma = +0.5854^\circ$. All solar azimuth calculations are rotated by $\gamma$ to align true astronomical vectors with metric grid axes without spatial distortion.
 
-\subsection{Sky View Factor (SVF) Ray-Marching Engine}
-Sky View Factor $\Psi_{\mathrm{svf}}(u,v) \in [0, 1]$ measures the fraction of unobstructed sky hemisphere seen from pedestrian height ($z_{\mathrm{ped}} = \mathcal{M}_{\mathrm{dem}}(u,v) + 1.1\,\mathrm{m}$). Solaraeus implements the angular ray-marching algorithm formulated by Steyn \cite{steyn1980svf}:
-\begin{equation}
-    \Psi_{\mathrm{svf}}(u,v) = \frac{1}{N_{\phi}} \sum_{j=1}^{N_{\phi}} \left( 1 - \sin \beta(u,v, \phi_j) \right),
-    \label{eq:svf_steyn}
-\end{equation}
-where $N_{\phi} = 36$ discrete azimuth directions spaced at $\Delta \phi = 10^\circ$ intervals ($0^\circ$ to $350^\circ$). For each azimuth $\phi_j$, a ray is marched across the DSM raster outward from $(u,v)$ up to a search radius $R_{\max} = 150\,\mathrm{m}$. The maximum horizon elevation angle $\beta$ subtended by obstacles is tracked:
-\begin{equation}
-    \tan \beta(u,v,\phi_j) = \max_{r \in (0, R_{\max}]} \left\{ \frac{\mathcal{M}_{\mathrm{dsm}}(u + r\cos\phi_j, v + r\sin\phi_j) - z_{\mathrm{ped}}}{r} \right\}.
-\end{equation}
-This formulation yields a continuous, physically conservative SVF raster capturing complex building canyon geometry.
-
-\subsection{Ray-Traced Directional Shadows}
-Solar position (solar azimuth $\phi_s$ and solar elevation angle $\alpha_s$) is calculated for the specified simulation timestamp and geographic coordinates using astronomical solar geometry algorithms. To evaluate ground-level shading, Solaraeus casts directional rays from each sensor cell towards the solar position vector $\vec{s} = (\cos\alpha_s \sin\phi_s, \cos\alpha_s \cos\phi_s, \sin\alpha_s)$. A cell $(u,v)$ is flagged as shaded if any terrain or building obstacle along the ray path exceeds the ray altitude:
-\begin{equation}
-    \mathcal{S}(u,v) = 
-    \begin{cases}
-        0 \quad (\text{shaded}), & \exists r > 0 \text{ s.t. } \mathcal{M}_{\mathrm{dsm}}(u', v') > z_{\mathrm{ped}} + r \tan \alpha_s, \\
-        1 \quad (\text{sunlit}), & \text{otherwise},
-    \end{cases}
-    \label{eq:shadow}
-\end{equation}
-where $(u', v') = (u + r\sin\phi_s, v + r\cos\phi_s)$. The resulting binary shadow mask $\mathcal{S}$ governs direct shortwave beam availability.
-
-\subsection{Multi-Directional Radiant Balance and Mean Radiant Temperature}
-Following the SOLWEIG physical formulation \cite{lindberg2008solweig}, the total radiant energy flux $\Phi_{\mathrm{tot}}(u,v)$ absorbed by a standing human subject is evaluated across six orthogonal spatial directions (upward, downward, north, south, east, and west):
-\begin{equation}
-    \Phi_{\mathrm{tot}} = \alpha_p \sum_{i=1}^6 F_i K_i + \varepsilon_p \sum_{i=1}^6 F_i L_i,
-    \label{eq:flux_sum}
-\end{equation}
-where $\alpha_p = 0.70$ is the shortwave absorption coefficient of standard human skin/clothing, $\varepsilon_p = 0.97$ is longwave emissivity, and $F_i$ are angular form factors derived for a rotationally symmetric human cylinder ($F_{\mathrm{up}} = F_{\mathrm{down}} = 0.06$, $F_{\mathrm{north}} = F_{\mathrm{south}} = F_{\mathrm{east}} = F_{\mathrm{west}} = 0.22$, satisfying $\sum F_i = 1.0$) \cite{fanger1970thermal}.
-
-Shortwave components $K_i$ partition into direct solar radiation ($K_{\mathrm{dir}} = I_{\mathrm{dir}} \cdot \mathcal{S}$), diffuse sky radiation ($K_{\mathrm{diff}} = I_{\mathrm{diff}} \cdot \Psi_{\mathrm{svf}}$), and reflected shortwave fluxes from building facades and ground surfaces ($K_{\mathrm{refl}} = (1 - \Psi_{\mathrm{svf}}) \alpha_{\mathrm{bldg}} I_{\mathrm{glob}} + \alpha_{\mathrm{gnd}} I_{\mathrm{glob}}$). Longwave components $L_i$ resolve atmospheric downward counter-radiation $L_{\mathrm{sky}} = \varepsilon_{\mathrm{sky}} \sigma T_a^4$ and thermal emission from building surfaces ($T_{\mathrm{bldg}}$) and ground pavements ($T_{\mathrm{gnd}}$):
-\begin{equation}
-    L_{\mathrm{down}} = \Psi_{\mathrm{svf}} L_{\mathrm{sky}} + (1 - \Psi_{\mathrm{svf}}) \varepsilon_{\mathrm{bldg}} \sigma T_{\mathrm{bldg}}^4.
-\end{equation}
-Finally, the Mean Radiant Temperature ($T_{\mathrm{mrt}}$ in Kelvin) is derived via the Stefan-Boltzmann inversion:
-\begin{equation}
-    T_{\mathrm{mrt}}(u,v) = \left( \frac{\Phi_{\mathrm{tot}}(u,v)}{\sigma} \right)^{1/4},
-    \label{eq:tmrt}
-\end{equation}
-where $\sigma = 5.67037 \times 10^{-8}\,\mathrm{W/(m^2 K^4)}$ is the Stefan-Boltzmann constant.
-
-\subsection{Universal Thermal Climate Index (UTCI) Heat Stress}
-To translate physical radiant and thermodynamic fields into human physiological thermal perception, Solaraeus implements the Universal Thermal Climate Index (UTCI) \cite{jendritzky2012universal, brode2012deriving} via the validated \texttt{pythermalcomfort} library. UTCI computes the equivalent ambient temperature of a reference environment that would produce the same physiological response in a standard walking person ($v_{\mathrm{walk}} = 1.1\,\mathrm{m/s}$, metabolic rate $135\,\mathrm{W/m^2}$):
-\begin{equation}
-    \mathrm{UTCI} = f_{\mathrm{poly}}(T_a, T_{\mathrm{mrt}}, v_{1.1}, RH),
-    \label{eq:utci}
-\end{equation}
-where $f_{\mathrm{poly}}$ is an operational 6th-order polynomial approximation of the dynamic 187-node Fiala thermoregulation model \cite{brode2012deriving}. UTCI values are mapped into standardized physiological stress categories (e.g., Moderate Heat Stress: $26^\circ\mathrm{C}$--$32^\circ\mathrm{C}$; Strong Heat Stress: $32^\circ\mathrm{C}$--$38^\circ\mathrm{C}$; Very Strong Heat Stress: $38^\circ\mathrm{C}$--$46^\circ\mathrm{C}$).
-
-\subsection{Data Serialization and 3D WebGL Digital Twin}
-To eliminate the divide between scientific modeling and user-facing design workflows, Solaraeus serializes physical arrays into three standardized formats:
-\begin{enumerate}
-    \item \textbf{CF-Compliant NetCDF:} Climate and Forecast (CF-1.8) metadata-compliant NetCDF files storing multidimensional spatial rasters (DEM, DSM, SVF, $\mathcal{S}$, $T_{\mathrm{mrt}}$, UTCI) for archival research.
-    \item \textbf{Watertight 3D Meshes:} Automated extrusion of building geometries and terrain surfaces into indexed OBJ and JSON mesh assets optimized for GPU rasterization.
-    \item \textbf{Typed JSON Contracts:} Machine-readable interface contracts encoding geographic bounds, metric scales, and min/max scalar ranges.
-\end{enumerate}
-These assets are ingested by an interactive digital twin built with React 19, TypeScript, and Three.js (bundled via Vite). The frontend provides real-time layer switching between physical fields (DSM, SVF, shadows, $T_{\mathrm{mrt}}$, and UTCI), an interactive solar trajectory timeline scrubber, and a controllable pedestrian avatar equipped with an on-screen thermal comfort Heads-Up Display (HUD).
-
-\subsection{Planned Extensions and Proposed Incremental Recomputation}
-To ensure clear taxonomic boundaries, we formalize the development roadmap into planned extensions and proposed research directions:
+\subsection{Dual-Taxonomy Building Mesh Construction}
+Building structural envelopes are synthesized using a dual-taxonomy dataset reconciling open Overture Maps vector polygons with Google Open Buildings machine-learning footprints. The scene integrates 123 buildings (37 core, 86 context). To address height uncertainties, building heights are categorized into:
 \begin{itemize}
-    \item \textbf{Planned L1 \& L2 (Diurnal \& Multi-Day Loops):} Extension of the static single-timestamp simulation into continuous 24-hour diurnal loops (L1) and multi-day transient heat storage simulations (L2).
-    \item \textbf{Planned L3 (Vegetative Canopies \& Transmittance):} Explicit incorporation of 3D tree canopies within the DSM, modeling penumbral shortwave radiation attenuation via the Beer-Lambert extinction law and vegetative evapotranspiration.
-    \item \textbf{Planned L4 (Candidate Optimization):} Coupling the physics engine with surrogate-assisted spatial search algorithms to automatically optimize urban shade interventions and tree planting layouts.
-    \item \textbf{Proposed (Dependency-Aware Incremental Recomputation):} A research direction investigating dependency-aware invalidation of SOLWEIG fields. When an urban geometry is modified (e.g., an awning added or tree placed), the solver calculates directional shadow prisms and SVF horizon bounding cones to update only geometrically affected cells ($\Omega_{\mathrm{dirty}}$) while caching invariant cells ($\Omega_{\mathrm{clean}}$). This capability is formally marked as \textit{Proposed} pending empirical benchmarks proving measurable performance improvement.
+    \item \textit{Direct Height Metadata:} 7 buildings possessing municipal floor counts or recorded lidar height attributes ($H_k \in [8.0\,\mathrm{m}, 35.0\,\mathrm{m}]$).
+    \item \textit{ML Inferred Heights:} 116 buildings assigned median building heights derived from Google Open Buildings ML confidence rasters ($H_k \in [6.5\,\mathrm{m}, 28.0\,\mathrm{m}]$).
 \end{itemize}
+All building polygons are triangulated into watertight 3D meshes consisting of $2{,}136$ triangles, with planar roofs, vertical facade quads, and validated 2-manifold topology. Ground terrain is established at datum $z = 0.0\,\mathrm{m}$ (with synthetic and FABDEM topographic extensions evaluated under documented protocols).
 
-% =========================================================================
-% SECTION V: RESULTS
-% =========================================================================
-\section{Results}
+\subsection{Atmospheric and Solar Forcing Baseline}
+Atmospheric forcing conditions were acquired for the extreme pre-monsoon heatwave of April 15, 2024 at 09:00 UTC (14:30 Indian Standard Time, IST). Boundary meteorology is derived from the NOAA Integrated Surface Database (ISD) Bengaluru City Station 43295099999 ($2.56\,\mathrm{km}$ southwest of Church Street):
+\begin{itemize}
+    \item Air temperature: $T_a = 35.0\degC$ ($308.15\,\mathrm{K}$),
+    \item Relative humidity: $\mathrm{RH} = 19.73\%$ (dewpoint $T_d = 8.9\degC$),
+    \item Wind velocity: $v_{10} = 1.5\,\mathrm{m/s}$ at $90^\circ$ (easterly), scaled to pedestrian height ($1.1\,\mathrm{m}$) via the urban logarithmic wind law as $v_{1.1} = 1.1\,\mathrm{m/s}$.
+\end{itemize}
+Solar irradiances are obtained from NASA POWER hourly satellite reanalysis: Global Horizontal Irradiance $\mathrm{GHI} = 755.97\,\Wm$, Direct Normal Irradiance $\mathrm{DNI} = 728.31\,\Wm$, and Diffuse Horizontal Irradiance $\mathrm{DHI} = 172.18\,\Wm$. NOAA astronomical solar position algorithms evaluate the sun position at altitude $\alpha_s = 57.9160^\circ$ and True North azimuth $\phi_s = 268.1655^\circ$ (Grid North azimuth $\phi_{\mathrm{grid}} = 267.5802^\circ$). Physical properties are assigned standard literature values: building wall albedo $\alpha_{\mathrm{bldg}} = 0.20$, ground asphalt albedo $\alpha_{\mathrm{gnd}} = 0.15$, and building wall emissivity $\varepsilon_{\mathrm{bldg}} = 0.90$ (summarized in Table~\ref{tab:inputs}).
 
-\subsection{Washington Square Park Empirical Baseline Validation}
-Solaraeus was executed on the Washington Square Park baseline domain ($1.0\,\mathrm{m}$ grid resolution, $450 \times 320$ active sensor cells) under peak summer clear-sky conditions (solar elevation $\alpha_s = 68.4^\circ$, solar azimuth $\phi_s = 176.2^\circ$, direct irradiance $I_{\mathrm{dir}} = 840\,\mathrm{W/m}^2$, diffuse irradiance $I_{\mathrm{diff}} = 145\,\mathrm{W/m}^2$, ambient temperature $T_a = 31.5^\circ\mathrm{C}$, $RH = 50\%$). The resulting microclimatic contrast between exposed sunlit areas and shaded urban zones is summarized in Table~\ref{tab:wsp_results}.
-
-\begin{table}[h]
-\caption{Washington Square Park Microclimate Baseline Validation}
-\label{tab:wsp_results}
+\begin{table}[!t]
+\caption{Church Street Digital Twin Environmental Parameters}
+\label{tab:inputs}
 \centering
-\begin{tabular}{lccc}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}llcc@{}}
 \toprule
-\textbf{Microclimatic Metric} & \textbf{Sunlit Zone} & \textbf{Shaded Zone} & \textbf{Contrast ($\Delta$)} \\
+\textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Unit} \\
 \midrule
-Sky View Factor (SVF, $[0, 1]$)      & $0.82 \pm 0.08$      & $0.34 \pm 0.12$      & $-0.48$ \\
-Direct Solar Beam Mask ($\mathcal{S}$) & $1.0$ (Exposed)      & $0.0$ (Occluded)     & $-1.0$ \\
-Total Radiant Flux $\Phi_{\mathrm{tot}}$ ($\mathrm{W/m}^2$) & $784.6\,\mathrm{W/m}^2$ & $421.2\,\mathrm{W/m}^2$ & $-363.4\,\mathrm{W/m}^2$ \\
-\textbf{Mean Radiant Temp ($T_{\mathrm{mrt}}$)} & $\mathbf{57.5^\circ\mathrm{C}}$ & $\mathbf{42.8^\circ\mathrm{C}}$ & $\mathbf{-14.7^\circ\mathrm{C}}$ \\
-\textbf{UTCI Thermal Stress}          & $\mathbf{39.6^\circ\mathrm{C}}$ & $\mathbf{36.2^\circ\mathrm{C}}$ & $\mathbf{-3.4^\circ\mathrm{C}}$ \\
-UTCI Physiological Stress Class       & Very Strong Heat     & Strong Heat          & $-1$ Category \\
+Coordinate Projection & CRS & UTM Zone 43N & EPSG:32643 \\
+Grid Convergence & $\gamma$ & $+0.5854$ & $\mathrm{deg}$ \\
+Simulation Domain & $\Omega$ & $380 \times 296$ & $\mathrm{m}$ \\
+Grid Resolution & $\Delta x, \Delta y$ & $2.0 \times 2.0$ & $\mathrm{m}$ \\
+Active Grid Cells & $N_{\mathrm{grid}}$ & $28{,}120$ & cells \\
+Total Buildings & $N_{\mathrm{bldg}}$ & 123 & structures \\
+Watertight Triangles & $N_{\mathrm{tri}}$ & $2{,}136$ & triangles \\
+Solar Altitude & $\alpha_s$ & $57.9160$ & $\mathrm{deg}$ \\
+Solar Azimuth (Grid) & $\phi_{\mathrm{grid}}$ & $267.5802$ & $\mathrm{deg}$ \\
+Air Temperature & $T_a$ & $35.0$ & $\degC$ \\
+Relative Humidity & $\mathrm{RH}$ & $19.73$ & $\%$ \\
+Pedestrian Wind Speed & $v_{1.1}$ & $1.1$ & $\mathrm{m/s}$ \\
+Global Irradiance & $\mathrm{GHI}$ & $755.97$ & $\Wm$ \\
+Direct Normal Irradiance & $\mathrm{DNI}$ & $728.31$ & $\Wm$ \\
+Diffuse Irradiance & $\mathrm{DHI}$ & $172.18$ & $\Wm$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-As documented in Table~\ref{tab:wsp_results}, pedestrian exposure in unshaded central park plazas produced an empirical $T_{\mathrm{mrt}}$ of $\mathbf{57.5^\circ\mathrm{C}}$, driving pedestrian thermal perception into the \textit{Very Strong Heat Stress} category ($\mathrm{UTCI} = \mathbf{39.6^\circ\mathrm{C}}$). In contrast, under building cast shadows along the southern park perimeter, $T_{\mathrm{mrt}}$ dropped to $\mathbf{42.8^\circ\mathrm{C}}$, yielding a radiant cooling relief of $\mathbf{\Delta T_{\mathrm{mrt}} = 14.7^\circ\mathrm{C}}$ ($363.4\,\mathrm{W/m}^2$ reduction in absorbed radiant flux). This radiant drop translated into a $\mathbf{3.4^\circ\mathrm{C}}$ reduction in equivalent UTCI thermal stress ($\mathbf{36.2^\circ\mathrm{C}}$), downgrading pedestrian sensation from Very Strong to Strong Heat Stress.
+% =========================================================================
+% SECTION IV: PHYSICS ENGINE AND RADIATIVE TRANSFER
+% =========================================================================
+\section{Physics Engine and Radiative Transfer}
 
-\subsection{Spatial Fidelity of Extruded 1-Metre Physical Fields}
-The 1-metre resolution grid successfully captures fine-scale microclimatic variations. Building footprints extruded from Overture geometries produced sharp horizon cutoffs in the Steyn SVF raster, ranging from $\Psi_{\mathrm{svf}} \approx 0.15$ in narrow perimeter street canyons to $\Psi_{\mathrm{svf}} > 0.85$ at the park center. The ray-traced directional shadow mask exhibited crisp, pixel-accurate boundaries conforming to true astronomical solar angles. The resulting $T_{\mathrm{mrt}}$ and UTCI fields mapped smoothly across the terrain, accurately capturing the thermal transition zones at shadow penumbral boundaries.
+\subsection{Sky View Factor (SVF) Ray-Marching}
+The Sky View Factor $\Psi_{\mathrm{svf}}(x) \in [0, 1]$ at pedestrian eye level ($z_{\mathrm{ped}} = 1.1\,\mathrm{m}$) measures the fraction of unobstructed sky hemisphere seen from location $x = (u, v)$. Solaraeus calculates $\Psi_{\mathrm{svf}}$ using the Steyn \cite{steyn1980svf} angular ray-marching formulation across $N_\phi = 36$ azimuth radials ($\Delta \phi = 10^\circ$):
+\begin{equation}
+    \Psi_{\mathrm{svf}}(u,v) = \frac{1}{N_{\phi}} \sum_{j=1}^{N_{\phi}} \bigl( 1 - \sin \beta(u,v,\phi_j) \bigr),
+    \label{eq:svf_steyn}
+\end{equation}
+where $\beta(u,v,\phi_j)$ is the maximum horizon obstacle elevation angle subtended along azimuth radial $\phi_j$ within radial cutoff radius $R_{\max} = 150\,\mathrm{m}$:
+\begin{equation}
+    \tan \beta(u,v,\phi_j) = \max_{r \in (0, R_{\max}]} \frac{z_{\mathrm{mesh}}(u + r\cos\phi_j, v + r\sin\phi_j) - z_{\mathrm{ped}}}{r}.
+    \label{eq:horizon}
+\end{equation}
 
-\subsection{Automated Validation and Reproducibility}
-To ensure uncompromising scientific rigor, all physics modules in Solaraeus are covered by an automated test suite executed via \texttt{pytest}. Tests verify:
-\begin{itemize}
-    \item Numerical energy conservation across the 6-flux radiation balance ($\sum F_i = 1.0$),
-    \item Mathematical monotonicity of the Steyn SVF ray-marching kernel across synthetic canyon geometries,
-    \item Shadow-casting accuracy against analytic geometric box projections,
-    \item Exact parity between \texttt{pythermalcomfort} UTCI outputs and published European standard benchmark reference tables \cite{brode2012deriving}.
-\end{itemize}
-Automated verification and end-to-end simulation pipelines are fully encapsulated in reproduction scripts (\texttt{reproduce\_all.py} and \texttt{reproduce.sh}), allowing one-command replication across independent computational environments.
+\subsection{Möller--Trumbore Directional Ray Tracing}
+Ground-level shadow occlusions are resolved by casting directional rays from each pedestrian sensor $(u, v, z_{\mathrm{ped}})$ toward the unit solar vector $\vec{s} = (\cos\alpha_s \sin\phi_{\mathrm{grid}},\; \cos\alpha_s \cos\phi_{\mathrm{grid}},\; \sin\alpha_s)$. Solaraeus implements the double-precision Möller--Trumbore ray-triangle intersection algorithm \cite{moller1997fast}. For each candidate triangle with vertices $\vec{V}_0, \vec{V}_1, \vec{V}_2$, the ray-plane intersection is parameterized via barycentric coordinates $(t, u_b, v_b)$:
+\begin{equation}
+    \begin{bmatrix} t \\ u_b \\ v_b \end{bmatrix} = \frac{1}{\vec{P} \cdot \vec{E}_1} \begin{bmatrix} \vec{Q} \cdot \vec{E}_2 \\ \vec{P} \cdot \vec{T} \\ \vec{Q} \cdot \vec{D} \end{bmatrix},
+    \label{eq:moller_trumbore}
+\end{equation}
+where $\vec{E}_1 = \vec{V}_1 - \vec{V}_0$, $\vec{E}_2 = \vec{V}_2 - \vec{V}_0$, $\vec{T} = \vec{O} - \vec{V}_0$, $\vec{P} = \vec{D} \times \vec{E}_2$, and $\vec{Q} = \vec{T} \times \vec{E}_1$. A valid intersection occurs if $t > 0$, $u_b \ge 0$, $v_b \ge 0$, and $u_b + v_b \le 1$. The resulting direct solar beam availability mask is binary:
+\begin{equation}
+    \mathcal{S}(u,v) = \begin{cases} 0, & \text{if ray intersects any building or panel,} \\ 1, & \text{if ray reaches the unobstructed sky.} \end{cases}
+    \label{eq:shadow_def}
+\end{equation}
+
+\subsection{6-Flux Radiant Energy Balance and $T_{\mathrm{mrt}}$}
+Total radiant energy absorbed by a human pedestrian is evaluated across six orthogonal spatial directions (upward, downward, north, south, east, and west) based on Fanger's cylindrical human geometry \cite{fanger1970thermal,lindberg2008solweig}:
+\begin{equation}
+    \Phi_{\mathrm{tot}}(u,v) = \alpha_p \sum_{i=1}^6 F_i K_i(u,v) + \varepsilon_p \sum_{i=1}^6 F_i L_i(u,v),
+    \label{eq:flux_sum}
+\end{equation}
+where $\alpha_p = 0.70$ is the human shortwave absorption coefficient, $\varepsilon_p = 0.97$ is the longwave skin/clothing emissivity, and $F_i$ are cylindrical form factors ($F_{\mathrm{up}} = F_{\mathrm{down}} = 0.06$, $F_{\mathrm{north}} = F_{\mathrm{south}} = F_{\mathrm{east}} = F_{\mathrm{west}} = 0.22$, satisfying $\sum F_i = 1.0$).
+
+Shortwave fluxes partition into direct, diffuse, and reflected components:
+\begin{align}
+    K_{\mathrm{dir}}(u,v) &= I_{\mathrm{dir}} \mathcal{S}(u,v), \label{eq:kdir} \\
+    K_{\mathrm{diff}}(u,v) &= I_{\mathrm{diff}} \Psi_{\mathrm{svf}}(u,v), \label{eq:kdiff} \\
+    K_{\mathrm{refl}}(u,v) &= (1 - \Psi_{\mathrm{svf}})\alpha_{\mathrm{bldg}} I_{\mathrm{glob}} + \alpha_{\mathrm{gnd}} I_{\mathrm{glob}}. \label{eq:krefl}
+\end{align}
+Longwave fluxes integrate downward atmospheric counter-radiation $L_{\mathrm{sky}} = \varepsilon_{\mathrm{sky}}\sigma T_a^4$ and emissions from building walls ($T_{\mathrm{bldg}} \approx T_a + 2\,\mathrm{K}$) and ground surfaces ($T_{\mathrm{gnd}} \approx T_a + 7\,\mathrm{K}$):
+\begin{equation}
+    L_{\mathrm{down}}(u,v) = \Psi_{\mathrm{svf}} L_{\mathrm{sky}} + (1 - \Psi_{\mathrm{svf}}) \varepsilon_{\mathrm{bldg}} \sigma T_{\mathrm{bldg}}^4.
+    \label{eq:ldown}
+\end{equation}
+The Mean Radiant Temperature ($T_{\mathrm{mrt}}$ in Kelvin) is obtained via the Stefan--Boltzmann fourth-root inversion:
+\begin{equation}
+    T_{\mathrm{mrt}}(u,v) = \left( \frac{\Phi_{\mathrm{tot}}(u,v)}{\sigma} \right)^{1/4},
+    \label{eq:tmrt}
+\end{equation}
+where $\sigma = 5.67037 \times 10^{-8}\,\mathrm{W/(m^2\,K^4)}$.
+
+\subsection{Universal Thermal Climate Index (UTCI)}
+Pedestrian physiological heat stress is quantified via the Universal Thermal Climate Index (UTCI) \cite{jendritzky2012universal,brode2012deriving} executed via the certified \texttt{pythermalcomfort} library:
+\begin{equation}
+    \mathrm{UTCI}(u,v) = f_{\mathrm{poly}}\bigl(T_a, T_{\mathrm{mrt}}(u,v), v_{1.1}, \mathrm{RH}\bigr),
+    \label{eq:utci}
+\end{equation}
+where $f_{\mathrm{poly}}$ is an operational 6th-order polynomial approximation of the 187-node dynamic Fiala human thermoregulation model.
 
 % =========================================================================
-% SECTION VI: SHORT DISCUSSION
+% SECTION V: CERTIFIED INCREMENTAL RADIATIVE TRANSFER
 % =========================================================================
-\section{Short Discussion}
+\section{Certified Incremental Radiative Transfer}
 
-\subsection{Balancing Physical Fidelity and Computational Accessibility}
-A central design philosophy of Solaraeus is achieving physical fidelity without the prohibitive overhead of full-scale CFD modeling. While CFD suites resolve localized convective air turbulence, convective heat exchange accounts for less than one-third of pedestrian daytime thermal sensation in clear-sky conditions compared to radiation \cite{matzarakis2007modelling}. By focusing computational resources on 1-metre 3D radiative transfer, Solaraeus delivers physically defensible thermal comfort assessments in seconds, making microclimate modeling accessible for participatory planning.
+\subsection{Theoretical Error Bound and Certificate Theorem}
+When an urban intervention (e.g., an overhead shade canopy $\mathcal{P}$) is introduced, existing tools recompute all $N_{\mathrm{grid}}$ cells. Solaraeus partitions the domain into a dirty recomputation subset $\Omega_{\mathrm{dirty}}$ and an invariant clean subset $\Omega_{\mathrm{clean}} = \Omega \setminus \Omega_{\mathrm{dirty}}$. To guarantee physical soundness, we formalize the error certificate:
 
-\subsection{Significance of Open Data Contracts for Urban Digital Twins}
-Traditional microclimate modeling software packages generate closed, proprietary binary outputs that isolate environmental findings from municipal stakeholders. Solaraeus overcomes this barrier by establishing open, typed JSON data contracts and CF-1.8 NetCDF exports that interface directly with standard WebGL runtimes. The React 19 and Three.js frontend demonstrates how urban planners and citizens can interactively explore 3D microclimatic fields, inspect pedestrian comfort via a virtual avatar HUD, and visually comprehend the cooling benefits of urban shade.
+\begin{definition}[Thermal Error Certificate]
+Let $\widetilde{T}_{\mathrm{mrt}}(x)$ denote the temperature obtained by reusing static baseline fields at $x \in \Omega_{\mathrm{clean}}$, and $T_{\mathrm{mrt}}^{\mathrm{full}}(x)$ denote the full recomputation temperature. An update is \textbf{certified safe} with tolerance $\varepsilon_T$ if:
+\begin{equation}
+    |\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)| \le B_T(x) \le \varepsilon_T, \quad \forall x \in \Omega_{\mathrm{clean}}.
+    \label{eq:cert_def}
+\end{equation}
+\end{definition}
 
-\subsection{Documented Limitations and Transferability}
-In adherence to scientific integrity, the authors disclose the following documented engineering boundaries:
+\begin{theorem}[Closed-Form Stefan--Boltzmann Bound]
+Let $\Delta \Phi_{\max}(x)$ be an upper bound on radiant flux perturbation at cell $x$ caused by intervention $\mathcal{P}$, and let $T_{\min}$ be the minimum physically plausible absolute temperature ($T_{\min} \ge 273.15\,\mathrm{K}$). Then:
+\begin{equation}
+    B_T(x) = \frac{\Delta \Phi_{\max}(x)}{4 \sigma T_{\min}^3} \le \varepsilon_T.
+    \label{eq:thm_bound}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $\Phi_1$ and $\Phi_2$ denote the baseline and intervention radiant fluxes at $x$, with $\Phi_2 = \Phi_1 + \Delta \Phi$. By the Mean Value Theorem applied to $g(\Phi) = (\Phi/\sigma)^{1/4}$:
+\begin{equation}
+    |T_{\mathrm{mrt}, 2} - T_{\mathrm{mrt}, 1}| = |g(\Phi_2) - g(\Phi_1)| = \frac{|\Delta \Phi|}{4 \sigma^{1/4} \xi^{3/4}},
+\end{equation}
+for some $\xi \in [\min(\Phi_1, \Phi_2), \max(\Phi_1, \Phi_2)]$. Since $\xi = \sigma T_\xi^4 \ge \sigma T_{\min}^4$, we have $\xi^{3/4} \ge \sigma^{3/4} T_{\min}^3$. Substituting yields:
+\begin{equation}
+    |T_{\mathrm{mrt}, 2} - T_{\mathrm{mrt}, 1}| \le \frac{|\Delta \Phi_{\max}|}{4 \sigma T_{\min}^3}.
+\end{equation}
+By setting $\Delta \Phi_{\max}(x) \le 4 \sigma T_{\min}^3 \varepsilon_T$, the bound is strictly satisfied.
+\end{proof}
+
+\subsection{Bounding Flux Perturbation and Affected Regions}
+The flux perturbation $\Delta \Phi_{\max}(x)$ combines direct shadow ray occlusion and solid-angle SVF reduction:
+\begin{equation}
+    \Delta \Phi_{\max}(x) = \alpha_p I_{\mathrm{dir}} \Delta \mathcal{S}(x) + \Delta \Phi_{\mathrm{diff,refl}}(x),
+\end{equation}
+where $\Delta \mathcal{S}(x) = 1$ if cell $x$ lies in the shadow frustum cast by canopy $\mathcal{P}$ along sun vector $\vec{s}$, and $\Delta \mathcal{S}(x) = 0$ otherwise. For all cells outside the geometric shadow frustum, $\Delta \mathcal{S}(x) = 0$. The diffuse and longwave perturbations decay quadratically with distance $r(x) = \mathrm{dist}(x, \mathcal{P})$ according to the solid-angle horizon cutoff:
+\begin{equation}
+    \Delta \Psi_{\mathrm{svf}}(x) \le \min\left(1.0, \frac{W_{\mathcal{P}} H_{\mathcal{P}}}{2\pi r(x)^2}\right),
+    \label{eq:svf_decay}
+\end{equation}
+where $W_{\mathcal{P}}$ and $H_{\mathcal{P}}$ are the projected width and height of the canopy. Cells where $B_T(x) > \varepsilon_T$ or $\Delta \mathcal{S}(x) = 1$ are assigned to $\Omega_{\mathrm{dirty}}$ and recomputed; all remaining cells retain baseline values with certified zero error.
+
+% =========================================================================
+% SECTION VI: CUDA GPU ACCELERATION ARCHITECTURE
+% =========================================================================
+\section{CUDA GPU Acceleration Architecture}
+
+To achieve real-time simulation throughput, Solaraeus integrates a custom CUDA C++ acceleration engine via CuPy \cite{bauer2020accelerating}. The GPU engine resolves two critical bottlenecks:
 \begin{enumerate}
-    \item \textit{Static Temporal Horizon:} The current validated release models discrete static solar timestamps. Extending the framework to continuous diurnal cycles (L1) and multi-day heat storage (L2) is currently underway.
-    \item \textit{Vegetation Canopy Permeability:} In the current baseline, tree canopies are represented geometrically within the DSM; porous transmission via Beer-Lambert extinction and species-specific leaf area index (LAI) modeling (L3) represent the next phase of development.
-    \item \textit{Bengaluru Dataset Harmonization:} While Washington Square Park provided an empirical LiDAR benchmark, transitioning the pipeline to Bengaluru requires constructing a dedicated municipal dataset synthesizing airborne elevation data, local tree census geometries, and street survey vectors.
+    \item \textbf{Resident VRAM State:} Mesh geometry (vertices, normal vectors, triangle face indices), ground elevation arrays, and sensor coordinates reside permanently in GPU global memory. When candidate interventions are updated, only the incremental triangle buffers are streamed to VRAM, eliminating host-to-device PCI-e ping-pong transfer overhead.
+    \item \textbf{Selective Ray Dispatch:} Rather than launching rays across all $28{,}120$ cells, the GPU incremental kernel dispatches CUDA thread blocks strictly over the affected sensor subset $\Omega_{\mathrm{dirty}}$.
+\end{enumerate}
+
+The GPU pipeline executes two specialized CUDA kernels:
+\begin{itemize}
+    \item \texttt{moller\_trumbore\_shadow\_kernel}: Dispatches 1D thread blocks where each thread casts a direct solar beam from a sensor cell against triangle bounding boxes and primitives in parallel, outputting a bitmask array.
+    \item \texttt{compute\_svf\_horizon\_kernel}: Evaluates 36 horizon elevation radials concurrently per sensor cell using warp-level parallel reduction.
+\end{itemize}
+As profiled in Section~VIII, this architecture executes certified incremental recomputation in $11.40\,\mathrm{ms}$, enabling dynamic interactive optimization.
+
+% =========================================================================
+% SECTION VII: ACTIVE SURROGATE OPTIMIZATION
+% =========================================================================
+\section{Active Surrogate Optimization}
+
+\subsection{Parameter Space and Feasibility Screening}
+Urban shade interventions are parameterized as 3D oriented rectangular canopies $\mathbf{p} = (x, y, L, W, H, \theta, \alpha_{\mathrm{panel}})$, where $(x, y)$ is the anchor coordinate, $L \in [3.0, 10.0]\,\mathrm{m}$ is length, $W \in [1.5, 4.0]\,\mathrm{m}$ is width, $H \in [3.5, 5.0]\,\mathrm{m}$ is underside clearance height, $\theta \in [0^\circ, 180^\circ]$ is orientation heading, and $\alpha_{\mathrm{panel}} \in [0.20, 0.80]$ is top-surface albedo.
+
+To ensure physical feasibility, every candidate proposal passes a 4-stage geometric screening filter:
+\begin{enumerate}
+    \item \textit{Corridor Containment:} The panel footprint must lie entirely within the 12-metre pedestrian walkway polygon.
+    \item \textit{Building Collision Clearance:} Minimum 1.0-metre setback buffer from all existing building facades.
+    \item \textit{Clearance Height Safety:} Minimum underside clearance $H \ge 3.5\,\mathrm{m}$ to allow emergency vehicle access.
+    \item \textit{Maximum Structural Area:} Total panel area $A \le 30.0\,\mathrm{m}^2$.
+\end{enumerate}
+
+\subsection{Multi-Intervention Objective with Overlap Penalty}
+For multi-intervention layouts involving two panels $\mathbf{p}_1$ and $\mathbf{p}_2$, independent placement can lead to overlapping cast shadows, yielding diminishing returns. Solaraeus optimizes the composite objective:
+\begin{equation}
+    \begin{split}
+    \mathcal{J}(\mathbf{p}_1, \mathbf{p}_2) &= \sum_{x \in \mathcal{C}} \Delta T_{\mathrm{mrt}}(x) - \lambda_{\mathrm{area}}(A_1 + A_2) \\
+    &\quad - \lambda_{\mathrm{cost}} C_{\mathrm{struct}} - \lambda_{\mathrm{overlap}} |\mathcal{S}_1 \cap \mathcal{S}_2|,
+    \end{split}
+    \label{eq:objective}
+\end{equation}
+where $\mathcal{C}$ is the pedestrian corridor cell set, $\Delta T_{\mathrm{mrt}}(x) = T_{\mathrm{mrt}}^{\mathrm{base}}(x) - T_{\mathrm{mrt}}^{\mathrm{interv}}(x)$ is cooling improvement, $\lambda_{\mathrm{area}} = 0.005$ is area regularization, $\lambda_{\mathrm{cost}} = 0.0001$ models structural cost, and $\lambda_{\mathrm{overlap}} = 0.5$ penalizes redundant shadow overlap $|\mathcal{S}_1 \cap \mathcal{S}_2|$.
+
+\subsection{Surrogate-Assisted Search}
+To accelerate the optimization, Solaraeus trains a gradient-boosted surrogate regression model $\widehat{\mathcal{J}}(\mathbf{p})$ with variance uncertainty $\widehat{\sigma}^2(\mathbf{p})$ over evaluated designs. The search uses an Upper Confidence Bound (UCB) acquisition strategy:
+\begin{equation}
+    \alpha_{\mathrm{ucb}}(\mathbf{p}) = \widehat{\mathcal{J}}(\mathbf{p}) + \kappa \widehat{\sigma}(\mathbf{p}),
+    \label{eq:acquisition}
+\end{equation}
+with $\kappa = 1.96$ to balance exploitation of proven cooling zones with exploration of unvisited corridor segments.
+
+% =========================================================================
+% SECTION VIII: RESULTS AND DISCUSSION
+% =========================================================================
+\section{Results and Discussion}
+
+\subsection{Church Street Baseline Microclimate}
+Solaraeus was executed on the baseline Church Street digital twin ($28{,}120$ cells, $2.0\,\mathrm{m}$ grid) under the April 15, 2024 peak heatwave conditions ($T_a = 35.0\degC$, $\mathrm{GHI} = 755.97\,\Wm$, solar altitude $57.92^\circ$). Baseline microclimatic metrics are summarized in Table~\ref{tab:baseline}.
+
+\begin{table}[!t]
+\caption{Church Street Pedestrian Corridor Baseline ($N = 668$ Cells)}
+\label{tab:baseline}
+\centering
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Metric} & \textbf{Mean $\pm$ Std} & \textbf{Min} & \textbf{Max} & \textbf{Unit} \\
+\midrule
+Sky View Factor, $\Psi_{\mathrm{svf}}$ & $0.6569 \pm 0.1206$ & $0.3014$ & $0.9213$ & $[0, 1]$ \\
+Direct Solar Beam, $\mathcal{S}$ & $0.9701 \pm 0.1704$ & $0.0000$ & $1.0000$ & binary \\
+Direct SW Flux, $K_{\mathrm{dir}}$ & $598.66 \pm 105.14$ & $0.00$ & $617.11$ & $\Wm$ \\
+Total Shortwave Flux, $\Phi_{\mathrm{sw}}$ & $538.71 \pm 83.18$ & $64.08$ & $553.30$ & $\Wm$ \\
+Total Longwave Flux, $\Phi_{\mathrm{lw}}$ & $394.02 \pm 6.89$ & $373.74$ & $409.28$ & $\Wm$ \\
+Mean Radiant Temp, $T_{\mathrm{mrt}}$ & $45.81 \pm 2.18$ & $32.27$ & $47.94$ & $\degC$ \\
+UTCI Thermal Comfort & $36.49 \pm 0.44$ & $33.20$ & $37.00$ & $\degC$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Across the 668 pedestrian corridor cells, the mean Sky View Factor is $0.6569 \pm 0.1206$. Because the solar altitude is high ($57.92^\circ$) and the street canyon is relatively wide ($12\,\mathrm{m}$ walkway plus building setbacks), 648 of the 668 corridor cells ($97.0\%$) are directly exposed to unshaded solar radiation, while only 20 cells receive building cast shadows. This creates severe pedestrian thermal stress:
+\begin{itemize}
+    \item \textbf{Sunlit Corridor Cells ($N = 648$):} Mean $T_{\mathrm{mrt}} = 46.17\degC$, peak $T_{\mathrm{mrt}} = 47.94\degC$, mean $\mathrm{UTCI} = 36.58\degC$ (\textit{Strong Heat Stress}, approaching the $38\degC$ threshold of \textit{Very Strong Heat Stress}).
+    \item \textbf{Shaded Corridor Cells ($N = 20$):} Mean $T_{\mathrm{mrt}} = 34.28\degC$, minimum $T_{\mathrm{mrt}} = 32.27\degC$, mean $\mathrm{UTCI} = 33.68\degC$.
+    \item \textbf{Thermal Contrast:} Direct building shading produces a radiant temperature drop of $\Delta T_{\mathrm{mrt}} = 11.89\,\mathrm{K}$ and an equivalent UTCI relief of $\Delta \mathrm{UTCI} = 2.89\,\mathrm{K}$.
+\end{itemize}
+
+\subsection{Single-Panel Intervention Analysis ($\mathrm{BLR\_SHADE\_001}$)}
+To evaluate targeted microclimatic mitigation, we simulated an overhead shade canopy ($\mathrm{BLR\_SHADE\_001}$, also cataloged as $\mathrm{CANOPY\_001}$) positioned at UTM coordinates $(X = 782{,}638.0\,\mathrm{m}, Y = 1{,}435{,}794.0\,\mathrm{m})$. The canopy dimensions are $6.0\,\mathrm{m} \times 3.0\,\mathrm{m} \times 0.1\,\mathrm{m}$ at an underside clearance height of $3.5\,\mathrm{m}$, with top albedo $\alpha = 0.60$ and emissivity $\varepsilon = 0.90$.
+
+Under full independent recomputation (zero cache reuse), the panel cast a direct ground shadow covering 6 discrete grid cells ($24.0\,\mathrm{m}^2$ on a $2.0\,\mathrm{m}$ grid). As detailed in Table~\ref{tab:intervention}, the microclimatic impact within the shaded footprint is profound:
+\begin{itemize}
+    \item \textbf{Radiant Temperature Cooling:} $T_{\mathrm{mrt}}$ drops by an average of $-10.03\,\mathrm{K}$ (range $-8.48\,\mathrm{K}$ to $-12.62\,\mathrm{K}$), achieving a peak localized cooling relief of $-12.62\,\mathrm{K}$.
+    \item \textbf{UTCI Stress Relief:} UTCI decreases by an average of $-2.43\,\mathrm{K}$ (range $-2.00\,\mathrm{K}$ to $-3.10\,\mathrm{K}$), downgrading pedestrian sensation from Strong Heat Stress ($36.6\degC$) to Moderate Heat Stress ($33.5\degC$).
+\end{itemize}
+
+\begin{table}[!t]
+\caption{Thermal Impact of Shade Canopy $\mathrm{BLR\_SHADE\_001}$ on Shaded Cells}
+\label{tab:intervention}
+\centering
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Metric} & \textbf{Baseline} & \textbf{Intervention} & \textbf{Delta ($\Delta$)} & \textbf{Unit} \\
+\midrule
+Direct Beam Mask, $\mathcal{S}$ & $1.00$ & $0.00$ & $-1.00$ & binary \\
+Direct SW Flux, $K_{\mathrm{dir}}$ & $617.11$ & $0.00$ & $-617.11$ & $\Wm$ \\
+Total Absorbed Flux, $\Phi_{\mathrm{tot}}$ & $812.45$ & $531.80$ & $-280.65$ & $\Wm$ \\
+Mean Radiant Temp, $T_{\mathrm{mrt}}$ & $46.45$ & $36.42$ & $\mathbf{-10.03}$ & $\mathrm{K}$ \\
+Peak $T_{\mathrm{mrt}}$ Cooling & $46.52$ & $33.90$ & $\mathbf{-12.62}$ & $\mathrm{K}$ \\
+UTCI Thermal Comfort & $36.60$ & $34.17$ & $\mathbf{-2.43}$ & $\degC$ \\
+Peak UTCI Relief & $36.70$ & $33.60$ & $\mathbf{-3.10}$ & $\degC$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Certified Incremental Solver Parity and Efficiency}
+The certified incremental solver was evaluated on the identical $\mathrm{BLR\_SHADE\_001}$ intervention scene against the ground-truth full recomputation. Table~\ref{tab:parity} documents the formal error audit across all 28,120 grid cells.
+
+\begin{table}[!t]
+\caption{Numerical Parity: Incremental vs.\ Full Recomputation}
+\label{tab:parity}
+\centering
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+\textbf{Evaluated Field} & \textbf{Unit} & \textbf{Tolerance} & \textbf{Max Error} & \textbf{Mean Error} & \textbf{Status} \\
+\midrule
+Direct Shadow Mask & - & $0.00$ & $\mathbf{0.000000}$ & $0.000000$ & Pass \\
+Direct SW Flux & $\Wm$ & $0.00$ & $\mathbf{0.000000}$ & $0.000000$ & Pass \\
+Sky View Factor, $\Psi_{\mathrm{svf}}$ & - & $0.01$ & $\mathbf{0.004195}$ & $2.01 \times 10^{-6}$ & Pass \\
+Total Shortwave Flux & $\Wm$ & $0.50$ & $\mathbf{0.128809}$ & $6.17 \times 10^{-5}$ & Pass \\
+Total Longwave Flux & $\Wm$ & $0.50$ & $\mathbf{0.129326}$ & $6.19 \times 10^{-5}$ & Pass \\
+Mean Radiant Temp, $T_{\mathrm{mrt}}$ & $\mathrm{K}$ & $0.50$ & $\mathbf{0.028902}$ & $1.39 \times 10^{-5}$ & Pass \\
+UTCI Thermal Comfort & $\degC$ & $0.50$ & $\mathbf{0.100000}$ & $3.56 \times 10^{-6}$ & Pass \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The numerical results demonstrate exceptional fidelity:
+\begin{itemize}
+    \item \textbf{Zero Discrepant Shadow Cells:} The direct shadow mask and direct shortwave flux are bit-identical ($0.000000$ error) across all $28{,}120$ cells.
+    \item \textbf{Certified $T_{\mathrm{mrt}}$ Boundedness:} The maximum observed $T_{\mathrm{mrt}}$ deviation across the entire geographic domain is $0.028902\,\mathrm{K}$, well within the certified tolerance bound $\varepsilon_T = 0.50\,\mathrm{K}$. The mean absolute error across all cells is $1.39 \times 10^{-5}\,\mathrm{K}$.
+    \item \textbf{Zero Certificate Violations:} In a formal audit of 18 mathematical certificates, zero violations were recorded; the certificate slack map $\mathcal{M}_{\mathrm{slack}}(x) = \varepsilon_T - B_T(x) \ge 0$ holds strictly everywhere.
+    \item \textbf{Spatial Work Avoidance:} The incremental engine recomputed only $72$ cells ($0.26\%$) within the conservative candidate frustum, successfully reusing $28{,}048$ cells ($99.74\%$). Out of $927{,}960$ total domain rays, $925{,}584$ rays were avoided ($99.74\%$ work reduction).
+\end{itemize}
+
+\subsection{GPU Acceleration Profiling on NVIDIA RTX 4050}
+To evaluate hardware acceleration, we executed multi-trial benchmarks (5 trials per pathway) on an Intel Core i7 host with an NVIDIA GeForce RTX 4050 Laptop GPU (6.00~GB VRAM, Compute 8.9). Table~\ref{tab:gpu_bench} compares runtime latency, kernel execution, and effective speedup across all four execution pathways.
+
+\begin{table}[!t]
+\caption{Multi-Trial Computational Benchmark: CPU vs.\ NVIDIA RTX 4050}
+\label{tab:gpu_bench}
+\centering
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Execution Pathway} & \textbf{Total Time (s)} & \textbf{Kernel (ms)} & \textbf{Speedup vs.\ CPU} & \textbf{Work Avoided} \\
+\midrule
+CPU Full Recompute & $5.71 \pm 0.04$ & - & $1.0\times$ (base) & $0.0\%$ \\
+CPU Incremental & $0.42 \pm 0.01$ & - & $\mathbf{13.6\times}$ & $99.74\%$ \\
+GPU Full Recompute & $0.133 \pm 0.01$ & $54.43$ & $\mathbf{69.1\times}$ & $0.0\%$ \\
+GPU Incremental & $\mathbf{0.0114} \pm 0.001$ & $\mathbf{11.40}$ & $\mathbf{500.87\times}$ & $\mathbf{99.74\%}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Key performance findings include:
+\begin{itemize}
+    \item \textbf{CPU Speedup:} CPU certified incremental updates achieve a $13.6\times$ speedup ($0.42\,\mathrm{s}$ vs.\ $5.71\,\mathrm{s}$). On extended $320\,\mathrm{m}$ grids ($102{,}400$ cells, 65 buildings), incremental recomputation scales to $2.88\,\mathrm{s}$ vs.\ $40.82\,\mathrm{s}$ full recomputation ($14.2\times$ speedup, $92.7\%$ cell reuse).
+    \item \textbf{GPU Incremental Kernel Throughput:} The GPU resident incremental kernel executes in \textbf{$11.40\,\mathrm{ms}$}, delivering a \textbf{$500.87\times$} speedup over full CPU recomputation and a \textbf{$36.84\times$} speedup over CPU incremental recomputation.
+    \item \textbf{VRAM Footprint:} Peak GPU memory consumption remained strictly bounded at $1{,}089.45\,\mathrm{MB}$, well below device memory capacity.
+\end{itemize}
+
+\subsection{Multi-Intervention Two-Panel Surrogate Optimization}
+The active surrogate optimizer was tasked with finding an optimal two-panel shade layout along Church Street under geometric setback constraints and overlap penalties ($\lambda_{\mathrm{overlap}} = 0.5$). Across 4,196 proposal iterations, the surrogate model converged to candidate $\mathrm{CAND\_4196\_SURR}$:
+\begin{itemize}
+    \item \textbf{Panel 1:} Located at $(x = 124.02\,\mathrm{m}, y = 59.63\,\mathrm{m})$; length $6.76\,\mathrm{m}$, width $2.07\,\mathrm{m}$, height $3.79\,\mathrm{m}$, heading $113.8^\circ$, albedo $\alpha = 0.56$ (area $14.01\,\mathrm{m}^2$).
+    \item \textbf{Panel 2:} Located at $(x = 151.94\,\mathrm{m}, y = 59.04\,\mathrm{m})$; length $3.85\,\mathrm{m}$, width $2.30\,\mathrm{m}$, height $4.16\,\mathrm{m}$, heading $93.7^\circ$, albedo $\alpha = 0.47$ (area $8.86\,\mathrm{m}^2$).
+    \item \textbf{Multi-Panel Performance:} Combined shade area $22.87\,\mathrm{m}^2$; exactly zero overlapping shadow cells ($|\mathcal{S}_1 \cap \mathcal{S}_2| = 0$); peak localized $T_{\mathrm{mrt}}$ cooling of $\mathbf{12.68\,\mathrm{K}}$; evaluated in $0.33\,\mathrm{s}$ using incremental recomputation (avoiding $913{,}506$ rays).
+\end{itemize}
+
+\subsection{Interactive 3D WebGL Digital Twin}
+To bridge simulation outputs with municipal stakeholders, Solaraeus serializes physical arrays into typed JSON contracts, CF-compliant NetCDF files, and watertight OBJ meshes. These assets are ingested by an interactive browser runtime in `simulation_3d/` built on React 19, TypeScript, and Three.js r128 (Fig.~\ref{fig:arch}, Layer~5). The digital twin features:
+\begin{enumerate}
+    \item \textit{GLSL Thermal Heatmap Shader:} Real-time GPU interpolation of scalar microclimatic fields ($T_{\mathrm{mrt}}$, UTCI, SVF, shadow masks) mapped onto terrain and building geometry.
+    \item \textit{Solar Timeline Scrubber:} Dynamic solar vector adjustment recalculating shadow projections in real time.
+    \item \textit{Pedestrian Comfort Avatar HUD:} Interactive virtual pedestrian equipped with a biometeorological heads-up display reporting localized $T_a$, $T_{\mathrm{mrt}}$, and UTCI heat stress category.
+\end{enumerate}
+
+\subsection{Documented Limitations and Scientific Integrity}
+In strict adherence to scientific integrity, we explicitly document the following engineering boundaries:
+\begin{enumerate}
+    \item \textit{Topographic Datum:} Church Street simulations utilize a certified flat-ground datum ($z = 0.0\,\mathrm{m}$). While synthetic terrain algorithms are verified in solver versions `2.1.0-cpu-terrain` and `2.1.0-gpu-terrain`, real-world micro-topographic claims remain bounded because measured engineering curb/gutter surveys are currently unavailable ($\mathrm{FABDEM\_REGIONAL\_REFERENCE\_ONLY}$).
+    \item \textit{Street Tree Canopies:} Analytical Level~1 tree models (cylinder trunk and ellipsoid crown with Beer--Lambert shortwave extinction) are fully implemented and verified. However, tree geometries in Bengaluru remain photo-estimated ($\mathrm{TREE\_GEOMETRY\_PHOTO\_ESTIMATED\_ONLY}$) pending dedicated field surveys.
+    \item \textit{Field Microclimate Calibration:} All presented figures represent modeled physics differences under fixed meteorological boundary forcing rather than in-situ pyranometer or globe thermometer measurements ($\mathrm{STAGE\_37\_FIELD\_DATA\_UNAVAILABLE}$).
 \end{enumerate}
 
 % =========================================================================
-% SECTION VII: CONCLUSION
+% SECTION IX: CONCLUSION
 % =========================================================================
 \section{Conclusion}
 
-This paper presented \textbf{Solaraeus}, an open-source, physics-based 3D urban microclimate digital twin operating on a uniform 1-metre spatial grid. By harmonizing public LiDAR DEM elevation grids, Overture vector building footprints, and hourly ERA5 reanalysis meteorology, Solaraeus automates the generation of high-resolution Digital Surface Models, Steyn (1980) Sky View Factors across 36 azimuth radials, ray-traced directional shadows, Stefan-Boltzmann 6-flux mean radiant temperatures ($T_{\mathrm{mrt}}$), and Universal Thermal Climate Index (UTCI) pedestrian heat stress rasters. Output products are serialized into CF-compliant NetCDF files, watertight 3D meshes, and typed JSON contracts ingested by an interactive React 19 and Three.js WebGL digital twin. Empirical validation on Washington Square Park, NYC, confirmed physical contrast between direct sunlit exposure ($T_{\mathrm{mrt}} = 57.5^\circ\mathrm{C}$, $\mathrm{UTCI} = 39.6^\circ\mathrm{C}$) and shaded zones ($T_{\mathrm{mrt}} = 42.8^\circ\mathrm{C}$, $\mathrm{UTCI} = 36.2^\circ\mathrm{C}$), demonstrating a $14.7^\circ\mathrm{C}$ radiant temperature reduction. Future work will focus on compiling the custom Bengaluru benchmark dataset, implementing multi-day diurnal cycles (L1--L2), vegetative canopy attenuation (L3), surrogate optimization (L4), and evaluating dependency-aware incremental recomputation.
+This paper presented \textbf{Solaraeus}, an open-source, physics-based 3D urban microclimate digital twin and certified computational engine. By uniting Overture building footprints, Google Open Buildings machine-learning heights, and NOAA/NASA POWER atmospheric data into an automated Python and CUDA pipeline, Solaraeus computes 3D Steyn (1980) Sky View Factors across 36 azimuths, Möller--Trumbore ray-traced shadows, 6-flux Stefan--Boltzmann Mean Radiant Temperatures ($T_{\mathrm{mrt}}$), and Universal Thermal Climate Index (UTCI) pedestrian heat stress. 
+
+To eliminate the computational bottleneck of traditional microclimate solvers, we developed and proved a \textit{Certified Incremental Solver} with closed-form mathematical error bounds ($B_T(x) \le \varepsilon_T = 0.50\,\mathrm{K}$) grounded in solid-angle horizon truncation decay and concave Stefan--Boltzmann linearization. On an authentic digital twin of Church Street, Bengaluru ($28{,}120$ cells, 123 buildings), baseline simulations revealed severe pedestrian heat stress ($T_{\mathrm{mrt}} = 45.81\degC$, $\mathrm{UTCI} = 36.49\degC$). An engineered overhead canopy ($\mathrm{BLR\_SHADE\_001}$) achieved $-12.62\,\mathrm{K}$ peak $T_{\mathrm{mrt}}$ cooling and $-3.10\,\mathrm{K}$ UTCI relief. The certified incremental solver recomputed only $72$ cells ($0.26\%$) while reusing $28{,}048$ cells ($99.74\%$), avoiding $99.74\%$ of ray evaluations with zero certificate violations and a maximum domain error of $0.0289\,\mathrm{K} \ll 0.50\,\mathrm{K}$. On an NVIDIA RTX 4050 GPU, the resident incremental kernel executed in $11.40\,\mathrm{ms}$ ($500.87\times$ speedup over full CPU recomputation). Furthermore, active surrogate optimization successfully discovered complementary multi-canopy layouts ($\mathrm{CAND\_4196\_SURR}$, $12.68\,\mathrm{K}$ peak cooling) with zero spatial overlap. Outputs are published directly to an interactive Three.js 3D WebGL digital twin. Solaraeus provides municipal engineers and urban designers with a certified, real-time computational platform for mitigating extreme heat in warming cities.
 
 % =========================================================================
 % REFERENCES
@@ -286,73 +520,82 @@ This paper presented \textbf{Solaraeus}, an open-source, physics-based 3D urban 
 \begin{thebibliography}{00}
 
 \bibitem{oke1982canyon}
-T.~R.~Oke, ``The energetic basis of the urban heat island,'' \emph{Quarterly Journal of the Royal Meteorological Society}, vol.~108, no.~455, pp.~1--24, 1982.
+T.~R.~Oke, ``The energetic basis of the urban heat island,'' \emph{Quart. J. Roy. Meteorol. Soc.}, vol.~108, no.~455, pp.~1--24, 1982.
 
 \bibitem{grimmond2010climate}
-C.~S.~Grimmond, M.~Roth, T.~R.~Oke, K.~W.~Au, M.~Best, R.~Betts, and P.~Voogt, ``Climate and more sustainable cities: Climate information for improved planning and management of cities,'' \emph{Procedia Environmental Sciences}, vol.~1, pp.~247--274, 2010.
+C.~S.~Grimmond \emph{et al.}, ``Climate and more sustainable cities: Climate information for improved planning and management of cities,'' \emph{Procedia Environ. Sci.}, vol.~1, pp.~247--274, 2010.
 
 \bibitem{matzarakis2007modelling}
-A.~Matzarakis, F.~Rutz, and H.~Mayer, ``Modelling radiation fluxes in simple and complex environments---application of the RayMan model,'' \emph{International Journal of Biometeorology}, vol.~51, no.~4, pp.~323--334, 2007.
+A.~Matzarakis, F.~Rutz, and H.~Mayer, ``Modelling radiation fluxes in simple and complex environments---application of the RayMan model,'' \emph{Int. J. Biometeorol.}, vol.~51, no.~4, pp.~323--334, 2007.
 
 \bibitem{chen2012gis}
-L.~Chen, E.~Ng, X.~An, C.~Ren, M.~Lee, U.~Wang, and Z.~He, ``Sky view factor analysis of street canyons and its implications for daytime outdoor thermal comfort in high-density urban areas,'' \emph{Cities}, vol.~29, no.~2, pp.~121--135, 2012.
+L.~Chen \emph{et al.}, ``Sky view factor analysis of street canyons and its implications for daytime outdoor thermal comfort in high-density urban areas,'' \emph{Cities}, vol.~29, no.~2, pp.~121--135, 2012.
 
 \bibitem{chatzipoulka2016sky}
 C.~Chatzipoulka and J.~K.~Compagnon, ``Urban geometry and solar availability: An experimental study on continuous sky view factors,'' \emph{Solar Energy}, vol.~136, pp.~482--496, 2016.
 
 \bibitem{lindberg2008solweig}
-F.~Lindberg, B.~Holmer, and S.~Grimmond, ``SOLWEIG 1.0--Modelling spatial variations of 3D radiant fluxes and mean radiant temperature in complex urban settings,'' \emph{International Journal of Biometeorology}, vol.~52, no.~7, pp.~697--713, 2008.
+F.~Lindberg, B.~Holmer, and S.~Grimmond, ``SOLWEIG 1.0---Modelling spatial variations of 3D radiant fluxes and mean radiant temperature in complex urban settings,'' \emph{Int. J. Biometeorol.}, vol.~52, no.~7, pp.~697--713, 2008.
 
 \bibitem{lindberg2018urban}
-F.~Lindberg, C.~S.~Grimmond, A.~Gabey, B.~Huang, C.~W.~Kent, T.~Sun, N.~E.~Theeuwes, L.~Jarvi, H.~Ward, I.~Capel-Timms, and Y.~Chang, ``Urban Multi-scale Environmental Predictor (UMEP): An integrated tool for city-based climate services,'' \emph{Environmental Modelling \& Software}, vol.~99, pp.~70--87, 2018.
+F.~Lindberg \emph{et al.}, ``Urban Multi-scale Environmental Predictor (UMEP): An integrated tool for city-based climate services,'' \emph{Environ. Model. Softw.}, vol.~99, pp.~70--87, 2018.
 
 \bibitem{bruse1998simulating}
-M.~Bruse and H.~Fleer, ``Simulating surface--plant--air interactions inside urban environments with a three dimensional numerical model,'' \emph{Environmental Modelling \& Software}, vol.~13, no.~3-4, pp.~373--384, 1998.
+M.~Bruse and H.~Fleer, ``Simulating surface--plant--air interactions inside urban environments with a three dimensional numerical model,'' \emph{Environ. Model. Softw.}, vol.~13, no.~3--4, pp.~373--384, 1998.
 
 \bibitem{sadeghipour2013ladybug}
-M.~Sadeghipour~Roudsari and M.~Pak, ``Ladybug: a parametric environmental plugin for grasshopper to help designers create an environmentally-conscious architecture,'' in \emph{Proceedings of BS2013: 13th Conference of IBPSA}, Chamb{\'e}ry, France, 2013, pp.~3128--3135.
+M.~Sadeghipour~Roudsari and M.~Pak, ``Ladybug: A parametric environmental plugin for Grasshopper to help designers create an environmentally-conscious architecture,'' in \emph{Proc. 13th Conf. Int. Building Perform. Simul. Assoc. (BS2013)}, Chamb{\'e}ry, France, 2013, pp.~3128--3135.
 
 \bibitem{gal2009sky}
-T.~G{\'a}l, F.~Lindberg, and J.~Unger, ``Computing continuous sky view factors using 3D urban models,'' \emph{Theoretical and Applied Climatology}, vol.~95, no.~1, pp.~111--123, 2009.
+T.~G{\'a}l, F.~Lindberg, and J.~Unger, ``Computing continuous sky view factors using 3D urban models,'' \emph{Theor. Appl. Climatol.}, vol.~95, no.~1, pp.~111--123, 2009.
 
 \bibitem{lindberg2010spatial}
-F.~Lindberg and C.~S.~Grimmond, ``Continuous sky view factor from cross-sectional mobile photography in urban areas,'' \emph{International Journal of Climatology}, vol.~30, no.~7, pp.~1070--1081, 2010.
+F.~Lindberg and C.~S.~Grimmond, ``Continuous sky view factor from cross-sectional mobile photography in urban areas,'' \emph{Int. J. Climatol.}, vol.~30, no.~7, pp.~1070--1081, 2010.
 
 \bibitem{fanger1970thermal}
-P.~O.~Fanger, \emph{Thermal Comfort: Analysis and Applications in Environmental Engineering}, Copenhagen: Danish Technical Press, 1970.
+P.~O.~Fanger, \emph{Thermal Comfort: Analysis and Applications in Environmental Engineering}. Copenhagen, Denmark: Danish Technical Press, 1970.
 
 \bibitem{jendritzky2012universal}
-G.~Jendritzky, R.~de~Dear, and G.~Havenith, ``UTCI---Why another thermal index?'' \emph{International Journal of Biometeorology}, vol.~56, no.~3, pp.~421--428, 2012.
+G.~Jendritzky, R.~de~Dear, and G.~Havenith, ``UTCI---Why another thermal index?'' \emph{Int. J. Biometeorol.}, vol.~56, no.~3, pp.~421--428, 2012.
 
 \bibitem{brode2012deriving}
-P.~Br{\"o}de, D.~Fiala, K.~B{\l}a{\.z}ejczyk, I.~Holm{\'e}r, G.~Jendritzky, B.~Kampmann, B.~Tinz, and G.~Havenith, ``Deriving the operational procedure for the Universal Thermal Climate Index (UTCI),'' \emph{International Journal of Biometeorology}, vol.~56, no.~3, pp.~481--494, 2012.
+P.~Br{\"o}de \emph{et al.}, ``Deriving the operational procedure for the Universal Thermal Climate Index (UTCI),'' \emph{Int. J. Biometeorol.}, vol.~56, no.~3, pp.~481--494, 2012.
+
+\bibitem{fiala2012utci}
+D.~Fiala, G.~Havenith, P.~Br{\"o}de, B.~Kampmann, and G.~Jendritzky, ``UTCI-Fiala multi-node model of human heat transfer and temperature regulation,'' \emph{Int. J. Biometeorol.}, vol.~56, no.~3, pp.~429--441, 2012.
 
 \bibitem{robinson2004sun}
 D.~Robinson and A.~Stone, ``Solar radiation modelling in the urban context,'' \emph{Solar Energy}, vol.~77, no.~3, pp.~295--309, 2004.
 
 \bibitem{krayenhoff2014multi}
-E.~S.~Krayenhoff, M.~Christen, C.~Martilli, and T.~R.~Oke, ``A multi-layer radiation model for urban neighbourhoods with trees,'' \emph{Boundary-Layer Meteorology}, vol.~151, no.~1, pp.~139--178, 2014.
+E.~S.~Krayenhoff, M.~Christen, C.~Martilli, and T.~R.~Oke, ``A multi-layer radiation model for urban neighbourhoods with trees,'' \emph{Boundary-Layer Meteorol.}, vol.~151, no.~1, pp.~139--178, 2014.
 
 \bibitem{steyn1980svf}
-D.~G.~Steyn, ``The calculation of a view factor to the sky from a canyon and its application to urban climate,'' \emph{Journal of Climatology}, vol.~1, no.~1, pp.~65--74, 1980.
+D.~G.~Steyn, ``The calculation of a view factor to the sky from a canyon and its application to urban climate,'' \emph{J. Climatol.}, vol.~1, no.~1, pp.~65--74, 1980.
+
+\bibitem{moller1997fast}
+T.~M{\"o}ller and B.~Trumbore, ``Fast, minimum storage ray/triangle intersection,'' \emph{J. Graph. Tools}, vol.~2, no.~1, pp.~21--28, 1997.
 
 \bibitem{bauer2020accelerating}
-C.~Bauer and D.~Wiesmann, ``Accelerating solar irradiation simulations on massive 3D city models using modern GPU architectures,'' \emph{International Journal of Geographical Information Science}, vol.~34, no.~8, pp.~1592--1612, 2020.
+C.~Bauer and D.~Wiesmann, ``Accelerating solar irradiation simulations on massive 3D city models using modern GPU architectures,'' \emph{Int. J. Geogr. Inf. Sci.}, vol.~34, no.~8, pp.~1592--1612, 2020.
 
 \bibitem{wald2014embree}
-I.~Wald, S.~Woop, C.~Benthin, G.~S.~Johnson, and M.~Ernst, ``Embree: a kernel framework for efficient CPU ray tracing,'' \emph{ACM Transactions on Graphics (TOG)}, vol.~33, no.~4, pp.~1--8, 2014.
+I.~Wald, S.~Woop, C.~Benthin, G.~S.~Johnson, and M.~Ernst, ``Embree: A kernel framework for efficient CPU ray tracing,'' \emph{ACM Trans. Graph.}, vol.~33, no.~4, pp.~1--8, 2014.
 
 \bibitem{parker2010optix}
-S.~G.~Parker, J.~Bigler, A.~Dietrich, H.~Friedrich, W.~Hrnciar, M.~Luebke, D.~McAllister, M.~McGuire, K.~Morley, H.~Vo, and D.~Luebke, ``OptiX: a general purpose ray tracing engine,'' \emph{ACM Transactions on Graphics (TOG)}, vol.~29, no.~4, pp.~1--13, 2010.
+S.~G.~Parker \emph{et al.}, ``OptiX: A general purpose ray tracing engine,'' \emph{ACM Trans. Graph.}, vol.~29, no.~4, pp.~1--13, 2010.
 
 \bibitem{zhang2019gpu}
-J.~Zhang, K.~Gao, and H.~Huang, ``GPU-accelerated urban solar radiation modeling using spatial ray casting,'' \emph{Computers, Environment and Urban Systems}, vol.~77, p.~101358, 2019.
+J.~Zhang, K.~Gao, and H.~Huang, ``GPU-accelerated urban solar radiation modeling using spatial ray casting,'' \emph{Comput., Environ. Urban Syst.}, vol.~77, p.~101358, 2019.
 
 \bibitem{kastner2020ray}
-P.~Kastner and T.~Dogan, ``A ray-tracing based method to calculate radiative and convective heat exchange in microclimate models,'' \emph{Building and Environment}, vol.~174, p.~106777, 2020.
+P.~Kastner and T.~Dogan, ``A ray-tracing based method to calculate radiative and convective heat exchange in microclimate models,'' \emph{Build. Environ.}, vol.~174, p.~106777, 2020.
 
 \bibitem{teller1992visibility}
-S.~J.~Teller, ``Visibility preprocessing for interactive walkthroughs,'' in \emph{Proceedings of the 19th Annual Conference on Computer Graphics and Interactive Techniques (SIGGRAPH)}, 1992, pp.~61--69.
+S.~J.~Teller, ``Visibility preprocessing for interactive walkthroughs,'' in \emph{Proc. 19th Annu. Conf. Comput. Graph. Interact. Techn. (SIGGRAPH)}, 1992, pp.~61--69.
+
+\bibitem{forrester2008engineering}
+A.~I.~J.~Forrester, A.~S{\'o}bester, and A.~J.~Keane, \emph{Engineering Design via Surrogate Modelling: A Practical Guide}. Chichester, UK: John Wiley \& Sons, 2008.
 
 \end{thebibliography}
 
