@@ -38,10 +38,10 @@
 \title{Solaraeus: A Physics-Based 3D Urban Microclimate Digital Twin with Certified Incremental Radiative Transfer, GPU Acceleration, and an AI Solver for Optimal Intervention Placement\thanks{This research is developed under the Solaraeus Open Urban Microclimate Initiative. Source code, reproducible verification suites, and interactive viewer assets are maintained at \texttt{https://github.com/ayushsingh08-ds/solaraeus}.}}
 
 \author{\IEEEauthorblockN{Ayush Singh}
-\IEEEauthorblockA{\textit{Department of Computational Science and Engineering} \\
-\textit{Solaraeus Research Initiative}\\
+\IEEEauthorblockA{\textit{Department of Computational Science and Engineering (Data Science)} \\
+\textit{Dayananda Sagar University}\\
 Bengaluru, Karnataka, India \\
-ayushsingh@solaraeus.org}
+eng23ds0098@gmail.com}
 }
 
 \maketitle
@@ -116,8 +116,9 @@ Atmospheric forcing conditions were acquired for the extreme pre-monsoon heatwav
 \caption{Church Street Digital Twin Environmental Parameters}
 \label{tab:inputs}
 \centering
-\small
 \renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{4pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}llcc@{}}
 \toprule
 \textbf{Parameter} & \textbf{Symbol} & \textbf{Value} & \textbf{Unit} \\
@@ -138,7 +139,8 @@ Global Irradiance & $\mathrm{GHI}$ & $755.97$ & $\Wm$ \\
 Direct Normal Irradiance & $\mathrm{DNI}$ & $728.31$ & $\Wm$ \\
 Diffuse Irradiance & $\mathrm{DHI}$ & $172.18$ & $\Wm$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \subsection{Topographic and Vegetation Priors}
@@ -313,12 +315,13 @@ Physical outputs are serialized into CF-compliant NetCDF rasters, watertight OBJ
 \subsection{Church Street Pedestrian Corridor Baseline Microclimate}
 Baseline simulation results across the 668 Church Street corridor cells under peak pre-monsoon conditions ($T_a = 35.0\degC$, $\mathrm{GHI} = 755.97\,\Wm$) are reported in Table~\ref{tab:baseline}.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \caption{Church Street Pedestrian Corridor Baseline ($N = 668$ Cells)}
 \label{tab:baseline}
 \centering
-\small
 \renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 \textbf{Metric} & \textbf{Mean $\pm$ Std} & \textbf{Min} & \textbf{Max} & \textbf{Unit} \\
@@ -331,7 +334,8 @@ Total Longwave Flux, $\Phi_{\mathrm{lw}}$ & $394.02 \pm 6.89$ & $373.74$ & $409.
 Mean Radiant Temp, $T_{\mathrm{mrt}}$ & $45.81 \pm 2.18$ & $32.27$ & $47.94$ & $\degC$ \\
 UTCI Thermal Comfort & $36.49 \pm 0.44$ & $33.20$ & $37.00$ & $\degC$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 Due to high solar elevation ($57.92^\circ$), $97.0\%$ of corridor cells ($648$ cells) receive direct unshaded sun, yielding mean $T_{\mathrm{mrt}} = 46.17\degC$ and UTCI $= 36.58\degC$ (\textit{Strong Heat Stress}). The 20 building-shaded cells average $T_{\mathrm{mrt}} = 34.28\degC$ and UTCI $= 33.68\degC$, reflecting a natural shade cooling contrast of $\Delta T_{\mathrm{mrt}} = 11.89\,\mathrm{K}$ and $\Delta \mathrm{UTCI} = 2.89\,\mathrm{K}$.
@@ -339,12 +343,13 @@ Due to high solar elevation ($57.92^\circ$), $97.0\%$ of corridor cells ($648$ c
 \subsection{Single-Canopy Intervention Analysis ($\mathrm{BLR\_SHADE\_001}$)}
 Overhead canopy $\mathrm{BLR\_SHADE\_001}$ ($6.0\,\mathrm{m} \times 3.0\,\mathrm{m}$ at $3.5\,\mathrm{m}$ clearance) shaded 6 ground cells ($24.0\,\mathrm{m}^2$). Under full recomputation, thermal impact within the shaded footprint (Table~\ref{tab:intervention}) reached an average cooling of $-10.03\,\mathrm{K}$ $T_{\mathrm{mrt}}$ (peak $\mathbf{-12.62\,\mathrm{K}}$) and average UTCI relief of $-2.43\,\mathrm{K}$ (peak $\mathbf{-3.10\,\mathrm{K}}$), downgrading pedestrian perception to Moderate Heat Stress.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \caption{Thermal Impact of Shade Canopy $\mathrm{BLR\_SHADE\_001}$ on Shaded Cells}
 \label{tab:intervention}
 \centering
-\small
 \renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
 \textbf{Metric} & \textbf{Baseline} & \textbf{Intervention} & \textbf{Delta ($\Delta$)} & \textbf{Unit} \\
@@ -357,18 +362,20 @@ Peak $T_{\mathrm{mrt}}$ Cooling & $46.52$ & $33.90$ & $\mathbf{-12.62}$ & $\math
 UTCI Thermal Comfort & $36.60$ & $34.17$ & $\mathbf{-2.43}$ & $\degC$ \\
 Peak UTCI Relief & $36.70$ & $33.60$ & $\mathbf{-3.10}$ & $\degC$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \subsection{Certified Incremental Solver Parity and Spatial Work Avoidance}
 Evaluating the incremental solver against ground-truth full recomputation (Table~\ref{tab:parity}) demonstrated bit-identical direct shadow parity ($0.000000$ error across all $28{,}120$ cells).
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \caption{Numerical Parity: Incremental vs.\ Full Recomputation}
 \label{tab:parity}
 \centering
-\small
 \renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lccccc@{}}
 \toprule
 \textbf{Evaluated Field} & \textbf{Unit} & \textbf{Tolerance} & \textbf{Max Error} & \textbf{Mean Error} & \textbf{Status} \\
@@ -381,7 +388,8 @@ Total Longwave Flux & $\Wm$ & $0.50$ & $\mathbf{0.129326}$ & $6.19 \times 10^{-5
 Mean Radiant Temp, $T_{\mathrm{mrt}}$ & $\mathrm{K}$ & $0.50$ & $\mathbf{0.028902}$ & $1.39 \times 10^{-5}$ & Pass \\
 UTCI Thermal Comfort & $\degC$ & $0.50$ & $\mathbf{0.100000}$ & $3.56 \times 10^{-6}$ & Pass \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 Maximum observed $T_{\mathrm{mrt}}$ deviation was $0.0289\,\mathrm{K} \ll 0.50\,\mathrm{K}$ (mean error $1.39 \times 10^{-5}\,\mathrm{K}$), with zero violations across 18 audited certificates. The solver recomputed only 72 cells ($0.26\%$) and reused $28{,}048$ cells ($99.74\%$), avoiding $925{,}584$ rays ($99.74\%$ work reduction) and achieving a $13.6\times$ CPU speedup ($0.42\,\mathrm{s}$ vs.\ $5.71\,\mathrm{s}$, scaling to $14.2\times$ on $320\,\mathrm{m}$ grids).
@@ -389,22 +397,24 @@ Maximum observed $T_{\mathrm{mrt}}$ deviation was $0.0289\,\mathrm{K} \ll 0.50\,
 \subsection{GPU Acceleration Profiling on NVIDIA RTX 4050}
 Multi-trial profiling on an NVIDIA RTX 4050 GPU (Table~\ref{tab:gpu_bench}) revealed that the resident incremental kernel executes in \textbf{$11.40\,\mathrm{ms}$}, delivering a \textbf{$500.87\times$} speedup over full CPU recomputation and \textbf{$36.84\times$} over CPU incremental updates, while consuming only $1{,}089.45\,\mathrm{MB}$ VRAM.
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \caption{Multi-Trial Computational Benchmark: CPU vs.\ NVIDIA RTX 4050}
 \label{tab:gpu_bench}
 \centering
-\small
 \renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-\textbf{Execution Pathway} & \textbf{Total Time (s)} & \textbf{Kernel (ms)} & \textbf{Speedup vs.\ CPU} & \textbf{Work Avoided} \\
+\textbf{Pathway} & \textbf{Time (s)} & \textbf{Kernel (ms)} & \textbf{Speedup} & \textbf{Work Avoided} \\
 \midrule
 CPU Full Recompute & $5.71 \pm 0.04$ & - & $1.0\times$ (base) & $0.0\%$ \\
 CPU Incremental & $0.42 \pm 0.01$ & - & $\mathbf{13.6\times}$ & $99.74\%$ \\
 GPU Full Recompute & $0.133 \pm 0.01$ & $54.43$ & $\mathbf{69.1\times}$ & $0.0\%$ \\
 GPU Incremental & $\mathbf{0.0114} \pm 0.001$ & $\mathbf{11.40}$ & $\mathbf{500.87\times}$ & $\mathbf{99.74\%}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \subsection{AI Solver Placement Discovery: Single- and Multi-Panel Configurations}
@@ -423,29 +433,31 @@ Guided by active learning UCB acquisition, the ensemble solver discovered optima
 \end{itemize}
 The total combined canopy footprint is $22.87\,\mathrm{m}^2$ with a mutual physical separation distance of $22.45\,\mathrm{m}$ (well beyond the required $2.0\,\mathrm{m}$ buffer). Crucially, the AI solver achieved \textbf{zero shadow overlap} ($|\mathcal{S}_1 \cap \mathcal{S}_2| = 0.0\,\mathrm{m}^2$), distributing shade across two distinct pedestrian congestion nodes along the street. The dual-panel installation achieved a peak localized $T_{\mathrm{mrt}}$ reduction of $\mathbf{12.68\,\mathrm{K}}$ and an optimal composite objective score of $56.57$, surpassing matched random search baselines. Physical parity audits confirmed zero certificate violations across all proposals ($|\Delta T_{\mathrm{mrt}}| \le 0.014\,\mathrm{K} \ll 0.50\,\mathrm{K}$).
 
-\begin{table}[!t]
+\begin{table}[!htbp]
 \caption{AI Solver Placement Discovery: Performance Summary}
 \label{tab:ai_solver}
 \centering
-\small
 \renewcommand{\arraystretch}{1.12}
+\setlength{\tabcolsep}{3.5pt}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lccc@{}}
 \toprule
-\textbf{Metric} & \textbf{Baseline} & \textbf{Best Single Panel} & \textbf{Best Dual Panel} \\
+\textbf{Metric} & \textbf{Baseline} & \textbf{Single-Panel} & \textbf{Dual-Panel} \\
 & & ($\mathrm{CAND\_0063}$) & ($\mathrm{CAND\_4196}$) \\
 \midrule
 Intervention Count & $0$ & $1$ & $2$ \\
-Total Canopy Area ($\mathrm{m}^2$) & $0.00$ & $10.26$ & $22.87$ \\
-Panel Separation ($\mathrm{m}$) & - & - & $22.45$ \\
+Total Canopy Area & $0.00\,\mathrm{m}^2$ & $10.26\,\mathrm{m}^2$ & $22.87\,\mathrm{m}^2$ \\
+Panel Separation & - & - & $22.45\,\mathrm{m}$ \\
 Mutual Shadow Overlap & $0.0\,\mathrm{m}^2$ & $0.0\,\mathrm{m}^2$ & $\mathbf{0.0\,\mathrm{m}^2}$ \\
-Peak $T_{\mathrm{mrt}}$ Cooling ($\mathrm{K}$) & $0.00$ & $\mathbf{-12.62}$ & $\mathbf{-12.68}$ \\
-Corridor Mean UTCI ($\degC$) & $36.49$ & $36.40$ & $36.31$ \\
+Peak $T_{\mathrm{mrt}}$ Cooling & $0.00\,\mathrm{K}$ & $\mathbf{-12.62\,\mathrm{K}}$ & $\mathbf{-12.68\,\mathrm{K}}$ \\
+Corridor Mean UTCI & $36.49\degC$ & $36.40\degC$ & $36.31\degC$ \\
 Composite Score ($\mathcal{J}$) & - & $54.93$ & $\mathbf{56.57}$ \\
 Evaluated Candidates & - & $120$ & $4{,}401$ \\
-Feasibility Pruning Rate & - & $88.3\%$ & $\mathbf{94.9\%}$ \\
-GPU Eval Latency (per cand) & - & $11.4\,\mathrm{ms}$ & $\mathbf{11.4\,\mathrm{ms}}$ \\
+Pruning Rejection Rate & - & $88.3\%$ & $\mathbf{94.9\%}$ \\
+GPU Latency / Candidate & - & $11.4\,\mathrm{ms}$ & $\mathbf{11.4\,\mathrm{ms}}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 % =========================================================================
