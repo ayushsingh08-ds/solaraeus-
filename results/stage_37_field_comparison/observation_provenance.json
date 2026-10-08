@@ -1,0 +1,28 @@
+{
+  "available_records": [
+    {
+      "type": "STREET_LEVEL_PHOTOGRAPHS",
+      "source": "Church Street public walk-through archive",
+      "utility": "Qualitative tree crown boundary estimation and building context identification",
+      "calibration_validity": "NON_METRIC_SENSITIVITY_ONLY"
+    },
+    {
+      "type": "OPENSTREETMAP_POLYGONS",
+      "source": "OSM Overpass API export",
+      "utility": "Building footprint reference",
+      "calibration_validity": "GEOMETRIC_OUTLINE_ONLY"
+    },
+    {
+      "type": "FABDEM_V1_2",
+      "source": "Forest And Buildings removed Copernicus DEM",
+      "utility": "Regional elevation context (30m grid)",
+      "calibration_validity": "REGIONAL_REFERENCE_ONLY"
+    }
+  ],
+  "missing_records": [
+    "Calibrated thermistor / globe temperature time series",
+    "Net radiometer shortwave/longwave flux observations",
+    "Ceptometer canopy transmission profiles",
+    "Surveyor total-station curb and road elevation transects"
+  ]
+}

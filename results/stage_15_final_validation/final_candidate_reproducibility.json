@@ -1,0 +1,11 @@
+{
+  "random_seed": 42,
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "frozen_baseline_hash": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+  "n_mc_samples": 20,
+  "solver_equivalence_pass": true,
+  "incremental_tolerance_pass": true,
+  "all_certificates_valid": true,
+  "ranking_stability_pct": 35.0,
+  "ranking_is_definitive": false
+}

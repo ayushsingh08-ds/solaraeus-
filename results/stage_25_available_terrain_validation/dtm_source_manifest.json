@@ -1,0 +1,37 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T09:18:45.303455+00:00",
+  "evaluated_sources": [
+    {
+      "source_id": "SRC_FABDEM_V12",
+      "name": "FABDEM v1.2",
+      "format": "GeoTIFF",
+      "native_resolution_m": 30.87,
+      "vertical_accuracy_rmse_m": 1.82,
+      "classification": "REGIONAL_REFERENCE_ONLY",
+      "status": "APPROVED_AS_REGIONAL_REFERENCE_ONLY",
+      "curb_resolving_ability": false
+    },
+    {
+      "source_id": "SRC_SYNTHETIC_PROFILES",
+      "name": "SOLARAEUS Synthetic Terrain Profiles (Flat, Incline, Stepped, Swale)",
+      "format": "Analytical Regular Grid / TerrainGrid",
+      "resolution_m": 0.5,
+      "vertical_accuracy_rmse_m": 0.0,
+      "classification": "SYNTHETIC_TERRAIN_ONLY",
+      "status": "VALIDATED_FOR_SOLVER_MECHANICS_TESTING",
+      "curb_resolving_ability": true
+    },
+    {
+      "source_id": "SRC_MEASURED_STREET_DTM",
+      "name": "Engineering Total-Station Street DTM",
+      "format": "Points / Surface",
+      "classification": "MISSING",
+      "status": "UNAVAILABLE"
+    }
+  ],
+  "fabdem_classification": "REGIONAL_REFERENCE_ONLY",
+  "available_terrain_status": "SYNTHETIC_TERRAIN_ONLY",
+  "street_scale_dtm_status": "MISSING",
+  "token": "STAGE_25_SYNTHETIC_TERRAIN_ONLY"
+}

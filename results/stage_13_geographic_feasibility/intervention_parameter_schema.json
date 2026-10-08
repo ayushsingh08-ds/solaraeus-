@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShadePanelInterventionParameters",
+  "type": "object",
+  "required": [
+    "x",
+    "y",
+    "length",
+    "width",
+    "height",
+    "tilt",
+    "azimuth",
+    "albedo",
+    "emissivity"
+  ],
+  "properties": {
+    "x": {
+      "type": "number",
+      "description": "Local Cartesian center X-coordinate (Easting offset from local origin in meters)",
+      "minimum": 0.0,
+      "maximum": 380.0,
+      "unit": "meters"
+    },
+    "y": {
+      "type": "number",
+      "description": "Local Cartesian center Y-coordinate (Northing offset from local origin in meters)",
+      "minimum": 0.0,
+      "maximum": 296.0,
+      "unit": "meters"
+    },
+    "length": {
+      "type": "number",
+      "description": "Length of canopy rectangle along primary local axis",
+      "minimum": 2.0,
+      "maximum": 15.0,
+      "unit": "meters"
+    },
+    "width": {
+      "type": "number",
+      "description": "Width of canopy rectangle perpendicular to primary axis",
+      "minimum": 1.5,
+      "maximum": 6.0,
+      "unit": "meters"
+    },
+    "height": {
+      "type": "number",
+      "description": "Clearance height above ground level (underside elevation)",
+      "minimum": 2.5,
+      "maximum": 5.5,
+      "unit": "meters"
+    },
+    "tilt": {
+      "type": "number",
+      "description": "Inclination angle from horizontal (0 = flat horizontal canopy)",
+      "minimum": 0.0,
+      "maximum": 30.0,
+      "unit": "degrees"
+    },
+    "azimuth": {
+      "type": "number",
+      "description": "Canopy orientation angle measured clockwise from True North",
+      "minimum": 0.0,
+      "maximum": 360.0,
+      "unit": "degrees"
+    },
+    "albedo": {
+      "type": "number",
+      "description": "Shortwave reflectance fraction of canopy upper surface",
+      "minimum": 0.1,
+      "maximum": 0.9,
+      "unit": "fraction"
+    },
+    "emissivity": {
+      "type": "number",
+      "description": "Thermal longwave emissivity of canopy surface",
+      "minimum": 0.8,
+      "maximum": 0.99,
+      "unit": "fraction"
+    }
+  }
+}

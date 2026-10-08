@@ -169,6 +169,59 @@ def compute_candidate_affected_region(scene_before: Scene,
             p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_mesh_shadow(mesh_new, solar_pos, grid.z_ped)
         else:
             p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = 0.0, 0.0, 0.0, 0.0, 0.0
+    elif type(edit).__name__ == "AddMultiMeshEdit":
+        from urban_comfort.incremental.mesh_affected_region import project_mesh_shadow
+        meshes = getattr(edit, "meshes", [])
+        margin_m = safety_margin_cells * grid.dx
+        if not meshes:
+            return AffectedRegionResult(
+                candidate_mask=np.zeros((ny, nx), dtype=bool),
+                candidate_bbox=empty_bbox,
+                is_fallback=False,
+                fallback_reason=None,
+                shadow_length_m=0.0,
+                safety_margin_m=margin_m,
+                old_projection_bbox=empty_bbox,
+                new_projection_bbox=empty_bbox
+            )
+
+        # Boolean union of candidate masks across all meshes
+        combined_cand_mask = np.zeros((ny, nx), dtype=bool)
+        p_new_x1, p_new_y1 = float("inf"), float("inf")
+        p_new_x2, p_new_y2 = float("-inf"), float("-inf")
+        len_new = 0.0
+
+        for m in meshes:
+            if m.enabled:
+                px1, px2, py1, py2, m_len = project_mesh_shadow(m, solar_pos, grid.z_ped)
+                p_new_x1 = min(p_new_x1, px1)
+                p_new_x2 = max(p_new_x2, px2)
+                p_new_y1 = min(p_new_y1, py1)
+                p_new_y2 = max(p_new_y2, py2)
+                len_new = max(len_new, m_len)
+
+                m_cand_x1 = px1 - margin_m
+                m_cand_x2 = px2 + margin_m
+                m_cand_y1 = py1 - margin_m
+                m_cand_y2 = py2 + margin_m
+                s_y, s_x = grid.bounding_box_slices(m_cand_x1, m_cand_x2, m_cand_y1, m_cand_y2)
+                combined_cand_mask[s_y, s_x] = True
+
+        cand_x1 = p_new_x1 - margin_m
+        cand_x2 = p_new_x2 + margin_m
+        cand_y1 = p_new_y1 - margin_m
+        cand_y2 = p_new_y2 + margin_m
+
+        return AffectedRegionResult(
+            candidate_mask=combined_cand_mask,
+            candidate_bbox=(cand_x1, cand_x2, cand_y1, cand_y2),
+            is_fallback=False,
+            fallback_reason=None,
+            shadow_length_m=len_new,
+            safety_margin_m=margin_m,
+            old_projection_bbox=empty_bbox,
+            new_projection_bbox=(p_new_x1, p_new_x2, p_new_y1, p_new_y2)
+        )
     else:
         # Fallback for unknown edit type
         return AffectedRegionResult(

@@ -1,0 +1,13 @@
+{
+  "stage": 26,
+  "status": "STAGE_26_FIELD_VALIDATION_DEFERRED",
+  "timestamp_utc": "2026-10-08T09:19:04.996274+00:00",
+  "field_validation_requested_now": false,
+  "tree_geometry_status": "PHOTO_ESTIMATED_ONLY",
+  "current_tree_existence_status": "UNCERTAIN",
+  "field_measurements_available": false,
+  "approved_for_provisional_sensitivity_testing": true,
+  "approved_for_calibrated_real_world_claims": false,
+  "approved_for_authoritative_tree_geometry": false,
+  "token": "STAGE_26_FIELD_VALIDATION_DEFERRED"
+}

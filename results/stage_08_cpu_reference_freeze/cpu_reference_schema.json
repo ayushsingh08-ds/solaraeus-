@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SOLARAEUS CPU Reference API Schemas",
+  "definitions": {
+    "SimulationConfig": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "minimum": -90.0,
+          "maximum": 90.0
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180.0,
+          "maximum": 180.0
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "local_time": {
+          "type": "string",
+          "pattern": "^\\d{2}:\\d{2}:\\d{2}$"
+        },
+        "pedestrian_height": {
+          "type": "number",
+          "minimum": 0.0,
+          "default": 1.1
+        },
+        "grid_resolution": {
+          "type": "number",
+          "exclusiveMinimum": 0.0,
+          "default": 2.0
+        },
+        "tmrt_tolerance": {
+          "type": "number",
+          "minimum": 0.0,
+          "default": 0.5
+        },
+        "sky_patch_configuration": {
+          "type": "integer",
+          "enum": [
+            16,
+            32,
+            64,
+            145
+          ],
+          "default": 32
+        },
+        "max_svf_search_dist_m": {
+          "type": "number",
+          "minimum": 10.0,
+          "default": 120.0
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude",
+        "date",
+        "local_time"
+      ]
+    },
+    "Weather": {
+      "type": "object",
+      "properties": {
+        "air_temperature": {
+          "type": "number",
+          "minimum": 200.0,
+          "maximum": 350.0
+        },
+        "relative_humidity": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 100.0
+        },
+        "wind_speed": {
+          "type": "number",
+          "minimum": 0.0
+        },
+        "wind_direction": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 360.0
+        },
+        "direct_normal_irradiance": {
+          "type": "number",
+          "minimum": 0.0
+        },
+        "diffuse_horizontal_irradiance": {
+          "type": "number",
+          "minimum": 0.0
+        }
+      },
+      "required": [
+        "air_temperature",
+        "relative_humidity",
+        "wind_speed",
+        "direct_normal_irradiance",
+        "diffuse_horizontal_irradiance"
+      ]
+    },
+    "TriangleMesh": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "vertices": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "triangles": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "material_id": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "vertices",
+        "triangles"
+      ]
+    }
+  }
+}

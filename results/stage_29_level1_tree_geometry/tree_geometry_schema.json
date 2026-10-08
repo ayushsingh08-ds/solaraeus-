@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Level1TreeGeometrySchema",
+  "type": "object",
+  "required": [
+    "tree_id",
+    "species",
+    "x",
+    "y",
+    "z_ground",
+    "height",
+    "crown_radius_x",
+    "crown_radius_y",
+    "crown_base_height",
+    "trunk_radius",
+    "geometry_state",
+    "status",
+    "confidence"
+  ],
+  "properties": {
+    "tree_id": {
+      "type": "string"
+    },
+    "species": {
+      "type": "string"
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "z_ground": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number",
+      "minimum": 0.5
+    },
+    "crown_radius_x": {
+      "type": "number",
+      "minimum": 0.1
+    },
+    "crown_radius_y": {
+      "type": "number",
+      "minimum": 0.1
+    },
+    "crown_base_height": {
+      "type": "number",
+      "minimum": 0.0
+    },
+    "trunk_radius": {
+      "type": "number",
+      "minimum": 0.01
+    },
+    "geometry_state": {
+      "type": "string",
+      "enum": [
+        "CONSERVATIVE_SMALL",
+        "NOMINAL_PROVISIONAL",
+        "CONSERVATIVE_LARGE"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PROVISIONAL_PHOTO_ESTIMATED"
+      ]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "PHOTO_ESTIMATED_ONLY"
+      ]
+    }
+  }
+}

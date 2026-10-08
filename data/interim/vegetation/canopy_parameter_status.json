@@ -1,0 +1,58 @@
+{
+  "audit_timestamp_utc": "2026-10-07T16:58:52Z",
+  "policy_rule": "Strict separation between empirical observations, photo-estimates, and literature assumptions. Level 2 and Level 3 canopy parameters are NOT assigned during this task.",
+  "parameter_categorization": {
+    "Category_A_Observed_or_Census_Reported": {
+      "description": "Empirical municipal records from BBMP July 2026 census.",
+      "fields": [
+        "species_name_as_reported",
+        "census_object_id",
+        "kgis_tree_id",
+        "wgs84_coordinates (latitude, longitude)",
+        "projected_utm_coordinates (easting, northing EPSG:32643)",
+        "local_coordinates (x, y meters relative to Church Street origin)"
+      ],
+      "verified_status": "VERIFIED_MUNICIPAL_RECORD_COORDINATES",
+      "coverage": "14/14 trees (100%)"
+    },
+    "Category_B_Photo_Estimated": {
+      "description": "Approximate geometric proportions estimated from uncalibrated street photographs (KartaView 2020, Commons 2018/2024).",
+      "fields": [
+        "approximate_tree_height_m",
+        "approximate_crown_diameter_m",
+        "approximate_crown_base_height_m",
+        "approximate_trunk_diameter_m",
+        "qualitative_crown_shape"
+      ],
+      "verified_status": "PHOTO_ESTIMATED_PROVISIONAL_NON_CALIBRATED",
+      "coverage": "6/6 core trees, 2/8 context trees (T06, T07). 6/8 context trees MISSING."
+    },
+    "Category_C_Literature_Assumed": {
+      "description": "Biophysical and radiative parameters from urban microclimate literature (e.g. SOLWEIG, ENVI-met database). NOT ASSIGNED in interim stage.",
+      "fields": [
+        "shortwave_transmissivity",
+        "leaf_albedo",
+        "surface_emissivity",
+        "leaf_area_index_LAI",
+        "leaf_area_density_LAD_profile",
+        "seasonal_foliage_fraction"
+      ],
+      "assigned_in_this_task": false,
+      "status": "LITERATURE_ASSUMED_PENDING_RESEARCHER_SELECTION"
+    },
+    "Category_D_Missing": {
+      "description": "Parameters requiring on-site field measurements, laser rangefinder / LiDAR scanning, or recent field verification.",
+      "fields": [
+        "field_confirmed_tree_height",
+        "field_confirmed_crown_dimensions",
+        "field_confirmed_crown_base_height",
+        "measured_canopy_transmissivity_pyranometer",
+        "measured_LAI_hemispherical_photography",
+        "verified_current_existence (2026 on-site ground truth)"
+      ],
+      "status": "MISSING_FIELD_VALIDATION_REQUIRED"
+    }
+  },
+  "simulation_readiness_decision": "NOT_READY_FOR_SIMULATION",
+  "rationale": "Physics solver requires calibrated 3D canopy geometry and validated transmissivity. Uncalibrated photo estimates must not be ingested into ray tracing without explicit researcher approval."
+}

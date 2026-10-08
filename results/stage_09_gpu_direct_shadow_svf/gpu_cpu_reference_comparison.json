@@ -1,0 +1,120 @@
+{
+  "cpu_reference_version": "2.0.0-cpu-ref",
+  "evaluation_scene": "Church Street (123 context buildings + BLR_SHADE_001)",
+  "all_checks_passed": true,
+  "direct_shadow": {
+    "exact_equality": true,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "median_absolute_error": 0.0,
+    "std_absolute_error": 0.0,
+    "p90_absolute_error": 0.0,
+    "p95_absolute_error": 0.0,
+    "p99_absolute_error": 0.0,
+    "max_relative_error": 0.0,
+    "mean_relative_error": 0.0,
+    "differing_cells_count": 0,
+    "differing_cells_fraction": 0.0,
+    "tolerance": 0.0,
+    "pass": true
+  },
+  "sky_view_factor": {
+    "exact_equality": false,
+    "max_absolute_error": 1.0547118733938987e-14,
+    "mean_absolute_error": 7.315141360521117e-17,
+    "median_absolute_error": 0.0,
+    "std_absolute_error": 3.8597074034119403e-16,
+    "p90_absolute_error": 1.6653345369377348e-16,
+    "p95_absolute_error": 2.220446049250313e-16,
+    "p99_absolute_error": 8.881784197001252e-16,
+    "max_relative_error": 1.617563184041152e-14,
+    "mean_relative_error": 1.1172011621327322e-16,
+    "differing_cells_count": 0,
+    "differing_cells_fraction": 0.0,
+    "tolerance": 0.0001,
+    "pass": true
+  },
+  "validation_tests_summary": {
+    "total_tests": 12,
+    "passed_tests": 12,
+    "tests": [
+      {
+        "id": 1,
+        "name": "GPU backend import test",
+        "pass": true,
+        "details": "Imported GPUBackend class cleanly"
+      },
+      {
+        "id": 2,
+        "name": "Device-availability test",
+        "pass": true,
+        "details": "Detected device NVIDIA GeForce RTX 4050 Laptop GPU"
+      },
+      {
+        "id": 3,
+        "name": "Synthetic scene test",
+        "pass": true,
+        "details": "Bit-identical shadow on box obstacle"
+      },
+      {
+        "id": 4,
+        "name": "Single-panel test",
+        "pass": true,
+        "details": "Bit-identical shadow on BLR_SHADE_001 overhead panel"
+      },
+      {
+        "id": 5,
+        "name": "Multi-obstacle test",
+        "pass": true,
+        "details": "124 distinct triangular meshes ingested into GPU buffers"
+      },
+      {
+        "id": 6,
+        "name": "Direct-shadow CPU/GPU comparison",
+        "pass": true,
+        "details": "Exact match across all 28120 cells (0 diffs)"
+      },
+      {
+        "id": 7,
+        "name": "SVF CPU/GPU comparison",
+        "pass": true,
+        "details": "Max abs error = 1.05e-14 (< 1e-4 tolerance)"
+      },
+      {
+        "id": 8,
+        "name": "Mask comparison",
+        "pass": true,
+        "details": "Binary active and illuminated masks match 100%"
+      },
+      {
+        "id": 9,
+        "name": "Coordinate and shape comparison",
+        "pass": true,
+        "details": "Shapes (148, 190) and grid coordinates verified"
+      },
+      {
+        "id": 10,
+        "name": "Determinism test",
+        "pass": true,
+        "details": "Exact bit-identical output across consecutive GPU kernel invocations"
+      },
+      {
+        "id": 11,
+        "name": "Precision test for supported modes",
+        "pass": true,
+        "details": "Verified IEEE-754 double precision (float64)"
+      },
+      {
+        "id": 12,
+        "name": "Error handling when GPU is unavailable",
+        "pass": true,
+        "details": "Correctly raises clear RuntimeError when GPU is offline"
+      }
+    ]
+  },
+  "edge_case_analysis": {
+    "grazing_angles": "Evaluated and matched across 32 azimuths",
+    "watertight_intersections": "M\u00f6ller-Trumbore det check handles boundary rays consistently",
+    "discrepancies_count": 0
+  }
+}

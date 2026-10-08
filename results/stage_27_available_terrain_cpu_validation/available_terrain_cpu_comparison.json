@@ -1,0 +1,7 @@
+{
+  "flat_ground_parity_diff_k": 0.0,
+  "flat_ground_exact_match": true,
+  "incline_vs_flat_max_dtmrt_k": 0.0,
+  "step_vs_flat_max_dtmrt_k": 0.0,
+  "swale_vs_flat_max_dtmrt_k": 0.0
+}

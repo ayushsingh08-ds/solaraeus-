@@ -1,0 +1,72 @@
+{
+  "single_tree": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.8569533999834675,
+    "gpu_runtime_sec": 0.4910583999881055,
+    "speedup": 1.7451150413152994
+  },
+  "core_trees_small": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.1101697999984026,
+    "gpu_runtime_sec": 0.07132270000874996,
+    "speedup": 1.5446667047782379
+  },
+  "core_trees_nom": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.11919679999118671,
+    "gpu_runtime_sec": 0.0800079999899026,
+    "speedup": 1.4898110189759766
+  },
+  "core_trees_large": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.10620120001840405,
+    "gpu_runtime_sec": 0.0813893000013195,
+    "speedup": 1.3048545695402503
+  },
+  "tree_beside_building": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.06558170000789687,
+    "gpu_runtime_sec": 0.09029640001244843,
+    "speedup": 0.7262936285262276
+  },
+  "trees_plus_panel": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.16325929999584332,
+    "gpu_runtime_sec": 0.10538349999114871,
+    "speedup": 1.5491922360668955
+  },
+  "trees_on_incline": {
+    "max_shadow_mask_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true,
+    "cpu_runtime_sec": 0.1264755000011064,
+    "gpu_runtime_sec": 0.08096960000693798,
+    "speedup": 1.5620121624692378
+  }
+}

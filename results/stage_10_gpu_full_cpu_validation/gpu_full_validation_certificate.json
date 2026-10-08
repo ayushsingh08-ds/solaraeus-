@@ -1,0 +1,38 @@
+{
+  "certificate_id": "CERT_GPU_FULL_PARITY_20261007_191218",
+  "timestamp_utc": "2026-10-07T19:12:18.320455+00:00",
+  "stage": 10,
+  "token": "STAGE_10_GPU_FULL_VS_CPU_VALIDATION_COMPLETE",
+  "cpu_reference_version": "2.0.0-cpu-ref",
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "cuda_compute_capability": "8.9",
+  "tolerances": {
+    "shadow_mask": 0.0,
+    "direct_irradiance": 0.0,
+    "svf": 0.0001,
+    "shortwave_flux": 0.01,
+    "longwave_flux": 0.01,
+    "tmrt": 0.05,
+    "utci": 0.05
+  },
+  "field_discrepancies": {
+    "shadow_mask": 0,
+    "direct_irradiance": 0,
+    "svf": 0,
+    "shortwave_flux": 0,
+    "longwave_flux": 0,
+    "tmrt": 0,
+    "utci": 0
+  },
+  "max_errors": {
+    "shadow_mask": 0.0,
+    "direct_irradiance": 0.0,
+    "svf": 1.0547118733938987e-14,
+    "shortwave_flux": 3.410605131648481e-13,
+    "longwave_flux": 3.410605131648481e-13,
+    "tmrt": 1.1368683772161603e-13,
+    "utci": 0.0
+  },
+  "mathematical_soundness_proof": "All ray-tracing kernels Moller-Trumbore and Horizon-Scan operate on identical 64-bit IEEE-754 precision, producing zero spatial divergence and bounded floating-point rounding under 1e-13.",
+  "is_valid": true
+}

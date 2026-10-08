@@ -1,0 +1,18 @@
+{
+  "stage": 31,
+  "status": "STAGE_31_GPU_TREE_SHADOW_COMPLETE",
+  "api_version": "2.2.0-gpu-tree",
+  "timestamp_utc": "2026-10-08T09:34:25.014916+00:00",
+  "classification": "PROVISIONAL_TREE_GEOMETRY",
+  "field_validation": "NOT_FIELD_VALIDATED",
+  "cases_tested": [
+    "single_tree",
+    "core_trees_small",
+    "core_trees_nom",
+    "core_trees_large",
+    "tree_beside_building",
+    "trees_plus_panel",
+    "trees_on_incline"
+  ],
+  "token": "STAGE_31_GPU_TREE_SHADOW_COMPLETE"
+}

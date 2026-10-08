@@ -1,0 +1,48 @@
+{
+  "creation_timestamp_utc": "2026-10-07T16:51:57Z",
+  "source_raster": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/N12E077_FABDEM_V1-2.tif",
+  "source_sha256": "975925ac077df01fdbb20ca8395f83e533dd47833a08617fe0c52f4c05560a3b",
+  "clipping_geometry": {
+    "core_site_boundary_file": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/site_boundary.geojson",
+    "shadow_context_boundary_file": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/shadow_context_boundary.geojson",
+    "applied_buffer_distance_m": 50.0,
+    "clipping_bbox_wgs84": [
+      77.60324855084124,
+      12.973170769714601,
+      77.60755144740864,
+      12.976629222945972
+    ],
+    "clipping_bbox_utm43": [
+      782414.6895605252,
+      1435610.3506695558,
+      782884.6737091821,
+      1435996.9157649088
+    ]
+  },
+  "clipped_outputs": {
+    "native": {
+      "path": "data/interim/terrain/fabdem_clipped_native.tif",
+      "crs": "EPSG:4326",
+      "dimensions": [
+        16,
+        14
+      ],
+      "resampling": "None (masked subset of native pixels)"
+    },
+    "projected_utm": {
+      "path": "data/interim/terrain/fabdem_clipped_utm43.tif",
+      "crs": "EPSG:32643",
+      "resolution_m": 30.0,
+      "resampling": "bilinear"
+    },
+    "local_reference": {
+      "path": "data/interim/terrain/fabdem_local_reference.tif",
+      "origin": [
+        782541.81,
+        1435736.11
+      ],
+      "units": "metres"
+    }
+  },
+  "simulation_readiness": "DERIVED_INTERIM_NOT_SIMULATION_READY"
+}

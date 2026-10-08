@@ -1,0 +1,259 @@
+{
+  "version": "2.0.0-cpu-ref",
+  "modules": [
+    {
+      "module": "urban_comfort.reference.full_recompute",
+      "functions": [
+        {
+          "name": "full_recompute",
+          "docstring": "Executes a deterministic full recomputation of all microclimatic fields from scratch.",
+          "parameters": [
+            {
+              "name": "scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "weather",
+              "type": "Weather",
+              "required": true
+            },
+            {
+              "name": "config",
+              "type": "SimulationConfig",
+              "required": true
+            },
+            {
+              "name": "backend",
+              "type": "Optional[str]",
+              "default": "None",
+              "required": false
+            }
+          ],
+          "return_type": "SimulationResult"
+        }
+      ],
+      "classes": [
+        {
+          "name": "SimulationResult",
+          "fields": [
+            {
+              "name": "shadow_mask",
+              "type": "np.ndarray",
+              "shape": "(ny, nx)",
+              "dtype": "int64/bool",
+              "unit": "-"
+            },
+            {
+              "name": "direct_irradiance",
+              "type": "np.ndarray",
+              "shape": "(ny, nx)",
+              "dtype": "float64",
+              "unit": "W/m2"
+            },
+            {
+              "name": "visibility_fields",
+              "type": "Dict[str, np.ndarray]",
+              "unit": "-"
+            },
+            {
+              "name": "shortwave_flux",
+              "type": "np.ndarray",
+              "shape": "(ny, nx)",
+              "dtype": "float64",
+              "unit": "W/m2"
+            },
+            {
+              "name": "longwave_flux",
+              "type": "np.ndarray",
+              "shape": "(ny, nx)",
+              "dtype": "float64",
+              "unit": "W/m2"
+            },
+            {
+              "name": "tmrt",
+              "type": "np.ndarray",
+              "shape": "(ny, nx)",
+              "dtype": "float64",
+              "unit": "degC"
+            },
+            {
+              "name": "utci",
+              "type": "np.ndarray",
+              "shape": "(ny, nx)",
+              "dtype": "float64",
+              "unit": "degC"
+            },
+            {
+              "name": "metadata",
+              "type": "Dict[str, Any]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "module": "urban_comfort.incremental.update",
+      "functions": [
+        {
+          "name": "incremental_update_certified",
+          "parameters": [
+            {
+              "name": "previous_scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "updated_scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "previous_result",
+              "type": "SimulationResult",
+              "required": true
+            },
+            {
+              "name": "edit",
+              "type": "GeometricEdit",
+              "required": true
+            },
+            {
+              "name": "weather",
+              "type": "Weather",
+              "required": true
+            },
+            {
+              "name": "config",
+              "type": "SimulationConfig",
+              "required": true
+            },
+            {
+              "name": "backend",
+              "type": "str",
+              "default": "'cpu'",
+              "required": false
+            }
+          ],
+          "return_type": "Tuple[IncrementalUpdateResult, ErrorCertificate]"
+        },
+        {
+          "name": "incremental_update_exact",
+          "parameters": [
+            {
+              "name": "previous_scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "updated_scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "previous_result",
+              "type": "SimulationResult",
+              "required": true
+            },
+            {
+              "name": "edit",
+              "type": "GeometricEdit",
+              "required": true
+            },
+            {
+              "name": "weather",
+              "type": "Weather",
+              "required": true
+            },
+            {
+              "name": "config",
+              "type": "SimulationConfig",
+              "required": true
+            },
+            {
+              "name": "max_svf_search_dist_m",
+              "type": "Optional[float]",
+              "default": "None",
+              "required": false
+            },
+            {
+              "name": "backend",
+              "type": "str",
+              "default": "'cpu'",
+              "required": false
+            }
+          ],
+          "return_type": "IncrementalUpdateResult"
+        }
+      ]
+    },
+    {
+      "module": "urban_comfort.incremental.certificate",
+      "functions": [
+        {
+          "name": "generate_error_certificate",
+          "parameters": [
+            {
+              "name": "previous_scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "updated_scene",
+              "type": "Scene",
+              "required": true
+            },
+            {
+              "name": "previous_result",
+              "type": "SimulationResult",
+              "required": true
+            },
+            {
+              "name": "edit",
+              "type": "GeometricEdit",
+              "required": true
+            },
+            {
+              "name": "weather",
+              "type": "Weather",
+              "required": true
+            },
+            {
+              "name": "config",
+              "type": "SimulationConfig",
+              "required": true
+            }
+          ],
+          "return_type": "ErrorCertificate"
+        },
+        {
+          "name": "verify_certificate",
+          "parameters": [
+            {
+              "name": "certificate",
+              "type": "ErrorCertificate",
+              "required": true
+            },
+            {
+              "name": "incremental_tmrt",
+              "type": "np.ndarray",
+              "required": true
+            },
+            {
+              "name": "full_recomputed_tmrt",
+              "type": "np.ndarray",
+              "required": true
+            },
+            {
+              "name": "numerical_slack",
+              "type": "float",
+              "default": "1e-10",
+              "required": false
+            }
+          ],
+          "return_type": "CertificateVerification"
+        }
+      ]
+    }
+  ]
+}

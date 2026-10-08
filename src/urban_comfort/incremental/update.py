@@ -211,10 +211,18 @@ def incremental_update_exact(previous_scene: Scene,
                              edit: GeometricEdit,
                              weather: Weather,
                              config: SimulationConfig,
-                             max_svf_search_dist_m: Optional[float] = None) -> IncrementalUpdateResult:
+                             max_svf_search_dist_m: Optional[float] = None,
+                             backend: str = "cpu") -> IncrementalUpdateResult:
     """
     Executes an exact incremental update, recomputing only cells within provably affected regions.
     """
+    if backend.lower() == "gpu":
+        from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+        engine = GPUIncrementalEngine()
+        return engine.execute_exact_update(
+            previous_scene, updated_scene, previous_result, edit, weather, config
+        )
+
     t_start = time.perf_counter()
     svf_search_dist = max_svf_search_dist_m if max_svf_search_dist_m is not None else config.max_svf_search_dist_m
 
@@ -319,7 +327,8 @@ def incremental_update_certified(previous_scene: Scene,
                                  previous_result: SimulationResult,
                                  edit: GeometricEdit,
                                  weather: Weather,
-                                 config: SimulationConfig) -> Tuple[IncrementalUpdateResult, Any]:
+                                 config: SimulationConfig,
+                                 backend: str = "cpu") -> Tuple[IncrementalUpdateResult, Any]:
     """
     Executes a certified incremental update with bounded approximation:
     - Generates error certificate B_T(x).
@@ -327,6 +336,13 @@ def incremental_update_certified(previous_scene: Scene,
     - Cells where B_T(x) > tolerance are selectively recomputed.
     - Guarantees: |T_mrt_inc - T_mrt_full| <= B_T(x) <= tolerance on all reused cells.
     """
+    if backend.lower() == "gpu":
+        from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+        engine = GPUIncrementalEngine()
+        return engine.execute_certified_update(
+            previous_scene, updated_scene, previous_result, edit, weather, config
+        )
+
     from urban_comfort.incremental.certificate import generate_error_certificate
     from datetime import datetime, timezone
 

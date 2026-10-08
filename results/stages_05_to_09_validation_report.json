@@ -1,0 +1,135 @@
+{
+  "report_timestamp_utc": "2026-10-07T18:40:28.346415+00:00",
+  "roadmap_range": "STAGES_05_THROUGH_09",
+  "overall_status": "ALL_STAGES_COMPLETED_AND_VALIDATED",
+  "total_stages": 5,
+  "passed_stages": 5,
+  "failed_stages": 0,
+  "stages": [
+    {
+      "stage_id": "STAGE_5",
+      "stage_name": "Shade-Panel Full Recomputation",
+      "acceptance_token": "STAGE_5_SHADE_PANEL_FULL_RECOMPUTATION_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_05_shade_panel_full/",
+      "artifacts_generated": [
+        "inputs_manifest.json",
+        "full_recomputation_outputs.json",
+        "full_recomputation_summary.json",
+        "full_recomputation_certificate.json",
+        "runtime_metrics.json",
+        "comparison_to_baseline.json"
+      ],
+      "key_metrics": {
+        "evaluated_cells": 28120,
+        "shadow_changed_cells": 6,
+        "svf_changed_cells": 104,
+        "tmrt_changed_cells": 39,
+        "max_tmrt_cooling_k": -12.6163,
+        "max_utci_cooling_k": -3.1,
+        "determinism": "exact_bit_match"
+      }
+    },
+    {
+      "stage_id": "STAGE_6",
+      "stage_name": "Shade-Panel Incremental Recomputation",
+      "acceptance_token": "STAGE_6_SHADE_PANEL_INCREMENTAL_RECOMPUTATION_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_06_shade_panel_incremental/",
+      "artifacts_generated": [
+        "inputs_manifest.json",
+        "incremental_outputs.json",
+        "affected_region_mask.json",
+        "reuse_metrics.json",
+        "runtime_metrics.json",
+        "comparison_to_full_recomputation.json",
+        "incremental_certificate.json"
+      ],
+      "key_metrics": {
+        "reused_cells": 28048,
+        "recomputed_cells": 72,
+        "reuse_percentage": 99.74,
+        "max_abs_error_tmrt_k": 0.0289,
+        "max_abs_error_svf": 0.00419,
+        "max_abs_error_shadow": 0.0,
+        "certificate_violations": 0,
+        "speedup_vs_full": 7.7
+      }
+    },
+    {
+      "stage_id": "STAGE_7",
+      "stage_name": "Certificate Audit and CPU Efficiency Analysis",
+      "acceptance_token": "STAGE_7_CERTIFICATE_AUDIT_AND_CPU_EFFICIENCY_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_07_certificate_and_cpu_audit/",
+      "artifacts_generated": [
+        "certificate_audit.json",
+        "certificate_audit.md",
+        "cpu_efficiency_benchmark.csv",
+        "cpu_efficiency_report.md",
+        "full_vs_incremental_error_report.json",
+        "reproducibility_report.json"
+      ],
+      "key_metrics": {
+        "total_certificates_audited": 18,
+        "authoritative_passed": 16,
+        "diagnostic_passed": 2,
+        "benchmark_trials": 5,
+        "mean_wall_full_sec": 5.71,
+        "mean_wall_inc_sec": 0.42,
+        "mean_speedup": 13.6,
+        "reproducibility": "100% bit-identical"
+      }
+    },
+    {
+      "stage_id": "STAGE_8",
+      "stage_name": "Freeze Stable CPU/Reference API",
+      "acceptance_token": "STAGE_8_CPU_REFERENCE_API_FROZEN",
+      "status": "PASSED",
+      "output_directory": "results/stage_08_cpu_reference_freeze/",
+      "artifacts_generated": [
+        "cpu_reference_api_manifest.json",
+        "cpu_reference_api.md",
+        "cpu_reference_schema.json",
+        "cpu_reference_version.json",
+        "cpu_reference_regression_report.md"
+      ],
+      "key_metrics": {
+        "version": "2.0.0-cpu-ref",
+        "regression_tests_total": 10,
+        "regression_tests_passed": 10,
+        "api_backward_compatibility": "fully_preserved",
+        "contract_stability": "FROZEN_STABLE"
+      }
+    },
+    {
+      "stage_id": "STAGE_9",
+      "stage_name": "GPU Direct-Shadow and SVF Backend",
+      "acceptance_token": "STAGE_9_GPU_DIRECT_SHADOW_SVF_BACKEND_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_09_gpu_direct_shadow_svf/",
+      "artifacts_generated": [
+        "gpu_backend_manifest.json",
+        "gpu_direct_shadow_outputs.json",
+        "gpu_svf_outputs.json",
+        "gpu_runtime_metrics.json",
+        "gpu_device_metadata.json",
+        "gpu_cpu_reference_comparison.json"
+      ],
+      "key_metrics": {
+        "gpu_device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+        "gpu_validation_tests_total": 12,
+        "gpu_validation_tests_passed": 12,
+        "direct_shadow_parity": "exact_match (0.0 error)",
+        "svf_parity": "max_error 1.05e-14 (< 1e-4 tolerance)",
+        "differing_cells_count": 0
+      }
+    }
+  ],
+  "test_suite_status": {
+    "total_collected": 294,
+    "passed": 294,
+    "failed": 0,
+    "warnings": 42
+  }
+}

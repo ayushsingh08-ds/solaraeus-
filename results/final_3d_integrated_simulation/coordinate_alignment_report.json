@@ -1,0 +1,46 @@
+{
+  "status": "COORDINATE_ALIGNMENT_VALIDATED",
+  "crs_source": "EPSG:4326",
+  "crs_projected": "EPSG:32643",
+  "max_positional_error_m": 0.0001,
+  "test_points": [
+    {
+      "name": "Tree T08",
+      "lon": 77.6045925,
+      "lat": 12.9750311,
+      "local_x": 20.070114179048687,
+      "local_y": 81.13853024388663,
+      "three_x": 20.070114179048687,
+      "three_y": 0.0,
+      "three_z": -81.13853024388663,
+      "roundtrip_err_deg": 0.0
+    },
+    {
+      "name": "Tree T13",
+      "lon": 77.6050503,
+      "lat": 12.9748892,
+      "local_x": 69.92646331922151,
+      "local_y": 65.93931156932376,
+      "three_x": 69.92646331922151,
+      "three_y": 0.0,
+      "three_z": -65.93931156932376,
+      "roundtrip_err_deg": 1.7763568394002505e-15
+    },
+    {
+      "name": "Corridor Center",
+      "lon": 77.6054,
+      "lat": 12.9749,
+      "local_x": 107.87551909638569,
+      "local_y": 67.52257996122353,
+      "three_x": 107.87551909638569,
+      "three_y": 0.0,
+      "three_z": -67.52257996122353,
+      "roundtrip_err_deg": 1.7763568394002505e-15
+    }
+  ],
+  "axis_conventions": {
+    "east": "+X (Local) / +X (Three.js)",
+    "north": "+Y (Local) / -Z (Three.js)",
+    "up": "+Z (Local) / +Y (Three.js)"
+  }
+}

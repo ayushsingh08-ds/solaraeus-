@@ -1,0 +1,10 @@
+{
+  "seed": 42,
+  "budget_random": 25,
+  "budget_lhs": 10,
+  "budget_evolutionary": 15,
+  "population_size": 8,
+  "mutation_factor": 0.5,
+  "crossover_prob": 0.7,
+  "max_total_evaluations": 55
+}

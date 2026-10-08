@@ -1,0 +1,7 @@
+{
+  "CERT_30_01_ZERO_TREE_BACKWARD_PARITY": "PASSED (Exact match with 2.1.0-cpu-terrain)",
+  "CERT_30_02_SHADOW_MONOTONICITY": "PASSED (Area(Small) <= Area(Nominal) <= Area(Large))",
+  "CERT_30_03_RECEPTOR_TERRAIN_COUPLING": "PASSED (Z = Z_terrain + 1.1m)",
+  "CERT_30_04_CONSERVATIVE_CONTAINMENT": "PASSED (Trunk + Crown bounds strictly honored)",
+  "CERT_30_05_DETERMINISM": "PASSED (Zero numerical drift across repeated runs)"
+}

@@ -1,0 +1,76 @@
+{
+  "seed": 42,
+  "num_iterations": 4,
+  "batch_size": 5,
+  "total_budget": 20,
+  "surrogate_config": {
+    "model_type": "random_forest",
+    "n_estimators": 100,
+    "max_depth": 12,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "seed": 42,
+    "target_names": [
+      "objective_value",
+      "mean_utci_c",
+      "p90_utci_c",
+      "mean_tmrt_c",
+      "delta_mean_tmrt_c",
+      "peak_local_tmrt_improvement"
+    ],
+    "feature_names": [
+      "x",
+      "y",
+      "length",
+      "width",
+      "height",
+      "heading_deg",
+      "albedo",
+      "area_m2"
+    ],
+    "use_feature_scaling": true
+  },
+  "acquisition_config": {
+    "strategy": "hybrid",
+    "kappa": 2.0,
+    "xi": 0.01,
+    "pool_size": 1000,
+    "seed": 42
+  },
+  "bounds": {
+    "x": [
+      110.0,
+      155.0
+    ],
+    "y": [
+      55.0,
+      72.0
+    ],
+    "length": [
+      3.0,
+      12.0
+    ],
+    "width": [
+      2.0,
+      4.5
+    ],
+    "height": [
+      2.8,
+      4.5
+    ],
+    "heading_deg": [
+      90.0,
+      115.0
+    ],
+    "albedo": [
+      0.2,
+      0.85
+    ]
+  },
+  "objective_weights": {
+    "weight_mean_utci": 1.0,
+    "weight_p90_utci": 0.5,
+    "weight_area_penalty": 0.005
+  },
+  "fallback_to_cpu": false
+}

@@ -1,0 +1,11 @@
+{
+  "stage_id": "STAGE_24",
+  "timestamp_utc": "2026-10-08T09:18:11.648214+00:00",
+  "data_promoted_to_processed": false,
+  "provisional_tree_geometry_approved_for_sensitivity": true,
+  "authoritative_simulation_promoted": false,
+  "tree_geometry_status": "PROVISIONAL_PHOTO_ESTIMATED",
+  "field_validation_status": "DEFERRED",
+  "status": "APPROVED_FOR_SENSITIVITY_ONLY",
+  "reason": "Researcher approved provisional Level 1 tree geometry for sensitivity studies; field calibration remains deferred."
+}

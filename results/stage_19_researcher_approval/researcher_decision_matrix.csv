@@ -1,0 +1,20 @@
+decision_id,category,item_description,current_status,reviewer_name,decision_date,notes
+DEC_01,Tree Inventory,Tree locations accepted as census-derived,PENDING,Unassigned,None,Awaiting human review
+DEC_02,Tree Inventory,Reported botanical binomials accepted as provisional priors,PENDING,Unassigned,None,Awaiting human review
+DEC_03,Tree Inventory,Current tree existence uncertainty acknowledged,PENDING,Unassigned,None,Awaiting human review
+DEC_04,Tree Geometry,T08 (Ficus religiosa) bounding envelope accepted,PENDING,Unassigned,None,Awaiting human review
+DEC_05,Tree Geometry,T09 (Syzygium cumini) bounding envelope accepted,PENDING,Unassigned,None,Awaiting human review
+DEC_06,Tree Geometry,T10 (Syzygium cumini) bounding envelope accepted,PENDING,Unassigned,None,Awaiting human review
+DEC_07,Tree Geometry,T11 (Saraca asoca) bounding envelope accepted,PENDING,Unassigned,None,Awaiting human review
+DEC_08,Tree Geometry,T12 (Saraca asoca) bounding envelope accepted,PENDING,Unassigned,None,Awaiting human review
+DEC_09,Tree Geometry,T13 (Tecoma stans) bounding envelope accepted,PENDING,Unassigned,None,Awaiting human review
+DEC_10,Simulation Scope,Nominal geometry approved for Level 1 sensitivity exploration,PENDING,Unassigned,None,Awaiting human review
+DEC_11,Simulation Scope,Tree geometry approved for authoritative simulation certification,PENDING,Unassigned,None,Awaiting human review
+DEC_12,Context Geometry,"Context tree inclusion (T06, T07) and exclusion (T14) accepted",PENDING,Unassigned,None,Awaiting human review
+DEC_13,Terrain Governance,FABDEM v1.2 strictly restricted to regional reference use,PENDING,Unassigned,None,Awaiting human review
+DEC_14,Terrain Governance,Street-scale curb/cross-fall DTM requirement acknowledged,PENDING,Unassigned,None,Awaiting human review
+DEC_15,Canopy Physics,Canopy optical parameters treated as literature assumptions,PENDING,Unassigned,None,Awaiting human review
+DEC_16,Canopy Physics,LAI/LAD profiles treated as unvalidated,PENDING,Unassigned,None,Awaiting human review
+DEC_17,Validation Road,2026 field survey requirement acknowledged,PENDING,Unassigned,None,Awaiting human review
+DEC_18,Data Promotion,Promotion of interim files to data/processed/ authorized,PENDING,Unassigned,None,Awaiting human review
+DEC_19,Solver Integration,Integration of tree/terrain geometry into solver engine authorized,PENDING,Unassigned,None,Awaiting human review

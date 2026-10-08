@@ -1,0 +1,9 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T08:55:45.134778+00:00",
+  "horizontal_crs": "EPSG:32643 (WGS 84 / UTM Zone 43N)",
+  "vertical_datum_measured": "PENDING_MUNICIPAL_SURVEY",
+  "vertical_datum_synthetic": "LOCAL_ORTHOMETRIC_RELATIVE_METERS",
+  "units": "meters",
+  "conversion_audit": "Exact cartesian coordinate transforms verified in Stage 22"
+}

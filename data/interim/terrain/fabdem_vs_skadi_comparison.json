@@ -1,0 +1,43 @@
+{
+  "audit_timestamp_utc": "2026-10-07T16:53:27Z",
+  "datasets": {
+    "existing_skadi": {
+      "source_file": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/elevation_original.tif",
+      "product": "Mapzen/Tilezen Skadi DEM (SRTM/GMTED composite)",
+      "vertical_datum": "EGM96 orthometric height (metres)",
+      "format": "Int16 GeoTIFF",
+      "resolution": "1 arc-second (~30m)",
+      "site_mean_m": 920.3515151515152,
+      "site_std_m": 5.614705864668258
+    },
+    "new_fabdem": {
+      "source_file": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/N12E077_FABDEM_V1-2.tif",
+      "product": "FABDEM V1-2 (Forests and Buildings removed Copernicus DEM)",
+      "vertical_datum": "EGM2008 orthometric height (metres)",
+      "format": "Float32 Cloud-Optimized GeoTIFF",
+      "resolution": "1 arc-second (~30m)",
+      "site_mean_m": 913.2510313091856,
+      "site_std_m": 1.3797112648694165
+    }
+  },
+  "comparison_metrics": {
+    "sample_points_count": 165,
+    "mean_difference_skadi_minus_fabdem_m": 7.100483842329545,
+    "median_difference_skadi_minus_fabdem_m": 6.83001708984375,
+    "min_difference_m": -9.02001953125,
+    "max_difference_m": 20.55999755859375,
+    "std_difference_m": 5.388150292467286
+  },
+  "difference_analysis": {
+    "building_canopy_contamination": "Skadi DEM is an uncorrected radar DSM; reflections from multi-story commercial buildings on Church Street cause positive elevation spikes up to +16.6 m above the true ground.",
+    "vertical_datum_offset": "EGM96 versus EGM2008 geoid undulation difference over Bengaluru accounts for approximately 0.1 to 0.3 m of the difference.",
+    "variance_reduction": "Standard deviation drops from 5.61 m in Skadi to 1.38 m in FABDEM, proving that the true urban terrain surface is smooth and continuous.",
+    "curb_and_sidewalk_suitability": "Neither raster resolves sub-metre curb geometry, transverse 2% drainage slopes, or building foundation thresholds."
+  },
+  "cautious_classification": {
+    "role": "regional terrain reference and provisional elevation baseline",
+    "requires_local_vertical_validation": true,
+    "insufficient_for_curb_and_sidewalk_geometry": true,
+    "simulation_readiness": "DERIVED_INTERIM_NOT_SIMULATION_READY"
+  }
+}

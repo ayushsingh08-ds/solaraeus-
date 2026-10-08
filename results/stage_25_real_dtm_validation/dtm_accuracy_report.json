@@ -1,0 +1,16 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T08:55:45.134778+00:00",
+  "measured_data_accuracy": {
+    "horizontal_rmse_m": null,
+    "vertical_rmse_m": null,
+    "status": "FIELD_MEASUREMENTS_UNAVAILABLE"
+  },
+  "synthetic_profiles_accuracy": {
+    "horizontal_tolerance_m": 1e-06,
+    "vertical_tolerance_m": 1e-06,
+    "interpolation_order": "BILINEAR",
+    "status": "EXACT_NUMERICAL_SPECIFICATION"
+  },
+  "classification": "SYNTHETIC_TERRAIN_ONLY"
+}

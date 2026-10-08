@@ -1,0 +1,20 @@
+{
+  "status": "INTERFERENCE_LOGIC_ACTIVE",
+  "scenarios": [
+    "BASELINE",
+    "TREES_ONLY",
+    "PANELS_ONLY",
+    "TREES_AND_PANELS",
+    "TERRAIN_ONLY",
+    "TERRAIN_AND_TREES",
+    "TERRAIN_AND_PANELS",
+    "TERRAIN_TREES_AND_PANELS",
+    "OPTIMIZED_PROVISIONAL_CANDIDATE"
+  ],
+  "decomposition": {
+    "tree_effect_delta_k": -2.45,
+    "panel_effect_delta_k": -12.6,
+    "combined_delta_k": -14.85,
+    "sub_additivity_interaction_k": 0.2
+  }
+}

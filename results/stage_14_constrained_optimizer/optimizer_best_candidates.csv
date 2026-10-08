@@ -1,0 +1,6 @@
+candidate_id,iteration,method,x_m,y_m,length_m,width_m,height_m,heading_deg,albedo,area_m2,is_feasible,rejection_reason,objective_value,mean_tmrt_k,mean_utci_c,p90_utci_c,max_cooling_k,wall_time_s,certificate_status,certificate_violations
+CAND_0028_EVOL,28,evolutionary,155.0,55.0,4.414,3.084,3.459,103.28,0.46,13.611,True,NONE,54.9535,318.94,36.485,36.8,12.603,0.043,certified,0
+CAND_0012_LHS,12,lhs,153.479,57.458,4.145,3.832,3.733,105.7,0.74,15.886,True,NONE,54.9591,318.914,36.48,36.8,12.527,0.0728,certified,0
+CAND_0000_DETE,0,deterministic_baseline,131.789,64.007,6.0,3.0,3.5,102.44,0.6,18.0,True,NONE,54.9674,318.905,36.477,36.8,12.616,0.0482,certified,0
+CAND_0003_RAND,3,random,129.954,58.863,7.991,2.16,4.207,105.79,0.69,17.257,True,NONE,54.9709,318.935,36.485,36.8,12.577,0.0503,certified,0
+CAND_0025_EVOL,25,evolutionary,155.0,56.476,5.13,3.763,4.419,106.05,0.45,19.308,True,NONE,54.9781,318.92,36.482,36.8,12.413,0.047,certified,0

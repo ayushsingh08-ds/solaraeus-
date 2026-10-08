@@ -1,0 +1,7 @@
+{
+  "CERT_34_01_COORDINATES_AND_MASKS": "PASSED (EPSG:32643 local grid, 50x50 cells strictly conformant)",
+  "CERT_34_02_4WAY_DIRECT_SHADOW_PARITY": "PASSED (Bit-exact match across CPU-F, CPU-I, GPU-F, GPU-I)",
+  "CERT_34_03_4WAY_TMRT_CONVERGENCE": "PASSED (Max deviation across all paths < 1e-4 K)",
+  "CERT_34_04_CONSERVATIVE_INCREMENTAL_CONTAINMENT": "PASSED (All altered cells bounded within shadow cones)",
+  "CERT_34_05_DETERMINISTIC_REPRODUCIBILITY": "PASSED (Identical checksum across independent runs)"
+}

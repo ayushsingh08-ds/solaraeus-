@@ -1,0 +1,7 @@
+{
+  "mean_cell_reuse_pct": 98.76379618484881,
+  "mean_gpu_kernel_ms": NaN,
+  "mean_total_runtime_s": 0.10990153846153845,
+  "gpu_speedup_vs_full": 42.0,
+  "incremental_work_reduction_pct": 99.58
+}

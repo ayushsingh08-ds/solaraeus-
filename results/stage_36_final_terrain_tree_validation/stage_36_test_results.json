@@ -1,0 +1,10 @@
+{
+  "stage": 36,
+  "status": "STAGE_36_PROVISIONAL_TERRAIN_TREE_VALIDATION_COMPLETE",
+  "tests_run": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "acceptance_criteria_met": true,
+  "token": "STAGE_36_PROVISIONAL_TERRAIN_TREE_VALIDATION_COMPLETE",
+  "notes": "Final candidates validated across 4 paths and 3 geometry states; uncertainty intervals audited."
+}

@@ -1,0 +1,32 @@
+{
+  "timestamp_utc": "2026-10-08T08:14:01.469776+00:00",
+  "operating_system": "Windows-11-10.0.26300-SP0",
+  "python_version": "3.12.6",
+  "python_executable": "C:\\Users\\AYUSH SINGH\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+  "repository_commit": "909f9db1c6188995ae32b378a2642ac5247d643a",
+  "hardware": {
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "gpu_model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "vram_gb": 6.0,
+    "compute_capability": "8.9"
+  },
+  "cuda_environment": {
+    "driver_version": "576.88",
+    "cuda_toolkit_compatible": "12.8",
+    "cupy_installed": true,
+    "cupy_version": "14.2.0"
+  },
+  "random_seed": 42,
+  "reproducibility_scope": [
+    "Static Baseline",
+    "Shade-Panel Full Recomputation",
+    "Shade-Panel Incremental Recomputation",
+    "GPU Full Validation",
+    "GPU Incremental Validation",
+    "Geographic Feasibility Catalog",
+    "Optimizer Best Candidate",
+    "Final Candidate Multi-Path Parity",
+    "Cross-Area Generalization",
+    "Publication Source Data"
+  ]
+}

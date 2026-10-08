@@ -66,6 +66,7 @@ class SimulationConfig:
     numerical_tolerance: float = 1e-6    # Numerical floating point slack
     sky_patch_configuration: int = 32    # Number of horizon search azimuths
     max_svf_search_dist_m: float = 60.0  # Maximum horizon search distance for SVF (m)
+    backend: str = "cpu"                 # Backend engine: 'cpu', 'gpu', or 'auto'
 
     def __post_init__(self):
         if not (-90.0 <= self.latitude <= 90.0):
@@ -80,6 +81,8 @@ class SimulationConfig:
             raise ValueError(f"T_mrt tolerance must be > 0, got {self.tmrt_tolerance}")
         if self.sky_patch_configuration < 4:
             raise ValueError(f"Sky patch configuration must be >= 4, got {self.sky_patch_configuration}")
+        if self.backend.lower() not in ("cpu", "gpu", "auto"):
+            raise ValueError(f"Backend must be 'cpu', 'gpu', or 'auto', got {self.backend}")
 
 
 # Default canonical materials

@@ -1,0 +1,29 @@
+{
+  "timestamp_utc": "2026-10-08T08:17:40.681943+00:00",
+  "evaluation_standard": "ASPRS Positional Accuracy Standards for Digital Geospatial Data",
+  "fabdem_quality": {
+    "native_spacing_m": 30.87,
+    "vertical_rmse_m": 1.25,
+    "horizontal_datum": "WGS84",
+    "vertical_datum": "EGM96 geoid",
+    "features_resolved": "Macro-scale Bengaluru plateau slope",
+    "features_missing": [
+      "Curbs",
+      "Sidewalk cross-slopes",
+      "Drainage channels",
+      "Building plinths"
+    ],
+    "quality_verdict": "FAIL_FOR_MICROSCALE_SIMULATION"
+  },
+  "synthetic_terrain_quality": {
+    "grid_resolution_m": 1.0,
+    "coordinate_system": "EPSG:32643 (UTM Zone 43N) & Local Church Street Cartesian",
+    "vertical_precision": "IEEE-754 double precision float64",
+    "features_modeled": [
+      "Continuous slopes",
+      "Sharp vertical discontinuities",
+      "NoData boundary flags"
+    ],
+    "quality_verdict": "PASS_FOR_NUMERICAL_SOLVER_VERIFICATION"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "bounding_box": [
+    15.0,
+    30.0,
+    15.0,
+    30.0
+  ],
+  "total_domain_cells": 2500,
+  "invalidated_cells": 225,
+  "preserved_cells": 2275,
+  "conservation_ratio": 0.91
+}

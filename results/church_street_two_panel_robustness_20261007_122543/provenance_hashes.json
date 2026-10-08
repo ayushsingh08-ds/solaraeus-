@@ -1,0 +1,13 @@
+{
+  "REPORT.md": "709f165172fc9259ecaefc8a68f6d4719cc45851ec8fe8505b7c6af1efd45ed9",
+  "random_seeds_summary.json": "d41425a77e19e1e51067ba5393e8a80fb8ba56b959d49c6b0c766e11c45f7d5d",
+  "evaluation_budgets_summary.json": "b1bca6d6f3b15568825e81d2fa6f69537d4cebe5dfa7a7b0c2ac96df0b37f8ec",
+  "weather_sensitivity_summary.json": "49c5aaac5297ece07b579ff62a39c989b5e44e3e3ab90034e4cbc2b5998b508b",
+  "solar_timestamp_sensitivity_summary.json": "21e26d1c8e0d7482f2a52000a5394be400bc290fd06768b03e6f0ee76738ae1a",
+  "objective_weight_sensitivity_summary.json": "74c4a0fa5878598f3b12047367e4aaba1f228d4ac0dc73878854bf0b121f43fa",
+  "constraint_sensitivity_summary.json": "21f6b503d6f9307c292d86f5688039da6bc26b153c8b6c9449b808cb18f208e2",
+  "intervention_comparison.json": "f90f8d51c0216a9849d52d9c86bb7d241aff3e5c407c277e381c9d10d8ec1742",
+  "validation_report.json": "043d3feda41d9589638c62f32ffa2d70c3600d1229e9ce46ccb6c1964cc8160b",
+  "certificate_report.json": "aa794ce228da3eb3ae03934fbd7df066d3e22c717edc21f29e4371cba2656c28",
+  "performance_report.json": "32bb42693912d024300f9e70189b670c8f16754ac4d08cc197030052dcc45d24"
+}

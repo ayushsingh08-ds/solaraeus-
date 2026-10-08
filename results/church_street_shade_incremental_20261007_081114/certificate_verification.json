@@ -1,0 +1,27 @@
+{
+  "status": "certified",
+  "is_valid": true,
+  "tolerance_k": 0.5,
+  "max_predicted_bound_k": 49.95224187595744,
+  "num_violations": 0,
+  "max_violation_k": 0.0,
+  "reused_max_error_k": 0.02890152869707663,
+  "is_within_tolerance": true,
+  "affected_cells": 72,
+  "reused_cells": 28048,
+  "total_cells": 28120,
+  "reused_fraction": 0.9974395448079658,
+  "timing_sec": {
+    "candidate_region": 0.0013041999991401099,
+    "certificate_eval": 0.03387949999887496,
+    "selective_recompute": 1.2283708000031766,
+    "total_incremental": 1.269706799997948
+  },
+  "assumptions": [
+    "Standing rotationally symmetric cylinder with f_up=f_down=0.06, f_side=0.22",
+    "Shortwave absorption a_k=0.70, longwave absorption a_l=0.97",
+    "Direct shadow bounded by directional frustum Minkowski envelope + safety margin",
+    "SVF bounded by solid-angle distance decay proportional to W*delta_h / (2*pi*r^2)",
+    "Concave Stefan-Boltzmann interval propagation guarantees upper-bounding of both warming and cooling"
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "certificate_id": "CERT_STAGE_5_FULL_RECOMPUTE_001",
+  "timestamp_utc": "2026-10-07T18:25:00.270081+00:00",
+  "status": "CERTIFIED_VALID",
+  "checks": [
+    {
+      "name": "grid_dimension_consistency",
+      "expected": [
+        148,
+        190
+      ],
+      "observed": [
+        148,
+        190
+      ],
+      "pass": true
+    },
+    {
+      "name": "resolution_and_coordinate_metadata",
+      "expected": {
+        "resolution_m": 2.0,
+        "receptor_height_m": 1.1
+      },
+      "observed": {
+        "resolution_m": 2.0,
+        "receptor_height_m": 1.1
+      },
+      "pass": true
+    },
+    {
+      "name": "nan_inf_absence",
+      "nan_counts": {
+        "shadow": 0,
+        "svf": 0,
+        "tmrt": 0,
+        "utci": 0
+      },
+      "inf_counts": {
+        "tmrt": 0,
+        "utci": 0
+      },
+      "pass": true
+    },
+    {
+      "name": "svf_bounds",
+      "min": 0.0,
+      "max": 0.9948493964510167,
+      "pass": true
+    },
+    {
+      "name": "shadow_binary_integrity",
+      "unique_values": [
+        0,
+        1
+      ],
+      "pass": true
+    },
+    {
+      "name": "thermal_metric_physical_plausibility",
+      "tmrt_range_c": [
+        31.15530302402459,
+        50.68413317757205
+      ],
+      "utci_range_c": [
+        32.9,
+        37.7
+      ],
+      "pass": true
+    },
+    {
+      "name": "panel_mesh_manifold_integrity",
+      "vertices": 8,
+      "triangles": 12,
+      "watertight": true,
+      "degenerate_triangles": 0,
+      "pass": true
+    },
+    {
+      "name": "determinism",
+      "max_diff_run1_vs_run2": {
+        "shadow": 0.0,
+        "svf": 0.0,
+        "tmrt": 0.0,
+        "utci": 0.0
+      },
+      "pass": true
+    },
+    {
+      "name": "baseline_preservation",
+      "baseline_hashes_unchanged": true,
+      "pass": true
+    }
+  ],
+  "all_checks_passed": true
+}

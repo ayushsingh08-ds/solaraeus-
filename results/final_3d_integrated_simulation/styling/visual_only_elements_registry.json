@@ -1,0 +1,30 @@
+{
+  "status": "VISUAL_ONLY_ELEMENTS_EXCLUDED_FROM_PHYSICS",
+  "elements": [
+    {
+      "name": "corner_fog_wisps",
+      "role": "Atmospheric mood framing",
+      "physics_participation": "VISUAL_ONLY"
+    },
+    {
+      "name": "pedestrian_walkway_ribbon",
+      "role": "Street texture guidance",
+      "physics_participation": "VISUAL_ONLY"
+    },
+    {
+      "name": "visual_infill_vegetation",
+      "role": "Optional aesthetic canopy density (default OFF)",
+      "physics_participation": "VISUAL_ONLY"
+    },
+    {
+      "name": "compass_rose",
+      "role": "Navigation orientation indicator",
+      "physics_participation": "VISUAL_ONLY"
+    },
+    {
+      "name": "poi_pins",
+      "role": "Interactive object billboard pins",
+      "physics_participation": "VISUAL_ONLY"
+    }
+  ]
+}

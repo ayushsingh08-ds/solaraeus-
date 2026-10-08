@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOLARAEUS — Solar Observatory & Twilight Survey Chart</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="theme-cinematic" data-theme="cinematic">
+  <!-- 3D WEBGL CANVAS -->
+  <div id="canvas-container"></div>
+
+  <!-- SURVEY CHART CORNER REGISTRATION TICKS -->
+  <div class="survey-tick tick-tl" aria-hidden="true">+</div>
+  <div class="survey-tick tick-tr" aria-hidden="true">+</div>
+  <div class="survey-tick tick-bl" aria-hidden="true">+</div>
+  <div class="survey-tick tick-br" aria-hidden="true">+</div>
+
+  <!-- ATMOSPHERIC DUSK VIGNETTE (VISUAL ONLY) -->
+  <div class="visual-vignette" data-physics="VISUAL_ONLY"></div>
+
+  <!-- TOP BAR (48px, UNBORDERED GLASS) -->
+  <header class="observatory-topbar">
+    <div class="brand-cluster">
+      <div class="instrument-glyph">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="12" cy="12" r="9"/>
+          <line x1="12" y1="3" x2="12" y2="21"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <circle cx="12" cy="12" r="3" fill="var(--sun)"/>
+        </svg>
+      </div>
+      <div class="brand-titles">
+        <h1 class="brand-name">SOLARAEUS</h1>
+        <span class="brand-sub">SOLAR OBSERVATORY · TWILIGHT CHART</span>
+      </div>
+    </div>
+
+    <!-- SITE & ACTIVE SCENARIO STATUS CHIP -->
+    <div class="location-chip">
+      <span class="status-pulse-dot" id="system-status-dot"></span>
+      <span class="location-text">Church Street Corridor, Bengaluru</span>
+      <span class="coord-text">12.9749° N, 77.6054° E</span>
+      <span class="scenario-tag" id="topbar-scenario-tag">BASELINE CANYON</span>
+    </div>
+
+    <!-- PRESET CONTROLS & SCIENTIFIC STATUS -->
+    <div class="topbar-actions">
+      <!-- Style Presets -->
+      <div class="preset-segmented-control" role="group" aria-label="Style Presets">
+        <button class="preset-toggle-btn active" data-style="cinematic" title="Observatory (Dusk cinematic mood)">Observatory</button>
+        <button class="preset-toggle-btn" data-style="daylight" title="Daylight (Warm survey paper light mode)">Daylight</button>
+        <button class="preset-toggle-btn" data-style="analysis" title="Analysis (Neutral flat unlit mode)">Analysis</button>
+      </div>
+
+      <!-- Camera Bookmarks -->
+      <div class="camera-quick-group">
+        <button class="cam-btn active" data-cam="iso" title="Oblique Aerial View">Aerial</button>
+        <button class="cam-btn" data-cam="street" title="Pedestrian Walkway">Walkway</button>
+        <button class="cam-btn" data-cam="trees" title="Tree Canopy Focus">Trees</button>
+        <button class="cam-btn" data-cam="top" title="Top-Down Plan">Top</button>
+      </div>
+
+      <!-- Scientific Governance Chip -->
+      <button class="governance-chip-btn" id="open-governance-btn" title="View 12 Mandatory Scientific Disclosures">
+        <span class="chip-icon">⚠️</span>
+        <span class="chip-label">12 Disclosures</span>
+      </button>
+
+      <!-- Details Drawer Toggle -->
+      <button class="details-toggle-btn" id="toggle-details-btn" title="Toggle Environmental & Ray Details">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <span>Details</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- LEFT ICON RAIL (48px) -->
+  <nav class="left-icon-rail" aria-label="Primary Navigation">
+    <button class="rail-icon-btn active" data-flyout="scenario" title="Intervention Scenarios">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="4" y="2" width="16" height="20" rx="2"/>
+        <line x1="9" y1="6" x2="9" y2="6.01"/>
+        <line x1="15" y1="6" x2="15" y2="6.01"/>
+        <line x1="9" y1="10" x2="9" y2="10.01"/>
+        <line x1="15" y1="10" x2="15" y2="10.01"/>
+        <line x1="9" y1="14" x2="9" y2="14.01"/>
+        <line x1="15" y1="14" x2="15" y2="14.01"/>
+        <line x1="9" y1="18" x2="15" y2="18"/>
+      </svg>
+      <span class="rail-tooltip">Scenarios</span>
+    </button>
+
+    <button class="rail-icon-btn" data-flyout="overlay" title="Thermal & Radiative Overlays">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        <circle cx="12" cy="12" r="4"/>
+      </svg>
+      <span class="rail-tooltip">Overlays</span>
+    </button>
+
+    <button class="rail-icon-btn" data-flyout="atmosphere" title="Atmospheric Clouds & Sun">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+      </svg>
+      <span class="rail-tooltip">Atmosphere</span>
+    </button>
+
+    <button class="rail-icon-btn" data-flyout="layers" title="Scene Layers & Terrain">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+        <polyline points="2 17 12 22 22 17"/>
+        <polyline points="2 12 12 17 22 12"/>
+      </svg>
+      <span class="rail-tooltip">Layers</span>
+    </button>
+  </nav>
+
+  <!-- FLYOUT SHEETS (SINGLE CLEAN SHEET, MAX 300px, HAIRLINE DIVIDERS) -->
+  <aside class="rail-flyout-sheet" id="flyout-sheet" style="display: none;">
+    <!-- Scenario Flyout -->
+    <div class="flyout-content" id="flyout-scenario">
+      <div class="flyout-header">
+        <h3>INTERVENTION SCENARIO</h3>
+        <button class="flyout-close-btn" aria-label="Close Flyout">&times;</button>
+      </div>
+      <div class="flyout-body">
+        <div class="radio-group">
+          <label class="radio-row active" data-scenario="baseline">
+            <input type="radio" name="scenario" value="baseline" checked>
+            <div class="radio-label">
+              <strong class="r-title">Baseline Canyon</strong>
+              <span class="r-desc">Existing 123 Church St buildings only</span>
+            </div>
+          </label>
+          <label class="radio-row" data-scenario="trees">
+            <input type="radio" name="scenario" value="trees">
+            <div class="radio-label">
+              <strong class="r-title">Provisional Trees (T08–T13)</strong>
+              <span class="r-desc">6 Sidewalk canopies with uncertainty bounds</span>
+            </div>
+          </label>
+          <label class="radio-row" data-scenario="panels">
+            <input type="radio" name="scenario" value="panels">
+            <div class="radio-label">
+              <strong class="r-title">Optimized Shade Sail</strong>
+              <span class="r-desc">Stage 14 CAND_0028_EVOL (Tensile membrane)</span>
+            </div>
+          </label>
+          <label class="radio-row" data-scenario="combined">
+            <input type="radio" name="scenario" value="combined">
+            <div class="radio-label">
+              <strong class="r-title">Combined Hybrid Interventions</strong>
+              <span class="r-desc">Integrated trees + overhead shade sail</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="hairline-divider"></div>
+
+        <div class="control-block">
+          <span class="control-label">TREE UNCERTAINTY BOUNDS</span>
+          <div class="three-segment-control" id="tree-bounds-control">
+            <button class="seg-item" data-bound="small">Small</button>
+            <button class="seg-item active" data-bound="nominal">Nominal</button>
+            <button class="seg-item" data-bound="large">Large</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overlay Flyout -->
+    <div class="flyout-content" id="flyout-overlay" style="display: none;">
+      <div class="flyout-header">
+        <h3>THERMAL & RADIATIVE OVERLAYS</h3>
+        <button class="flyout-close-btn" aria-label="Close Flyout">&times;</button>
+      </div>
+      <div class="flyout-body">
+        <div class="radio-group">
+          <label class="radio-row active" data-layer="none">
+            <input type="radio" name="overlay" value="none" checked>
+            <div class="radio-label">
+              <strong class="r-title">Realistic 3D</strong>
+              <span class="r-desc">Natural lighting & ray-traced shadows</span>
+            </div>
+          </label>
+          <label class="radio-row" data-layer="tmrt">
+            <input type="radio" name="overlay" value="tmrt">
+            <div class="radio-label">
+              <strong class="r-title">Mean Radiant Temp (Tmrt)</strong>
+              <span class="r-desc">6-flux Stefan-Boltzmann radiation balance</span>
+            </div>
+          </label>
+          <label class="radio-row" data-layer="utci">
+            <input type="radio" name="overlay" value="utci">
+            <div class="radio-label">
+              <strong class="r-title">Universal Thermal Climate Index (UTCI)</strong>
+              <span class="r-desc">Human thermal comfort stress scale</span>
+            </div>
+          </label>
+          <label class="radio-row" data-layer="cooling">
+            <input type="radio" name="overlay" value="cooling">
+            <div class="radio-label">
+              <strong class="r-title">Cooling Relief (ΔTmrt)</strong>
+              <span class="r-desc">Diverging thermal reduction field</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="hairline-divider"></div>
+
+        <div class="control-block">
+          <div class="slider-header-row">
+            <span class="control-label">OVERLAY OPACITY</span>
+            <span class="slider-mono-val" id="overlay-opacity-label">75%</span>
+          </div>
+          <input type="range" id="overlay-opacity-slider" min="0.2" max="1.0" step="0.05" value="0.75" class="hairline-slider">
+        </div>
+
+        <div class="control-block">
+          <div class="toggle-row">
+            <span class="control-label">ISOTHERM CONTOUR LINES</span>
+            <input type="checkbox" id="toggle-contours" checked class="hairline-toggle">
+          </div>
+        </div>
+
+        <div class="control-block">
+          <span class="control-label">SCALE RANGE MODE</span>
+          <div class="three-segment-control" id="scale-mode-control">
+            <button class="seg-item active" data-scalemode="fixed">Fixed Scale</button>
+            <button class="seg-item" data-scalemode="auto">Auto (Frame)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Atmosphere Flyout -->
+    <div class="flyout-content" id="flyout-atmosphere" style="display: none;">
+      <div class="flyout-header">
+        <h3>ATMOSPHERE & CLOUD MODEL</h3>
+        <button class="flyout-close-btn" aria-label="Close Flyout">&times;</button>
+      </div>
+      <div class="flyout-body">
+        <div class="control-block">
+          <div class="badge-status-row">
+            <span class="control-label">CLOUD COVER PRESET</span>
+            <span class="micro-badge">PARAMETRIC</span>
+          </div>
+          <div class="cloud-preset-grid" id="cloud-preset-group">
+            <button class="cloud-item active" data-cover="0.0">Clear</button>
+            <button class="cloud-item" data-cover="0.20">Few</button>
+            <button class="cloud-item" data-cover="0.45">Scattered</button>
+            <button class="cloud-item" data-cover="0.75">Broken</button>
+            <button class="cloud-item" data-cover="1.0">Overcast</button>
+          </div>
+        </div>
+
+        <div class="control-block">
+          <div class="slider-header-row">
+            <span class="control-label">FRACTIONAL COVERAGE</span>
+            <span class="slider-mono-val" id="cloud-cover-num">0%</span>
+          </div>
+          <input type="range" id="cloud-slider" min="0.0" max="1.0" step="0.05" value="0.0" class="hairline-slider">
+        </div>
+
+        <div class="hairline-divider"></div>
+
+        <div class="meta-spec-table">
+          <div class="meta-spec-row"><span>Base Height:</span><strong>1,200 m AGL</strong></div>
+          <div class="meta-spec-row"><span>Drift Vector:</span><strong>5.0 m/s @ 240° WSW</strong></div>
+          <div class="meta-spec-row"><span>Optical Attenuation:</span><strong id="meta-cloud-trans">100.0% Direct Beam</strong></div>
+          <div class="meta-spec-row"><span>Observation Status:</span><em class="text-dim">PARAMETRIC_NOT_OBSERVED</em></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Layers Flyout -->
+    <div class="flyout-content" id="flyout-layers" style="display: none;">
+      <div class="flyout-header">
+        <h3>SCENE LAYERS & TERRAIN</h3>
+        <button class="flyout-close-btn" aria-label="Close Flyout">&times;</button>
+      </div>
+      <div class="flyout-body">
+        <div class="control-block">
+          <span class="control-label">TERRAIN PROFILE</span>
+          <select id="terrain-profile-select" class="hairline-select">
+            <option value="flat" selected>Flat Synthetic (z = 0.0m)</option>
+            <option value="inclined">Inclined Synthetic (2.5° East-West Slope)</option>
+            <option value="stepped">Stepped Synthetic (Tiered Terraces)</option>
+            <option value="swale">Swale Synthetic (Central Drainage Valley)</option>
+            <option value="fabdem">FABDEM Regional Reference (DTM)</option>
+          </select>
+        </div>
+
+        <div class="hairline-divider"></div>
+
+        <div class="toggle-list">
+          <label class="toggle-row">
+            <span>Ray-Traced Dynamic Shadows</span>
+            <input type="checkbox" id="layer-shadows" checked class="hairline-toggle">
+          </label>
+          <label class="toggle-row">
+            <span>Provisional Trees (T08–T13)</span>
+            <input type="checkbox" id="layer-core-trees" checked class="hairline-toggle">
+          </label>
+          <label class="toggle-row">
+            <span>Context Trees (T01–T07, T14)</span>
+            <input type="checkbox" id="layer-context-trees" checked class="hairline-toggle">
+          </label>
+          <label class="toggle-row">
+            <span>Tensile Shade Sails</span>
+            <input type="checkbox" id="layer-panels" checked class="hairline-toggle">
+          </label>
+          <label class="toggle-row">
+            <span>Landmark POI Pins</span>
+            <input type="checkbox" id="layer-pins" checked class="hairline-toggle">
+          </label>
+          <label class="toggle-row">
+            <span>Building Wireframe Edges</span>
+            <input type="checkbox" id="layer-wireframe" class="hairline-toggle">
+          </label>
+          <label class="toggle-row">
+            <span>Visual Perimeter Foliage (VISUAL_ONLY)</span>
+            <input type="checkbox" id="layer-visual-infill" class="hairline-toggle">
+          </label>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- FLOATING COMPACT HEADLINE READOUT (TOP RIGHT CORNER) -->
+  <div class="floating-headline-readout" id="headline-readout">
+    <div class="readout-primary">
+      <span class="headline-serif-num" id="headline-utci-num">37.15</span>
+      <span class="headline-unit">°C UTCI</span>
+    </div>
+    <div class="readout-stress-bar">
+      <div class="stress-bar-indicator" id="headline-stress-bar" style="width: 78%; background: var(--alert);"></div>
+    </div>
+    <div class="readout-stress-label" id="headline-stress-label">STRONG HEAT STRESS</div>
+    <div class="readout-meta-line" id="headline-meta-line">
+      <span>Tmrt <strong id="headline-tmrt-val">48.7°C</strong></span>
+      <span>·</span>
+      <span>Shaded <strong id="headline-shaded-val">34.2%</strong></span>
+      <span>·</span>
+      <span>DNI <strong id="headline-dni-val">728 W/m²</strong></span>
+    </div>
+  </div>
+
+  <!-- FLOATING BOTTOM-LEFT DATA COLORMAP LEGEND -->
+  <div class="floating-legend" id="floating-legend" style="display: none;">
+    <div class="legend-meta-header">
+      <span class="legend-field-title" id="legend-field-title">Universal Thermal Climate Index</span>
+      <span class="legend-unit-tag" id="legend-unit-tag">°C</span>
+    </div>
+    <div class="legend-gradient-bar" id="legend-gradient-bar"></div>
+    <div class="legend-ticks-row" id="legend-ticks-row">
+      <span id="legend-tick-min">32.9°</span>
+      <span id="legend-tick-mid">35.2°</span>
+      <span id="legend-tick-max">37.4°</span>
+    </div>
+    <div class="legend-footer-row">
+      <span id="legend-stat-summary">Mean: 35.8°C · Fixed Scale</span>
+      <span class="legend-time-stamp" id="legend-time-stamp">14:30 IST</span>
+    </div>
+  </div>
+
+  <!-- 3D WORLD OVERLAY: DYNAMIC COLLISION-AVOIDING POI PINS -->
+  <div id="poi-pins-layer" class="poi-pins-layer">
+    <div class="instrument-pin" id="pin-trees" style="display: none;">
+      <div class="pin-ring"><span class="pin-icon">🌳</span></div>
+      <span class="pin-tag">T08–T13 Canopies</span>
+    </div>
+    <div class="instrument-pin" id="pin-sail" style="display: none;">
+      <div class="pin-ring pin-amber"><span class="pin-icon">⛱️</span></div>
+      <span class="pin-tag">CAND_0028 Sail</span>
+    </div>
+    <div class="instrument-pin" id="pin-station" style="display: none;">
+      <div class="pin-ring pin-teal"><span class="pin-icon">📍</span></div>
+      <span class="pin-tag">Receptor Station</span>
+    </div>
+    <div class="instrument-pin" id="pin-gate-east" style="display: none;">
+      <div class="pin-ring"><span class="pin-icon">🚪</span></div>
+      <span class="pin-tag">Brigade Rd Gate</span>
+    </div>
+    <div class="instrument-pin" id="pin-gate-west" style="display: none;">
+      <div class="pin-ring"><span class="pin-icon">🚪</span></div>
+      <span class="pin-tag">Museum Rd Gate</span>
+    </div>
+  </div>
+
+  <!-- DYNAMIC SELECTED OBJECT CALLOUT (APPEARS ONLY ON HOVER / SELECTION) -->
+  <div class="selected-callout-card" id="selected-callout-card" style="display: none;">
+    <div class="callout-inner">
+      <div class="callout-glyph-box">
+        <span class="callout-big-glyph" id="callout-big-glyph">5</span>
+      </div>
+      <div class="callout-text-body">
+        <div class="callout-eyebrow" id="callout-eyebrow">SELECTED CANDIDATE</div>
+        <h4 class="callout-heading" id="callout-heading">Stage 14 CAND_0028_EVOL</h4>
+        <div class="callout-metrics-row">
+          <div class="c-metric"><span class="c-lbl">Cooling Relief</span><strong class="c-val text-shade" id="callout-m1">-12.60 K</strong></div>
+          <div class="c-metric"><span class="c-lbl">Mean Tmrt</span><strong class="c-val" id="callout-m2">46.22 °C</strong></div>
+          <div class="c-metric"><span class="c-lbl">Clearance</span><strong class="c-val text-shade" id="callout-m3">4.50 m</strong></div>
+        </div>
+      </div>
+      <button class="callout-dismiss-btn" id="callout-dismiss-btn" aria-label="Close Callout">&times;</button>
+    </div>
+    <div class="callout-hairline-stem"></div>
+    <div class="callout-anchor-point"></div>
+  </div>
+
+  <!-- SIGNATURE SUN-PATH ARC TIMELINE DOCK (BOTTOM) -->
+  <footer class="sun-arc-timeline-dock" id="timeline-dock">
+    <div class="dock-controls-left">
+      <button class="arc-play-btn" id="arc-play-btn" title="Toggle Solar Playback (Spacebar)">
+        <svg id="svg-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+        <svg id="svg-pause" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+      <div class="clock-readout-cluster">
+        <div class="time-numeral" id="digital-clock-display">14:30:00</div>
+        <div class="time-meta">APR 15, 2026 · IST (UTC+05:30)</div>
+      </div>
+    </div>
+
+    <!-- CELESTIAL SUN-PATH ELEVATION ARC -->
+    <div class="celestial-arc-wrapper" id="celestial-arc-wrapper">
+      <svg class="celestial-arc-svg" viewBox="0 0 460 70" preserveAspectRatio="none">
+        <!-- Celestial Horizon Base Line -->
+        <line x1="20" y1="62" x2="440" y2="62" stroke="var(--line)" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <!-- Sun Elevation Trajectory Curve -->
+        <path d="M 30,62 Q 230,8 430,62" fill="none" stroke="rgba(255, 176, 46, 0.45)" stroke-width="2.2" stroke-linecap="round"/>
+        <!-- Staggered Solar Landmarks -->
+        <line x1="30" y1="62" x2="30" y2="52" stroke="var(--line)" stroke-width="1"/>
+        <line x1="230" y1="12" x2="230" y2="62" stroke="rgba(255, 176, 46, 0.25)" stroke-width="1" stroke-dasharray="2 2"/>
+        <line x1="430" y1="62" x2="430" y2="52" stroke="var(--line)" stroke-width="1"/>
+      </svg>
+
+      <!-- Staggered Landmark Labels (No Overlap) -->
+      <div class="arc-landmarks-row">
+        <span class="arc-lbl lbl-dawn">Dawn 06:00</span>
+        <span class="arc-lbl lbl-noon">Solar Noon 12:20 (Alt 85.5°)</span>
+        <span class="arc-lbl lbl-bench">14:30 Benchmark</span>
+        <span class="arc-lbl lbl-dusk">Dusk 18:30</span>
+      </div>
+
+      <!-- Celestial Playhead Sun Glyph -->
+      <div class="celestial-playhead" id="celestial-playhead" style="left: 68%;">
+        <div class="sun-orb-glyph">☀️</div>
+        <div class="sun-altitude-tag" id="sun-altitude-bubble">57.9° Alt</div>
+      </div>
+
+      <!-- Hidden accessible slider -->
+      <input type="range" id="accessible-time-slider" min="6.0" max="18.5" step="0.05" value="14.5" class="invisible-arc-range" aria-label="Solar Time Scrubber">
+    </div>
+
+    <!-- ROTATING COMPASS ROSE (TRUE NORTH INDICATOR) -->
+    <div class="dock-compass-rose" id="compass-rose-widget" title="True North Indicator (Aligned with -Z Axis)">
+      <div class="rose-dial">
+        <div class="rose-needle" id="rose-needle">
+          <span class="needle-n">N</span>
+          <div class="needle-tip-north"></div>
+          <div class="needle-tip-south"></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- RIGHT DETAILS DRAWER (CLOSED BY DEFAULT, 320px) -->
+  <aside class="details-drawer" id="details-drawer" style="transform: translateX(100%);">
+    <div class="drawer-header">
+      <div class="drawer-tabs">
+        <button class="drawer-tab-btn active" data-tab="simple">ENVIRONMENT</button>
+        <button class="drawer-tab-btn" data-tab="expert">EXPERT DIAGNOSTICS</button>
+      </div>
+      <button class="drawer-close-btn" id="drawer-close-btn" aria-label="Close Details">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+      <!-- Simple Tab -->
+      <div class="drawer-tab-pane" id="tab-pane-simple">
+        <div class="spec-section-title">METEOROLOGICAL FORCING</div>
+        <div class="spec-row"><span>Air Temperature:</span><strong>35.0 °C</strong></div>
+        <div class="spec-row"><span>Relative Humidity:</span><strong>19.7 %</strong></div>
+        <div class="spec-row"><span>10m Wind Velocity:</span><strong>1.5 m/s</strong></div>
+        <div class="spec-row"><span>Global Horizontal (GHI):</span><strong id="d-ghi">755.9 W/m²</strong></div>
+        <div class="spec-row"><span>Direct Normal (DNI):</span><strong id="d-dni">728.3 W/m²</strong></div>
+        <div class="spec-row"><span>Diffuse Sky Irradiance:</span><strong id="d-dhi">185.0 W/m²</strong></div>
+
+        <div class="spec-section-title">ASTRONOMICAL SOLAR STATE</div>
+        <div class="spec-row"><span>Solar Altitude Angle:</span><strong id="d-alt">57.92°</strong></div>
+        <div class="spec-row"><span>Solar Zenith Angle:</span><strong id="d-zen">32.08°</strong></div>
+        <div class="spec-row"><span>Solar Azimuth Angle:</span><strong id="d-az">268.17° W</strong></div>
+        <div class="spec-row"><span>Daylight Hours:</span><strong>06:05 — 18:31 IST</strong></div>
+
+        <div class="spec-section-title">CORRIDOR AGGREGATE COMFORT</div>
+        <div class="spec-row"><span>Mean Pedestrian UTCI:</span><strong id="d-utci">37.15 °C</strong></div>
+        <div class="spec-row"><span>Mean Corridor Tmrt:</span><strong id="d-tmrt">48.72 °C</strong></div>
+        <div class="spec-row"><span>Corridor Shaded Area:</span><strong id="d-shade-pct">34.2 %</strong></div>
+        <div class="spec-row"><span>Localized Peak Relief:</span><strong class="text-shade" id="d-cooling">-12.60 K</strong></div>
+      </div>
+
+      <!-- Expert Tab -->
+      <div class="drawer-tab-pane" id="tab-pane-expert" style="display: none;">
+        <div class="spec-section-title">NUMERICAL RAY-TRACING ENGINE</div>
+        <div class="spec-row"><span>Filter Architecture:</span><strong>Cascaded PCF (4096²)</strong></div>
+        <div class="spec-row"><span>Spatial Parity Error:</span><strong class="text-shade" id="d-spatial-parity">&lt; 1.2e-4 K (Stage 15 Parity Run)</strong></div>
+        <div class="spec-row"><span>Shadow Parity Agreement:</span><strong class="text-shade">99.4% Validated</strong></div>
+        <div class="spec-row"><span>Active Receptor Cells:</span><strong>28,120 unbuilt cells</strong></div>
+        <div class="spec-row"><span>Analytical Shadow Rule:</span><strong>L = H / tan(α) Checked</strong></div>
+
+        <div class="spec-section-title">PROVENANCE & DATA AUTHORITY</div>
+        <div class="spec-row"><span>Urban Massing:</span><strong>Overture Maps 2026</strong></div>
+        <div class="spec-row"><span>Tree Inventory:</span><strong>BBMP Census July 2026 (14 Trees)</strong></div>
+        <div class="spec-row"><span>Thermal Solver:</span><strong>Stefan-Boltzmann 6-Flux</strong></div>
+        <div class="spec-row"><span>Comfort Standard:</span><strong>Fiala/Bröde Polynomial</strong></div>
+        <div class="spec-row"><span>Data Authority:</span><em class="text-shade">Stage 15 Manifest Verified</em></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- SCIENTIFIC GOVERNANCE SLIDE-OVER SHEET (MODAL) -->
+  <div class="governance-modal-backdrop" id="governance-modal" style="display: none;">
+    <div class="governance-sheet">
+      <div class="gov-sheet-header">
+        <div class="gov-title-group">
+          <h3>SCIENTIFIC GOVERNANCE & MANDATORY LABELS</h3>
+          <span class="gov-sub">Institutional Review & Model Boundary Limitations</span>
+        </div>
+        <button class="gov-close-btn" id="gov-close-btn" aria-label="Close Disclosures">&times;</button>
+      </div>
+      <div class="gov-sheet-body">
+        <div class="gov-label-card">
+          <span class="g-tag">PROVISIONAL_TERRAIN_TREE_RESULTS</span>
+          <p>Tree dimensions and canopy extinction are based on photographic estimates and nominal municipal census data. Results represent provisional microclimate sensitivities, not certified field-calibrated microclimates.</p>
+        </div>
+        <div class="gov-label-card">
+          <span class="g-tag">TREE_GEOMETRY_PHOTO_ESTIMATED_ONLY</span>
+          <p>Crown diameter, crown base height, and trunk dimensions have been derived from calibrated street-level imagery and BBMP census attributes; unverified field lidar is unavailable.</p>
+        </div>
+        <div class="gov-label-card">
+          <span class="g-tag">SYNTHETIC_TERRAIN_ONLY</span>
+          <p>The ground elevation model utilizes validated synthetic profiles and FABDEM regional reference datasets. Measured street-scale DTM is deferred to future municipal surveys.</p>
+        </div>
+        <div class="gov-label-card">
+          <span class="g-tag">CLOUD_MODEL_PARAMETRIC_NOT_OBSERVED</span>
+          <p>In the absence of synchronous local radiometric cloud ceilometer observations, cloud attenuation is driven by a physically-coupled fractal parametric model.</p>
+        </div>
+        <div class="gov-label-card">
+          <span class="g-tag">VISUAL_STYLE_PRESENTATION_LAYER_ONLY</span>
+          <p>All aesthetic treatments (atmospheric haze, corner mist, twilight lighting) reside strictly in the presentation layer and are mathematically isolated from the radiative solver.</p>
+        </div>
+        <div class="gov-label-card">
+          <span class="g-tag">VISUAL_ONLY_ELEMENTS_EXCLUDED_FROM_PHYSICS</span>
+          <p>Decorative perimeter vegetation, vignette filters, and UI indicators do not cast physical ray-traced shadows and do not modify SVF or mean radiant temperature.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOVER CELL TOOLTIP -->
+  <div class="cell-inspector-tooltip" id="cell-tooltip" style="display: none;">
+    <div class="tt-header" id="tt-title">Receptor Point</div>
+    <div class="tt-body" id="tt-body">Hover over street cell to inspect.</div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/OrbitControls.js"></script>
+  <script src="church_street_data.js"></script>
+  <script src="dataColormaps.js"></script>
+  <script src="heatmapShader.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

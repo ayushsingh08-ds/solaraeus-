@@ -1,0 +1,75 @@
+{
+  "execution_timestamp_utc": "20261007_081114",
+  "git_commit": "487f275f6d146d69e8288d4ffebf5d330c975ef9",
+  "python_version": "3.12.6",
+  "operating_system": "Windows 11",
+  "baseline_artifact_path": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_static_20261006_232110",
+  "baseline_artifact_hashes": {
+    "provenance.json": "af2600043f0004570986c7d6426410e799a8f1b8e99072ad271c758b2c87ea4b",
+    "shadow_results.npz": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+    "visibility_results.npz": "62bcfeb3f1cd88929f94bb3401aee57244fc2483f38f8035537fce362c865584",
+    "shortwave_results.npz": "422ef07df10a4ef95d34e3c8918720f5724b0d3e79f52c0e2c99cc1b0a69cc50",
+    "longwave_results.npz": "51d58b770700aa0d5d435036f625fa575e35d08f41716c3566ebe60c222f1b10",
+    "tmrt_results.npz": "9e81b19b628fa4a0c7e21502cb4854a9e02a6fccbed9174d73ffb6033da8743d",
+    "utci_results.npz": "86cac88ea9d44bb82806d7014aead5e60a41df6fe46983bed4b9f7a2044ede45"
+  },
+  "frozen_full_artifact_path": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_shade_full_20261007_001600",
+  "frozen_full_artifact_hashes": {
+    "provenance.json": "a9532caf4cd13b4d5239cc633cda17bfeb45aedb10dbd4b4c14a89674d8514e0",
+    "intervention_summary.json": "f21451464a83b19ace8b8ffe8ee9788060163eaccd3f31a3a98eb1fe504a682f",
+    "intervention_shadow.npz": "37aa9cbb3dbfb6a56d51a05d0d846c754da154898605ffa7dceb339789b0ba97",
+    "intervention_visibility.npz": "657178a31a661b35e11436372bfefb90ab17a90886c160184bc4445748deee6b",
+    "intervention_shortwave.npz": "aaa5fdb167fd5a10661a20f8c9e5ef5aee2dc40a0d722fbfcd3ab8c96e916f18",
+    "intervention_longwave.npz": "91cb969ca0e2149abba77d863ad6a27196b011b508f38c54dd09239e9c2710ff",
+    "intervention_tmrt.npz": "afddc4318c52d994a1c0221dc0f0834155b72ab0936669f7786da9fc0a0ec757",
+    "intervention_utci.npz": "5cdbc6805c036c814e2fc4e7c86683ca1ad4a23cc7521a491fe06b619127fc35"
+  },
+  "intervention_definition_hash": "7330e1144c7c17f5e44c3b4a949424d73d1af138c498eae430518b0286f93739",
+  "solar_timestamp": "2024-04-15 09:00:00 UTC",
+  "solar_angles": {
+    "altitude_deg": 57.916,
+    "zenith_deg": 32.084,
+    "azimuth_true_north_deg": 268.1655,
+    "azimuth_grid_north_deg": 267.5802
+  },
+  "grid_shape": [
+    148,
+    190
+  ],
+  "grid_resolution": 2.0,
+  "receptor_height": 1.1,
+  "incremental_computation_used": true,
+  "reused_cell_count": 28048,
+  "recomputed_cell_count": 72,
+  "reused_percentage": 99.74,
+  "affected_ray_count": 2376,
+  "total_ray_count": 927960,
+  "ray_work_reduction_pct": 99.74,
+  "runtime_incremental_sec": 1.2697,
+  "runtime_full_sec": 6.038,
+  "cache_info": {
+    "source_scene_hash": "5f212c968b1de5048df0f34e4e751ec950a3d9699a6072253840b9ce97bfcc1d",
+    "target_scene_hash": "94827d387b92920a9d1e428d6818f303a74903e1f767534bd8a131de97ba7c56",
+    "weather_hash": "7f5a0cb16a5b7b957be63edc219fc87543f61ca23982f2ae3ba3cb6d289c425a",
+    "config_hash": "dfbfbc4d56e7f8a0b7c10b8ecc328d8058b7ec9505d81e0a999e57c40b511c35"
+  },
+  "dependency_info": {
+    "edit_type": "mesh_added",
+    "invalidated_fields": [
+      "longwave_flux",
+      "shadow_mask",
+      "shortwave_flux",
+      "svf",
+      "tmrt",
+      "utci"
+    ]
+  },
+  "certificate_status": {
+    "status": "certified",
+    "tolerance_k": 0.5,
+    "max_predicted_bound_k": 49.9522,
+    "violations_count": 0,
+    "is_valid": true
+  },
+  "command_executed": "python scripts/run_church_street_shade_panel_incremental.py"
+}

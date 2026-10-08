@@ -1,0 +1,23 @@
+{
+  "device_id": 0,
+  "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "compute_capability": "8.9",
+  "multiprocessors_count": 20,
+  "total_global_memory_bytes": 6438780928,
+  "total_global_memory_gb": 6.0,
+  "cupy_version": "14.2.0",
+  "cuda_driver_version": 13040,
+  "cuda_runtime_version": 12090,
+  "warp_size": 32,
+  "max_threads_per_block": 1024,
+  "max_threads_dim": [
+    1024,
+    1024,
+    64
+  ],
+  "max_grid_size": [
+    2147483647,
+    65535,
+    65535
+  ]
+}

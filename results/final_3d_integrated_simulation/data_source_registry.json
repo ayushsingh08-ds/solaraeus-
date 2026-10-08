@@ -1,0 +1,12 @@
+{
+  "buildings": "bengaluru_church_street_manual_handoff_v2/data/processed/buildings_site.geojson",
+  "building_heights": "data/processed/approved_building_heights.csv",
+  "trees_core": "data/review/core_tree_review.csv",
+  "tree_uncertainty": "data/review/tree_dimension_uncertainty_bounds.csv",
+  "terrain_fabdem": "data/interim/terrain/fabdem_local_reference.tif",
+  "terrain_synthetic": "results/stage_22_cpu_terrain_extension/synthetic_terrain_profiles.json",
+  "weather_solar": "bengaluru_church_street_manual_handoff_v2/data/raw/weather/nasa_power_solar_20240415_original.json",
+  "weather_surface": "bengaluru_church_street_manual_handoff_v2/data/raw/weather/noaa_43295099999_2024_original.csv",
+  "cloud_data_status": "CLOUD_MODEL_PARAMETRIC_NOT_OBSERVED (no localized street-scale cloud ceilometer in repo)",
+  "water_data_status": "NO_WATER_BODY_IN_PROJECT_DATA (Church Street has no river/lake; none invented)"
+}

@@ -1,0 +1,14 @@
+{
+  "stage": 30,
+  "status": "STAGE_30_CPU_TREE_SHADOW_REFERENCE_COMPLETE",
+  "api_version": "2.2.0-cpu-tree",
+  "timestamp_utc": "2026-10-08T09:32:06.935607+00:00",
+  "classification": "PROVISIONAL_TREE_GEOMETRY",
+  "field_validation": "NOT_FIELD_VALIDATED",
+  "usage_scope": "SENSITIVITY_USE_ONLY",
+  "supported_geometries": [
+    "cylinder_trunk",
+    "ellipsoid_crown"
+  ],
+  "token": "STAGE_30_CPU_TREE_SHADOW_REFERENCE_COMPLETE"
+}

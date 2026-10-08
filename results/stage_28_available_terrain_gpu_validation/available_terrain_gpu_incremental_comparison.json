@@ -1,0 +1,7 @@
+{
+  "max_tmrt_difference_k": 0.0,
+  "max_shadow_difference": 0.0,
+  "certificate_bound_k": 0.0812,
+  "error_within_certificate_bound": true,
+  "exact_match_in_affected_region": true
+}

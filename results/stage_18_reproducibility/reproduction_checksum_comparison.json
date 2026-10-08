@@ -1,0 +1,32 @@
+{
+  "timestamp_utc": "2026-10-08T08:14:01.617211+00:00",
+  "total_checksums_evaluated": 4,
+  "exact_matches": 4,
+  "status": "ALL_CHECKSUMS_VERIFIED",
+  "details": [
+    {
+      "target": "Static Baseline Shadow Array",
+      "file": "results/church_street_static_20261006_232110/shadow_results.npz",
+      "sha256": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+      "matches_reference": true
+    },
+    {
+      "target": "Stage 05 Summary JSON",
+      "file": "results/stage_05_shade_panel_full/full_recomputation_summary.json",
+      "sha256": "6cf8d950cf11200c88935af3d95b7a89ca727dd78459a02658715000a2a986a2",
+      "matches_reference": true
+    },
+    {
+      "target": "Stage 10 Parity JSON",
+      "file": "results/stage_10_gpu_full_cpu_validation/cpu_gpu_full_comparison.json",
+      "sha256": "5a206ffd55412b685f33876381300ed8b34f5ca08f4685b1c79aa07c5ed82674",
+      "matches_reference": true
+    },
+    {
+      "target": "Stage 11 Comparison JSON",
+      "file": "results/stage_11_gpu_incremental/gpu_incremental_full_comparison.json",
+      "sha256": "be059487ed75cee929d56d9731b690456ee2a3f4dd8e53b89274087ca8d345df",
+      "matches_reference": true
+    }
+  ]
+}

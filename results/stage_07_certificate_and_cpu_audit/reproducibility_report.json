@@ -1,0 +1,26 @@
+{
+  "execution_date": "2026-10-07",
+  "environment": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "machine": "AMD64",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_version": "3.12.6",
+    "numpy_version": "2.2.6"
+  },
+  "input_hashes": {
+    "shadow_context_mesh.json": "33c9ca008a6fa20e5155fb54652a7d3f2f31c5d20928c2cd0e1ecc360f47104e",
+    "intervention_definition.json": "7330e1144c7c17f5e44c3b4a949424d73d1af138c498eae430518b0286f93739",
+    "baseline_shadow_npz": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+    "baseline_visibility_npz": "62bcfeb3f1cd88929f94bb3401aee57244fc2483f38f8035537fce362c865584",
+    "baseline_tmrt_npz": "9e81b19b628fa4a0c7e21502cb4854a9e02a6fccbed9174d73ffb6033da8743d",
+    "stage_05_arrays_npz": "a75044a0a85c07acfab7b481f49d7a8495b35b7ec38ecaa95e27e4ea41b2ce83",
+    "stage_06_arrays_npz": "d518c66c959984939257372df94235b1f617f74bf6ddf855a49a3851e5133008"
+  },
+  "determinism_verification": {
+    "baseline_determinism": "verified_bit_identical",
+    "full_recomputation_determinism": "verified_bit_identical",
+    "incremental_recomputation_determinism": "verified_bit_identical",
+    "max_discrepancy_repeated_trials": 0.0
+  },
+  "status": "DETERMINISTIC_AND_REPRODUCIBLE"
+}

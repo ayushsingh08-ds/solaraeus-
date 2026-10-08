@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-08T08:17:40.684945+00:00",
+  "classification": "SYNTHETIC_TERRAIN_ONLY",
+  "measured_ground_truth_present": false,
+  "synthetic_profiles_accuracy": {
+    "inclined_plane": "Exact analytical slope z(x) = z0 + slope * x",
+    "stepped_curb": "Exact piecewise step z(x) = step_height if x >= x_curb else 0.0",
+    "gaussian_ridge": "Exact analytical Gaussian surface",
+    "nodata_mask": "Exact boolean mask with NaN elevation propagation"
+  },
+  "verdict": "SYNTHETIC_PROFILES_MATHEMATICALLY_EXACT"
+}

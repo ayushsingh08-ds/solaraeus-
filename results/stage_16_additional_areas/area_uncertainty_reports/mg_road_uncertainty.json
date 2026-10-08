@@ -1,0 +1,9 @@
+{
+  "area_id": "AREA_MG_ROAD_PLAZA",
+  "intervention_objective_mean": 54.1778,
+  "ci_95_bounds": [
+    53.9578,
+    54.3978
+  ],
+  "cooling_efficacy_robust": true
+}

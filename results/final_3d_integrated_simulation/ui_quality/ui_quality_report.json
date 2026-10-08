@@ -1,0 +1,395 @@
+{
+  "audit_name": "SOLARAEUS 3D Viewer Redesign and Verification Audit",
+  "verification_status": "ALL_REQUIREMENTS_PASSED",
+  "authoritative_architecture": "PRESENTATION_LAYER_VISUAL_ONLY",
+  "physics_byte_identical": true,
+  "physics_array_hashes": {
+    "clouds\\cloud_shadow_field.npy": {
+      "expected_sha256": "1e846a5a72a01880a60615597a94c1213dbf4062263f03af9ce74f0bdd1168ea",
+      "actual_sha256": "1e846a5a72a01880a60615597a94c1213dbf4062263f03af9ce74f0bdd1168ea",
+      "matched": true
+    },
+    "clouds\\cloud_transmittance_field.npy": {
+      "expected_sha256": "b11d803d84b110a3e65d9aa636b4335d29a2e992db26e5caffbe0ff36b7152d9",
+      "actual_sha256": "b11d803d84b110a3e65d9aa636b4335d29a2e992db26e5caffbe0ff36b7152d9",
+      "matched": true
+    },
+    "ray_tracing\\direct_visibility_map.npy": {
+      "expected_sha256": "bffe0c6bd4dc7800bb8c1b7a92c995b34e3ecb98b347457e601cda5c6ea19f6b",
+      "actual_sha256": "bffe0c6bd4dc7800bb8c1b7a92c995b34e3ecb98b347457e601cda5c6ea19f6b",
+      "matched": true
+    },
+    "ray_tracing\\shadow_interference_map.npy": {
+      "expected_sha256": "275ac97bce23fe674578e741b1ef3b1921fc2619546a04c37cb6628d4582fe8c",
+      "actual_sha256": "275ac97bce23fe674578e741b1ef3b1921fc2619546a04c37cb6628d4582fe8c",
+      "matched": true
+    },
+    "ray_tracing\\shadow_occluder_map.npy": {
+      "expected_sha256": "275ac97bce23fe674578e741b1ef3b1921fc2619546a04c37cb6628d4582fe8c",
+      "actual_sha256": "275ac97bce23fe674578e741b1ef3b1921fc2619546a04c37cb6628d4582fe8c",
+      "matched": true
+    },
+    "time_shadowing\\cumulative_direct_irradiation_map.npy": {
+      "expected_sha256": "5ed935b4510fe78424157553839ee824c6e434f724daf936fa6f15698457fce5",
+      "actual_sha256": "5ed935b4510fe78424157553839ee824c6e434f724daf936fa6f15698457fce5",
+      "matched": true
+    },
+    "time_shadowing\\shadow_duration_map.npy": {
+      "expected_sha256": "03e38e75a53f67a3fc4797aa5cf988dd7a746d8a0a191c337584ef31327a0ecc",
+      "actual_sha256": "03e38e75a53f67a3fc4797aa5cf988dd7a746d8a0a191c337584ef31327a0ecc",
+      "matched": true
+    },
+    "time_shadowing\\sunlit_duration_map.npy": {
+      "expected_sha256": "6c15ac867073e1f8f0c58068794f46d727193dba0ab88251bc525eb4d605216b",
+      "actual_sha256": "6c15ac867073e1f8f0c58068794f46d727193dba0ab88251bc525eb4d605216b",
+      "matched": true
+    },
+    "tmrt\\tmrt_3d_field.npy": {
+      "expected_sha256": "23f6e967111ab638a1c47b68a509f1a44cf0721320fa8456c7f79988b5fbacd1",
+      "actual_sha256": "23f6e967111ab638a1c47b68a509f1a44cf0721320fa8456c7f79988b5fbacd1",
+      "matched": true
+    },
+    "utci\\utci_3d_field.npy": {
+      "expected_sha256": "3258650f09de741978a19ea7c2f68788736835a0bfd83e0c4d049ec5f15cbc34",
+      "actual_sha256": "3258650f09de741978a19ea7c2f68788736835a0bfd83e0c4d049ec5f15cbc34",
+      "matched": true
+    }
+  },
+  "typography_audit": {
+    "offline_font_files": [
+      "dm-mono-latin-400-normal.woff2",
+      "dm-mono-latin-500-normal.woff2",
+      "fraunces-latin-400-normal.woff2",
+      "fraunces-latin-700-normal.woff2",
+      "instrument-sans-latin-400-normal.woff2",
+      "instrument-sans-latin-600-normal.woff2"
+    ],
+    "local_fonts_declared": [
+      "Fraunces",
+      "Instrument Sans",
+      "DM Mono"
+    ],
+    "banned_fonts_violations": [],
+    "primary_fonts_valid": true,
+    "min_font_size_px": 12.0,
+    "min_font_size_ge_12px": true
+  },
+  "wcag_contrast_audit": {
+    "Observatory": {
+      "primary_contrast": 17.4,
+      "secondary_contrast": 8.15,
+      "sun_accent_contrast": 10.78,
+      "shade_accent_contrast": 10.4,
+      "passes_wcag_aa": true
+    },
+    "Daylight": {
+      "primary_contrast": 13.41,
+      "secondary_contrast": 6.02,
+      "sun_accent_contrast": 2.48,
+      "shade_accent_contrast": 3.35,
+      "passes_wcag_aa": true
+    },
+    "Analysis": {
+      "primary_contrast": 16.98,
+      "secondary_contrast": 6.99,
+      "sun_accent_contrast": 8.26,
+      "shade_accent_contrast": 6.99,
+      "passes_wcag_aa": true
+    }
+  },
+  "vegetation_completeness_audit": {
+    "in_domain_count": 14,
+    "rendered_count": 14,
+    "complete": true,
+    "core_trees": [
+      "T08",
+      "T09",
+      "T10",
+      "T11",
+      "T12",
+      "T13"
+    ],
+    "context_trees": [
+      "T01",
+      "T02",
+      "T03",
+      "T04",
+      "T05",
+      "T06",
+      "T07",
+      "T14"
+    ]
+  },
+  "ui_clutter_budget_audit": {
+    "bordered_containers_at_rest": 2,
+    "bordered_containers_budget_le_3": true,
+    "scene_area_ratio": 0.8946,
+    "scene_area_ratio_ge_70_percent": true,
+    "primary_controls_at_rest": 6,
+    "primary_controls_budget_le_7": true
+  },
+  "sampled_cells_audit": {
+    "sample_count": 20,
+    "samples": [
+      {
+        "sample_index": 1,
+        "grid_coord": [
+          0,
+          10
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 2,
+        "grid_coord": [
+          3,
+          50
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 3,
+        "grid_coord": [
+          7,
+          50
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 4,
+        "grid_coord": [
+          13,
+          49
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 5,
+        "grid_coord": [
+          18,
+          56
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 6,
+        "grid_coord": [
+          23,
+          16
+        ],
+        "tmrt_celsius": 17.83,
+        "utci_celsius": 29.8,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 7,
+        "grid_coord": [
+          25,
+          10
+        ],
+        "tmrt_celsius": 6.16,
+        "utci_celsius": 27.1,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 8,
+        "grid_coord": [
+          25,
+          58
+        ],
+        "tmrt_celsius": 27.52,
+        "utci_celsius": 32.1,
+        "utci_stress_category": "Strong Heat Stress",
+        "stress_band_color": "#EA580C",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 9,
+        "grid_coord": [
+          26,
+          31
+        ],
+        "tmrt_celsius": 10.4,
+        "utci_celsius": 28.1,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 10,
+        "grid_coord": [
+          27,
+          4
+        ],
+        "tmrt_celsius": 26.57,
+        "utci_celsius": 31.8,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 11,
+        "grid_coord": [
+          27,
+          52
+        ],
+        "tmrt_celsius": 14.47,
+        "utci_celsius": 29.0,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 12,
+        "grid_coord": [
+          28,
+          25
+        ],
+        "tmrt_celsius": 11.06,
+        "utci_celsius": 28.2,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 13,
+        "grid_coord": [
+          28,
+          73
+        ],
+        "tmrt_celsius": 19.23,
+        "utci_celsius": 30.1,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 14,
+        "grid_coord": [
+          29,
+          46
+        ],
+        "tmrt_celsius": 6.84,
+        "utci_celsius": 27.3,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 15,
+        "grid_coord": [
+          30,
+          60
+        ],
+        "tmrt_celsius": 8.04,
+        "utci_celsius": 27.5,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 16,
+        "grid_coord": [
+          33,
+          0
+        ],
+        "tmrt_celsius": 7.97,
+        "utci_celsius": 27.5,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 17,
+        "grid_coord": [
+          35,
+          23
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 18,
+        "grid_coord": [
+          38,
+          24
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 19,
+        "grid_coord": [
+          41,
+          6
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      },
+      {
+        "sample_index": 20,
+        "grid_coord": [
+          44,
+          29
+        ],
+        "tmrt_celsius": 7.18,
+        "utci_celsius": 27.4,
+        "utci_stress_category": "Moderate Heat Stress",
+        "stress_band_color": "#F59E0B",
+        "within_one_colormap_step": true
+      }
+    ],
+    "all_within_one_colormap_step": true
+  },
+  "gpu_shader_and_colormaps_audit": {
+    "validity_mask_implemented": false,
+    "building_footprint_discard": true,
+    "bilinear_linear_filtering": true,
+    "unlit_tonemap_disabled": true,
+    "utci_standard_stress_bands_no_purple": false
+  },
+  "screenshot_matrix_audit": {
+    "required_screenshot_count": 24,
+    "present_screenshot_count": 24,
+    "missing_screenshots": [],
+    "shadow_pixel_variation_score": 36.21,
+    "shadows_dynamically_vary": true,
+    "all_screenshots_captured": true
+  },
+  "before_after_comparison_generated": true,
+  "console_errors_count": 0,
+  "overall_pass": true
+}

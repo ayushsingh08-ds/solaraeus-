@@ -1,0 +1,7 @@
+{
+  "stage": "STAGE_27",
+  "status": "STAGE_27_BLOCKED",
+  "gate_enforced": true,
+  "tests_passed": 5,
+  "tests_failed": 0
+}

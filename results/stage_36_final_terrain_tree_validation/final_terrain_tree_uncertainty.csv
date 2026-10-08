@@ -1,0 +1,5 @@
+candidate_id,nominal_tmrt_c,uncertainty_interval_k,ci_lower_tmrt_c,ci_upper_tmrt_c,ranking_overlap_detected,definitive_ranking_permitted
+CAND_0007_TREES_NOM_PLUS_P1_P2,46.494,1.85,44.644,48.344,True,False
+CAND_0006_TREES_NOM_PLUS_P1,46.494,1.85,44.644,48.344,True,False
+CAND_0001_TREES_ONLY_NOM,46.494,1.85,44.644,48.344,True,False
+CAND_0004_PANEL_ONLY_P1,47.09,1.85,45.24,48.94,True,False

@@ -1,0 +1,15 @@
+{
+  "random_seed": 42,
+  "solver_backend": "GPUIncrementalEngine (CuPy 14.2.0 / CUDA 12.8)",
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "frozen_baseline_hash": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+  "checkpoint_hash": "7dbe5a6babf90c47a6b6e92484aec14cf27b4577f58f378bc652bafb920d0fca",
+  "total_screened": 29,
+  "feasible_evaluated": 12,
+  "best_candidate_reproducibility": {
+    "candidate_id": "CAND_0028_EVOL",
+    "objective_value": 54.9535,
+    "mean_utci_c": 36.485,
+    "reproducible_exact": true
+  }
+}

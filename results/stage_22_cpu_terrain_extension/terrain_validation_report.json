@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-10-08T08:32:13.179245+00:00",
+  "version": "2.1.0-cpu-terrain",
+  "flat_parity_passed": true,
+  "synthetic_tests_passed": true,
+  "church_street_geometry_tested": true,
+  "certificates_passed": 9,
+  "certificates_failed": 0,
+  "status": "STAGE_22_TERRAIN_AWARE_CPU_REFERENCE_COMPLETE"
+}

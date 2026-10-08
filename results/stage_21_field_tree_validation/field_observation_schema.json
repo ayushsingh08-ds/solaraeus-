@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TreeFieldObservationRecord",
+  "type": "object",
+  "required": [
+    "tree_id",
+    "botanical_species",
+    "existence_status",
+    "measurement_status",
+    "gps_coordinates",
+    "height_m",
+    "crown_diameter_m",
+    "crown_base_height_m",
+    "measurement_method",
+    "uncertainty"
+  ],
+  "properties": {
+    "tree_id": {
+      "type": "string"
+    },
+    "botanical_species": {
+      "type": "string"
+    },
+    "existence_status": {
+      "type": "string",
+      "enum": [
+        "VERIFIED_PRESENT_2026",
+        "UNCERTAIN_HISTORICAL_PHOTO_ONLY",
+        "REMOVED"
+      ]
+    },
+    "measurement_status": {
+      "type": "string",
+      "enum": [
+        "CALIBRATED_FIELD_SURVEY",
+        "PHOTO_ESTIMATED_ONLY",
+        "PENDING_MEASUREMENT"
+      ]
+    },
+    "height_m": {
+      "type": "object"
+    },
+    "crown_diameter_m": {
+      "type": "object"
+    },
+    "crown_base_height_m": {
+      "type": "object"
+    },
+    "measurement_method": {
+      "type": "string"
+    },
+    "instrument": {
+      "type": "string"
+    }
+  }
+}

@@ -31,6 +31,32 @@ class AddMeshEdit(GeometricEdit):
 
 
 @dataclass
+class AddMultiMeshEdit(GeometricEdit):
+    """Incremental edit adding multiple TriangleMeshes simultaneously to the scene."""
+    meshes: list[TriangleMesh]
+
+    def __init__(self, meshes: list[TriangleMesh]):
+        super().__init__(edit_type="multi_mesh_added")
+        self.meshes = list(meshes)
+
+    def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
+        new_scene = Scene.from_dict(scene.to_dict())
+        for m in self.meshes:
+            new_scene.add_mesh(m)
+        if not self.meshes:
+            return new_scene, (0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        union_bounds = (
+            min(m.bounds_3d[0] for m in self.meshes),
+            max(m.bounds_3d[1] for m in self.meshes),
+            min(m.bounds_3d[2] for m in self.meshes),
+            max(m.bounds_3d[3] for m in self.meshes),
+            min(m.bounds_3d[4] for m in self.meshes),
+            max(m.bounds_3d[5] for m in self.meshes),
+        )
+        return new_scene, union_bounds
+
+
+@dataclass
 class RemoveMeshEdit(GeometricEdit):
     """Incremental edit removing an existing TriangleMesh from the scene."""
     mesh_id: str

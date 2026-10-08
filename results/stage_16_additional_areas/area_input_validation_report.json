@@ -1,0 +1,35 @@
+{
+  "timestamp_utc": "2026-10-07T19:41:20.327526+00:00",
+  "total_areas_evaluated": 4,
+  "approved_areas_count": 3,
+  "rejected_areas_count": 1,
+  "validation_criteria": {
+    "coordinate_reference_system": "EPSG:32643 verified for all southern India study areas",
+    "units": "Meters for length/coordinates, W/m2 for radiant flux, degC/Kelvin for temperatures",
+    "geometry_topology": "Manifold watertight 3D meshes and non-overlapping footprints",
+    "weather_boundary_conditions": "Verified complete radiation, humidity, and temperature forcing",
+    "terrain_slope_limit": "Max allowable terrain slope = 5.0%; steeper grades require future 3D terrain integration"
+  },
+  "area_evaluations": [
+    {
+      "id": "AREA_CHURCH_STREET_PRIME",
+      "status": "VALID",
+      "reason": "Meets all criteria"
+    },
+    {
+      "id": "AREA_BRIGADE_ROAD_EXT",
+      "status": "VALID",
+      "reason": "Meets all criteria; flat canyon topology"
+    },
+    {
+      "id": "AREA_MG_ROAD_PLAZA",
+      "status": "VALID",
+      "reason": "Meets all criteria; flat plaza topology"
+    },
+    {
+      "id": "AREA_HILLSIDE_COMPLEX",
+      "status": "INVALID",
+      "reason": "Rejected: Terrain slope 18.5% violates flat ground assumption"
+    }
+  ]
+}

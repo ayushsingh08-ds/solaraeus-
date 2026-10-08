@@ -1,0 +1,59 @@
+{
+  "review_timestamp_utc": "2026-10-07T17:47:16Z",
+  "source_dataset": "FABDEM v1.2 (Forests and Buildings removed Copernicus DEM)",
+  "technical_parameters": {
+    "crs": "EPSG:4326 (projected to EPSG:32643 UTM Zone 43N)",
+    "native_resolution": "1 arc-second (~30.87 m at 12.97 deg N)",
+    "vertical_reference": "EGM2008 orthometric height (metres)",
+    "local_alignment": {
+      "origin_easting": 782541.81,
+      "origin_northing": 1435736.11,
+      "crs": "EPSG:32643"
+    },
+    "valid_pixel_coverage": "100% across Church Street domain (no nodata cells)"
+  },
+  "comparison_against_existing_skadi_dem": {
+    "mean_elevation_difference_m": 7.1,
+    "std_elevation_difference_m": 4.52,
+    "max_elevation_difference_m": 16.6,
+    "physical_interpretation": "Existing Skadi DEM is an uncorrected SRTM C-band radar DSM exhibiting rooftop reflections from 4-7 story commercial buildings. FABDEM successfully stripped these rooftop artifacts, establishing a smooth bare-earth corridor profile."
+  },
+  "suitability_assessment": {
+    "regional_elevation_reference": {
+      "suitable": true,
+      "classification": "SUITABLE",
+      "justification": "Valid macro-scale bare-earth baseline showing continuous descent from 917.4m (West) to 910.1m (East)."
+    },
+    "broad_grade_context": {
+      "suitable": true,
+      "classification": "SUITABLE",
+      "justification": "Captures overall 1:30 longitudinal corridor slope."
+    },
+    "boundary_condition_sensitivity": {
+      "suitable": true,
+      "classification": "SUITABLE",
+      "justification": "Provides regional baseline for domain boundary ray-tracing sensitivity."
+    },
+    "curb_and_sidewalk_modeling": {
+      "suitable": false,
+      "classification": "UNSUITABLE_INSUFFICIENT_RESOLUTION",
+      "justification": "Cell size (~30m) is >2x total street width; cannot resolve 150mm curbs or 1:50 transverse drainage slopes."
+    },
+    "building_base_placement": {
+      "suitable": false,
+      "classification": "PROVISIONAL_REQUIRES_FIELD_CHECK",
+      "justification": "Individual building entrance thresholds require terrestrial survey validation."
+    },
+    "detailed_ray_traced_terrain": {
+      "suitable": false,
+      "classification": "UNSUITABLE_NOT_SIMULATION_READY",
+      "justification": "Physics solver requires sub-metre surface representation. Coarse raster cannot be ingested as microscale terrain."
+    }
+  },
+  "classification_decisions": {
+    "fabdem_classification": "REGIONAL_REFERENCE_ONLY",
+    "street_scale_terrain_classification": "MISSING",
+    "tree_ground_elevation_policy": "FABDEM_REFERENCE_ONLY",
+    "prohibition": "Authoritative ground_z must not be created from FABDEM raster. Planar or field-surveyed terrain must be approved before physics simulation."
+  }
+}

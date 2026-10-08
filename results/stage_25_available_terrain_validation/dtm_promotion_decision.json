@@ -1,0 +1,9 @@
+{
+  "fabdem_classification": "REGIONAL_REFERENCE_ONLY",
+  "available_terrain_status": "SYNTHETIC_TERRAIN_ONLY",
+  "street_scale_dtm_status": "MISSING",
+  "approved_for_solver_mechanics_testing": true,
+  "approved_for_sensitivity_testing": true,
+  "approved_for_real_world_street_scale_claims": false,
+  "promotion_to_measured_street_scale": false
+}

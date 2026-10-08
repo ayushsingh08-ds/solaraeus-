@@ -1,0 +1,32 @@
+{
+  "stage": "STAGE_20",
+  "timestamp_utc": "2026-10-08T08:17:41.523470+00:00",
+  "tests": [
+    {
+      "name": "test_fabdem_classified_regional_only",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_measured_dtm_properly_disclaimed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_synthetic_terrain_profiles_defined",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_crs_and_datums_documented",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_validation_plots_generated",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_no_unsupported_real_world_claims",
+      "status": "PASSED"
+    }
+  ],
+  "all_passed": true,
+  "token": "STAGE_20_SYNTHETIC_TERRAIN_ONLY"
+}

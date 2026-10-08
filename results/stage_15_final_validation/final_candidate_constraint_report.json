@@ -1,0 +1,44 @@
+[
+  {
+    "candidate_id": "CAND_FINAL_BEST",
+    "role": "Selected Optimal Candidate",
+    "is_feasible": true,
+    "rejection_reason": "VALID",
+    "distance_to_building_m": 4.4,
+    "building_setback_margin_m": 3.9,
+    "height_clearance_margin_m": 0.959,
+    "max_height_margin_m": 2.041,
+    "corridor_containment_pct": 100.0,
+    "minimum_constraint_margin": 0.959,
+    "maximum_constraint_violation": 0.0,
+    "status": "PASS"
+  },
+  {
+    "candidate_id": "CAND_CANONICAL",
+    "role": "Canonical Benchmark Candidate (BLR_SHADE_001)",
+    "is_feasible": true,
+    "rejection_reason": "VALID",
+    "distance_to_building_m": 1.751,
+    "building_setback_margin_m": 1.251,
+    "height_clearance_margin_m": 1.0,
+    "max_height_margin_m": 2.0,
+    "corridor_containment_pct": 100.0,
+    "minimum_constraint_margin": 1.0,
+    "maximum_constraint_violation": 0.0,
+    "status": "PASS"
+  },
+  {
+    "candidate_id": "CAND_ALT_LHS",
+    "role": "Alternative Candidate 1 (LHS Top Rank)",
+    "is_feasible": true,
+    "rejection_reason": "VALID",
+    "distance_to_building_m": 1.94,
+    "building_setback_margin_m": 1.44,
+    "height_clearance_margin_m": 1.233,
+    "max_height_margin_m": 1.767,
+    "corridor_containment_pct": 100.0,
+    "minimum_constraint_margin": 1.233,
+    "maximum_constraint_violation": 0.0,
+    "status": "PASS"
+  }
+]

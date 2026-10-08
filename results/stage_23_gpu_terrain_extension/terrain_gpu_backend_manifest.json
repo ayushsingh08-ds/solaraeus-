@@ -1,0 +1,10 @@
+{
+  "api_name": "SOLARAEUS Terrain-Aware GPU Backend",
+  "version": "2.1.0-gpu-terrain",
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "cuda_kernels": [
+    "terrain_shadow_kernel (CUDA C++ ray tracing with terrain horizon sampling)"
+  ],
+  "precision": "IEEE-754 double precision float64",
+  "backward_compatible": true
+}

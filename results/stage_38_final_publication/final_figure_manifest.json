@@ -1,0 +1,22 @@
+{
+  "figures": [
+    {
+      "id": "FIG_01",
+      "name": "core_trees_elevation_profile.svg",
+      "path": "results/stage_29_level1_tree_geometry/tree_geometry_visualizations/core_trees_elevation_profile.svg",
+      "type": "vector_cross_section"
+    },
+    {
+      "id": "FIG_02",
+      "name": "affected_region.png",
+      "path": "results/affected_region.png",
+      "type": "raster_mask"
+    },
+    {
+      "id": "FIG_03",
+      "name": "error_map.png",
+      "path": "results/error_map.png",
+      "type": "raster_heatmap"
+    }
+  ]
+}

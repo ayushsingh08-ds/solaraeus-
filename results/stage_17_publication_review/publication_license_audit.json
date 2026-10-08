@@ -1,0 +1,51 @@
+{
+  "timestamp_utc": "2026-10-08T08:11:48.198550+00:00",
+  "project_license": "MIT License",
+  "license_compatibility": "FULLY_COMPATIBLE",
+  "dependencies": [
+    {
+      "library": "numpy",
+      "license": "BSD-3-Clause",
+      "compatible": true
+    },
+    {
+      "library": "scipy",
+      "license": "BSD-3-Clause",
+      "compatible": true
+    },
+    {
+      "library": "cupy",
+      "license": "MIT",
+      "compatible": true
+    },
+    {
+      "library": "shapely",
+      "license": "BSD-3-Clause",
+      "compatible": true
+    },
+    {
+      "library": "matplotlib",
+      "license": "PSF / BSD-compatible",
+      "compatible": true
+    },
+    {
+      "library": "pytest",
+      "license": "MIT",
+      "compatible": true
+    },
+    {
+      "library": "pythermalcomfort",
+      "license": "MIT",
+      "compatible": true
+    }
+  ],
+  "third_party_formulations": [
+    {
+      "formulation": "SOLWEIG Solar and Longwave Environmental Irradiance Geometry Model",
+      "authors": "Lindberg, Holmer, Thorsson et al. (2008, 2016)",
+      "license": "CC-BY-SA",
+      "attribution_statement": "Implemented based on published mathematical literature for research purposes."
+    }
+  ],
+  "status": "LICENSES_VERIFIED_AND_COMPLIANT"
+}

@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-10-07T19:30:45.273859+00:00",
+  "total_proposals": 29,
+  "feasible_count": 12,
+  "infeasible_count": 17,
+  "best_candidate_id": "CAND_0028_EVOL",
+  "best_objective": 54.9535,
+  "best_params": {
+    "x_m": 155.0,
+    "y_m": 55.0,
+    "length_m": 4.414,
+    "width_m": 3.084,
+    "height_m": 3.459,
+    "heading_deg": 103.28,
+    "albedo": 0.46,
+    "area_m2": 13.611
+  },
+  "status": "COMPLETED"
+}

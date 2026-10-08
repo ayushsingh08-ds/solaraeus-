@@ -1,0 +1,34 @@
+{
+  "tables": [
+    {
+      "id": "TBL_01",
+      "name": "canopy_parameter_ranges.csv",
+      "path": "results/stage_33_canopy_sensitivity/canopy_parameter_ranges.csv"
+    },
+    {
+      "id": "TBL_02",
+      "name": "canopy_sensitivity_results.csv",
+      "path": "results/stage_33_canopy_sensitivity/canopy_sensitivity_results.csv"
+    },
+    {
+      "id": "TBL_03",
+      "name": "terrain_tree_candidate_history.csv",
+      "path": "results/stage_35_terrain_tree_optimization/terrain_tree_candidate_history.csv"
+    },
+    {
+      "id": "TBL_04",
+      "name": "terrain_tree_best_candidates.csv",
+      "path": "results/stage_35_terrain_tree_optimization/terrain_tree_best_candidates.csv"
+    },
+    {
+      "id": "TBL_05",
+      "name": "final_terrain_tree_uncertainty.csv",
+      "path": "results/stage_36_final_terrain_tree_validation/final_terrain_tree_uncertainty.csv"
+    },
+    {
+      "id": "TBL_06",
+      "name": "final_stage_status_matrix.csv",
+      "path": "results/stage_38_final_publication/final_stage_status_matrix.csv"
+    }
+  ]
+}

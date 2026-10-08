@@ -1,0 +1,17 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:18.374944+00:00",
+  "trials_count": 3,
+  "trial_timings_s": [
+    0.12572500000533182,
+    0.12047579999489244,
+    0.12065480000455864
+  ],
+  "mean_timing_s": 0.1222852000015943,
+  "std_timing_s": 0.002433403419102501,
+  "inter_trial_shadow_differences": 0,
+  "inter_trial_svf_max_abs_diff": 0.0,
+  "inter_trial_tmrt_max_abs_diff_k": 0.0,
+  "inter_trial_utci_max_abs_diff_c": 0.0,
+  "determinism_guarantee": "STRICT_BIT_IDENTICAL_ACROSS_RUNS",
+  "pass": true
+}

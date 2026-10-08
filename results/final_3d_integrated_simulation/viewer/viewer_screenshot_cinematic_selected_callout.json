@@ -1,0 +1,16 @@
+{
+  "screenshot_file": "viewer_screenshot_cinematic_selected_callout.png",
+  "date": "2026-04-15",
+  "study_area": "Church Street Corridor, Bengaluru",
+  "coordinates": {
+    "lat": 12.9749,
+    "lon": 77.6054
+  },
+  "parameters": {
+    "scenario": "COMBINED_HYBRID",
+    "style": "CINEMATIC_AERIAL",
+    "time": "14:30",
+    "feature": "Large Numeric Callout 5"
+  },
+  "scientific_status": "PHYSICALLY_COMPUTED_WITH_DOCUMENTED_LIMITATIONS"
+}

@@ -1,0 +1,60 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:43.812865+00:00",
+  "stage": 11,
+  "stage_name": "gpu_incremental_recomputation_and_validation",
+  "total_tests": 8,
+  "tests_passed": 8,
+  "tests_failed": 0,
+  "test_records": [
+    {
+      "id": 1,
+      "name": "Conservative affected region mask validity",
+      "pass": true,
+      "recomputed_cells": 72
+    },
+    {
+      "id": 2,
+      "name": "No stale values in affected cells",
+      "pass": true,
+      "details": "6 newly shaded cells confirmed in affected mask"
+    },
+    {
+      "id": 3,
+      "name": "GPU Incremental vs CPU Incremental exact parity",
+      "pass": true,
+      "max_tmrt_err_k": 5.684341886080802e-14
+    },
+    {
+      "id": 4,
+      "name": "GPU Incremental vs GPU Full parity",
+      "pass": true,
+      "max_tmrt_err_k": 0.02890152869707663
+    },
+    {
+      "id": 5,
+      "name": "GPU Incremental vs CPU Full reference parity",
+      "pass": true,
+      "max_tmrt_err_k": 0.02890152869707663
+    },
+    {
+      "id": 6,
+      "name": "Pointwise mathematical certificate soundness",
+      "pass": true,
+      "violations": 0
+    },
+    {
+      "id": 7,
+      "name": "Reuse accounting internal consistency",
+      "pass": true,
+      "total_accounted": 28120
+    },
+    {
+      "id": 8,
+      "name": "Repeated GPU incremental determinism",
+      "pass": true,
+      "max_variation_k": 0.0
+    }
+  ],
+  "overall_status": "PASS",
+  "success_token": "STAGE_11_GPU_INCREMENTAL_RECOMPUTATION_COMPLETE"
+}

@@ -1,0 +1,23 @@
+{
+  "stage": 24,
+  "status": "STAGE_24_APPROVED",
+  "timestamp_utc": "2026-10-08T09:18:11.648214+00:00",
+  "policy_authority": "Lead Researcher Approval Protocol",
+  "available_data_use_approved": true,
+  "synthetic_terrain_testing_approved": true,
+  "provisional_tree_geometry_sensitivity_approved": true,
+  "canopy_sensitivity_analysis_approved": true,
+  "field_validation_required_before_calibrated_claims": true,
+  "field_validation_deferred": true,
+  "fabdem_status": "REGIONAL_REFERENCE_ONLY",
+  "measured_street_scale_dtm_available": false,
+  "tree_geometry_field_validated": false,
+  "canopy_parameters_field_validated": false,
+  "governing_policy": {
+    "terrain_scope": "Use synthetic terrain for solver mechanics and FABDEM as regional reference only.",
+    "vegetation_scope": "Use provisional photo-estimated Level 1 geometry strictly for sensitivity studies.",
+    "calibration_scope": "Field calibration prohibited until actual sensor/laser observations exist.",
+    "authoritative_claims_scope": "Real-world municipal claims restricted to validated flat ground."
+  },
+  "token": "STAGE_24_APPROVED"
+}

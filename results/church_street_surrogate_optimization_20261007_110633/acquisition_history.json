@@ -1,0 +1,266 @@
+[
+  {
+    "surrogate_iteration": 1,
+    "candidate_id": "CAND_0044_SURR",
+    "role": "surrogate_best_ei",
+    "objective_value": 54.93551164600241,
+    "predicted_objective": 54.94548659167993,
+    "predicted_std": 0.023875509110290547,
+    "scores": {
+      "ei": 0.001885222504421228,
+      "lcb": -54.89773557345935,
+      "uncertainty": 0.023875509110290547
+    }
+  },
+  {
+    "surrogate_iteration": 1,
+    "candidate_id": "CAND_0045_SURR",
+    "role": "surrogate_high_uncertainty",
+    "objective_value": 55.05755858738238,
+    "predicted_objective": 55.03656357779482,
+    "predicted_std": 0.037341487785645694,
+    "scores": {
+      "ei": 1.011244296705735e-05,
+      "lcb": -54.96188060222353,
+      "uncertainty": 0.037341487785645694
+    }
+  },
+  {
+    "surrogate_iteration": 1,
+    "candidate_id": "CAND_0046_SURR",
+    "role": "surrogate_boundary",
+    "objective_value": 54.94100423872957,
+    "predicted_objective": 54.9543705206207,
+    "predicted_std": 0.021631252054044963,
+    "scores": {
+      "ei": 0.0005711534647907476,
+      "lcb": -54.91110801651261,
+      "uncertainty": 0.021631252054044963,
+      "boundary_distance": 1.170004534722081e-05
+    }
+  },
+  {
+    "surrogate_iteration": 1,
+    "candidate_id": "CAND_0047_SURR",
+    "role": "surrogate_pareto",
+    "objective_value": 54.94566684761103,
+    "predicted_objective": 54.94892662204616,
+    "predicted_std": 0.0230549685266586,
+    "scores": {
+      "ei": 0.0012571451964254617,
+      "lcb": -54.90281668499284,
+      "uncertainty": 0.0230549685266586
+    }
+  },
+  {
+    "surrogate_iteration": 1,
+    "candidate_id": "CAND_0048_SURR",
+    "role": "surrogate_random_exploration",
+    "objective_value": 54.97226249407178,
+    "predicted_objective": 54.97192882046151,
+    "predicted_std": 0.018433087097304738,
+    "scores": {
+      "ei": 1.5713730645795673e-05,
+      "lcb": -54.9350626462669,
+      "uncertainty": 0.018433087097304738
+    }
+  },
+  {
+    "surrogate_iteration": 2,
+    "candidate_id": "CAND_0049_SURR",
+    "role": "surrogate_best_ei",
+    "objective_value": 54.93678519246175,
+    "predicted_objective": 54.940392098484025,
+    "predicted_std": 0.011034606336306775,
+    "scores": {
+      "ei": 0.00017293914781036518,
+      "lcb": -54.91832288581141,
+      "uncertainty": 0.011034606336306775
+    }
+  },
+  {
+    "surrogate_iteration": 2,
+    "candidate_id": "CAND_0050_SURR",
+    "role": "surrogate_high_uncertainty",
+    "objective_value": 55.003240820744615,
+    "predicted_objective": 55.019677995784306,
+    "predicted_std": 0.03338304899254372,
+    "scores": {
+      "ei": 1.4802696897633444e-05,
+      "lcb": -54.95291189779922,
+      "uncertainty": 0.03338304899254372
+    }
+  },
+  {
+    "surrogate_iteration": 2,
+    "candidate_id": "CAND_0051_SURR",
+    "role": "surrogate_boundary",
+    "objective_value": 54.95652322676822,
+    "predicted_objective": 54.96926105978294,
+    "predicted_std": 0.006061216838434511,
+    "scores": {
+      "ei": 5.765557778348478e-19,
+      "lcb": -54.957138626106065,
+      "uncertainty": 0.006061216838434511,
+      "boundary_distance": 1.923951657892707e-05
+    }
+  },
+  {
+    "surrogate_iteration": 2,
+    "candidate_id": "CAND_0052_SURR",
+    "role": "surrogate_pareto",
+    "objective_value": 54.932355582999925,
+    "predicted_objective": 54.938756219500256,
+    "predicted_std": 0.007239215765052364,
+    "scores": {
+      "ei": 1.6368362083514352e-05,
+      "lcb": -54.92427778797015,
+      "uncertainty": 0.007239215765052364
+    }
+  },
+  {
+    "surrogate_iteration": 2,
+    "candidate_id": "CAND_0053_SURR",
+    "role": "surrogate_random_exploration",
+    "objective_value": 54.98659695840545,
+    "predicted_objective": 54.98074774332145,
+    "predicted_std": 0.00728312502181012,
+    "scores": {
+      "ei": 9.410169865450089e-20,
+      "lcb": -54.96618149327783,
+      "uncertainty": 0.00728312502181012
+    }
+  },
+  {
+    "surrogate_iteration": 3,
+    "candidate_id": "CAND_0054_SURR",
+    "role": "surrogate_best_ei",
+    "objective_value": 54.98793273991104,
+    "predicted_objective": 54.98706802874203,
+    "predicted_std": 0.0241487888223692,
+    "scores": {
+      "ei": 2.2572433744718528e-05,
+      "lcb": -54.93877045109729,
+      "uncertainty": 0.0241487888223692
+    }
+  },
+  {
+    "surrogate_iteration": 3,
+    "candidate_id": "CAND_0055_SURR",
+    "role": "surrogate_high_uncertainty",
+    "objective_value": 55.042726071608406,
+    "predicted_objective": 55.03827714415155,
+    "predicted_std": 0.030011320191165165,
+    "scores": {
+      "ei": 3.18776784876208e-07,
+      "lcb": -54.97825450376922,
+      "uncertainty": 0.030011320191165165
+    }
+  },
+  {
+    "surrogate_iteration": 3,
+    "candidate_id": "CAND_0056_SURR",
+    "role": "surrogate_boundary",
+    "objective_value": 54.93588802507709,
+    "predicted_objective": 54.937862350905455,
+    "predicted_std": 0.0048466066302168985,
+    "scores": {
+      "ei": 2.9343877982984896e-07,
+      "lcb": -54.92816913764502,
+      "uncertainty": 0.0048466066302168985,
+      "boundary_distance": 1.1906288498408913e-05
+    }
+  },
+  {
+    "surrogate_iteration": 3,
+    "candidate_id": "CAND_0057_SURR",
+    "role": "surrogate_pareto",
+    "objective_value": 54.930072788651486,
+    "predicted_objective": 54.93563009214915,
+    "predicted_std": 0.005801803348545064,
+    "scores": {
+      "ei": 1.0534569327226101e-05,
+      "lcb": -54.92402648545205,
+      "uncertainty": 0.005801803348545064
+    }
+  },
+  {
+    "surrogate_iteration": 3,
+    "candidate_id": "CAND_0058_SURR",
+    "role": "surrogate_random_exploration",
+    "objective_value": 54.95218799524939,
+    "predicted_objective": 54.953685679307554,
+    "predicted_std": 0.00741225068725645,
+    "scores": {
+      "ei": 7.678550518602759e-09,
+      "lcb": -54.93886117793304,
+      "uncertainty": 0.00741225068725645
+    }
+  },
+  {
+    "surrogate_iteration": 4,
+    "candidate_id": "CAND_0059_SURR",
+    "role": "surrogate_best_ei",
+    "objective_value": 54.93555651460611,
+    "predicted_objective": 54.93359443309055,
+    "predicted_std": 0.005425552175593044,
+    "scores": {
+      "ei": 1.1138722611603815e-05,
+      "lcb": -54.92274332873936,
+      "uncertainty": 0.005425552175593044
+    }
+  },
+  {
+    "surrogate_iteration": 4,
+    "candidate_id": "CAND_0060_SURR",
+    "role": "surrogate_high_uncertainty",
+    "objective_value": 55.031257255798465,
+    "predicted_objective": 55.03752675860696,
+    "predicted_std": 0.025375232086535877,
+    "scores": {
+      "ei": 9.311641669988469e-09,
+      "lcb": -54.98677629443389,
+      "uncertainty": 0.025375232086535877
+    }
+  },
+  {
+    "surrogate_iteration": 4,
+    "candidate_id": "CAND_0061_SURR",
+    "role": "surrogate_boundary",
+    "objective_value": 54.934231376869995,
+    "predicted_objective": 54.93379154411806,
+    "predicted_std": 0.0048674213198501215,
+    "scores": {
+      "ei": 3.4810999130423673e-06,
+      "lcb": -54.92405670147836,
+      "uncertainty": 0.0048674213198501215,
+      "boundary_distance": 2.746483365980465e-05
+    }
+  },
+  {
+    "surrogate_iteration": 4,
+    "candidate_id": "CAND_0062_SURR",
+    "role": "surrogate_pareto",
+    "objective_value": 54.93013621502696,
+    "predicted_objective": 54.93256257463524,
+    "predicted_std": 0.004468401780853508,
+    "scores": {
+      "ei": 3.4568074427358304e-06,
+      "lcb": -54.92362577107353,
+      "uncertainty": 0.004468401780853508
+    }
+  },
+  {
+    "surrogate_iteration": 4,
+    "candidate_id": "CAND_0063_SURR",
+    "role": "surrogate_random_exploration",
+    "objective_value": 54.92691638468616,
+    "predicted_objective": 54.93602608788075,
+    "predicted_std": 0.003837796680792719,
+    "scores": {
+      "ei": 1.3526230608706118e-08,
+      "lcb": -54.928350494519165,
+      "uncertainty": 0.003837796680792719
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "empty_tree_exact_shadow_match": true,
+  "empty_tree_exact_tmrt_match": true,
+  "outside_tree_exact_shadow_match": true,
+  "status": "PASS_EXACT_EQUIVALENCE"
+}

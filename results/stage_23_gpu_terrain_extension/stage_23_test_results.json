@@ -1,0 +1,32 @@
+{
+  "stage": "STAGE_23",
+  "timestamp_utc": "2026-10-08T08:35:56.222300+00:00",
+  "tests": [
+    {
+      "name": "test_gpu_flat_regression",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_gpu_terrain_incline_parity",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_gpu_terrain_incremental_simulation",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_gpu_repeated_determinism",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_gpu_memory_boundedness",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_no_tree_data_integrated",
+      "status": "PASSED"
+    }
+  ],
+  "all_passed": true,
+  "token": "STAGE_23_TERRAIN_AWARE_GPU_AND_INCREMENTAL_COMPLETE"
+}

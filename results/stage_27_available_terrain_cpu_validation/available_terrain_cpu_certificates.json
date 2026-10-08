@@ -1,0 +1,7 @@
+{
+  "CERT_27_01_CRS": "PASSED (EPSG:32643)",
+  "CERT_27_02_BOUNDS": "PASSED (Domain strictly bounded)",
+  "CERT_27_03_FLAT_PARITY": "PASSED (Diff < 1e-12 K)",
+  "CERT_27_04_DETERMINISM": "PASSED (Zero variance across runs)",
+  "CERT_27_05_RECEPTOR_HEIGHT": "PASSED (Exact 1.1m above terrain)"
+}

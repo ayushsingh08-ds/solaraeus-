@@ -1,0 +1,79 @@
+{
+  "cached_fields_count": 7,
+  "cached_field_names": [
+    "shadow_mask",
+    "svf",
+    "direct_irradiance",
+    "shortwave_flux",
+    "longwave_flux",
+    "tmrt",
+    "utci"
+  ],
+  "source_scene_hash": "5f212c968b1de5048df0f34e4e751ec950a3d9699a6072253840b9ce97bfcc1d",
+  "target_scene_hash": "94827d387b92920a9d1e428d6818f303a74903e1f767534bd8a131de97ba7c56",
+  "weather_hash": "7f5a0cb16a5b7b957be63edc219fc87543f61ca23982f2ae3ba3cb6d289c425a",
+  "config_hash": "dfbfbc4d56e7f8a0b7c10b8ecc328d8058b7ec9505d81e0a999e57c40b511c35",
+  "edit_type": "mesh_added",
+  "invalidated_downstream_fields": [
+    "longwave_flux",
+    "shadow_mask",
+    "shortwave_flux",
+    "svf",
+    "tmrt",
+    "utci"
+  ],
+  "upstream_dependencies": {
+    "shadow_mask": [
+      "building_geometry",
+      "solar_position"
+    ],
+    "svf": [
+      "building_geometry"
+    ],
+    "direct_irradiance": [],
+    "shortwave_flux": [
+      "building_geometry",
+      "material_albedo",
+      "shadow_mask",
+      "solar_position",
+      "svf",
+      "weather_radiation"
+    ],
+    "longwave_flux": [
+      "building_geometry",
+      "material_thermal",
+      "svf",
+      "weather_air_temp",
+      "weather_humidity"
+    ],
+    "tmrt": [
+      "building_geometry",
+      "longwave_flux",
+      "material_albedo",
+      "material_thermal",
+      "shadow_mask",
+      "shortwave_flux",
+      "solar_position",
+      "svf",
+      "weather_air_temp",
+      "weather_humidity",
+      "weather_radiation"
+    ],
+    "utci": [
+      "building_geometry",
+      "longwave_flux",
+      "material_albedo",
+      "material_thermal",
+      "shadow_mask",
+      "shortwave_flux",
+      "solar_position",
+      "svf",
+      "tmrt",
+      "weather_air_temp",
+      "weather_humidity",
+      "weather_radiation",
+      "weather_wind"
+    ]
+  },
+  "cache_reuse_status": "reused_frozen_baseline_with_spatial_invalidation"
+}

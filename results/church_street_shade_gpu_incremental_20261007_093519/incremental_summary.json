@@ -1,0 +1,37 @@
+{
+  "intervention_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "edit_type": "mesh_added",
+  "incremental_computation_used": true,
+  "backend": "gpu",
+  "cell_counts": {
+    "total_cells": 28120,
+    "recomputed_cells": 72,
+    "reused_cells": 28048,
+    "reused_fraction": 0.9974395448079658,
+    "reused_percentage": 99.74395448079659
+  },
+  "ray_counts": {
+    "total_rays": 927960,
+    "affected_rays": 2376,
+    "rays_avoided": 925584,
+    "work_reduction_percentage": 99.74395448079659
+  },
+  "timing_sec": {
+    "total_pipeline_time": 1.7441318000055617,
+    "gpu_kernel_time_ms": 10.499700001673773,
+    "host_to_device_time_ms": 43.234800003119744,
+    "device_to_host_time_ms": 1.3427999947452918,
+    "certificate_evaluation": 0.03379790000326466,
+    "radiation_and_comfort": 1.648057800004608,
+    "cpu_full_reference": 6.038027599999623,
+    "gpu_full_reference": 0.9844
+  },
+  "parity_accuracy": {
+    "max_abs_error_vs_gpu_full_tmrt_k": 0.02890152869707663,
+    "max_abs_error_vs_cpu_full_tmrt_k": 0.02890152869707663,
+    "tolerance_k": 0.5,
+    "certificate_violations": 0,
+    "is_valid": true
+  }
+}

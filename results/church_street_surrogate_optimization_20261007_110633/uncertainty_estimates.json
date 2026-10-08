@@ -1,0 +1,102 @@
+[
+  {
+    "candidate_id": "CAND_0044_SURR",
+    "predicted_std": 0.023875509110290547,
+    "z_score": -0.41778986288592734
+  },
+  {
+    "candidate_id": "CAND_0045_SURR",
+    "predicted_std": 0.037341487785645694,
+    "z_score": 0.5622435214171894
+  },
+  {
+    "candidate_id": "CAND_0046_SURR",
+    "predicted_std": 0.021631252054044963,
+    "z_score": -0.6179153133501111
+  },
+  {
+    "candidate_id": "CAND_0047_SURR",
+    "predicted_std": 0.0230549685266586,
+    "z_score": -0.14139140686138704
+  },
+  {
+    "candidate_id": "CAND_0048_SURR",
+    "predicted_std": 0.018433087097304738,
+    "z_score": 0.018101884318651326
+  },
+  {
+    "candidate_id": "CAND_0049_SURR",
+    "predicted_std": 0.011034606336306775,
+    "z_score": -0.326872197552669
+  },
+  {
+    "candidate_id": "CAND_0050_SURR",
+    "predicted_std": 0.03338304899254372,
+    "z_score": -0.49238087998979146
+  },
+  {
+    "candidate_id": "CAND_0051_SURR",
+    "predicted_std": 0.006061216838434511,
+    "z_score": -2.101530658653686
+  },
+  {
+    "candidate_id": "CAND_0052_SURR",
+    "predicted_std": 0.007239215765052364,
+    "z_score": -0.8841615871197271
+  },
+  {
+    "candidate_id": "CAND_0053_SURR",
+    "predicted_std": 0.00728312502181012,
+    "z_score": 0.8031188626423468
+  },
+  {
+    "candidate_id": "CAND_0054_SURR",
+    "predicted_std": 0.0241487888223692,
+    "z_score": 0.03580764134253868
+  },
+  {
+    "candidate_id": "CAND_0055_SURR",
+    "predicted_std": 0.030011320191165165,
+    "z_score": 0.1482416444367516
+  },
+  {
+    "candidate_id": "CAND_0056_SURR",
+    "predicted_std": 0.0048466066302168985,
+    "z_score": -0.40736250721375983
+  },
+  {
+    "candidate_id": "CAND_0057_SURR",
+    "predicted_std": 0.005801803348545064,
+    "z_score": -0.9578579561911544
+  },
+  {
+    "candidate_id": "CAND_0058_SURR",
+    "predicted_std": 0.00741225068725645,
+    "z_score": -0.20205523549550286
+  },
+  {
+    "candidate_id": "CAND_0059_SURR",
+    "predicted_std": 0.005425552175593044,
+    "z_score": 0.36163720337834465
+  },
+  {
+    "candidate_id": "CAND_0060_SURR",
+    "predicted_std": 0.025375232086535877,
+    "z_score": -0.24707174252091857
+  },
+  {
+    "candidate_id": "CAND_0061_SURR",
+    "predicted_std": 0.0048674213198501215,
+    "z_score": 0.09036258072485143
+  },
+  {
+    "candidate_id": "CAND_0062_SURR",
+    "predicted_std": 0.004468401780853508,
+    "z_score": -0.5430039032469264
+  },
+  {
+    "candidate_id": "CAND_0063_SURR",
+    "predicted_std": 0.003837796680792719,
+    "z_score": -2.373680513139533
+  }
+]

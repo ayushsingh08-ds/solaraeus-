@@ -1,0 +1,230 @@
+{
+  "report_timestamp_utc": "2026-10-07T19:48:51.002308+00:00",
+  "roadmap_range": "STAGES_10_THROUGH_16",
+  "overall_status": "ALL_STAGES_COMPLETED_AND_VALIDATED",
+  "total_stages": 7,
+  "passed_stages": 7,
+  "failed_stages": 0,
+  "stages": [
+    {
+      "stage_id": "STAGE_10",
+      "stage_name": "GPU Full-vs-CPU Full Validation",
+      "acceptance_token": "STAGE_10_GPU_FULL_VS_CPU_VALIDATION_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_10_gpu_full_cpu_validation/",
+      "artifacts_generated": [
+        "inputs_manifest.json",
+        "gpu_full_outputs.json",
+        "cpu_full_outputs.json",
+        "parity_report.json",
+        "runtime_comparison.json",
+        "stage_10_test_results.json"
+      ],
+      "key_metrics": {
+        "evaluated_cells": 28120,
+        "shadow_exact_parity": true,
+        "shadow_differing_cells": 0,
+        "direct_flux_exact_parity": true,
+        "direct_flux_differing_cells": 0,
+        "svf_max_abs_error": 1.0547e-14,
+        "tmrt_max_abs_error_k": 1.1368e-13,
+        "utci_max_abs_error_c": 0.0,
+        "gpu_speedup_vs_cpu": 11.83
+      }
+    },
+    {
+      "stage_id": "STAGE_11",
+      "stage_name": "GPU Incremental Recomputation and Validation",
+      "acceptance_token": "STAGE_11_GPU_INCREMENTAL_RECOMPUTATION_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_11_gpu_incremental/",
+      "artifacts_generated": [
+        "inputs_manifest.json",
+        "gpu_incremental_outputs.json",
+        "affected_region_mask.json",
+        "parity_with_cpu_incremental.json",
+        "parity_with_gpu_full.json",
+        "gpu_incremental_certificate.json",
+        "runtime_metrics.json",
+        "stage_11_test_results.json"
+      ],
+      "key_metrics": {
+        "reused_cells": 28048,
+        "recomputed_cells": 72,
+        "reuse_percentage": 99.74,
+        "certificate_violations": 0,
+        "max_abs_error_tmrt_k": 0.028902,
+        "theoretical_error_bound_k": 0.081231,
+        "gpu_incremental_speedup_vs_cpu_full": 500.87,
+        "gpu_incremental_speedup_vs_cpu_inc": 36.84
+      }
+    },
+    {
+      "stage_id": "STAGE_12",
+      "stage_name": "GPU Runtime, Memory, and Work Profiling",
+      "acceptance_token": "STAGE_12_GPU_RUNTIME_MEMORY_WORK_PROFILING_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_12_gpu_profiling/",
+      "artifacts_generated": [
+        "gpu_profiling_environment.json",
+        "gpu_runtime_summary.json",
+        "gpu_memory_summary.json",
+        "gpu_work_summary.json",
+        "gpu_benchmark_trials.csv",
+        "gpu_cpu_speedup_report.md",
+        "stage_12_test_results.json"
+      ],
+      "key_metrics": {
+        "device": "NVIDIA GeForce RTX 4050 Laptop GPU (6GB VRAM, Compute 8.9)",
+        "cpu_full_mean_sec": 5.71,
+        "cpu_inc_mean_sec": 0.42,
+        "gpu_full_mean_sec": 0.4827,
+        "gpu_inc_mean_sec": 0.0114,
+        "gpu_inc_speedup_vs_cpu_full": 500.87,
+        "gpu_inc_speedup_vs_cpu_inc": 36.84,
+        "peak_gpu_vram_mb": 1089.45,
+        "ray_work_avoided_percent": 99.74
+      }
+    },
+    {
+      "stage_id": "STAGE_13",
+      "stage_name": "Geographic Feasibility and Intervention Parameterization",
+      "acceptance_token": "STAGE_13_GEOGRAPHIC_FEASIBILITY_AND_PARAMETERIZATION_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_13_geographic_feasibility/",
+      "artifacts_generated": [
+        "intervention_parameter_schema.json",
+        "feasibility_rules.json",
+        "candidate_feasibility_report.json",
+        "feasible_candidate_catalog.csv",
+        "infeasible_candidate_catalog.csv",
+        "stage_13_test_results.json",
+        "feasibility_plots/candidate_feasibility_screening.png"
+      ],
+      "key_metrics": {
+        "total_candidates_screened": 129,
+        "feasible_candidates": 55,
+        "infeasible_candidates": 74,
+        "rejection_reasons_evaluated": [
+          "COLLISION_BUILDING",
+          "OUTSIDE_PEDESTRIAN_DOMAIN",
+          "MAX_PANEL_AREA_EXCEEDED",
+          "INVALID_CLEARANCE_HEIGHT"
+        ],
+        "parameter_schema_validated": true
+      }
+    },
+    {
+      "stage_id": "STAGE_14",
+      "stage_name": "Baseline Search and Constrained AI Optimizer",
+      "acceptance_token": "STAGE_14_BASELINE_SEARCH_AND_CONSTRAINED_AI_OPTIMIZER_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_14_constrained_optimizer/",
+      "artifacts_generated": [
+        "baseline_search_results.csv",
+        "optimizer_configuration.json",
+        "optimizer_candidate_history.csv",
+        "optimizer_best_candidates.csv",
+        "optimizer_checkpoint.json",
+        "optimizer_reproducibility.json",
+        "optimizer_constraint_report.json",
+        "optimizer_certificate_summary.json",
+        "stage_14_test_results.json"
+      ],
+      "key_metrics": {
+        "baseline_search_candidates": 17,
+        "optimizer_iterations": 29,
+        "best_candidate_id": "CAND_FINAL_BEST",
+        "mean_tmrt_cooling_k": -0.0175,
+        "peak_tmrt_cooling_k": -12.6163,
+        "certified_evaluations_percentage": 100.0,
+        "checkpoint_reproducibility": "EXACT_RECOVERY"
+      }
+    },
+    {
+      "stage_id": "STAGE_15",
+      "stage_name": "Final Candidate Validation and Uncertainty Analysis",
+      "acceptance_token": "STAGE_15_FINAL_CANDIDATE_VALIDATION_AND_UNCERTAINTY_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_15_final_validation/",
+      "artifacts_generated": [
+        "final_candidate_validation.json",
+        "final_candidate_validation.md",
+        "final_candidate_certificates.json",
+        "final_candidate_parity_report.json",
+        "final_candidate_uncertainty.csv",
+        "final_candidate_sensitivity.csv",
+        "final_candidate_constraint_report.json",
+        "final_candidate_reproducibility.json",
+        "stage_15_test_results.json"
+      ],
+      "key_metrics": {
+        "candidates_validated": [
+          "CAND_FINAL_BEST",
+          "CAND_CANONICAL",
+          "CAND_ALT_LHS"
+        ],
+        "four_path_parity": "100% verified across CPU-full, CPU-inc, GPU-full, GPU-inc",
+        "certificate_violations": 0,
+        "monte_carlo_runs_per_candidate": 50,
+        "ranking_stability_status": "NON_DEFINITIVE_OVERLAPPING_CI",
+        "sensitivity_parameters_audited": [
+          "solar_altitude",
+          "solar_azimuth",
+          "dni",
+          "dhi",
+          "wind_speed",
+          "air_temp"
+        ]
+      }
+    },
+    {
+      "stage_id": "STAGE_16",
+      "stage_name": "Additional Area Testing and Publication Package",
+      "acceptance_token": "STAGE_16_ADDITIONAL_AREA_TESTING_AND_PUBLICATION_COMPLETE",
+      "status": "PASSED",
+      "output_directory": "results/stage_16_additional_areas/ & results/stage_16_publication_package/",
+      "artifacts_generated": [
+        "area_catalog.json",
+        "area_input_validation_report.json",
+        "cross_area_summary.csv",
+        "cross_area_limitations.md",
+        "publication_methodology.md",
+        "publication_results_summary.md",
+        "publication_limitations.md",
+        "reproducibility_guide.md",
+        "data_and_code_availability.md",
+        "license_and_provenance.md",
+        "figure_manifest.json",
+        "table_manifest.json",
+        "final_project_status.json",
+        "stage_16_test_results.json"
+      ],
+      "key_metrics": {
+        "areas_tested": 3,
+        "areas_validated": [
+          "AREA_BRIGADE_ROAD_EXT",
+          "AREA_MG_ROAD_PLAZA"
+        ],
+        "negative_control_properly_rejected": "AREA_HILLSIDE_COMPLEX (slope > 18.5% exceeds flat solver assumptions)",
+        "publication_package_complete": true,
+        "reproducibility_protocol_frozen": true
+      }
+    }
+  ],
+  "test_suite_status": {
+    "total_collected": 323,
+    "passed": 323,
+    "failed": 0,
+    "warnings": 42
+  },
+  "hardware_environment": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_version": "3.12.6",
+    "gpu_device": "NVIDIA GeForce RTX 4050 Laptop GPU (6GB VRAM, Compute 8.9)",
+    "cuda_driver_version": "576.88",
+    "cupy_version": "14.2.0"
+  },
+  "solver_reference_version": "2.0.0-cpu-ref"
+}

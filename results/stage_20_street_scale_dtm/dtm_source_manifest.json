@@ -1,0 +1,30 @@
+{
+  "timestamp_utc": "2026-10-08T08:17:40.680942+00:00",
+  "terrain_sources_evaluated": [
+    {
+      "source_id": "SRC_FABDEM_V1_2",
+      "name": "FABDEM (Forest And Buildings removed Copernicus DEM)",
+      "resolution_m": 30.0,
+      "classification": "REGIONAL_REFERENCE_ONLY",
+      "street_scale_suitability": false,
+      "reason_disqualified_for_street_dtm": "Coarse 30m resolution cannot resolve 150 mm curb steps, 1:50 sidewalk cross-fall, or building threshold elevations.",
+      "approved_for_regional_context": true
+    },
+    {
+      "source_id": "SRC_SYNTHETIC_SOLVER_TERRAIN",
+      "name": "Synthetic Mathematical Test Terrain Suite",
+      "resolution_m": 1.0,
+      "classification": "SYNTHETIC_TERRAIN_ONLY",
+      "street_scale_suitability": true,
+      "purpose": "Engine unit testing, ray-tracing intersection verification, and slope radiation benchmarking",
+      "profiles": [
+        "inclined_plane_corridor (1:30 grade)",
+        "stepped_terrace_curb (150 mm vertical steps)",
+        "undulating_gaussian_ridge (controlled micro-topography)",
+        "nodata_masked_domain (hole-boundary robustness)"
+      ]
+    }
+  ],
+  "measured_street_scale_survey_available": false,
+  "selected_development_track": "SYNTHETIC_TERRAIN_ONLY"
+}

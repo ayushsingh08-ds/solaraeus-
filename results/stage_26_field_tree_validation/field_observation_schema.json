@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SOLARAEUS Field Tree Observation Schema",
+  "type": "object",
+  "required": [
+    "tree_id",
+    "observation_status",
+    "current_existence_status",
+    "species_confirmation",
+    "measurement_status"
+  ],
+  "properties": {
+    "tree_id": {
+      "type": "string"
+    },
+    "observation_date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "observer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gps_latitude": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "gps_longitude": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "coordinate_accuracy_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "current_existence_status": {
+      "type": "string",
+      "enum": [
+        "CONFIRMED_ALIVE",
+        "REMOVED",
+        "UNCERTAIN_PENDING_SURVEY"
+      ]
+    },
+    "species_confirmation": {
+      "type": "string",
+      "enum": [
+        "BOTANICAL_CONFIRMED",
+        "TAXON_UNCERTAIN",
+        "PRIOR_UNVERIFIED"
+      ]
+    },
+    "height_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "crown_diameter_ns_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "crown_diameter_ew_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "crown_base_height_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "crown_top_height_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "dbh_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "health_status": {
+      "type": "string"
+    },
+    "measurement_method": {
+      "type": "string"
+    },
+    "instrument_used": {
+      "type": "string"
+    },
+    "measurement_uncertainty_m": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "photo_references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "difference_from_historical_imagery": {
+      "type": "string"
+    },
+    "researcher_approval_status": {
+      "type": "string"
+    }
+  }
+}

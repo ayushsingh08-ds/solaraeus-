@@ -1,0 +1,21 @@
+{
+  "stage": "STAGE_5_SHADE_PANEL_FULL_RECOMPUTATION",
+  "status": "COMPLETED_SUCCESSFULLY",
+  "intervention_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "total_cells_evaluated": 28120,
+  "affected_cells": {
+    "shadow_changed": 6,
+    "svf_changed": 104,
+    "tmrt_changed_gt_0_01k": 39
+  },
+  "cooling_performance": {
+    "max_tmrt_cooling_k": -12.616308183378294,
+    "max_utci_cooling_k": -3.1000000000000014,
+    "mean_tmrt_change_all_cells_k": -0.001631034103081072,
+    "mean_utci_change_all_cells_k": -0.0003876244665718349
+  },
+  "incremental_computation_used": false,
+  "determinism_verified": true,
+  "acceptance_token": "STAGE_5_SHADE_PANEL_FULL_RECOMPUTATION_COMPLETE"
+}

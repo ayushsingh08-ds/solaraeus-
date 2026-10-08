@@ -1,0 +1,8 @@
+{
+  "strategy": "hybrid",
+  "kappa": 2.0,
+  "xi": 0.01,
+  "pool_size": 1000,
+  "seed": 42,
+  "min_diversity_dist": 0.03
+}

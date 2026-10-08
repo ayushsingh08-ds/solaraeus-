@@ -1,0 +1,57 @@
+{
+  "timestamp_utc": "2026-10-07T19:24:07.231563+00:00",
+  "stage": 13,
+  "stage_name": "geographic_feasibility_and_parameterization",
+  "total_tests": 9,
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "test_records": [
+    {
+      "id": 1,
+      "name": "Valid candidate accepted",
+      "pass": true
+    },
+    {
+      "id": 2,
+      "name": "Outside-domain candidate rejected",
+      "pass": true
+    },
+    {
+      "id": 3,
+      "name": "Building-collision candidate rejected",
+      "pass": true
+    },
+    {
+      "id": 4,
+      "name": "Insufficient-clearance candidate rejected",
+      "pass": true
+    },
+    {
+      "id": 5,
+      "name": "Invalid dimensions rejected",
+      "pass": true
+    },
+    {
+      "id": 6,
+      "name": "Invalid aspect ratio / dimensions rejected",
+      "pass": true
+    },
+    {
+      "id": 7,
+      "name": "Boundary candidate handled deterministically",
+      "pass": true
+    },
+    {
+      "id": 8,
+      "name": "Candidate serialization/deserialization",
+      "pass": true
+    },
+    {
+      "id": 9,
+      "name": "Repeated validation produces identical results",
+      "pass": true
+    }
+  ],
+  "overall_status": "PASS",
+  "success_token": "STAGE_13_GEOGRAPHIC_FEASIBILITY_AND_PARAMETERIZATION_COMPLETE"
+}

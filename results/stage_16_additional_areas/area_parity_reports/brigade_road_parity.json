@@ -1,0 +1,7 @@
+{
+  "area_id": "AREA_BRIGADE_ROAD_EXT",
+  "cpu_full_vs_gpu_full_max_tmrt_error_k": 0.0,
+  "gpu_inc_vs_gpu_full_max_tmrt_error_k": 0.04286512931821562,
+  "solver_equivalence_pass": true,
+  "incremental_tolerance_pass": true
+}

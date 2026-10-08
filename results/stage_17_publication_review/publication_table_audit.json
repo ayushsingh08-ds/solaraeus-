@@ -1,0 +1,39 @@
+{
+  "timestamp_utc": "2026-10-08T08:11:48.200557+00:00",
+  "total_tables": 4,
+  "valid_tables": 4,
+  "tables": [
+    {
+      "id": "TAB_01",
+      "filename": "results/stage_14_constrained_optimizer/baseline_search_results.csv",
+      "exists": true,
+      "caption": "Table 1: Systematic baseline search results across reference and corridor candidates.",
+      "source_stage": "Stage 14",
+      "status": "EXISTS_AND_VALID"
+    },
+    {
+      "id": "TAB_02",
+      "filename": "results/stage_14_constrained_optimizer/optimizer_best_candidates.csv",
+      "exists": true,
+      "caption": "Table 2: Top optimal shade canopy configurations identified by constrained AI optimizer.",
+      "source_stage": "Stage 14",
+      "status": "EXISTS_AND_VALID"
+    },
+    {
+      "id": "TAB_03",
+      "filename": "results/stage_15_final_validation/final_candidate_uncertainty.csv",
+      "exists": true,
+      "caption": "Table 3: Monte Carlo uncertainty intervals and ranking stability under environmental perturbations.",
+      "source_stage": "Stage 15",
+      "status": "EXISTS_AND_VALID"
+    },
+    {
+      "id": "TAB_04",
+      "filename": "results/stage_16_additional_areas/cross_area_summary.csv",
+      "exists": true,
+      "caption": "Table 4: Cross-area physical validation and performance across distinct urban typologies.",
+      "source_stage": "Stage 16",
+      "status": "EXISTS_AND_VALID"
+    }
+  ]
+}

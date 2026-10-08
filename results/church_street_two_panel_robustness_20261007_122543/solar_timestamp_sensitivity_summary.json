@@ -1,0 +1,38 @@
+{
+  "09:00": {
+    "mean_utci_c": 36.47964071856288,
+    "delta_mean_utci_c": -0.010928143712575888,
+    "mean_tmrt_c": 45.76068915707769,
+    "delta_mean_tmrt_c": -0.05015964528431027,
+    "peak_tmrt_drop_k": 12.683091984734062,
+    "pct_cells_improved": 0.7485029940119761,
+    "objective_score": 56.56582749977489
+  },
+  "11:00": {
+    "mean_utci_c": 37.15449101796407,
+    "delta_mean_utci_c": -0.025299401197607096,
+    "mean_tmrt_c": 48.49820153474812,
+    "delta_mean_tmrt_c": -0.11015965030887287,
+    "peak_tmrt_drop_k": 17.436310827221007,
+    "pct_cells_improved": 0.8982035928143712,
+    "objective_score": 57.74067779917608
+  },
+  "13:00": {
+    "mean_utci_c": 30.682035928143712,
+    "delta_mean_utci_c": 0.008832335329341134,
+    "mean_tmrt_c": 21.668939551732734,
+    "delta_mean_tmrt_c": 0.03506527615298438,
+    "peak_tmrt_drop_k": 0.0,
+    "pct_cells_improved": 0.0,
+    "objective_score": 47.768222709355726
+  },
+  "15:00": {
+    "mean_utci_c": 30.682035928143712,
+    "delta_mean_utci_c": 0.008832335329341134,
+    "mean_tmrt_c": 21.668939551732734,
+    "delta_mean_tmrt_c": 0.03506527615298438,
+    "peak_tmrt_drop_k": 0.0,
+    "pct_cells_improved": 0.0,
+    "objective_score": 47.768222709355726
+  }
+}

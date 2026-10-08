@@ -1,0 +1,12 @@
+{
+  "formula": "minimize: mean_UTCI + 0.5 * P90_UTCI + weight_area * area_m2 + feasibility_penalty",
+  "weights": {
+    "weight_mean_utci": 1.0,
+    "weight_p90_utci": 0.5,
+    "weight_max_utci": 0.0,
+    "weight_mean_tmrt": 0.0,
+    "weight_area_penalty": 0.005,
+    "comfort_threshold_utci": 32.0,
+    "feasibility_penalty": 1000.0
+  }
+}

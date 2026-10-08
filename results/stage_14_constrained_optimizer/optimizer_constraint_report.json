@@ -1,0 +1,15 @@
+{
+  "total_proposals": 29,
+  "feasible_count": 12,
+  "infeasible_count": 17,
+  "feasibility_rate_pct": 41.37931034482759,
+  "rejection_reasons_breakdown": {
+    "BUILDING_COLLISION": 11,
+    "OUT_OF_BOUNDS": 6
+  },
+  "hard_constraint_enforcement": "Zero infeasible candidates evaluated in physics solver (100% screened before simulation)",
+  "soft_penalty_metrics": {
+    "area_penalty_applied": true,
+    "weight": 0.005
+  }
+}

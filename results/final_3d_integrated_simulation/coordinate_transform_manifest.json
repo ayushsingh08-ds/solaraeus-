@@ -1,0 +1,36 @@
+{
+  "coordinate_system": {
+    "source_crs": "EPSG:4326",
+    "projected_crs": "EPSG:32643",
+    "utm_zone": "43N",
+    "local_origin_x": 782541.8055380594,
+    "local_origin_y": 1435736.1103432046,
+    "local_origin_z": 0.0,
+    "grid_convergence_deg": 0.585366,
+    "vertical_datum": "EGM2008_ORTHOMETRIC",
+    "units": "meters",
+    "axis_orientation": "X_EAST_Y_NORTH_Z_UP"
+  },
+  "reference_station": {
+    "name": "Church Street Central Corridor",
+    "city": "Bengaluru, India",
+    "nominal_coordinates": {
+      "latitude_deg": 12.9749,
+      "longitude_deg": 77.6054
+    },
+    "utm_origin": {
+      "easting_m": 782541.8055380594,
+      "northing_m": 1435736.1103432046,
+      "elevation_m": 0.0
+    }
+  },
+  "axis_conventions": {
+    "local_x": "+East (meters)",
+    "local_y": "+North (meters)",
+    "local_z": "+Up (meters)",
+    "threejs_x": "+East",
+    "threejs_y": "+Up",
+    "threejs_z": "-North (toward South)"
+  },
+  "status": "AUTHORITATIVE_COORDINATE_PIPELINE_VALIDATED"
+}

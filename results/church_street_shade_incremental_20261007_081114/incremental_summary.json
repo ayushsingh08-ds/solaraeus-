@@ -1,0 +1,37 @@
+{
+  "intervention_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "edit_type": "mesh_added",
+  "incremental_computation_used": true,
+  "cell_counts": {
+    "total_cells": 28120,
+    "recomputed_cells": 72,
+    "reused_cells": 28048,
+    "reused_fraction": 0.9974395448079658,
+    "reused_percentage": 99.74395448079659
+  },
+  "ray_counts": {
+    "full_recomputation_rays": 927960,
+    "incremental_rays": 2376,
+    "rays_avoided": 925584,
+    "work_reduction_percentage": 99.74395448079659
+  },
+  "timing_sec": {
+    "full_recomputation": 6.038027599999623,
+    "certified_incremental_total": 1.269706799997948,
+    "certified_selective_recompute": 1.2283708000031766,
+    "exact_incremental_total": 3.2563713999988977,
+    "speedup_vs_full": 4.755450313418327,
+    "speedup_selective_vs_full": 4.91547633661107
+  },
+  "parity_accuracy": {
+    "max_abs_error_tmrt_k": 0.02890152869707663,
+    "mean_abs_error_tmrt_k": 1.3890542391036443e-05,
+    "max_abs_error_svf": 0.004194572176794309,
+    "max_abs_error_shadow": 0.0,
+    "tolerance_k": 0.5,
+    "within_tolerance": true
+  },
+  "certificate_status": "certified",
+  "certificate_violations": 0
+}

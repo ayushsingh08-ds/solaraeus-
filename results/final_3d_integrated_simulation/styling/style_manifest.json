@@ -1,0 +1,26 @@
+{
+  "status": "CINEMATIC_AERIAL_STYLE_APPLIED",
+  "governing_rule": "VISUAL_STYLE_PRESENTATION_LAYER_ONLY (Styling never alters any physically computed quantity)",
+  "presets": {
+    "CINEMATIC_AERIAL": "Default oblique aerial dark atmospheric mood matching reference target",
+    "DAYLIGHT_CLEAR": "Bright neutral daytime presentation",
+    "ANALYSIS_NEUTRAL": "Flat neutral lighting for maximum legibility of heatmaps and rays"
+  },
+  "camera": {
+    "oblique_aerial_pitch_deg": 38.0,
+    "fov": 45.0,
+    "controls": "Orbit with smooth damping and fly-to bookmarks"
+  },
+  "atmosphere": {
+    "haze": true,
+    "corner_fog_wisps": "VISUAL_ONLY",
+    "vignette": true,
+    "depth_of_field": "Subtle peripheral"
+  },
+  "overlays": {
+    "compass_rose": "True North rotating dynamically with camera heading",
+    "poi_pins": "Circular white pins with icons anchored to real coordinates",
+    "callouts": "Elevated metric card with live active simulation values",
+    "bottom_pill_buttons": true
+  }
+}

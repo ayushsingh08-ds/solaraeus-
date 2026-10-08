@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:43.802194+00:00",
+  "stage": 11,
+  "stage_name": "gpu_incremental_recomputation",
+  "domain_shape": [
+    148,
+    190
+  ],
+  "total_cells": 28120,
+  "recomputed_cells": 72,
+  "reused_cells": 28048,
+  "reused_fraction": 0.9974395448079658,
+  "ray_work_reduction_pct": 99.74395448079659,
+  "mean_tmrt_c": 41.42341889821158,
+  "mean_utci_c": 35.43264224751067,
+  "mean_svf": 0.4378334735678307,
+  "status": "PASS"
+}

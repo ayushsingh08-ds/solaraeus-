@@ -1,0 +1,86 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:18.375943+00:00",
+  "stage": 10,
+  "stage_name": "gpu_full_vs_cpu_validation",
+  "total_tests": 6,
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "test_records": [
+    {
+      "test_id": 1,
+      "name": "Static baseline CPU vs GPU full",
+      "pass": true,
+      "cpu_time_s": 6.633209199993871,
+      "gpu_time_s": 0.3733522999973502,
+      "shadow_discrepancies": 0,
+      "svf_max_error": 1.0547118733938987e-14,
+      "tmrt_max_error_k": 1.1368683772161603e-13,
+      "utci_max_error_c": 0.0
+    },
+    {
+      "test_id": 2,
+      "name": "Shade-panel full CPU vs GPU",
+      "pass": true,
+      "cpu_time_s": 5.336979700005031,
+      "gpu_time_s": 0.11464339999656659,
+      "fields_evaluated": [
+        "shadow_mask",
+        "direct_irradiance",
+        "svf",
+        "shortwave_flux",
+        "longwave_flux",
+        "tmrt",
+        "utci"
+      ],
+      "all_fields_passed": true
+    },
+    {
+      "test_id": 3,
+      "name": "Synthetic scene CPU vs GPU",
+      "pass": true,
+      "shadow_discrepancies": 0,
+      "svf_max_error": 2.7755575615628914e-16,
+      "tmrt_max_error_k": 5.684341886080802e-14
+    },
+    {
+      "test_id": 4,
+      "name": "Edge-case scene CPU vs GPU",
+      "pass": true,
+      "shadow_discrepancies": 0,
+      "svf_max_error": 0.0,
+      "tmrt_max_error_k": 0.0
+    },
+    {
+      "test_id": 5,
+      "name": "Mask, coordinates, grid shape and metadata comparison",
+      "pass": true,
+      "grid_shape": [
+        148,
+        190
+      ],
+      "grid_shape_match": true,
+      "solar_altitude_error_deg": 0.0,
+      "solar_azimuth_error_deg": 0.0,
+      "buildings_count_match": true,
+      "total_cells_match": true,
+      "air_temperature_match": true
+    },
+    {
+      "test_id": 6,
+      "name": "Repeated GPU run determinism",
+      "pass": true,
+      "run_times_s": [
+        0.12572500000533182,
+        0.12047579999489244,
+        0.12065480000455864
+      ],
+      "shadow_discrepancies": 0,
+      "svf_max_variation": 0.0,
+      "tmrt_max_variation_k": 0.0,
+      "utci_max_variation_c": 0.0,
+      "bit_identical_determinism": true
+    }
+  ],
+  "overall_status": "PASS",
+  "success_token": "STAGE_10_GPU_FULL_VS_CPU_VALIDATION_COMPLETE"
+}

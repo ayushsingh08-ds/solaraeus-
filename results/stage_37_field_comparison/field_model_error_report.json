@@ -1,0 +1,15 @@
+{
+  "stage": 37,
+  "status": "STAGE_37_FIELD_DATA_UNAVAILABLE",
+  "timestamp_utc": "2026-10-08T09:43:35.388877+00:00",
+  "metrics": {
+    "rmse": null,
+    "mae": null,
+    "bias": null,
+    "r_squared": null,
+    "sample_size": 0
+  },
+  "reason": "No in-situ sensor or microclimatic data logging campaigns were conducted on Church Street.",
+  "calibration_feasible": false,
+  "fabrication_prevented": true
+}

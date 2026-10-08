@@ -1,0 +1,16 @@
+{
+  "stage_id": "STAGE_24",
+  "timestamp_utc": "2026-10-08T09:18:11.648214+00:00",
+  "policy_status": "STAGE_24_APPROVED",
+  "total_decisions": 8,
+  "approved_decisions": 8,
+  "deferred_items": [
+    "PHYSICAL_FIELD_TREE_SURVEY",
+    "MEASURED_STREET_SCALE_DTM"
+  ],
+  "prohibited_actions": [
+    "UNGROUNDED_CALIBRATION_CLAIMS",
+    "PROMOTION_OF_FABDEM_TO_STREET_SCALE"
+  ],
+  "gate_status": "STAGE_24_APPROVED"
+}

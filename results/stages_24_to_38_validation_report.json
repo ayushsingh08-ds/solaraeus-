@@ -1,0 +1,142 @@
+{
+  "report_timestamp_utc": "2026-10-08T17:24:39.945829+00:00",
+  "roadmap_range": "STAGES_24_THROUGH_38",
+  "stages": [
+    {
+      "stage_id": "STAGE_24",
+      "name": "Researcher Approval Closure",
+      "status": "STAGE_24_HUMAN_APPROVAL_PENDING",
+      "token": "STAGE_24_HUMAN_APPROVAL_PENDING",
+      "gate": "CLOSED_PENDING_HUMAN",
+      "blocker": "Human signature and credential input pending"
+    },
+    {
+      "stage_id": "STAGE_25",
+      "name": "Real Street-Scale DTM Validation",
+      "status": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+      "token": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+      "gate": "SYNTHETIC_ONLY",
+      "blocker": "Measured municipal street-scale curb survey unavailable in repo"
+    },
+    {
+      "stage_id": "STAGE_26",
+      "name": "Field Validation of Trees",
+      "status": "STAGE_26_FIELD_VALIDATION_PENDING",
+      "token": "STAGE_26_FIELD_VALIDATION_PENDING",
+      "gate": "CLOSED_PENDING_SURVEY",
+      "blocker": "Physical 2026 on-site laser/TLS ground truth survey pending"
+    },
+    {
+      "stage_id": "STAGE_27",
+      "name": "Real-World Terrain CPU Revalidation",
+      "status": "STAGE_27_BLOCKED",
+      "token": "STAGE_27_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite STAGE_25_MEASURED_STREET_SCALE_DTM_VALIDATED"
+    },
+    {
+      "stage_id": "STAGE_28",
+      "name": "Real-World Terrain GPU Validation",
+      "status": "STAGE_28_BLOCKED",
+      "token": "STAGE_28_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 27"
+    },
+    {
+      "stage_id": "STAGE_29",
+      "name": "Level 1 Tree-Geometry Integration",
+      "status": "STAGE_29_BLOCKED",
+      "token": "STAGE_29_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisites STAGE_24_APPROVED and STAGE_26_FIELD_VALIDATION_COMPLETE"
+    },
+    {
+      "stage_id": "STAGE_30",
+      "name": "CPU Tree-Shadow Reference Solver",
+      "status": "STAGE_30_BLOCKED",
+      "token": "STAGE_30_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 29"
+    },
+    {
+      "stage_id": "STAGE_31",
+      "name": "GPU Tree-Shadow Backend",
+      "status": "STAGE_31_BLOCKED",
+      "token": "STAGE_31_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 30"
+    },
+    {
+      "stage_id": "STAGE_32",
+      "name": "Tree-Aware Incremental Recomputation",
+      "status": "STAGE_32_BLOCKED",
+      "token": "STAGE_32_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 31"
+    },
+    {
+      "stage_id": "STAGE_33",
+      "name": "Canopy-Parameter Sensitivity Analysis",
+      "status": "STAGE_33_BLOCKED",
+      "token": "STAGE_33_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 29"
+    },
+    {
+      "stage_id": "STAGE_34",
+      "name": "Terrain/Tree Parity & Certificates",
+      "status": "STAGE_34_BLOCKED",
+      "token": "STAGE_34_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisites Stages 28 and 32"
+    },
+    {
+      "stage_id": "STAGE_35",
+      "name": "Terrain/Tree Intervention Optimization",
+      "status": "STAGE_35_BLOCKED",
+      "token": "STAGE_35_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 34"
+    },
+    {
+      "stage_id": "STAGE_36",
+      "name": "Final Terrain/Tree Candidate Validation",
+      "status": "STAGE_36_BLOCKED",
+      "token": "STAGE_36_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Missing prerequisite Stage 35"
+    },
+    {
+      "stage_id": "STAGE_37",
+      "name": "Extended Uncertainty & Field Comparison",
+      "status": "STAGE_37_FIELD_DATA_UNAVAILABLE",
+      "token": "STAGE_37_FIELD_DATA_UNAVAILABLE",
+      "gate": "DATA_UNAVAILABLE",
+      "blocker": "No in-situ sensor stations / globe thermometers logged on Church Street"
+    },
+    {
+      "stage_id": "STAGE_38",
+      "name": "Final Extended Publication Release",
+      "status": "STAGE_38_BLOCKED",
+      "token": "STAGE_38_BLOCKED",
+      "gate": "BLOCKED",
+      "blocker": "Real-world terrain/tree model claims blocked by upstream gates"
+    }
+  ],
+  "hardware_environment": {
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_version": "3.12.6",
+    "gpu_device": "NVIDIA GeForce RTX 4050 Laptop GPU (6.00 GB VRAM)",
+    "cuda_compatible": true,
+    "cupy_version": "14.2.0"
+  },
+  "governing_policy": {
+    "human_approval_status": "PENDING (Strict non-fabrication)",
+    "measured_dtm_status": "UNAVAILABLE (FABDEM restricted to regional reference)",
+    "tree_field_validation_status": "PENDING (Photo-estimated bounds preserved)",
+    "real_world_terrain_claims_allowed": false,
+    "calibrated_tree_claims_allowed": false,
+    "software_synthetic_terrain_validated": true
+  }
+}

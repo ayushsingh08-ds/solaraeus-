@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.208533+00:00",
+  "flat_ground_parity": {
+    "shadow_diff": 0.0,
+    "tmrt_diff_k": 5.684341886080802e-14,
+    "exact_bit_match": true
+  },
+  "synthetic_incline_parity": {
+    "shadow_diff": 0.0,
+    "tmrt_diff_k": 0.0,
+    "parity_status": "EXACT_PARITY_PASSED"
+  }
+}

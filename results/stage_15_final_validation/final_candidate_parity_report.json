@@ -1,0 +1,68 @@
+[
+  {
+    "candidate_id": "CAND_FINAL_BEST",
+    "role": "Selected Optimal Candidate",
+    "cpu_full_vs_gpu_full": {
+      "max_tmrt_error_k": 1.1368683772161603e-13,
+      "max_utci_error_c": 0.0,
+      "max_shortwave_error_wm2": 3.410605131648481e-13,
+      "pass": true
+    },
+    "gpu_inc_vs_gpu_full": {
+      "max_tmrt_error_k": 0.018742463033049717,
+      "mean_tmrt_error_k": 1.208000653257577e-05,
+      "max_utci_error_c": 0.10000000000000142,
+      "tolerance_k": 0.5,
+      "pass": true
+    },
+    "cpu_full_vs_gpu_inc": {
+      "max_tmrt_error_k": 0.018742463033049717,
+      "tolerance_k": 0.5,
+      "pass": true
+    }
+  },
+  {
+    "candidate_id": "CAND_CANONICAL",
+    "role": "Canonical Benchmark Candidate (BLR_SHADE_001)",
+    "cpu_full_vs_gpu_full": {
+      "max_tmrt_error_k": 1.1368683772161603e-13,
+      "max_utci_error_c": 0.0,
+      "max_shortwave_error_wm2": 3.410605131648481e-13,
+      "pass": true
+    },
+    "gpu_inc_vs_gpu_full": {
+      "max_tmrt_error_k": 0.02890152869707663,
+      "mean_tmrt_error_k": 1.3890542392198782e-05,
+      "max_utci_error_c": 0.10000000000000142,
+      "tolerance_k": 0.5,
+      "pass": true
+    },
+    "cpu_full_vs_gpu_inc": {
+      "max_tmrt_error_k": 0.02890152869707663,
+      "tolerance_k": 0.5,
+      "pass": true
+    }
+  },
+  {
+    "candidate_id": "CAND_ALT_LHS",
+    "role": "Alternative Candidate 1 (LHS Top Rank)",
+    "cpu_full_vs_gpu_full": {
+      "max_tmrt_error_k": 1.1368683772161603e-13,
+      "max_utci_error_c": 0.0,
+      "max_shortwave_error_wm2": 3.410605131648481e-13,
+      "pass": true
+    },
+    "gpu_inc_vs_gpu_full": {
+      "max_tmrt_error_k": 0.040706281143513934,
+      "mean_tmrt_error_k": 2.0471874551601708e-05,
+      "max_utci_error_c": 0.10000000000000142,
+      "tolerance_k": 0.5,
+      "pass": true
+    },
+    "cpu_full_vs_gpu_inc": {
+      "max_tmrt_error_k": 0.040706281143513934,
+      "tolerance_k": 0.5,
+      "pass": true
+    }
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "candidate_id": "CAND_0063_SURR",
+  "iteration": 63,
+  "method": "surrogate_random_exploration",
+  "params": {
+    "x": 122.1201750843049,
+    "y": 65.78847542284285,
+    "length": 3.4758733716605317,
+    "width": 2.952787791946665,
+    "height": 2.9851377422210454,
+    "heading_deg": 95.8004224190758,
+    "albedo": 0.6791987434970332,
+    "area_m2": 10.263516458191711
+  },
+  "is_feasible": true,
+  "rejection_reason": null,
+  "rejection_message": null,
+  "objective_value": 54.92691638468616,
+  "metrics": {
+    "mean_utci_c": 36.475598802395204,
+    "p90_utci_c": 36.8,
+    "max_utci_c": 37.0,
+    "min_utci_c": 33.2,
+    "mean_tmrt_c": 45.749149634135655,
+    "max_tmrt_c": 47.93783363178409,
+    "pct_improved_cells": 0.5988023952095809,
+    "pct_comfortable_cells": 0.0,
+    "area_m2": 10.263516458191711,
+    "area_penalty": 0.051317582290958556,
+    "objective_value": 54.92691638468616,
+    "delta_mean_utci_c": -0.014970059880248243,
+    "delta_mean_tmrt_c": -0.06169916822634747,
+    "peak_local_tmrt_improvement": 12.817802175315876,
+    "evaluated_cells_count": 668
+  },
+  "gpu_metrics": {
+    "total_cells": 28120,
+    "recomputed_cells": 48,
+    "reused_cells": 28072,
+    "reused_fraction_pct": 99.8293,
+    "recomputed_rays": 1584,
+    "reused_rays": 926376,
+    "ray_work_reduction_pct": 99.8293,
+    "gpu_kernel_time_ms": 16.39,
+    "h2d_transfer_time_ms": 43.141,
+    "d2h_transfer_time_ms": 1.029,
+    "incremental_wall_time_s": 0.1119
+  },
+  "certificate_status": "certified",
+  "certificate_violations": 0,
+  "max_predicted_bound_k": 44.876961,
+  "wall_time_s": 0.1122
+}

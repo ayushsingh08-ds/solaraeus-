@@ -1,0 +1,4 @@
+{
+  "analytic_formula": "L = H / tan(alt)",
+  "verified_tolerance_m": 0.01
+}

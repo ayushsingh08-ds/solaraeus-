@@ -1,0 +1,10 @@
+{
+  "stage": 33,
+  "status": "STAGE_33_CANOPY_SENSITIVITY_COMPLETE",
+  "tests_run": 6,
+  "tests_passed": 6,
+  "tests_failed": 0,
+  "acceptance_criteria_met": true,
+  "token": "STAGE_33_CANOPY_SENSITIVITY_COMPLETE",
+  "notes": "Canopy parameter sensitivity sweeps complete across 6 regimes without ungrounded calibration claims."
+}

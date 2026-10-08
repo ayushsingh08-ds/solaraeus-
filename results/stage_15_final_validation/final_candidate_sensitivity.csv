@@ -1,0 +1,15 @@
+parameter,delta,description,is_feasible,objective_value,delta_objective,sensitivity_gradient,notes
+x,1.0,Eastward translation +1.0 m,True,54.9552,0.00169,0.00169,FEASIBLE
+x,-1.0,Westward translation -1.0 m,True,54.9556,0.00214,-0.00214,FEASIBLE
+y,1.0,Northward translation +1.0 m,True,54.9476,-0.00595,-0.00595,FEASIBLE
+y,-1.0,Southward translation -1.0 m,True,54.9486,-0.0049,0.0049,FEASIBLE
+length,0.5,Length increase +0.5 m,True,54.9566,0.00311,0.00622,FEASIBLE
+length,-0.5,Length decrease -0.5 m,True,54.9458,-0.00767,0.01533,FEASIBLE
+width,0.3,Width increase +0.3 m,True,54.9554,0.00187,0.00625,FEASIBLE
+width,-0.3,Width decrease -0.3 m,True,54.9469,-0.00658,0.02193,FEASIBLE
+height,0.3,Height raise +0.3 m,True,54.9544,0.00094,0.00314,FEASIBLE
+height,-0.3,Height lower -0.3 m,True,54.9532,-0.00026,0.00085,FEASIBLE
+heading_deg,5.0,Clockwise rotation +5.0 deg,True,54.9488,-0.00475,-0.00095,FEASIBLE
+heading_deg,-5.0,Counter-clockwise rotation -5.0 deg,True,54.9535,4e-05,-1e-05,FEASIBLE
+albedo,0.1,Albedo increase +0.10,True,54.9535,4e-05,0.00043,FEASIBLE
+albedo,-0.1,Albedo decrease -0.10,True,54.9535,4e-05,-0.00043,FEASIBLE

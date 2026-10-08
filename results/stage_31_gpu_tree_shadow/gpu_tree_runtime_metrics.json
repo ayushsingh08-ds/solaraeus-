@@ -1,0 +1,21 @@
+{
+  "cpu_runtimes_sec": {
+    "single_tree": 0.8569533999834675,
+    "core_trees_small": 0.1101697999984026,
+    "core_trees_nom": 0.11919679999118671,
+    "core_trees_large": 0.10620120001840405,
+    "tree_beside_building": 0.06558170000789687,
+    "trees_plus_panel": 0.16325929999584332,
+    "trees_on_incline": 0.1264755000011064
+  },
+  "gpu_runtimes_sec": {
+    "single_tree": 0.4910583999881055,
+    "core_trees_small": 0.07132270000874996,
+    "core_trees_nom": 0.0800079999899026,
+    "core_trees_large": 0.0813893000013195,
+    "tree_beside_building": 0.09029640001244843,
+    "trees_plus_panel": 0.10538349999114871,
+    "trees_on_incline": 0.08096960000693798
+  },
+  "average_speedup": 1.4174207659531606
+}

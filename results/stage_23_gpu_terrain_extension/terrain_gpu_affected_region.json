@@ -1,0 +1,8 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.211757+00:00",
+  "total_cells": 6400,
+  "dirty_cells": 400,
+  "clean_cells": 6000,
+  "affected_fraction": 0.0625,
+  "mask_is_conservative": true
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "field": "Direct Shadow Mask",
+    "unit": "-",
+    "tolerance": 0.0,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "rms_error": 0.0,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Sky View Factor (SVF)",
+    "unit": "-",
+    "tolerance": 0.01,
+    "max_absolute_error": 0.00419457217679442,
+    "mean_absolute_error": 2.0076879701544e-06,
+    "rms_error": 5.560036975464016e-05,
+    "p99_error": 3.642641743795284e-15,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Direct Shortwave Irradiance",
+    "unit": "W/m2",
+    "tolerance": 0.0001,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "rms_error": 0.0,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Total Shortwave Flux",
+    "unit": "W/m2",
+    "tolerance": 0.5,
+    "max_absolute_error": 0.1288091035825687,
+    "mean_absolute_error": 6.165312618605625e-05,
+    "rms_error": 0.0017074050666177475,
+    "p99_error": 1.1368683772161603e-13,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Total Longwave Flux",
+    "unit": "W/m2",
+    "tolerance": 0.5,
+    "max_absolute_error": 0.12932611536638206,
+    "mean_absolute_error": 6.190058845695596e-05,
+    "rms_error": 0.001714258219964202,
+    "p99_error": 1.1368683772161603e-13,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Mean Radiant Temperature (Tmrt)",
+    "unit": "K",
+    "tolerance": 0.5,
+    "max_absolute_error": 0.02890152869707663,
+    "mean_absolute_error": 1.3890542392200803e-05,
+    "rms_error": 0.00038416015240388414,
+    "p99_error": 5.684341886080802e-14,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Thermal Comfort (UTCI)",
+    "unit": "degC",
+    "tolerance": 0.5,
+    "max_absolute_error": 0.10000000000000142,
+    "mean_absolute_error": 7.112375533428013e-06,
+    "rms_error": 0.0008433490104000753,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  }
+]

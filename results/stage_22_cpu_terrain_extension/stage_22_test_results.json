@@ -1,0 +1,36 @@
+{
+  "stage": "STAGE_22",
+  "timestamp_utc": "2026-10-08T08:32:13.181786+00:00",
+  "tests": [
+    {
+      "name": "test_flat_ground_regression_parity",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_synthetic_inclined_plane",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_synthetic_stepped_curb",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_synthetic_nodata_propagation",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_panel_terrain_clearance",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_church_street_geometry_scalability",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_nine_certificates_valid",
+      "status": "PASSED"
+    }
+  ],
+  "all_passed": true,
+  "token": "STAGE_22_TERRAIN_AWARE_CPU_REFERENCE_COMPLETE"
+}

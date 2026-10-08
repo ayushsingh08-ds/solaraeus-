@@ -1,0 +1,26 @@
+{
+  "25": {
+    "budget": 25,
+    "best_objective": 56.56582749977489,
+    "best_candidate_id": "CAND_4196_SURR",
+    "peak_tmrt_drop": 12.683091984734062,
+    "mean_utci": 36.47964071856288,
+    "area": 22.872892707067003
+  },
+  "50": {
+    "budget": 50,
+    "best_objective": 56.402534643071704,
+    "best_candidate_id": "CAND_11067_SURR",
+    "peak_tmrt_drop": 12.475544043052196,
+    "mean_utci": 36.48428143712575,
+    "area": 17.275106864865066
+  },
+  "100": {
+    "budget": 100,
+    "best_objective": 56.35920317045308,
+    "best_candidate_id": "CAND_15178_SURR",
+    "peak_tmrt_drop": 12.497540735844325,
+    "mean_utci": 36.483083832335325,
+    "area": 15.870644603925367
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "validation_timestamp_utc": "2026-10-07T18:07:28Z",
+  "total_checks": 11,
+  "checks_passed": 11,
+  "checks_failed": 0,
+  "checks": {
+    "six_core_tree_ids_exist": {
+      "passed": true,
+      "ids": [
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T12",
+        "T13"
+      ]
+    },
+    "fourteen_total_tree_ids_unique": {
+      "passed": true,
+      "count": 14
+    },
+    "unique_coordinates": {
+      "passed": true,
+      "count": 14
+    },
+    "valid_geometry_within_domain": {
+      "passed": true
+    },
+    "protected_file_checksums": {
+      "passed": true,
+      "raw_mismatches": 0,
+      "interim_mismatches": 0
+    },
+    "unchecked_signoff_boxes": {
+      "passed": true,
+      "checked_count": 0,
+      "unchecked_count": 19
+    },
+    "no_automatic_promotion": {
+      "passed": true
+    },
+    "no_automatic_simulation_approval": {
+      "passed": true
+    },
+    "no_solver_modifications": {
+      "passed": true
+    },
+    "no_frozen_result_modifications": {
+      "passed": true
+    },
+    "all_required_review_outputs_present": {
+      "passed": true,
+      "missing_files": []
+    }
+  }
+}

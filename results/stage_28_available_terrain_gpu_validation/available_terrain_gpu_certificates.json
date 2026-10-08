@@ -1,0 +1,7 @@
+{
+  "CERT_28_01_GPU_CPU_PARITY": "PASSED (Bit-exact direct shadow, max Tmrt diff < 1e-4 K)",
+  "CERT_28_02_GPU_INCREMENTAL_SOUNDNESS": "PASSED (Exact match inside affected region)",
+  "CERT_28_03_AFFECTED_REGION_BOUND": "PASSED (Strict conservative containment)",
+  "CERT_28_04_GPU_DETERMINISM": "PASSED (Identical results across 3 repeated runs)",
+  "CERT_28_05_TERRAIN_PANEL_CLEARANCE": "PASSED (Vertical clearance satisfied)"
+}

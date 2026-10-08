@@ -1,0 +1,44 @@
+{
+  "no_trees": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  },
+  "one_tree": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  },
+  "core_trees_small": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  },
+  "core_trees_nom": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  },
+  "core_trees_large": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  },
+  "trees_plus_panel": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  },
+  "trees_on_incline": {
+    "cpu_full_vs_inc_max_tmrt_k": 0.0,
+    "gpu_full_vs_inc_max_tmrt_k": 0.0,
+    "cpu_incremental_exact": true,
+    "gpu_incremental_exact": true
+  }
+}

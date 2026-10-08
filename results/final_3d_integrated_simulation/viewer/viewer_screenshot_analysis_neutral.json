@@ -1,0 +1,16 @@
+{
+  "screenshot_file": "viewer_screenshot_analysis_neutral.png",
+  "date": "2026-04-15",
+  "study_area": "Church Street Corridor, Bengaluru",
+  "coordinates": {
+    "lat": 12.9749,
+    "lon": 77.6054
+  },
+  "parameters": {
+    "scenario": "COMBINED_HYBRID",
+    "style": "ANALYSIS_NEUTRAL",
+    "time": "14:30",
+    "lighting": "Unlit Flat Shading"
+  },
+  "scientific_status": "PHYSICALLY_COMPUTED_WITH_DOCUMENTED_LIMITATIONS"
+}

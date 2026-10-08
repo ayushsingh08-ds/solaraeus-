@@ -1,0 +1,7 @@
+{
+  "area_id": "AREA_MG_ROAD_PLAZA",
+  "cpu_full_vs_gpu_full_max_tmrt_error_k": 5.684341886080802e-14,
+  "gpu_inc_vs_gpu_full_max_tmrt_error_k": 0.10861584514913147,
+  "solver_equivalence_pass": true,
+  "incremental_tolerance_pass": true
+}

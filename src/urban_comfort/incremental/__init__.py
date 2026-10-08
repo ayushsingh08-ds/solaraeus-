@@ -22,7 +22,7 @@ from urban_comfort.incremental.mesh_affected_region import (
     project_mesh_shadow, compute_mesh_candidate_affected_region
 )
 from urban_comfort.incremental.mesh_update import (
-    AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
+    AddMeshEdit, AddMultiMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
 )
 from urban_comfort.incremental.certificate import (
     ErrorCertificate, CertificateVerification, CertificateViolationError,
@@ -44,6 +44,7 @@ __all__ = [
     "ChangeHeightEdit",
     "MoveBuildingEdit",
     "AddMeshEdit",
+    "AddMultiMeshEdit",
     "RemoveMeshEdit",
     "ReplaceMeshEdit",
     "MoveMeshEdit",

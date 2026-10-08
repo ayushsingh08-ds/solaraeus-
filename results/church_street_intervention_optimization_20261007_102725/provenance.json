@@ -1,0 +1,16 @@
+{
+  "timestamp_utc": "20261007_102725",
+  "total_wall_time_s": 52.4,
+  "total_candidates_evaluated": 44,
+  "feasible_count": 21,
+  "rejected_count": 23,
+  "frozen_references_locked": {
+    "baseline_shadow": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+    "cpu_full_tmrt": "afddc4318c52d994a1c0221dc0f0834155b72ab0936669f7786da9fc0a0ec757",
+    "cpu_inc_summary": "2c6a66934f6a9810431b1de863bbd730d5f0d298a5f6495021d9e387ad23b684",
+    "gpu_full_tmrt": "4159364a96414f38677e185756e2f8f4d73fdb934368d8e6d7cee0cf6d90c0d0",
+    "gpu_inc_summary": "bcc2f1970c4ab95e2ff325a51896ad865ca276c612b2615ee0ce09cfceb580ef"
+  },
+  "best_candidate_id": "CAND_0036_EVOL",
+  "multi_path_validation_all_passed": true
+}

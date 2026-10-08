@@ -1,0 +1,46 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:18.321471+00:00",
+  "hardware": {
+    "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "device_id": 0,
+    "compute_capability": [
+      8,
+      9
+    ],
+    "multiprocessor_count": 20,
+    "total_global_mem_bytes": 6438780928,
+    "total_global_mem_gb": 5.99658203125,
+    "driver_version": 13040,
+    "runtime_version": 12090,
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]"
+  },
+  "software_dependencies": {
+    "cupy_version": "14.2.0",
+    "numpy_version": "2.2.6",
+    "backend_class": "urban_comfort.backend.gpu_backend.GPUBackend"
+  },
+  "execution_telemetry": {
+    "church_street_full_gpu_seconds": 0.11464339999656659,
+    "church_street_full_cpu_seconds": 5.336979700005031,
+    "effective_speedup": 46.55287352054167,
+    "gpu_internal_profile": {
+      "backend_name": "gpu",
+      "scene_upload_time_s": 0.0006253000028664246,
+      "kernel_runtime_s": 0.06712859999970533,
+      "transfer_to_host_time_s": 0.0003305000136606395,
+      "total_runtime_s": 0.0680844000162324,
+      "shadow_runtime_s": 0.0,
+      "svf_runtime_s": 0.0680844000162324,
+      "radiation_runtime_s": 0.0,
+      "utci_runtime_s": 0.0,
+      "peak_gpu_memory_bytes": 1116209152,
+      "shadow_ray_count": 0,
+      "svf_ray_count": 899840,
+      "total_ray_count": 899840,
+      "num_triangles": 2148,
+      "num_buildings": 0,
+      "device_name": "CUDA 0"
+    }
+  }
+}

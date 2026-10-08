@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TerrainAwareSceneSchema",
+  "version": "2.1.0-cpu-terrain",
+  "type": "object",
+  "required": [
+    "base_scene"
+  ],
+  "properties": {
+    "base_scene": {
+      "type": "object"
+    },
+    "terrain": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "elevation": {
+          "type": "array"
+        },
+        "bounds": {
+          "type": "object"
+        },
+        "crs": {
+          "type": "string"
+        },
+        "nodata_value": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

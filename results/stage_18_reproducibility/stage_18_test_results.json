@@ -1,0 +1,48 @@
+{
+  "stage": "STAGE_18",
+  "timestamp_utc": "2026-10-08T08:14:01.619227+00:00",
+  "tests": [
+    {
+      "name": "test_environment_manifest_integrity",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_reproduction_commands_documented",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_static_baseline_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_shade_panel_full_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_shade_panel_incremental_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_gpu_full_validation_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_gpu_incremental_validation_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_geographic_feasibility_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_optimizer_candidate_reproduction",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_checksum_comparison_intact",
+      "status": "PASSED"
+    }
+  ],
+  "all_passed": true,
+  "token": "STAGE_18_CLEAN_ENVIRONMENT_REPRODUCIBILITY_COMPLETE"
+}

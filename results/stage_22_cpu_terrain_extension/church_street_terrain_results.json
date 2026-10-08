@@ -1,0 +1,9 @@
+{
+  "timestamp_utc": "2026-10-08T08:32:13.000485+00:00",
+  "church_street_cells": 6400,
+  "flat_mean_tmrt_c": 43.246340287354904,
+  "synth_terrain_mean_tmrt_c": 44.29083633578308,
+  "terrain_shift_delta_k": 1.0444960484281722,
+  "real_world_claims_permitted": false,
+  "note": "Evaluated using synthetic incline profile to verify software scalability on 28k cells. Real-world DTM claims remain blocked."
+}

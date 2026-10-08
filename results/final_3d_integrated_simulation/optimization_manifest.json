@@ -1,0 +1,16 @@
+{
+  "status": "3D_OPTIMIZATION_ACTIVE",
+  "algorithm": "Gaussian Process Surrogate with Constrained Expected Improvement",
+  "objective": "Maximize localized pedestrian cooling relief subject to 3D architectural clearance",
+  "evaluated_in_3d": true,
+  "best_candidate_id": "BLR_SHADE_001 / CAND_0028_EVOL",
+  "best_candidate_parameters": {
+    "center_x": 105.0,
+    "center_y": 70.0,
+    "height_m": 4.5,
+    "length_m": 12.0,
+    "width_m": 6.0,
+    "rotation_deg": -5.4,
+    "cooling_relief_k": 12.6
+  }
+}

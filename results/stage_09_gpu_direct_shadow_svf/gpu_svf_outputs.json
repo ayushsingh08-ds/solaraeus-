@@ -1,0 +1,21 @@
+{
+  "field": "sky_view_factor",
+  "unit": "dimensionless_fraction",
+  "shape": [
+    148,
+    190
+  ],
+  "total_cells": 28120,
+  "valid_interval_verified": true,
+  "statistics": {
+    "min": 0.0,
+    "median": 0.5020762452458359,
+    "max": 0.9948493964510167,
+    "mean": 0.4378314658798605,
+    "std": 0.384515370677142,
+    "p10": 0.0,
+    "p90": 0.9337697573574866,
+    "p95": 0.9623604113719118,
+    "p99": 0.9862920968712856
+  }
+}

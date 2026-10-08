@@ -1,0 +1,52 @@
+{
+  "candidate_id": "CAND_0036_EVOL",
+  "iteration": 36,
+  "method": "evolutionary",
+  "params": {
+    "x": 137.53392016873616,
+    "y": 57.10813768960236,
+    "length": 3.336713005585618,
+    "width": 2.6442302886245725,
+    "height": 3.430567882566146,
+    "heading_deg": 110.74474357831033,
+    "albedo": 0.7253634568417962,
+    "area_m2": 8.823037593817023
+  },
+  "is_feasible": true,
+  "rejection_reason": null,
+  "rejection_message": null,
+  "objective_value": 54.93094153527447,
+  "metrics": {
+    "mean_utci_c": 36.48682634730539,
+    "p90_utci_c": 36.8,
+    "max_utci_c": 37.7,
+    "min_utci_c": 33.2,
+    "mean_tmrt_c": 45.794931889927845,
+    "max_tmrt_c": 50.68413317757205,
+    "pct_improved_cells": 0.29940119760479045,
+    "pct_comfortable_cells": 0.0,
+    "area_m2": 8.823037593817023,
+    "area_penalty": 0.04411518796908512,
+    "objective_value": 54.93094153527447,
+    "delta_mean_utci_c": -0.003742514970063837,
+    "delta_mean_tmrt_c": -0.015916912434157382,
+    "evaluated_cells_count": 668
+  },
+  "gpu_metrics": {
+    "total_cells": 28120,
+    "recomputed_cells": 56,
+    "reused_cells": 28064,
+    "reused_fraction_pct": 99.8009,
+    "recomputed_rays": 1848,
+    "reused_rays": 926112,
+    "ray_work_reduction_pct": 99.8009,
+    "gpu_kernel_time_ms": 11.088,
+    "h2d_transfer_time_ms": 18.576,
+    "d2h_transfer_time_ms": 0.561,
+    "incremental_wall_time_s": 0.0735
+  },
+  "certificate_status": "certified",
+  "certificate_violations": 0,
+  "max_predicted_bound_k": 45.018853,
+  "wall_time_s": 0.0737
+}

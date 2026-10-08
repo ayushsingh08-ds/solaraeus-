@@ -1,0 +1,10 @@
+{
+  "incremental_trial_1_sec": 0.34426680000615306,
+  "incremental_trial_2_sec": 0.16177960000641178,
+  "mean_incremental_sec": 0.2530232000062824,
+  "full_recomputation_sec": 2.899,
+  "speedup_ratio": 8.420794569642458,
+  "candidate_region_eval_sec": 0.00014420000661630183,
+  "certificate_eval_sec": 0.011828299990156665,
+  "selective_recompute_sec": 0.3287737000064226
+}

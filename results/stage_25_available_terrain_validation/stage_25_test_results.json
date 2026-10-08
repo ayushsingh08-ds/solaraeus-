@@ -1,0 +1,10 @@
+{
+  "stage": 25,
+  "status": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+  "tests_run": 5,
+  "tests_passed": 5,
+  "tests_failed": 0,
+  "acceptance_criteria_met": true,
+  "token": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+  "notes": "Available terrain representations validated; FABDEM restricted to regional context."
+}

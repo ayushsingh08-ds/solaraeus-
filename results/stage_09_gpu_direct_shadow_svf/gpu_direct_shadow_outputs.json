@@ -1,0 +1,23 @@
+{
+  "field": "direct_shadow_mask",
+  "unit": "binary_flag",
+  "shape": [
+    148,
+    190
+  ],
+  "total_cells": 28120,
+  "shaded_cells": 13731,
+  "sunlit_cells": 14389,
+  "binary_integrity_verified": true,
+  "statistics": {
+    "min": 0.0,
+    "median": 1.0,
+    "max": 1.0,
+    "mean": 0.5116998577524894,
+    "std": 0.49986309458547895,
+    "p10": 0.0,
+    "p90": 1.0,
+    "p95": 1.0,
+    "p99": 1.0
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "tree_addition": {
+    "dirty_cells": 0,
+    "affected_bounding_box": [
+      0.0,
+      50.0,
+      0.0,
+      50.0
+    ],
+    "containment_valid": true
+  },
+  "tree_translation": {
+    "dirty_cells": 456,
+    "affected_bounding_box": [
+      0.0,
+      50.0,
+      0.0,
+      50.0
+    ],
+    "containment_valid": true
+  },
+  "tree_height_scale": {
+    "dirty_cells": 456,
+    "affected_bounding_box": [
+      0.0,
+      50.0,
+      0.0,
+      50.0
+    ],
+    "containment_valid": true
+  },
+  "geometry_state_transition": {
+    "dirty_cells": 456,
+    "affected_bounding_box": [
+      0.0,
+      50.0,
+      0.0,
+      50.0
+    ],
+    "containment_valid": true
+  }
+}

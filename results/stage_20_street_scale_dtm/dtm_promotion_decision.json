@@ -1,0 +1,9 @@
+{
+  "timestamp_utc": "2026-10-08T08:17:41.522475+00:00",
+  "measured_dtm_promoted": false,
+  "fabdem_promoted_as_street_dtm": false,
+  "synthetic_terrain_approved_for_software_testing": true,
+  "real_world_terrain_claims_permitted": false,
+  "stage_classification": "STAGE_20_SYNTHETIC_TERRAIN_ONLY",
+  "token": "STAGE_20_SYNTHETIC_TERRAIN_ONLY"
+}

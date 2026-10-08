@@ -1,0 +1,252 @@
+{
+  "audit_timestamp_utc": "2026-10-07T18:30:27.118933+00:00",
+  "total_certificates_audited": 18,
+  "authoritative_count": 16,
+  "diagnostic_count": 2,
+  "all_passed": true,
+  "authoritative_all_passed": true,
+  "diagnostic_all_passed": true,
+  "certificates": [
+    {
+      "name": "Input Manifest Integrity",
+      "input_files": [
+        "inputs_manifest.json",
+        "shadow_context_mesh.json"
+      ],
+      "formula_or_rule": "SHA256 digests match recorded upstream hashes; all prerequisite geometry loaded",
+      "expected_range": "Exact cryptographic match",
+      "observed_range": "Cryptographic match verified",
+      "pass": true,
+      "tolerance": "0-bit mismatch",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Scene Metadata Consistency",
+      "input_files": [
+        "shadow_context_mesh.json"
+      ],
+      "formula_or_rule": "Context building count == 123; core buildings == 37; ground elevation == 0.0 m",
+      "expected_range": "[123 context, 37 core, z=0.0m]",
+      "observed_range": "123 context, 37 core, z=0.0m",
+      "pass": true,
+      "tolerance": "Exact match",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Coordinate and Unit Consistency",
+      "input_files": [
+        "grid_metadata_reconciliation.json"
+      ],
+      "formula_or_rule": "Grid spacing = 2.0 m, extent = 380m x 296m, ny=148, nx=190, CRS=EPSG:32643",
+      "expected_range": "(148, 190) @ 2.0 m",
+      "observed_range": "(148, 190) @ 2.0 m",
+      "pass": true,
+      "tolerance": "Exact match",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Valid-Cell Masks Integrity",
+      "input_files": [
+        "shadow_results.npz"
+      ],
+      "formula_or_rule": "All grid cells valid; unbuilt pedestrian corridor cells well-defined subset",
+      "expected_range": "28,120 cells total",
+      "observed_range": "28,120 cells total",
+      "pass": true,
+      "tolerance": "Exact match",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Direct-Shadow Binary Bounds",
+      "input_files": [
+        "full_recomputation_arrays.npz",
+        "incremental_arrays.npz"
+      ],
+      "formula_or_rule": "Shadow mask array values \u2208 {0, 1} strictly",
+      "expected_range": "{0, 1}",
+      "observed_range": "{0, 1}",
+      "pass": true,
+      "tolerance": "0.0",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Sky-View-Factor Mathematical Bounds",
+      "input_files": [
+        "full_recomputation_arrays.npz",
+        "incremental_arrays.npz"
+      ],
+      "formula_or_rule": "0.0 <= SVF <= 1.0 on all evaluated pedestrian receptors",
+      "expected_range": "[0.0, 1.0]",
+      "observed_range": "[0.0000, 0.9948]",
+      "pass": true,
+      "tolerance": "0.0",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Shortwave & Longwave Radiation Conservation",
+      "input_files": [
+        "full_recomputation_arrays.npz"
+      ],
+      "formula_or_rule": "Direct shortwave = 0 in shadow; downwelling & surface emission fluxes non-negative",
+      "expected_range": "K_dir == 0 when shadow == 0; L_tot > 0",
+      "observed_range": "K_dir == 0 in 100% of shadow cells; L_tot in [350, 750] W/m2",
+      "pass": true,
+      "tolerance": "1e-6 W/m2",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Thermal-Comfort Output Bounds",
+      "input_files": [
+        "full_recomputation_arrays.npz"
+      ],
+      "formula_or_rule": "Tmrt \u2208 [20\u00b0C, 65\u00b0C], UTCI \u2208 [20\u00b0C, 50\u00b0C] under daytime summer Bengaluru climate",
+      "expected_range": "Tmrt: [20, 65]\u00b0C, UTCI: [20, 50]\u00b0C",
+      "observed_range": "Tmrt: [31.16, 50.68]\u00b0C, UTCI: [32.90, 37.70]\u00b0C",
+      "pass": true,
+      "tolerance": "0.0",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Full vs Incremental Shadow Parity",
+      "input_files": [
+        "full_recomputation_arrays.npz",
+        "incremental_arrays.npz"
+      ],
+      "formula_or_rule": "max |Shadow_inc - Shadow_full| == 0.0",
+      "expected_range": "0.0",
+      "observed_range": "0.000000",
+      "pass": true,
+      "tolerance": "0.0",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Full vs Incremental SVF Parity",
+      "input_files": [
+        "full_recomputation_arrays.npz",
+        "incremental_arrays.npz"
+      ],
+      "formula_or_rule": "max |SVF_inc - SVF_full| <= 0.01",
+      "expected_range": "<= 0.01",
+      "observed_range": "0.004195",
+      "pass": true,
+      "tolerance": "0.01",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Full vs Incremental Tmrt Parity",
+      "input_files": [
+        "full_recomputation_arrays.npz",
+        "incremental_arrays.npz"
+      ],
+      "formula_or_rule": "max |Tmrt_inc - Tmrt_full| <= 0.50 K",
+      "expected_range": "<= 0.50 K",
+      "observed_range": "0.028902 K",
+      "pass": true,
+      "tolerance": "0.50 K",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Affected-Region Frustum Bounding Correctness",
+      "input_files": [
+        "affected_region_mask.json"
+      ],
+      "formula_or_rule": "All cells with |Shadow_full - Shadow_base| > 0 are contained within recomputed mask",
+      "expected_range": "100% containment",
+      "observed_range": "100% containment (6/6 changed shadow cells contained)",
+      "pass": true,
+      "tolerance": "0 omitted cells",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Determinism Across Independent Repeats",
+      "input_files": [
+        "reproducibility_report.json"
+      ],
+      "formula_or_rule": "max |Result_run1 - Result_run2| == 0.0 across all output fields",
+      "expected_range": "0.0",
+      "observed_range": "0.0",
+      "pass": true,
+      "tolerance": "0.0",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Panel Mesh Manifold Topology",
+      "input_files": [
+        "panel_validation.json"
+      ],
+      "formula_or_rule": "Watertight 2-manifold (every edge shared by 2 triangles, 0 degenerate faces)",
+      "expected_range": "Watertight=True, Degenerate=0",
+      "observed_range": "Watertight=True, Degenerate=0",
+      "pass": true,
+      "tolerance": "0 defects",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Non-Colliding Panel Placement",
+      "input_files": [
+        "panel_validation.json"
+      ],
+      "formula_or_rule": "Panel 2D footprint does not intersect any of the 123 building footprints",
+      "expected_range": "Zero intersections",
+      "observed_range": "Zero intersections",
+      "pass": true,
+      "tolerance": "0 intersections",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Stefan-Boltzmann Concavity Error Bound Soundness",
+      "input_files": [
+        "incremental_certificate.json"
+      ],
+      "formula_or_rule": "Slack = Bound_pred - Error_actual >= 0.0 on all 28,048 reused cells",
+      "expected_range": "Slack >= -1e-10 K everywhere (0 violations)",
+      "observed_range": "Slack >= 0 everywhere, 0 violations observed",
+      "pass": true,
+      "tolerance": "1e-10 K",
+      "failure_explanation": null,
+      "classification": "authoritative"
+    },
+    {
+      "name": "Unaffected Region Asymptotic Invariance",
+      "input_files": [
+        "comparison_to_baseline.json"
+      ],
+      "formula_or_rule": "Cells > 40 m from panel have max |Tmrt_interv - Tmrt_base| == 0.0",
+      "expected_range": "0.0",
+      "observed_range": "0.0",
+      "pass": true,
+      "tolerance": "1e-4 K",
+      "failure_explanation": null,
+      "classification": "diagnostic"
+    },
+    {
+      "name": "Street Corridor Pedestrian Relief Sensitivity",
+      "input_files": [
+        "comparison_to_baseline.json"
+      ],
+      "formula_or_rule": "Under-panel pedestrian corridor cells experience Tmrt cooling >= 10.0 K",
+      "expected_range": "Cooling >= 10.0 K",
+      "observed_range": "Peak cooling = 12.62 K",
+      "pass": true,
+      "tolerance": ">= 10.0 K",
+      "failure_explanation": null,
+      "classification": "diagnostic"
+    }
+  ],
+  "readiness_token": "STAGE_7_CERTIFICATE_AUDIT_AND_CPU_EFFICIENCY_COMPLETE"
+}

@@ -1,0 +1,24 @@
+{
+  "stage": 29,
+  "status": "STAGE_29_PROVISIONAL_LEVEL1_TREE_GEOMETRY_COMPLETE",
+  "timestamp_utc": "2026-10-08T09:29:21.506870+00:00",
+  "tree_geometry_status": "PROVISIONAL_PHOTO_ESTIMATED",
+  "field_validation_status": "DEFERRED",
+  "approved_for_sensitivity_testing": true,
+  "approved_for_calibrated_claims": false,
+  "core_tree_ids": [
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13"
+  ],
+  "representation": "Level 1: Trunk Cylinder + Crown Ellipsoid",
+  "states_supported": [
+    "CONSERVATIVE_SMALL",
+    "NOMINAL_PROVISIONAL",
+    "CONSERVATIVE_LARGE"
+  ],
+  "token": "STAGE_29_PROVISIONAL_LEVEL1_TREE_GEOMETRY_COMPLETE"
+}

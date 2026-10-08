@@ -1,0 +1,1452 @@
+{
+  "audit_timestamp_utc": "2026-10-07T17:45:14Z",
+  "audit_stage": "RESEARCHER_REVIEW_AND_TREE_GEOMETRY_UNCERTAINTY_BOUNDS",
+  "protection_policy": "READ_ONLY: Zero modifications to raw supplements, interim inputs, frozen results, and physics solvers.",
+  "summary": {
+    "all_raw_files_unmodified": true,
+    "raw_files_count": 202,
+    "raw_mismatches_count": 0,
+    "interim_source_files_count": 26,
+    "frozen_result_dirs_count": 11,
+    "solver_files_modified_in_this_stage": false,
+    "optimization_files_modified_in_this_stage": false,
+    "git_status_clean_for_review_stage": true
+  },
+  "raw_mismatches": [],
+  "frozen_result_directories": {
+    "results/church_street_gpu_full_20261007_091111": {
+      "file_count": 11,
+      "verified": true
+    },
+    "results/church_street_intervention_optimization_20261007_102725": {
+      "file_count": 23,
+      "verified": true
+    },
+    "results/church_street_multi_intervention_optimization_20261007_114326": {
+      "file_count": 26,
+      "verified": true
+    },
+    "results/church_street_shade_gpu_incremental_20261007_093519": {
+      "file_count": 24,
+      "verified": true
+    },
+    "results/church_street_shade_gpu_incremental_20261007_093905": {
+      "file_count": 25,
+      "verified": true
+    },
+    "results/church_street_shade_incremental_20261007_081114": {
+      "file_count": 27,
+      "verified": true
+    },
+    "results/church_street_surrogate_optimization_20261007_110633": {
+      "file_count": 28,
+      "verified": true
+    },
+    "results/church_street_two_panel_robustness_20261007_121128": {
+      "file_count": 5,
+      "verified": true
+    },
+    "results/church_street_two_panel_robustness_20261007_121934": {
+      "file_count": 5,
+      "verified": true
+    },
+    "results/church_street_two_panel_robustness_20261007_122037": {
+      "file_count": 5,
+      "verified": true
+    },
+    "results/church_street_two_panel_robustness_20261007_122255": {
+      "file_count": 5,
+      "verified": true
+    }
+  },
+  "interim_files_manifest": {
+    "data/interim/INTERIM_RECONSTRUCTION_REPORT.md": {
+      "size": 27116,
+      "mtime": 1791392696.4784174,
+      "sha256": "6e826f6f1f8f2f0291a741f5b61c76aa0084a45af5379209985eb61253323f47"
+    },
+    "data/interim/raw_data_protection_report.json": {
+      "size": 67133,
+      "mtime": 1791392623.0732815,
+      "sha256": "c6f8accadf5467f9289b4b3a47030aee90d808b825da1f0b4869a63f9df6fe56"
+    },
+    "data/interim/terrain/fabdem_alignment_report.md": {
+      "size": 2717,
+      "mtime": 1791391916.9537475,
+      "sha256": "87640955fd379b479d620b49bf8a986415a9a28d870f4b27f85208b60387b969"
+    },
+    "data/interim/terrain/fabdem_audit.json": {
+      "size": 2327,
+      "mtime": 1791391916.9527476,
+      "sha256": "76d3ca92ea037a09582c70b086cf1c01db05973c7220f5624ce77fe9fce4a058"
+    },
+    "data/interim/terrain/fabdem_clipped_native.tif": {
+      "size": 1937,
+      "mtime": 1791391917.1955316,
+      "sha256": "8a95f817df8f43651240d401ced70a470b8b7a26b504e794668b88a2eaece1c1"
+    },
+    "data/interim/terrain/fabdem_clipped_utm43.tif": {
+      "size": 2089,
+      "mtime": 1791391917.26557,
+      "sha256": "24c7c12bfc2c6a1db95e02f4e67993bc8b4837ae8b1d0b05dcc51a5ac2718ea5"
+    },
+    "data/interim/terrain/fabdem_clip_metadata.json": {
+      "size": 1689,
+      "mtime": 1791391917.3045852,
+      "sha256": "5ae4ae6b70ef8580d26c734f3539ee47fbfe218e403da0ac07cebee40c758471"
+    },
+    "data/interim/terrain/fabdem_coordinate_alignment.json": {
+      "size": 520,
+      "mtime": 1791391917.3045852,
+      "sha256": "c90c2d72e2577f2adcb3b8ae83b89b4273e3ac8687d5fce02096ae2886a560ff"
+    },
+    "data/interim/terrain/fabdem_local_reference.tif": {
+      "size": 1785,
+      "mtime": 1791391917.3025768,
+      "sha256": "781ee6a9d69fbfe6a914fa74395e3f98eb698d6b7e372b0537ed4b24ab85c41a"
+    },
+    "data/interim/terrain/fabdem_vs_skadi_comparison.json": {
+      "size": 2390,
+      "mtime": 1791392007.7261178,
+      "sha256": "7753d84a10c8f18058b380c1f0682cffa2927ff15b415a1bd836c8d656f4a206"
+    },
+    "data/interim/terrain/fabdem_vs_skadi_comparison.md": {
+      "size": 3103,
+      "mtime": 1791392007.7261178,
+      "sha256": "f1ef9918e7b72f20cfe1706d0de0764b3ecad2a26bfc5b0db3a59d661fc08352"
+    },
+    "data/interim/vegetation/canopy_parameter_status.json": {
+      "size": 2807,
+      "mtime": 1791392332.8035555,
+      "sha256": "6596ae76aa3e8cbf2ae68615550f741458324985d0e6868b7dafab779229f853"
+    },
+    "data/interim/vegetation/photo_tree_match_log.csv": {
+      "size": 22897,
+      "mtime": 1791392456.3288958,
+      "sha256": "7604c2710da0b7c65889778f2a72df83f43d481fd6b07da65715f034a7e0590f"
+    },
+    "data/interim/vegetation/photo_tree_match_report.md": {
+      "size": 4500,
+      "mtime": 1791392456.3298955,
+      "sha256": "e842773214ff937fd0488959159222081a14da32057f173b0f5546c2144721e8"
+    },
+    "data/interim/vegetation/quality_control_report.json": {
+      "size": 3608,
+      "mtime": 1791392532.5957332,
+      "sha256": "cefee06025b0b3545823d251a3159b3c9185cb5280912d613f786563dc974fc8"
+    },
+    "data/interim/vegetation/quality_control_report.md": {
+      "size": 3417,
+      "mtime": 1791392532.5967329,
+      "sha256": "df126c6c2834871fe46baf07514f36d34b230e732267a8d238e59cbdc259c969"
+    },
+    "data/interim/vegetation/tree_fabdem_alignment.csv": {
+      "size": 3997,
+      "mtime": 1791392332.8025072,
+      "sha256": "709f8c7e6552093a39064299514e95da2b4c27048198e54d83c426dd3a563061"
+    },
+    "data/interim/vegetation/tree_inventory_interim.csv": {
+      "size": 5627,
+      "mtime": 1791392332.6448276,
+      "sha256": "f8ee880b71494403a0239da8ba93786d702884e8fa814739934edebc7620df9e"
+    },
+    "data/interim/vegetation/tree_inventory_interim.geojson": {
+      "size": 11672,
+      "mtime": 1791392332.646833,
+      "sha256": "8bdb8db5c3bedb74b0dd0533be1b51f7f6197721eba5d98390c9d8bebed2a6d3"
+    },
+    "data/interim/vegetation/tree_measurement_review_working.csv": {
+      "size": 5257,
+      "mtime": 1791392332.8035555,
+      "sha256": "eee166810c94fd127ae3ffb9dd252991aa74f3a2662f0ef598d84584cb0dd58c"
+    },
+    "data/interim/terrain/plots/fabdem_elevation_surface.png": {
+      "size": 114177,
+      "mtime": 1791392606.8788314,
+      "sha256": "81feea4a0b9dda88955653548ab7c3fd3b586f34cbbf0e6589143e69fe599355"
+    },
+    "data/interim/terrain/plots/fabdem_vs_skadi_elevation_profile.png": {
+      "size": 168948,
+      "mtime": 1791392607.1983886,
+      "sha256": "f00c33c432aa835ac84aa1e89e5f3993cbd1373cdaea2ba9cf789b5f44cff65b"
+    },
+    "data/interim/vegetation/plots/context_trees_inventory_map.png": {
+      "size": 203045,
+      "mtime": 1791392605.6021874,
+      "sha256": "365e63b0cc2ca1be9848bd3cdaeb9a62198a44d3cc630617909673639fa66b4f"
+    },
+    "data/interim/vegetation/plots/core_trees_map.png": {
+      "size": 178471,
+      "mtime": 1791392605.2754765,
+      "sha256": "267c823cba9592bca0288b3ab6d58d5d34cdafa43583aecdd402dc277751819c"
+    },
+    "data/interim/vegetation/plots/photo_tree_matching_trajectory.png": {
+      "size": 175217,
+      "mtime": 1791392605.9361293,
+      "sha256": "85fba9c8ad28f11f67a18c8a236a71a4ae398acdca87c8b63abc319b2488a655"
+    },
+    "data/interim/vegetation/plots/tree_dimensions_comparison.png": {
+      "size": 148459,
+      "mtime": 1791392606.295002,
+      "sha256": "d10882428381699f8c108222c899ec737edb6e51851b0b007d9fe9a44aec7d01"
+    }
+  },
+  "raw_files_manifest": {
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/README.md": {
+      "size": 9144,
+      "mtime": 1791381676.0,
+      "sha256": "0f871df37207aaf799ae19da6479c68ce58f59630d9acac284d46fbec8835a1d",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/SHA256SUMS.txt": {
+      "size": 2640,
+      "mtime": 1791381676.0,
+      "sha256": "9191e5f93f51470881595efe20e13f6ffafd22329a857788a2ebd56d9e422d4a",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/boundaries/main_boundary.geojson": {
+      "size": 1158,
+      "mtime": 1791380984.0,
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/boundaries/shadow_context_boundary.geojson": {
+      "size": 1709,
+      "mtime": 1791380984.0,
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/preparation/filter_tree_census.py": {
+      "size": 16178,
+      "mtime": 1791381242.0,
+      "sha256": "39bc3a19425ea8a94fa8f1649d5f95d348bbd56e70b00686322ee1acad88f2a9",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/preparation/finalize_supplement.py": {
+      "size": 21657,
+      "mtime": 1791381668.0,
+      "sha256": "2ff3062528ceb2fd8d2a727bae1f2441c863c688e43087d89357bf6f66e6cdb4",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/download_record.json": {
+      "size": 1222,
+      "mtime": 1791380956.0,
+      "sha256": "e7a2502c426e779cbea44a8b477b7af1a46fbba36417f2d223b45b0f7486179d",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/existing_v2_archive_checksum.txt": {
+      "size": 113,
+      "mtime": 1791380984.0,
+      "sha256": "50e800f9b7c9b3dd0dee4edc8e2ded76cc9e709608fb2375e9123f604c27f833",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/licensing_notices.json": {
+      "size": 1723,
+      "mtime": 1791381330.0,
+      "sha256": "ca6e779a01f643173aed55debad50c93878a0d79fafd9f910c1d5e3d80143585",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/opencity_catalogue_original.json": {
+      "size": 18336,
+      "mtime": 1791380956.0,
+      "sha256": "f54f55238f7abc4d8bb92f94e411ca39de92f28fa4ff139151e27b61837f6ead",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/protected_inputs_before.json": {
+      "size": 851,
+      "mtime": 1791380956.0,
+      "sha256": "f68fe5c06753933e3193d2e067ce791c3cd1fc3f79fd5eb318a3b533ec01529a",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/selected_resource_metadata.json": {
+      "size": 1584,
+      "mtime": 1791380956.0,
+      "sha256": "cdbf2a23b7bfd098dae0f9bbe49785f2ac695317a97e92e934d4a977dc1e71d4",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/v2_handoff_inventory_before.json": {
+      "size": 16125,
+      "mtime": 1791381038.0,
+      "sha256": "c0e16563a310b90ede025c1c557ef43291ceea0599c7ed01a76c30bae4f23d43",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/census_profile.json": {
+      "size": 11673,
+      "mtime": 1791381676.0,
+      "sha256": "72e6308ee56f3bb00dbf98c6a02eae144ca8a7200ac0388affe2271961b48296",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/field_completeness.csv": {
+      "size": 1860,
+      "mtime": 1791381306.0,
+      "sha256": "995ef961addc39acae1cba4df8d0559cd663f1fbfd9bb6992ec5d3b58abd27ae",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/provenance.json": {
+      "size": 22689,
+      "mtime": 1791381676.0,
+      "sha256": "abed9467d8831da9e18864241453955ea389b7b91b7056413634ec786893bcd8",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/supplement_status.json": {
+      "size": 1161,
+      "mtime": 1791381676.0,
+      "sha256": "4acf53c6c1a2de36a1a84159a29a80b8d3928661725385287b2ef8e356b85fc9",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_context_only.csv": {
+      "size": 3395,
+      "mtime": 1791381306.0,
+      "sha256": "0d650ae4bc0d53db68c152dd42ccce84b38ace97e27d30ca09ab6b68550cbcda",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_context_only.geojson": {
+      "size": 4185,
+      "mtime": 1791381306.0,
+      "sha256": "0962979798094afc8c42837c2cf38ba8a4c0ba79f4c16fe7b37df32831834a11",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_main_boundary.csv": {
+      "size": 2636,
+      "mtime": 1791381306.0,
+      "sha256": "f47d2d7f31d995352c130e83f1e9aea4712d0a624e586ea016cf9a0a01c9ed26",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_main_boundary.geojson": {
+      "size": 3148,
+      "mtime": 1791381306.0,
+      "sha256": "99c4cdf717f3f32031830e6ec5458c4c164e91f8e2fa7634d604868590077dec",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_shadow_context_including_main.csv": {
+      "size": 5650,
+      "mtime": 1791381306.0,
+      "sha256": "c5b09b217e917bd7147a5477f7ef3da9fc69162d1fc9b5a901a5b16d3fa1e58a",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_shadow_context_including_main.geojson": {
+      "size": 7274,
+      "mtime": 1791381306.0,
+      "sha256": "5afbd849d959aed207971c3dfeee600de0d9d7b2ed38629d0043be7527435e1d",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/tree_measurement_review.csv": {
+      "size": 2448,
+      "mtime": 1791381676.0,
+      "sha256": "799de01007e2f95d4b89aa19c267380d7396c1d34f2ed3bc654b6c94d389989e",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/validation_report.json": {
+      "size": 2231,
+      "mtime": 1791381676.0,
+      "sha256": "4e71d4ac0d17f1779a14328eb6d965a9856481383350f668b47f09d98c6e13a2",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/raw/vegetation/bbmp_tree_census_july_2026.zip": {
+      "size": 15639062,
+      "mtime": 1791380956.0,
+      "sha256": "d3959084023783ff486c8f34595fc90118d4e32039d98a0cbe0416bf9eb84396",
+      "package": "bbmp_supplement"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/README.md": {
+      "size": 3729,
+      "mtime": 1791389466.0,
+      "sha256": "83f51daeae6c3044aaf6a0f84f180702a4fa7e012e138096624c0af4b9e73cfb",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/authorisation.json": {
+      "size": 457,
+      "mtime": 1791388582.0,
+      "sha256": "8f5d7ec2e766aa14bdd064f37d93c165d82c752dbea7bba162435f9eb3c025c9",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/CC_BY_NC_SA_4_legalcode.html": {
+      "size": 52858,
+      "mtime": 1791389182.0,
+      "sha256": "527c4e0e75a7aafe819a9ed481c227f27645736fa800f25d6d94ed37a362afd7",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/CC_BY_SA_4_legalcode.html": {
+      "size": 51645,
+      "mtime": 1791389182.0,
+      "sha256": "47c0a954c88d793bdefe92fb007ae3c038fb3807f1a27083433d01aa7542c0d8",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/licence_text_downloads.json": {
+      "size": 619,
+      "mtime": 1791389182.0,
+      "sha256": "903ae6749786db1dfc92c740768163805308b99b2b8f50c58a9e5e34a5aadaa9",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/protected_before.json": {
+      "size": 39194,
+      "mtime": 1791388582.0,
+      "sha256": "52d960f7afed8b9425b9c26603b3464e56f9bdde2e4bcd3dc306bee724ca33ce",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/raw_source_manifest.json": {
+      "size": 22829,
+      "mtime": 1791389562.0,
+      "sha256": "5dab76abc86265cb84c5a574beb542422c4dbedfe2721b251ddc8287e15c7d12",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/reference_main_boundary.geojson": {
+      "size": 1158,
+      "mtime": 1791380984.0,
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/reference_shadow_context_boundary.geojson": {
+      "size": 1709,
+      "mtime": 1791380984.0,
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/SCOPE_AND_GAPS.json": {
+      "size": 1062,
+      "mtime": 1791389432.0,
+      "sha256": "71ec53ea0e24ad0135ccff26ebb112eff41ce6add4a132b8bf02e48a31df5cd6",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/SHA256SUMS.txt": {
+      "size": 10955,
+      "mtime": 1791389564.0,
+      "sha256": "ca7a66098bee2cc31f67269bd171b2716f20fbf7d2b2190ca246f71128507d6c",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/validation_report.json": {
+      "size": 2981,
+      "mtime": 1791389562.0,
+      "sha256": "e7e9115467bb912afa4cbd71cf1e562d8ce3258376a40b6c55b273a9c32fa158",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/N12E077_FABDEM_V1-2.tif": {
+      "size": 26051472,
+      "mtime": 1791388760.0,
+      "sha256": "975925ac077df01fdbb20ca8395f83e533dd47833a08617fe0c52f4c05560a3b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/README.md": {
+      "size": 2369,
+      "mtime": 1791389232.0,
+      "sha256": "f6478d164263b30981ecc6a8841f60dd7e837f6023a6fd26a829fbd842c1e1c2",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/terrain_metadata.json": {
+      "size": 2897,
+      "mtime": 1791389432.0,
+      "sha256": "4b0f0635702cfcbe1d4016ffc30658b20b0a65bd07f23cb183cabeb8ebebf938",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/README.md": {
+      "size": 4515,
+      "mtime": 1791389204.0,
+      "sha256": "87c9bcac1a7bd753d9f879d0fd7ad06c5ab4312fb25c093b5b04ed5e3be8a0cb",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/archive_central_directory.bin": {
+      "size": 4830,
+      "mtime": 1791388728.0,
+      "sha256": "c99ecf108024afc8b4cc2917f69a6813e3066df455a49aba78d3b71c9923ce6e",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/archive_head.json": {
+      "size": 536,
+      "mtime": 1791388726.0,
+      "sha256": "7cec70f463e182c7a5fe2c2e1f68051857989bc0a51650f8f71e78fc983b3900",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/archive_tail.bin": {
+      "size": 65557,
+      "mtime": 1791388728.0,
+      "sha256": "2ccc935c92b97d0e8f30dd15d7f0c1927804c6fc9fc5c5c3f8c6835e2cd760ae",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/fabdem_acquisition.json": {
+      "size": 5701,
+      "mtime": 1791389432.0,
+      "sha256": "a31c683e9a7e085d2d366a8f3166aa32a90f39129f70ec6b7dec852f5c7d0467",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/source_documentation_notes.json": {
+      "size": 1116,
+      "mtime": 1791389056.0,
+      "sha256": "a7aec3c0032612c17615fd6ad1389ae677177fda5cb80ab2bf800723a8e34d48",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/tiff_metadata_as_read.json": {
+      "size": 2564,
+      "mtime": 1791388908.0,
+      "sha256": "3901c3906940f0cee30498be60d88b5e9a929b750bdc6d174544f105130a2565",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/field_photos/README.md": {
+      "size": 533,
+      "mtime": 1791389232.0,
+      "sha256": "66549b6e40b557bd2f0cfc8e1456fc062f9ef5e7a1bd6ae0f820fe4cc12d6c30",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/bbmp_tree_census_july_2026.zip": {
+      "size": 15639062,
+      "mtime": 1791380956.0,
+      "sha256": "d3959084023783ff486c8f34595fc90118d4e32039d98a0cbe0416bf9eb84396",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/download_record.json": {
+      "size": 1222,
+      "mtime": 1791380956.0,
+      "sha256": "e7a2502c426e779cbea44a8b477b7af1a46fbba36417f2d223b45b0f7486179d",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/licensing_notices.json": {
+      "size": 1723,
+      "mtime": 1791381330.0,
+      "sha256": "ca6e779a01f643173aed55debad50c93878a0d79fafd9f910c1d5e3d80143585",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/opencity_catalogue_original.json": {
+      "size": 18336,
+      "mtime": 1791380956.0,
+      "sha256": "f54f55238f7abc4d8bb92f94e411ca39de92f28fa4ff139151e27b61837f6ead",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/acquisition_records.json": {
+      "size": 20417,
+      "mtime": 1791389334.0,
+      "sha256": "f0585c5fed8eec8f998b53ee2ab0814f998a73c4306eb3458b06ac983863ae0b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_154346578_original.jpg": {
+      "size": 3085076,
+      "mtime": 1791389146.0,
+      "sha256": "c3bd08798974a063048898253ec2ed4b173f3e133c0527ed958a593725a734b7",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_154346588_original.jpg": {
+      "size": 3795023,
+      "mtime": 1791389154.0,
+      "sha256": "030939cf19e6af528f4603e26f8b08ff7bcb4ad81994f6083abcd7219566b86d",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_154346605_original.jpg": {
+      "size": 2209930,
+      "mtime": 1791389162.0,
+      "sha256": "f2e7c9a9e9e7decbf6b250d5da3fcc7a616626acf4ae50c634153a8126c7a914",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_165137063_original.jpg": {
+      "size": 3611773,
+      "mtime": 1791389334.0,
+      "sha256": "cdaa5aad151b8d71384ca40256a2acf5f517cdab69eb46f2663e1e4422735e01",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_188757238_original.jpg": {
+      "size": 2903223,
+      "mtime": 1791389174.0,
+      "sha256": "9aea628e978874b39f0c1b92ef2485a649e69f8998589ae1db8f2de3c67136d3",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_72609321_original.jpg": {
+      "size": 3652488,
+      "mtime": 1791388810.0,
+      "sha256": "36284b5c7f506e306cca7c4419a7e39d181c6056e9e2e2ad182562ad2c60848a",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_72609323_original.jpg": {
+      "size": 4005874,
+      "mtime": 1791388812.0,
+      "sha256": "b3b5b9f4091fc16ad78ced6928866a2924f017c5db75f75fa741c93d17cdd5fe",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_72609328_original.jpg": {
+      "size": 3795513,
+      "mtime": 1791389140.0,
+      "sha256": "fed2c2632eec466f1407319532048b503b138f2a75b9ad0df3085c0c56a4f89b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/IMAGE_CREDITS.md": {
+      "size": 4045,
+      "mtime": 1791389432.0,
+      "sha256": "10f58fdb2be3afaa28d72535b18c83176132448e4f4aa660b97e7b68b51cadb6",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/provider_image_metadata_original.json": {
+      "size": 37601,
+      "mtime": 1791385888.0,
+      "sha256": "c5980c369b9bed0bd8abdf0a7a7e142bd8eda0e4b082b36beb576bd529382f87",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/provider_metadata_query.json": {
+      "size": 1491,
+      "mtime": 1791385888.0,
+      "sha256": "7494de3097bc6f42fa87deb4cd95cd9e7232dc7b74f01a470b38017b1dfb4af6",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/acquisition_records.json": {
+      "size": 55713,
+      "mtime": 1791388908.0,
+      "sha256": "ae5ab7c3c89232898aecd059eb2b58434975c01f0c897a978f58818260187cc9",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/IMAGE_CREDITS.md": {
+      "size": 646,
+      "mtime": 1791389432.0,
+      "sha256": "1c883a39e6ff68985218772a96d47118f66f7a73ca351fb00304317b6f7af534",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424946_2020-06-15_provider_processed.jpg": {
+      "size": 3156920,
+      "mtime": 1791388764.0,
+      "sha256": "c734a9124da66a5fc7ab3f634e6a9bed5258f2e4188eb510d6f7bc313025117d",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424950_2020-06-15_provider_processed.jpg": {
+      "size": 3088989,
+      "mtime": 1791388762.0,
+      "sha256": "8c68b2d981ee267a1b86b5a51f038df01f38ab5a6ce8fccb6e89b2b6faa5124b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424974_2020-06-15_provider_processed.jpg": {
+      "size": 3373741,
+      "mtime": 1791388764.0,
+      "sha256": "682336b23b0d671f13a06218d4f0168d4fa25ed8f1eefced348746c73e6b6171",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424978_2020-06-15_provider_processed.jpg": {
+      "size": 3778280,
+      "mtime": 1791388766.0,
+      "sha256": "4bb71079a730ea3d35681e20985c7eedafc5a1340752b5752be836de45907c2f",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424982_2020-06-15_provider_processed.jpg": {
+      "size": 4023869,
+      "mtime": 1791388766.0,
+      "sha256": "bf0b1c799e1fb1646ddd0384e56751a3bdfb129f12aff4c3260e2c89c92e0237",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424994_2020-06-15_provider_processed.jpg": {
+      "size": 4764578,
+      "mtime": 1791388774.0,
+      "sha256": "08bde3a87eea3c861290d0731a5d4040f3f8766ec7490ff508e2e44db8432d2e",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424998_2020-06-15_provider_processed.jpg": {
+      "size": 4629632,
+      "mtime": 1791388774.0,
+      "sha256": "e1bdadde76bd5be2528677ee2034fb84b70d90a3a7d9d8a808efb9f0983927cf",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425010_2020-06-15_provider_processed.jpg": {
+      "size": 3561425,
+      "mtime": 1791388778.0,
+      "sha256": "f2e34859f2810b4444bfd549a9748bde401b02dcc396b464bea798f0c0f8a05a",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425034_2020-06-15_provider_processed.jpg": {
+      "size": 3292890,
+      "mtime": 1791388780.0,
+      "sha256": "6a78ba320a0731ebd15400efc02bbfd2048564ddb0483ae85966cf20c75ad383",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425038_2020-06-15_provider_processed.jpg": {
+      "size": 3601333,
+      "mtime": 1791388782.0,
+      "sha256": "293d3b795960581776e5cb5585dce9d5c591638ce8d50b17cf560f858846de4c",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425046_2020-06-15_provider_processed.jpg": {
+      "size": 3627815,
+      "mtime": 1791388782.0,
+      "sha256": "b787dc4e16f83ac1c0be574c62b1f715e0cc3a212d0cb143a06e6bbec8507f83",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425074_2020-06-15_provider_processed.jpg": {
+      "size": 3234724,
+      "mtime": 1791388784.0,
+      "sha256": "eb35e5601f78577a0f3365aa8489870d6cfced5c320cf7cf1f6eb9d8b00f4eb7",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425078_2020-06-15_provider_processed.jpg": {
+      "size": 3234927,
+      "mtime": 1791388786.0,
+      "sha256": "ea550ef67e79c964a82be8feeb6a9758ea1ab51629257e9a8338f4f033c4301a",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425090_2020-06-15_provider_processed.jpg": {
+      "size": 3127870,
+      "mtime": 1791388786.0,
+      "sha256": "16e57de7daa4d9480c0d6b96e57b24b4fb46001133d9a7d73b38342e8fa70b6b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425110_2020-06-15_provider_processed.jpg": {
+      "size": 3416036,
+      "mtime": 1791388790.0,
+      "sha256": "95a4508b552a3b4ca699774322104a993a55cd17c6362b7caf406aff2ab3fa9f",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425114_2020-06-15_provider_processed.jpg": {
+      "size": 3639943,
+      "mtime": 1791388794.0,
+      "sha256": "72345f0a3594bf8c17e4eda24e67d0d71653c25e71a37d0cea417705ab57468a",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425130_2020-06-15_provider_processed.jpg": {
+      "size": 3272572,
+      "mtime": 1791388794.0,
+      "sha256": "7fe1021bd3831877e8992d2643a37ab741e2f9bd84ca98b8e2910184ece20e08",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425138_2020-06-15_provider_processed.jpg": {
+      "size": 3041218,
+      "mtime": 1791388796.0,
+      "sha256": "bd3fd302ff718ffde69c69fad4749720449f2190b0a238d10a55b35025b719ad",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425142_2020-06-15_provider_processed.jpg": {
+      "size": 3466191,
+      "mtime": 1791388798.0,
+      "sha256": "a72ce021a7e393fcdfdad8fc93245059fc65faa7149ff2846addaaf54aa8f1a0",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425166_2020-06-15_provider_processed.jpg": {
+      "size": 3816077,
+      "mtime": 1791388798.0,
+      "sha256": "0131918cde98550a039da58bcb847a88fcefeb7d093e375b65414f6a50e0a422",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425170_2020-06-15_provider_processed.jpg": {
+      "size": 3374388,
+      "mtime": 1791388800.0,
+      "sha256": "80b83d353d30f01da928ec66a6cefbf46ae8382a2e85a276b95003e0b50fe236",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425174_2020-06-15_provider_processed.jpg": {
+      "size": 3239793,
+      "mtime": 1791388802.0,
+      "sha256": "83b1a5485f4d496531697e8e2ff2277f67f3fe5561bce5ad0343598e78fa3339",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425202_2020-06-15_provider_processed.jpg": {
+      "size": 2962000,
+      "mtime": 1791388804.0,
+      "sha256": "7d38173acfeb21abefe7b71be327c867387dee2eda28e462d889b1f5cd84811b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425210_2020-06-15_provider_processed.jpg": {
+      "size": 3133731,
+      "mtime": 1791388806.0,
+      "sha256": "9b99145807b6c02ec44eec7a672105e94e88c60c7e0ea93a0fc5d18faa02fa4a",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425214_2020-06-15_provider_processed.jpg": {
+      "size": 3115862,
+      "mtime": 1791388802.0,
+      "sha256": "5202e418e5ff291fd83fb916ae4ee170fc9743f7cdc45fde84ce2176a3a053b2",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425238_2020-06-15_provider_processed.jpg": {
+      "size": 3001904,
+      "mtime": 1791388808.0,
+      "sha256": "e3b752f223f710a9be52211d0d40a449abee4293422bdbd6496d988f8145da8b",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425246_2020-06-15_provider_processed.jpg": {
+      "size": 2999756,
+      "mtime": 1791388806.0,
+      "sha256": "0a30f4568b8e59bc7aa90c2145034ad729c75251639c551a2256414a30e394fd",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425266_2020-06-15_provider_processed.jpg": {
+      "size": 3322224,
+      "mtime": 1791388788.0,
+      "sha256": "6a504e48b2d0822f25a19056df7ef75ebc366280aafd9af89c579de640a88bc9",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425338_2020-06-15_provider_processed.jpg": {
+      "size": 3559349,
+      "mtime": 1791388788.0,
+      "sha256": "22c8826a2a866f9db4aa905aa029a6441a8771e2d504baaa1c4e0fb0281fca0a",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/licence_and_api_source_notes.json": {
+      "size": 9844,
+      "mtime": 1791386022.0,
+      "sha256": "cbc245ff6b83f38b5cfa86e8e68972d0b67536d74040e778905fca7e2de44aff",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/provider_sequence2394274_page28_original.json": {
+      "size": 114434,
+      "mtime": 1791385960.0,
+      "sha256": "69c2567eca7de78b20a656a945569b16651ca11be588136b3460da7d67aab763",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/provider_terms_as_read.txt": {
+      "size": 25389,
+      "mtime": 1791386068.0,
+      "sha256": "19816305e6b47395237759663c4ec71b130382479096160d66964fab939cefe7",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/mapillary_reference/provider_terms_as_read.txt": {
+      "size": 33555,
+      "mtime": 1791386036.0,
+      "sha256": "9f7683a88cd22325f9a875cdd92f1a035e4d13657608590e981ee614e630f9b8",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/mapillary_reference/public_photo_details_as_read.txt": {
+      "size": 3645,
+      "mtime": 1791385920.0,
+      "sha256": "77ba2d3f5da1d212a9bfafa0373d120490b81b80b12baf6968404aab11ac6274",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/mapillary_reference/README.md": {
+      "size": 540,
+      "mtime": 1791389432.0,
+      "sha256": "06cfa9db5dced83a7b8a9549947bfaca4c301e0641e9fda879f4e4d6cfa96538",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/README.md": {
+      "size": 792,
+      "mtime": 1791389232.0,
+      "sha256": "dbd4a9d2403ddce28cc1450c38469400ce50e939ad31a7ed93387ca2e6cec848",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/sentinel_catalogue_response_original.json": {
+      "size": 21607,
+      "mtime": 1791386040.0,
+      "sha256": "513def5444cd04a5ddde4c5aef062b28b06fd3d298a3cdb798bf2e9e642eefaf",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/sentinel_coarse_scene_metadata.json": {
+      "size": 1941,
+      "mtime": 1791386256.0,
+      "sha256": "dab1d04e630c18be886dc3d1d52415a2ab387178461516d98d44ccf695b9fa15",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/sentinel_licence_notes.json": {
+      "size": 5545,
+      "mtime": 1791386252.0,
+      "sha256": "f32d727ea204d2811c6848d97e60939a87b39da3894664d39a2b092b79e9ead0",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_barton_10_2024_preview.jpg": {
+      "size": 292998,
+      "mtime": 1791385920.0,
+      "sha256": "58b5cc34e65d7c02061c6bc98140ffa9d6c1e198032f28439a3e3125f5e0c62d",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_barton_16_2024_preview.jpg": {
+      "size": 220303,
+      "mtime": 1791385922.0,
+      "sha256": "7b74109dbd9188b0f15e316d1762cb5fa80aa9e5b3e0c960b126f51bc8614aec",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_church_street_trees_3_2018_preview.jpg": {
+      "size": 522383,
+      "mtime": 1791385920.0,
+      "sha256": "371c135c5ac4ab9336e35ced00b9c05c8b216b4d9f397f15b5577868954247c4",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_mg_road_arch_2026_preview.jpg": {
+      "size": 448498,
+      "mtime": 1791385924.0,
+      "sha256": "3b0fe91072b66441dbcf404ce249137d408694d185e4091a19ef4f3be8900046",
+      "package": "raw_sources"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/manual_completion_checklist.md": {
+      "size": 2587,
+      "mtime": 1791317532.0,
+      "sha256": "e5111a0ea9615b26f38df2ed94bc72a5af467f4649a3c3a9c28c5b7402db51b1",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/README.md": {
+      "size": 10795,
+      "mtime": 1791317532.0,
+      "sha256": "49cfb7149e061912fbd009b4123cd8902562812fa9b8fc2c70108d4942985ff4",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/SHA256SUMS.txt": {
+      "size": 9693,
+      "mtime": 1791317534.0,
+      "sha256": "b89f64969ea2d60690dc1f14be6da2c0e95d0cdeaf32aa112e880ad4e54c3d13",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/site_boundary.geojson": {
+      "size": 961,
+      "mtime": 1791313528.0,
+      "sha256": "444e42d81c2515203d8f265891e4dfba1b0121fdb745a02bc3ce037f6e7b31e6",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/site_inspection_map.png": {
+      "size": 134737,
+      "mtime": 1791313530.0,
+      "sha256": "19fc36fc2cbcf77f85bb06b54444c795b50bd7741757b3d087d8766123cb8b4b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/data_quality_report.md": {
+      "size": 7577,
+      "mtime": 1791317532.0,
+      "sha256": "e030de3995fff576ff74597b979f3ed6034410fd2a12987611c87f6a5e10dc9c",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/manual_checklist.md": {
+      "size": 2587,
+      "mtime": 1791317532.0,
+      "sha256": "e5111a0ea9615b26f38df2ed94bc72a5af467f4649a3c3a9c28c5b7402db51b1",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/preparation/refine_handoff_v2.py": {
+      "size": 63292,
+      "mtime": 1791317472.0,
+      "sha256": "950c78417d7519cf1e5549a11aad9890b3162740cd49c33ad693e1aef89865e3",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/alternate_height_source_review.json": {
+      "size": 2822,
+      "mtime": 1791313656.0,
+      "sha256": "284a8837b66578f7590ab1d97dbe130a38c882f40d5870ed9397c0b737613048",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/church_street_osm_download.json": {
+      "size": 389,
+      "mtime": 1791312256.0,
+      "sha256": "9819ca580e8947a0077d843728eb7f5dbc067746a24f1a6d213fadbbc4b56509",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_manifest_2023_original.json": {
+      "size": 3514313,
+      "mtime": 1791313748.0,
+      "sha256": "cd4f2f0bb0dd6eda9a8b8e3a8194b20cc9d84c7098a9a2d9a477283929bdb0cf",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_manifest_download.json": {
+      "size": 311,
+      "mtime": 1791313748.0,
+      "sha256": "e3a6018e575436fddc980331cf49d7cc02e5bcfb58dc2548678cf17e216b7804",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_manifest_index_original.json": {
+      "size": 4548,
+      "mtime": 1791313732.0,
+      "sha256": "3f87241828c1f1afb4cacdb2ba94550184cdead2126f5af5add2b4ca271ba85b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_selected_assets.json": {
+      "size": 1456,
+      "mtime": 1791313870.0,
+      "sha256": "7e60ffb5a70979b2041c615111d64b447d180e2143eb5229cc31eacda0a418c4",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_open_buildings_download_notebook.ipynb": {
+      "size": 19744,
+      "mtime": 1791313690.0,
+      "sha256": "1c219d10b88de5c2a78bb9256fe31def9e056f18b078df3b58a3a0c696130e43",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/isd_stations_download.json": {
+      "size": 203,
+      "mtime": 1791312194.0,
+      "sha256": "9094cff68c67493ce2774897f83239b8592cc0b3111cee31791403ac283495fd",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/licensing_review_v2.json": {
+      "size": 1080,
+      "mtime": 1791317532.0,
+      "sha256": "9380e811b85b7b3d019fb02cc3a3c9e2bc2325f4c030aa3f91bd98811287cab1",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/nasa_power_hourly_openapi.json": {
+      "size": 12564,
+      "mtime": 1791312830.0,
+      "sha256": "27dda6980eaa434a4019a4b507f88b83cf9f2fb5689bb36254b1e4d0202adccd",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/nasa_power_hourly_openapi.json.download.json": {
+      "size": 212,
+      "mtime": 1791312830.0,
+      "sha256": "5d096548f4d8799b9f3fa952f318064a0e801dc4f3ea7f2134f9b3d1baee33f8",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/nasa_power_solar_download.json": {
+      "size": 329,
+      "mtime": 1791312316.0,
+      "sha256": "aeb14ccfd96df63087d5bd8e54f3833d3afa96e11f24fea6904413c59180ce81",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/noaa_city_2024_download.json": {
+      "size": 295,
+      "mtime": 1791312224.0,
+      "sha256": "ed5aefed7a7a371e8ee86d4d7af4e2e69e6745dd22c24696c5c6aeb7695ed6a9",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/noaa_isd_format_document.pdf": {
+      "size": 1187390,
+      "mtime": 1791312834.0,
+      "sha256": "1be604b08b5f7c2429e6aef178ff8893019c234bc7bc51bfb7ec1e16a6682f04",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/noaa_isd_format_document.pdf.download.json": {
+      "size": 215,
+      "mtime": 1791312834.0,
+      "sha256": "5646b47ea1ec8f97126b212662edb20e46d80537ea6625cc0b3c88e6984e2857",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/osm_map_download.json": {
+      "size": 241,
+      "mtime": 1791312220.0,
+      "sha256": "549c5b505cbe372f2b8b118bd960884263f2c4c237d409f5c1a43f41a5fab34b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overturemaps_pyproject.toml": {
+      "size": 1929,
+      "mtime": 1791312220.0,
+      "sha256": "7f6d2cf491492a3ec205d62bc282e9c48e873b94cc425098f1adafd4dbc86ca0",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_buildings_catalog.json": {
+      "size": 962,
+      "mtime": 1791312450.0,
+      "sha256": "25b231671813d5f61f1a90732b77e50496177f126f7116445b9624d41c2eb00c",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_building_acquisition.json": {
+      "size": 1753,
+      "mtime": 1791312576.0,
+      "sha256": "b532681ef58aa46ca55922c5ac44a1a39a91a67998095c1a9ec71adb535ba2e4",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_building_file_metadata.json": {
+      "size": 333,
+      "mtime": 1791312476.0,
+      "sha256": "3cb2b348134be5412f7a249971eb4c11ed6f4ec6c98b9d09b52f0653f480c6cc",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_cli_core.py": {
+      "size": 19235,
+      "mtime": 1791312450.0,
+      "sha256": "ca2ac0be68e1fda78e523dca299686bd80a3474c83041d8b45b6ac0d7699724e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_cli_source_download.json": {
+      "size": 326,
+      "mtime": 1791312220.0,
+      "sha256": "5929459ea7c4e3c9a37c559f7fec2045aa3a4ba1c8c24e64efb2ede812fb9949",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_collections.parquet": {
+      "size": 182960,
+      "mtime": 1791312472.0,
+      "sha256": "f1c036050dea1a689456c5e95382b0665fc3afc8750892ee5f8e5e9ead9089df",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_matching_stac_assets.json": {
+      "size": 6217,
+      "mtime": 1791312568.0,
+      "sha256": "8ca0b5d5769ab5d17138b151a7d968173887045188c85a4e5d267bcaf119c5b1",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_release_catalog.json": {
+      "size": 1534,
+      "mtime": 1791312220.0,
+      "sha256": "2cb87fbd6ab8fdf8272d8a3c5cbaf6b1f3b7aedebffe9ba122670138308d6946",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_release_download.json": {
+      "size": 291,
+      "mtime": 1791312220.0,
+      "sha256": "62711e62c11b52b723a3d981e59558b0f446a97f1d4f946a21965868b7739a4a",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_segment_acquisition.json": {
+      "size": 25885,
+      "mtime": 1791312598.0,
+      "sha256": "cc484085f180d95646150a77c9066d618c28568b52e60aed8db9f04868e30f23",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_stac_catalog.json": {
+      "size": 6529,
+      "mtime": 1791312186.0,
+      "sha256": "5336b76af0b630f05c51c8c8bf3106a2466f7a5110df28081202c7c1775bd7f3",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_stac_download.json": {
+      "size": 188,
+      "mtime": 1791312186.0,
+      "sha256": "b5d1df8af46425d83ed518eb1fa35f72839d3bed35275cd082e0187ca831aee6",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_attribution.md": {
+      "size": 12300,
+      "mtime": 1791312828.0,
+      "sha256": "2ce4d3414b4592d17ad56a5af57feb480686ddcfb0a3e4ea0b566d28cde13567",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_attribution.md.download.json": {
+      "size": 218,
+      "mtime": 1791312828.0,
+      "sha256": "b7d55e9af859abd391cd7e801ea5608aa509b7bde526daf2e77bc206ffbbea2f",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_data_sources.md": {
+      "size": 12162,
+      "mtime": 1791312828.0,
+      "sha256": "dcf07b156bc25930dfe3e1a55d8efd4a2e3b5376393d23bf24d1fc1dd02c5948",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_data_sources.md.download.json": {
+      "size": 220,
+      "mtime": 1791312828.0,
+      "sha256": "6c5980242e0929f150c5043f7be9d21d4a9c38ae3d2c5c8a1af632419661c83f",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_download.json": {
+      "size": 446,
+      "mtime": 1791312324.0,
+      "sha256": "2b45d0eaf8b566fd2327157d89d9d8334cd65edf1f805ccc82d52077a17e43d5",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_formats.md": {
+      "size": 5392,
+      "mtime": 1791312472.0,
+      "sha256": "f37b923b033ddb90ed454902c20a248b0f75985df1129dc2899c8ddf14459c8c",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_tile_metadata_download.json": {
+      "size": 317,
+      "mtime": 1791312222.0,
+      "sha256": "2117d4778fcef2e55279693aa5f277f3a735065dd2fed3d744fd68ecc97f1fb9",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/analysis_domains.json": {
+      "size": 1714,
+      "mtime": 1791317520.0,
+      "sha256": "39276191e9090b9628c4885f84f23bced90505a36cedb8bbf146972aa19d6117",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/approved_building_heights.csv": {
+      "size": 7841,
+      "mtime": 1791330139.390776,
+      "sha256": "9699c2706f3230f3ed165dbc8260c60086ebcdf45ca2fc39f1d4032700119de4",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/buildings_shadow_context.geojson": {
+      "size": 304244,
+      "mtime": 1791314318.0,
+      "sha256": "372eb7bc2ae293f872cf344e4fbb526d9e2a4d4f1946e3db1e963e7f1d3a6e90",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/buildings_site.geojson": {
+      "size": 109297,
+      "mtime": 1791314318.0,
+      "sha256": "f18d313a078769f30e02d683278823385d9a753b1fdd2cceef701fe8839b3463",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/building_height_review.csv": {
+      "size": 21970,
+      "mtime": 1791317520.0,
+      "sha256": "ef3b67cc419db8fe433b31e34da90a8bf708ffc3bde54295e4fdcaff43355335",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/building_height_review_schema.json": {
+      "size": 1417,
+      "mtime": 1791317520.0,
+      "sha256": "8bfa63837327d7f9d86f9930257c8b343a447b8e9fb4f34a8a59e6d716c88064",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/church_street_centerline.geojson": {
+      "size": 22386,
+      "mtime": 1791313528.0,
+      "sha256": "d12a26dccc4e7f9747561ac901f124abff65754e786b957f7e5c3408902dcb6b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/context_height_review.csv": {
+      "size": 25081,
+      "mtime": 1791317520.0,
+      "sha256": "10e6511da069e7adab5efa8c72af98b07d74b8e7343b5e58fd4de7079ebe14d6",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/estimated_building_heights.csv": {
+      "size": 23072,
+      "mtime": 1791314044.0,
+      "sha256": "5ad9bcb8a991792689564302c48c5944fed1e82195dd8edfbfbd88f9104b1e74",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/estimated_heights_metadata.json": {
+      "size": 4424,
+      "mtime": 1791314044.0,
+      "sha256": "df04c876cff07d94a61538a9a3c49637d622a8b015ce6e251425541f3206fcc6",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/intervention_definition.json": {
+      "size": 7256,
+      "mtime": 1791317532.0,
+      "sha256": "7330e1144c7c17f5e44c3b4a949424d73d1af138c498eae430518b0286f93739",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/intervention_geometry.geojson": {
+      "size": 938,
+      "mtime": 1791313530.0,
+      "sha256": "0bd9632e120a68dd8e8fc9f3f0ab32b90262113a1291995a6f3685c008cb840b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/local_scene_geometry.json": {
+      "size": 127312,
+      "mtime": 1791313530.0,
+      "sha256": "9c82689fb9274149da3ce2983e94385315f1187948f7784bd8855a819e3c177b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/material_assumptions.json": {
+      "size": 2827,
+      "mtime": 1791313530.0,
+      "sha256": "23d5d0e60ca68075ceb057a8db248199b2338911ba182d27b68fcbfafffef26e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/package_status.json": {
+      "size": 1627,
+      "mtime": 1791317532.0,
+      "sha256": "33eb9bcd952626e26f6f1006e03547dd82d17adca6f8e6445877da633e7e3977",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/pedestrian_analysis_area.geojson": {
+      "size": 5411,
+      "mtime": 1791313528.0,
+      "sha256": "c3f2cb7abf87630947b21a4b9ef4ad8cbcee53798471f562bd1c5d6dc26be967",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/provenance.json": {
+      "size": 84007,
+      "mtime": 1791317534.0,
+      "sha256": "52787cd646afa7d3321d2325fca3b7d8205d94f11d36cf7c2d02096b2b30cd7c",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/quality_metrics.json": {
+      "size": 1769,
+      "mtime": 1791314318.0,
+      "sha256": "74a1a217a2b223e32c042c9a928317c2aa7ebc4881c662bbf69a88534c62185b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/researcher_signoff.json": {
+      "size": 873,
+      "mtime": 1791330139.3877747,
+      "sha256": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/shadow_context_boundary.geojson": {
+      "size": 1709,
+      "mtime": 1791317520.0,
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/site_boundary.geojson": {
+      "size": 1158,
+      "mtime": 1791317520.0,
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/site_selection.json": {
+      "size": 3261,
+      "mtime": 1791317520.0,
+      "sha256": "d4d5360c91a4020020c2e120a6f23e77fcefc6617014d0d4e0d7c30d4bc89061",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/terrain_metadata.json": {
+      "size": 4415,
+      "mtime": 1791317532.0,
+      "sha256": "841d7859e05e1604119fa9b0e8bcbedacd44a28fc9750f35bdaf6674cb03de4e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/terrain_site_samples.csv": {
+      "size": 3958,
+      "mtime": 1791313530.0,
+      "sha256": "560284a2d5f63f4bbcf0801778891b3d6f894b96f6778fb5a459a0d4464d9511",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/validation_report.json": {
+      "size": 2032,
+      "mtime": 1791317532.0,
+      "sha256": "1ccabd5c7ec55c4dc872e29e0c5327eef228715a276c5551ff65b0106065e17c",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_forcing.csv": {
+      "size": 1708,
+      "mtime": 1791317532.0,
+      "sha256": "c1c819f453bac690bbf6f99481faf9d11200b1c549093ae326571aecd87009a7",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_forcing_metadata.json": {
+      "size": 6738,
+      "mtime": 1791317532.0,
+      "sha256": "38ba1696eaa3434abadf31b391cf8cecb7211bc221e5f41859fdf78964b2d562",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_observations_selected_day.csv": {
+      "size": 3435,
+      "mtime": 1791313530.0,
+      "sha256": "b11041ef9b01ba9acbc78ba3ca34dcca0845f1577200ecbdc06a06d0da29fbc4",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_selected_observation.json": {
+      "size": 944,
+      "mtime": 1791313530.0,
+      "sha256": "2eea04c278f51182671c826412c64a110b8a83cc569e337c87e574d363b049cb",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/floor_counts.csv": {
+      "size": 25704,
+      "mtime": 1791317524.0,
+      "sha256": "b2a9c6ce018129925c36629aaba98a546cc86958c5438999830a074b0bdd47a5",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/google_ml_height_estimates.csv": {
+      "size": 23072,
+      "mtime": 1791314044.0,
+      "sha256": "5ad9bcb8a991792689564302c48c5944fed1e82195dd8edfbfbd88f9104b1e74",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/google_open_buildings_temporal_2023_context_window.tif": {
+      "size": 681969,
+      "mtime": 1791314042.0,
+      "sha256": "f37f1bf087fd2825e8dc31ca813d24b0838944a5be4094d52ca5e63262d9b8f5",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_buildings_2026-09-23.1.geoparquet": {
+      "size": 46657,
+      "mtime": 1791312576.0,
+      "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_buildings_raw.geojson": {
+      "size": 478493,
+      "mtime": 1791312576.0,
+      "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_building_context_original.geojson": {
+      "size": 478493,
+      "mtime": 1791312576.0,
+      "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_building_context_original.parquet": {
+      "size": 46657,
+      "mtime": 1791312576.0,
+      "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_segment_context_original.geojson": {
+      "size": 761235,
+      "mtime": 1791312598.0,
+      "sha256": "24abb314e5d4df08c87881a9d3b60f6f8e17878a6ff472aca0cac5884cd99c4e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_segment_context_original.parquet": {
+      "size": 133489,
+      "mtime": 1791312596.0,
+      "sha256": "0a9ba868958a32c2cb16a8a02da3a40606c2d25d87c278057070cbefb7210089",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/elevation_metadata.json": {
+      "size": 4415,
+      "mtime": 1791317532.0,
+      "sha256": "841d7859e05e1604119fa9b0e8bcbedacd44a28fc9750f35bdaf6674cb03de4e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/elevation_original.tif": {
+      "size": 7207710,
+      "mtime": 1791317532.0,
+      "sha256": "616caab132c3353efba0ee8cff9f9dccccdbe7eb5cd149eb205b547f53c92a40",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/N12E077.hgt.gz": {
+      "size": 11122631,
+      "mtime": 1791312324.0,
+      "sha256": "9485ba04696bbe2074a0b6cab79d0f12ecca79ad05b19d676ea35056beafd14e",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/bengaluru_station_observations.csv": {
+      "size": 1257600,
+      "mtime": 1791312224.0,
+      "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/isd-history.csv": {
+      "size": 2914601,
+      "mtime": 1791312194.0,
+      "sha256": "1994747ab4af1b97e63adb434b4d0d022f2daee76f0c144ea9ab46be2d906604",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/nasa_power_solar_20240415_original.json": {
+      "size": 2108,
+      "mtime": 1791312316.0,
+      "sha256": "ec61199f3913c940d90f514a871760dc29b4529053597c07e98da2e2392c8b83",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/noaa_43295099999_2024_original.csv": {
+      "size": 1257600,
+      "mtime": 1791312224.0,
+      "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/solar_estimates.csv": {
+      "size": 4911,
+      "mtime": 1791317532.0,
+      "sha256": "6639e51cc05efbd9c2892cda0142a2f22f4b93243e962c050c19418c00962426",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/acquisition_failures/osm_map_http_429_response.html": {
+      "size": 436,
+      "mtime": 1791312220.0,
+      "sha256": "8fe96d98abc77cd918752168542c668715035e54763d53afc6799250214987b9",
+      "package": "handoff_v2"
+    },
+    "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/acquisition_failures/overpass_http_429_response.txt": {
+      "size": 89,
+      "mtime": 1791312256.0,
+      "sha256": "78d737bddfa4d6e31202fae8845585d40db35847b0d14d41b0da7701609ad79c",
+      "package": "handoff_v2"
+    }
+  },
+  "git_status_snapshot": [
+    "M src/urban_comfort/config.py",
+    " M src/urban_comfort/incremental/__init__.py",
+    " M src/urban_comfort/incremental/affected_region.py",
+    " M src/urban_comfort/incremental/dependency_graph.py",
+    " M src/urban_comfort/incremental/mesh_update.py",
+    " M src/urban_comfort/incremental/update.py",
+    " M src/urban_comfort/reference/full_recompute.py",
+    " M tests/test_church_street_shade_panel_simulation.py",
+    "?? bengaluru_church_street_bbmp_trees_july2026_supplement.zip",
+    "?? bengaluru_church_street_bbmp_trees_july2026_supplement/",
+    "?? bengaluru_church_street_raw_sources_2026-10-07.zip",
+    "?? bengaluru_church_street_raw_sources_2026-10-07/",
+    "?? data/interim/",
+    "?? docs/",
+    "?? results/church_street_gpu_full_20261007_091111/",
+    "?? results/church_street_intervention_optimization_20261007_102725/",
+    "?? results/church_street_multi_intervention_optimization_20261007_114326/",
+    "?? results/church_street_shade_gpu_incremental_20261007_093519/",
+    "?? results/church_street_shade_gpu_incremental_20261007_093905/",
+    "?? results/church_street_shade_incremental_20261007_081114/",
+    "?? results/church_street_surrogate_optimization_20261007_110633/",
+    "?? results/church_street_two_panel_robustness_20261007_121128/",
+    "?? results/church_street_two_panel_robustness_20261007_121934/",
+    "?? results/church_street_two_panel_robustness_20261007_122037/",
+    "?? results/church_street_two_panel_robustness_20261007_122255/",
+    "?? results/church_street_two_panel_robustness_20261007_122427/",
+    "?? results/church_street_two_panel_robustness_20261007_122543/",
+    "?? scripts/run_church_street_gpu_simulation.py",
+    "?? scripts/run_church_street_intervention_optimization.py",
+    "?? scripts/run_church_street_shade_panel_gpu_incremental.py",
+    "?? scripts/run_church_street_shade_panel_incremental.py",
+    "?? scripts/run_church_street_surrogate_optimization.py",
+    "?? scripts/run_church_street_two_panel_optimization.py",
+    "?? scripts/run_church_street_two_panel_robustness.py",
+    "?? src/urban_comfort/backend/",
+    "?? src/urban_comfort/optimization/",
+    "?? tests/test_gpu_backend.py",
+    "?? tests/test_gpu_incremental.py",
+    "?? tests/test_intervention_optimization.py",
+    "?? tests/test_surrogate_optimization.py",
+    "?? tests/test_two_panel_optimization.py",
+    "?? tests/test_two_panel_robustness.py"
+  ]
+}

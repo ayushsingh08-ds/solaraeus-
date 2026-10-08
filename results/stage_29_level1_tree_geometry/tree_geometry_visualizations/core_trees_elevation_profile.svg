@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <rect width="800" height="400" fill="#f8fafc"/>
+  <line x1="50" y1="350" x2="750" y2="350" stroke="#475569" stroke-width="3"/>
+  <text x="50" y="380" font-family="sans-serif" font-size="14" fill="#334155">Church Street Sidewalk Elevation (Provisional)</text>
+  <!-- Tree T08 -->
+  <rect x="145" y="270" width="10" height="80" fill="#78350f"/>
+  <ellipse cx="150" cy="200" rx="45" ry="70" fill="#15803d" opacity="0.8"/>
+  <text x="135" y="320" font-family="sans-serif" font-size="12" fill="#0f172a">T08</text>
+  <!-- Tree T09 -->
+  <rect x="245" y="280" width="8" height="70" fill="#78350f"/>
+  <ellipse cx="249" cy="225" rx="35" ry="55" fill="#15803d" opacity="0.8"/>
+  <text x="235" y="320" font-family="sans-serif" font-size="12" fill="#0f172a">T09</text>
+  <!-- Tree T10 -->
+  <rect x="345" y="290" width="8" height="60" fill="#78350f"/>
+  <ellipse cx="349" cy="245" rx="30" ry="45" fill="#15803d" opacity="0.8"/>
+  <text x="335" y="320" font-family="sans-serif" font-size="12" fill="#0f172a">T10</text>
+  <!-- Tree T11 -->
+  <rect x="445" y="300" width="6" height="50" fill="#78350f"/>
+  <ellipse cx="448" cy="265" rx="22" ry="35" fill="#15803d" opacity="0.8"/>
+  <text x="435" y="320" font-family="sans-serif" font-size="12" fill="#0f172a">T11</text>
+  <!-- Tree T12 -->
+  <rect x="545" y="305" width="5" height="45" fill="#78350f"/>
+  <ellipse cx="547.5" cy="275" rx="20" ry="30" fill="#15803d" opacity="0.8"/>
+  <text x="535" y="320" font-family="sans-serif" font-size="12" fill="#0f172a">T12</text>
+  <!-- Tree T13 -->
+  <rect x="645" y="320" width="4" height="30" fill="#78350f"/>
+  <ellipse cx="647" cy="300" rx="14" ry="20" fill="#15803d" opacity="0.8"/>
+  <text x="635" y="320" font-family="sans-serif" font-size="12" fill="#0f172a">T13</text>
+</svg>

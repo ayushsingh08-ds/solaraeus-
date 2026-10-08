@@ -1,0 +1,59 @@
+{
+  "timestamp_utc": "2026-10-08T08:11:48.195551+00:00",
+  "audit_target": "results/stage_16_publication_package/",
+  "overall_clean": true,
+  "files_audited": 10,
+  "details": [
+    {
+      "file": "data_and_code_availability.md",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "figure_manifest.json",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "final_project_status.json",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "license_and_provenance.md",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "publication_limitations.md",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "publication_methodology.md",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "publication_results_summary.md",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "reproducibility_guide.md",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "stage_16_test_results.json",
+      "private_paths_found": 0,
+      "clean": true
+    },
+    {
+      "file": "table_manifest.json",
+      "private_paths_found": 0,
+      "clean": true
+    }
+  ],
+  "policy": "No local developer usernames, home directories, or private drive letters in release materials."
+}

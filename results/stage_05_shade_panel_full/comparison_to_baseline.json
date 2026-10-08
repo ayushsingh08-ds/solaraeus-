@@ -1,0 +1,36 @@
+{
+  "baseline_reference": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_static_20261006_232110",
+  "fields": {
+    "shadow": {
+      "cells_differing": 6,
+      "diff_values": [
+        -1.0,
+        0.0
+      ],
+      "newly_shaded_cells": 6,
+      "unshaded_cells": 0
+    },
+    "svf": {
+      "cells_differing_gt_1e-4": 104,
+      "max_abs_diff": 0.6441491304758103,
+      "min_diff": -0.6441491304758103,
+      "max_diff": 0.0
+    },
+    "tmrt": {
+      "cells_differing_gt_0_01k": 39,
+      "max_cooling_k": -12.616308183378294,
+      "max_warming_k": 4.3870083990067315,
+      "mean_diff_k": -0.001631034103081072
+    },
+    "utci": {
+      "cells_differing_gt_0_1k": 18,
+      "max_cooling_k": -3.1000000000000014,
+      "max_warming_k": 1.1000000000000014
+    }
+  },
+  "unaffected_region_integrity": {
+    "outside_radius_m": 40.0,
+    "max_discrepancy_unaffected": 0.0,
+    "physically_plausible": true
+  }
+}

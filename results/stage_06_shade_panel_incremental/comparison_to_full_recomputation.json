@@ -1,0 +1,49 @@
+{
+  "stage_5_reference": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\stage_05_shade_panel_full",
+  "parity_summary": {
+    "all_tolerances_satisfied": true,
+    "discrepancies_count": 0,
+    "status": "PASS"
+  },
+  "fields": {
+    "shadow_mask": {
+      "unit": "binary_flag",
+      "max_absolute_error": 0.0,
+      "tolerance": 0.0,
+      "discrepant_cells": 0,
+      "pass": true
+    },
+    "direct_shortwave": {
+      "unit": "W/m2",
+      "max_absolute_error": 0.0,
+      "tolerance": 0.0,
+      "discrepant_cells": 0,
+      "pass": true
+    },
+    "sky_view_factor": {
+      "unit": "dimensionless_fraction",
+      "max_absolute_error": 0.004194572176794309,
+      "mean_absolute_error": 2.00768797008144e-06,
+      "p99_absolute_error": 0.0,
+      "tolerance": 0.01,
+      "discrepant_cells": 0,
+      "pass": true
+    },
+    "mean_radiant_temperature": {
+      "unit": "K",
+      "max_absolute_error": 0.02890152869707663,
+      "mean_absolute_error": 1.3890542391036443e-05,
+      "p99_absolute_error": 0.0,
+      "tolerance": 0.5,
+      "discrepant_cells": 0,
+      "pass": true
+    },
+    "utci": {
+      "unit": "degC",
+      "max_absolute_error": 0.10000000000000142,
+      "tolerance": 0.5,
+      "discrepant_cells": 0,
+      "pass": true
+    }
+  }
+}

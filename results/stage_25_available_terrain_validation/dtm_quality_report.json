@@ -1,0 +1,24 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T09:18:45.303455+00:00",
+  "fabdem_evaluation": {
+    "resolution_m": 30.87,
+    "can_resolve_curb_150mm": false,
+    "can_resolve_sidewalk_crossfall": false,
+    "building_threshold_compatibility": "UNRESOLVED_STEP_ARTIFACTS",
+    "decision": "REGIONAL_REFERENCE_ONLY"
+  },
+  "synthetic_evaluation": {
+    "profiles_tested": [
+      "FLAT_0M",
+      "INCLINED_2.5PCT",
+      "STEPPED_CURB_0.15M",
+      "DRAINAGE_SWALE"
+    ],
+    "resolution_m": 0.5,
+    "bounds_handling": "STRICT_CONTAINMENT_VERIFIED",
+    "nodata_behavior": "EXPLICIT_MASKING_VERIFIED",
+    "decision": "APPROVED_FOR_SOLVER_MECHANICS_TESTING"
+  },
+  "classification": "SYNTHETIC_TERRAIN_ONLY"
+}

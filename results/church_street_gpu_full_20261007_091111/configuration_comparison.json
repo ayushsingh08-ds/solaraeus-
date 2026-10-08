@@ -1,0 +1,24 @@
+{
+  "status": "exact_parity_verified",
+  "grid_shape": [
+    148,
+    190
+  ],
+  "grid_resolution_m": 2.0,
+  "receptor_height_m": 1.1,
+  "solar_altitude_deg": 57.9159576593304,
+  "solar_azimuth_deg": 268.16554681339886,
+  "weather_forcing": {
+    "air_temperature_k": 308.15,
+    "relative_humidity_pct": 19.729,
+    "wind_speed_m_s": 1.5,
+    "direct_normal_irradiance_w_m2": 728.31,
+    "diffuse_horizontal_irradiance_w_m2": 172.18
+  },
+  "building_meshes_count": 123,
+  "shade_panel_meshes_count": 1,
+  "svf_azimuths": 32,
+  "svf_max_search_dist_m": 120.0,
+  "backend": "gpu",
+  "reference_cpu_directory": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_shade_full_20261007_001600"
+}

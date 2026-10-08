@@ -1,0 +1,14 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:43.804204+00:00",
+  "total_domain_cells": 28120,
+  "recomputed_cells_count": 72,
+  "reused_cells_count": 28048,
+  "recomputed_percentage": 0.25604551920341395,
+  "reused_percentage": 99.74395448079659,
+  "bounding_box_affected_cells": 72,
+  "is_conservative": true,
+  "min_x": 124.0,
+  "max_x": 140.0,
+  "min_y": 57.0,
+  "max_y": 71.0
+}

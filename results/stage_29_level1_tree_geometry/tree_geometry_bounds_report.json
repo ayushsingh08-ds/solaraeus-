@@ -1,0 +1,278 @@
+{
+  "CONSERVATIVE_SMALL": {
+    "T08": {
+      "species": "Ficus religiosa",
+      "height_m": 11.0,
+      "crown_diameter_m": 9.5,
+      "crown_base_height_m": 3.8,
+      "crown_volume_m3": 340.23,
+      "height_bounds": [
+        11.0,
+        16.0
+      ],
+      "crown_dia_bounds": [
+        9.5,
+        15.0
+      ]
+    },
+    "T09": {
+      "species": "Syzygium cumini",
+      "height_m": 9.0,
+      "crown_diameter_m": 7.0,
+      "crown_base_height_m": 3.2,
+      "crown_volume_m3": 148.81,
+      "height_bounds": [
+        9.0,
+        13.0
+      ],
+      "crown_dia_bounds": [
+        7.0,
+        10.5
+      ]
+    },
+    "T10": {
+      "species": "Syzygium cumini",
+      "height_m": 7.5,
+      "crown_diameter_m": 6.0,
+      "crown_base_height_m": 2.8,
+      "crown_volume_m3": 88.59,
+      "height_bounds": [
+        7.5,
+        11.5
+      ],
+      "crown_dia_bounds": [
+        6.0,
+        9.0
+      ]
+    },
+    "T11": {
+      "species": "Saraca asoca",
+      "height_m": 6.5,
+      "crown_diameter_m": 4.2,
+      "crown_base_height_m": 2.4,
+      "crown_volume_m3": 37.87,
+      "height_bounds": [
+        6.5,
+        9.5
+      ],
+      "crown_dia_bounds": [
+        4.2,
+        6.8
+      ]
+    },
+    "T12": {
+      "species": "Saraca asoca",
+      "height_m": 6.0,
+      "crown_diameter_m": 3.8,
+      "crown_base_height_m": 2.2,
+      "crown_volume_m3": 28.73,
+      "height_bounds": [
+        6.0,
+        9.0
+      ],
+      "crown_dia_bounds": [
+        3.8,
+        6.2
+      ]
+    },
+    "T13": {
+      "species": "Tecoma stans",
+      "height_m": 3.8,
+      "crown_diameter_m": 2.6,
+      "crown_base_height_m": 1.4,
+      "crown_volume_m3": 8.49,
+      "height_bounds": [
+        3.8,
+        6.5
+      ],
+      "crown_dia_bounds": [
+        2.6,
+        4.5
+      ]
+    }
+  },
+  "NOMINAL_PROVISIONAL": {
+    "T08": {
+      "species": "Ficus religiosa",
+      "height_m": 13.5,
+      "crown_diameter_m": 12.0,
+      "crown_base_height_m": 4.2,
+      "crown_volume_m3": 701.2,
+      "height_bounds": [
+        11.0,
+        16.0
+      ],
+      "crown_dia_bounds": [
+        9.5,
+        15.0
+      ]
+    },
+    "T09": {
+      "species": "Syzygium cumini",
+      "height_m": 11.0,
+      "crown_diameter_m": 8.5,
+      "crown_base_height_m": 3.8,
+      "crown_volume_m3": 272.38,
+      "height_bounds": [
+        9.0,
+        13.0
+      ],
+      "crown_dia_bounds": [
+        7.0,
+        10.5
+      ]
+    },
+    "T10": {
+      "species": "Syzygium cumini",
+      "height_m": 9.5,
+      "crown_diameter_m": 7.5,
+      "crown_base_height_m": 3.2,
+      "crown_volume_m3": 185.55,
+      "height_bounds": [
+        7.5,
+        11.5
+      ],
+      "crown_dia_bounds": [
+        6.0,
+        9.0
+      ]
+    },
+    "T11": {
+      "species": "Saraca asoca",
+      "height_m": 8.0,
+      "crown_diameter_m": 5.5,
+      "crown_base_height_m": 2.8,
+      "crown_volume_m3": 82.36,
+      "height_bounds": [
+        6.5,
+        9.5
+      ],
+      "crown_dia_bounds": [
+        4.2,
+        6.8
+      ]
+    },
+    "T12": {
+      "species": "Saraca asoca",
+      "height_m": 7.5,
+      "crown_diameter_m": 5.0,
+      "crown_base_height_m": 2.6,
+      "crown_volume_m3": 64.14,
+      "height_bounds": [
+        6.0,
+        9.0
+      ],
+      "crown_dia_bounds": [
+        3.8,
+        6.2
+      ]
+    },
+    "T13": {
+      "species": "Tecoma stans",
+      "height_m": 5.0,
+      "crown_diameter_m": 3.5,
+      "crown_base_height_m": 1.8,
+      "crown_volume_m3": 20.53,
+      "height_bounds": [
+        3.8,
+        6.5
+      ],
+      "crown_dia_bounds": [
+        2.6,
+        4.5
+      ]
+    }
+  },
+  "CONSERVATIVE_LARGE": {
+    "T08": {
+      "species": "Ficus religiosa",
+      "height_m": 16.0,
+      "crown_diameter_m": 15.0,
+      "crown_base_height_m": 4.5,
+      "crown_volume_m3": 1354.81,
+      "height_bounds": [
+        11.0,
+        16.0
+      ],
+      "crown_dia_bounds": [
+        9.5,
+        15.0
+      ]
+    },
+    "T09": {
+      "species": "Syzygium cumini",
+      "height_m": 13.0,
+      "crown_diameter_m": 10.5,
+      "crown_base_height_m": 4.2,
+      "crown_volume_m3": 508.0,
+      "height_bounds": [
+        9.0,
+        13.0
+      ],
+      "crown_dia_bounds": [
+        7.0,
+        10.5
+      ]
+    },
+    "T10": {
+      "species": "Syzygium cumini",
+      "height_m": 11.5,
+      "crown_diameter_m": 9.0,
+      "crown_base_height_m": 3.6,
+      "crown_volume_m3": 335.05,
+      "height_bounds": [
+        7.5,
+        11.5
+      ],
+      "crown_dia_bounds": [
+        6.0,
+        9.0
+      ]
+    },
+    "T11": {
+      "species": "Saraca asoca",
+      "height_m": 9.5,
+      "crown_diameter_m": 6.8,
+      "crown_base_height_m": 3.2,
+      "crown_volume_m3": 152.53,
+      "height_bounds": [
+        6.5,
+        9.5
+      ],
+      "crown_dia_bounds": [
+        4.2,
+        6.8
+      ]
+    },
+    "T12": {
+      "species": "Saraca asoca",
+      "height_m": 9.0,
+      "crown_diameter_m": 6.2,
+      "crown_base_height_m": 3.0,
+      "crown_volume_m3": 120.76,
+      "height_bounds": [
+        6.0,
+        9.0
+      ],
+      "crown_dia_bounds": [
+        3.8,
+        6.2
+      ]
+    },
+    "T13": {
+      "species": "Tecoma stans",
+      "height_m": 6.5,
+      "crown_diameter_m": 4.5,
+      "crown_base_height_m": 2.2,
+      "crown_volume_m3": 45.59,
+      "height_bounds": [
+        3.8,
+        6.5
+      ],
+      "crown_dia_bounds": [
+        2.6,
+        4.5
+      ]
+    }
+  }
+}

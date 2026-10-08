@@ -1,0 +1,5 @@
+domain,total_cells,recomputed_cells,reused_cells,reused_percentage
+all_grid_cells,28120,72,28048,99.74
+main_analysis_cells,7225,72,7153,99.0
+unbuilt_pedestrian_cells,3837,51,3786,98.67
+church_street_corridor_cells,668,43,625,93.56

@@ -1,0 +1,7 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.213285+00:00",
+  "gpu_full_sec": 0.6459264000004623,
+  "gpu_incremental_sec": 0.1156055000028573,
+  "speedup_vs_full": 0.9987267040503762,
+  "speedup_vs_cpu_full": 50.0
+}

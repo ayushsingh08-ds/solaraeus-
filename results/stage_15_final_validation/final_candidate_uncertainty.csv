@@ -1,0 +1,4 @@
+candidate_id,role,n_trials,mean_objective,std_objective,ci_95_low,ci_95_high,mean_utci_c,std_utci_c,repeated_run_variance,ranking_stability
+CAND_FINAL_BEST,Selected Optimal Candidate,20,54.8874,0.7754,53.4955,55.8792,36.447,0.515,0.601271,NON_DEFINITIVE_OVERLAPPING_CI
+CAND_CANONICAL,Canonical Benchmark Candidate (BLR_SHADE_001),20,55.2075,0.7827,53.9073,56.6296,36.641,0.524,0.612595,NON_DEFINITIVE_OVERLAPPING_CI
+CAND_ALT_LHS,Alternative Candidate 1 (LHS Top Rank),20,54.7489,0.6049,53.5906,55.677,36.339,0.406,0.365875,NON_DEFINITIVE_OVERLAPPING_CI

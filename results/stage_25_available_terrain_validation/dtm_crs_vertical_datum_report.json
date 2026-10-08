@@ -1,0 +1,9 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T09:18:45.303455+00:00",
+  "horizontal_crs": "EPSG:32643 (UTM 43N)",
+  "vertical_datum": "Local orthometric relative meters",
+  "units": "meters",
+  "coordinate_transform_tested": true,
+  "reproducibility": "DETERMINISTIC"
+}

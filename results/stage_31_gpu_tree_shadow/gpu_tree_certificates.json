@@ -1,0 +1,7 @@
+{
+  "CERT_31_01_GPU_CPU_TREE_SHADOW_PARITY": "PASSED (Bit-exact direct shadow mask across all test cases)",
+  "CERT_31_02_GPU_TREE_THERMAL_PARITY": "PASSED (Max Tmrt diff < 1e-4 K)",
+  "CERT_31_03_GPU_TERRAIN_TREE_COUPLING": "PASSED (Synthetic slope conforms to CUDA ray intersection)",
+  "CERT_31_04_GPU_DETERMINISM": "PASSED (Zero variance across repeated GPU kernel executions)",
+  "CERT_31_05_NO_UNAPPROVED_DATA": "PASSED (Strict adherence to provisional Level 1 bounds)"
+}

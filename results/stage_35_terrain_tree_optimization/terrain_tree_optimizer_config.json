@@ -1,0 +1,18 @@
+{
+  "stage": 35,
+  "name": "PROVISIONAL_TERRAIN_TREE_SENSITIVITY_OPTIMIZATION",
+  "timestamp_utc": "2026-10-08T09:41:24.943515+00:00",
+  "random_seed": 42,
+  "objective_definition": "Minimize domain mean UTCI (deg C) under terrain & provisional tree geometry",
+  "constraints": {
+    "max_panel_area_m2": 25.0,
+    "min_vertical_clearance_m": 2.5,
+    "boundary_containment": "STRICT_WITHIN_DOMAIN"
+  },
+  "governance_tokens": {
+    "terrain_status": "SYNTHETIC_TERRAIN_ONLY",
+    "tree_status": "PROVISIONAL_PHOTO_ESTIMATED",
+    "canopy_status": "LITERATURE_ASSUMED_OR_SENSITIVITY_ONLY",
+    "ranking_status": "NON_AUTHORITATIVE"
+  }
+}

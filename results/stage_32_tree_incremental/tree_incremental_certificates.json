@@ -1,0 +1,7 @@
+{
+  "CERT_32_01_AFFECTED_REGION_CONTAINMENT": "PASSED (Strict shadow cone bounding box enclosing all altered ray paths)",
+  "CERT_32_02_CPU_INCREMENTAL_EXACTNESS": "PASSED (Bit-exact match with CPU full recomputation)",
+  "CERT_32_03_GPU_INCREMENTAL_EXACTNESS": "PASSED (Bit-exact match with GPU full recomputation)",
+  "CERT_32_04_CLEAN_CELL_PRESERVATION": "PASSED (Zero modification to cells outside affected region)",
+  "CERT_32_05_DETERMINISM": "PASSED (Identical incremental output across repeated invocations)"
+}

@@ -1,0 +1,10 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T08:55:45.134778+00:00",
+  "promotion_to_measured_street_scale": false,
+  "classification": "SYNTHETIC_TERRAIN_ONLY",
+  "real_world_terrain_claims_permitted": false,
+  "software_engine_testing_permitted": true,
+  "token": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+  "reason": "Measured street-scale DTM unavailable in repository. FABDEM preserved strictly as REGIONAL_REFERENCE_ONLY."
+}

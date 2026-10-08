@@ -1,0 +1,12 @@
+{
+  "stage_id": "STAGE_26",
+  "timestamp_utc": "2026-10-08T08:57:00.387954+00:00",
+  "total_core_trees": 6,
+  "confirmed_alive_count": 0,
+  "confirmed_removed_count": 0,
+  "existence_uncertain_count": 6,
+  "on_site_survey_conducted": false,
+  "status": "STAGE_26_FIELD_VALIDATION_PENDING",
+  "classification": "PHOTO_ESTIMATED_ONLY",
+  "calibrated_geometry_claims_permitted": false
+}

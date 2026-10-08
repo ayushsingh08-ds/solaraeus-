@@ -1,0 +1,86 @@
+[
+  {
+    "field": "Direct Shadow Mask",
+    "unit": "-",
+    "tolerance": 0.0,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "rms_error": 0.0,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Sky View Factor (SVF)",
+    "unit": "-",
+    "tolerance": 1e-12,
+    "max_absolute_error": 1.1102230246251565e-15,
+    "mean_absolute_error": 1.993821576940626e-19,
+    "rms_error": 1.0013435921494338e-17,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Direct Shortwave Irradiance",
+    "unit": "W/m2",
+    "tolerance": 1e-12,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "rms_error": 0.0,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Total Shortwave Flux",
+    "unit": "W/m2",
+    "tolerance": 1e-10,
+    "max_absolute_error": 5.684341886080802e-14,
+    "mean_absolute_error": 9.601928861622976e-18,
+    "rms_error": 5.684847228295079e-16,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Total Longwave Flux",
+    "unit": "W/m2",
+    "tolerance": 1e-10,
+    "max_absolute_error": 1.1368683772161603e-13,
+    "mean_absolute_error": 2.4257504492521202e-17,
+    "rms_error": 1.2683425154313406e-15,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Mean Radiant Temperature (Tmrt)",
+    "unit": "K",
+    "tolerance": 1e-10,
+    "max_absolute_error": 5.684341886080802e-14,
+    "mean_absolute_error": 8.085834830840401e-18,
+    "rms_error": 6.779575916890168e-16,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  },
+  {
+    "field": "Thermal Comfort (UTCI)",
+    "unit": "degC",
+    "tolerance": 0.0,
+    "max_absolute_error": 0.0,
+    "mean_absolute_error": 0.0,
+    "rms_error": 0.0,
+    "p99_error": 0.0,
+    "discrepancy_count": 0,
+    "status": "PASS",
+    "evaluated_cells": 28120
+  }
+]

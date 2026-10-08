@@ -1,0 +1,10 @@
+{
+  "stage": "STAGE_25",
+  "status": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+  "tests_run": 5,
+  "tests_passed": 5,
+  "tests_failed": 0,
+  "acceptance_criteria_met": true,
+  "classification": "SYNTHETIC_TERRAIN_ONLY",
+  "notes": "FABDEM correctly protected from microscale promotion; synthetic profiles validated for software-only tests."
+}

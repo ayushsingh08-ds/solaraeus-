@@ -41,7 +41,8 @@ class SimulationResult:
 
 
 def full_recompute(scene: Scene, weather: Weather,
-                   config: SimulationConfig) -> SimulationResult:
+                   config: SimulationConfig,
+                   backend: Optional[str] = None) -> SimulationResult:
     """
     Executes a deterministic full recomputation of all microclimatic fields from scratch.
     
@@ -49,10 +50,19 @@ def full_recompute(scene: Scene, weather: Weather,
         scene: Scene container with buildings, ground, and grid specs.
         weather: Weather boundary conditions.
         config: Simulation control and geographic parameters.
+        backend: Optional backend override ('cpu', 'gpu', or 'auto').
         
     Returns:
         SimulationResult containing all evaluated spatial fields.
     """
+    selected_backend = (backend or getattr(config, "backend", "cpu")).lower()
+    if selected_backend == "gpu":
+        from urban_comfort.backend.gpu_backend import GPUBackend
+        return GPUBackend().full_simulate(scene, weather, config)
+    elif selected_backend == "auto":
+        from urban_comfort.backend import get_backend
+        return get_backend("auto").full_simulate(scene, weather, config)
+
     t_start = time.perf_counter()
 
     # 1. Parse Datetime and Compute Solar Position

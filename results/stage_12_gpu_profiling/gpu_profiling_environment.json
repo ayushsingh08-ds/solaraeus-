@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-10-07T19:16:09.995561+00:00",
+  "device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "cuda_compute_capability": "8.9",
+  "sm_count": 20,
+  "vram_bytes": 6438780928,
+  "cupy_version": "14.2.0",
+  "python_version": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "num_trials_per_pathway": 5,
+  "warmup_trials": 1,
+  "precision_policy": "IEEE-754 double precision (float64)"
+}

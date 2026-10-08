@@ -1,0 +1,22 @@
+{
+  "tree_addition": {
+    "max_tmrt_diff_k": 0.0,
+    "max_shadow_diff": 0.0,
+    "within_tolerance": true
+  },
+  "tree_translation": {
+    "max_tmrt_diff_k": 0.0,
+    "max_shadow_diff": 0.0,
+    "within_tolerance": true
+  },
+  "tree_height_scale": {
+    "max_tmrt_diff_k": 0.0,
+    "max_shadow_diff": 0.0,
+    "within_tolerance": true
+  },
+  "geometry_state_transition": {
+    "max_tmrt_diff_k": 0.0,
+    "max_shadow_diff": 0.0,
+    "within_tolerance": true
+  }
+}

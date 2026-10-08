@@ -1,0 +1,7 @@
+parameter,symbol,min_val,nominal_val,max_val,unit,classification
+shortwave_transmissivity,tau_sw,0.0,0.15,0.5,dimensionless,LITERATURE_ASSUMED
+leaf_area_index,LAI,1.2,3.5,6.0,m^2/m^2,SPECIES_PRIOR
+leaf_area_density,LAD,0.25,0.8,1.5,m^-1,LITERATURE_ASSUMED
+leaf_albedo,alpha_leaf,0.15,0.2,0.25,dimensionless,LITERATURE_ASSUMED
+leaf_emissivity,eps_leaf,0.94,0.96,0.98,dimensionless,LITERATURE_ASSUMED
+field_photosynthetically_active_radiation,F_PAR,MISSING,MISSING,MISSING,umol/m^2/s,MISSING

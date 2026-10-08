@@ -1,0 +1,7 @@
+{
+  "feasible_simulations_count": 12,
+  "certified_count": 12,
+  "violation_count": 0,
+  "soundness_rate_pct": 100.0,
+  "all_certified": true
+}

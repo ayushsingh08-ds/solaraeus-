@@ -1,0 +1,8 @@
+{
+  "profiles_supported": 5,
+  "mandatory_labels": [
+    "FABDEM_REGIONAL_REFERENCE_ONLY",
+    "MEASURED_STREET_SCALE_DTM_NOT_AVAILABLE",
+    "SYNTHETIC_TERRAIN_ONLY"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "mean_agreement_pct": 99.4,
+  "max_discrepancy_pct": 0.6,
+  "status": "VISUAL_PHYSICAL_PARITY_PASSED",
+  "threshold_pct": 95.0
+}

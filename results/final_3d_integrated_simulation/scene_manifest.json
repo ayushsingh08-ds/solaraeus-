@@ -1,0 +1,25 @@
+{
+  "status": "SCENE_GRAPH_ASSEMBLED",
+  "objects": {
+    "buildings_core": 37,
+    "buildings_context": 123,
+    "trees_core": 6,
+    "interventions": 1,
+    "terrain_profiles": 5
+  },
+  "physics_participation_breakdown": {
+    "PHYSICAL": [
+      "buildings",
+      "terrain",
+      "trees",
+      "interventions",
+      "cloud_layer"
+    ],
+    "VISUAL_ONLY": [
+      "roadway_ribbon",
+      "corner_fog_wisps",
+      "poi_pins",
+      "visual_infill_vegetation"
+    ]
+  }
+}

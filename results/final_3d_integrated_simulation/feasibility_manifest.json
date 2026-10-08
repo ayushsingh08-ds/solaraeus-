@@ -1,0 +1,14 @@
+{
+  "status": "3D_FEASIBILITY_ACTIVE",
+  "constraints_checked": [
+    "domain_bounds",
+    "building_collisions",
+    "terrain_collisions",
+    "tree_trunk_collisions",
+    "crown_collisions",
+    "panel_ground_clearance >= 4.0m",
+    "pedestrian_clearance >= 3.5m",
+    "roadway_obstruction = False"
+  ],
+  "verified_clearance_m": 4.5
+}

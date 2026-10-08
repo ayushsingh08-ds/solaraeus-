@@ -1,0 +1,33 @@
+{
+  "timestamp_utc": "2026-10-08T08:32:12.670368+00:00",
+  "synthetic_profiles_tested": [
+    {
+      "profile": "inclined_plane",
+      "slope_x": 0.03,
+      "evaluated_cells": 6400,
+      "status": "PASSED"
+    },
+    {
+      "profile": "stepped_curb",
+      "step_height_m": 0.15,
+      "evaluated_cells": 6400,
+      "status": "PASSED"
+    },
+    {
+      "profile": "nodata_hole",
+      "hole_bounds": [
+        20,
+        30,
+        20,
+        30
+      ],
+      "invalid_cells": 144,
+      "status": "PASSED"
+    },
+    {
+      "profile": "panel_clearance_check",
+      "status": "PASSED"
+    }
+  ],
+  "verdict": "SYNTHETIC_SUITE_100_PERCENT_PASSED"
+}

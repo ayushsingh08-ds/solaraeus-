@@ -1,0 +1,9 @@
+tree_id,census_object_id,kgis_tree_id,species,local_coordinates_m,inside_core_domain,inside_75m_context_buffer,image_evidence,dimension_evidence,recommended_role
+T01,554674,GN8035CJ5FGG001,Artocarpus Heterophyllus Lam.,"(-35.33, 189.84)",false,true,NOT_VISIBLE,MISSING,INSUFFICIENT_DATA
+T02,554688,GN8035CJ5BFF001,Michelia Longifolia Blume,"(-20.46, 169.73)",false,true,NOT_VISIBLE,MISSING,INSUFFICIENT_DATA
+T03,554700,GN8035CI5UGG001,Tabebuia Rosea (Bertol) Dc.,"(-34.92, 149.76)",false,true,CROWN_TOP_ONLY,MISSING,LOCATION_ONLY
+T04,554708,GN8035CI5QWC001,Markhamia Lutea (Benth.) K.Schum,"(-11.04, 140.05)",false,true,CROWN_TOP_ONLY,MISSING,LOCATION_ONLY
+T05,554729,GN8035CI5BXD001,Ficus Racemosa L.,"(-6.31, 80.76)",false,true,PARTIALLY_VISIBLE,MISSING,LOCATION_ONLY
+T06,554737,GN8035CI5BTO001,Araucaria Columnaris,"(-3.25, 79.02)",false,true,VISIBLE,PHOTO_ESTIMATED,OPTIONAL_CONTEXT_GEOMETRY
+T07,554748,GN8035CI5GDI001,Araucaria Columnaris,"(-9.30, 86.26)",false,true,VISIBLE,PHOTO_ESTIMATED,OPTIONAL_CONTEXT_GEOMETRY
+T14,554866,GN8035CI6TVE001,Pongamia Pinnata (L.) Pierre,"(142.88, 141.84)",false,true,NOT_VISIBLE,MISSING,EXCLUDE_PENDING_REVIEW

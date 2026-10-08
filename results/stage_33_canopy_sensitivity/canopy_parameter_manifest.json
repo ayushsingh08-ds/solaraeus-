@@ -1,0 +1,17 @@
+{
+  "stage": 33,
+  "status": "STAGE_33_CANOPY_SENSITIVITY_COMPLETE",
+  "canopy_validation_status": "CANOPY_PARAMETERS_NOT_FIELD_VALIDATED",
+  "calibration_claim": "CANOPY_LEVEL_2_CALIBRATION_NOT_CLAIMED",
+  "timestamp_utc": "2026-10-08T09:38:57.294299+00:00",
+  "parameters_evaluated": [
+    "shortwave_transmissivity",
+    "leaf_area_index_lai",
+    "leaf_area_density_lad",
+    "leaf_albedo",
+    "leaf_emissivity",
+    "seasonal_foliage_attenuation"
+  ],
+  "delta_tmrt_opaque_to_sparse_k": 0.316,
+  "token": "STAGE_33_CANOPY_SENSITIVITY_COMPLETE"
+}

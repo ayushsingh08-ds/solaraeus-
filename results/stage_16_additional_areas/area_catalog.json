@@ -1,0 +1,72 @@
+{
+  "study_areas": [
+    {
+      "area_id": "AREA_CHURCH_STREET_PRIME",
+      "name": "Bengaluru Church Street Pedestrian Spine",
+      "classification": "Pedestrian Street Corridor",
+      "crs": "EPSG:32643 (UTM Zone 43N)",
+      "coordinates": {
+        "lat": 12.9749,
+        "lon": 77.6054
+      },
+      "grid_extent_m": [
+        260.0,
+        150.0
+      ],
+      "terrain_type": "Flat urban grade (< 1.5% slope)",
+      "status": "APPROVED_REFERENCE_CORRIDOR",
+      "validated_in_stages": "1-15"
+    },
+    {
+      "area_id": "AREA_BRIGADE_ROAD_EXT",
+      "name": "Brigade Road Commercial Junction Corridor",
+      "classification": "Commercial Street Canyon (H/W ~ 1.0)",
+      "crs": "EPSG:32643 (UTM Zone 43N)",
+      "coordinates": {
+        "lat": 12.972,
+        "lon": 77.608
+      },
+      "grid_extent_m": [
+        100.0,
+        50.0
+      ],
+      "terrain_type": "Flat urban grade (0.8% slope)",
+      "status": "APPROVED_FOR_VALIDATION",
+      "intervention_tested": "Cantilevered street canopy (6x3x3.5m)"
+    },
+    {
+      "area_id": "AREA_MG_ROAD_PLAZA",
+      "name": "Mahatma Gandhi Road Metro Plaza",
+      "classification": "Open Urban Pedestrian Plaza",
+      "crs": "EPSG:32643 (UTM Zone 43N)",
+      "coordinates": {
+        "lat": 12.976,
+        "lon": 77.606
+      },
+      "grid_extent_m": [
+        80.0,
+        80.0
+      ],
+      "terrain_type": "Flat urban grade (0.5% slope)",
+      "status": "APPROVED_FOR_VALIDATION",
+      "intervention_tested": "Central shade pavilion (8x4x3.5m)"
+    },
+    {
+      "area_id": "AREA_HILLSIDE_COMPLEX",
+      "name": "Chamundi Hills Escarpment Ridge",
+      "classification": "Complex Topographic Slope",
+      "crs": "EPSG:32643 (UTM Zone 43N)",
+      "coordinates": {
+        "lat": 12.27,
+        "lon": 76.67
+      },
+      "grid_extent_m": [
+        150.0,
+        150.0
+      ],
+      "terrain_type": "Steep hillside (> 18.5% slope)",
+      "status": "REJECTED_UNSUPPORTED_PHYSICS",
+      "rejection_reason": "UNSUPPORTED_TERRAIN_SLOPE: Solver model assumptions strictly require flat/gentle grade; steep 3D terrain physics uncalibrated."
+    }
+  ]
+}

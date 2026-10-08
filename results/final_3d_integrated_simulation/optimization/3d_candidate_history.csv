@@ -1,0 +1,5 @@
+candidate_id,x,y,score,is_feasible
+CAND_0001,95.0,72.0,8.4,True
+CAND_0014,100.0,68.0,10.2,True
+CAND_0028_EVOL,105.0,70.0,12.6,True
+CAND_0035_COLLISION,140.0,60.0,0.0,False

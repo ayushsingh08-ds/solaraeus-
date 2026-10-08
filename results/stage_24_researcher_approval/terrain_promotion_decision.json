@@ -1,0 +1,10 @@
+{
+  "stage_id": "STAGE_24",
+  "timestamp_utc": "2026-10-08T09:18:11.648214+00:00",
+  "synthetic_terrain_approved_for_solver_mechanics": true,
+  "fabdem_classification": "REGIONAL_REFERENCE_ONLY",
+  "street_scale_dtm_status": "MISSING",
+  "real_world_terrain_claims_permitted": false,
+  "status": "APPROVED_FOR_SYNTHETIC_TESTING_ONLY",
+  "reason": "Synthetic terrain profiles approved for solver verification; FABDEM restricted to regional context."
+}

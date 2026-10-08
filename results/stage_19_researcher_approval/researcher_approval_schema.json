@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ResearcherApprovalRecord",
+  "description": "Formal schema for human researcher sign-off on terrain and tree data promotion",
+  "type": "object",
+  "required": [
+    "researcher_name",
+    "institution",
+    "approval_date",
+    "signature_identifier",
+    "decisions",
+    "overall_authorization"
+  ],
+  "properties": {
+    "researcher_name": {
+      "type": "string"
+    },
+    "institution": {
+      "type": "string"
+    },
+    "approval_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "signature_identifier": {
+      "type": "string"
+    },
+    "overall_authorization": {
+      "type": "string",
+      "enum": [
+        "APPROVED",
+        "PARTIALLY_APPROVED",
+        "PENDING",
+        "REJECTED"
+      ]
+    },
+    "decisions": {
+      "type": "object",
+      "properties": {
+        "tree_locations_census_derived": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "reported_species_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "tree_existence_uncertainty_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "t08_geometry_bounds_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "t09_geometry_bounds_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "t10_geometry_bounds_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "t11_geometry_bounds_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "t12_geometry_bounds_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "t13_geometry_bounds_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "nominal_geometry_level1_sensitivity": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "authoritative_simulation_geometry": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "context_tree_inclusion_accepted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "fabdem_regional_reference_restricted": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "street_scale_dtm_required": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "canopy_parameters_literature_assumptions": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "lai_lad_unvalidated_acknowledged": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "field_validation_required_acknowledged": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "promotion_to_processed_data_approved": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        },
+        "simulation_integration_approved": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "REJECTED",
+            "PENDING"
+          ]
+        }
+      }
+    }
+  }
+}

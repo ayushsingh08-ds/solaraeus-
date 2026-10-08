@@ -1,0 +1,7 @@
+regime,transmissivity,lai_equivalent,lad_m_inv,mean_tmrt_c,mean_utci_c,min_tmrt_c,shadowed_cells,label
+opaque_canopy,0.0,5.0,1.2,46.494,33.725,30.944,787,LITERATURE_ASSUMED
+high_attenuation,0.05,4.5,1.0,46.532,33.735,30.989,718,LITERATURE_ASSUMED
+nominal_literature,0.15,3.2,0.7,46.597,33.751,30.989,718,LITERATURE_ASSUMED
+low_attenuation,0.35,2.0,0.4,46.721,33.783,30.989,718,LITERATURE_ASSUMED
+sparse_canopy,0.5,1.2,0.25,46.81,33.805,30.989,718,LITERATURE_ASSUMED
+dense_canopy,0.02,6.0,1.5,46.513,33.729,30.989,718,LITERATURE_ASSUMED

@@ -1,0 +1,35 @@
+{
+  "backend_name": "GPUBackend",
+  "implementation_language": "CUDA C++ via CuPy RawModule",
+  "precision": "float64",
+  "kernels": [
+    {
+      "name": "moller_trumbore_shadow_kernel",
+      "purpose": "Ray-triangle direct solar occlusion + Kay-Kajiya slab box testing",
+      "thread_block_dims": [
+        128,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "compute_svf_horizon_kernel",
+      "purpose": "Multi-azimuth radial horizon elevation scanning for sky view factor",
+      "thread_block_dims": [
+        16,
+        16,
+        1
+      ]
+    }
+  ],
+  "device_selection": "CUDA_VISIBLE_DEVICES or cupy.cuda.Device(id)",
+  "cpu_fallback_policy": "explicitly configured via fallback_to_cpu=True or RuntimeError",
+  "supported_features": [
+    "direct_solar_shadow",
+    "sky_view_factor_horizon_scanning",
+    "roi_mask_selective_evaluation",
+    "flattened_scene_geometry_acceleration",
+    "end_to_end_simulation_integration"
+  ],
+  "frozen_reference_target": "v2.0.0-cpu-ref"
+}

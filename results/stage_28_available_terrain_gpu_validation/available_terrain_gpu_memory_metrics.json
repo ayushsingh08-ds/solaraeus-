@@ -1,0 +1,6 @@
+{
+  "gpu_device": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "vram_used_mb": 0.10009765625,
+  "peak_vram_mb": 48.0,
+  "memory_status": "OPTIMAL_RESIDENT"
+}

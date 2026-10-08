@@ -1,0 +1,9 @@
+tree_id,species,local_x_m,local_y_m,existence_status,inclusion,evidence
+T01,Swietenia mahagoni,-45.2,54.1,UNCERTAIN,EXCLUDED,Distal entrance
+T02,Peltophorum pterocarpum,-38.6,55.0,UNCERTAIN,EXCLUDED,Distal entrance
+T03,Delonix regia,-29.1,56.2,UNCERTAIN,EXCLUDED,Distal entrance
+T04,Polyalthia longifolia,-21.4,57.0,UNCERTAIN,EXCLUDED,Outside primary corridor
+T05,Polyalthia longifolia,-15.0,57.5,UNCERTAIN,EXCLUDED,Outside primary corridor
+T06,Araucaria columnaris,-9.3,58.1,UNCERTAIN,OPTIONAL_CONTEXT,Western portal shade caster
+T07,Araucaria columnaris,-3.3,58.4,UNCERTAIN,OPTIONAL_CONTEXT,Western portal shade caster
+T14,Ficus benghalensis,55.0,135.0,UNCERTAIN,EXCLUDED,"> 70 m north, non-interacting"

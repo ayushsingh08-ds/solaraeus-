@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-10-08T08:32:12.094430+00:00",
+  "solver_version": "2.1.0-cpu-terrain",
+  "reference_version": "2.0.0-cpu-ref",
+  "exact_bit_match_shadow": true,
+  "exact_bit_match_svf": true,
+  "exact_bit_match_tmrt": true,
+  "exact_bit_match_utci": true,
+  "status": "PASS_EXACT_EQUIVALENCE"
+}

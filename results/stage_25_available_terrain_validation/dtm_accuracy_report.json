@@ -1,0 +1,9 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T09:18:45.303455+00:00",
+  "synthetic_horizontal_error_m": 0.0,
+  "synthetic_vertical_error_m": 0.0,
+  "interpolation_type": "BILINEAR",
+  "receptor_height_tolerance_m": 1e-06,
+  "status": "SYNTHETIC_PROFILES_MATHEMATICALLY_EXACT"
+}

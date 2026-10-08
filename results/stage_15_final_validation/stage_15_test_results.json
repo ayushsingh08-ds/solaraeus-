@@ -1,0 +1,57 @@
+{
+  "timestamp_utc": "2026-10-07T19:38:04.531164+00:00",
+  "stage": 15,
+  "stage_name": "final_candidate_validation_and_uncertainty_analysis",
+  "total_tests": 9,
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "test_records": [
+    {
+      "id": 1,
+      "name": "Final candidates pass all geographic feasibility checks",
+      "pass": true
+    },
+    {
+      "id": 2,
+      "name": "Full and incremental paths agree within certified tolerance",
+      "pass": true
+    },
+    {
+      "id": 3,
+      "name": "CPU reference and GPU full solver agree within machine precision",
+      "pass": true
+    },
+    {
+      "id": 4,
+      "name": "All candidate simulations pass mathematical certificate verification",
+      "pass": true
+    },
+    {
+      "id": 5,
+      "name": "Uncertainty and sensitivity results documented and exported",
+      "pass": true
+    },
+    {
+      "id": 6,
+      "name": "Candidate ranking is not presented as definitive if uncertainty changes ranking",
+      "pass": true
+    },
+    {
+      "id": 7,
+      "name": "All validation deliverables generated and traceable",
+      "pass": true
+    },
+    {
+      "id": 8,
+      "name": "Constraint margins strictly positive for all final candidates",
+      "pass": true
+    },
+    {
+      "id": 9,
+      "name": "Baseline frozen files remain strictly unaltered",
+      "pass": true
+    }
+  ],
+  "overall_status": "PASS",
+  "success_token": "STAGE_15_FINAL_CANDIDATE_VALIDATION_AND_UNCERTAINTY_COMPLETE"
+}

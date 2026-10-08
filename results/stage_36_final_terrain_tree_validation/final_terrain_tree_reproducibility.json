@@ -1,0 +1,8 @@
+{
+  "timestamp_utc": "2026-10-08T09:42:34.238403+00:00",
+  "solver_versions": [
+    "2.2.0-cpu-tree",
+    "2.2.0-gpu-tree"
+  ],
+  "governance_classification": "NOT_AUTHORITATIVE_FOR_REAL_WORLD_DEPLOYMENT"
+}

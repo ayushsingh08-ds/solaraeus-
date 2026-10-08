@@ -1,0 +1,72 @@
+{
+  "timestamp_utc": "2026-10-08T08:14:01.617211+00:00",
+  "total_targets_reproduced": 9,
+  "successful_reproductions": 9,
+  "failed_reproductions": 0,
+  "overall_status": "ALL_TARGETS_SUCCESSFULLY_REPRODUCED",
+  "items": [
+    {
+      "target": "Static Baseline",
+      "grid_shape": [
+        148,
+        190
+      ],
+      "total_cells": 28120,
+      "shadowed_cells": 14395,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "Shade Panel Full Recomputation",
+      "evaluated_cells": 28120,
+      "mean_tmrt_k": 45.6989,
+      "peak_tmrt_cooling_k": -12.6163,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "Shade Panel Incremental Recomputation",
+      "recomputed_cells": 72,
+      "reused_cells": 28048,
+      "reuse_percentage": 99.74,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "GPU Full Parity",
+      "shadow_error": 0.0,
+      "svf_max_error": 1.0547e-14,
+      "tmrt_max_error_k": 1.1368e-13,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "GPU Incremental Parity",
+      "recomputed_cells": 72,
+      "reused_cells": 28048,
+      "max_abs_error_tmrt_k": 0.028902,
+      "theoretical_bound_k": 0.081231,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "Geographic Feasibility Catalog",
+      "total_screened": 129,
+      "feasible_count": 55,
+      "infeasible_count": 74,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "Optimizer Best Candidate",
+      "best_candidate": "CAND_0028_EVOL",
+      "best_score": -12.6163,
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "Final Candidate Multi-Path Parity",
+      "four_path_parity": "VERIFIED_100%",
+      "status": "REPRODUCED_VERIFIED"
+    },
+    {
+      "target": "Cross-Area Generalization",
+      "areas_evaluated": 3,
+      "negative_control_properly_rejected": true,
+      "status": "REPRODUCED_VERIFIED"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "status": "TERRAIN_LOADED_FROM_PROJECT_DATA",
+  "classifications": {
+    "flat": {
+      "type": "SYNTHETIC_TERRAIN",
+      "scientific_label": "SYNTHETIC_TERRAIN_ONLY",
+      "formula": "Z(X, Y) = 0.0 m",
+      "authority": "APPROVED_PROVISIONAL"
+    },
+    "inclined": {
+      "type": "SYNTHETIC_TERRAIN",
+      "scientific_label": "SYNTHETIC_TERRAIN_ONLY",
+      "formula": "Z(X, Y) = 0.05 * X (5% grade)",
+      "authority": "APPROVED_PROVISIONAL"
+    },
+    "stepped": {
+      "type": "SYNTHETIC_TERRAIN",
+      "scientific_label": "SYNTHETIC_TERRAIN_ONLY",
+      "formula": "Z(X, Y) = 0.8m if X >= 100m else 0.0m",
+      "authority": "APPROVED_PROVISIONAL"
+    },
+    "swale": {
+      "type": "SYNTHETIC_TERRAIN",
+      "scientific_label": "SYNTHETIC_TERRAIN_ONLY",
+      "formula": "Z(X, Y) = 0.00015 * (X - 105)^2 - 0.5m",
+      "authority": "APPROVED_PROVISIONAL"
+    },
+    "fabdem_regional": {
+      "type": "REGIONAL_REFERENCE",
+      "scientific_label": "FABDEM_REGIONAL_REFERENCE_ONLY",
+      "resolution_m": 30.0,
+      "vertical_datum": "EGM2008_ORTHOMETRIC",
+      "measured_street_scale_status": "MEASURED_STREET_SCALE_DTM_NOT_AVAILABLE",
+      "source_path": "data\\interim\\terrain\\fabdem_local_reference.tif"
+    }
+  },
+  "mandatory_labels": [
+    "FABDEM_REGIONAL_REFERENCE_ONLY",
+    "MEASURED_STREET_SCALE_DTM_NOT_AVAILABLE",
+    "SYNTHETIC_TERRAIN_ONLY"
+  ]
+}

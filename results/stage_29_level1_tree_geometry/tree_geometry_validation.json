@@ -1,0 +1,9 @@
+{
+  "schema_validation": "PASSED",
+  "tree_count": 6,
+  "all_trees_bounded": true,
+  "crown_base_below_height": true,
+  "trunk_radius_positive": true,
+  "uncertainty_intervals_monotone": true,
+  "status": "STAGE_29_PROVISIONAL_LEVEL1_TREE_GEOMETRY_COMPLETE"
+}

@@ -1,0 +1,10 @@
+{
+  "panel_id": "shade_panel_1",
+  "affected_cells": 225,
+  "total_cells": 2500,
+  "reuse_percentage": 91.0,
+  "recomputed_cells": 225,
+  "incremental_mean_tmrt_c": 47.08981290710098,
+  "full_mean_tmrt_c": 47.08981290710098,
+  "speedup_vs_full": 2.086722102177838
+}

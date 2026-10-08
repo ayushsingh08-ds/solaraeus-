@@ -1,0 +1,33 @@
+{
+  "corridor_domain": {
+    "name": "Pedestrian Corridor Containment",
+    "rule": "Canopy 2D footprint must be completely contained within Church Street pedestrian boundary polygon.",
+    "tolerance_m": 0.05,
+    "rejection_code": "OUT_OF_BOUNDS"
+  },
+  "building_setback": {
+    "name": "Wall Collision and Setback",
+    "rule": "Canopy footprint must maintain at least 0.5 m clearance from all building walls.",
+    "min_distance_m": 0.5,
+    "rejection_code": "BUILDING_COLLISION"
+  },
+  "pedestrian_clearance": {
+    "name": "Vertical Pedestrian Underside Clearance",
+    "rule": "Underside height must be between 2.5 m and 5.5 m above ground.",
+    "min_height_m": 2.5,
+    "max_height_m": 5.5,
+    "rejection_code": "INSUFFICIENT_CLEARANCE"
+  },
+  "canopy_area": {
+    "name": "Canopy Area Envelope",
+    "rule": "Footprint area must be between 5.0 m\u00b2 and 50.0 m\u00b2.",
+    "min_area_m2": 5.0,
+    "max_area_m2": 50.0,
+    "rejection_code": "EXCEEDS_MAX_DIMENSIONS or BELOW_MIN_DIMENSIONS"
+  },
+  "structural_dimensions": {
+    "name": "Structural Aspect Ratio & Span Bounds",
+    "rule": "Length in [2.0, 15.0], Width in [1.5, 6.0], Aspect Ratio in [1.0, 5.0].",
+    "rejection_code": "CONSTRUCTION_CONSTRAINT_VIOLATION"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "reconciliation_timestamp_utc": "2026-10-07T18:07:28Z",
+  "purpose": "Clarify and harmonize all file-count and directory-count statements across interim and review reports.",
+  "reconciled_items": {
+    "197_files_count": {
+      "count": 197,
+      "origin": "Reported in data/interim/raw_data_protection_report.json.",
+      "definition": "Exact count of files explicitly listed across the internal package manifest files (SHA256SUMS.txt).",
+      "breakdown": {
+        "bbmp_tree_supplement_manifest": 25,
+        "raw_sources_supplement_manifest": 83,
+        "manual_handoff_v2_manifest": 89,
+        "total": 197
+      },
+      "status": "VALID_HISTORICAL_COUNT (Package Manifest Enumeration)"
+    },
+    "202_raw_files_count": {
+      "count": 202,
+      "origin": "Reported in data/review/tree_geometry_review_protection_report.json and RESEARCHER_REVIEW_REPORT.md.",
+      "definition": "Complete count of physical files residing on disk within the three raw package directories.",
+      "breakdown": {
+        "bbmp_supplement_directory": 26,
+        "raw_sources_supplement_directory": 84,
+        "manual_handoff_v2_directory": 92,
+        "total": 202
+      },
+      "reconciliation_difference": "+5 files: The 3 SHA256SUMS.txt manifest files themselves plus 2 package-level README/metadata files not indexed inside their own checksum catalogs.",
+      "status": "VALID_FILESYSTEM_COUNT (Exhaustive Disk Enumeration)"
+    },
+    "26_interim_files_count": {
+      "count": 26,
+      "origin": "Reported in data/review/tree_geometry_review_protection_report.json.",
+      "definition": "Complete count of physical files generated under data/interim/.",
+      "breakdown": {
+        "primary_interim_deliverables": 15,
+        "intermediate_terrain_rasters_and_metadata": 5,
+        "interim_plot_visualizations": 6,
+        "total": 26
+      },
+      "status": "ACCURATE_AND_ACTIVE"
+    },
+    "11_frozen_benchmark_directories": {
+      "count": 11,
+      "origin": "Reported consistently in all interim and review audits.",
+      "definition": "Historical benchmark directories under results/ that remain bitwise identical.",
+      "status": "ACCURATE_AND_ACTIVE"
+    }
+  },
+  "final_standardized_statement": "For final reporting, the project uses 202 raw physical files on disk (or 197 manifest-indexed package files), 26 interim derived files, and 11 frozen benchmark directories."
+}

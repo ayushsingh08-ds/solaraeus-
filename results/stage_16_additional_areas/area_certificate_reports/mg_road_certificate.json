@@ -1,0 +1,8 @@
+{
+  "area_id": "AREA_MG_ROAD_PLAZA",
+  "certificate_status": "certified",
+  "is_certified": true,
+  "max_predicted_bound_k": 53.17349178580824,
+  "actual_reused_error_k": 0.10861584514913147,
+  "bound_valid": true
+}

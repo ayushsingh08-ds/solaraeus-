@@ -1,0 +1,26 @@
+{
+  "CAND_0007_TREES_NOM_PLUS_P1_P2": {
+    "max_cpu_gpu_error_k": 0.0,
+    "max_full_inc_error_k": 22.182003397212213,
+    "cpu_gpu_parity_passed": true,
+    "incremental_parity_passed": true
+  },
+  "CAND_0006_TREES_NOM_PLUS_P1": {
+    "max_cpu_gpu_error_k": 0.0,
+    "max_full_inc_error_k": 0.0,
+    "cpu_gpu_parity_passed": true,
+    "incremental_parity_passed": true
+  },
+  "CAND_0001_TREES_ONLY_NOM": {
+    "max_cpu_gpu_error_k": 0.0,
+    "max_full_inc_error_k": 0.0,
+    "cpu_gpu_parity_passed": true,
+    "incremental_parity_passed": true
+  },
+  "CAND_0004_PANEL_ONLY_P1": {
+    "max_cpu_gpu_error_k": 0.0,
+    "max_full_inc_error_k": 0.0,
+    "cpu_gpu_parity_passed": true,
+    "incremental_parity_passed": true
+  }
+}

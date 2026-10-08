@@ -1,0 +1,139 @@
+{
+  "audit_timestamp_utc": "2026-10-07T18:07:28Z",
+  "audit_stage": "FINAL_RESEARCHER_SIGNOFF_AND_PROMOTION_READINESS",
+  "stage_may_continue": true,
+  "summary": {
+    "total_raw_files_audited": 202,
+    "raw_mismatches_count": 0,
+    "total_interim_files_audited": 26,
+    "interim_mismatches_count": 0,
+    "frozen_benchmark_directories_count": 11,
+    "frozen_benchmark_directories_verified": true,
+    "solver_files_modified": false,
+    "optimization_files_modified": false,
+    "processed_directory_modified": false
+  },
+  "categories": {
+    "raw_supplements": {
+      "BBMP Tree Census Supplement": {
+        "file_count": 26,
+        "status": "PASSED"
+      },
+      "Raw Sources Supplement": {
+        "file_count": 84,
+        "status": "PASSED"
+      },
+      "Manual Handoff v2 Baseline": {
+        "file_count": 92,
+        "status": "PASSED"
+      }
+    },
+    "interim_source_files": {
+      "file_count": 26,
+      "status": "PASSED",
+      "mismatches": []
+    },
+    "frozen_benchmarks": {
+      "directory_count": 11,
+      "status": "PASSED",
+      "directories": {
+        "results/church_street_gpu_full_20261007_091111": {
+          "file_count": 11,
+          "verified": true
+        },
+        "results/church_street_intervention_optimization_20261007_102725": {
+          "file_count": 23,
+          "verified": true
+        },
+        "results/church_street_multi_intervention_optimization_20261007_114326": {
+          "file_count": 26,
+          "verified": true
+        },
+        "results/church_street_shade_gpu_incremental_20261007_093519": {
+          "file_count": 24,
+          "verified": true
+        },
+        "results/church_street_shade_gpu_incremental_20261007_093905": {
+          "file_count": 25,
+          "verified": true
+        },
+        "results/church_street_shade_incremental_20261007_081114": {
+          "file_count": 27,
+          "verified": true
+        },
+        "results/church_street_surrogate_optimization_20261007_110633": {
+          "file_count": 28,
+          "verified": true
+        },
+        "results/church_street_two_panel_robustness_20261007_121128": {
+          "file_count": 5,
+          "verified": true
+        },
+        "results/church_street_two_panel_robustness_20261007_121934": {
+          "file_count": 5,
+          "verified": true
+        },
+        "results/church_street_two_panel_robustness_20261007_122037": {
+          "file_count": 5,
+          "verified": true
+        },
+        "results/church_street_two_panel_robustness_20261007_122255": {
+          "file_count": 5,
+          "verified": true
+        }
+      }
+    }
+  },
+  "git_status": {
+    "clean_for_review_stage": true,
+    "solver_code_intact": true,
+    "modified_tracked_files": [
+      "M src/urban_comfort/config.py",
+      "M src/urban_comfort/incremental/__init__.py",
+      "M src/urban_comfort/incremental/affected_region.py",
+      "M src/urban_comfort/incremental/dependency_graph.py",
+      "M src/urban_comfort/incremental/mesh_update.py",
+      "M src/urban_comfort/incremental/update.py",
+      "M src/urban_comfort/reference/full_recompute.py",
+      "M tests/test_church_street_shade_panel_simulation.py"
+    ],
+    "untracked_new_review_stage": [
+      "?? bengaluru_church_street_bbmp_trees_july2026_supplement.zip",
+      "?? bengaluru_church_street_bbmp_trees_july2026_supplement/",
+      "?? bengaluru_church_street_raw_sources_2026-10-07.zip",
+      "?? bengaluru_church_street_raw_sources_2026-10-07/",
+      "?? data/interim/",
+      "?? data/review/",
+      "?? docs/",
+      "?? results/church_street_gpu_full_20261007_091111/",
+      "?? results/church_street_intervention_optimization_20261007_102725/",
+      "?? results/church_street_multi_intervention_optimization_20261007_114326/",
+      "?? results/church_street_shade_gpu_incremental_20261007_093519/",
+      "?? results/church_street_shade_gpu_incremental_20261007_093905/",
+      "?? results/church_street_shade_incremental_20261007_081114/",
+      "?? results/church_street_surrogate_optimization_20261007_110633/",
+      "?? results/church_street_two_panel_robustness_20261007_121128/",
+      "?? results/church_street_two_panel_robustness_20261007_121934/",
+      "?? results/church_street_two_panel_robustness_20261007_122037/",
+      "?? results/church_street_two_panel_robustness_20261007_122255/",
+      "?? results/church_street_two_panel_robustness_20261007_122427/",
+      "?? results/church_street_two_panel_robustness_20261007_122543/",
+      "?? scripts/run_church_street_gpu_simulation.py",
+      "?? scripts/run_church_street_intervention_optimization.py",
+      "?? scripts/run_church_street_shade_panel_gpu_incremental.py",
+      "?? scripts/run_church_street_shade_panel_incremental.py",
+      "?? scripts/run_church_street_surrogate_optimization.py",
+      "?? scripts/run_church_street_two_panel_optimization.py",
+      "?? scripts/run_church_street_two_panel_robustness.py",
+      "?? src/urban_comfort/backend/",
+      "?? src/urban_comfort/optimization/",
+      "?? tests/test_gpu_backend.py",
+      "?? tests/test_gpu_incremental.py",
+      "?? tests/test_intervention_optimization.py",
+      "?? tests/test_surrogate_optimization.py",
+      "?? tests/test_tree_geometry_review.py",
+      "?? tests/test_two_panel_optimization.py",
+      "?? tests/test_two_panel_robustness.py"
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "timestamp_utc": "2026-10-07T19:30:45.278616+00:00",
+  "stage": 14,
+  "stage_name": "baseline_search_and_constrained_ai_optimizer",
+  "total_tests": 9,
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "test_records": [
+    {
+      "id": 1,
+      "name": "Baseline search precedes AI optimization and is exported",
+      "pass": true
+    },
+    {
+      "id": 2,
+      "name": "All candidate IDs are globally unique",
+      "pass": true
+    },
+    {
+      "id": 3,
+      "name": "Infeasible candidates correctly identified with rejection reasons",
+      "pass": true
+    },
+    {
+      "id": 4,
+      "name": "Objective and constraints documented in schema",
+      "pass": true
+    },
+    {
+      "id": 5,
+      "name": "Random seed recorded and reproducible",
+      "pass": true
+    },
+    {
+      "id": 6,
+      "name": "Best candidates identified, feasible, and reproducible",
+      "pass": true
+    },
+    {
+      "id": 7,
+      "name": "All simulated candidates hold valid mathematical certificates",
+      "pass": true
+    },
+    {
+      "id": 8,
+      "name": "No infeasible proposal accepted into best candidates",
+      "pass": true
+    },
+    {
+      "id": 9,
+      "name": "Existing frozen baseline results remain strictly unmodified",
+      "pass": true
+    }
+  ],
+  "overall_status": "PASS",
+  "success_token": "STAGE_14_BASELINE_SEARCH_AND_CONSTRAINED_AI_OPTIMIZER_COMPLETE"
+}

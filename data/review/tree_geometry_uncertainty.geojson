@@ -1,0 +1,1020 @@
+{
+  "type": "FeatureCollection",
+  "name": "church_street_core_tree_geometry_uncertainty_bounds",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6046478,
+              12.9750305
+            ],
+            [
+              77.604646,
+              12.9750446
+            ],
+            [
+              77.6046406,
+              12.9750577
+            ],
+            [
+              77.604632,
+              12.975069
+            ],
+            [
+              77.6046206,
+              12.9750778
+            ],
+            [
+              77.6046074,
+              12.9750833
+            ],
+            [
+              77.6045931,
+              12.9750853
+            ],
+            [
+              77.6045787,
+              12.9750836
+            ],
+            [
+              77.6045654,
+              12.9750783
+            ],
+            [
+              77.6045538,
+              12.9750698
+            ],
+            [
+              77.6045449,
+              12.9750587
+            ],
+            [
+              77.6045393,
+              12.9750457
+            ],
+            [
+              77.6045372,
+              12.9750317
+            ],
+            [
+              77.604539,
+              12.9750176
+            ],
+            [
+              77.6045444,
+              12.9750045
+            ],
+            [
+              77.604553,
+              12.9749932
+            ],
+            [
+              77.6045644,
+              12.9749844
+            ],
+            [
+              77.6045777,
+              12.9749789
+            ],
+            [
+              77.6045919,
+              12.9749769
+            ],
+            [
+              77.6046063,
+              12.9749786
+            ],
+            [
+              77.6046196,
+              12.9749839
+            ],
+            [
+              77.6046312,
+              12.9749924
+            ],
+            [
+              77.6046401,
+              12.9750035
+            ],
+            [
+              77.6046457,
+              12.9750165
+            ],
+            [
+              77.6046478,
+              12.9750305
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "tree_id": "T08",
+        "species": "Ficus Religiosa L.",
+        "center_point_wgs84": [
+          77.6045925,
+          12.9750311
+        ],
+        "center_local_xy_m": [
+          20.066,
+          81.139
+        ],
+        "center_utm_xy_m": [
+          782561.876,
+          1435817.249
+        ],
+        "conservative_small": {
+          "h": 11.0,
+          "cd": 9.5,
+          "cb": 3.8,
+          "dbh": 0.7
+        },
+        "nominal": {
+          "h": 13.5,
+          "cd": 12.0,
+          "cb": 4.2,
+          "dbh": 0.85
+        },
+        "conservative_large": {
+          "h": 16.0,
+          "cd": 15.0,
+          "cb": 4.5,
+          "dbh": 1.0
+        },
+        "height_bounds_m": [
+          11.0,
+          13.5,
+          16.0
+        ],
+        "crown_diameter_bounds_m": [
+          9.5,
+          12.0,
+          15.0
+        ],
+        "crown_base_height_bounds_m": [
+          3.8,
+          4.2,
+          4.5
+        ],
+        "trunk_diameter_bounds_m": [
+          0.7,
+          0.85,
+          1.0
+        ],
+        "evidence_basis": "Perspective scaling against 4-story building floor slabs (~3.5m each) and vehicle road clearance (~4.0m) from KV 814425142 and Commons 72609328.",
+        "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+        "approved_for_simulation": false,
+        "review_stage": "UNCERTAINTY_BOUNDS_PROVISIONAL"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6048606,
+              12.9750477
+            ],
+            [
+              77.6048594,
+              12.9750577
+            ],
+            [
+              77.6048556,
+              12.975067
+            ],
+            [
+              77.6048495,
+              12.975075
+            ],
+            [
+              77.6048414,
+              12.9750812
+            ],
+            [
+              77.604832,
+              12.9750851
+            ],
+            [
+              77.6048219,
+              12.9750865
+            ],
+            [
+              77.6048118,
+              12.9750853
+            ],
+            [
+              77.6048023,
+              12.9750815
+            ],
+            [
+              77.6047941,
+              12.9750755
+            ],
+            [
+              77.6047878,
+              12.9750676
+            ],
+            [
+              77.6047838,
+              12.9750584
+            ],
+            [
+              77.6047824,
+              12.9750485
+            ],
+            [
+              77.6047836,
+              12.9750385
+            ],
+            [
+              77.6047874,
+              12.9750292
+            ],
+            [
+              77.6047935,
+              12.9750212
+            ],
+            [
+              77.6048016,
+              12.9750151
+            ],
+            [
+              77.604811,
+              12.9750111
+            ],
+            [
+              77.6048211,
+              12.9750097
+            ],
+            [
+              77.6048312,
+              12.9750109
+            ],
+            [
+              77.6048407,
+              12.9750147
+            ],
+            [
+              77.6048489,
+              12.9750207
+            ],
+            [
+              77.6048552,
+              12.9750286
+            ],
+            [
+              77.6048592,
+              12.9750378
+            ],
+            [
+              77.6048606,
+              12.9750477
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "tree_id": "T09",
+        "species": "Syzygium Cumini (L.) Skeels",
+        "center_point_wgs84": [
+          77.6048215,
+          12.9750481
+        ],
+        "center_local_xy_m": [
+          44.905,
+          83.275
+        ],
+        "center_utm_xy_m": [
+          782586.715,
+          1435819.385
+        ],
+        "conservative_small": {
+          "h": 9.0,
+          "cd": 7.0,
+          "cb": 3.2,
+          "dbh": 0.45
+        },
+        "nominal": {
+          "h": 11.0,
+          "cd": 8.5,
+          "cb": 3.8,
+          "dbh": 0.55
+        },
+        "conservative_large": {
+          "h": 13.0,
+          "cd": 10.5,
+          "cb": 4.2,
+          "dbh": 0.65
+        },
+        "height_bounds_m": [
+          9.0,
+          11.0,
+          13.0
+        ],
+        "crown_diameter_bounds_m": [
+          7.0,
+          8.5,
+          10.5
+        ],
+        "crown_base_height_bounds_m": [
+          3.2,
+          3.8,
+          4.2
+        ],
+        "trunk_diameter_bounds_m": [
+          0.45,
+          0.55,
+          0.65
+        ],
+        "evidence_basis": "Roadside passage capture at 5.6m distance (KV 814425130). Dense rounded canopy scaled against street width (~12m).",
+        "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+        "approved_for_simulation": false,
+        "review_stage": "UNCERTAINTY_BOUNDS_PROVISIONAL"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.604748,
+              12.9749948
+            ],
+            [
+              77.604747,
+              12.9750035
+            ],
+            [
+              77.6047436,
+              12.9750117
+            ],
+            [
+              77.6047382,
+              12.9750188
+            ],
+            [
+              77.6047311,
+              12.9750243
+            ],
+            [
+              77.6047228,
+              12.9750277
+            ],
+            [
+              77.6047138,
+              12.975029
+            ],
+            [
+              77.6047049,
+              12.9750279
+            ],
+            [
+              77.6046965,
+              12.9750246
+            ],
+            [
+              77.6046893,
+              12.9750193
+            ],
+            [
+              77.6046838,
+              12.9750123
+            ],
+            [
+              77.6046802,
+              12.9750042
+            ],
+            [
+              77.604679,
+              12.9749954
+            ],
+            [
+              77.60468,
+              12.9749867
+            ],
+            [
+              77.6046834,
+              12.9749785
+            ],
+            [
+              77.6046888,
+              12.9749714
+            ],
+            [
+              77.6046959,
+              12.9749659
+            ],
+            [
+              77.6047042,
+              12.9749625
+            ],
+            [
+              77.6047131,
+              12.9749612
+            ],
+            [
+              77.6047221,
+              12.9749623
+            ],
+            [
+              77.6047305,
+              12.9749656
+            ],
+            [
+              77.6047377,
+              12.9749709
+            ],
+            [
+              77.6047432,
+              12.9749779
+            ],
+            [
+              77.6047468,
+              12.974986
+            ],
+            [
+              77.604748,
+              12.9749948
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "tree_id": "T10",
+        "species": "Syzygium Cumini (L.) Skeels",
+        "center_point_wgs84": [
+          77.6047135,
+          12.9749951
+        ],
+        "center_local_xy_m": [
+          33.241,
+          77.288
+        ],
+        "center_utm_xy_m": [
+          782575.051,
+          1435813.398
+        ],
+        "conservative_small": {
+          "h": 7.5,
+          "cd": 6.0,
+          "cb": 2.8,
+          "dbh": 0.35
+        },
+        "nominal": {
+          "h": 9.5,
+          "cd": 7.5,
+          "cb": 3.2,
+          "dbh": 0.45
+        },
+        "conservative_large": {
+          "h": 11.5,
+          "cd": 9.0,
+          "cb": 3.6,
+          "dbh": 0.55
+        },
+        "height_bounds_m": [
+          7.5,
+          9.5,
+          11.5
+        ],
+        "crown_diameter_bounds_m": [
+          6.0,
+          7.5,
+          9.0
+        ],
+        "crown_base_height_bounds_m": [
+          2.8,
+          3.2,
+          3.6
+        ],
+        "trunk_diameter_bounds_m": [
+          0.35,
+          0.45,
+          0.55
+        ],
+        "evidence_basis": "Approach view from KV 814425138 (14.5m distance). Canopy height scaled between adjacent T08 and commercial shop heights.",
+        "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+        "approved_for_simulation": false,
+        "review_stage": "UNCERTAINTY_BOUNDS_PROVISIONAL"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6049938,
+              12.9749748
+            ],
+            [
+              77.604993,
+              12.9749813
+            ],
+            [
+              77.6049906,
+              12.9749873
+            ],
+            [
+              77.6049866,
+              12.9749925
+            ],
+            [
+              77.6049814,
+              12.9749965
+            ],
+            [
+              77.6049753,
+              12.974999
+            ],
+            [
+              77.6049688,
+              12.9749999
+            ],
+            [
+              77.6049622,
+              12.9749992
+            ],
+            [
+              77.6049561,
+              12.9749967
+            ],
+            [
+              77.6049508,
+              12.9749928
+            ],
+            [
+              77.6049467,
+              12.9749877
+            ],
+            [
+              77.6049441,
+              12.9749818
+            ],
+            [
+              77.6049432,
+              12.9749754
+            ],
+            [
+              77.604944,
+              12.9749689
+            ],
+            [
+              77.6049464,
+              12.9749629
+            ],
+            [
+              77.6049504,
+              12.9749577
+            ],
+            [
+              77.6049556,
+              12.9749537
+            ],
+            [
+              77.6049617,
+              12.9749512
+            ],
+            [
+              77.6049682,
+              12.9749503
+            ],
+            [
+              77.6049748,
+              12.974951
+            ],
+            [
+              77.6049809,
+              12.9749535
+            ],
+            [
+              77.6049862,
+              12.9749574
+            ],
+            [
+              77.6049903,
+              12.9749625
+            ],
+            [
+              77.6049929,
+              12.9749684
+            ],
+            [
+              77.6049938,
+              12.9749748
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "tree_id": "T11",
+        "species": "Saraca Asoca (Roxb.) De Wilde",
+        "center_point_wgs84": [
+          77.6049685,
+          12.9749751
+        ],
+        "center_local_xy_m": [
+          60.945,
+          75.357
+        ],
+        "center_utm_xy_m": [
+          782602.755,
+          1435811.467
+        ],
+        "conservative_small": {
+          "h": 6.5,
+          "cd": 4.2,
+          "cb": 2.4,
+          "dbh": 0.24
+        },
+        "nominal": {
+          "h": 8.0,
+          "cd": 5.5,
+          "cb": 2.8,
+          "dbh": 0.3
+        },
+        "conservative_large": {
+          "h": 9.5,
+          "cd": 6.8,
+          "cb": 3.2,
+          "dbh": 0.36
+        },
+        "height_bounds_m": [
+          6.5,
+          8.0,
+          9.5
+        ],
+        "crown_diameter_bounds_m": [
+          4.2,
+          5.5,
+          6.8
+        ],
+        "crown_base_height_bounds_m": [
+          2.4,
+          2.8,
+          3.2
+        ],
+        "trunk_diameter_bounds_m": [
+          0.24,
+          0.3,
+          0.36
+        ],
+        "evidence_basis": "Roadside view at 11.1m (KV 814425114) and Mapillary 360 sequence. Compact upright crown scaled relative to single-story retail storefront.",
+        "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+        "approved_for_simulation": false,
+        "review_stage": "UNCERTAINTY_BOUNDS_PROVISIONAL"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6051515,
+              12.9749669
+            ],
+            [
+              77.6051508,
+              12.9749727
+            ],
+            [
+              77.6051486,
+              12.9749782
+            ],
+            [
+              77.605145,
+              12.9749829
+            ],
+            [
+              77.6051402,
+              12.9749865
+            ],
+            [
+              77.6051347,
+              12.9749889
+            ],
+            [
+              77.6051287,
+              12.9749897
+            ],
+            [
+              77.6051228,
+              12.974989
+            ],
+            [
+              77.6051172,
+              12.9749868
+            ],
+            [
+              77.6051124,
+              12.9749832
+            ],
+            [
+              77.6051087,
+              12.9749786
+            ],
+            [
+              77.6051063,
+              12.9749732
+            ],
+            [
+              77.6051055,
+              12.9749673
+            ],
+            [
+              77.6051062,
+              12.9749615
+            ],
+            [
+              77.6051084,
+              12.974956
+            ],
+            [
+              77.6051121,
+              12.9749513
+            ],
+            [
+              77.6051168,
+              12.9749477
+            ],
+            [
+              77.6051223,
+              12.9749453
+            ],
+            [
+              77.6051283,
+              12.9749445
+            ],
+            [
+              77.6051342,
+              12.9749452
+            ],
+            [
+              77.6051398,
+              12.9749474
+            ],
+            [
+              77.6051446,
+              12.974951
+            ],
+            [
+              77.6051483,
+              12.9749556
+            ],
+            [
+              77.6051507,
+              12.974961
+            ],
+            [
+              77.6051515,
+              12.9749669
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "tree_id": "T12",
+        "species": "Saraca Asoca (Roxb.) De Wilde",
+        "center_point_wgs84": [
+          77.6051285,
+          12.9749671
+        ],
+        "center_local_xy_m": [
+          78.323,
+          74.649
+        ],
+        "center_utm_xy_m": [
+          782620.133,
+          1435810.759
+        ],
+        "conservative_small": {
+          "h": 6.0,
+          "cd": 3.8,
+          "cb": 2.2,
+          "dbh": 0.22
+        },
+        "nominal": {
+          "h": 7.5,
+          "cd": 5.0,
+          "cb": 2.6,
+          "dbh": 0.28
+        },
+        "conservative_large": {
+          "h": 9.0,
+          "cd": 6.2,
+          "cb": 3.0,
+          "dbh": 0.34
+        },
+        "height_bounds_m": [
+          6.0,
+          7.5,
+          9.0
+        ],
+        "crown_diameter_bounds_m": [
+          3.8,
+          5.0,
+          6.2
+        ],
+        "crown_base_height_bounds_m": [
+          2.2,
+          2.6,
+          3.0
+        ],
+        "trunk_diameter_bounds_m": [
+          0.22,
+          0.28,
+          0.34
+        ],
+        "evidence_basis": "Direct lateral capture at 7.5m distance (KV 814425338). Slender columnar crown companion to T11.",
+        "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+        "approved_for_simulation": false,
+        "review_stage": "UNCERTAINTY_BOUNDS_PROVISIONAL"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.6053166,
+              12.9748829
+            ],
+            [
+              77.6053161,
+              12.974887
+            ],
+            [
+              77.6053145,
+              12.9748909
+            ],
+            [
+              77.605312,
+              12.9748942
+            ],
+            [
+              77.6053087,
+              12.9748967
+            ],
+            [
+              77.6053048,
+              12.9748983
+            ],
+            [
+              77.6053007,
+              12.9748989
+            ],
+            [
+              77.6052965,
+              12.9748984
+            ],
+            [
+              77.6052926,
+              12.9748969
+            ],
+            [
+              77.6052892,
+              12.9748944
+            ],
+            [
+              77.6052866,
+              12.9748911
+            ],
+            [
+              77.605285,
+              12.9748873
+            ],
+            [
+              77.6052844,
+              12.9748833
+            ],
+            [
+              77.6052849,
+              12.9748792
+            ],
+            [
+              77.6052865,
+              12.9748753
+            ],
+            [
+              77.605289,
+              12.974872
+            ],
+            [
+              77.6052923,
+              12.9748695
+            ],
+            [
+              77.6052962,
+              12.9748679
+            ],
+            [
+              77.6053003,
+              12.9748673
+            ],
+            [
+              77.6053045,
+              12.9748678
+            ],
+            [
+              77.6053084,
+              12.9748693
+            ],
+            [
+              77.6053118,
+              12.9748718
+            ],
+            [
+              77.6053144,
+              12.9748751
+            ],
+            [
+              77.605316,
+              12.9748789
+            ],
+            [
+              77.6053166,
+              12.9748829
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "tree_id": "T13",
+        "species": "Techoma Stans",
+        "center_point_wgs84": [
+          77.6053005,
+          12.9748831
+        ],
+        "center_local_xy_m": [
+          97.089,
+          65.542
+        ],
+        "center_utm_xy_m": [
+          782638.899,
+          1435801.652
+        ],
+        "conservative_small": {
+          "h": 3.8,
+          "cd": 2.6,
+          "cb": 1.4,
+          "dbh": 0.14
+        },
+        "nominal": {
+          "h": 5.0,
+          "cd": 3.5,
+          "cb": 1.8,
+          "dbh": 0.18
+        },
+        "conservative_large": {
+          "h": 6.5,
+          "cd": 4.5,
+          "cb": 2.2,
+          "dbh": 0.22
+        },
+        "height_bounds_m": [
+          3.8,
+          5.0,
+          6.5
+        ],
+        "crown_diameter_bounds_m": [
+          2.6,
+          3.5,
+          4.5
+        ],
+        "crown_base_height_bounds_m": [
+          1.4,
+          1.8,
+          2.2
+        ],
+        "trunk_diameter_bounds_m": [
+          0.14,
+          0.18,
+          0.22
+        ],
+        "evidence_basis": "Lateral roadside view at 12.2m (KV 814425266). Small shrubby tree in raised planter; scaled against planter wall (~0.6m) and pedestrian height.",
+        "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+        "approved_for_simulation": false,
+        "review_stage": "UNCERTAINTY_BOUNDS_PROVISIONAL"
+      }
+    }
+  ]
+}

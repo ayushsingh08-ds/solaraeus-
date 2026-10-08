@@ -1,0 +1,57 @@
+{
+  "status": "CLOUD_MODEL_ACTIVE",
+  "scientific_labels": [
+    "CLOUD_MODEL_PARAMETRIC_NOT_OBSERVED",
+    "CLOUD_FIELD_NOT_FIELD_VALIDATED"
+  ],
+  "default_state": {
+    "mode": "PARAMETRIC_CLOUDS",
+    "preset": "Broken",
+    "cover_fraction": 0.75,
+    "oktas": 6,
+    "cloud_base_height_m": 1200.0,
+    "cloud_thickness_m": 400.0,
+    "optical_thickness": 22.0,
+    "drift_speed_ms": 6.0,
+    "drift_direction_deg": 240.0,
+    "random_seed": 42,
+    "scientific_label": "CLOUD_MODEL_PARAMETRIC_NOT_OBSERVED"
+  },
+  "presets": {
+    "Clear": {
+      "cover": 0.0,
+      "oktas": 0,
+      "tau": 0.0
+    },
+    "Few": {
+      "cover": 0.2,
+      "oktas": 2,
+      "tau": 8.0
+    },
+    "Scattered": {
+      "cover": 0.45,
+      "oktas": 4,
+      "tau": 14.0
+    },
+    "Broken": {
+      "cover": 0.75,
+      "oktas": 6,
+      "tau": 22.0
+    },
+    "Overcast": {
+      "cover": 1.0,
+      "oktas": 8,
+      "tau": 32.0
+    }
+  },
+  "ground_shadow_offset_m": {
+    "dx": 751.9073740323436,
+    "dy": 24.08223442292954
+  },
+  "radiation_coupling": {
+    "clear_dni_base": 880.0,
+    "cloud_attenuated_dni_mean": 239.32781982421875,
+    "diffuse_fraction_augmented": 211.12616515867384,
+    "sky_longwave_augmented": 434.2997928172843
+  }
+}

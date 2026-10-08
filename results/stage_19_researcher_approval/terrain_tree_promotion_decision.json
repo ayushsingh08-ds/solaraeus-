@@ -1,0 +1,12 @@
+{
+  "timestamp_utc": "2026-10-08T08:16:06.937563+00:00",
+  "evaluation_rule": "Strict non-fabrication policy. All un-signed authorizations remain blocked.",
+  "tree_data_promoted": false,
+  "terrain_data_promoted": false,
+  "fabdem_classification": "REGIONAL_REFERENCE_ONLY",
+  "street_scale_dtm_status": "MISSING_FIELD_SURVEY_REQUIRED",
+  "tree_geometry_status": "PROVISIONAL_PHOTO_ESTIMATED_ONLY",
+  "promotion_authorized": false,
+  "solver_integration_permitted": false,
+  "blocker_reason": "Human researcher approval not executed. Awaiting formal human sign-off."
+}

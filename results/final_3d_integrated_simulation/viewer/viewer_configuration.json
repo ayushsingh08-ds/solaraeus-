@@ -1,0 +1,77 @@
+{
+  "viewer_name": "SOLARAEUS 3D Interactive Simulation Viewer",
+  "version": "2.2-3D",
+  "port": 8080,
+  "default_url": "http://localhost:8080/index.html",
+  "style_presets": [
+    "CINEMATIC_AERIAL",
+    "DAYLIGHT_CLEAR",
+    "ANALYSIS_NEUTRAL"
+  ],
+  "default_style_preset": "CINEMATIC_AERIAL",
+  "camera_presets": [
+    "Aerial",
+    "Walkway",
+    "Top-Down",
+    "Trees"
+  ],
+  "astronomical_parameters": {
+    "latitude_deg": 12.9749,
+    "longitude_deg": 77.6054,
+    "timezone": "Asia/Kolkata",
+    "utc_offset_hours": 5.5,
+    "design_date": "2026-04-15"
+  },
+  "scenarios": [
+    "BASELINE",
+    "PROVISIONAL_TREES",
+    "OPTIMIZED_SHADE_PANEL",
+    "COMBINED_HYBRID",
+    "TERRAIN_AWARE"
+  ],
+  "thermal_overlays": [
+    "Realistic 3D",
+    "Tmrt (°C)",
+    "UTCI (°C)",
+    "Cooling Relief (ΔTmrt)"
+  ],
+  "cloud_model": {
+    "mode": "PARAMETRIC",
+    "label": "CLOUD_MODEL_PARAMETRIC_NOT_OBSERVED",
+    "presets": ["Clear", "Few", "Scattered", "Broken", "Overcast"],
+    "base_height_m": 1200.0,
+    "drift_speed_ms": 5.0,
+    "drift_direction_deg": 240.0
+  },
+  "terrain_profiles": [
+    "Flat synthetic (z=0)",
+    "Inclined synthetic",
+    "Stepped synthetic",
+    "Swale synthetic",
+    "FABDEM regional reference"
+  ],
+  "scientific_labels": [
+    "FABDEM_REGIONAL_REFERENCE_ONLY",
+    "MEASURED_STREET_SCALE_DTM_NOT_AVAILABLE",
+    "SYNTHETIC_TERRAIN_ONLY",
+    "TREE_GEOMETRY_PHOTO_ESTIMATED_ONLY",
+    "TREE_CURRENT_EXISTENCE_UNCERTAIN",
+    "TREE_GEOMETRY_NOT_FIELD_CALIBRATED",
+    "CANOPY_PHYSICS_SENSITIVITY_ONLY",
+    "FIELD_CALIBRATION_NOT_ESTABLISHED",
+    "PROVISIONAL_TERRAIN_TREE_RESULTS",
+    "CLOUD_MODEL_PARAMETRIC_NOT_OBSERVED",
+    "CLOUD_FIELD_NOT_FIELD_VALIDATED",
+    "VISUAL_STYLE_PRESENTATION_LAYER_ONLY",
+    "VISUAL_ONLY_ELEMENTS_EXCLUDED_FROM_PHYSICS"
+  ],
+  "scene_assets": {
+    "integrated_scene_glb": "results/final_3d_integrated_simulation/scene/solaraeus_integrated_scene.glb",
+    "integrated_scene_gltf": "results/final_3d_integrated_simulation/scene/solaraeus_integrated_scene.gltf",
+    "buildings_glb": "results/final_3d_integrated_simulation/scene/buildings.glb",
+    "trees_glb": "results/final_3d_integrated_simulation/scene/trees_provisional.glb",
+    "interventions_glb": "results/final_3d_integrated_simulation/scene/interventions.glb",
+    "terrain_glb": "results/final_3d_integrated_simulation/scene/terrain.glb",
+    "cloud_layer_glb": "results/final_3d_integrated_simulation/scene/cloud_layer.glb"
+  }
+}

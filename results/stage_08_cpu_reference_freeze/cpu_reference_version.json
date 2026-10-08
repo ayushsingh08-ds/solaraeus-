@@ -1,0 +1,16 @@
+{
+  "version": "2.0.0-cpu-ref",
+  "freeze_date": "2026-10-07",
+  "freeze_timestamp_utc": "2026-10-07T18:33:20.820871+00:00",
+  "git_commit_hash": "909f9db1c6188995ae32b378a2642ac5247d643a",
+  "status": "FROZEN_STABLE",
+  "contract": "Golden Standard Correctness Reference for GPU Acceleration (Stage 9+)",
+  "precision_policy": "IEEE-754 double precision (float64)",
+  "tolerance_policy": {
+    "direct_shadow": 0.0,
+    "direct_shortwave_w_m2": 0.0,
+    "sky_view_factor": 0.01,
+    "tmrt_k": 0.5,
+    "utci_k": 0.5
+  }
+}

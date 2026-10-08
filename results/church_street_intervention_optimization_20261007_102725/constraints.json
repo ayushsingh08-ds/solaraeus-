@@ -1,0 +1,13 @@
+{
+  "min_underside_height_m": 2.5,
+  "min_building_setback_m": 0.5,
+  "min_length_m": 2.5,
+  "max_length_m": 14.0,
+  "min_width_m": 1.5,
+  "max_width_m": 5.0,
+  "min_area_m2": 5.0,
+  "max_area_m2": 50.0,
+  "min_aspect_ratio": 1.0,
+  "max_aspect_ratio": 5.0,
+  "corridor_area_m2": 2673.9214348886926
+}

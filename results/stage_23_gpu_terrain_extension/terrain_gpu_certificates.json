@@ -1,0 +1,23 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.216629+00:00",
+  "CERT_GPU_01_FLAT_PARITY": {
+    "name": "Flat-Ground CPU/GPU Parity",
+    "status": "PASSED"
+  },
+  "CERT_GPU_02_INCLINE_PARITY": {
+    "name": "Terrain Incline CPU/GPU Parity",
+    "status": "PASSED"
+  },
+  "CERT_GPU_03_INCREMENTAL_BOUND": {
+    "name": "GPU Incremental Error Bound Certificate",
+    "status": "PASSED"
+  },
+  "CERT_GPU_04_DETERMINISM": {
+    "name": "GPU Determinism Certificate",
+    "status": "PASSED"
+  },
+  "CERT_GPU_05_NO_TREE_DATA": {
+    "name": "Tree/Canopy Decoupling Affirmation",
+    "status": "PASSED"
+  }
+}

@@ -1,0 +1,5 @@
+study_area_id,name,urban_typology,evaluated_cells,baseline_mean_tmrt_k,intervention_mean_tmrt_k,peak_cooling_k,cpu_full_wall_s,gpu_inc_wall_ms,gpu_speedup,all_certificates_pass,status
+AREA_CHURCH_STREET_PRIME,Church Street Pedestrian Spine,Pedestrian Street Corridor,668,313.24,312.91,12.6,4.71,75.0,62.8,True,VALIDATED
+AREA_BRIGADE_ROAD_EXT,Brigade Road Commercial Junction,Commercial Street Canyon,350,320.37,320.31,9.71,0.14,11.0,12.7,True,VALIDATED
+AREA_MG_ROAD_PLAZA,MG Road Metro Plaza,Open Urban Plaza,416,314.57,314.53,12.91,0.15,11.5,12.7,True,VALIDATED
+AREA_HILLSIDE_COMPLEX,Chamundi Hills Escarpment Ridge,Steep Hillside,0,nan,nan,nan,nan,nan,nan,False,REJECTED_UNSUPPORTED

@@ -1,0 +1,30 @@
+{
+  "isolated_tree": {
+    "shadowed_cells": 127,
+    "mean_tmrt_c": 51.985171075893184
+  },
+  "tree_beside_building": {
+    "shadowed_cells": 718,
+    "mean_tmrt_c": 47.090402484793394
+  },
+  "six_trees_small": {
+    "shadowed_cells": 786,
+    "mean_tmrt_c": 46.497751586544524
+  },
+  "six_trees_nominal": {
+    "shadowed_cells": 787,
+    "mean_tmrt_c": 46.49398244490566
+  },
+  "six_trees_large": {
+    "shadowed_cells": 793,
+    "mean_tmrt_c": 46.44783547573908
+  },
+  "trees_plus_panel": {
+    "shadowed_cells": 787,
+    "mean_tmrt_c": 46.49398244490566
+  },
+  "trees_inclined_terrain": {
+    "shadowed_cells": 813,
+    "mean_tmrt_c": 46.26341132598405
+  }
+}

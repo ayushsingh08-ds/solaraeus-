@@ -1,0 +1,15 @@
+{
+  "stage": 37,
+  "status": "STAGE_37_FIELD_DATA_UNAVAILABLE",
+  "calibrated": false,
+  "quantitative_validation_achieved": false,
+  "qualitative_photo_plausibility_only": true,
+  "timestamp_utc": "2026-10-08T09:43:35.388877+00:00",
+  "governing_policy": {
+    "microclimate_sensors": "DATA_UNAVAILABLE",
+    "tree_dimensions": "PHOTO_ESTIMATED_ONLY",
+    "terrain_elevation": "SYNTHETIC_ONLY",
+    "calibration_claim_permitted": false
+  },
+  "token": "STAGE_37_FIELD_DATA_UNAVAILABLE"
+}

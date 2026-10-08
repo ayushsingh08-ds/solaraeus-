@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-10-07T19:12:43.805162+00:00",
+  "cells": {
+    "total": 28120,
+    "reused": 28048,
+    "recomputed": 72,
+    "reuse_ratio": 0.9974395448079658
+  },
+  "rays": {
+    "total_rays": 927960,
+    "affected_rays": 2376,
+    "reused_rays": 925584,
+    "ray_work_reduction_pct": 99.74395448079659
+  },
+  "spatial_overlap": {
+    "direct_shadow_reused_pct": 99.74395448079659,
+    "svf_reused_pct": 99.74395448079659
+  }
+}

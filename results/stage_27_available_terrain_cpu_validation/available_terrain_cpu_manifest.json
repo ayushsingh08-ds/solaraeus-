@@ -1,0 +1,30 @@
+{
+  "stage": 27,
+  "status": "STAGE_27_AVAILABLE_TERRAIN_CPU_VALIDATION_COMPLETE",
+  "api_version": "2.1.0-cpu-terrain",
+  "timestamp_utc": "2026-10-08T09:23:28.271787+00:00",
+  "profiles_tested": [
+    {
+      "profile": "FLAT_SYNTHETIC",
+      "label": "SYNTHETIC_TERRAIN_TEST"
+    },
+    {
+      "profile": "INCLINED_2.5PCT",
+      "label": "SYNTHETIC_TERRAIN_TEST"
+    },
+    {
+      "profile": "STEPPED_CURB_0.15M",
+      "label": "SYNTHETIC_TERRAIN_TEST"
+    },
+    {
+      "profile": "SWALE_DRAINAGE",
+      "label": "SYNTHETIC_TERRAIN_TEST"
+    },
+    {
+      "profile": "REGIONAL_FABDEM_CONTEXT",
+      "label": "REGIONAL_REFERENCE_TEST"
+    }
+  ],
+  "street_scale_claim": "NOT_MEASURED_STREET_SCALE",
+  "token": "STAGE_27_AVAILABLE_TERRAIN_CPU_VALIDATION_COMPLETE"
+}

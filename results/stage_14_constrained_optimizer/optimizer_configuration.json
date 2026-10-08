@@ -1,0 +1,65 @@
+{
+  "algorithm": "Constrained Latin-Hypercube Sampling & Differential Evolution",
+  "random_seed": 42,
+  "objective_definition": {
+    "mathematical_formula": "Obj = 1.00 * mean_utci + 0.50 * p90_utci + 0.005 * area_m2",
+    "optimization_direction": "minimize (lower is better, indicates cooler pedestrian thermal comfort)",
+    "evaluation_domain": "Church Street unbuilt pedestrian corridor receptors (3,556 cells)",
+    "weight_mean_utci": 1.0,
+    "weight_p90_utci": 0.5,
+    "weight_area_penalty": 0.005,
+    "infeasibility_penalty": 1000.0
+  },
+  "hard_constraints": [
+    "corridor_containment: Canopy footprint must lie entirely within pedestrian analysis polygon",
+    "building_setback: Distance to nearest building wall must be >= 0.50 m",
+    "underside_clearance: Height must be >= 2.50 m and <= 5.50 m",
+    "footprint_area: Panel area must be >= 5.0 m2 and <= 50.0 m2",
+    "aspect_ratio: Length / Width ratio must be in [1.0, 5.0]",
+    "dimensions: Length in [2.0, 15.0] m, Width in [1.5, 6.0] m"
+  ],
+  "soft_penalties": [
+    "area_penalty: 0.005 per m2 of canopy area (prefers efficient shading over oversized structures)"
+  ],
+  "parameter_bounds": {
+    "x_m": [
+      110.0,
+      155.0
+    ],
+    "y_m": [
+      55.0,
+      72.0
+    ],
+    "length_m": [
+      3.0,
+      12.0
+    ],
+    "width_m": [
+      2.0,
+      4.5
+    ],
+    "height_m": [
+      2.8,
+      4.5
+    ],
+    "heading_deg": [
+      90.0,
+      115.0
+    ],
+    "albedo": [
+      0.2,
+      0.85
+    ]
+  },
+  "search_budgets": {
+    "budget_random": 10,
+    "budget_lhs": 10,
+    "budget_evolutionary": 15,
+    "population_size": 8,
+    "max_total_evaluations": 40
+  },
+  "stopping_criteria": "Max total budget reached (40 proposals) or convergence tolerance",
+  "duplicate_handling": "Euclidean parameter distance deduplication (< 0.05m tolerance)",
+  "failure_handling": "Screened by geographic validator before simulation; infeasible candidates rejected and recorded with machine-readable code without wasting GPU compute",
+  "reproducibility": "Fixed RNG seed=42; deterministic GPU kernels and exact mathematical bounds"
+}

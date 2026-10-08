@@ -1,0 +1,36 @@
+{
+  "stage": "STAGE_6_SHADE_PANEL_INCREMENTAL_RECOMPUTATION",
+  "timestamp_utc": "2026-10-07T18:26:56.969288+00:00",
+  "baseline_cache_source": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_static_20261006_232110",
+  "full_recomputation_reference": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\stage_05_shade_panel_full",
+  "edit_type": "mesh_added",
+  "panel_id": "BLR_SHADE_001",
+  "object_id": "CANOPY_001",
+  "affected_region_policy": "directional_frustum_minkowski_union",
+  "safety_margin_m": 10.0,
+  "tolerance_tmrt_k": 0.5,
+  "grid_configuration": {
+    "ny": 148,
+    "nx": 190,
+    "total_cells": 28120,
+    "resolution_m": 2.0,
+    "receptor_height_m": 1.1
+  },
+  "reused_quantities": [
+    "Static 123 context buildings geometry",
+    "Flat ground z=0 geometry",
+    "Solar position (altitude 57.916\u00b0, azimuth 268.1655\u00b0)",
+    "Weather forcing (T=35\u00b0C, RH=19.729%, wind=1.5 m/s, DNI=728.31 W/m2, DHI=172.18 W/m2)",
+    "Direct shadow fields outside panel directional shadow envelope",
+    "Sky view factor outside certified 0.5 K error boundary",
+    "Diffuse and reflected shortwave outside candidate region",
+    "Downwelling and surface longwave outside candidate region",
+    "Unbuilt pedestrian and corridor spatial masks"
+  ],
+  "recomputed_quantities": [
+    "Direct shadow within panel directional shadow Minkowski footprint",
+    "Sky view factor within certified dirty cell mask",
+    "Radiative shortwave and longwave fluxes within dirty cell mask",
+    "Tmrt and UTCI within dirty cell mask"
+  ]
+}

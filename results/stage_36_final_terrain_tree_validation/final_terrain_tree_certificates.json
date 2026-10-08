@@ -1,0 +1,6 @@
+{
+  "CERT_36_01_PARITY_VERIFIED": "PASSED (CPU-GPU error < 1e-4 K)",
+  "CERT_36_02_INCREMENTAL_VERIFIED": "PASSED (Full-Incremental error < 1e-12 K)",
+  "CERT_36_03_OVERLAP_AUDIT": "PASSED (Non-definitive ranking rule enforced)",
+  "CERT_36_04_GOVERNANCE_LABELS": "PASSED (PROVISIONAL_TERRAIN_TREE_RESULTS on all artifacts)"
+}

@@ -1,0 +1,11 @@
+{
+  "trial_1_wall_clock_sec": 5.669000800000504,
+  "trial_2_wall_clock_sec": 5.699099399993429,
+  "mean_wall_clock_sec": 5.684050099996966,
+  "total_cells_evaluated": 28120,
+  "cell_throughput_cells_per_sec": 4960.3097604074255,
+  "total_rays_cast": 927960,
+  "ray_throughput_rays_per_sec": 163690.22209344505,
+  "backend": "CPU",
+  "precision": "float64"
+}

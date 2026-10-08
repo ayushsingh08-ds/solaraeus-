@@ -1,0 +1,42 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T08:55:45.134778+00:00",
+  "evaluated_sources": [
+    {
+      "source_id": "SRC_FABDEM_V12",
+      "name": "Forest And Buildings removed Copernicus DEM (FABDEM) v1.2",
+      "format": "GeoTIFF",
+      "native_resolution_m": 30.87,
+      "coverage": "Global (Tile N12E077)",
+      "license": "CC-BY-NC-SA 4.0 / Open Access Non-Commercial",
+      "horizontal_datum": "WGS 84 (EPSG:4326)",
+      "vertical_datum": "EGM2008 geoid",
+      "reported_vertical_rmse_m": 1.82,
+      "curb_gutter_resolving_capability": false,
+      "classification": "REGIONAL_REFERENCE_ONLY",
+      "status": "NOT_PERMITTED_AS_STREET_SCALE_DTM"
+    },
+    {
+      "source_id": "SRC_BBMP_MUNICIPAL_SURVEY",
+      "name": "BBMP Engineering Total-Station Curb Elevation Survey",
+      "format": "Survey Points / CAD Drawing",
+      "coverage": "Church Street corridor",
+      "status": "UNAVAILABLE_IN_REPOSITORY",
+      "classification": "DTM_VALIDATION_PENDING"
+    },
+    {
+      "source_id": "SRC_SYNTHETIC_DTM_PROFILES",
+      "name": "SOLARAEUS Synthetic Microscale Terrain Profiles",
+      "format": "Analytical Regular Grid / TerrainGrid",
+      "resolution_m": 0.5,
+      "horizontal_datum": "Local Church Street Cartesian (EPSG:32643 aligned)",
+      "vertical_datum": "Local elevation datum (ground z=0 at origin)",
+      "vertical_accuracy_m": 0.0,
+      "curb_gutter_resolving_capability": true,
+      "classification": "SYNTHETIC_TERRAIN_ONLY",
+      "status": "VALIDATED_FOR_SOFTWARE_TESTING_ONLY"
+    }
+  ],
+  "measured_street_scale_dtm_available": false,
+  "classification": "SYNTHETIC_TERRAIN_ONLY"
+}

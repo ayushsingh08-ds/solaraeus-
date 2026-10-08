@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.218336+00:00",
+  "grid_shape": [
+    80,
+    80
+  ],
+  "total_cells": 6400,
+  "mean_tmrt_c": 43.44386171079459,
+  "mean_utci_c": 33.44640625000001,
+  "status": "VALIDATED"
+}

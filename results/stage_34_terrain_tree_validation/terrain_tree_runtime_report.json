@@ -1,0 +1,42 @@
+{
+  "benchmarks": {
+    "cpu_full": {
+      "no_trees": 0.06146919997991063,
+      "one_tree": 0.0798660000145901,
+      "core_trees_small": 0.09337049999157898,
+      "core_trees_nom": 0.10347850000835024,
+      "core_trees_large": 0.10610040000756271,
+      "trees_plus_panel": 0.0892333000083454,
+      "trees_on_incline": 0.08805259998189285
+    },
+    "gpu_full": {
+      "no_trees": 0.07317160000093281,
+      "one_tree": 0.0886393999971915,
+      "core_trees_small": 0.08604780002497137,
+      "core_trees_nom": 0.04420019997633062,
+      "core_trees_large": 0.04420249999384396,
+      "trees_plus_panel": 0.07182180002564564,
+      "trees_on_incline": 0.04587500001071021
+    },
+    "cpu_inc": {
+      "no_trees": 0.05260150000685826,
+      "one_tree": 0.07548319999477826,
+      "core_trees_small": 0.10273390001384541,
+      "core_trees_nom": 0.11377180000999942,
+      "core_trees_large": 0.09400969999842346,
+      "trees_plus_panel": 0.09085959999356419,
+      "trees_on_incline": 0.10672360000899062
+    },
+    "gpu_inc": {
+      "no_trees": 0.06346779997693375,
+      "one_tree": 0.05211960000451654,
+      "core_trees_small": 0.06786310000461526,
+      "core_trees_nom": 0.06074989997432567,
+      "core_trees_large": 0.04640099999960512,
+      "trees_plus_panel": 0.06608390001929365,
+      "trees_on_incline": 0.07016909998492338
+    }
+  },
+  "gpu_speedup_mean": 1.5327825353590732,
+  "incremental_speedup_mean": 1.0774783468918943
+}

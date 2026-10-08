@@ -1,0 +1,44 @@
+{
+  "single_tree": {
+    "mean_tmrt_c": 47.085709414963226,
+    "mean_utci_c": 33.87651999999999,
+    "shadowed_cells": 718,
+    "tree_shadowed_cells": 127
+  },
+  "core_trees_small": {
+    "mean_tmrt_c": 46.497751586544524,
+    "mean_utci_c": 33.72691999999999,
+    "shadowed_cells": 786,
+    "tree_shadowed_cells": 68
+  },
+  "core_trees_nom": {
+    "mean_tmrt_c": 46.49398244490566,
+    "mean_utci_c": 33.72472,
+    "shadowed_cells": 787,
+    "tree_shadowed_cells": 69
+  },
+  "core_trees_large": {
+    "mean_tmrt_c": 46.44783547573908,
+    "mean_utci_c": 33.71151999999999,
+    "shadowed_cells": 793,
+    "tree_shadowed_cells": 75
+  },
+  "tree_beside_building": {
+    "mean_tmrt_c": 47.090402484793394,
+    "mean_utci_c": 33.87656,
+    "shadowed_cells": 718,
+    "tree_shadowed_cells": 66
+  },
+  "trees_plus_panel": {
+    "mean_tmrt_c": 46.49398244490566,
+    "mean_utci_c": 33.72472,
+    "shadowed_cells": 787,
+    "tree_shadowed_cells": 69
+  },
+  "trees_on_incline": {
+    "mean_tmrt_c": 46.26341132598405,
+    "mean_utci_c": 33.667519999999996,
+    "shadowed_cells": 813,
+    "tree_shadowed_cells": 95
+  }
+}

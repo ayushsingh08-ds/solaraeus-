@@ -1,0 +1,14 @@
+{
+  "status": "TIME_BASED_SHADOWING_VALIDATED",
+  "total_steps_simulated": 51,
+  "step_interval_min": 15.0,
+  "mean_corridor_sunlit_hours": 12.050000190734863,
+  "mean_corridor_shadow_hours": 0.20000000298023224,
+  "mean_cumulative_irradiation_wh_m2": 6645.24072265625,
+  "visual_physical_parity": {
+    "mean_agreement_pct": 99.4,
+    "max_discrepancy_pct": 0.6,
+    "status": "VISUAL_PHYSICAL_PARITY_PASSED",
+    "threshold_pct": 95.0
+  }
+}

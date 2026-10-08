@@ -1,0 +1,201 @@
+{
+  "status": "TREES_LOADED_FROM_PROJECT_DATA",
+  "tree_count": 6,
+  "core_tree_count": 6,
+  "mandatory_labels": [
+    "TREE_GEOMETRY_PHOTO_ESTIMATED_ONLY",
+    "TREE_CURRENT_EXISTENCE_UNCERTAIN",
+    "TREE_GEOMETRY_NOT_FIELD_CALIBRATED",
+    "CANOPY_PHYSICS_SENSITIVITY_ONLY",
+    "FIELD_CALIBRATION_NOT_ESTABLISHED",
+    "PROVISIONAL_TERRAIN_TREE_RESULTS"
+  ],
+  "trees": {
+    "T08": {
+      "tree_id": "T08",
+      "source_id": "554758",
+      "latitude": 12.9750311,
+      "longitude": 77.6045925,
+      "local_x": 20.066,
+      "local_y": 81.139,
+      "species": "Ficus Religiosa L.",
+      "classification": "CORE",
+      "image_match_status": "MATCH_CONFIRMED",
+      "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+      "height_bounds": {
+        "small": 11.0,
+        "nominal": 13.5,
+        "large": 16.0
+      },
+      "crown_diameter_bounds": {
+        "small": 9.5,
+        "nominal": 12.0,
+        "large": 15.0
+      },
+      "crown_base_height_bounds": {
+        "small": 3.8,
+        "nominal": 4.2,
+        "large": 4.5
+      },
+      "trunk_radius": 0.45,
+      "transmissivity": 0.08,
+      "confidence": "HIGH_APPROXIMATE_PHOTO",
+      "source_file": "data/review/core_tree_review.csv"
+    },
+    "T09": {
+      "tree_id": "T09",
+      "source_id": "554762",
+      "latitude": 12.9750131,
+      "longitude": 77.6046503,
+      "local_x": 26.345,
+      "local_y": 83.271,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE",
+      "image_match_status": "MATCH_CONFIRMED",
+      "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+      "height_bounds": {
+        "small": 9.0,
+        "nominal": 11.0,
+        "large": 13.0
+      },
+      "crown_diameter_bounds": {
+        "small": 7.0,
+        "nominal": 8.5,
+        "large": 10.5
+      },
+      "crown_base_height_bounds": {
+        "small": 3.2,
+        "nominal": 3.8,
+        "large": 4.2
+      },
+      "trunk_radius": 0.3,
+      "transmissivity": 0.12,
+      "confidence": "HIGH_APPROXIMATE_PHOTO",
+      "source_file": "data/review/core_tree_review.csv"
+    },
+    "T10": {
+      "tree_id": "T10",
+      "source_id": "554768",
+      "latitude": 12.9749951,
+      "longitude": 77.6047135,
+      "local_x": 33.241,
+      "local_y": 77.288,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE",
+      "image_match_status": "MATCH_CONFIRMED",
+      "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+      "height_bounds": {
+        "small": 7.5,
+        "nominal": 9.5,
+        "large": 11.5
+      },
+      "crown_diameter_bounds": {
+        "small": 6.0,
+        "nominal": 7.5,
+        "large": 9.0
+      },
+      "crown_base_height_bounds": {
+        "small": 2.8,
+        "nominal": 3.2,
+        "large": 3.6
+      },
+      "trunk_radius": 0.28,
+      "transmissivity": 0.12,
+      "confidence": "HIGH_APPROXIMATE_PHOTO",
+      "source_file": "data/review/core_tree_review.csv"
+    },
+    "T11": {
+      "tree_id": "T11",
+      "source_id": "554774",
+      "latitude": 12.9749552,
+      "longitude": 77.6048234,
+      "local_x": 45.182,
+      "local_y": 72.842,
+      "species": "Saraca Asoca (Roxb.) Willd.",
+      "classification": "CORE",
+      "image_match_status": "MATCH_CONFIRMED",
+      "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+      "height_bounds": {
+        "small": 6.5,
+        "nominal": 8.0,
+        "large": 9.5
+      },
+      "crown_diameter_bounds": {
+        "small": 4.2,
+        "nominal": 5.5,
+        "large": 6.8
+      },
+      "crown_base_height_bounds": {
+        "small": 2.4,
+        "nominal": 2.8,
+        "large": 3.2
+      },
+      "trunk_radius": 0.22,
+      "transmissivity": 0.15,
+      "confidence": "HIGH_APPROXIMATE_PHOTO",
+      "source_file": "data/review/core_tree_review.csv"
+    },
+    "T12": {
+      "tree_id": "T12",
+      "source_id": "554780",
+      "latitude": 12.9749153,
+      "longitude": 77.6049452,
+      "local_x": 58.423,
+      "local_y": 68.391,
+      "species": "Saraca Asoca (Roxb.) Willd.",
+      "classification": "CORE",
+      "image_match_status": "MATCH_CONFIRMED",
+      "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+      "height_bounds": {
+        "small": 6.0,
+        "nominal": 7.5,
+        "large": 9.0
+      },
+      "crown_diameter_bounds": {
+        "small": 3.8,
+        "nominal": 5.0,
+        "large": 6.2
+      },
+      "crown_base_height_bounds": {
+        "small": 2.2,
+        "nominal": 2.6,
+        "large": 3.0
+      },
+      "trunk_radius": 0.22,
+      "transmissivity": 0.15,
+      "confidence": "HIGH_APPROXIMATE_PHOTO",
+      "source_file": "data/review/core_tree_review.csv"
+    },
+    "T13": {
+      "tree_id": "T13",
+      "source_id": "554786",
+      "latitude": 12.9748892,
+      "longitude": 77.6050503,
+      "local_x": 69.851,
+      "local_y": 65.512,
+      "species": "Tecoma Stans (L.) Juss. ex Kunth",
+      "classification": "CORE",
+      "image_match_status": "MATCH_CONFIRMED",
+      "current_existence_status": "CURRENT_EXISTENCE_UNCERTAIN",
+      "height_bounds": {
+        "small": 3.8,
+        "nominal": 5.0,
+        "large": 6.5
+      },
+      "crown_diameter_bounds": {
+        "small": 2.6,
+        "nominal": 3.5,
+        "large": 4.5
+      },
+      "crown_base_height_bounds": {
+        "small": 1.4,
+        "nominal": 1.8,
+        "large": 2.2
+      },
+      "trunk_radius": 0.18,
+      "transmissivity": 0.18,
+      "confidence": "HIGH_APPROXIMATE_PHOTO",
+      "source_file": "data/review/core_tree_review.csv"
+    }
+  }
+}

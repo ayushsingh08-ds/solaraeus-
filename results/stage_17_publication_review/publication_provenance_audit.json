@@ -1,0 +1,35 @@
+{
+  "timestamp_utc": "2026-10-08T08:11:48.197550+00:00",
+  "software_version": "2.0.0-cpu-ref",
+  "hardware_environment": {
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU (6.00 GB VRAM, CC 8.9)",
+    "cpu": "Intel Core i7 architecture",
+    "cuda_driver": "576.88",
+    "cupy": "14.2.0"
+  },
+  "input_data_provenance": [
+    {
+      "data_source": "OpenStreetMap",
+      "entity": "Church Street, Bengaluru Building Footprints & Corridors",
+      "license": "ODbL (Open Database License)",
+      "attribution": "OpenStreetMap contributors",
+      "processing_stage": "Stage 2 Preprocessing"
+    },
+    {
+      "data_source": "ERA5 Reanalysis / Bengaluru METAR",
+      "entity": "Hourly meteorological forcing (April 15, 2024)",
+      "license": "Copernicus Open Access / Public Domain",
+      "attribution": "ECMWF / IMD",
+      "processing_stage": "Stage 3 Static Baseline"
+    },
+    {
+      "data_source": "NOAA Solar Calculation Engine",
+      "entity": "Deterministic Solar Azimuth and Elevation Angles",
+      "license": "Public Domain",
+      "attribution": "NOAA Global Monitoring Laboratory",
+      "processing_stage": "Solar Geometry Engine"
+    }
+  ],
+  "intermediate_protection_state": "All 14 baseline and interim files verified 100% intact.",
+  "status": "PROVENANCE_FULLY_DOCUMENTED"
+}

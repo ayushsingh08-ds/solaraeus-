@@ -1,0 +1,11 @@
+{
+  "api_name": "SOLARAEUS Terrain-Aware CPU Reference Solver",
+  "version": "2.1.0-cpu-terrain",
+  "backward_compatible_with": "2.0.0-cpu-ref",
+  "release_status": "VALIDATED",
+  "modules": [
+    "urban_comfort.terrain.dtm.TerrainGrid",
+    "urban_comfort.terrain.terrain_scene.TerrainAwareScene",
+    "urban_comfort.terrain.terrain_solver.TerrainAwareCPUSolver"
+  ]
+}

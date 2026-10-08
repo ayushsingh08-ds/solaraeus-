@@ -1,0 +1,38 @@
+{
+  "timestamp_utc": "2026-10-07T19:16:09.955792+00:00",
+  "domain_cells": 28120,
+  "work_allocation": {
+    "CPU Full": {
+      "recomputed_cells": 28120,
+      "reused_cells": 0,
+      "reused_fraction": 0.0,
+      "total_rays": 927960,
+      "affected_rays": 927960,
+      "ray_work_avoided_pct": 0.0
+    },
+    "CPU Incremental": {
+      "recomputed_cells": 72,
+      "reused_cells": 28048,
+      "reused_fraction": 0.9974395448079658,
+      "total_rays": 927960,
+      "affected_rays": 2376,
+      "ray_work_avoided_pct": 99.74395448079659
+    },
+    "GPU Full": {
+      "recomputed_cells": 28120,
+      "reused_cells": 0,
+      "reused_fraction": 0.0,
+      "total_rays": 927960,
+      "affected_rays": 927960,
+      "ray_work_avoided_pct": 0.0
+    },
+    "GPU Incremental": {
+      "recomputed_cells": 72,
+      "reused_cells": 28048,
+      "reused_fraction": 0.9974395448079658,
+      "total_rays": 927960,
+      "affected_rays": 2376,
+      "ray_work_avoided_pct": 99.74395448079659
+    }
+  }
+}

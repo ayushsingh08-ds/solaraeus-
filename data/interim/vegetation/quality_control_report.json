@@ -1,0 +1,99 @@
+{
+  "timestamp_utc": "2026-10-07T17:02:12Z",
+  "total_checks": 16,
+  "checks_passed": 16,
+  "checks_with_warnings": 0,
+  "checks_failed": 0,
+  "checks": {
+    "duplicate_tree_ids": {
+      "passed": true,
+      "duplicates": [],
+      "message": "No duplicate tree IDs found."
+    },
+    "duplicate_coordinates": {
+      "passed": true,
+      "duplicates": [],
+      "message": "All 14 tree coordinates are unique."
+    },
+    "invalid_geometries": {
+      "passed": true,
+      "invalid_count": 0,
+      "message": "All coordinates fall precisely within central Bengaluru geographic bounds."
+    },
+    "trees_outside_study_boundary": {
+      "passed": true,
+      "core_trees_count": 6,
+      "core_outside": [],
+      "message": "All 6 core trees (T08 to T13) fall strictly within the primary Church Street study boundary [0, 218.5]m x [0, 135.1]m."
+    },
+    "trees_outside_shadow_context_boundary": {
+      "passed": true,
+      "all_outside": [],
+      "message": "All 14 trees (6 core + 8 context) fall within the documented shadow-context extent."
+    },
+    "coordinate_axis_order": {
+      "passed": true,
+      "errors": [],
+      "message": "Longitude and latitude order verified (X=Lon ~77.60, Y=Lat ~12.97)."
+    },
+    "utm_transformation_accuracy": {
+      "passed": true,
+      "discrepancies": [],
+      "message": "UTM Zone 43N (EPSG:32643) forward projections verified to < 1mm accuracy."
+    },
+    "local_origin_consistency": {
+      "passed": true,
+      "errors": [],
+      "origin_definition": {
+        "easting": 782541.81,
+        "northing": 1435736.11,
+        "crs": "EPSG:32643"
+      },
+      "message": "Preserved exact documented Church Street origin without shift or axis redefinition."
+    },
+    "missing_species": {
+      "passed": true,
+      "missing_count": 0,
+      "message": "All 14 trees retain municipal botanical species designation from BBMP record."
+    },
+    "core_trees_image_references": {
+      "passed": true,
+      "missing_core_references": [],
+      "message": "All 6 core trees are linked to verified street-level and aerial photographs."
+    },
+    "image_tree_match_validity": {
+      "passed": true,
+      "invalid_confirmed_matches": 0,
+      "message": "All confirmed photo matches link directly to verified tree IDs."
+    },
+    "current_existence_integrity_check": {
+      "passed": true,
+      "status": "COMPLIANT_WITH_CONSERVATIVE_INTEGRITY_POLICY",
+      "message": "All 14 trees are correctly labeled as CURRENT_EXISTENCE_UNCERTAIN. No historical photograph was treated as proof of current survival."
+    },
+    "source_record_conflicts": {
+      "passed": true,
+      "conflicts": [],
+      "message": "Zero conflicts between BBMP census OBJECTID, KGISTreeID, and review identifiers."
+    },
+    "crs_consistency": {
+      "passed": true,
+      "source_crs_declared": [
+        "EPSG:4326"
+      ],
+      "projected_crs": "EPSG:32643",
+      "message": "Uniform CRS declaration across all interim vegetation assets."
+    },
+    "provisional_dimensions_physical_bounds": {
+      "passed": true,
+      "violations": [],
+      "message": "All provisional photo-estimates satisfy realistic biological constraints (height 5-14.5m, crown 3.5-12m, base clearance 1.8-4.2m)."
+    },
+    "raw_data_protection_status": {
+      "passed": true,
+      "total_raw_files_verified": 197,
+      "raw_mismatches": 0,
+      "message": "Complete cryptographic verification: 0 raw files altered, all 11 frozen result directories byte-identical."
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "product_name": "FABDEM V1-2",
+  "source_file": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/N12E077_FABDEM_V1-2.tif",
+  "source_doi": "10.5523/bris.s5hqmjcdj8yo2ibzi9b4ew3sn",
+  "license": "CC BY-NC-SA 4.0",
+  "sha256": "975925ac077df01fdbb20ca8395f83e533dd47833a08617fe0c52f4c05560a3b",
+  "classification": "FABDEM_AVAILABLE_FOR_REGIONAL_PREPROCESSING",
+  "is_bare_earth": true,
+  "buildings_and_vegetation_removed": true,
+  "elevation_model_type": "Digital Terrain Model (DTM) derived via machine learning from Copernicus GLO-30 DSM",
+  "raster_attributes": {
+    "width": 3600,
+    "height": 3600,
+    "bands": 1,
+    "data_type": "float32",
+    "crs": "EPSG:4326",
+    "resolution_deg": [
+      0.0002777777777777778,
+      0.0002777777777777773
+    ],
+    "approximate_resolution_m": [
+      30.132719923415223,
+      30.714999999999947
+    ],
+    "nodata_value": -9999.0,
+    "bounds": [
+      76.99986111111112,
+      12.000138888888891,
+      77.99986111111112,
+      13.00013888888889
+    ],
+    "affine_transform": [
+      0.0002777777777777778,
+      0.0,
+      76.99986111111112,
+      0.0,
+      -0.0002777777777777773,
+      13.00013888888889
+    ],
+    "vertical_reference": "EGM2008 orthometric height (metres)",
+    "vertical_units": "metres"
+  },
+  "full_tile_statistics": {
+    "valid_pixel_count": 12960000,
+    "min_m": 235.5,
+    "max_m": 1505.739990234375,
+    "mean_m": 721.2066650390625,
+    "median_m": 717.8400268554688,
+    "std_m": 158.02906799316406
+  },
+  "church_street_window_statistics": {
+    "window_bbox_wgs84": [
+      77.6035,
+      12.9735,
+      77.6075,
+      12.9765
+    ],
+    "cell_shape": [
+      11,
+      15
+    ],
+    "valid_pixel_count": 165,
+    "min_m": 910.1199951171875,
+    "max_m": 917.4000244140625,
+    "mean_m": 913.2509765625,
+    "median_m": 913.5399780273438,
+    "std_m": 1.3797112703323364
+  },
+  "scientific_suitability": {
+    "is_street_scale_dtm": false,
+    "can_resolve_curbs_and_sidewalks": false,
+    "adequacy_note": "Adequate solely as a macro-topographic vertical reference and regional boundary slope baseline (~30m cell spacing). Inadequate for sub-metre ray-tracing or microclimate gutter/sidewalk relief."
+  }
+}

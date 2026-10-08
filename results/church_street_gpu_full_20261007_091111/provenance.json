@@ -1,0 +1,60 @@
+{
+  "stage": "church_street_gpu_simulation_backend",
+  "timestamp_utc": "20261007_091111",
+  "frozen_cpu_reference_dir": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_shade_full_20261007_001600",
+  "numerical_parity_passed": true,
+  "tolerances_policy": {
+    "Direct Shadow Mask": {
+      "tol": 0.0,
+      "unit": "-",
+      "desc": "Discrete binary shadow mask"
+    },
+    "Sky View Factor (SVF)": {
+      "tol": 0.0001,
+      "unit": "-",
+      "desc": "Hemispherical sky visibility [0, 1]"
+    },
+    "Direct Shortwave Irradiance": {
+      "tol": 0.0001,
+      "unit": "W/m2",
+      "desc": "Direct beam horizontal flux"
+    },
+    "Total Shortwave Flux": {
+      "tol": 0.01,
+      "unit": "W/m2",
+      "desc": "Total absorbed shortwave irradiance"
+    },
+    "Total Longwave Flux": {
+      "tol": 0.01,
+      "unit": "W/m2",
+      "desc": "Total absorbed longwave irradiance"
+    },
+    "Mean Radiant Temperature (Tmrt)": {
+      "tol": 0.05,
+      "unit": "K",
+      "desc": "Mean radiant temperature"
+    },
+    "Thermal Comfort (UTCI)": {
+      "tol": 0.05,
+      "unit": "degC",
+      "desc": "Universal Thermal Climate Index"
+    }
+  },
+  "gpu_profile": {
+    "device": "CUDA 0",
+    "cpu_runtime_seconds": 5.43,
+    "gpu_runtime_seconds": 0.9844,
+    "gpu_kernel_runtime_ms": 59.371,
+    "scene_upload_time_ms": 0.599,
+    "transfer_to_host_time_ms": 0.253,
+    "total_gpu_ray_step_ms": 60.222,
+    "peak_gpu_memory_mb": 1064.5,
+    "direct_shadow_rays": 28120,
+    "svf_azimuth_rays": 899840,
+    "total_ray_count": 927960,
+    "triangle_count": 2148,
+    "building_count": 124,
+    "speedup_ray_steps": 57.79,
+    "speedup_end_to_end": 5.52
+  }
+}

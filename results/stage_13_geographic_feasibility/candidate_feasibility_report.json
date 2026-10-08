@@ -1,0 +1,16 @@
+{
+  "timestamp_utc": "2026-10-07T19:24:06.656700+00:00",
+  "total_screened": 129,
+  "feasible_count": 55,
+  "infeasible_count": 74,
+  "feasibility_rate_pct": 42.63565891472868,
+  "rejection_breakdown": {
+    "OUT_OF_BOUNDS": 12,
+    "BUILDING_COLLISION": 55,
+    "INSUFFICIENT_CLEARANCE": 1,
+    "EXCEEDS_MAX_DIMENSIONS": 3,
+    "BELOW_MIN_DIMENSIONS": 1,
+    "CONSTRUCTION_CONSTRAINT_VIOLATION": 2
+  },
+  "canonical_benchmark_panel_status": "FEASIBLE"
+}

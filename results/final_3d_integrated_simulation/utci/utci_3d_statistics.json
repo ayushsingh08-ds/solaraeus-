@@ -1,0 +1,18 @@
+{
+  "baseline": {
+    "mean": NaN,
+    "stress": "Extreme heat stress"
+  },
+  "trees": {
+    "mean": NaN,
+    "stress": "Extreme heat stress"
+  },
+  "panels": {
+    "mean": NaN,
+    "stress": "Extreme heat stress"
+  },
+  "combined": {
+    "mean": NaN,
+    "stress": "Extreme heat stress"
+  }
+}

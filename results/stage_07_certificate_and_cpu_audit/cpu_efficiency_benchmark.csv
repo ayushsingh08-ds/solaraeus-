@@ -1,0 +1,16 @@
+trial_id,system_name,wall_clock_sec,cpu_time_sec,peak_memory_mb,total_cells,recomputed_cells,reused_cells,speedup_vs_full,reuse_ratio,max_parity_error_tmrt_k
+1,Static Baseline (Full Recompute),9.3334,9.0938,6.8,28120,28120,0,1.0,0.0,0.0
+2,Static Baseline (Full Recompute),9.1406,8.9062,6.73,28120,28120,0,1.0,0.0,0.0
+3,Static Baseline (Full Recompute),8.6492,8.375,6.73,28120,28120,0,1.0,0.0,0.0
+4,Static Baseline (Full Recompute),8.446,8.0312,6.73,28120,28120,0,1.0,0.0,0.0
+5,Static Baseline (Full Recompute),8.0859,7.8125,6.73,28120,28120,0,1.0,0.0,0.0
+1,Stage 5 Full Recomputation,8.0017,7.8906,6.73,28120,28120,0,1.0,0.0,0.0
+2,Stage 5 Full Recomputation,8.1134,7.8594,6.73,28120,28120,0,1.0,0.0,0.0
+3,Stage 5 Full Recomputation,8.8428,8.625,6.73,28120,28120,0,1.0,0.0,0.0
+4,Stage 5 Full Recomputation,8.2748,8.0625,6.73,28120,28120,0,1.0,0.0,0.0
+5,Stage 5 Full Recomputation,8.1185,7.9062,6.73,28120,28120,0,1.0,0.0,0.0
+1,Stage 6 Certified Incremental,1.7821,1.7031,5.44,28120,72,28048,4.64,0.9974,0.028902
+2,Stage 6 Certified Incremental,1.6052,1.5469,5.44,28120,72,28048,5.15,0.9974,0.028902
+3,Stage 6 Certified Incremental,1.7714,1.7656,5.44,28120,72,28048,4.67,0.9974,0.028902
+4,Stage 6 Certified Incremental,1.28,1.2344,5.44,28120,72,28048,6.46,0.9974,0.028902
+5,Stage 6 Certified Incremental,1.5946,1.5781,5.44,28120,72,28048,5.19,0.9974,0.028902

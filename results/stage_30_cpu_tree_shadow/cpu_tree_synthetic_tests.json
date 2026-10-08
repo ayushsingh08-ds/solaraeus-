@@ -1,0 +1,8 @@
+{
+  "isolated_tree_test": "PASSED (Clean projected elliptical shadow)",
+  "tree_building_interaction": "PASSED (Compound shadow intersection verified)",
+  "small_nominal_large_monotonicity": "PASSED (Shadow area increases monotonically with state)",
+  "tree_outside_domain": "PASSED (Zero spurious shadows inside grid)",
+  "tree_panel_combination": "PASSED (Additive shade verified)",
+  "inclined_terrain_coupling": "PASSED (Receptor ray elevation conforms to terrain slope)"
+}

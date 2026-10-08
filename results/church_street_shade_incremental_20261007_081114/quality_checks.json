@@ -1,0 +1,22 @@
+{
+  "execution_timestamp_utc": "20261007_081114",
+  "checks": {
+    "same_grid_shape": true,
+    "same_grid_coordinates": true,
+    "same_solar_timestamp": true,
+    "same_solar_altitude": true,
+    "same_weather_forcing": true,
+    "same_material_assumptions": true,
+    "same_panel_geometry": true,
+    "no_nan_or_inf_in_incremental_output": true,
+    "no_unexpected_changed_cells": true,
+    "maximum_error_within_tolerance": true,
+    "certificate_violations_zero": true,
+    "slack_map_non_negative": true,
+    "reused_cells_agreed_with_bound": true,
+    "incremental_computation_flag_true": true
+  },
+  "all_checks_passed": true,
+  "scientific_qualification": "The incremental shade-panel result is an exploratory certified incremental simulation evaluating bounded approximation and cache reuse against full recomputation using real-world building geometry, partly uncertain building-height estimates, off-site weather forcing, estimated solar radiation, and assumed material properties.",
+  "readiness_decision": "ACCEPTED_FOR_RESEARCH"
+}

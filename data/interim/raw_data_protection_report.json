@@ -1,0 +1,1154 @@
+{
+  "audit_timestamp_utc": "2026-10-07T17:03:43Z",
+  "summary": {
+    "all_packages_verified": true,
+    "total_supplement_files_audited": 108,
+    "total_handoff_files_audited": 89,
+    "frozen_results_directories_verified": 11
+  },
+  "packages": {
+    "bbmp_tree_supplement": {
+      "file_count": 25,
+      "mismatches": [],
+      "status": "PASSED"
+    },
+    "raw_sources_supplement": {
+      "file_count": 83,
+      "mismatches": [],
+      "status": "PASSED"
+    },
+    "manual_handoff_v2": {
+      "file_count": 89,
+      "mismatches": [],
+      "status": "PASSED"
+    }
+  },
+  "frozen_results": {
+    "results/church_street_data_review_20261006_203634": {
+      "status": "INTACT",
+      "file_count": 12
+    },
+    "results/church_street_preprocessing_20261006_224238": {
+      "status": "INTACT",
+      "file_count": 15
+    },
+    "results/church_street_static_20261006_232110": {
+      "status": "INTACT",
+      "file_count": 23
+    },
+    "results/church_street_shade_full_20261007_001600": {
+      "status": "INTACT",
+      "file_count": 37
+    },
+    "results/church_street_shade_incremental_20261007_081114": {
+      "status": "INTACT",
+      "file_count": 27
+    },
+    "results/church_street_gpu_full_20261007_091111": {
+      "status": "INTACT",
+      "file_count": 11
+    },
+    "results/church_street_shade_gpu_incremental_20261007_093905": {
+      "status": "INTACT",
+      "file_count": 25
+    },
+    "results/church_street_intervention_optimization_20261007_102725": {
+      "status": "INTACT",
+      "file_count": 23
+    },
+    "results/church_street_surrogate_optimization_20261007_110633": {
+      "status": "INTACT",
+      "file_count": 28
+    },
+    "results/church_street_multi_intervention_optimization_20261007_114326": {
+      "status": "INTACT",
+      "file_count": 26
+    },
+    "results/church_street_two_panel_robustness_20261007_122543": {
+      "status": "INTACT",
+      "file_count": 30
+    }
+  },
+  "manifest": [
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/boundaries/main_boundary.geojson",
+      "file_size_bytes": 1158,
+      "mtime_utc": "2026-10-07T13:49:44Z",
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "expected_sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/boundaries/shadow_context_boundary.geojson",
+      "file_size_bytes": 1709,
+      "mtime_utc": "2026-10-07T13:49:44Z",
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "expected_sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/census_profile.json",
+      "file_size_bytes": 11673,
+      "mtime_utc": "2026-10-07T14:01:16Z",
+      "sha256": "72e6308ee56f3bb00dbf98c6a02eae144ca8a7200ac0388affe2271961b48296",
+      "expected_sha256": "72e6308ee56f3bb00dbf98c6a02eae144ca8a7200ac0388affe2271961b48296",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/field_completeness.csv",
+      "file_size_bytes": 1860,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "995ef961addc39acae1cba4df8d0559cd663f1fbfd9bb6992ec5d3b58abd27ae",
+      "expected_sha256": "995ef961addc39acae1cba4df8d0559cd663f1fbfd9bb6992ec5d3b58abd27ae",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/provenance.json",
+      "file_size_bytes": 22689,
+      "mtime_utc": "2026-10-07T14:01:16Z",
+      "sha256": "abed9467d8831da9e18864241453955ea389b7b91b7056413634ec786893bcd8",
+      "expected_sha256": "abed9467d8831da9e18864241453955ea389b7b91b7056413634ec786893bcd8",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/supplement_status.json",
+      "file_size_bytes": 1161,
+      "mtime_utc": "2026-10-07T14:01:16Z",
+      "sha256": "4acf53c6c1a2de36a1a84159a29a80b8d3928661725385287b2ef8e356b85fc9",
+      "expected_sha256": "4acf53c6c1a2de36a1a84159a29a80b8d3928661725385287b2ef8e356b85fc9",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/tree_measurement_review.csv",
+      "file_size_bytes": 2448,
+      "mtime_utc": "2026-10-07T14:01:16Z",
+      "sha256": "799de01007e2f95d4b89aa19c267380d7396c1d34f2ed3bc654b6c94d389989e",
+      "expected_sha256": "799de01007e2f95d4b89aa19c267380d7396c1d34f2ed3bc654b6c94d389989e",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_context_only.csv",
+      "file_size_bytes": 3395,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "0d650ae4bc0d53db68c152dd42ccce84b38ace97e27d30ca09ab6b68550cbcda",
+      "expected_sha256": "0d650ae4bc0d53db68c152dd42ccce84b38ace97e27d30ca09ab6b68550cbcda",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_context_only.geojson",
+      "file_size_bytes": 4185,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "0962979798094afc8c42837c2cf38ba8a4c0ba79f4c16fe7b37df32831834a11",
+      "expected_sha256": "0962979798094afc8c42837c2cf38ba8a4c0ba79f4c16fe7b37df32831834a11",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_main_boundary.csv",
+      "file_size_bytes": 2636,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "f47d2d7f31d995352c130e83f1e9aea4712d0a624e586ea016cf9a0a01c9ed26",
+      "expected_sha256": "f47d2d7f31d995352c130e83f1e9aea4712d0a624e586ea016cf9a0a01c9ed26",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_main_boundary.geojson",
+      "file_size_bytes": 3148,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "99c4cdf717f3f32031830e6ec5458c4c164e91f8e2fa7634d604868590077dec",
+      "expected_sha256": "99c4cdf717f3f32031830e6ec5458c4c164e91f8e2fa7634d604868590077dec",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_shadow_context_including_main.csv",
+      "file_size_bytes": 5650,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "c5b09b217e917bd7147a5477f7ef3da9fc69162d1fc9b5a901a5b16d3fa1e58a",
+      "expected_sha256": "c5b09b217e917bd7147a5477f7ef3da9fc69162d1fc9b5a901a5b16d3fa1e58a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/trees_shadow_context_including_main.geojson",
+      "file_size_bytes": 7274,
+      "mtime_utc": "2026-10-07T13:55:06Z",
+      "sha256": "5afbd849d959aed207971c3dfeee600de0d9d7b2ed38629d0043be7527435e1d",
+      "expected_sha256": "5afbd849d959aed207971c3dfeee600de0d9d7b2ed38629d0043be7527435e1d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/processed/validation_report.json",
+      "file_size_bytes": 2231,
+      "mtime_utc": "2026-10-07T14:01:16Z",
+      "sha256": "4e71d4ac0d17f1779a14328eb6d965a9856481383350f668b47f09d98c6e13a2",
+      "expected_sha256": "4e71d4ac0d17f1779a14328eb6d965a9856481383350f668b47f09d98c6e13a2",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/data/raw/vegetation/bbmp_tree_census_july_2026.zip",
+      "file_size_bytes": 15639062,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "d3959084023783ff486c8f34595fc90118d4e32039d98a0cbe0416bf9eb84396",
+      "expected_sha256": "d3959084023783ff486c8f34595fc90118d4e32039d98a0cbe0416bf9eb84396",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/preparation/filter_tree_census.py",
+      "file_size_bytes": 16178,
+      "mtime_utc": "2026-10-07T13:54:02Z",
+      "sha256": "39bc3a19425ea8a94fa8f1649d5f95d348bbd56e70b00686322ee1acad88f2a9",
+      "expected_sha256": "39bc3a19425ea8a94fa8f1649d5f95d348bbd56e70b00686322ee1acad88f2a9",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/preparation/finalize_supplement.py",
+      "file_size_bytes": 21657,
+      "mtime_utc": "2026-10-07T14:01:08Z",
+      "sha256": "2ff3062528ceb2fd8d2a727bae1f2441c863c688e43087d89357bf6f66e6cdb4",
+      "expected_sha256": "2ff3062528ceb2fd8d2a727bae1f2441c863c688e43087d89357bf6f66e6cdb4",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/README.md",
+      "file_size_bytes": 9144,
+      "mtime_utc": "2026-10-07T14:01:16Z",
+      "sha256": "0f871df37207aaf799ae19da6479c68ce58f59630d9acac284d46fbec8835a1d",
+      "expected_sha256": "0f871df37207aaf799ae19da6479c68ce58f59630d9acac284d46fbec8835a1d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/download_record.json",
+      "file_size_bytes": 1222,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "e7a2502c426e779cbea44a8b477b7af1a46fbba36417f2d223b45b0f7486179d",
+      "expected_sha256": "e7a2502c426e779cbea44a8b477b7af1a46fbba36417f2d223b45b0f7486179d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/existing_v2_archive_checksum.txt",
+      "file_size_bytes": 113,
+      "mtime_utc": "2026-10-07T13:49:44Z",
+      "sha256": "50e800f9b7c9b3dd0dee4edc8e2ded76cc9e709608fb2375e9123f604c27f833",
+      "expected_sha256": "50e800f9b7c9b3dd0dee4edc8e2ded76cc9e709608fb2375e9123f604c27f833",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/licensing_notices.json",
+      "file_size_bytes": 1723,
+      "mtime_utc": "2026-10-07T13:55:30Z",
+      "sha256": "ca6e779a01f643173aed55debad50c93878a0d79fafd9f910c1d5e3d80143585",
+      "expected_sha256": "ca6e779a01f643173aed55debad50c93878a0d79fafd9f910c1d5e3d80143585",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/opencity_catalogue_original.json",
+      "file_size_bytes": 18336,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "f54f55238f7abc4d8bb92f94e411ca39de92f28fa4ff139151e27b61837f6ead",
+      "expected_sha256": "f54f55238f7abc4d8bb92f94e411ca39de92f28fa4ff139151e27b61837f6ead",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/protected_inputs_before.json",
+      "file_size_bytes": 851,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "f68fe5c06753933e3193d2e067ce791c3cd1fc3f79fd5eb318a3b533ec01529a",
+      "expected_sha256": "f68fe5c06753933e3193d2e067ce791c3cd1fc3f79fd5eb318a3b533ec01529a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/selected_resource_metadata.json",
+      "file_size_bytes": 1584,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "cdbf2a23b7bfd098dae0f9bbe49785f2ac695317a97e92e934d4a977dc1e71d4",
+      "expected_sha256": "cdbf2a23b7bfd098dae0f9bbe49785f2ac695317a97e92e934d4a977dc1e71d4",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_bbmp_trees_july2026_supplement/bbmp_tree_census_2026-07/sources/v2_handoff_inventory_before.json",
+      "file_size_bytes": 16125,
+      "mtime_utc": "2026-10-07T13:50:38Z",
+      "sha256": "c0e16563a310b90ede025c1c557ef43291ceea0599c7ed01a76c30bae4f23d43",
+      "expected_sha256": "c0e16563a310b90ede025c1c557ef43291ceea0599c7ed01a76c30bae4f23d43",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+      "license": "Other (Public Domain) / CC BY-NC-SA 4.0 / ODbL"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/authorisation.json",
+      "file_size_bytes": 457,
+      "mtime_utc": "2026-10-07T15:56:22Z",
+      "sha256": "8f5d7ec2e766aa14bdd064f37d93c165d82c752dbea7bba162435f9eb3c025c9",
+      "expected_sha256": "8f5d7ec2e766aa14bdd064f37d93c165d82c752dbea7bba162435f9eb3c025c9",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/CC_BY_NC_SA_4_legalcode.html",
+      "file_size_bytes": 52858,
+      "mtime_utc": "2026-10-07T16:06:22Z",
+      "sha256": "527c4e0e75a7aafe819a9ed481c227f27645736fa800f25d6d94ed37a362afd7",
+      "expected_sha256": "527c4e0e75a7aafe819a9ed481c227f27645736fa800f25d6d94ed37a362afd7",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/CC_BY_SA_4_legalcode.html",
+      "file_size_bytes": 51645,
+      "mtime_utc": "2026-10-07T16:06:22Z",
+      "sha256": "47c0a954c88d793bdefe92fb007ae3c038fb3807f1a27083433d01aa7542c0d8",
+      "expected_sha256": "47c0a954c88d793bdefe92fb007ae3c038fb3807f1a27083433d01aa7542c0d8",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/licence_text_downloads.json",
+      "file_size_bytes": 619,
+      "mtime_utc": "2026-10-07T16:06:22Z",
+      "sha256": "903ae6749786db1dfc92c740768163805308b99b2b8f50c58a9e5e34a5aadaa9",
+      "expected_sha256": "903ae6749786db1dfc92c740768163805308b99b2b8f50c58a9e5e34a5aadaa9",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/protected_before.json",
+      "file_size_bytes": 39194,
+      "mtime_utc": "2026-10-07T15:56:22Z",
+      "sha256": "52d960f7afed8b9425b9c26603b3464e56f9bdde2e4bcd3dc306bee724ca33ce",
+      "expected_sha256": "52d960f7afed8b9425b9c26603b3464e56f9bdde2e4bcd3dc306bee724ca33ce",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/raw_source_manifest.json",
+      "file_size_bytes": 22829,
+      "mtime_utc": "2026-10-07T16:12:42Z",
+      "sha256": "5dab76abc86265cb84c5a574beb542422c4dbedfe2721b251ddc8287e15c7d12",
+      "expected_sha256": "5dab76abc86265cb84c5a574beb542422c4dbedfe2721b251ddc8287e15c7d12",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/reference_main_boundary.geojson",
+      "file_size_bytes": 1158,
+      "mtime_utc": "2026-10-07T13:49:44Z",
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "expected_sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/reference_shadow_context_boundary.geojson",
+      "file_size_bytes": 1709,
+      "mtime_utc": "2026-10-07T13:49:44Z",
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "expected_sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/SCOPE_AND_GAPS.json",
+      "file_size_bytes": 1062,
+      "mtime_utc": "2026-10-07T16:10:32Z",
+      "sha256": "71ec53ea0e24ad0135ccff26ebb112eff41ce6add4a132b8bf02e48a31df5cd6",
+      "expected_sha256": "71ec53ea0e24ad0135ccff26ebb112eff41ce6add4a132b8bf02e48a31df5cd6",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/provenance/validation_report.json",
+      "file_size_bytes": 2981,
+      "mtime_utc": "2026-10-07T16:12:42Z",
+      "sha256": "e7e9115467bb912afa4cbd71cf1e562d8ce3258376a40b6c55b273a9c32fa158",
+      "expected_sha256": "e7e9115467bb912afa4cbd71cf1e562d8ce3258376a40b6c55b273a9c32fa158",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/README.md",
+      "file_size_bytes": 3729,
+      "mtime_utc": "2026-10-07T16:11:06Z",
+      "sha256": "83f51daeae6c3044aaf6a0f84f180702a4fa7e012e138096624c0af4b9e73cfb",
+      "expected_sha256": "83f51daeae6c3044aaf6a0f84f180702a4fa7e012e138096624c0af4b9e73cfb",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/N12E077_FABDEM_V1-2.tif",
+      "file_size_bytes": 26051472,
+      "mtime_utc": "2026-10-07T15:59:20Z",
+      "sha256": "975925ac077df01fdbb20ca8395f83e533dd47833a08617fe0c52f4c05560a3b",
+      "expected_sha256": "975925ac077df01fdbb20ca8395f83e533dd47833a08617fe0c52f4c05560a3b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/archive_central_directory.bin",
+      "file_size_bytes": 4830,
+      "mtime_utc": "2026-10-07T15:58:48Z",
+      "sha256": "c99ecf108024afc8b4cc2917f69a6813e3066df455a49aba78d3b71c9923ce6e",
+      "expected_sha256": "c99ecf108024afc8b4cc2917f69a6813e3066df455a49aba78d3b71c9923ce6e",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/archive_head.json",
+      "file_size_bytes": 536,
+      "mtime_utc": "2026-10-07T15:58:46Z",
+      "sha256": "7cec70f463e182c7a5fe2c2e1f68051857989bc0a51650f8f71e78fc983b3900",
+      "expected_sha256": "7cec70f463e182c7a5fe2c2e1f68051857989bc0a51650f8f71e78fc983b3900",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/archive_tail.bin",
+      "file_size_bytes": 65557,
+      "mtime_utc": "2026-10-07T15:58:48Z",
+      "sha256": "2ccc935c92b97d0e8f30dd15d7f0c1927804c6fc9fc5c5c3f8c6835e2cd760ae",
+      "expected_sha256": "2ccc935c92b97d0e8f30dd15d7f0c1927804c6fc9fc5c5c3f8c6835e2cd760ae",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/fabdem_acquisition.json",
+      "file_size_bytes": 5701,
+      "mtime_utc": "2026-10-07T16:10:32Z",
+      "sha256": "a31c683e9a7e085d2d366a8f3166aa32a90f39129f70ec6b7dec852f5c7d0467",
+      "expected_sha256": "a31c683e9a7e085d2d366a8f3166aa32a90f39129f70ec6b7dec852f5c7d0467",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/source_documentation_notes.json",
+      "file_size_bytes": 1116,
+      "mtime_utc": "2026-10-07T16:04:16Z",
+      "sha256": "a7aec3c0032612c17615fd6ad1389ae677177fda5cb80ab2bf800723a8e34d48",
+      "expected_sha256": "a7aec3c0032612c17615fd6ad1389ae677177fda5cb80ab2bf800723a8e34d48",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/provenance/tiff_metadata_as_read.json",
+      "file_size_bytes": 2564,
+      "mtime_utc": "2026-10-07T16:01:48Z",
+      "sha256": "3901c3906940f0cee30498be60d88b5e9a929b750bdc6d174544f105130a2565",
+      "expected_sha256": "3901c3906940f0cee30498be60d88b5e9a929b750bdc6d174544f105130a2565",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/README.md",
+      "file_size_bytes": 2369,
+      "mtime_utc": "2026-10-07T16:07:12Z",
+      "sha256": "f6478d164263b30981ecc6a8841f60dd7e837f6023a6fd26a829fbd842c1e1c2",
+      "expected_sha256": "f6478d164263b30981ecc6a8841f60dd7e837f6023a6fd26a829fbd842c1e1c2",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/terrain/terrain_metadata.json",
+      "file_size_bytes": 2897,
+      "mtime_utc": "2026-10-07T16:10:32Z",
+      "sha256": "4b0f0635702cfcbe1d4016ffc30658b20b0a65bd07f23cb183cabeb8ebebf938",
+      "expected_sha256": "4b0f0635702cfcbe1d4016ffc30658b20b0a65bd07f23cb183cabeb8ebebf938",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-NC-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/field_photos/README.md",
+      "file_size_bytes": 533,
+      "mtime_utc": "2026-10-07T16:07:12Z",
+      "sha256": "66549b6e40b557bd2f0cfc8e1456fc062f9ef5e7a1bd6ae0f820fe4cc12d6c30",
+      "expected_sha256": "66549b6e40b557bd2f0cfc8e1456fc062f9ef5e7a1bd6ae0f820fe4cc12d6c30",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/acquisition_records.json",
+      "file_size_bytes": 20417,
+      "mtime_utc": "2026-10-07T16:08:54Z",
+      "sha256": "f0585c5fed8eec8f998b53ee2ab0814f998a73c4306eb3458b06ac983863ae0b",
+      "expected_sha256": "f0585c5fed8eec8f998b53ee2ab0814f998a73c4306eb3458b06ac983863ae0b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_154346578_original.jpg",
+      "file_size_bytes": 3085076,
+      "mtime_utc": "2026-10-07T16:05:46Z",
+      "sha256": "c3bd08798974a063048898253ec2ed4b173f3e133c0527ed958a593725a734b7",
+      "expected_sha256": "c3bd08798974a063048898253ec2ed4b173f3e133c0527ed958a593725a734b7",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_154346588_original.jpg",
+      "file_size_bytes": 3795023,
+      "mtime_utc": "2026-10-07T16:05:54Z",
+      "sha256": "030939cf19e6af528f4603e26f8b08ff7bcb4ad81994f6083abcd7219566b86d",
+      "expected_sha256": "030939cf19e6af528f4603e26f8b08ff7bcb4ad81994f6083abcd7219566b86d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_154346605_original.jpg",
+      "file_size_bytes": 2209930,
+      "mtime_utc": "2026-10-07T16:06:02Z",
+      "sha256": "f2e7c9a9e9e7decbf6b250d5da3fcc7a616626acf4ae50c634153a8126c7a914",
+      "expected_sha256": "f2e7c9a9e9e7decbf6b250d5da3fcc7a616626acf4ae50c634153a8126c7a914",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_165137063_original.jpg",
+      "file_size_bytes": 3611773,
+      "mtime_utc": "2026-10-07T16:08:54Z",
+      "sha256": "cdaa5aad151b8d71384ca40256a2acf5f517cdab69eb46f2663e1e4422735e01",
+      "expected_sha256": "cdaa5aad151b8d71384ca40256a2acf5f517cdab69eb46f2663e1e4422735e01",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_188757238_original.jpg",
+      "file_size_bytes": 2903223,
+      "mtime_utc": "2026-10-07T16:06:14Z",
+      "sha256": "9aea628e978874b39f0c1b92ef2485a649e69f8998589ae1db8f2de3c67136d3",
+      "expected_sha256": "9aea628e978874b39f0c1b92ef2485a649e69f8998589ae1db8f2de3c67136d3",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_72609321_original.jpg",
+      "file_size_bytes": 3652488,
+      "mtime_utc": "2026-10-07T16:00:10Z",
+      "sha256": "36284b5c7f506e306cca7c4419a7e39d181c6056e9e2e2ad182562ad2c60848a",
+      "expected_sha256": "36284b5c7f506e306cca7c4419a7e39d181c6056e9e2e2ad182562ad2c60848a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_72609323_original.jpg",
+      "file_size_bytes": 4005874,
+      "mtime_utc": "2026-10-07T16:00:12Z",
+      "sha256": "b3b5b9f4091fc16ad78ced6928866a2924f017c5db75f75fa741c93d17cdd5fe",
+      "expected_sha256": "b3b5b9f4091fc16ad78ced6928866a2924f017c5db75f75fa741c93d17cdd5fe",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/commons_72609328_original.jpg",
+      "file_size_bytes": 3795513,
+      "mtime_utc": "2026-10-07T16:05:40Z",
+      "sha256": "fed2c2632eec466f1407319532048b503b138f2a75b9ad0df3085c0c56a4f89b",
+      "expected_sha256": "fed2c2632eec466f1407319532048b503b138f2a75b9ad0df3085c0c56a4f89b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/IMAGE_CREDITS.md",
+      "file_size_bytes": 4045,
+      "mtime_utc": "2026-10-07T16:10:32Z",
+      "sha256": "10f58fdb2be3afaa28d72535b18c83176132448e4f4aa660b97e7b68b51cadb6",
+      "expected_sha256": "10f58fdb2be3afaa28d72535b18c83176132448e4f4aa660b97e7b68b51cadb6",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_barton_10_2024_preview.jpg",
+      "file_size_bytes": 292998,
+      "mtime_utc": "2026-10-07T15:12:00Z",
+      "sha256": "58b5cc34e65d7c02061c6bc98140ffa9d6c1e198032f28439a3e3125f5e0c62d",
+      "expected_sha256": "58b5cc34e65d7c02061c6bc98140ffa9d6c1e198032f28439a3e3125f5e0c62d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_barton_16_2024_preview.jpg",
+      "file_size_bytes": 220303,
+      "mtime_utc": "2026-10-07T15:12:02Z",
+      "sha256": "7b74109dbd9188b0f15e316d1762cb5fa80aa9e5b3e0c960b126f51bc8614aec",
+      "expected_sha256": "7b74109dbd9188b0f15e316d1762cb5fa80aa9e5b3e0c960b126f51bc8614aec",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_church_street_trees_3_2018_preview.jpg",
+      "file_size_bytes": 522383,
+      "mtime_utc": "2026-10-07T15:12:00Z",
+      "sha256": "371c135c5ac4ab9336e35ced00b9c05c8b216b4d9f397f15b5577868954247c4",
+      "expected_sha256": "371c135c5ac4ab9336e35ced00b9c05c8b216b4d9f397f15b5577868954247c4",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/previews_not_originals/commons_mg_road_arch_2026_preview.jpg",
+      "file_size_bytes": 448498,
+      "mtime_utc": "2026-10-07T15:12:04Z",
+      "sha256": "3b0fe91072b66441dbcf404ce249137d408694d185e4091a19ef4f3be8900046",
+      "expected_sha256": "3b0fe91072b66441dbcf404ce249137d408694d185e4091a19ef4f3be8900046",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/provider_image_metadata_original.json",
+      "file_size_bytes": 37601,
+      "mtime_utc": "2026-10-07T15:11:28Z",
+      "sha256": "c5980c369b9bed0bd8abdf0a7a7e142bd8eda0e4b082b36beb576bd529382f87",
+      "expected_sha256": "c5980c369b9bed0bd8abdf0a7a7e142bd8eda0e4b082b36beb576bd529382f87",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/commons/provider_metadata_query.json",
+      "file_size_bytes": 1491,
+      "mtime_utc": "2026-10-07T15:11:28Z",
+      "sha256": "7494de3097bc6f42fa87deb4cd95cd9e7232dc7b74f01a470b38017b1dfb4af6",
+      "expected_sha256": "7494de3097bc6f42fa87deb4cd95cd9e7232dc7b74f01a470b38017b1dfb4af6",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/acquisition_records.json",
+      "file_size_bytes": 55713,
+      "mtime_utc": "2026-10-07T16:01:48Z",
+      "sha256": "ae5ab7c3c89232898aecd059eb2b58434975c01f0c897a978f58818260187cc9",
+      "expected_sha256": "ae5ab7c3c89232898aecd059eb2b58434975c01f0c897a978f58818260187cc9",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/IMAGE_CREDITS.md",
+      "file_size_bytes": 646,
+      "mtime_utc": "2026-10-07T16:10:32Z",
+      "sha256": "1c883a39e6ff68985218772a96d47118f66f7a73ca351fb00304317b6f7af534",
+      "expected_sha256": "1c883a39e6ff68985218772a96d47118f66f7a73ca351fb00304317b6f7af534",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424946_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3156920,
+      "mtime_utc": "2026-10-07T15:59:24Z",
+      "sha256": "c734a9124da66a5fc7ab3f634e6a9bed5258f2e4188eb510d6f7bc313025117d",
+      "expected_sha256": "c734a9124da66a5fc7ab3f634e6a9bed5258f2e4188eb510d6f7bc313025117d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424950_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3088989,
+      "mtime_utc": "2026-10-07T15:59:22Z",
+      "sha256": "8c68b2d981ee267a1b86b5a51f038df01f38ab5a6ce8fccb6e89b2b6faa5124b",
+      "expected_sha256": "8c68b2d981ee267a1b86b5a51f038df01f38ab5a6ce8fccb6e89b2b6faa5124b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424974_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3373741,
+      "mtime_utc": "2026-10-07T15:59:24Z",
+      "sha256": "682336b23b0d671f13a06218d4f0168d4fa25ed8f1eefced348746c73e6b6171",
+      "expected_sha256": "682336b23b0d671f13a06218d4f0168d4fa25ed8f1eefced348746c73e6b6171",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424978_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3778280,
+      "mtime_utc": "2026-10-07T15:59:26Z",
+      "sha256": "4bb71079a730ea3d35681e20985c7eedafc5a1340752b5752be836de45907c2f",
+      "expected_sha256": "4bb71079a730ea3d35681e20985c7eedafc5a1340752b5752be836de45907c2f",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424982_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 4023869,
+      "mtime_utc": "2026-10-07T15:59:26Z",
+      "sha256": "bf0b1c799e1fb1646ddd0384e56751a3bdfb129f12aff4c3260e2c89c92e0237",
+      "expected_sha256": "bf0b1c799e1fb1646ddd0384e56751a3bdfb129f12aff4c3260e2c89c92e0237",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424994_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 4764578,
+      "mtime_utc": "2026-10-07T15:59:34Z",
+      "sha256": "08bde3a87eea3c861290d0731a5d4040f3f8766ec7490ff508e2e44db8432d2e",
+      "expected_sha256": "08bde3a87eea3c861290d0731a5d4040f3f8766ec7490ff508e2e44db8432d2e",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814424998_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 4629632,
+      "mtime_utc": "2026-10-07T15:59:34Z",
+      "sha256": "e1bdadde76bd5be2528677ee2034fb84b70d90a3a7d9d8a808efb9f0983927cf",
+      "expected_sha256": "e1bdadde76bd5be2528677ee2034fb84b70d90a3a7d9d8a808efb9f0983927cf",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425010_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3561425,
+      "mtime_utc": "2026-10-07T15:59:38Z",
+      "sha256": "f2e34859f2810b4444bfd549a9748bde401b02dcc396b464bea798f0c0f8a05a",
+      "expected_sha256": "f2e34859f2810b4444bfd549a9748bde401b02dcc396b464bea798f0c0f8a05a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425034_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3292890,
+      "mtime_utc": "2026-10-07T15:59:40Z",
+      "sha256": "6a78ba320a0731ebd15400efc02bbfd2048564ddb0483ae85966cf20c75ad383",
+      "expected_sha256": "6a78ba320a0731ebd15400efc02bbfd2048564ddb0483ae85966cf20c75ad383",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425038_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3601333,
+      "mtime_utc": "2026-10-07T15:59:42Z",
+      "sha256": "293d3b795960581776e5cb5585dce9d5c591638ce8d50b17cf560f858846de4c",
+      "expected_sha256": "293d3b795960581776e5cb5585dce9d5c591638ce8d50b17cf560f858846de4c",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425046_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3627815,
+      "mtime_utc": "2026-10-07T15:59:42Z",
+      "sha256": "b787dc4e16f83ac1c0be574c62b1f715e0cc3a212d0cb143a06e6bbec8507f83",
+      "expected_sha256": "b787dc4e16f83ac1c0be574c62b1f715e0cc3a212d0cb143a06e6bbec8507f83",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425074_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3234724,
+      "mtime_utc": "2026-10-07T15:59:44Z",
+      "sha256": "eb35e5601f78577a0f3365aa8489870d6cfced5c320cf7cf1f6eb9d8b00f4eb7",
+      "expected_sha256": "eb35e5601f78577a0f3365aa8489870d6cfced5c320cf7cf1f6eb9d8b00f4eb7",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425078_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3234927,
+      "mtime_utc": "2026-10-07T15:59:46Z",
+      "sha256": "ea550ef67e79c964a82be8feeb6a9758ea1ab51629257e9a8338f4f033c4301a",
+      "expected_sha256": "ea550ef67e79c964a82be8feeb6a9758ea1ab51629257e9a8338f4f033c4301a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425090_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3127870,
+      "mtime_utc": "2026-10-07T15:59:46Z",
+      "sha256": "16e57de7daa4d9480c0d6b96e57b24b4fb46001133d9a7d73b38342e8fa70b6b",
+      "expected_sha256": "16e57de7daa4d9480c0d6b96e57b24b4fb46001133d9a7d73b38342e8fa70b6b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425110_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3416036,
+      "mtime_utc": "2026-10-07T15:59:50Z",
+      "sha256": "95a4508b552a3b4ca699774322104a993a55cd17c6362b7caf406aff2ab3fa9f",
+      "expected_sha256": "95a4508b552a3b4ca699774322104a993a55cd17c6362b7caf406aff2ab3fa9f",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425114_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3639943,
+      "mtime_utc": "2026-10-07T15:59:54Z",
+      "sha256": "72345f0a3594bf8c17e4eda24e67d0d71653c25e71a37d0cea417705ab57468a",
+      "expected_sha256": "72345f0a3594bf8c17e4eda24e67d0d71653c25e71a37d0cea417705ab57468a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425130_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3272572,
+      "mtime_utc": "2026-10-07T15:59:54Z",
+      "sha256": "7fe1021bd3831877e8992d2643a37ab741e2f9bd84ca98b8e2910184ece20e08",
+      "expected_sha256": "7fe1021bd3831877e8992d2643a37ab741e2f9bd84ca98b8e2910184ece20e08",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425138_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3041218,
+      "mtime_utc": "2026-10-07T15:59:56Z",
+      "sha256": "bd3fd302ff718ffde69c69fad4749720449f2190b0a238d10a55b35025b719ad",
+      "expected_sha256": "bd3fd302ff718ffde69c69fad4749720449f2190b0a238d10a55b35025b719ad",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425142_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3466191,
+      "mtime_utc": "2026-10-07T15:59:58Z",
+      "sha256": "a72ce021a7e393fcdfdad8fc93245059fc65faa7149ff2846addaaf54aa8f1a0",
+      "expected_sha256": "a72ce021a7e393fcdfdad8fc93245059fc65faa7149ff2846addaaf54aa8f1a0",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425166_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3816077,
+      "mtime_utc": "2026-10-07T15:59:58Z",
+      "sha256": "0131918cde98550a039da58bcb847a88fcefeb7d093e375b65414f6a50e0a422",
+      "expected_sha256": "0131918cde98550a039da58bcb847a88fcefeb7d093e375b65414f6a50e0a422",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425170_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3374388,
+      "mtime_utc": "2026-10-07T16:00:00Z",
+      "sha256": "80b83d353d30f01da928ec66a6cefbf46ae8382a2e85a276b95003e0b50fe236",
+      "expected_sha256": "80b83d353d30f01da928ec66a6cefbf46ae8382a2e85a276b95003e0b50fe236",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425174_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3239793,
+      "mtime_utc": "2026-10-07T16:00:02Z",
+      "sha256": "83b1a5485f4d496531697e8e2ff2277f67f3fe5561bce5ad0343598e78fa3339",
+      "expected_sha256": "83b1a5485f4d496531697e8e2ff2277f67f3fe5561bce5ad0343598e78fa3339",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425202_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 2962000,
+      "mtime_utc": "2026-10-07T16:00:04Z",
+      "sha256": "7d38173acfeb21abefe7b71be327c867387dee2eda28e462d889b1f5cd84811b",
+      "expected_sha256": "7d38173acfeb21abefe7b71be327c867387dee2eda28e462d889b1f5cd84811b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425210_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3133731,
+      "mtime_utc": "2026-10-07T16:00:06Z",
+      "sha256": "9b99145807b6c02ec44eec7a672105e94e88c60c7e0ea93a0fc5d18faa02fa4a",
+      "expected_sha256": "9b99145807b6c02ec44eec7a672105e94e88c60c7e0ea93a0fc5d18faa02fa4a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425214_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3115862,
+      "mtime_utc": "2026-10-07T16:00:02Z",
+      "sha256": "5202e418e5ff291fd83fb916ae4ee170fc9743f7cdc45fde84ce2176a3a053b2",
+      "expected_sha256": "5202e418e5ff291fd83fb916ae4ee170fc9743f7cdc45fde84ce2176a3a053b2",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425238_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3001904,
+      "mtime_utc": "2026-10-07T16:00:08Z",
+      "sha256": "e3b752f223f710a9be52211d0d40a449abee4293422bdbd6496d988f8145da8b",
+      "expected_sha256": "e3b752f223f710a9be52211d0d40a449abee4293422bdbd6496d988f8145da8b",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425246_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 2999756,
+      "mtime_utc": "2026-10-07T16:00:06Z",
+      "sha256": "0a30f4568b8e59bc7aa90c2145034ad729c75251639c551a2256414a30e394fd",
+      "expected_sha256": "0a30f4568b8e59bc7aa90c2145034ad729c75251639c551a2256414a30e394fd",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425266_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3322224,
+      "mtime_utc": "2026-10-07T15:59:48Z",
+      "sha256": "6a504e48b2d0822f25a19056df7ef75ebc366280aafd9af89c579de640a88bc9",
+      "expected_sha256": "6a504e48b2d0822f25a19056df7ef75ebc366280aafd9af89c579de640a88bc9",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/kartaview_814425338_2020-06-15_provider_processed.jpg",
+      "file_size_bytes": 3559349,
+      "mtime_utc": "2026-10-07T15:59:48Z",
+      "sha256": "22c8826a2a866f9db4aa905aa029a6441a8771e2d504baaa1c4e0fb0281fca0a",
+      "expected_sha256": "22c8826a2a866f9db4aa905aa029a6441a8771e2d504baaa1c4e0fb0281fca0a",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/licence_and_api_source_notes.json",
+      "file_size_bytes": 9844,
+      "mtime_utc": "2026-10-07T15:13:42Z",
+      "sha256": "cbc245ff6b83f38b5cfa86e8e68972d0b67536d74040e778905fca7e2de44aff",
+      "expected_sha256": "cbc245ff6b83f38b5cfa86e8e68972d0b67536d74040e778905fca7e2de44aff",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/provider_sequence2394274_page28_original.json",
+      "file_size_bytes": 114434,
+      "mtime_utc": "2026-10-07T15:12:40Z",
+      "sha256": "69c2567eca7de78b20a656a945569b16651ca11be588136b3460da7d67aab763",
+      "expected_sha256": "69c2567eca7de78b20a656a945569b16651ca11be588136b3460da7d67aab763",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/kartaview_2020/provider_terms_as_read.txt",
+      "file_size_bytes": 25389,
+      "mtime_utc": "2026-10-07T15:14:28Z",
+      "sha256": "19816305e6b47395237759663c4ec71b130382479096160d66964fab939cefe7",
+      "expected_sha256": "19816305e6b47395237759663c4ec71b130382479096160d66964fab939cefe7",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "CC BY-SA 4.0"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/mapillary_reference/provider_terms_as_read.txt",
+      "file_size_bytes": 33555,
+      "mtime_utc": "2026-10-07T15:13:56Z",
+      "sha256": "9f7683a88cd22325f9a875cdd92f1a035e4d13657608590e981ee614e630f9b8",
+      "expected_sha256": "9f7683a88cd22325f9a875cdd92f1a035e4d13657608590e981ee614e630f9b8",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/mapillary_reference/public_photo_details_as_read.txt",
+      "file_size_bytes": 3645,
+      "mtime_utc": "2026-10-07T15:12:00Z",
+      "sha256": "77ba2d3f5da1d212a9bfafa0373d120490b81b80b12baf6968404aab11ac6274",
+      "expected_sha256": "77ba2d3f5da1d212a9bfafa0373d120490b81b80b12baf6968404aab11ac6274",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/mapillary_reference/README.md",
+      "file_size_bytes": 540,
+      "mtime_utc": "2026-10-07T16:10:32Z",
+      "sha256": "06cfa9db5dced83a7b8a9549947bfaca4c301e0641e9fda879f4e4d6cfa96538",
+      "expected_sha256": "06cfa9db5dced83a7b8a9549947bfaca4c301e0641e9fda879f4e4d6cfa96538",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/README.md",
+      "file_size_bytes": 792,
+      "mtime_utc": "2026-10-07T16:07:12Z",
+      "sha256": "dbd4a9d2403ddce28cc1450c38469400ce50e939ad31a7ed93387ca2e6cec848",
+      "expected_sha256": "dbd4a9d2403ddce28cc1450c38469400ce50e939ad31a7ed93387ca2e6cec848",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/sentinel_catalogue_response_original.json",
+      "file_size_bytes": 21607,
+      "mtime_utc": "2026-10-07T15:14:00Z",
+      "sha256": "513def5444cd04a5ddde4c5aef062b28b06fd3d298a3cdb798bf2e9e642eefaf",
+      "expected_sha256": "513def5444cd04a5ddde4c5aef062b28b06fd3d298a3cdb798bf2e9e642eefaf",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/sentinel_coarse_scene_metadata.json",
+      "file_size_bytes": 1941,
+      "mtime_utc": "2026-10-07T15:17:36Z",
+      "sha256": "dab1d04e630c18be886dc3d1d52415a2ab387178461516d98d44ccf695b9fa15",
+      "expected_sha256": "dab1d04e630c18be886dc3d1d52415a2ab387178461516d98d44ccf695b9fa15",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/imagery/recent_imagery_status/sentinel_licence_notes.json",
+      "file_size_bytes": 5545,
+      "mtime_utc": "2026-10-07T15:17:32Z",
+      "sha256": "f32d727ea204d2811c6848d97e60939a87b39da3894664d39a2b092b79e9ead0",
+      "expected_sha256": "f32d727ea204d2811c6848d97e60939a87b39da3894664d39a2b092b79e9ead0",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/README.md",
+      "file_size_bytes": 4515,
+      "mtime_utc": "2026-10-07T16:06:44Z",
+      "sha256": "87c9bcac1a7bd753d9f879d0fd7ad06c5ab4312fb25c093b5b04ed5e3be8a0cb",
+      "expected_sha256": "87c9bcac1a7bd753d9f879d0fd7ad06c5ab4312fb25c093b5b04ed5e3be8a0cb",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/bbmp_tree_census_july_2026.zip",
+      "file_size_bytes": 15639062,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "d3959084023783ff486c8f34595fc90118d4e32039d98a0cbe0416bf9eb84396",
+      "expected_sha256": "d3959084023783ff486c8f34595fc90118d4e32039d98a0cbe0416bf9eb84396",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/download_record.json",
+      "file_size_bytes": 1222,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "e7a2502c426e779cbea44a8b477b7af1a46fbba36417f2d223b45b0f7486179d",
+      "expected_sha256": "e7a2502c426e779cbea44a8b477b7af1a46fbba36417f2d223b45b0f7486179d",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/licensing_notices.json",
+      "file_size_bytes": 1723,
+      "mtime_utc": "2026-10-07T13:55:30Z",
+      "sha256": "ca6e779a01f643173aed55debad50c93878a0d79fafd9f910c1d5e3d80143585",
+      "expected_sha256": "ca6e779a01f643173aed55debad50c93878a0d79fafd9f910c1d5e3d80143585",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    },
+    {
+      "relative_path": "bengaluru_church_street_raw_sources_2026-10-07/bengaluru_church_street_raw_supplement/data/raw/vegetation/source_tree_inventory/opencity_catalogue_original.json",
+      "file_size_bytes": 18336,
+      "mtime_utc": "2026-10-07T13:49:16Z",
+      "sha256": "f54f55238f7abc4d8bb92f94e411ca39de92f28fa4ff139151e27b61837f6ead",
+      "expected_sha256": "f54f55238f7abc4d8bb92f94e411ca39de92f28fa4ff139151e27b61837f6ead",
+      "status": "VERIFIED",
+      "source_package": "bengaluru_church_street_raw_sources_2026-10-07",
+      "license": "Open Government Data / Other (Public Domain)"
+    }
+  ]
+}

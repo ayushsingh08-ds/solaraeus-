@@ -1,0 +1,348 @@
+{
+  "type": "FeatureCollection",
+  "name": "church_street_trees_interim_inventory",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6040925,
+          12.9760181
+        ]
+      },
+      "properties": {
+        "review_id": "T01",
+        "object_id": 554674,
+        "kgis_tree_id": "GN8035CJ5FGG001",
+        "species_reported": "Artocarpus Heterophyllus Lam.",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782506.483,
+        "utm_northing_m": 1435925.945,
+        "local_x_m": -35.327,
+        "local_y_m": 189.835,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-35.3m, Y=189.8m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:2817dfb6eb2f46c2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6042275,
+          12.9758351
+        ]
+      },
+      "properties": {
+        "review_id": "T02",
+        "object_id": 554688,
+        "kgis_tree_id": "GN8035CJ5BFF001",
+        "species_reported": "Michelia Longifolia Blume",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782521.345,
+        "utm_northing_m": 1435905.839,
+        "local_x_m": -20.465,
+        "local_y_m": 169.729,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-20.5m, Y=169.7m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:27548e23ab4f93c9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6040925,
+          12.9756561
+        ]
+      },
+      "properties": {
+        "review_id": "T03",
+        "object_id": 554700,
+        "kgis_tree_id": "GN8035CI5UGG001",
+        "species_reported": "Tabebuia Rosea (Bertol) Dc.",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782506.892,
+        "utm_northing_m": 1435885.875,
+        "local_x_m": -34.918,
+        "local_y_m": 149.765,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-34.9m, Y=149.8m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:46571750ac7d8088"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6043115,
+          12.9755661
+        ]
+      },
+      "properties": {
+        "review_id": "T04",
+        "object_id": 554708,
+        "kgis_tree_id": "GN8035CI5QWC001",
+        "species_reported": "Markhamia Lutea (Benth.) K.Schum",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782530.767,
+        "utm_northing_m": 1435876.156,
+        "local_x_m": -11.043,
+        "local_y_m": 140.046,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-11.0m, Y=140.0m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:0e5fcdde6938f4ca"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6043495,
+          12.9750301
+        ]
+      },
+      "properties": {
+        "review_id": "T05",
+        "object_id": 554729,
+        "kgis_tree_id": "GN8035CI5BXD001",
+        "species_reported": "Ficus Racemosa L.",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782535.498,
+        "utm_northing_m": 1435816.869,
+        "local_x_m": -6.312,
+        "local_y_m": 80.759,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-6.3m, Y=80.8m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:d9a86cdbfc45a8f6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6043775,
+          12.9750141
+        ]
+      },
+      "properties": {
+        "review_id": "T06",
+        "object_id": 554737,
+        "kgis_tree_id": "GN8035CI5BTO001",
+        "species_reported": "Araucaria Columnaris",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782538.556,
+        "utm_northing_m": 1435815.129,
+        "local_x_m": -3.254,
+        "local_y_m": 79.019,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-3.3m, Y=79.0m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:15b2006e5c05f2ab"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6043225,
+          12.9750801
+        ]
+      },
+      "properties": {
+        "review_id": "T07",
+        "object_id": 554748,
+        "kgis_tree_id": "GN8035CI5GDI001",
+        "species_reported": "Araucaria Columnaris",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782532.511,
+        "utm_northing_m": 1435822.373,
+        "local_x_m": -9.299,
+        "local_y_m": 86.263,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=-9.3m, Y=86.3m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:a8d776a25f66d7e7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6045925,
+          12.9750311
+        ]
+      },
+      "properties": {
+        "review_id": "T08",
+        "object_id": 554758,
+        "kgis_tree_id": "GN8035CI5DUF001",
+        "species_reported": "Ficus Religiosa L.",
+        "classification": "CORE_STUDY_AREA",
+        "utm_easting_m": 782561.876,
+        "utm_northing_m": 1435817.249,
+        "local_x_m": 20.066,
+        "local_y_m": 81.139,
+        "location_description": "Church Street south pedestrian walkway / vehicular edge (Local X=20.1m, Y=81.1m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:75e51dc917554fe3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6048215,
+          12.9750481
+        ]
+      },
+      "properties": {
+        "review_id": "T09",
+        "object_id": 554765,
+        "kgis_tree_id": "GN8035CI5EVO001",
+        "species_reported": "Syzygium Cumini (L.) Skeels",
+        "classification": "CORE_STUDY_AREA",
+        "utm_easting_m": 782586.715,
+        "utm_northing_m": 1435819.385,
+        "local_x_m": 44.905,
+        "local_y_m": 83.275,
+        "location_description": "Church Street south pedestrian walkway / vehicular edge (Local X=44.9m, Y=83.3m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:c52177b28b63b03c"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6047135,
+          12.9749951
+        ]
+      },
+      "properties": {
+        "review_id": "T10",
+        "object_id": 554768,
+        "kgis_tree_id": "GN8035CI5DSH001",
+        "species_reported": "Syzygium Cumini (L.) Skeels",
+        "classification": "CORE_STUDY_AREA",
+        "utm_easting_m": 782575.051,
+        "utm_northing_m": 1435813.398,
+        "local_x_m": 33.241,
+        "local_y_m": 77.288,
+        "location_description": "Church Street south pedestrian walkway / vehicular edge (Local X=33.2m, Y=77.3m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:4a0ef508d382f680"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6049685,
+          12.9749751
+        ]
+      },
+      "properties": {
+        "review_id": "T11",
+        "object_id": 554783,
+        "kgis_tree_id": "GN8035CI6AKO001",
+        "species_reported": "Saraca Asoca (Roxb.) De Wilde",
+        "classification": "CORE_STUDY_AREA",
+        "utm_easting_m": 782602.755,
+        "utm_northing_m": 1435811.467,
+        "local_x_m": 60.945,
+        "local_y_m": 75.357,
+        "location_description": "Church Street south pedestrian walkway / vehicular edge (Local X=60.9m, Y=75.4m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:012e7704623534e2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6051285,
+          12.9749671
+        ]
+      },
+      "properties": {
+        "review_id": "T12",
+        "object_id": 554787,
+        "kgis_tree_id": "GN8035CI6BKI001",
+        "species_reported": "Saraca Asoca (Roxb.) De Wilde",
+        "classification": "CORE_STUDY_AREA",
+        "utm_easting_m": 782620.133,
+        "utm_northing_m": 1435810.759,
+        "local_x_m": 78.323,
+        "local_y_m": 74.649,
+        "location_description": "Church Street south pedestrian walkway / vehicular edge (Local X=78.3m, Y=74.6m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:eb101e962e18d0e1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6053005,
+          12.9748831
+        ]
+      },
+      "properties": {
+        "review_id": "T13",
+        "object_id": 554795,
+        "kgis_tree_id": "GN8035CI6BEG001",
+        "species_reported": "Techoma Stans",
+        "classification": "CORE_STUDY_AREA",
+        "utm_easting_m": 782638.899,
+        "utm_northing_m": 1435801.652,
+        "local_x_m": 97.089,
+        "local_y_m": 65.542,
+        "location_description": "Church Street south pedestrian walkway / vehicular edge (Local X=97.1m, Y=65.5m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:0e0e430a5a064e08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6057295,
+          12.9755681
+        ]
+      },
+      "properties": {
+        "review_id": "T14",
+        "object_id": 554866,
+        "kgis_tree_id": "GN8035CI6TVE001",
+        "species_reported": "Pongamia Pinnata (L.) Pierre",
+        "classification": "CONTEXT_SHADOW_REGION",
+        "utm_easting_m": 782684.694,
+        "utm_northing_m": 1435877.95,
+        "local_x_m": 142.884,
+        "local_y_m": 141.84,
+        "location_description": "Shadow-context buffer around Church Street corridor (Local X=142.9m, Y=141.8m)",
+        "source_package": "bengaluru_church_street_bbmp_trees_july2026_supplement",
+        "geometry_reference": "sha256:c54f10fe0d6f754b"
+      }
+    }
+  ]
+}

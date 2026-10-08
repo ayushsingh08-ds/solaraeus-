@@ -1,0 +1,11 @@
+{
+  "total_cells": 28120,
+  "recomputed_cells": 72,
+  "reused_cells": 28048,
+  "reused_fraction": 0.9974395448079658,
+  "reused_percentage": 99.74395448079659,
+  "total_rays_full": 927960,
+  "rays_computed_incremental": 2376,
+  "rays_avoided": 925584,
+  "work_reduction_percentage": 99.74395448079659
+}

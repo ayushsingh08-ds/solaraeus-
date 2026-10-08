@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Baseline (No Canopy)",
+    "candidate_id": "BASELINE",
+    "panels_count": 0,
+    "total_area_m2": 0.0,
+    "mean_utci_c": 36.49056886227545,
+    "p90_utci_c": 36.8,
+    "mean_tmrt_c": 45.810848802362,
+    "peak_tmrt_drop_k": 0.0,
+    "delta_mean_utci_c": 0.0,
+    "pct_cells_improved": 0.0,
+    "cost_usd": 0.0,
+    "objective_score": 54.89056886227545
+  },
+  {
+    "name": "Stage 1 Best Single-Panel",
+    "candidate_id": "CAND_0036_EVOL",
+    "panels_count": 1,
+    "total_area_m2": 8.823037593817023,
+    "mean_utci_c": 36.48682634730539,
+    "p90_utci_c": 36.8,
+    "mean_tmrt_c": 45.794931889927845,
+    "peak_tmrt_drop_k": 12.18,
+    "delta_mean_utci_c": -0.003742514970063837,
+    "pct_cells_improved": 29.940119760479046,
+    "cost_usd": 7205.759398454256,
+    "objective_score": 54.93094153527447
+  },
+  {
+    "name": "Stage 2 Best Single-Panel (Surrogate)",
+    "candidate_id": "CAND_0063_SURR",
+    "panels_count": 1,
+    "total_area_m2": 10.263516458191711,
+    "mean_utci_c": 36.475598802395204,
+    "p90_utci_c": 36.8,
+    "mean_tmrt_c": 45.749149634135655,
+    "peak_tmrt_drop_k": 12.817802175315876,
+    "delta_mean_utci_c": -0.014970059880248243,
+    "pct_cells_improved": 59.88023952095809,
+    "cost_usd": 7565.879114547928,
+    "objective_score": 54.92691638468616
+  },
+  {
+    "name": "Stage 3 Best Two-Panel (Nominal)",
+    "candidate_id": "CAND_4196_SURR",
+    "panels_count": 2,
+    "total_area_m2": 22.872892707067003,
+    "mean_utci_c": 36.47964071856288,
+    "p90_utci_c": 36.8,
+    "mean_tmrt_c": 45.76068915707769,
+    "peak_tmrt_drop_k": 12.683091984734062,
+    "delta_mean_utci_c": -0.010928143712575888,
+    "pct_cells_improved": 74.8502994011976,
+    "cost_usd": 15718.22317676675,
+    "objective_score": 56.56582749977489
+  },
+  {
+    "name": "Two-Panel (50-Budget Best)",
+    "candidate_id": "CAND_11067_SURR",
+    "panels_count": 2,
+    "total_area_m2": 17.275106864865066,
+    "mean_utci_c": 36.48428143712575,
+    "p90_utci_c": 36.8,
+    "mean_tmrt_c": 45.779722843152584,
+    "peak_tmrt_drop_k": 12.475544043052196,
+    "delta_mean_utci_c": -0.006287425149700709,
+    "pct_cells_improved": 59.88023952095809,
+    "cost_usd": 14318.776716216267,
+    "objective_score": 56.402534643071704
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.210182+00:00",
+  "gpu_incremental_vs_full": {
+    "reused_cells": 6000,
+    "recomputed_cells": 400,
+    "reuse_percentage": 93.75,
+    "max_abs_error_tmrt_k": 0.0,
+    "certified_bound_k": 0.0812,
+    "parity_status": "WITHIN_CERTIFIED_TOLERANCE"
+  }
+}

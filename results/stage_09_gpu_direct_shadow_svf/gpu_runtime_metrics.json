@@ -1,0 +1,18 @@
+{
+  "total_cells": 28120,
+  "direct_shadow": {
+    "cpu_time_sec": 0.661361799997394,
+    "gpu_time_sec": 0.029733999996096827,
+    "speedup_ratio": 22.242611155048454,
+    "rays_evaluated": 28120,
+    "gpu_ray_throughput_rays_per_sec": 945718.7059827573
+  },
+  "sky_view_factor": {
+    "cpu_time_sec": 4.063878499990096,
+    "gpu_time_sec": 0.06245610000041779,
+    "speedup_ratio": 65.06775959374524,
+    "rays_evaluated": 899840,
+    "gpu_ray_throughput_rays_per_sec": 14407559.869956348
+  },
+  "overall_gpu_kernel_speedup": 51.25539835802472
+}

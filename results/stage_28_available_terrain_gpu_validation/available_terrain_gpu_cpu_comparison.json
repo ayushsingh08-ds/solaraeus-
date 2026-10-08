@@ -1,0 +1,30 @@
+{
+  "flat": {
+    "max_shadow_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true
+  },
+  "incline": {
+    "max_shadow_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true
+  },
+  "step": {
+    "max_shadow_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true
+  },
+  "swale": {
+    "max_shadow_diff": 0.0,
+    "max_tmrt_diff_k": 0.0,
+    "max_utci_diff_k": 0.0,
+    "exact_shadow_parity": true,
+    "parity_within_tolerance": true
+  }
+}

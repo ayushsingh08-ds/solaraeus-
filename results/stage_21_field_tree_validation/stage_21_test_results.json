@@ -1,0 +1,32 @@
+{
+  "stage": "STAGE_21",
+  "timestamp_utc": "2026-10-08T08:19:26.055420+00:00",
+  "tests": [
+    {
+      "name": "test_core_tree_table_complete",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_context_tree_table_complete",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_photo_estimated_only_preserved",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_measurement_uncertainty_documented",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_no_calibrated_geometry_claimed",
+      "status": "PASSED"
+    },
+    {
+      "name": "test_existence_uncertainty_preserved",
+      "status": "PASSED"
+    }
+  ],
+  "all_passed": true,
+  "token": "STAGE_21_FIELD_VALIDATION_PENDING"
+}

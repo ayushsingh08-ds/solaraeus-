@@ -1,0 +1,8 @@
+{
+  "area_id": "AREA_BRIGADE_ROAD_EXT",
+  "certificate_status": "certified",
+  "is_certified": true,
+  "max_predicted_bound_k": 44.110408645018026,
+  "actual_reused_error_k": 0.04286512931821562,
+  "bound_valid": true
+}

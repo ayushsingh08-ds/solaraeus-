@@ -1,0 +1,107 @@
+{
+  "nominal": {
+    "feasible_count": 43,
+    "total_tested": 500,
+    "feasible_pct": 8.6,
+    "rejections": {
+      "OUT_OF_BOUNDS": 285,
+      "EXCEEDS_TOTAL_AREA": 109,
+      "EXCEEDS_MAX_DIMENSIONS": 24,
+      "PANEL_COLLISION": 15,
+      "INSUFFICIENT_PANEL_SEPARATION": 10,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 14
+    }
+  },
+  "relaxed_separation": {
+    "feasible_count": 48,
+    "total_tested": 500,
+    "feasible_pct": 9.6,
+    "rejections": {
+      "OUT_OF_BOUNDS": 285,
+      "EXCEEDS_TOTAL_AREA": 109,
+      "EXCEEDS_MAX_DIMENSIONS": 24,
+      "PANEL_COLLISION": 15,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 14,
+      "INSUFFICIENT_PANEL_SEPARATION": 5
+    }
+  },
+  "strict_separation": {
+    "feasible_count": 38,
+    "total_tested": 500,
+    "feasible_pct": 7.6,
+    "rejections": {
+      "OUT_OF_BOUNDS": 285,
+      "EXCEEDS_TOTAL_AREA": 109,
+      "EXCEEDS_MAX_DIMENSIONS": 24,
+      "PANEL_COLLISION": 15,
+      "INSUFFICIENT_PANEL_SEPARATION": 15,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 14
+    }
+  },
+  "strict_setback": {
+    "feasible_count": 41,
+    "total_tested": 500,
+    "feasible_pct": 8.200000000000001,
+    "rejections": {
+      "OUT_OF_BOUNDS": 283,
+      "EXCEEDS_TOTAL_AREA": 109,
+      "EXCEEDS_MAX_DIMENSIONS": 24,
+      "PANEL_COLLISION": 15,
+      "INSUFFICIENT_PANEL_SEPARATION": 9,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 14,
+      "BUILDING_COLLISION": 5
+    }
+  },
+  "relaxed_setback": {
+    "feasible_count": 43,
+    "total_tested": 500,
+    "feasible_pct": 8.6,
+    "rejections": {
+      "OUT_OF_BOUNDS": 285,
+      "EXCEEDS_TOTAL_AREA": 109,
+      "EXCEEDS_MAX_DIMENSIONS": 24,
+      "PANEL_COLLISION": 15,
+      "INSUFFICIENT_PANEL_SEPARATION": 10,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 14
+    }
+  },
+  "tight_area": {
+    "feasible_count": 19,
+    "total_tested": 500,
+    "feasible_pct": 3.8,
+    "rejections": {
+      "EXCEEDS_TOTAL_AREA": 351,
+      "OUT_OF_BOUNDS": 122,
+      "INSUFFICIENT_PANEL_SEPARATION": 3,
+      "PANEL_COLLISION": 3,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 2
+    }
+  },
+  "expanded_area": {
+    "feasible_count": 44,
+    "total_tested": 500,
+    "feasible_pct": 8.799999999999999,
+    "rejections": {
+      "OUT_OF_BOUNDS": 320,
+      "EXCEEDS_MAX_DIMENSIONS": 78,
+      "PANEL_COLLISION": 16,
+      "INSUFFICIENT_PANEL_SEPARATION": 11,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 15,
+      "EXCEEDS_TOTAL_AREA": 16
+    }
+  },
+  "higher_clearance": {
+    "feasible_count": 34,
+    "total_tested": 500,
+    "feasible_pct": 6.800000000000001,
+    "rejections": {
+      "OUT_OF_BOUNDS": 238,
+      "INSUFFICIENT_CLEARANCE": 59,
+      "EXCEEDS_TOTAL_AREA": 109,
+      "EXCEEDS_MAX_DIMENSIONS": 24,
+      "INSUFFICIENT_PANEL_SEPARATION": 9,
+      "CONSTRUCTION_CONSTRAINT_VIOLATION": 14,
+      "PANEL_COLLISION": 13
+    }
+  }
+}

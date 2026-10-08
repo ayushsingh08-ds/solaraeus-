@@ -1,0 +1,7 @@
+tree_id,height_uncertainty_m,crown_dia_uncertainty_m,dbh_uncertainty_m,source
+T08,+/- 2.5,+/- 2.75,+/- 0.20,Perspective scaling against 4-story facade
+T09,+/- 2.0,+/- 1.75,+/- 0.15,Perspective scaling against utility post
+T10,+/- 2.0,+/- 1.50,+/- 0.15,Perspective scaling against store entrance
+T11,+/- 1.5,+/- 1.30,+/- 0.10,Perspective scaling against pedestrian curb
+T12,+/- 1.5,+/- 1.20,+/- 0.10,Perspective scaling against street lamp
+T13,+/- 1.35,+/- 0.95,+/- 0.08,Perspective scaling against walkway bollard

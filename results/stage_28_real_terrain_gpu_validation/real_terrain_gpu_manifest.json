@@ -1,0 +1,10 @@
+{
+  "stage_id": "STAGE_28",
+  "timestamp_utc": "2026-10-08T08:59:00.453301+00:00",
+  "prerequisite_required": "STAGE_27_REAL_TERRAIN_CPU_VALIDATION_COMPLETE",
+  "prerequisite_actual": "STAGE_27_BLOCKED",
+  "prerequisite_met": false,
+  "status": "STAGE_28_BLOCKED",
+  "token": "STAGE_28_BLOCKED",
+  "reason": "Real-world terrain GPU and incremental validation blocked by upstream failure of Stage 27."
+}

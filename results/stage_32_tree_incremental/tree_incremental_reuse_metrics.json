@@ -1,0 +1,26 @@
+{
+  "tree_addition": {
+    "total_cells": 2500,
+    "recomputed_cells": 0,
+    "reused_cells": 2500,
+    "reuse_efficiency_pct": 100.0
+  },
+  "tree_translation": {
+    "total_cells": 2500,
+    "recomputed_cells": 456,
+    "reused_cells": 2044,
+    "reuse_efficiency_pct": 81.76
+  },
+  "tree_height_scale": {
+    "total_cells": 2500,
+    "recomputed_cells": 456,
+    "reused_cells": 2044,
+    "reuse_efficiency_pct": 81.76
+  },
+  "geometry_state_transition": {
+    "total_cells": 2500,
+    "recomputed_cells": 456,
+    "reused_cells": 2044,
+    "reuse_efficiency_pct": 81.76
+  }
+}

@@ -115,8 +115,11 @@ dmypy.json
 # Antigravity IDE / Gemini Agent artifacts
 .gemini/
 .agents/
-context.md
-*context.md
+
+# Raw dataset zip archives and heavy raw imagery (>100MB GitHub limit)
+*.zip
+bengaluru_church_street_raw_sources_2026-10-07/
+bengaluru_church_street_bbmp_trees_july2026_supplement/
 
 # Jupyter Notebooks
 .ipynb_checkpoints

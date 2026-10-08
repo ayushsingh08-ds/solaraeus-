@@ -1,0 +1,16 @@
+{
+  "stage_id": "STAGE_25",
+  "timestamp_utc": "2026-10-08T08:55:45.134778+00:00",
+  "quality_audit": {
+    "spatial_resolution_adequate_for_curbs": false,
+    "fabdem_resolution_m": 30.87,
+    "required_street_resolution_m": 0.25,
+    "curb_height_m": 0.15,
+    "fabdem_vertical_noise_m": 1.82,
+    "building_threshold_alignment": "NOT_FEASIBLE_WITH_30M_GRID",
+    "pedestrian_curb_delineation": "UNRESOLVED",
+    "cross_fall_drainage_representation": "UNRESOLVED"
+  },
+  "conclusion": "FABDEM is rigorously excluded from street microclimate simulations to avoid gross step-interpolation artifacts.",
+  "classification": "SYNTHETIC_TERRAIN_ONLY"
+}

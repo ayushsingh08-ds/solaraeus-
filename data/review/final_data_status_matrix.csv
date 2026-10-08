@@ -1,0 +1,22 @@
+category,element,coverage,source,status,solver_ingestion_ready
+VERIFIED,Census tree identity,14/14 trees,BBMP July 2026 municipal census,VERIFIED_MUNICIPAL_RECORD,false
+VERIFIED,Census coordinates,14/14 trees,BBMP GIS (EPSG:4326 georeferenced to EPSG:32643),VERIFIED_POINT_LOCATIONS,false
+VERIFIED,Reported species,14/14 trees,BBMP municipal botanical classification,REPORTED_TAXON_PRIOR,false
+VERIFIED,Core/context classification,14/14 trees,"Church Street core boundary [0, 218.5]m x [0, 135.1]m",VERIFIED_SPATIAL_INDEX,false
+PROVISIONAL,Photo-estimated tree height,"6/6 core, 2/8 context",KartaView 2020 / Commons 2018 scaling against floor slabs,PHOTO_ESTIMATED_PROVISIONAL,false
+PROVISIONAL,Photo-estimated crown diameter,"6/6 core, 2/8 context",Roadside passage proportion scaling,PHOTO_ESTIMATED_PROVISIONAL,false
+PROVISIONAL,Photo-estimated crown-base height,"6/6 core, 2/8 context",Vehicular road clearance / storefront scale,PHOTO_ESTIMATED_PROVISIONAL,false
+PROVISIONAL,Photo-estimated crown-top height,"6/6 core, 2/8 context",Equals total height bound,PHOTO_ESTIMATED_PROVISIONAL,false
+PROVISIONAL,Photo-estimated trunk diameter,"6/6 core, 2/8 context",Proportion scaling against tree grates and curbs,PHOTO_ESTIMATED_PROVISIONAL,false
+PROVISIONAL,FABDEM regional elevation baseline,100% study area,FABDEM v1.2 bare-earth ML raster (30m GSD),REGIONAL_REFERENCE_ONLY,false
+LITERATURE_ASSUMED,Shortwave transmissivity (tau),11 species,Konarska et al. (2014); SOLWEIG defaults,LITERATURE_ASSUMED_UNVALIDATED,false
+LITERATURE_ASSUMED,Leaf Area Index (LAI),11 species,Urban forestry literature / SOLWEIG database,LITERATURE_ASSUMED_UNVALIDATED,false
+LITERATURE_ASSUMED,Leaf Area Density (LAD),11 species,ENVI-met tropical foliage profiles,LITERATURE_ASSUMED_UNVALIDATED,false
+LITERATURE_ASSUMED,Leaf albedo,11 species,Standard vegetation broadband shortwave reflectance (~0.20),LITERATURE_ASSUMED_UNVALIDATED,false
+LITERATURE_ASSUMED,Leaf emissivity,11 species,Standard thermal infrared emissivity (~0.95),LITERATURE_ASSUMED_UNVALIDATED,false
+LITERATURE_ASSUMED,Seasonal foliage state,11 species,Tropical evergreen / semi-deciduous assumptions,LITERATURE_ASSUMED_UNVALIDATED,false
+MISSING,Current 2026 tree existence,0/14 verified,Requires 2026 pedestrian field walkthrough,MISSING_FIELD_VERIFICATION_REQUIRED,false
+MISSING,Field-measured dimensions,0/14 verified,Requires laser rangefinder / clinometer / TLS,MISSING_FIELD_SURVEY_REQUIRED,false
+MISSING,Calibrated canopy optical data,0/14 verified,Requires under-canopy pyranometer radiation audit,MISSING_RADIOMETRIC_AUDIT_REQUIRED,false
+MISSING,Street-scale DTM,0% domain,Requires topographic curb / cross-slope survey,MISSING_ENGINEERING_DTM_REQUIRED,false
+MISSING,Field microclimate validation,0/1 site,Requires meteorological mobile cart / sensor loggers,MISSING_EMPIRICAL_MICROCLIMATE_REQUIRED,false

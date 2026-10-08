@@ -1,0 +1,6 @@
+{
+  "random_seed": 42,
+  "environment": "Windows x64 CUDA CuPy",
+  "solver_backend": "2.2.0-gpu-tree",
+  "timestamp_utc": "2026-10-08T09:41:24.943515+00:00"
+}

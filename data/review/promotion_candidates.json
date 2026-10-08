@@ -1,0 +1,56 @@
+{
+  "manifest_timestamp_utc": "2026-10-07T17:48:32Z",
+  "policy": "STRICT_MANUAL_PROMOTION_ONLY: No file may be copied or promoted to data/processed/ without formal researcher sign-off.",
+  "candidates": [
+    {
+      "candidate_id": "CAND_PROM_01_TREE_LOCATIONS",
+      "source_path": "data/interim/vegetation/tree_inventory_interim.geojson",
+      "proposed_destination": "data/processed/vegetation/church_street_tree_locations.geojson",
+      "reason": "Empirical municipal census 2D point coordinates verified and georeferenced to EPSG:32643 and local coordinates.",
+      "required_approval": "Confirmation of study domain coordinate bounds by Lead Researcher.",
+      "blocking_issues": "None for 2D horizontal point locations. (Does not authorize 3D mesh ingestion).",
+      "simulation_suitability": "SUITABLE_FOR_HORIZONTAL_POINTS_ONLY",
+      "approved_for_promotion": false
+    },
+    {
+      "candidate_id": "CAND_PROM_02_PHOTO_MATCH_LOG",
+      "source_path": "data/interim/vegetation/photo_tree_match_log.csv",
+      "proposed_destination": "data/processed/vegetation/church_street_photo_match_catalog.csv",
+      "reason": "Audited empirical catalog linking 29 KartaView and 8 Commons images to tree identifiers.",
+      "required_approval": "Peer review of match classifications.",
+      "blocking_issues": "None. Serves as empirical reference metadata.",
+      "simulation_suitability": "METADATA_REFERENCE_ONLY",
+      "approved_for_promotion": false
+    },
+    {
+      "candidate_id": "CAND_PROM_03_REGIONAL_FABDEM_RASTER",
+      "source_path": "data/interim/terrain/fabdem_clipped_utm43.tif",
+      "proposed_destination": "data/processed/terrain/church_street_fabdem_regional_utm43.tif",
+      "reason": "Clean, bare-earth regional topographic gradient raster with building radar spikes removed.",
+      "required_approval": "Acceptance as regional boundary condition baseline.",
+      "blocking_issues": "Must not be used as microscale street DTM or curb geometry.",
+      "simulation_suitability": "REGIONAL_BOUNDARY_REFERENCE_ONLY",
+      "approved_for_promotion": false
+    },
+    {
+      "candidate_id": "CAND_PROM_04_LEVEL1_NOMINAL_GEOMETRY",
+      "source_path": "data/review/tree_dimension_uncertainty_bounds.csv",
+      "proposed_destination": "data/processed/vegetation/church_street_core_trees_level1_nominal.csv",
+      "reason": "Nominal photo-estimated geometric dimensions (height, crown diameter, crown base) for Level 1 baseline sensitivity tests.",
+      "required_approval": "Formal researcher sign-off on provisional photo estimates and wide uncertainty bounds.",
+      "blocking_issues": "Awaiting physical field survey or 2026 survival confirmation.",
+      "simulation_suitability": "PROVISIONAL_SENSITIVITY_ONLY_NOT_FINAL",
+      "approved_for_promotion": false
+    }
+  ],
+  "strictly_forbidden_promotions": [
+    {
+      "forbidden_file": "bengaluru_church_street_manual_handoff_v2/data/raw/terrain/elevation_original.tif (Skadi DEM)",
+      "reason": "Contains commercial building rooftop radar contamination up to +16.6m above bare earth. Would create catastrophic fictitious shadows."
+    },
+    {
+      "forbidden_file": "Uncalibrated literature canopy parameters (LAI/transmissivity)",
+      "reason": "Must not be hard-coded into GPU/CPU solvers as empirical ground truth without radiometric validation."
+    }
+  ]
+}

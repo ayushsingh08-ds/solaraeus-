@@ -1,0 +1,26 @@
+{
+  "flat": {
+    "mean_tmrt_c": 47.08981290710098,
+    "mean_utci_c": 33.87651999999999,
+    "mean_svf": 0.7189236844943278,
+    "shadowed_cells": 718
+  },
+  "incline": {
+    "mean_tmrt_c": 47.08981290710098,
+    "mean_utci_c": 33.87651999999999,
+    "mean_svf": 0.7189236844943278,
+    "shadowed_cells": 718
+  },
+  "step": {
+    "mean_tmrt_c": 47.08981290710098,
+    "mean_utci_c": 33.87651999999999,
+    "mean_svf": 0.7189236844943278,
+    "shadowed_cells": 718
+  },
+  "swale": {
+    "mean_tmrt_c": 47.08981290710098,
+    "mean_utci_c": 33.87651999999999,
+    "mean_svf": 0.7189236844943278,
+    "shadowed_cells": 718
+  }
+}

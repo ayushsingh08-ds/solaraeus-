@@ -1,0 +1,6 @@
+{
+  "gpu_resident_memory_mb": 16.4,
+  "peak_vram_allocation_mb": 58.0,
+  "cpu_ram_working_set_mb": 42.0,
+  "status": "BOUNDED_RESIDENT"
+}

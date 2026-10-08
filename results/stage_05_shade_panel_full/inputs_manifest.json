@@ -1,0 +1,69 @@
+{
+  "stage": "STAGE_5_SHADE_PANEL_FULL_RECOMPUTATION",
+  "timestamp_utc": "2026-10-07T18:25:00.174749+00:00",
+  "baseline_scene": {
+    "source_directory": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_static_20261006_232110",
+    "context_mesh_file": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\results\\church_street_preprocessing_20261006_224238\\shadow_context_mesh.json",
+    "context_mesh_sha256": "33c9ca008a6fa20e5155fb54652a7d3f2f31c5d20928c2cd0e1ecc360f47104e",
+    "building_count": 123,
+    "terrain_policy": "flat_ground_z0"
+  },
+  "grid_configuration": {
+    "ny": 148,
+    "nx": 190,
+    "total_cells": 28120,
+    "resolution_m": 2.0,
+    "receptor_height_m": 1.1,
+    "extent_x_m": 380.0,
+    "extent_y_m": 296.0,
+    "coordinate_system": "EPSG:32643_local_origin"
+  },
+  "solar_forcing": {
+    "date": "2024-04-15",
+    "time": "09:00:00",
+    "solar_altitude_deg": 57.916,
+    "solar_azimuth_true_north_deg": 268.1655,
+    "solar_azimuth_grid_north_deg": 267.5801
+  },
+  "weather_forcing": {
+    "air_temperature_c": 35.0,
+    "air_temperature_k": 308.15,
+    "relative_humidity_pct": 19.729,
+    "wind_speed_m_s": 1.5,
+    "wind_direction_deg": 90.0,
+    "dni_w_m2": 728.31,
+    "dhi_w_m2": 172.18,
+    "station_distance_km": 2.56
+  },
+  "panel_intervention": {
+    "panel_id": "BLR_SHADE_001",
+    "object_id": "CANOPY_001",
+    "geometry_type": "TriangleMesh",
+    "vertices": 8,
+    "triangles": 12,
+    "dimensions_m": [
+      6.0,
+      3.0,
+      0.1
+    ],
+    "underside_height_m": 3.5,
+    "top_height_m": 3.6,
+    "area_m2": 18.0,
+    "bearing_true_north_deg": 103.02790844205674,
+    "bearing_grid_north_deg": 102.44250192876865,
+    "material": {
+      "id": "SHADE_PANEL_ASSUMED_001",
+      "albedo": 0.6,
+      "emissivity": 0.9,
+      "temperature_k": 308.15,
+      "is_opaque": true
+    }
+  },
+  "computational_mode": {
+    "engine": "full_recompute",
+    "backend": "cpu",
+    "incremental_used": false,
+    "cache_reuse": false,
+    "deterministic": true
+  }
+}

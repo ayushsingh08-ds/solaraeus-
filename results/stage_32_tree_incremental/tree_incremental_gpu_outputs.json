@@ -1,0 +1,30 @@
+{
+  "tree_addition": {
+    "mean_tmrt_c": 46.49398244490566,
+    "dirty_cells": 0,
+    "reused_cells": 2500,
+    "reuse_percentage": 100.0,
+    "runtime_sec": 0.039584899990586564
+  },
+  "tree_translation": {
+    "mean_tmrt_c": 46.618036301100396,
+    "dirty_cells": 456,
+    "reused_cells": 2044,
+    "reuse_percentage": 81.76,
+    "runtime_sec": 0.05594250001013279
+  },
+  "tree_height_scale": {
+    "mean_tmrt_c": 46.49398244490566,
+    "dirty_cells": 456,
+    "reused_cells": 2044,
+    "reuse_percentage": 81.76,
+    "runtime_sec": 0.04651899999589659
+  },
+  "geometry_state_transition": {
+    "mean_tmrt_c": 46.49398244490566,
+    "dirty_cells": 456,
+    "reused_cells": 2044,
+    "reuse_percentage": 81.76,
+    "runtime_sec": 0.09147109999321401
+  }
+}

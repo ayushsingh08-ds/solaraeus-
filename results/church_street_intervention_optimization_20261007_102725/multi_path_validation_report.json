@@ -1,0 +1,1890 @@
+{
+  "total_validated": 7,
+  "total_passed": 7,
+  "all_passed": true,
+  "reports": [
+    {
+      "candidate_id": "CAND_0036_EVOL",
+      "role": "best_candidate",
+      "params": {
+        "x": 137.53392016873616,
+        "y": 57.10813768960236,
+        "length": 3.336713005585618,
+        "width": 2.6442302886245725,
+        "height": 3.430567882566146,
+        "heading_deg": 110.74474357831033,
+        "albedo": 0.7253634568417962,
+        "area_m2": 8.823037593817023
+      },
+      "cpu_full_wall_s": 5.1912,
+      "gpu_full_wall_s": 0.3038,
+      "gpu_inc_wall_s": 0.0793,
+      "gpu_inc_kernel_ms": 11.068,
+      "recomputed_cells": 56,
+      "reused_cells": 28064,
+      "reused_fraction_pct": 99.8009,
+      "ray_reduction_pct": 99.8009,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 45.018853,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.312377647444169e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.174467509179568e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.312377647444169e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.0796923411963377e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.240865091017578e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.174467509179568e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.008810531593584248,
+        "mean_svf_diff": 2.9610721906423754e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.27055838565223667,
+        "max_tot_lw_diff": 0.27164434828773665,
+        "max_tmrt_diff_k": 0.06148196410538276,
+        "mean_tmrt_diff_k": 2.0616707050142187e-05,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.008810531593584248,
+            "mean_abs_diff": 2.9610721906423754e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.27055838565223667,
+            "mean_abs_diff": 9.093014458778962e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.27164434828773665,
+            "mean_abs_diff": 9.129511845183669e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.06148196410538276,
+            "mean_abs_diff": 2.0616707050142187e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.008810531593584248,
+        "mean_svf_diff": 2.9610721907152143e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.27055838565223667,
+        "max_tot_lw_diff": 0.27164434828773665,
+        "max_tmrt_diff_k": 0.06148196410538276,
+        "mean_tmrt_diff_k": 2.061670705131261e-05,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.008810531593584248,
+            "mean_abs_diff": 2.9610721907152143e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.27055838565223667,
+            "mean_abs_diff": 9.093014459085718e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.27164434828773665,
+            "mean_abs_diff": 9.129511845902095e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.06148196410538276,
+            "mean_abs_diff": 2.061670705131261e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    },
+    {
+      "candidate_id": "CAND_0024_RAND",
+      "role": "top_2_candidate",
+      "params": {
+        "x": 151.22053303119236,
+        "y": 58.913637845212975,
+        "length": 3.336713005585618,
+        "width": 3.3871311734787084,
+        "height": 3.430567882566146,
+        "heading_deg": 110.74474357831033,
+        "albedo": 0.7253634568417962,
+        "area_m2": 11.30188463817088
+      },
+      "cpu_full_wall_s": 5.2382,
+      "gpu_full_wall_s": 0.3339,
+      "gpu_inc_wall_s": 0.0732,
+      "gpu_inc_kernel_ms": 6.621,
+      "recomputed_cells": 49,
+      "reused_cells": 28071,
+      "reused_fraction_pct": 99.8257,
+      "ray_reduction_pct": 99.8257,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 49.952242,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.313956912059568e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.170424591764148e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.313956912059568e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.0766601531347725e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.273208430340941e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.170424591764148e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.008165751002881971,
+        "mean_svf_diff": 2.998287441159319e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.25075812798701236,
+        "max_tot_lw_diff": 0.2517646166859322,
+        "max_tmrt_diff_k": 0.05645758898964459,
+        "mean_tmrt_diff_k": 2.0828851134083807e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 7.112375533428013e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.008165751002881971,
+            "mean_abs_diff": 2.998287441159319e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.25075812798701236,
+            "mean_abs_diff": 9.20729698525844e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.2517646166859322,
+            "mean_abs_diff": 9.244253076919458e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.05645758898964459,
+            "mean_abs_diff": 2.0828851134083807e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 7.112375533428013e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.008165751002881971,
+        "mean_svf_diff": 2.998287441232268e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.25075812798701236,
+        "max_tot_lw_diff": 0.2517646166859322,
+        "max_tmrt_diff_k": 0.05645758898964459,
+        "mean_tmrt_diff_k": 2.0828851135234017e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 7.112375533428013e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.008165751002881971,
+            "mean_abs_diff": 2.998287441232268e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.25075812798701236,
+            "mean_abs_diff": 9.207296985564894e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.2517646166859322,
+            "mean_abs_diff": 9.244253077637884e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.05645758898964459,
+            "mean_abs_diff": 2.0828851135234017e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 7.112375533428013e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    },
+    {
+      "candidate_id": "CAND_0040_EVOL",
+      "role": "top_3_candidate",
+      "params": {
+        "x": 135.08827689142763,
+        "y": 61.615934971072605,
+        "length": 3.059906912997559,
+        "width": 3.995455480979497,
+        "height": 3.457515622141922,
+        "heading_deg": 108.88620711952429,
+        "albedo": 0.2,
+        "area_m2": 12.22572184682315
+      },
+      "cpu_full_wall_s": 5.8239,
+      "gpu_full_wall_s": 0.3044,
+      "gpu_inc_wall_s": 0.0671,
+      "gpu_inc_kernel_ms": 12.24,
+      "recomputed_cells": 64,
+      "reused_cells": 28056,
+      "reused_fraction_pct": 99.7724,
+      "ray_reduction_pct": 99.7724,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 44.906028,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.314746544367267e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.1603172982255974e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.314746544367267e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.071606506365497e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.244908008432998e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.1603172982255974e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.005169498320094168,
+        "mean_svf_diff": 2.5565506590400194e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.15874764255258356,
+        "max_tot_lw_diff": 0.15938482113375585,
+        "max_tmrt_diff_k": 0.03587157567636723,
+        "mean_tmrt_diff_k": 1.7718428902311686e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 1.0668563300141893e-05,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.005169498320094168,
+            "mean_abs_diff": 2.5565506590400194e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.15874764255258356,
+            "mean_abs_diff": 7.850788704413323e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.15938482113375585,
+            "mean_abs_diff": 7.882300066267147e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.03587157567636723,
+            "mean_abs_diff": 1.7718428902311686e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 1.0668563300141893e-05,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.005169498320094279,
+        "mean_svf_diff": 2.5565506591128037e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.15874764255258356,
+        "max_tot_lw_diff": 0.1593848211338127,
+        "max_tmrt_diff_k": 0.03587157567636723,
+        "mean_tmrt_diff_k": 1.771842890346796e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 1.0668563300141893e-05,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.005169498320094279,
+            "mean_abs_diff": 2.5565506591128037e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.15874764255258356,
+            "mean_abs_diff": 7.850788704719069e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.1593848211338127,
+            "mean_abs_diff": 7.882300066982338e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.03587157567636723,
+            "mean_abs_diff": 1.771842890346796e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 1.0668563300141893e-05,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    },
+    {
+      "candidate_id": "CAND_0022_RAND",
+      "role": "top_4_candidate",
+      "params": {
+        "x": 133.4302581112192,
+        "y": 62.461494825185795,
+        "length": 3.194508718922974,
+        "width": 4.0657298104858945,
+        "height": 4.323473312127604,
+        "heading_deg": 93.50622722496527,
+        "albedo": 0.560123493300382,
+        "area_m2": 12.98800932838224
+      },
+      "cpu_full_wall_s": 5.1491,
+      "gpu_full_wall_s": 0.2161,
+      "gpu_inc_wall_s": 0.0818,
+      "gpu_inc_kernel_ms": 9.427,
+      "recomputed_cells": 56,
+      "reused_cells": 28064,
+      "reused_fraction_pct": 99.8009,
+      "ray_reduction_pct": 99.8009,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 44.906028,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.319681746290388e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.1663816743487278e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.319681746290388e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.083735258611758e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.26310113680239e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.1663816743487278e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.0164800136619635,
+        "mean_svf_diff": 6.1445134217397804e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.5060768291386637,
+        "max_tot_lw_diff": 0.5081081116873065,
+        "max_tmrt_diff_k": 0.11431408746301486,
+        "mean_tmrt_diff_k": 4.261652421159444e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 1.4224751066856027e-05,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.0164800136619635,
+            "mean_abs_diff": 6.1445134217397804e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.5060768291386637,
+            "mean_abs_diff": 0.0001886889133017558,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.5081081116873065,
+            "mean_abs_diff": 0.0001894462696449936,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.11431408746301486,
+            "mean_abs_diff": 4.261652421159444e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 1.4224751066856027e-05,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.01648001366196361,
+        "mean_svf_diff": 6.144513421812583e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.5060768291386637,
+        "max_tot_lw_diff": 0.5081081116872497,
+        "max_tmrt_diff_k": 0.11431408746301486,
+        "mean_tmrt_diff_k": 4.261652421274465e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 1.4224751066856027e-05,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.01648001366196361,
+            "mean_abs_diff": 6.144513421812583e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.5060768291386637,
+            "mean_abs_diff": 0.00018868891330481828,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.5081081116872497,
+            "mean_abs_diff": 0.00018944626965213947,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.11431408746301486,
+            "mean_abs_diff": 4.261652421274465e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 1.4224751066856027e-05,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    },
+    {
+      "candidate_id": "CAND_0019_RAND",
+      "role": "top_5_candidate",
+      "params": {
+        "x": 124.84375455497533,
+        "y": 57.456911210722794,
+        "length": 3.930626709502965,
+        "width": 3.46911143044428,
+        "height": 3.090008046512706,
+        "heading_deg": 113.12800295941993,
+        "albedo": 0.5776897408052567,
+        "area_m2": 13.635782046746325
+      },
+      "cpu_full_wall_s": 5.4096,
+      "gpu_full_wall_s": 0.3541,
+      "gpu_inc_wall_s": 0.0714,
+      "gpu_inc_kernel_ms": 8.791,
+      "recomputed_cells": 56,
+      "reused_cells": 28064,
+      "reused_fraction_pct": 99.8009,
+      "ray_reduction_pct": 99.8009,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 44.98563,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.321063602828862e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.1805318853026985e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.321063602828862e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.08322989393483e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.250972384556128e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.1805318853026985e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.0022815869920365106,
+        "mean_svf_diff": 1.5712121477479955e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.07006415977670599,
+        "max_tot_lw_diff": 0.07034538210666597,
+        "max_tmrt_diff_k": 0.0158864092869635,
+        "mean_tmrt_diff_k": 1.0987313508578066e-05,
+        "max_utci_diff_c": 0.09999999999999432,
+        "mean_utci_diff_c": 3.5561877667138805e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.0022815869920365106,
+            "mean_abs_diff": 1.5712121477479955e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.07006415977670599,
+            "mean_abs_diff": 4.824959966337496e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.07034538210666597,
+            "mean_abs_diff": 4.84432630838816e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.0158864092869635,
+            "mean_abs_diff": 1.0987313508578066e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.09999999999999432,
+            "mean_abs_diff": 3.5561877667138805e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.0022815869920365106,
+        "mean_svf_diff": 1.5712121478207523e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.07006415977670599,
+        "max_tot_lw_diff": 0.07034538210666597,
+        "max_tmrt_diff_k": 0.0158864092869635,
+        "mean_tmrt_diff_k": 1.098731350973434e-05,
+        "max_utci_diff_c": 0.09999999999999432,
+        "mean_utci_diff_c": 3.5561877667138805e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.0022815869920365106,
+            "mean_abs_diff": 1.5712121478207523e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.07006415977670599,
+            "mean_abs_diff": 4.8249599666430897e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.07034538210666597,
+            "mean_abs_diff": 4.844326309107193e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.0158864092869635,
+            "mean_abs_diff": 1.098731350973434e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.09999999999999432,
+            "mean_abs_diff": 3.5561877667138805e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    },
+    {
+      "candidate_id": "CAND_0002_RAND",
+      "role": "random_feasible_candidate",
+      "params": {
+        "x": 145.37289373746293,
+        "y": 57.17793175548428,
+        "length": 7.053473441060104,
+        "width": 2.926995060581453,
+        "height": 4.375500481042623,
+        "heading_deg": 106.09662800201662,
+        "albedo": 0.7347950486260395,
+        "area_m2": 20.64548192192539
+      },
+      "cpu_full_wall_s": 5.5978,
+      "gpu_full_wall_s": 0.179,
+      "gpu_inc_wall_s": 0.1006,
+      "gpu_inc_kernel_ms": 19.973,
+      "recomputed_cells": 70,
+      "reused_cells": 28050,
+      "reused_fraction_pct": 99.7511,
+      "ray_reduction_pct": 99.7511,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 44.926957,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.321705179078866e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.170424591764148e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.321705179078866e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.07918697651941e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.27927280646407e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.170424591764148e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.014736664168319535,
+        "mean_svf_diff": 8.751626026781043e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.45254114634610687,
+        "max_tot_lw_diff": 0.45435754828389463,
+        "max_tmrt_diff_k": 0.10265830246800078,
+        "mean_tmrt_diff_k": 6.12861979169238e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 3.556187766714133e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.014736664168319535,
+            "mean_abs_diff": 8.751626026781043e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.45254114634610687,
+            "mean_abs_diff": 0.00026874948287594576,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.45435754828389463,
+            "mean_abs_diff": 0.0002698281849684199,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10265830246800078,
+            "mean_abs_diff": 6.12861979169238e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 3.556187766714133e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.014736664168319535,
+        "mean_svf_diff": 8.751626026853735e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.45254114634610687,
+        "max_tot_lw_diff": 0.45435754828389463,
+        "max_tmrt_diff_k": 0.10265830246800078,
+        "mean_tmrt_diff_k": 6.128619791806592e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 3.556187766714133e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.014736664168319535,
+            "mean_abs_diff": 8.751626026853735e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.45254114634610687,
+            "mean_abs_diff": 0.0002687494828789876,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.45435754828389463,
+            "mean_abs_diff": 0.0002698281849755415,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10265830246800078,
+            "mean_abs_diff": 6.128619791806592e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 3.556187766714133e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    },
+    {
+      "candidate_id": "CAND_0011_RAND",
+      "role": "boundary_candidate",
+      "params": {
+        "x": 119.65631027687881,
+        "y": 61.94498694331882,
+        "length": 10.680627659413496,
+        "width": 2.5848487146633516,
+        "height": 2.8991146608714122,
+        "heading_deg": 97.03459730054992,
+        "albedo": 0.3908359425483443,
+        "area_m2": 27.607806677232816
+      },
+      "cpu_full_wall_s": 5.7363,
+      "gpu_full_wall_s": 0.2216,
+      "gpu_inc_wall_s": 0.181,
+      "gpu_inc_kernel_ms": 6.481,
+      "recomputed_cells": 66,
+      "reused_cells": 28054,
+      "reused_fraction_pct": 99.7653,
+      "ray_reduction_pct": 99.7653,
+      "certificate_status": "certified",
+      "certificate_violations": 0,
+      "max_predicted_bound_k": 44.965278,
+      "cpu_full_vs_gpu_full": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Full",
+        "comparison_type": "full_solver_equivalence",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 1.0547118733938987e-14,
+        "mean_svf_diff": 7.318694705905764e-17,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 3.410605131648481e-13,
+        "max_tot_lw_diff": 3.410605131648481e-13,
+        "max_tmrt_diff_k": 1.1368683772161603e-13,
+        "mean_tmrt_diff_k": 1.1663816743487278e-15,
+        "max_utci_diff_c": 0.0,
+        "mean_utci_diff_c": 0.0,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 1e-12,
+            "max_abs_diff": 1.0547118733938987e-14,
+            "mean_abs_diff": 7.318694705905764e-17,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 1e-12,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 3.0776708824886274e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 1e-10,
+            "max_abs_diff": 3.410605131648481e-13,
+            "mean_abs_diff": 7.273208430340941e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 1e-10,
+            "max_abs_diff": 1.1368683772161603e-13,
+            "mean_abs_diff": 1.1663816743487278e-15,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "cpu_full_vs_gpu_inc": {
+        "path_a": "CPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_cpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.0021366639284969846,
+        "mean_svf_diff": 1.543595090388725e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.06561378698154385,
+        "max_tot_lw_diff": 0.06587714648105703,
+        "max_tmrt_diff_k": 0.014763442556500195,
+        "mean_tmrt_diff_k": 1.0728422405317436e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 3.556187766714133e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.0021366639284969846,
+            "mean_abs_diff": 1.543595090388725e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.06561378698154385,
+            "mean_abs_diff": 4.740152070512454e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.06587714648105703,
+            "mean_abs_diff": 4.759178012076992e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.014763442556500195,
+            "mean_abs_diff": 1.0728422405317436e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 3.556187766714133e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "gpu_full_vs_gpu_inc": {
+        "path_a": "GPU Full",
+        "path_b": "GPU Incremental",
+        "comparison_type": "incremental_vs_gpu_full",
+        "shadow_mismatches": 0,
+        "max_svf_diff": 0.0021366639284969846,
+        "mean_svf_diff": 1.5435950904614027e-06,
+        "max_dir_sw_diff": 0.0,
+        "max_tot_sw_diff": 0.06561378698154385,
+        "max_tot_lw_diff": 0.06587714648105703,
+        "max_tmrt_diff_k": 0.014763442556500195,
+        "mean_tmrt_diff_k": 1.0728422406471688e-05,
+        "max_utci_diff_c": 0.10000000000000142,
+        "mean_utci_diff_c": 3.556187766714133e-06,
+        "passed_all": true,
+        "field_details": {
+          "shadow_mask": {
+            "field_name": "Direct Shadow Mask",
+            "unit": "-",
+            "tolerance": 0.0,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "svf": {
+            "field_name": "Sky View Factor (SVF)",
+            "unit": "-",
+            "tolerance": 0.05,
+            "max_abs_diff": 0.0021366639284969846,
+            "mean_abs_diff": 1.5435950904614027e-06,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "direct_irradiance": {
+            "field_name": "Direct Shortwave Irradiance",
+            "unit": "W/m2",
+            "tolerance": 0.0001,
+            "max_abs_diff": 0.0,
+            "mean_abs_diff": 0.0,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "shortwave_flux": {
+            "field_name": "Total Shortwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.06561378698154385,
+            "mean_abs_diff": 4.740152070816886e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "longwave_flux": {
+            "field_name": "Total Longwave Flux",
+            "unit": "W/m2",
+            "tolerance": 2.0,
+            "max_abs_diff": 0.06587714648105703,
+            "mean_abs_diff": 4.759178012791376e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "tmrt": {
+            "field_name": "Mean Radiant Temperature (Tmrt)",
+            "unit": "K",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.014763442556500195,
+            "mean_abs_diff": 1.0728422406471688e-05,
+            "discrepancies": 0,
+            "passed": true
+          },
+          "utci": {
+            "field_name": "Thermal Comfort (UTCI)",
+            "unit": "degC",
+            "tolerance": 0.5,
+            "max_abs_diff": 0.10000000000000142,
+            "mean_abs_diff": 3.556187766714133e-06,
+            "discrepancies": 0,
+            "passed": true
+          }
+        }
+      },
+      "all_passed": true
+    }
+  ]
+}

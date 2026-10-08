@@ -1,0 +1,13 @@
+{
+  "timestamp_utc": "2026-10-08T08:35:56.214983+00:00",
+  "peak_vram_used_mb": 0.279296875,
+  "allocated_buffers": [
+    "d_origins",
+    "d_dir",
+    "d_bldgs",
+    "d_elev",
+    "d_valid",
+    "d_shadow"
+  ],
+  "memory_status": "STRICTLY_BOUNDED_UNDER_1GB"
+}

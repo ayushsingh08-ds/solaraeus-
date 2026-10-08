@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-10-08T08:19:26.052892+00:00",
+  "total_core_trees": 6,
+  "total_context_trees": 8,
+  "field_survey_date": null,
+  "observer": "UNASSIGNED",
+  "current_existence_verified_in_field": false,
+  "existence_classification": "UNCERTAIN_HISTORICAL_PHOTO_ONLY",
+  "status": "STAGE_21_FIELD_VALIDATION_PENDING"
+}

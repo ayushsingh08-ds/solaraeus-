@@ -1,0 +1,26 @@
+{
+  "status": "VEGETATION_COMPLETENESS_VERIFIED",
+  "total_trees": 14,
+  "core_provisional_trees": [
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13"
+  ],
+  "context_trees": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T14"
+  ],
+  "rendered_count": 14,
+  "in_domain_count": 14,
+  "discrepancy": 0,
+  "exclusion_reasons": {}
+}

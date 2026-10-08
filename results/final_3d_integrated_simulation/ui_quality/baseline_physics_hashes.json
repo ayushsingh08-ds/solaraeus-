@@ -1,0 +1,12 @@
+{
+  "clouds\\cloud_shadow_field.npy": "1e846a5a72a01880a60615597a94c1213dbf4062263f03af9ce74f0bdd1168ea",
+  "clouds\\cloud_transmittance_field.npy": "b11d803d84b110a3e65d9aa636b4335d29a2e992db26e5caffbe0ff36b7152d9",
+  "ray_tracing\\direct_visibility_map.npy": "bffe0c6bd4dc7800bb8c1b7a92c995b34e3ecb98b347457e601cda5c6ea19f6b",
+  "ray_tracing\\shadow_interference_map.npy": "275ac97bce23fe674578e741b1ef3b1921fc2619546a04c37cb6628d4582fe8c",
+  "ray_tracing\\shadow_occluder_map.npy": "275ac97bce23fe674578e741b1ef3b1921fc2619546a04c37cb6628d4582fe8c",
+  "time_shadowing\\cumulative_direct_irradiation_map.npy": "5ed935b4510fe78424157553839ee824c6e434f724daf936fa6f15698457fce5",
+  "time_shadowing\\shadow_duration_map.npy": "03e38e75a53f67a3fc4797aa5cf988dd7a746d8a0a191c337584ef31327a0ecc",
+  "time_shadowing\\sunlit_duration_map.npy": "6c15ac867073e1f8f0c58068794f46d727193dba0ab88251bc525eb4d605216b",
+  "tmrt\\tmrt_3d_field.npy": "23f6e967111ab638a1c47b68a509f1a44cf0721320fa8456c7f79988b5fbacd1",
+  "utci\\utci_3d_field.npy": "3258650f09de741978a19ea7c2f68788736835a0bfd83e0c4d049ec5f15cbc34"
+}

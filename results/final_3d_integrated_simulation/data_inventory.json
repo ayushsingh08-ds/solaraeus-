@@ -1,0 +1,1020 @@
+{
+  "total_files_audited": 145,
+  "files": [
+    {
+      "path": "data/interim/INTERIM_RECONSTRUCTION_REPORT.md",
+      "size_bytes": 27116,
+      "sha256": "6e826f6f1f8f2f0291a741f5b61c76aa0084a45af5379209985eb61253323f47",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/interim/raw_data_protection_report.json",
+      "size_bytes": 67133,
+      "sha256": "c6f8accadf5467f9289b4b3a47030aee90d808b825da1f0b4869a63f9df6fe56",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/processed/approved_building_heights.csv",
+      "size_bytes": 7841,
+      "sha256": "9699c2706f3230f3ed165dbc8260c60086ebcdf45ca2fc39f1d4032700119de4",
+      "authority_level": "AUTHORITATIVE_REFERENCE",
+      "role": "buildings"
+    },
+    {
+      "path": "data/processed/researcher_signoff.json",
+      "size_bytes": 873,
+      "sha256": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d",
+      "authority_level": "AUTHORITATIVE_REFERENCE",
+      "role": "context"
+    },
+    {
+      "path": "data/review/context_tree_review.csv",
+      "size_bytes": 3361,
+      "sha256": "2929bcd38a09980846714f16fc83406b8a5be2c53533ee4028bcbfb3e5dfe21b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/core_tree_review.csv",
+      "size_bytes": 4806,
+      "sha256": "ff1529043660bc15eda093c3c8e7b0f28c1a8f851d754d70428ef6159c2bac5f",
+      "authority_level": "APPROVED_PROVISIONAL",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/final_context_tree_decision_table.csv",
+      "size_bytes": 1160,
+      "sha256": "556438ea18d7c2365af86755455c52111dedab324461ea4dab86ec059a78090e",
+      "authority_level": "APPROVED_PROVISIONAL",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/final_core_tree_decision_table.csv",
+      "size_bytes": 2923,
+      "sha256": "e87cede5a073fc691c78a86f7a60e225f95de02f68506395c927d5e881bf2ed4",
+      "authority_level": "APPROVED_PROVISIONAL",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/final_data_status_matrix.csv",
+      "size_bytes": 2886,
+      "sha256": "06ca969d62c35355ecf562a9f906b7861c83b3b106bbef186820bbf05dc6c1aa",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/final_promotion_manifest.json",
+      "size_bytes": 5484,
+      "sha256": "db1711ccc8ce8238dd9e9d405d7bab5d831f1eea9cfc7dad1e6ea04ce3f616a4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/final_protection_audit.json",
+      "size_bytes": 5499,
+      "sha256": "e5df88d002e1f936021e83ed755e9fc94aeaca57c312057999e68eb14c884e7d",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/FINAL_RESEARCHER_SIGNOFF_AND_PROMOTION_REPORT.md",
+      "size_bytes": 9146,
+      "sha256": "f7e6703809bdad7376ca9c8ac4e8b0dd8a9c41e1437e3015268d94457ca1462d",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/final_researcher_signoff_form.md",
+      "size_bytes": 5320,
+      "sha256": "6fc908640030b8c99d4d1979f5acc19f5da498e25ad12918c7b6a6cae74c5fae",
+      "authority_level": "AUTHORITATIVE_REFERENCE",
+      "role": "context"
+    },
+    {
+      "path": "data/review/final_review_validation.json",
+      "size_bytes": 1193,
+      "sha256": "ac6b7d42e73ba30c0cede9895a7912d07e81834f8bf0ec10d3af353e47567c3b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/final_terrain_promotion_decision.json",
+      "size_bytes": 1076,
+      "sha256": "1ae153110923477bcd4125d2723248bbd515a2169b6184f80b1da904b5e3ec0c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "terrain"
+    },
+    {
+      "path": "data/review/human_decisions_required.md",
+      "size_bytes": 4601,
+      "sha256": "946370fe922f4c6fdc7ab544dd63d271e934dc38a078e7531c95e1d4d2a877e6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/promotion_candidates.json",
+      "size_bytes": 3423,
+      "sha256": "a90997efadac2463b688d36b7a715e697099075f5c9d49ae53d358d82e63fb2b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/protection_count_reconciliation.json",
+      "size_bytes": 2451,
+      "sha256": "199141ef48a8c0c37bd95cf597b17d5f0d02c0f9f7e125008d7d922907794fae",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/RESEARCHER_REVIEW_REPORT.md",
+      "size_bytes": 23123,
+      "sha256": "4a31eda5518546a3786ca4b2d4f6d29adac7524487695c2094c64cae7cb5b9fb",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/species_canopy_parameter_review.csv",
+      "size_bytes": 3316,
+      "sha256": "d7c86003a0c6b5fd497946538a09ca8017cae3862c052b56e0eff4e71afc11fe",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/review/terrain_review_decision.json",
+      "size_bytes": 2835,
+      "sha256": "a793b80a56a5e0aada6a8848f4ee697c350baa00441c7b5d46f367d84979b5e4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "terrain"
+    },
+    {
+      "path": "data/review/tree_dimension_uncertainty_bounds.csv",
+      "size_bytes": 6011,
+      "sha256": "955162c14e67a4c91e2abcb8e650743adb01be7041dd49346bdc1ec6a2a019e6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/tree_geometry_researcher_review.json",
+      "size_bytes": 13982,
+      "sha256": "6eb6b3505398d469cd64a4321252dce5543f3ea31887afa80ec5da62b18836e2",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/tree_geometry_researcher_review.md",
+      "size_bytes": 9612,
+      "sha256": "d28e5bbcb07171cb43abe52d1e26bae40af1873c691107a472046fdc9ba7e520",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/tree_geometry_review_protection_report.json",
+      "size_bytes": 75910,
+      "sha256": "02a5be16f247dac1e0db49a83f991a2a0a80b7be4459f928b151bdc985ea33f6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/tree_geometry_signoff_form.md",
+      "size_bytes": 3533,
+      "sha256": "09a79098958ac57c03450103bb9a8b7db2e0f67379d035ecfb1b5709d111a8be",
+      "authority_level": "AUTHORITATIVE_REFERENCE",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/tree_geometry_uncertainty.geojson",
+      "size_bytes": 22583,
+      "sha256": "c3691f8a008dbbcf65283ec5b2fffd5b3bf2d374962944f08ff41340d6e46fd4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_alignment_report.md",
+      "size_bytes": 2717,
+      "sha256": "87640955fd379b479d620b49bf8a986415a9a28d870f4b27f85208b60387b969",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_audit.json",
+      "size_bytes": 2327,
+      "sha256": "76d3ca92ea037a09582c70b086cf1c01db05973c7220f5624ce77fe9fce4a058",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_clipped_native.tif",
+      "size_bytes": 1937,
+      "sha256": "8a95f817df8f43651240d401ced70a470b8b7a26b504e794668b88a2eaece1c1",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_clipped_utm43.tif",
+      "size_bytes": 2089,
+      "sha256": "24c7c12bfc2c6a1db95e02f4e67993bc8b4837ae8b1d0b05dcc51a5ac2718ea5",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_clip_metadata.json",
+      "size_bytes": 1689,
+      "sha256": "5ae4ae6b70ef8580d26c734f3539ee47fbfe218e403da0ac07cebee40c758471",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_coordinate_alignment.json",
+      "size_bytes": 520,
+      "sha256": "c90c2d72e2577f2adcb3b8ae83b89b4273e3ac8687d5fce02096ae2886a560ff",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_local_reference.tif",
+      "size_bytes": 1785,
+      "sha256": "781ee6a9d69fbfe6a914fa74395e3f98eb698d6b7e372b0537ed4b24ab85c41a",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_vs_skadi_comparison.json",
+      "size_bytes": 2390,
+      "sha256": "7753d84a10c8f18058b380c1f0682cffa2927ff15b415a1bd836c8d656f4a206",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/fabdem_vs_skadi_comparison.md",
+      "size_bytes": 3103,
+      "sha256": "f1ef9918e7b72f20cfe1706d0de0764b3ecad2a26bfc5b0db3a59d661fc08352",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/vegetation/canopy_parameter_status.json",
+      "size_bytes": 2807,
+      "sha256": "6596ae76aa3e8cbf2ae68615550f741458324985d0e6868b7dafab779229f853",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/interim/vegetation/photo_tree_match_log.csv",
+      "size_bytes": 22897,
+      "sha256": "7604c2710da0b7c65889778f2a72df83f43d481fd6b07da65715f034a7e0590f",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/photo_tree_match_report.md",
+      "size_bytes": 4500,
+      "sha256": "e842773214ff937fd0488959159222081a14da32057f173b0f5546c2144721e8",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/quality_control_report.json",
+      "size_bytes": 3608,
+      "sha256": "cefee06025b0b3545823d251a3159b3c9185cb5280912d613f786563dc974fc8",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/interim/vegetation/quality_control_report.md",
+      "size_bytes": 3417,
+      "sha256": "df126c6c2834871fe46baf07514f36d34b230e732267a8d238e59cbdc259c969",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "context"
+    },
+    {
+      "path": "data/interim/vegetation/tree_fabdem_alignment.csv",
+      "size_bytes": 3997,
+      "sha256": "709f8c7e6552093a39064299514e95da2b4c27048198e54d83c426dd3a563061",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/tree_inventory_interim.csv",
+      "size_bytes": 5627,
+      "sha256": "f8ee880b71494403a0239da8ba93786d702884e8fa814739934edebc7620df9e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/tree_inventory_interim.geojson",
+      "size_bytes": 11672,
+      "sha256": "8bdb8db5c3bedb74b0dd0533be1b51f7f6197721eba5d98390c9d8bebed2a6d3",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/tree_measurement_review_working.csv",
+      "size_bytes": 5257,
+      "sha256": "eee166810c94fd127ae3ffb9dd252991aa74f3a2662f0ef598d84584cb0dd58c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/terrain/plots/fabdem_elevation_surface.png",
+      "size_bytes": 114177,
+      "sha256": "81feea4a0b9dda88955653548ab7c3fd3b586f34cbbf0e6589143e69fe599355",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/terrain/plots/fabdem_vs_skadi_elevation_profile.png",
+      "size_bytes": 168948,
+      "sha256": "f00c33c432aa835ac84aa1e89e5f3993cbd1373cdaea2ba9cf789b5f44cff65b",
+      "authority_level": "REGIONAL_REFERENCE",
+      "role": "terrain"
+    },
+    {
+      "path": "data/interim/vegetation/plots/context_trees_inventory_map.png",
+      "size_bytes": 203045,
+      "sha256": "365e63b0cc2ca1be9848bd3cdaeb9a62198a44d3cc630617909673639fa66b4f",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/plots/core_trees_map.png",
+      "size_bytes": 178471,
+      "sha256": "267c823cba9592bca0288b3ab6d58d5d34cdafa43583aecdd402dc277751819c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/plots/photo_tree_matching_trajectory.png",
+      "size_bytes": 175217,
+      "sha256": "85fba9c8ad28f11f67a18c8a236a71a4ae398acdca87c8b63abc319b2488a655",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/interim/vegetation/plots/tree_dimensions_comparison.png",
+      "size_bytes": 148459,
+      "sha256": "d10882428381699f8c108222c899ec737edb6e51851b0b007d9fe9a44aec7d01",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/plots/core_trees_spatial_uncertainty_plan.png",
+      "size_bytes": 199930,
+      "sha256": "528f7885dd43279f751db452c4cd403b3e49d3621dc49464610707bcdd403b67",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "data/review/plots/tree_geometry_uncertainty_envelopes.png",
+      "size_bytes": 171349,
+      "sha256": "4eb3597b8481bb05a206ab7bab942e9d196d4e2731bcbee627b64a9471965377",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/manual_completion_checklist.md",
+      "size_bytes": 2587,
+      "sha256": "e5111a0ea9615b26f38df2ed94bc72a5af467f4649a3c3a9c28c5b7402db51b1",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/README.md",
+      "size_bytes": 10795,
+      "sha256": "49cfb7149e061912fbd009b4123cd8902562812fa9b8fc2c70108d4942985ff4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/SHA256SUMS.txt",
+      "size_bytes": 9693,
+      "sha256": "b89f64969ea2d60690dc1f14be6da2c0e95d0cdeaf32aa112e880ad4e54c3d13",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/site_boundary.geojson",
+      "size_bytes": 961,
+      "sha256": "444e42d81c2515203d8f265891e4dfba1b0121fdb745a02bc3ce037f6e7b31e6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/site_inspection_map.png",
+      "size_bytes": 134737,
+      "sha256": "19fc36fc2cbcf77f85bb06b54444c795b50bd7741757b3d087d8766123cb8b4b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/data_quality_report.md",
+      "size_bytes": 7577,
+      "sha256": "e030de3995fff576ff74597b979f3ed6034410fd2a12987611c87f6a5e10dc9c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/manual_checklist.md",
+      "size_bytes": 2587,
+      "sha256": "e5111a0ea9615b26f38df2ed94bc72a5af467f4649a3c3a9c28c5b7402db51b1",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/preparation/refine_handoff_v2.py",
+      "size_bytes": 63292,
+      "sha256": "950c78417d7519cf1e5549a11aad9890b3162740cd49c33ad693e1aef89865e3",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/alternate_height_source_review.json",
+      "size_bytes": 2822,
+      "sha256": "284a8837b66578f7590ab1d97dbe130a38c882f40d5870ed9397c0b737613048",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/church_street_osm_download.json",
+      "size_bytes": 389,
+      "sha256": "9819ca580e8947a0077d843728eb7f5dbc067746a24f1a6d213fadbbc4b56509",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_manifest_2023_original.json",
+      "size_bytes": 3514313,
+      "sha256": "cd4f2f0bb0dd6eda9a8b8e3a8194b20cc9d84c7098a9a2d9a477283929bdb0cf",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_manifest_download.json",
+      "size_bytes": 311,
+      "sha256": "e3a6018e575436fddc980331cf49d7cc02e5bcfb58dc2548678cf17e216b7804",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_manifest_index_original.json",
+      "size_bytes": 4548,
+      "sha256": "3f87241828c1f1afb4cacdb2ba94550184cdead2126f5af5add2b4ca271ba85b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_height_selected_assets.json",
+      "size_bytes": 1456,
+      "sha256": "7e60ffb5a70979b2041c615111d64b447d180e2143eb5229cc31eacda0a418c4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/google_open_buildings_download_notebook.ipynb",
+      "size_bytes": 19744,
+      "sha256": "1c219d10b88de5c2a78bb9256fe31def9e056f18b078df3b58a3a0c696130e43",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/isd_stations_download.json",
+      "size_bytes": 203,
+      "sha256": "9094cff68c67493ce2774897f83239b8592cc0b3111cee31791403ac283495fd",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/licensing_review_v2.json",
+      "size_bytes": 1080,
+      "sha256": "9380e811b85b7b3d019fb02cc3a3c9e2bc2325f4c030aa3f91bd98811287cab1",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/nasa_power_hourly_openapi.json",
+      "size_bytes": 12564,
+      "sha256": "27dda6980eaa434a4019a4b507f88b83cf9f2fb5689bb36254b1e4d0202adccd",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/nasa_power_hourly_openapi.json.download.json",
+      "size_bytes": 212,
+      "sha256": "5d096548f4d8799b9f3fa952f318064a0e801dc4f3ea7f2134f9b3d1baee33f8",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/nasa_power_solar_download.json",
+      "size_bytes": 329,
+      "sha256": "aeb14ccfd96df63087d5bd8e54f3833d3afa96e11f24fea6904413c59180ce81",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/noaa_city_2024_download.json",
+      "size_bytes": 295,
+      "sha256": "ed5aefed7a7a371e8ee86d4d7af4e2e69e6745dd22c24696c5c6aeb7695ed6a9",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/noaa_isd_format_document.pdf",
+      "size_bytes": 1187390,
+      "sha256": "1be604b08b5f7c2429e6aef178ff8893019c234bc7bc51bfb7ec1e16a6682f04",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/noaa_isd_format_document.pdf.download.json",
+      "size_bytes": 215,
+      "sha256": "5646b47ea1ec8f97126b212662edb20e46d80537ea6625cc0b3c88e6984e2857",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/osm_map_download.json",
+      "size_bytes": 241,
+      "sha256": "549c5b505cbe372f2b8b118bd960884263f2c4c237d409f5c1a43f41a5fab34b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overturemaps_pyproject.toml",
+      "size_bytes": 1929,
+      "sha256": "7f6d2cf491492a3ec205d62bc282e9c48e873b94cc425098f1adafd4dbc86ca0",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_buildings_catalog.json",
+      "size_bytes": 962,
+      "sha256": "25b231671813d5f61f1a90732b77e50496177f126f7116445b9624d41c2eb00c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_building_acquisition.json",
+      "size_bytes": 1753,
+      "sha256": "b532681ef58aa46ca55922c5ac44a1a39a91a67998095c1a9ec71adb535ba2e4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_building_file_metadata.json",
+      "size_bytes": 333,
+      "sha256": "3cb2b348134be5412f7a249971eb4c11ed6f4ec6c98b9d09b52f0653f480c6cc",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_cli_core.py",
+      "size_bytes": 19235,
+      "sha256": "ca2ac0be68e1fda78e523dca299686bd80a3474c83041d8b45b6ac0d7699724e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_cli_source_download.json",
+      "size_bytes": 326,
+      "sha256": "5929459ea7c4e3c9a37c559f7fec2045aa3a4ba1c8c24e64efb2ede812fb9949",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_collections.parquet",
+      "size_bytes": 182960,
+      "sha256": "f1c036050dea1a689456c5e95382b0665fc3afc8750892ee5f8e5e9ead9089df",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_matching_stac_assets.json",
+      "size_bytes": 6217,
+      "sha256": "8ca0b5d5769ab5d17138b151a7d968173887045188c85a4e5d267bcaf119c5b1",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_release_catalog.json",
+      "size_bytes": 1534,
+      "sha256": "2cb87fbd6ab8fdf8272d8a3c5cbaf6b1f3b7aedebffe9ba122670138308d6946",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_release_download.json",
+      "size_bytes": 291,
+      "sha256": "62711e62c11b52b723a3d981e59558b0f446a97f1d4f946a21965868b7739a4a",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_segment_acquisition.json",
+      "size_bytes": 25885,
+      "sha256": "cc484085f180d95646150a77c9066d618c28568b52e60aed8db9f04868e30f23",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_stac_catalog.json",
+      "size_bytes": 6529,
+      "sha256": "5336b76af0b630f05c51c8c8bf3106a2466f7a5110df28081202c7c1775bd7f3",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/overture_stac_download.json",
+      "size_bytes": 188,
+      "sha256": "b5d1df8af46425d83ed518eb1fa35f72839d3bed35275cd082e0187ca831aee6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_attribution.md",
+      "size_bytes": 12300,
+      "sha256": "2ce4d3414b4592d17ad56a5af57feb480686ddcfb0a3e4ea0b566d28cde13567",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_attribution.md.download.json",
+      "size_bytes": 218,
+      "sha256": "b7d55e9af859abd391cd7e801ea5608aa509b7bde526daf2e77bc206ffbbea2f",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_data_sources.md",
+      "size_bytes": 12162,
+      "sha256": "dcf07b156bc25930dfe3e1a55d8efd4a2e3b5376393d23bf24d1fc1dd02c5948",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_data_sources.md.download.json",
+      "size_bytes": 220,
+      "sha256": "6c5980242e0929f150c5043f7be9d21d4a9c38ae3d2c5c8a1af632419661c83f",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_download.json",
+      "size_bytes": 446,
+      "sha256": "2b45d0eaf8b566fd2327157d89d9d8334cd65edf1f805ccc82d52077a17e43d5",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_formats.md",
+      "size_bytes": 5392,
+      "sha256": "f37b923b033ddb90ed454902c20a248b0f75985df1129dc2899c8ddf14459c8c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/terrain_tile_metadata_download.json",
+      "size_bytes": 317,
+      "sha256": "2117d4778fcef2e55279693aa5f277f3a735065dd2fed3d744fd68ecc97f1fb9",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/analysis_domains.json",
+      "size_bytes": 1714,
+      "sha256": "39276191e9090b9628c4885f84f23bced90505a36cedb8bbf146972aa19d6117",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/approved_building_heights.csv",
+      "size_bytes": 7841,
+      "sha256": "9699c2706f3230f3ed165dbc8260c60086ebcdf45ca2fc39f1d4032700119de4",
+      "authority_level": "AUTHORITATIVE_REFERENCE",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/buildings_shadow_context.geojson",
+      "size_bytes": 304244,
+      "sha256": "372eb7bc2ae293f872cf344e4fbb526d9e2a4d4f1946e3db1e963e7f1d3a6e90",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/buildings_site.geojson",
+      "size_bytes": 109297,
+      "sha256": "f18d313a078769f30e02d683278823385d9a753b1fdd2cceef701fe8839b3463",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/building_height_review.csv",
+      "size_bytes": 21970,
+      "sha256": "ef3b67cc419db8fe433b31e34da90a8bf708ffc3bde54295e4fdcaff43355335",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/building_height_review_schema.json",
+      "size_bytes": 1417,
+      "sha256": "8bfa63837327d7f9d86f9930257c8b343a447b8e9fb4f34a8a59e6d716c88064",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/church_street_centerline.geojson",
+      "size_bytes": 22386,
+      "sha256": "d12a26dccc4e7f9747561ac901f124abff65754e786b957f7e5c3408902dcb6b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/context_height_review.csv",
+      "size_bytes": 25081,
+      "sha256": "10e6511da069e7adab5efa8c72af98b07d74b8e7343b5e58fd4de7079ebe14d6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/estimated_building_heights.csv",
+      "size_bytes": 23072,
+      "sha256": "5ad9bcb8a991792689564302c48c5944fed1e82195dd8edfbfbd88f9104b1e74",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/estimated_heights_metadata.json",
+      "size_bytes": 4424,
+      "sha256": "df04c876cff07d94a61538a9a3c49637d622a8b015ce6e251425541f3206fcc6",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/intervention_definition.json",
+      "size_bytes": 7256,
+      "sha256": "7330e1144c7c17f5e44c3b4a949424d73d1af138c498eae430518b0286f93739",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/intervention_geometry.geojson",
+      "size_bytes": 938,
+      "sha256": "0bd9632e120a68dd8e8fc9f3f0ab32b90262113a1291995a6f3685c008cb840b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/local_scene_geometry.json",
+      "size_bytes": 127312,
+      "sha256": "9c82689fb9274149da3ce2983e94385315f1187948f7784bd8855a819e3c177b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/material_assumptions.json",
+      "size_bytes": 2827,
+      "sha256": "23d5d0e60ca68075ceb057a8db248199b2338911ba182d27b68fcbfafffef26e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/package_status.json",
+      "size_bytes": 1627,
+      "sha256": "33eb9bcd952626e26f6f1006e03547dd82d17adca6f8e6445877da633e7e3977",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/pedestrian_analysis_area.geojson",
+      "size_bytes": 5411,
+      "sha256": "c3f2cb7abf87630947b21a4b9ef4ad8cbcee53798471f562bd1c5d6dc26be967",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/provenance.json",
+      "size_bytes": 84007,
+      "sha256": "52787cd646afa7d3321d2325fca3b7d8205d94f11d36cf7c2d02096b2b30cd7c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/quality_metrics.json",
+      "size_bytes": 1769,
+      "sha256": "74a1a217a2b223e32c042c9a928317c2aa7ebc4881c662bbf69a88534c62185b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/researcher_signoff.json",
+      "size_bytes": 873,
+      "sha256": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d",
+      "authority_level": "AUTHORITATIVE_REFERENCE",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/shadow_context_boundary.geojson",
+      "size_bytes": 1709,
+      "sha256": "29ebc26fa22cb52622da442f21e8363b411a80d330c3381658f65dc997cfef34",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/site_boundary.geojson",
+      "size_bytes": 1158,
+      "sha256": "88a880019ae5d7085441d258f91945769b13c786e5f1c82b2df4ac5859d6227d",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/site_selection.json",
+      "size_bytes": 3261,
+      "sha256": "d4d5360c91a4020020c2e120a6f23e77fcefc6617014d0d4e0d7c30d4bc89061",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/terrain_metadata.json",
+      "size_bytes": 4415,
+      "sha256": "841d7859e05e1604119fa9b0e8bcbedacd44a28fc9750f35bdaf6674cb03de4e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/terrain_site_samples.csv",
+      "size_bytes": 3958,
+      "sha256": "560284a2d5f63f4bbcf0801778891b3d6f894b96f6778fb5a459a0d4464d9511",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/validation_report.json",
+      "size_bytes": 2032,
+      "sha256": "1ccabd5c7ec55c4dc872e29e0c5327eef228715a276c5551ff65b0106065e17c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_forcing.csv",
+      "size_bytes": 1708,
+      "sha256": "c1c819f453bac690bbf6f99481faf9d11200b1c549093ae326571aecd87009a7",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_forcing_metadata.json",
+      "size_bytes": 6738,
+      "sha256": "38ba1696eaa3434abadf31b391cf8cecb7211bc221e5f41859fdf78964b2d562",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_observations_selected_day.csv",
+      "size_bytes": 3435,
+      "sha256": "b11041ef9b01ba9acbc78ba3ca34dcca0845f1577200ecbdc06a06d0da29fbc4",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed/weather_selected_observation.json",
+      "size_bytes": 944,
+      "sha256": "2eea04c278f51182671c826412c64a110b8a83cc569e337c87e574d363b049cb",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/floor_counts.csv",
+      "size_bytes": 25704,
+      "sha256": "b2a9c6ce018129925c36629aaba98a546cc86958c5438999830a074b0bdd47a5",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/google_ml_height_estimates.csv",
+      "size_bytes": 23072,
+      "sha256": "5ad9bcb8a991792689564302c48c5944fed1e82195dd8edfbfbd88f9104b1e74",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/google_open_buildings_temporal_2023_context_window.tif",
+      "size_bytes": 681969,
+      "sha256": "f37f1bf087fd2825e8dc31ca813d24b0838944a5be4094d52ca5e63262d9b8f5",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_buildings_2026-09-23.1.geoparquet",
+      "size_bytes": 46657,
+      "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_buildings_raw.geojson",
+      "size_bytes": 478493,
+      "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_building_context_original.geojson",
+      "size_bytes": 478493,
+      "sha256": "1c1305bcd9b32041295185f87e66d7f8f8c23c33026fa852e913737fe317628e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_building_context_original.parquet",
+      "size_bytes": 46657,
+      "sha256": "bce6dfb40481098dd767ca08939bf224c5762a9c5b420aa0cab5bf2c8c191da3",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_segment_context_original.geojson",
+      "size_bytes": 761235,
+      "sha256": "24abb314e5d4df08c87881a9d3b60f6f8e17878a6ff472aca0cac5884cd99c4e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/buildings/overture_segment_context_original.parquet",
+      "size_bytes": 133489,
+      "sha256": "0a9ba868958a32c2cb16a8a02da3a40606c2d25d87c278057070cbefb7210089",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "buildings"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/elevation_metadata.json",
+      "size_bytes": 4415,
+      "sha256": "841d7859e05e1604119fa9b0e8bcbedacd44a28fc9750f35bdaf6674cb03de4e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/elevation_original.tif",
+      "size_bytes": 7207710,
+      "sha256": "616caab132c3353efba0ee8cff9f9dccccdbe7eb5cd149eb205b547f53c92a40",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/terrain/N12E077.hgt.gz",
+      "size_bytes": 11122631,
+      "sha256": "9485ba04696bbe2074a0b6cab79d0f12ecca79ad05b19d676ea35056beafd14e",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/bengaluru_station_observations.csv",
+      "size_bytes": 1257600,
+      "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/isd-history.csv",
+      "size_bytes": 2914601,
+      "sha256": "1994747ab4af1b97e63adb434b4d0d022f2daee76f0c144ea9ab46be2d906604",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/nasa_power_solar_20240415_original.json",
+      "size_bytes": 2108,
+      "sha256": "ec61199f3913c940d90f514a871760dc29b4529053597c07e98da2e2392c8b83",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/noaa_43295099999_2024_original.csv",
+      "size_bytes": 1257600,
+      "sha256": "1c2c3248301fac5a208e792fab74b0d14a4b6ec6b0b4e047318b3342b084b14b",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/raw/weather/solar_estimates.csv",
+      "size_bytes": 4911,
+      "sha256": "6639e51cc05efbd9c2892cda0142a2f22f4b93243e962c050c19418c00962426",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/acquisition_failures/osm_map_http_429_response.html",
+      "size_bytes": 436,
+      "sha256": "8fe96d98abc77cd918752168542c668715035e54763d53afc6799250214987b9",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    },
+    {
+      "path": "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/sources/acquisition_failures/overpass_http_429_response.txt",
+      "size_bytes": 89,
+      "sha256": "78d737bddfa4d6e31202fae8845585d40db35847b0d14d41b0da7701609ad79c",
+      "authority_level": "HISTORICAL_OR_SUPPORTING",
+      "role": "vegetation"
+    }
+  ]
+}

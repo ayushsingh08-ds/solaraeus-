@@ -106,66 +106,51 @@ The engine natively supports 4 atomic 3D geometric operations:
 
 ```text
 solaraeus/
-├── configs/
-│   └── baseline_scene.json          # Canonical baseline scene configuration
-├── examples/
+├── configs/                         # Canonical simulation and scene configurations
+├── data/                            # Verified geospatial and environmental datasets
+│   ├── benchmark/                   # Synthetic and triangular benchmark assets
+│   ├── interim/                     # Extracted terrain and vegetation vectors
+│   ├── processed/                   # Harmonized 1-m rasters and building footprints
+│   └── review/                      # Municipal census datasets and researcher signoffs
+├── docs/                            # In-depth architectural and mathematical documentation
+│   └── gpu_backend_architecture.md  # CUDA C++ / CuPy kernel execution and memory architecture
+├── examples/                        # Standalone evaluation and demonstration scripts
 │   ├── single_building.py           # Full reference simulation demonstration
-│   └── compare_full_incremental.py  # End-to-end comparative benchmark script
-├── results/                         # Generated benchmark artifacts (.npz, .png, .json)
-├── src/
-│   └── urban_comfort/
-│       ├── config.py                # Data classes for Materials, Weather, SimulationConfig
-│       ├── geometry/
-│       │   ├── primitives.py        # BoundingBox2D, Building, GroundPlane
-│       │   └── scene.py             # Scene container and synthetic scene generators
-│       ├── solar/
-│       │   └── solar_position.py    # NOAA astronomical solar position calculation
-│       ├── grid/
-│       │   └── pedestrian_grid.py   # Discrete 2D pedestrian grid mappings
-│       ├── visibility/
-│       │   ├── ray_intersection.py  # Vectorized Kay-Kajiya slab ray-AABB intersections
-│       │   ├── shadow.py            # Direct beam solar shadow mask calculation
-│       │   └── directional_visibility.py # Multi-azimuth horizon search for Sky View Factor
-│       ├── radiation/
-│       │   ├── shortwave.py         # 6-directional shortwave radiation fluxes
-│       │   ├── longwave.py          # Sky, wall, and ground longwave fluxes
-│       │   └── tmrt.py              # Stefan-Boltzmann inversion and Tmrt calculation
-│       ├── comfort/
-│       │   └── utci.py              # Vectorized UTCI polynomial & thermal stress categories
-│       ├── reference/
-│       │   └── full_recompute.py    # Ground-truth reference recomputation pipeline
-│       ├── incremental/
-│       │   ├── update.py            # Geometric edits, exact update, and certified update
-│       │   ├── affected_region.py   # Minkowski shadow plume candidate region & safety padding
-│       │   ├── certificate.py       # Computable error certificate engine & verification
-│       │   ├── cache.py             # SHA-256 state hashing & simulation cache
-│       │   └── dependency_graph.py  # DAG reachability and selective invalidation
-│       ├── benchmark/
-│       │   ├── baseline_comparison.py # Non-certified dirty box vs certified comparative harness
-│       │   ├── harness.py           # Multi-trial statistical benchmarking engine (N=5, 95% CI)
-│       │   ├── repeated_edits.py    # Sequential edit sequence and drift evaluation
-│       │   ├── tightness.py         # Cell-by-cell certificate slack and ratio analysis
-│       │   └── independent_reference.py # Analytical and external reference test harness
-│       └── validation/
-│           ├── comparisons.py       # Pointwise array comparison and error statistics
-│           └── metrics.py           # Shadow IoU, UTCI agreement, percentiles
-└── tests/                           # 94 automated tests (unit, integration, adversarial)
-    ├── test_adversarial_cases.py    # 8 canonical adversarial stress test cases
-    ├── test_adversarial_suite.py    # Parameterized adversarial suites
-    ├── test_extended_adversarial.py # 12 extended stress test cases
-    ├── test_certificate_soundness.py# Empirical certificate bounds verification
-    ├── test_error_bounds.py         # Mathematical soundness unit tests
-    ├── test_incremental_updates.py  # Exact zero-error update tests
-    ├── test_affected_region.py      # Shadow plume projection and fallback tests
-    ├── test_cache_and_dependencies.py # Cache hashing and DAG reachability tests
-    ├── test_validation_comparisons.py # Statistical comparison metric tests
-    ├── test_full_recompute.py       # End-to-end reference solver tests
-    ├── test_geometry.py             # Bounding box and scene construction tests
-    ├── test_pedestrian_grid.py      # Grid index and coordinate mapping tests
-    ├── test_ray_intersections.py    # Vectorized ray-AABB intersection tests
-    ├── test_shadows.py              # Direct shadow raycasting tests
-    ├── test_solar_position.py       # Astronomical solar position verification tests
-    └── test_solweig_reference.py    # Analytical reference comparisons
+│   ├── compare_full_incremental.py  # End-to-end comparative benchmark script
+│   └── run_publication_validation.py# Complete audit and publication evaluation runner
+├── research_paper_sol/              # IEEE-style research conference publication package
+│   ├── solaraeus.tex                # Complete IEEE 2-column conference manuscript
+│   ├── fig1_architecture.png       # Publication-grade System Architecture diagram (300 DPI)
+│   ├── fig1_architecture.tex       # Standalone TikZ vector source for Architecture diagram
+│   ├── fig2_methodology.png         # Publication-grade Methodology & Dataflow diagram (300 DPI)
+│   ├── fig2_dataflow.tex           # Standalone TikZ vector source for Dataflow diagram
+│   └── fig2_methodology.tex        # Synced alias TikZ source
+├── results/                         # Frozen benchmarks, audit logs, and stage verification reports
+├── scripts/                         # Production pipelines, stage runners (Stages 05–38), & tools
+│   ├── execute_final_3d_integrated_simulation.py # Master 3D simulation pipeline
+│   ├── execute_stage_05_...py to execute_stage_38_...py # Certified stage solvers
+│   ├── generate_ieee_figures.py    # Generates 300 DPI publication figures
+│   ├── run_church_street_*.py       # High-resolution Church Street simulation workflows
+│   └── verify_ui_quality.py         # Automated UI contract and visual style validator
+├── simulation_3d/                   # Interactive Three.js 3D WebGL Digital Twin viewer
+│   ├── index.html                   # Cinematic web application entry point
+│   ├── index.css                    # Modern design system (glassmorphism, typography, HUD)
+│   ├── app.js                       # Three.js scene controller, ray-traced shadows, & comfort HUD
+│   ├── church_street_data.js        # High-resolution 3D geospatial geometry and comfort payload
+│   └── fonts/ & vendor/             # Self-contained fonts and Three.js client libraries
+├── src/urban_comfort/               # Core physics simulation engine
+│   ├── backend/                     # GPU acceleration (CUDA C++ kernels, CuPy resident solvers)
+│   ├── comfort/                     # UTCI evaluation and biometeorological stress categories
+│   ├── geometry/                    # 3D prisms, triangular meshes, BVH spatial trees
+│   ├── grid/                        # Discrete 1-m pedestrian grid mappings
+│   ├── incremental/                 # Certified incremental updates, error bounds & caching
+│   ├── optimization/                # Single/multi-panel spatial optimizers & surrogate models
+│   ├── radiation/                   # Stefan-Boltzmann inversion and multi-directional 6-fluxes
+│   ├── solar/                       # Solar position astronomical equations & shadow raytracing
+│   ├── terrain/                     # 3D bare-earth DEM, DTM, and topographic elevation models
+│   ├── vegetation/                  # Level-1 tree models and canopy shortwave attenuation
+│   └── visibility/                  # Steyn (1980) 36-radial Sky View Factor (SVF) engine
+└── tests/                           # Comprehensive test suite (457 tests, 100% pass rate)
 ```
 
 ---

@@ -1,0 +1,14 @@
+{
+  "status": "certified",
+  "is_valid": true,
+  "tolerance_k": 0.5,
+  "max_predicted_bound_k": 49.95224187595744,
+  "num_violations": 0,
+  "reused_max_error_k": 0.02890152869707663,
+  "is_within_tolerance": true,
+  "recomputed_cells": 72,
+  "reused_cells": 28048,
+  "total_cells": 28120,
+  "reused_fraction": 0.9974395448079658,
+  "timing_certificate_sec": 0.021622899992507882
+}

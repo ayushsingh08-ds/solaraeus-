@@ -1,0 +1,23 @@
+{
+  "timestamp_utc": "2026-10-08T08:11:48.199552+00:00",
+  "total_figures": 2,
+  "valid_figures": 2,
+  "figures": [
+    {
+      "id": "FIG_01",
+      "filename": "results/stage_13_geographic_feasibility/feasibility_plots/candidate_feasibility_screening.png",
+      "exists": true,
+      "caption": "Figure 1: Geographic feasibility boundary screening of candidate interventions along Bengaluru Church Street corridor.",
+      "source_stage": "Stage 13",
+      "status": "EXISTS_AND_VALID"
+    },
+    {
+      "id": "FIG_02",
+      "filename": "results/stage_10_gpu_full_cpu_validation/gpu_full_reproducibility_report.json",
+      "exists": true,
+      "caption": "Figure 2: Numerical solver equivalence between CPU reference and GPU full acceleration.",
+      "source_stage": "Stage 10",
+      "status": "EXISTS_AND_VALID"
+    }
+  ]
+}

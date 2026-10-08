@@ -1,0 +1,13 @@
+{
+  "geographic_crs": "EPSG:4326",
+  "projected_crs": "EPSG:32643",
+  "local_origin_definition": {
+    "easting_epsg32643_m": 782541.81,
+    "northing_epsg32643_m": 1435736.11,
+    "convention": "Local x = Easting - 782541.81, Local y = Northing - 1435736.11"
+  },
+  "grid_convergence_angle_deg": 0.5854,
+  "elevation_datum": "EGM2008 orthometric height (metres)",
+  "elevation_preservation": "Strict; no vertical offset or artificial flattening applied",
+  "status": "VALIDATED_LOCAL_COORDINATE_ALIGNMENT"
+}

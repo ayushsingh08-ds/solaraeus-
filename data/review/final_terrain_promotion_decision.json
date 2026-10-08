@@ -1,0 +1,22 @@
+{
+  "timestamp_utc": "2026-10-07T18:07:28Z",
+  "source_dataset": "FABDEM v1.2 (30m bare-earth raster)",
+  "official_classification": "REGIONAL_REFERENCE_ONLY",
+  "inadequate_for": [
+    "Curb modeling (150 mm vertical step)",
+    "Sidewalk cross-fall (1:50 transverse drainage slope)",
+    "Drainage gutters and channels",
+    "Building entrance thresholds",
+    "Survey-grade building-base elevation",
+    "Street-scale terrain ray tracing"
+  ],
+  "appropriate_for": [
+    "Regional elevation baseline across central Bengaluru",
+    "Corridor longitudinal grade context (~1:30 slope)",
+    "Domain boundary elevation condition sensitivity"
+  ],
+  "promotion_determination": "May be promoted ONLY as a regional macro-topography reference artifact.",
+  "approved_for_promotion": false,
+  "approved_for_simulation": false,
+  "conditions_for_eventual_simulation": "Requires formal researcher sign-off and explicit restriction to planar baseline or macro-boundary conditions. No microscale triangular mesh may be derived directly from FABDEM raster pixels."
+}

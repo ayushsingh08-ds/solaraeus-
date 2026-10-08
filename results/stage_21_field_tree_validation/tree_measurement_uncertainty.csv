@@ -1,0 +1,7 @@
+tree_id,height_uncertainty_m,crown_diameter_uncertainty_m,cbh_uncertainty_m,method
+T08,±2.5,±2.75,±0.35,Photo perspective scaling
+T09,±2.0,±1.75,±0.50,Photo perspective scaling
+T10,±2.0,±1.50,±0.40,Photo perspective scaling
+T11,±1.5,±1.30,±0.40,Photo perspective scaling
+T12,±1.5,±1.20,±0.40,Photo perspective scaling
+T13,±1.35,±0.95,±0.40,Photo perspective scaling

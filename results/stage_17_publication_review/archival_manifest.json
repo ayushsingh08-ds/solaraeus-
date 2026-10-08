@@ -1,0 +1,297 @@
+{
+  "release_candidate_name": "solaraeus-v2.0.0-cpu-ref-rc1",
+  "timestamp_utc": "2026-10-08T08:11:48.227199+00:00",
+  "author": "SOLARAEUS Core Development Team",
+  "version": "2.0.0-cpu-ref",
+  "description": "Validated Flat-Ground Certified Incremental SOLWEIG Microclimate Engine",
+  "total_files": 57,
+  "files": [
+    {
+      "relative_path": "results/stage_16_publication_package/data_and_code_availability.md",
+      "size_bytes": 553,
+      "sha256": "563371c1c2783ef17980452e4f87fb486998dffb4d18a54f5475d37961ce4d0b"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/figure_manifest.json",
+      "size_bytes": 633,
+      "sha256": "a3828c6ee2b81cb742fa11c44f6b614bd700f7bdfea24a0893efdcf1fb899a88"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/final_project_status.json",
+      "size_bytes": 1559,
+      "sha256": "33f167725c00b81314b1b4d04ceb7b0eaefba10eabd327ab5b29028adfc3a5d0"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/license_and_provenance.md",
+      "size_bytes": 255,
+      "sha256": "cef01d92d103622143872bdf668bb6fa26ae29ad0c89a1bafb217fef78b95b73"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/publication_limitations.md",
+      "size_bytes": 614,
+      "sha256": "f4223480415174f76ea035809290accae11c0683eecca086c4ff3f250fce5160"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/publication_methodology.md",
+      "size_bytes": 1807,
+      "sha256": "9e6e09908df113455b0ee73ed792a42bf0b0fb8e32fd354bde3d781e097ae850"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/publication_results_summary.md",
+      "size_bytes": 1059,
+      "sha256": "5db68b6aba3e6f19c80edb0c19269502b24a6a0a4ff12c7be52a5eeaee2a8d89"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/reproducibility_guide.md",
+      "size_bytes": 749,
+      "sha256": "9cd2581852aeff53c7da98072c14b92305f1917e9379046b9a5bf3f97cff4b61"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/stage_16_test_results.json",
+      "size_bytes": 1487,
+      "sha256": "f400a40cf53a0fb737a8a1ace64aec01320900f8fa2822a994a01df3df121ace"
+    },
+    {
+      "relative_path": "results/stage_16_publication_package/table_manifest.json",
+      "size_bytes": 1107,
+      "sha256": "924b4f10e12080155e45c6d10c445a5d35a108b8e6968fa7d727b57baa558020"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_certificates.json",
+      "size_bytes": 1046,
+      "sha256": "00b709703103c04d8d585b92fab4f7e56c2e33fff3ae4d0412b7e8b9f96fb995"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_constraint_report.json",
+      "size_bytes": 1380,
+      "sha256": "5ca1d453ece5c3c90a3227298528d78fb60ecfa2ff7655ce7ea9b0c9dcbed405"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_parity_report.json",
+      "size_bytes": 2007,
+      "sha256": "724c0b306091e6fbce809c058fdbc784da6a09e5e7cb66599b447db18d0a967e"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_reproducibility.json",
+      "size_bytes": 373,
+      "sha256": "95d5fab7c03828faaca40cf4a80850272abdd281a06956a51e784f519e60a99e"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_sensitivity.csv",
+      "size_bytes": 1148,
+      "sha256": "c7e907277198e2f5ec86e6764cdcaab81c4b2b0198594b1267c9752b5ff098fc"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_uncertainty.csv",
+      "size_bytes": 557,
+      "sha256": "816050b32649007222ac24ac92ddb624d423878ef0fef3fe904d42bf554633fe"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_validation.json",
+      "size_bytes": 2714,
+      "sha256": "18eebcc741662af763511955ac7fa5a2d41ee3eeef83e12998bc531a36079b96"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/final_candidate_validation.md",
+      "size_bytes": 1910,
+      "sha256": "d474bf25c8d27159b4eeb6e23793d9d1d889aed90d4f2999407f399c89f91e6a"
+    },
+    {
+      "relative_path": "results/stage_15_final_validation/stage_15_test_results.json",
+      "size_bytes": 1524,
+      "sha256": "c32b6531a4c01b9f75aaecf0317874c1963c68d9cfdf5278a57613cb4e273a22"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/baseline_search_results.csv",
+      "size_bytes": 3660,
+      "sha256": "e72d74f26c26f3a9e05dd5fff6c87f77ed83981b0490b61ff90bf56cb50b9628"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_best_candidates.csv",
+      "size_bytes": 949,
+      "sha256": "4124da38c40302aa0ac36000d9c8c6e85f8aabfe929a300fc5b3ef9fc1092c13"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_candidate_history.csv",
+      "size_bytes": 4142,
+      "sha256": "7a44ff256b8f28113eecdc68d17ed167f6c45c78238916ed6acc5d4bcb8affe4"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_certificate_summary.json",
+      "size_bytes": 149,
+      "sha256": "c45a1286672344390803591e906ad982d55f1da80562c77678ee4e55498167df"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_checkpoint.json",
+      "size_bytes": 441,
+      "sha256": "0234d61a633faa80be7bbeac41882b59afad9c726ef4c50793ce2859279da507"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_configuration.json",
+      "size_bytes": 2183,
+      "sha256": "f84e759588343b823e5a249bb121f4144be09225f2f1ff8838eea3d51c17f0aa"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_constraint_report.json",
+      "size_bytes": 441,
+      "sha256": "1e94869ccbaf66522bae8934e47446a86587fc537a286de1ffdd80582f21dfd9"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/optimizer_reproducibility.json",
+      "size_bytes": 563,
+      "sha256": "3aad344b8bbf19f67396badecbedcc6c9ede1bb4adb63ef53b19c8800b8b7e00"
+    },
+    {
+      "relative_path": "results/stage_14_constrained_optimizer/stage_14_test_results.json",
+      "size_bytes": 1443,
+      "sha256": "08b1713be01cc8f0c611a5bcc4c6394eef1c20893b54e1db6447ae8bfabf0620"
+    },
+    {
+      "relative_path": "results/stage_13_geographic_feasibility/candidate_feasibility_report.json",
+      "size_bytes": 469,
+      "sha256": "b9359d0fd68905f48228d6d3c57fff41ea0d81d156eb3f83a0bd3d623c03cad4"
+    },
+    {
+      "relative_path": "results/stage_13_geographic_feasibility/feasibility_rules.json",
+      "size_bytes": 1274,
+      "sha256": "beb8210f43361598267df823f3128e84cf598a540c64a87158809be21f5058fc"
+    },
+    {
+      "relative_path": "results/stage_13_geographic_feasibility/feasible_candidate_catalog.csv",
+      "size_bytes": 9551,
+      "sha256": "65d03fbc16bf5d6dd902a1d4239924a1553b0d38d97581c189e66d30746132db"
+    },
+    {
+      "relative_path": "results/stage_13_geographic_feasibility/infeasible_candidate_catalog.csv",
+      "size_bytes": 13109,
+      "sha256": "82944a5b5a8f1c5d9def29904d2bd626ae4cea95a5323377a94ff7a5b76cbb40"
+    },
+    {
+      "relative_path": "results/stage_13_geographic_feasibility/intervention_parameter_schema.json",
+      "size_bytes": 2172,
+      "sha256": "194edef2f793d7398b2b7572682b49c30567cb7c5941223475b4f096f5ef159a"
+    },
+    {
+      "relative_path": "results/stage_13_geographic_feasibility/stage_13_test_results.json",
+      "size_bytes": 1307,
+      "sha256": "6a7fa6a58b92ed2f000bdd750380099b633ee6eaea95ac5be056e02df5a02eeb"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/gpu_benchmark_trials.csv",
+      "size_bytes": 2914,
+      "sha256": "ce0e7c381ed77c8902634b5f93937969fdbccf146679865eed6ef7dec41d28e3"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/gpu_cpu_speedup_report.md",
+      "size_bytes": 2080,
+      "sha256": "77f50fa60eea491a1e940d5c606b7ff3bff95ae1a67df0595de613d9227d0454"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/gpu_memory_summary.json",
+      "size_bytes": 1493,
+      "sha256": "965c012a5d22c30b589d5ce921814631aeb5ce3fae86a864a898228db8dc37a8"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/gpu_profiling_environment.json",
+      "size_bytes": 490,
+      "sha256": "5bbe8b2f49f7a67c0fddfcc17401b9873a28af456852a73294b8a25c1f49941c"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/gpu_runtime_summary.json",
+      "size_bytes": 3470,
+      "sha256": "badb2b3cf39f2a00add06616f30a18b4276b9ea77e181da776d5ab65058bdcc3"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/gpu_work_summary.json",
+      "size_bytes": 1040,
+      "sha256": "9a9e27621fcff83c52d3125732523859cebe7ff1e835960530a230fa03c25e8c"
+    },
+    {
+      "relative_path": "results/stage_12_gpu_profiling/stage_12_test_results.json",
+      "size_bytes": 985,
+      "sha256": "1273ba31586773435c78eff3dd713de786ab4d182618f93538cbe98e4dd96db5"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_affected_region.json",
+      "size_bytes": 388,
+      "sha256": "1a8967845ea6f371dca965f9acc543fdfbe6f0daa62f680b9a504ecd9f575f06"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_arrays.npz",
+      "size_bytes": 532094,
+      "sha256": "d62f8146ad5def655b41143de41b3f67165168f3c8413273da6a22abefaf6305"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_certificate.json",
+      "size_bytes": 405,
+      "sha256": "651695b49ef5948f2c2a0536bd1a80eb7d2bb168a69de30236bebdba8c04bbfd"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_cpu_comparison.json",
+      "size_bytes": 7912,
+      "sha256": "59bbc69369dc545096a8b26abbc2904c83459415b7d33b94b0cd874f6b375dcc"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_full_comparison.json",
+      "size_bytes": 4166,
+      "sha256": "be059487ed75cee929d56d9731b690456ee2a3f4dd8e53b89274087ca8d345df"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_outputs.json",
+      "size_bytes": 469,
+      "sha256": "ebbde4f2e8810e7e0a2e53de1fcd519082b9a0059929bd5f8ab8dd29dba06ed4"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_reuse_metrics.json",
+      "size_bytes": 458,
+      "sha256": "6d8a24b6c56c2e80e07584839673221e185d509137306cbf93935517c913d1e1"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/gpu_incremental_runtime_metrics.json",
+      "size_bytes": 531,
+      "sha256": "771f7d948966b8c91af68ab6472d36b3be5c7115e12a098d140b34f3bf14f882"
+    },
+    {
+      "relative_path": "results/stage_11_gpu_incremental/stage_11_test_results.json",
+      "size_bytes": 1536,
+      "sha256": "8b907cf9aa0ee91e3e56bd956a12af06c4d770a10898a40c87cfe4537a9b86f4"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/cpu_gpu_full_comparison.json",
+      "size_bytes": 6222,
+      "sha256": "5a206ffd55412b685f33876381300ed8b34f5ca08f4685b1c79aa07c5ed82674"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/cpu_gpu_full_comparison.md",
+      "size_bytes": 3765,
+      "sha256": "72922f8e1c88e39ea42c09008f4bbcacd19a29a5664b646bb0cf5523951ef46c"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/gpu_full_arrays.npz",
+      "size_bytes": 531568,
+      "sha256": "7b88fc831d726ad048123f1677aa0dacb7eded566d864900623b92c08fa53761"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/gpu_full_reproducibility_report.json",
+      "size_bytes": 516,
+      "sha256": "806aa5bd0a4d19e2978865639e10d6334754dd7e72ca465e615850c948640c66"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/gpu_full_runtime_metadata.json",
+      "size_bytes": 1554,
+      "sha256": "6b191bb5a2416c5a33c173b840fb9bd57b3322122b2a9cd5d6bd7eb3ea111060"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/gpu_full_validation_certificate.json",
+      "size_bytes": 1216,
+      "sha256": "afbea09f5086377930988caaa7f2c5ba1c0c57f6b9a61be0ec37b87443f86709"
+    },
+    {
+      "relative_path": "results/stage_10_gpu_full_cpu_validation/stage_10_test_results.json",
+      "size_bytes": 2321,
+      "sha256": "0cdb3a327fe989b5531ac61db9a9495f14f3d8ffab8ae3ac527d5f0b990a5cb3"
+    }
+  ],
+  "auto_publish": false,
+  "release_policy": "Archival manifest generated. No automatic upload or remote publishing performed."
+}

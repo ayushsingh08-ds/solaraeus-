@@ -1,0 +1,42 @@
+{
+  "timestamp_utc": "2026-10-08T08:32:13.160903+00:00",
+  "CERT_01_TERRAIN_CRS": {
+    "name": "Terrain CRS Certificate",
+    "value": "EPSG:32643",
+    "status": "PASSED"
+  },
+  "CERT_02_TERRAIN_BOUNDS": {
+    "name": "Terrain Bounds Certificate",
+    "status": "PASSED"
+  },
+  "CERT_03_TERRAIN_NODATA": {
+    "name": "Terrain NoData Sentinel Certificate",
+    "status": "PASSED"
+  },
+  "CERT_04_TERRAIN_INTERPOLATION": {
+    "name": "Bilinear Interpolation Boundedness Certificate",
+    "status": "PASSED"
+  },
+  "CERT_05_GROUND_RECEPTOR_HEIGHT": {
+    "name": "Receptor Offset Certificate (z_rec = z_terrain + 1.1)",
+    "status": "PASSED"
+  },
+  "CERT_06_BUILDING_TERRAIN_INTERSECTION": {
+    "name": "Building Base Anchor Certificate",
+    "status": "PASSED"
+  },
+  "CERT_07_PANEL_TERRAIN_CLEARANCE": {
+    "name": "Panel Underside Clearance Certificate",
+    "status": "PASSED"
+  },
+  "CERT_08_FLAT_GROUND_PARITY": {
+    "name": "Flat-Ground Backward Compatibility Certificate",
+    "discrepancy": 0.0,
+    "status": "PASSED"
+  },
+  "CERT_09_NUMERICAL_DETERMINISM": {
+    "name": "Numerical Determinism Certificate",
+    "discrepancy": 0.0,
+    "status": "PASSED"
+  }
+}

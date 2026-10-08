@@ -1,0 +1,513 @@
+{
+  "total_count": 14,
+  "core_count": 6,
+  "context_count": 8,
+  "in_domain_count": 14,
+  "rendered_count": 14,
+  "trees": [
+    {
+      "id": "T08",
+      "source_id": "554758",
+      "lat": 12.9750311,
+      "lon": 77.6045925,
+      "x": 20.07,
+      "y": 81.14,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE_PROVISIONAL",
+      "in_physics": true,
+      "height": 13.5,
+      "crown_radius_x": 6.0,
+      "crown_radius_y": 6.0,
+      "crown_radius_z": 4.65,
+      "crown_base": 4.2,
+      "trunk_radius": 0.28,
+      "bounds": {
+        "small": {
+          "height": 11.0,
+          "crown_dia": 9.5,
+          "base_height": 3.8
+        },
+        "nominal": {
+          "height": 13.5,
+          "crown_dia": 12.0,
+          "base_height": 4.2
+        },
+        "large": {
+          "height": 16.0,
+          "crown_dia": 15.0,
+          "base_height": 4.5
+        }
+      },
+      "local_x": 20.07,
+      "local_y": 81.14
+    },
+    {
+      "id": "T09",
+      "source_id": "554765",
+      "lat": 12.9750481,
+      "lon": 77.6048215,
+      "x": 26.34,
+      "y": 83.27,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE_PROVISIONAL",
+      "in_physics": true,
+      "height": 11.0,
+      "crown_radius_x": 4.25,
+      "crown_radius_y": 4.25,
+      "crown_radius_z": 3.6,
+      "crown_base": 3.8,
+      "trunk_radius": 0.28,
+      "bounds": {
+        "small": {
+          "height": 9.0,
+          "crown_dia": 7.0,
+          "base_height": 3.2
+        },
+        "nominal": {
+          "height": 11.0,
+          "crown_dia": 8.5,
+          "base_height": 3.8
+        },
+        "large": {
+          "height": 13.0,
+          "crown_dia": 10.5,
+          "base_height": 4.2
+        }
+      },
+      "local_x": 26.34,
+      "local_y": 83.27
+    },
+    {
+      "id": "T10",
+      "source_id": "554768",
+      "lat": 12.9749951,
+      "lon": 77.6047135,
+      "x": 33.24,
+      "y": 77.29,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE_PROVISIONAL",
+      "in_physics": true,
+      "height": 9.5,
+      "crown_radius_x": 3.75,
+      "crown_radius_y": 3.75,
+      "crown_radius_z": 3.15,
+      "crown_base": 3.2,
+      "trunk_radius": 0.28,
+      "bounds": {
+        "small": {
+          "height": 7.5,
+          "crown_dia": 6.0,
+          "base_height": 2.8
+        },
+        "nominal": {
+          "height": 9.5,
+          "crown_dia": 7.5,
+          "base_height": 3.2
+        },
+        "large": {
+          "height": 11.5,
+          "crown_dia": 9.0,
+          "base_height": 3.6
+        }
+      },
+      "local_x": 33.24,
+      "local_y": 77.29
+    },
+    {
+      "id": "T11",
+      "source_id": "554783",
+      "lat": 12.9749751,
+      "lon": 77.6049685,
+      "x": 45.18,
+      "y": 72.84,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE_PROVISIONAL",
+      "in_physics": true,
+      "height": 8.0,
+      "crown_radius_x": 2.75,
+      "crown_radius_y": 2.75,
+      "crown_radius_z": 2.6,
+      "crown_base": 2.8,
+      "trunk_radius": 0.28,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.2,
+          "base_height": 2.4
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 5.5,
+          "base_height": 2.8
+        },
+        "large": {
+          "height": 9.5,
+          "crown_dia": 6.8,
+          "base_height": 3.2
+        }
+      },
+      "local_x": 45.18,
+      "local_y": 72.84
+    },
+    {
+      "id": "T12",
+      "source_id": "554787",
+      "lat": 12.9749671,
+      "lon": 77.6051285,
+      "x": 58.42,
+      "y": 68.39,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE_PROVISIONAL",
+      "in_physics": true,
+      "height": 7.5,
+      "crown_radius_x": 2.5,
+      "crown_radius_y": 2.5,
+      "crown_radius_z": 2.45,
+      "crown_base": 2.6,
+      "trunk_radius": 0.28,
+      "bounds": {
+        "small": {
+          "height": 6.0,
+          "crown_dia": 3.8,
+          "base_height": 2.2
+        },
+        "nominal": {
+          "height": 7.5,
+          "crown_dia": 5.0,
+          "base_height": 2.6
+        },
+        "large": {
+          "height": 9.0,
+          "crown_dia": 6.2,
+          "base_height": 3.0
+        }
+      },
+      "local_x": 58.42,
+      "local_y": 68.39
+    },
+    {
+      "id": "T13",
+      "source_id": "554795",
+      "lat": 12.9748831,
+      "lon": 77.6053005,
+      "x": 69.85,
+      "y": 65.51,
+      "species": "Syzygium Cumini (L.) Skeels",
+      "classification": "CORE_PROVISIONAL",
+      "in_physics": true,
+      "height": 5.0,
+      "crown_radius_x": 1.75,
+      "crown_radius_y": 1.75,
+      "crown_radius_z": 1.6,
+      "crown_base": 1.8,
+      "trunk_radius": 0.28,
+      "bounds": {
+        "small": {
+          "height": 3.8,
+          "crown_dia": 2.6,
+          "base_height": 1.4
+        },
+        "nominal": {
+          "height": 5.0,
+          "crown_dia": 3.5,
+          "base_height": 1.8
+        },
+        "large": {
+          "height": 6.5,
+          "crown_dia": 4.5,
+          "base_height": 2.2
+        }
+      },
+      "local_x": 69.85,
+      "local_y": 65.51
+    },
+    {
+      "id": "T01",
+      "source_id": "554674",
+      "lat": 12.9760181,
+      "lon": 77.6040925,
+      "x": -35.33,
+      "y": 189.84,
+      "species": "Artocarpus Heterophyllus Lam.",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -35.33,
+      "local_y": 189.84
+    },
+    {
+      "id": "T02",
+      "source_id": "554688",
+      "lat": 12.9758351,
+      "lon": 77.6042275,
+      "x": -20.46,
+      "y": 169.73,
+      "species": "Michelia Longifolia Blume",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -20.46,
+      "local_y": 169.73
+    },
+    {
+      "id": "T03",
+      "source_id": "554700",
+      "lat": 12.9756561,
+      "lon": 77.6040925,
+      "x": -34.92,
+      "y": 149.76,
+      "species": "Tabebuia Rosea (Bertol) Dc.",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -34.92,
+      "local_y": 149.76
+    },
+    {
+      "id": "T04",
+      "source_id": "554708",
+      "lat": 12.9755661,
+      "lon": 77.6043115,
+      "x": -11.04,
+      "y": 140.05,
+      "species": "Markhamia Lutea (Benth.) K.Schum",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -11.04,
+      "local_y": 140.05
+    },
+    {
+      "id": "T05",
+      "source_id": "554729",
+      "lat": 12.9750301,
+      "lon": 77.6043495,
+      "x": -6.31,
+      "y": 80.76,
+      "species": "Ficus Racemosa L.",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -6.31,
+      "local_y": 80.76
+    },
+    {
+      "id": "T06",
+      "source_id": "554737",
+      "lat": 12.9750141,
+      "lon": 77.6043775,
+      "x": -3.25,
+      "y": 79.02,
+      "species": "Araucaria Columnaris",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -3.25,
+      "local_y": 79.02
+    },
+    {
+      "id": "T07",
+      "source_id": "554748",
+      "lat": 12.9750801,
+      "lon": 77.6043225,
+      "x": -9.3,
+      "y": 86.26,
+      "species": "Araucaria Columnaris",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": -9.3,
+      "local_y": 86.26
+    },
+    {
+      "id": "T14",
+      "source_id": "554866",
+      "lat": 12.9755681,
+      "lon": 77.6057295,
+      "x": 142.88,
+      "y": 141.84,
+      "species": "Pongamia Pinnata (L.) Pierre",
+      "classification": "CONTEXT_WITH_GEOMETRY",
+      "in_physics": false,
+      "height": 8.0,
+      "crown_radius_x": 3.0,
+      "crown_radius_y": 3.0,
+      "crown_radius_z": 2.8,
+      "crown_base": 2.4,
+      "trunk_radius": 0.25,
+      "bounds": {
+        "small": {
+          "height": 6.5,
+          "crown_dia": 4.8,
+          "base_height": 2.0
+        },
+        "nominal": {
+          "height": 8.0,
+          "crown_dia": 6.0,
+          "base_height": 2.4
+        },
+        "large": {
+          "height": 10.0,
+          "crown_dia": 7.5,
+          "base_height": 2.8
+        }
+      },
+      "local_x": 142.88,
+      "local_y": 141.84
+    }
+  ]
+}

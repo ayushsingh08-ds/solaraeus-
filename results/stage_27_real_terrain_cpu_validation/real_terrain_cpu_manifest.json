@@ -1,0 +1,10 @@
+{
+  "stage_id": "STAGE_27",
+  "timestamp_utc": "2026-10-08T08:59:00.453301+00:00",
+  "prerequisite_required": "STAGE_25_MEASURED_STREET_SCALE_DTM_VALIDATED",
+  "prerequisite_actual": "STAGE_25_SYNTHETIC_TERRAIN_ONLY",
+  "prerequisite_met": false,
+  "status": "STAGE_27_BLOCKED",
+  "token": "STAGE_27_BLOCKED",
+  "reason": "Stage 25 determined that no measured street-scale DTM exists. Pursuant to Global Safety Rule 1 and Rule 13, real-world terrain CPU revalidation is strictly blocked."
+}

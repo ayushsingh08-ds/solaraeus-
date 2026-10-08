@@ -1,0 +1,548 @@
+{
+  "CONSERVATIVE_SMALL": [
+    {
+      "tree_id": "T08",
+      "species": "Ficus religiosa",
+      "x": 20.07,
+      "y": 4.12,
+      "z_ground": 0.0,
+      "height": 11.0,
+      "crown_diameter": 9.5,
+      "crown_base_height": 3.8,
+      "dbh": 0.45,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_SMALL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          11.0,
+          16.0
+        ],
+        "crown_diameter": [
+          9.5,
+          15.0
+        ],
+        "crown_base": [
+          3.8,
+          4.5
+        ]
+      }
+    },
+    {
+      "tree_id": "T09",
+      "species": "Syzygium cumini",
+      "x": 34.82,
+      "y": 4.05,
+      "z_ground": 0.0,
+      "height": 9.0,
+      "crown_diameter": 7.0,
+      "crown_base_height": 3.2,
+      "dbh": 0.35,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_SMALL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          9.0,
+          13.0
+        ],
+        "crown_diameter": [
+          7.0,
+          10.5
+        ],
+        "crown_base": [
+          3.2,
+          4.2
+        ]
+      }
+    },
+    {
+      "tree_id": "T10",
+      "species": "Syzygium cumini",
+      "x": 50.15,
+      "y": 4.21,
+      "z_ground": 0.0,
+      "height": 7.5,
+      "crown_diameter": 6.0,
+      "crown_base_height": 2.8,
+      "dbh": 0.3,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_SMALL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          7.5,
+          11.5
+        ],
+        "crown_diameter": [
+          6.0,
+          9.0
+        ],
+        "crown_base": [
+          2.8,
+          3.6
+        ]
+      }
+    },
+    {
+      "tree_id": "T11",
+      "species": "Saraca asoca",
+      "x": 65.4,
+      "y": 3.98,
+      "z_ground": 0.0,
+      "height": 6.5,
+      "crown_diameter": 4.2,
+      "crown_base_height": 2.4,
+      "dbh": 0.2,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_SMALL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          6.5,
+          9.5
+        ],
+        "crown_diameter": [
+          4.2,
+          6.8
+        ],
+        "crown_base": [
+          2.4,
+          3.2
+        ]
+      }
+    },
+    {
+      "tree_id": "T12",
+      "species": "Saraca asoca",
+      "x": 80.2,
+      "y": 4.1,
+      "z_ground": 0.0,
+      "height": 6.0,
+      "crown_diameter": 3.8,
+      "crown_base_height": 2.2,
+      "dbh": 0.18,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_SMALL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          6.0,
+          9.0
+        ],
+        "crown_diameter": [
+          3.8,
+          6.2
+        ],
+        "crown_base": [
+          2.2,
+          3.0
+        ]
+      }
+    },
+    {
+      "tree_id": "T13",
+      "species": "Tecoma stans",
+      "x": 97.09,
+      "y": 4.02,
+      "z_ground": 0.0,
+      "height": 3.8,
+      "crown_diameter": 2.6,
+      "crown_base_height": 1.4,
+      "dbh": 0.12,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_SMALL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          3.8,
+          6.5
+        ],
+        "crown_diameter": [
+          2.6,
+          4.5
+        ],
+        "crown_base": [
+          1.4,
+          2.2
+        ]
+      }
+    }
+  ],
+  "NOMINAL_PROVISIONAL": [
+    {
+      "tree_id": "T08",
+      "species": "Ficus religiosa",
+      "x": 20.07,
+      "y": 4.12,
+      "z_ground": 0.0,
+      "height": 13.5,
+      "crown_diameter": 12.0,
+      "crown_base_height": 4.2,
+      "dbh": 0.55,
+      "transmissivity": 0.0,
+      "geometry_state": "NOMINAL_PROVISIONAL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          11.0,
+          16.0
+        ],
+        "crown_diameter": [
+          9.5,
+          15.0
+        ],
+        "crown_base": [
+          3.8,
+          4.5
+        ]
+      }
+    },
+    {
+      "tree_id": "T09",
+      "species": "Syzygium cumini",
+      "x": 34.82,
+      "y": 4.05,
+      "z_ground": 0.0,
+      "height": 11.0,
+      "crown_diameter": 8.5,
+      "crown_base_height": 3.8,
+      "dbh": 0.45,
+      "transmissivity": 0.0,
+      "geometry_state": "NOMINAL_PROVISIONAL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          9.0,
+          13.0
+        ],
+        "crown_diameter": [
+          7.0,
+          10.5
+        ],
+        "crown_base": [
+          3.2,
+          4.2
+        ]
+      }
+    },
+    {
+      "tree_id": "T10",
+      "species": "Syzygium cumini",
+      "x": 50.15,
+      "y": 4.21,
+      "z_ground": 0.0,
+      "height": 9.5,
+      "crown_diameter": 7.5,
+      "crown_base_height": 3.2,
+      "dbh": 0.4,
+      "transmissivity": 0.0,
+      "geometry_state": "NOMINAL_PROVISIONAL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          7.5,
+          11.5
+        ],
+        "crown_diameter": [
+          6.0,
+          9.0
+        ],
+        "crown_base": [
+          2.8,
+          3.6
+        ]
+      }
+    },
+    {
+      "tree_id": "T11",
+      "species": "Saraca asoca",
+      "x": 65.4,
+      "y": 3.98,
+      "z_ground": 0.0,
+      "height": 8.0,
+      "crown_diameter": 5.5,
+      "crown_base_height": 2.8,
+      "dbh": 0.28,
+      "transmissivity": 0.0,
+      "geometry_state": "NOMINAL_PROVISIONAL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          6.5,
+          9.5
+        ],
+        "crown_diameter": [
+          4.2,
+          6.8
+        ],
+        "crown_base": [
+          2.4,
+          3.2
+        ]
+      }
+    },
+    {
+      "tree_id": "T12",
+      "species": "Saraca asoca",
+      "x": 80.2,
+      "y": 4.1,
+      "z_ground": 0.0,
+      "height": 7.5,
+      "crown_diameter": 5.0,
+      "crown_base_height": 2.6,
+      "dbh": 0.25,
+      "transmissivity": 0.0,
+      "geometry_state": "NOMINAL_PROVISIONAL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          6.0,
+          9.0
+        ],
+        "crown_diameter": [
+          3.8,
+          6.2
+        ],
+        "crown_base": [
+          2.2,
+          3.0
+        ]
+      }
+    },
+    {
+      "tree_id": "T13",
+      "species": "Tecoma stans",
+      "x": 97.09,
+      "y": 4.02,
+      "z_ground": 0.0,
+      "height": 5.0,
+      "crown_diameter": 3.5,
+      "crown_base_height": 1.8,
+      "dbh": 0.18,
+      "transmissivity": 0.0,
+      "geometry_state": "NOMINAL_PROVISIONAL",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          3.8,
+          6.5
+        ],
+        "crown_diameter": [
+          2.6,
+          4.5
+        ],
+        "crown_base": [
+          1.4,
+          2.2
+        ]
+      }
+    }
+  ],
+  "CONSERVATIVE_LARGE": [
+    {
+      "tree_id": "T08",
+      "species": "Ficus religiosa",
+      "x": 20.07,
+      "y": 4.12,
+      "z_ground": 0.0,
+      "height": 16.0,
+      "crown_diameter": 15.0,
+      "crown_base_height": 4.5,
+      "dbh": 0.65,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_LARGE",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          11.0,
+          16.0
+        ],
+        "crown_diameter": [
+          9.5,
+          15.0
+        ],
+        "crown_base": [
+          3.8,
+          4.5
+        ]
+      }
+    },
+    {
+      "tree_id": "T09",
+      "species": "Syzygium cumini",
+      "x": 34.82,
+      "y": 4.05,
+      "z_ground": 0.0,
+      "height": 13.0,
+      "crown_diameter": 10.5,
+      "crown_base_height": 4.2,
+      "dbh": 0.55,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_LARGE",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          9.0,
+          13.0
+        ],
+        "crown_diameter": [
+          7.0,
+          10.5
+        ],
+        "crown_base": [
+          3.2,
+          4.2
+        ]
+      }
+    },
+    {
+      "tree_id": "T10",
+      "species": "Syzygium cumini",
+      "x": 50.15,
+      "y": 4.21,
+      "z_ground": 0.0,
+      "height": 11.5,
+      "crown_diameter": 9.0,
+      "crown_base_height": 3.6,
+      "dbh": 0.5,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_LARGE",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          7.5,
+          11.5
+        ],
+        "crown_diameter": [
+          6.0,
+          9.0
+        ],
+        "crown_base": [
+          2.8,
+          3.6
+        ]
+      }
+    },
+    {
+      "tree_id": "T11",
+      "species": "Saraca asoca",
+      "x": 65.4,
+      "y": 3.98,
+      "z_ground": 0.0,
+      "height": 9.5,
+      "crown_diameter": 6.8,
+      "crown_base_height": 3.2,
+      "dbh": 0.35,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_LARGE",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          6.5,
+          9.5
+        ],
+        "crown_diameter": [
+          4.2,
+          6.8
+        ],
+        "crown_base": [
+          2.4,
+          3.2
+        ]
+      }
+    },
+    {
+      "tree_id": "T12",
+      "species": "Saraca asoca",
+      "x": 80.2,
+      "y": 4.1,
+      "z_ground": 0.0,
+      "height": 9.0,
+      "crown_diameter": 6.2,
+      "crown_base_height": 3.0,
+      "dbh": 0.32,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_LARGE",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          6.0,
+          9.0
+        ],
+        "crown_diameter": [
+          3.8,
+          6.2
+        ],
+        "crown_base": [
+          2.2,
+          3.0
+        ]
+      }
+    },
+    {
+      "tree_id": "T13",
+      "species": "Tecoma stans",
+      "x": 97.09,
+      "y": 4.02,
+      "z_ground": 0.0,
+      "height": 6.5,
+      "crown_diameter": 4.5,
+      "crown_base_height": 2.2,
+      "dbh": 0.25,
+      "transmissivity": 0.0,
+      "geometry_state": "CONSERVATIVE_LARGE",
+      "status": "PROVISIONAL_PHOTO_ESTIMATED",
+      "confidence": "PHOTO_ESTIMATED_ONLY",
+      "current_existence": "CURRENT_EXISTENCE_UNCERTAIN",
+      "uncertainty_bounds": {
+        "height": [
+          3.8,
+          6.5
+        ],
+        "crown_diameter": [
+          2.6,
+          4.5
+        ],
+        "crown_base": [
+          1.4,
+          2.2
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+/* ==========================================================================
+   SOLARAEUS 3D: Self-Hosted Typography
+   Fraunces (Display & Big Numerals)
+   Instrument Sans (Interface Body & Headings)
+   DM Mono (Tabular Data & Coordinates)
+   Zero external CDN dependencies for 100% offline localhost reliability.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/fraunces-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/fraunces-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/instrument-sans-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/instrument-sans-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/dm-mono-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'DM Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/dm-mono-latin-500-normal.woff2') format('woff2');
+}

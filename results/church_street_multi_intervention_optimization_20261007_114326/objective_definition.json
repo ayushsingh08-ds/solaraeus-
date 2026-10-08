@@ -1,0 +1,13 @@
+{
+  "weight_mean_utci": 1.0,
+  "weight_p90_utci": 0.5,
+  "weight_max_utci": 0.0,
+  "weight_mean_tmrt": 0.0,
+  "weight_area_penalty": 0.005,
+  "weight_construction_cost": 0.0001,
+  "base_cost_per_panel": 5000.0,
+  "cost_per_m2": 250.0,
+  "comfort_threshold_utci": 32.0,
+  "feasibility_penalty": 1000.0,
+  "obstruction_penalty": 0.0
+}

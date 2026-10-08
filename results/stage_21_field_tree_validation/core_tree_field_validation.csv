@@ -1,0 +1,7 @@
+tree_id,species,local_x_m,local_y_m,existence_status,measurement_status,h_min_m,h_nom_m,h_max_m,cd_min_m,cd_nom_m,cd_max_m,cbh_min_m,cbh_nom_m,cbh_max_m,dbh_cm,measurement_method,instrument,photo_ref
+T08,Ficus religiosa,20.07,58.62,UNCERTAIN_HISTORICAL_PHOTO_ONLY,PHOTO_ESTIMATED_ONLY,11.0,13.5,16.0,9.5,12.0,15.0,3.8,4.2,4.5,Unmeasured,Historical Perspective Scaling (KartaView 2020),None (Photogrammetric Estimate),KV_2020_SEQ_08
+T09,Syzygium cumini,35.85,59.1,UNCERTAIN_HISTORICAL_PHOTO_ONLY,PHOTO_ESTIMATED_ONLY,9.0,11.0,13.0,7.0,8.5,10.5,3.2,3.8,4.2,Unmeasured,Historical Perspective Scaling (KartaView 2020),None (Photogrammetric Estimate),KV_2020_SEQ_09
+T10,Syzygium cumini,51.4,59.45,UNCERTAIN_HISTORICAL_PHOTO_ONLY,PHOTO_ESTIMATED_ONLY,7.5,9.5,11.5,6.0,7.5,9.0,2.8,3.2,3.6,Unmeasured,Historical Perspective Scaling (KartaView 2020),None (Photogrammetric Estimate),KV_2020_SEQ_10
+T11,Saraca asoca,67.2,59.9,UNCERTAIN_HISTORICAL_PHOTO_ONLY,PHOTO_ESTIMATED_ONLY,6.5,8.0,9.5,4.2,5.5,6.8,2.4,2.8,3.2,Unmeasured,Historical Perspective Scaling (KartaView 2020),None (Photogrammetric Estimate),KV_2020_SEQ_11
+T12,Saraca asoca,82.5,60.15,UNCERTAIN_HISTORICAL_PHOTO_ONLY,PHOTO_ESTIMATED_ONLY,6.0,7.5,9.0,3.8,5.0,6.2,2.2,2.6,3.0,Unmeasured,Historical Perspective Scaling (KartaView 2020),None (Photogrammetric Estimate),KV_2020_SEQ_12
+T13,Tecoma stans,97.09,60.5,UNCERTAIN_HISTORICAL_PHOTO_ONLY,PHOTO_ESTIMATED_ONLY,3.8,5.0,6.5,2.6,3.5,4.5,1.4,1.8,2.2,Unmeasured,Historical Perspective Scaling (KartaView 2020),None (Photogrammetric Estimate),KV_2020_SEQ_13

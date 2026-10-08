@@ -1,0 +1,19 @@
+{
+  "execution_timestamp_utc": "20261007_093905",
+  "checks": {
+    "same_grid_shape": true,
+    "same_grid_coordinates": true,
+    "no_nan_or_inf_in_incremental_output": true,
+    "recomputed_cells_match_affected_logic": true,
+    "reused_cells_count_exact": true,
+    "maximum_error_within_tolerance": true,
+    "certificate_violations_zero": true,
+    "slack_map_non_negative": true,
+    "solver_equivalence_passed": true,
+    "incremental_computation_flag_true": true,
+    "backend_is_gpu": true,
+    "no_frozen_directory_modified": true
+  },
+  "all_checks_passed": true,
+  "readiness_decision": "ACCEPTED_FOR_RESEARCH"
+}

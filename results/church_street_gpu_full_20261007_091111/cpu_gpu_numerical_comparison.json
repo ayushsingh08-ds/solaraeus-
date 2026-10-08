@@ -1,0 +1,96 @@
+{
+  "comparison_results": [
+    {
+      "field": "Direct Shadow Mask",
+      "unit": "-",
+      "tolerance": 0.0,
+      "max_absolute_error": 0.0,
+      "mean_absolute_error": 0.0,
+      "rms_error": 0.0,
+      "p99_error": 0.0,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    },
+    {
+      "field": "Sky View Factor (SVF)",
+      "unit": "-",
+      "tolerance": 0.0001,
+      "max_absolute_error": 1.0547118733938987e-14,
+      "mean_absolute_error": 7.323827315905808e-17,
+      "rms_error": 3.9294175479603514e-16,
+      "p99_error": 8.881784197001252e-16,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    },
+    {
+      "field": "Direct Shortwave Irradiance",
+      "unit": "W/m2",
+      "tolerance": 0.0001,
+      "max_absolute_error": 0.0,
+      "mean_absolute_error": 0.0,
+      "rms_error": 0.0,
+      "p99_error": 0.0,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    },
+    {
+      "field": "Total Shortwave Flux",
+      "unit": "W/m2",
+      "tolerance": 0.01,
+      "max_absolute_error": 3.410605131648481e-13,
+      "mean_absolute_error": 3.08322989393483e-15,
+      "rms_error": 1.4184298256042411e-14,
+      "p99_error": 5.684341886080802e-14,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    },
+    {
+      "field": "Total Longwave Flux",
+      "unit": "W/m2",
+      "tolerance": 0.01,
+      "max_absolute_error": 3.410605131648481e-13,
+      "mean_absolute_error": 7.252993843263839e-15,
+      "rms_error": 2.4430002153565397e-14,
+      "p99_error": 1.1368683772161603e-13,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    },
+    {
+      "field": "Mean Radiant Temperature (Tmrt)",
+      "unit": "K",
+      "tolerance": 0.05,
+      "max_absolute_error": 1.1368683772161603e-13,
+      "mean_absolute_error": 1.172446050471858e-15,
+      "rms_error": 8.205807801969593e-15,
+      "p99_error": 5.684341886080802e-14,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    },
+    {
+      "field": "Thermal Comfort (UTCI)",
+      "unit": "degC",
+      "tolerance": 0.05,
+      "max_absolute_error": 0.0,
+      "mean_absolute_error": 0.0,
+      "rms_error": 0.0,
+      "p99_error": 0.0,
+      "discrepancy_count": 0,
+      "status": "PASS",
+      "evaluated_cells": 28120,
+      "nan_cells": 0
+    }
+  ],
+  "all_passed": true
+}

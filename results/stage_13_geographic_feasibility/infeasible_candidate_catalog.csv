@@ -1,0 +1,75 @@
+candidate_id,x_m,y_m,length_m,width_m,height_m,area_m2,azimuth_deg,tilt_deg,is_feasible,rejection_reason,rejection_message
+CAND_FEAS_0004,-50.0,0.0,5.0,3.0,3.5,15.0,90.0,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 0.0% contained).
+CAND_FEAS_0005,10.0,10.0,8.0,5.0,3.5,40.0,90.0,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (15.97 m2 collision overlap).
+CAND_FEAS_0006,120.0,60.0,6.0,4.0,1.8,24.0,90.0,0.0,False,INSUFFICIENT_CLEARANCE,Underside height (1.80 m) violates minimum pedestrian clearance (2.50 m).
+CAND_FEAS_0007,120.0,60.0,20.0,4.0,3.5,80.0,90.0,0.0,False,EXCEEDS_MAX_DIMENSIONS,Panel footprint area (80.00 m2) or dimensions exceed maximum allowable threshold (50.0 m2).
+CAND_FEAS_0008,120.0,60.0,1.0,1.0,3.5,1.0,90.0,0.0,False,BELOW_MIN_DIMENSIONS,Panel footprint area (1.00 m2) or dimensions below minimum allowable threshold.
+CAND_FEAS_0009,120.0,60.0,12.0,1.5,3.5,18.0,90.0,0.0,False,CONSTRUCTION_CONSTRAINT_VIOLATION,"Aspect ratio (8.00) violates construction limits [1.0, 5.0]."
+CAND_FEAS_0012,124.027,66.906,8.507,3.605,3.263,30.664,103.73,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 59.1% contained).
+CAND_FEAS_0017,111.396,69.934,11.566,4.499,3.562,52.039,112.24,0.0,False,EXCEEDS_MAX_DIMENSIONS,Panel footprint area (52.04 m2) or dimensions exceed maximum allowable threshold (50.0 m2).
+CAND_FEAS_0019,126.935,55.195,10.299,2.949,3.484,30.369,93.22,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 78.8% contained).
+CAND_FEAS_0021,140.807,62.523,3.331,3.998,3.228,13.318,91.38,0.0,False,BUILDING_COLLISION,Panel distance to nearest building (0.310 m) violates minimum setback (0.50 m).
+CAND_FEAS_0022,143.261,64.185,8.211,2.734,4.224,22.448,104.64,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (7.37 m2 collision overlap).
+CAND_FEAS_0026,145.111,70.136,8.453,3.078,4.124,26.017,96.5,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (20.33 m2 collision overlap).
+CAND_FEAS_0027,119.136,69.436,8.824,4.241,2.856,37.425,98.3,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (9.41 m2 collision overlap).
+CAND_FEAS_0028,143.408,67.889,10.549,2.159,3.178,22.78,111.43,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (18.51 m2 collision overlap).
+CAND_FEAS_0029,152.419,71.547,8.349,2.11,3.147,17.619,111.7,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (17.62 m2 collision overlap).
+CAND_FEAS_0033,149.475,61.961,10.922,3.935,4.412,42.977,108.09,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (15.40 m2 collision overlap).
+CAND_FEAS_0034,120.863,71.651,5.952,4.402,3.847,26.199,95.03,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (22.21 m2 collision overlap).
+CAND_FEAS_0035,122.667,71.223,9.488,3.178,4.399,30.158,95.37,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (28.27 m2 collision overlap).
+CAND_FEAS_0036,147.394,63.763,10.78,3.829,3.664,41.278,102.73,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (22.98 m2 collision overlap).
+CAND_FEAS_0037,154.794,62.149,4.341,2.037,4.004,8.844,99.04,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (8.46 m2 collision overlap).
+CAND_FEAS_0038,136.352,64.546,6.519,3.384,3.309,22.061,106.46,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (0.19 m2 collision overlap).
+CAND_FEAS_0039,140.036,71.949,11.888,4.177,3.764,49.65,99.42,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (44.67 m2 collision overlap).
+CAND_FEAS_0041,111.671,58.278,10.185,4.306,3.017,43.854,104.05,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 61.7% contained).
+CAND_FEAS_0042,141.201,63.284,10.599,2.642,4.083,28.001,105.75,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (0.01 m2 collision overlap).
+CAND_FEAS_0044,118.092,69.625,10.387,4.475,4.328,46.479,103.95,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (11.67 m2 collision overlap).
+CAND_FEAS_0045,124.316,71.769,9.234,3.775,4.254,34.854,92.72,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (34.63 m2 collision overlap).
+CAND_FEAS_0048,129.77,66.812,3.229,2.722,3.073,8.79,93.81,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (0.88 m2 collision overlap).
+CAND_FEAS_0051,112.844,55.843,9.313,3.467,3.219,32.291,99.81,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 4.2% contained).
+CAND_FEAS_0052,138.744,67.313,8.649,2.813,3.575,24.33,97.67,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (23.87 m2 collision overlap).
+CAND_FEAS_0053,133.657,63.993,3.206,3.416,4.263,10.95,105.87,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 82.6% contained).
+CAND_FEAS_0055,137.391,56.776,11.012,2.126,3.032,23.41,101.78,0.0,False,CONSTRUCTION_CONSTRAINT_VIOLATION,"Aspect ratio (5.18) violates construction limits [1.0, 5.0]."
+CAND_FEAS_0056,149.185,69.004,11.764,3.755,3.93,44.176,108.85,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (37.35 m2 collision overlap).
+CAND_FEAS_0057,140.499,68.126,3.778,2.439,3.392,9.214,97.43,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (9.21 m2 collision overlap).
+CAND_FEAS_0060,151.845,66.565,7.284,3.944,3.354,28.728,106.87,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (28.73 m2 collision overlap).
+CAND_FEAS_0061,153.939,68.641,5.727,2.918,3.904,16.711,97.82,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (16.71 m2 collision overlap).
+CAND_FEAS_0064,124.755,66.007,4.933,2.085,3.279,10.283,96.87,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 97.5% contained).
+CAND_FEAS_0065,148.472,66.172,10.448,2.619,3.794,27.361,101.32,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (22.14 m2 collision overlap).
+CAND_FEAS_0067,151.234,60.754,11.828,2.777,3.543,32.848,110.3,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (2.83 m2 collision overlap).
+CAND_FEAS_0068,138.306,67.905,7.979,2.279,2.86,18.185,90.01,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (18.18 m2 collision overlap).
+CAND_FEAS_0069,125.294,70.261,4.023,3.425,2.923,13.78,107.22,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (11.78 m2 collision overlap).
+CAND_FEAS_0070,153.531,67.054,6.226,3.563,4.03,22.18,102.16,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (22.18 m2 collision overlap).
+CAND_FEAS_0072,139.809,66.211,4.689,4.08,4.179,19.135,103.51,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (12.98 m2 collision overlap).
+CAND_FEAS_0073,112.227,70.719,3.462,3.438,2.836,11.902,91.21,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (0.88 m2 collision overlap).
+CAND_FEAS_0074,142.089,66.447,3.087,2.552,4.419,7.88,111.13,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (6.91 m2 collision overlap).
+CAND_FEAS_0075,110.553,70.384,11.463,3.01,4.291,34.505,101.53,0.0,False,BUILDING_COLLISION,Panel distance to nearest building (0.441 m) violates minimum setback (0.50 m).
+CAND_FEAS_0078,142.445,60.942,6.438,4.12,3.62,26.527,112.39,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 98.3% contained).
+CAND_FEAS_0080,152.008,63.442,4.436,4.151,4.196,18.413,106.9,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (16.04 m2 collision overlap).
+CAND_FEAS_0085,131.416,64.714,6.783,2.255,4.105,15.293,93.35,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 87.9% contained).
+CAND_FEAS_0086,146.252,64.983,4.085,2.299,3.113,9.39,107.3,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (7.43 m2 collision overlap).
+CAND_FEAS_0087,118.73,69.524,4.586,4.457,4.471,20.441,113.96,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (5.28 m2 collision overlap).
+CAND_FEAS_0088,153.372,63.042,3.614,2.001,4.138,7.231,94.67,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (7.23 m2 collision overlap).
+CAND_FEAS_0089,142.898,71.122,7.718,3.676,3.437,28.374,109.33,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (21.67 m2 collision overlap).
+CAND_FEAS_0091,128.04,67.693,9.767,2.232,3.318,21.804,103.05,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (4.77 m2 collision overlap).
+CAND_FEAS_0094,133.264,68.333,7.544,4.061,3.041,30.635,90.66,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (24.85 m2 collision overlap).
+CAND_FEAS_0095,121.833,69.179,5.512,2.167,3.411,11.944,104.55,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (2.34 m2 collision overlap).
+CAND_FEAS_0096,143.889,68.835,3.381,2.65,2.884,8.96,109.96,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (4.81 m2 collision overlap).
+CAND_FEAS_0099,147.619,64.87,9.723,4.263,3.742,41.448,111.89,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (29.70 m2 collision overlap).
+CAND_FEAS_0100,135.482,65.389,4.999,3.109,3.344,15.542,105.5,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (2.27 m2 collision overlap).
+CAND_FEAS_0101,122.859,65.752,9.65,3.22,3.105,31.076,93.7,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 95.9% contained).
+CAND_FEAS_0102,121.443,55.533,4.782,2.908,3.582,13.907,105.05,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 50.4% contained).
+CAND_FEAS_0105,149.812,64.253,11.14,3.914,3.165,43.599,102.45,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (39.18 m2 collision overlap).
+CAND_FEAS_0106,154.267,67.489,4.525,2.805,2.807,12.692,109.47,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (12.69 m2 collision overlap).
+CAND_FEAS_0107,130.413,71.313,5.088,2.587,4.162,13.162,100.08,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (13.16 m2 collision overlap).
+CAND_FEAS_0108,128.747,70.858,11.511,4.099,4.371,47.189,101.92,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (47.19 m2 collision overlap).
+CAND_FEAS_0110,150.781,68.513,4.189,3.484,2.999,14.596,113.28,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (14.60 m2 collision overlap).
+CAND_FEAS_0111,114.459,69.837,5.438,3.352,2.932,18.23,113.57,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (0.35 m2 collision overlap).
+CAND_FEAS_0112,148.96,67.403,10.868,2.322,3.194,25.236,95.85,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (20.66 m2 collision overlap).
+CAND_FEAS_0115,117.415,70.935,5.201,2.216,3.817,11.524,106.63,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (5.75 m2 collision overlap).
+CAND_FEAS_0117,134.14,70.581,3.94,2.965,3.479,11.682,100.62,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (11.68 m2 collision overlap).
+CAND_FEAS_0123,114.921,56.434,7.9,3.647,3.325,28.816,91.66,0.0,False,OUT_OF_BOUNDS,Panel footprint extends outside allowed intervention boundary (only 34.4% contained).
+CAND_FEAS_0124,135.062,60.183,11.639,4.376,4.478,50.929,102.68,0.0,False,EXCEEDS_MAX_DIMENSIONS,Panel footprint area (50.93 m2) or dimensions exceed maximum allowable threshold (50.0 m2).
+CAND_FEAS_0125,123.557,68.272,4.202,4.32,3.85,18.151,92.12,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (4.23 m2 collision overlap).
+CAND_FEAS_0127,134.6,69.089,5.884,3.128,4.282,18.407,109.1,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (18.41 m2 collision overlap).
+CAND_FEAS_0128,139.203,65.6,7.073,3.536,3.443,25.01,113.81,0.0,False,BUILDING_COLLISION,Panel footprint collides directly with building geometry (12.42 m2 collision overlap).

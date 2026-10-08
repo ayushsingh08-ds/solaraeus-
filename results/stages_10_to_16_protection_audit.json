@@ -1,0 +1,138 @@
+{
+  "audit_timestamp_utc": "2026-10-07T19:48:51.001360+00:00",
+  "audit_scope": "Stages 10 through 16 protection compliance",
+  "all_protected_files_intact": true,
+  "protected_file_count": 14,
+  "checksum_results": [
+    {
+      "file": "results/church_street_static_20261006_232110/provenance.json",
+      "exists": true,
+      "sha256": "af2600043f0004570986c7d6426410e799a8f1b8e99072ad271c758b2c87ea4b",
+      "expected_sha256": "af2600043f0004570986c7d6426410e799a8f1b8e99072ad271c758b2c87ea4b",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_static_20261006_232110/shadow_results.npz",
+      "exists": true,
+      "sha256": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+      "expected_sha256": "3797b323c92fefc751f683419d45ede325e3b7b02e4bb541f1d004852edfa68a",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_static_20261006_232110/visibility_results.npz",
+      "exists": true,
+      "sha256": "62bcfeb3f1cd88929f94bb3401aee57244fc2483f38f8035537fce362c865584",
+      "expected_sha256": "62bcfeb3f1cd88929f94bb3401aee57244fc2483f38f8035537fce362c865584",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_static_20261006_232110/shortwave_results.npz",
+      "exists": true,
+      "sha256": "422ef07df10a4ef95d34e3c8918720f5724b0d3e79f52c0e2c99cc1b0a69cc50",
+      "expected_sha256": "422ef07df10a4ef95d34e3c8918720f5724b0d3e79f52c0e2c99cc1b0a69cc50",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_static_20261006_232110/longwave_results.npz",
+      "exists": true,
+      "sha256": "51d58b770700aa0d5d435036f625fa575e35d08f41716c3566ebe60c222f1b10",
+      "expected_sha256": "51d58b770700aa0d5d435036f625fa575e35d08f41716c3566ebe60c222f1b10",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_static_20261006_232110/tmrt_results.npz",
+      "exists": true,
+      "sha256": "9e81b19b628fa4a0c7e21502cb4854a9e02a6fccbed9174d73ffb6033da8743d",
+      "expected_sha256": "9e81b19b628fa4a0c7e21502cb4854a9e02a6fccbed9174d73ffb6033da8743d",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_static_20261006_232110/utci_results.npz",
+      "exists": true,
+      "sha256": "86cac88ea9d44bb82806d7014aead5e60a41df6fe46983bed4b9f7a2044ede45",
+      "expected_sha256": "86cac88ea9d44bb82806d7014aead5e60a41df6fe46983bed4b9f7a2044ede45",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_shade_full_20261007_001600/provenance.json",
+      "exists": true,
+      "sha256": "a9532caf4cd13b4d5239cc633cda17bfeb45aedb10dbd4b4c14a89674d8514e0",
+      "expected_sha256": "a9532caf4cd13b4d5239cc633cda17bfeb45aedb10dbd4b4c14a89674d8514e0",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_shade_full_20261007_001600/intervention_tmrt.npz",
+      "exists": true,
+      "sha256": "afddc4318c52d994a1c0221dc0f0834155b72ab0936669f7786da9fc0a0ec757",
+      "expected_sha256": "afddc4318c52d994a1c0221dc0f0834155b72ab0936669f7786da9fc0a0ec757",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_shade_incremental_20261007_081114/provenance.json",
+      "exists": true,
+      "sha256": "36b393a4c2c675372182745954cc294813f79e84c6f51478eb62af68925d1f4c",
+      "expected_sha256": "36b393a4c2c675372182745954cc294813f79e84c6f51478eb62af68925d1f4c",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "results/church_street_preprocessing_20261006_224238/shadow_context_mesh.json",
+      "exists": true,
+      "sha256": "33c9ca008a6fa20e5155fb54652a7d3f2f31c5d20928c2cd0e1ecc360f47104e",
+      "expected_sha256": "33c9ca008a6fa20e5155fb54652a7d3f2f31c5d20928c2cd0e1ecc360f47104e",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "bengaluru_church_street_bbmp_trees_july2026_supplement.zip",
+      "exists": true,
+      "sha256": "ab5d5fc758bc06c344f3cc445616fe850c2f713022f50bc8f73b43f61ab6f076",
+      "expected_sha256": "ab5d5fc758bc06c344f3cc445616fe850c2f713022f50bc8f73b43f61ab6f076",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "bengaluru_church_street_raw_sources_2026-10-07.zip",
+      "exists": true,
+      "sha256": "e0871ba3c2de21ec7cb708601aaa533fc2beb47e752ec2a3796f97dcffc69f92",
+      "expected_sha256": "e0871ba3c2de21ec7cb708601aaa533fc2beb47e752ec2a3796f97dcffc69f92",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    },
+    {
+      "file": "data/processed/researcher_signoff.json",
+      "exists": true,
+      "sha256": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d",
+      "expected_sha256": "473fed478df25ea6586d9bbbee7d9f60c6065d23f2b2b71388a99474ba50980d",
+      "intact": true,
+      "status": "INTACT_AND_UNCHANGED"
+    }
+  ],
+  "terrain_and_tree_physics_isolated": true,
+  "no_tree_geometry_integrated_into_solver": true,
+  "no_fabdem_elevation_integrated_into_solver": true,
+  "stage_completion_states": {
+    "STAGE_10": "COMPLETE",
+    "STAGE_11": "COMPLETE",
+    "STAGE_12": "COMPLETE",
+    "STAGE_13": "COMPLETE",
+    "STAGE_14": "COMPLETE",
+    "STAGE_15": "COMPLETE",
+    "STAGE_16": "COMPLETE"
+  },
+  "test_suite_status": {
+    "total_tests": 323,
+    "passed_tests": 323,
+    "failed_tests": 0,
+    "exit_code": 0
+  }
+}

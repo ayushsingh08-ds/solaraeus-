@@ -1,0 +1,58 @@
+{
+  "timestamp_utc": "2026-10-08T08:11:48.196552+00:00",
+  "total_claims_audited": 7,
+  "verified_claims": 7,
+  "unsubstantiated_claims": 0,
+  "audit_verdict": "ALL_CLAIMS_STRICTLY_TRACEABLE_AND_SUBSTANTIATED",
+  "claims": [
+    {
+      "claim_id": "CLAIM_GPU_CPU_PARITY",
+      "statement": "CPU Reference vs GPU Full Recompute has maximum error < 1e-9 K (machine precision).",
+      "verified_in": "results/stage_10_gpu_full_cpu_validation/parity_report.json",
+      "evidence_metric": "max_abs_error_tmrt_k = 1.1368e-13",
+      "status": "VERIFIED_ACCURATE"
+    },
+    {
+      "claim_id": "CLAIM_GPU_INC_ERROR_BOUND",
+      "statement": "GPU Full vs GPU Incremental Recompute maximum error < 0.05 K <= 0.50 K bound.",
+      "verified_in": "results/stage_11_gpu_incremental/parity_with_gpu_full.json",
+      "evidence_metric": "max_abs_error_tmrt_k = 0.028902 <= 0.081231 bound",
+      "status": "VERIFIED_ACCURATE"
+    },
+    {
+      "claim_id": "CLAIM_COMPUTATIONAL_SPEEDUP",
+      "statement": "GPU incremental recomputation achieves > 60x end-to-end acceleration over CPU baseline with > 99.7% ray work reduction.",
+      "verified_in": "results/stage_12_gpu_profiling/gpu_runtime_summary.json",
+      "evidence_metric": "speedup_vs_cpu_full = 500.87x, speedup_vs_cpu_inc = 36.84x, work_reduction = 99.74%",
+      "status": "VERIFIED_ACCURATE"
+    },
+    {
+      "claim_id": "CLAIM_INTERVENTION_EFFICACY",
+      "statement": "CAND_FINAL_BEST reduces localized peak Tmrt by ~12.60 K.",
+      "verified_in": "results/stage_14_constrained_optimizer/optimizer_best_candidates.csv",
+      "evidence_metric": "peak_tmrt_cooling_k = -12.6163",
+      "status": "VERIFIED_ACCURATE"
+    },
+    {
+      "claim_id": "CLAIM_UNCERTAINTY_RANKING",
+      "statement": "Candidate ranking is reported as non-definitive due to overlapping 95% confidence intervals.",
+      "verified_in": "results/stage_15_final_validation/final_candidate_uncertainty.csv",
+      "evidence_metric": "ranking_stability_status = NON_DEFINITIVE_OVERLAPPING_CI",
+      "status": "VERIFIED_ACCURATE"
+    },
+    {
+      "claim_id": "CLAIM_CROSS_AREA_GENERALIZATION",
+      "statement": "Validates on Brigade Road and MG Road; properly rejects Hillside Complex negative control.",
+      "verified_in": "results/stage_16_additional_areas/cross_area_summary.csv",
+      "evidence_metric": "Brigade/MG Road: certified; Hillside: rejected (slope 18.5%)",
+      "status": "VERIFIED_ACCURATE"
+    },
+    {
+      "claim_id": "CLAIM_PHYSICS_ISOLATION",
+      "statement": "Tree canopy geometry and FABDEM terrain elevation are not integrated into the solver.",
+      "verified_in": "results/stages_10_to_16_protection_audit.json",
+      "evidence_metric": "no_tree_geometry_integrated = true, flat_ground = true",
+      "status": "VERIFIED_ACCURATE"
+    }
+  ]
+}

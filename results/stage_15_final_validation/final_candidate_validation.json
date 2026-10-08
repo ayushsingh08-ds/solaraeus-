@@ -1,0 +1,104 @@
+[
+  {
+    "candidate_id": "CAND_FINAL_BEST",
+    "role": "Selected Optimal Candidate",
+    "parameters": {
+      "x": 155.0,
+      "y": 55.0,
+      "length": 4.414,
+      "width": 3.084,
+      "height": 3.459,
+      "heading_deg": 103.28,
+      "azimuth": 103.28,
+      "albedo": 0.46,
+      "tilt": 0.0,
+      "emissivity": 0.9,
+      "area_m2": 13.612776
+    },
+    "baseline_objective": 54.8906,
+    "intervention_objective": 54.9535,
+    "absolute_improvement": -0.063,
+    "relative_improvement_pct": -0.115,
+    "mean_utci_c": 36.485,
+    "p90_utci_c": 36.8,
+    "peak_cooling_tmrt_k": 12.603,
+    "runtimes_s": {
+      "cpu_full": 4.712,
+      "cpu_inc": 0.433,
+      "gpu_full": 0.111,
+      "gpu_inc": 1.4687
+    },
+    "speedup_vs_cpu_full": 3.2,
+    "speedup_vs_gpu_full": 0.1,
+    "parity_status": "PASS",
+    "certificate_status": "certified"
+  },
+  {
+    "candidate_id": "CAND_CANONICAL",
+    "role": "Canonical Benchmark Candidate (BLR_SHADE_001)",
+    "parameters": {
+      "x": 131.789,
+      "y": 64.007,
+      "length": 6.0,
+      "width": 3.0,
+      "height": 3.5,
+      "heading_deg": 102.44,
+      "azimuth": 102.44,
+      "albedo": 0.6,
+      "tilt": 0.0,
+      "emissivity": 0.9,
+      "area_m2": 18.0
+    },
+    "baseline_objective": 54.8906,
+    "intervention_objective": 54.9674,
+    "absolute_improvement": -0.0768,
+    "relative_improvement_pct": -0.14,
+    "mean_utci_c": 36.477,
+    "p90_utci_c": 36.8,
+    "peak_cooling_tmrt_k": 12.616,
+    "runtimes_s": {
+      "cpu_full": 3.722,
+      "cpu_inc": 0.433,
+      "gpu_full": 0.355,
+      "gpu_inc": 0.0956
+    },
+    "speedup_vs_cpu_full": 38.9,
+    "speedup_vs_gpu_full": 3.7,
+    "parity_status": "PASS",
+    "certificate_status": "certified"
+  },
+  {
+    "candidate_id": "CAND_ALT_LHS",
+    "role": "Alternative Candidate 1 (LHS Top Rank)",
+    "parameters": {
+      "x": 153.479,
+      "y": 57.458,
+      "length": 4.145,
+      "width": 3.832,
+      "height": 3.733,
+      "heading_deg": 105.7,
+      "azimuth": 105.7,
+      "albedo": 0.74,
+      "tilt": 0.0,
+      "emissivity": 0.9,
+      "area_m2": 15.883639999999998
+    },
+    "baseline_objective": 54.8906,
+    "intervention_objective": 54.9591,
+    "absolute_improvement": -0.0685,
+    "relative_improvement_pct": -0.125,
+    "mean_utci_c": 36.48,
+    "p90_utci_c": 36.8,
+    "peak_cooling_tmrt_k": 12.527,
+    "runtimes_s": {
+      "cpu_full": 4.388,
+      "cpu_inc": 0.377,
+      "gpu_full": 0.341,
+      "gpu_inc": 0.0712
+    },
+    "speedup_vs_cpu_full": 61.6,
+    "speedup_vs_gpu_full": 4.8,
+    "parity_status": "PASS",
+    "certificate_status": "certified"
+  }
+]

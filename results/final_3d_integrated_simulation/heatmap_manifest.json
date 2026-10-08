@@ -1,0 +1,14 @@
+{
+  "status": "HEATMAPS_GENERATED_FROM_3D_SIMULATION",
+  "fields": [
+    "direct_shadow",
+    "cloud_shadow",
+    "svf",
+    "shortwave",
+    "longwave",
+    "tmrt",
+    "utci",
+    "cooling_delta"
+  ],
+  "draped_surface": "pedestrian_receptor_plane"
+}

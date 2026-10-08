@@ -1,0 +1,7 @@
+{
+  "status": "SHADOWS_RAY_TRACED_IN_3D",
+  "kernel": "Cascaded PCF Ray-Filter (4K)",
+  "parity_error_kelvin": 0.0,
+  "benchmark_condition": "14:30:00 IST (Forcing Benchmark)",
+  "total_active_rays": 100
+}

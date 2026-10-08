@@ -1,0 +1,9 @@
+{
+  "area_id": "AREA_BRIGADE_ROAD_EXT",
+  "intervention_objective_mean": 55.4597,
+  "ci_95_bounds": [
+    55.2097,
+    55.7097
+  ],
+  "cooling_efficacy_robust": true
+}
