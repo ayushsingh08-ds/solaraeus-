@@ -1,0 +1,20 @@
+{
+ "CONSERVATIVE_LARGE": {
+  "crown_radius_x": 7.5,
+  "crown_radius_y": 7.5,
+  "height": 16.0,
+  "trunk_radius": 0.325
+ },
+ "CONSERVATIVE_SMALL": {
+  "crown_radius_x": 4.75,
+  "crown_radius_y": 4.75,
+  "height": 11.0,
+  "trunk_radius": 0.225
+ },
+ "NOMINAL_PROVISIONAL": {
+  "crown_radius_x": 6.0,
+  "crown_radius_y": 6.0,
+  "height": 13.5,
+  "trunk_radius": 0.275
+ }
+}

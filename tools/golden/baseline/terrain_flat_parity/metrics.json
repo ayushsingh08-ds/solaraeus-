@@ -1,0 +1,6 @@
+{
+ "flat_probe_all_valid": true,
+ "flat_probe_elevation_max": 0.0,
+ "max_tmrt_diff_vs_flat_reference": 0.0,
+ "terrain_has_terrain": true
+}

@@ -1,0 +1,13 @@
+{
+ "bounds_3d": [
+  0.0,
+  4.0,
+  0.0,
+  6.0,
+  0.0,
+  8.0
+ ],
+ "num_triangles": 12,
+ "num_vertices": 8,
+ "total_surface_area": 208.0
+}

@@ -1,0 +1,31 @@
+{
+ "affected_cells": 4636,
+ "bound_stats": {
+  "max": 63.78690198658455,
+  "mean": 8.005497647344452,
+  "min": 0.0,
+  "sum": 51235.1849430045
+ },
+ "edit": "AddBuilding",
+ "ground_truth_tmrt_stats": {
+  "max": 50.47019439877454,
+  "mean": 44.866600473016625,
+  "min": 27.4413553180471,
+  "sum": 287146.2430273064
+ },
+ "incremental_tmrt_stats": {
+  "max": 50.47019439877454,
+  "mean": 44.866600473016625,
+  "min": 27.4413553180471,
+  "sum": 287146.2430273064
+ },
+ "is_within_tolerance": true,
+ "max_actual_error": 0.0,
+ "max_predicted_bound": 63.78690198658455,
+ "num_violations": 0,
+ "reused_cells": 1764,
+ "reused_max_error": 0.0,
+ "status": "certified",
+ "tolerance": 0.5,
+ "total_cells": 6400
+}

@@ -1,0 +1,31 @@
+{
+ "affected_cells": 5692,
+ "bound_stats": {
+  "max": 63.191410327451194,
+  "mean": 10.861132007349074,
+  "min": 0.0,
+  "sum": 69511.24484703408
+ },
+ "edit": "ChangeHeight",
+ "ground_truth_tmrt_stats": {
+  "max": 49.87091030573606,
+  "mean": 45.89327810695636,
+  "min": 27.37934011810387,
+  "sum": 293716.9798845207
+ },
+ "incremental_tmrt_stats": {
+  "max": 49.87091030573606,
+  "mean": 45.89327810695636,
+  "min": 27.37934011810387,
+  "sum": 293716.9798845207
+ },
+ "is_within_tolerance": true,
+ "max_actual_error": 0.0,
+ "max_predicted_bound": 63.191410327451194,
+ "num_violations": 0,
+ "reused_cells": 708,
+ "reused_max_error": 0.0,
+ "status": "certified",
+ "tolerance": 0.5,
+ "total_cells": 6400
+}

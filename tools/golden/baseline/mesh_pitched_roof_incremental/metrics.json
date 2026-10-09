@@ -1,0 +1,19 @@
+{
+ "affected_cells": 3599,
+ "bound_stats": {
+  "max": 59.49172093757355,
+  "mean": 17.09607029968727,
+  "min": 0.0,
+  "sum": 61545.85307887418
+ },
+ "edit": "AddMeshPitchedRoof",
+ "is_within_tolerance": true,
+ "max_actual_error": 0.0,
+ "max_predicted_bound": 59.49172093757355,
+ "num_violations": 0,
+ "reused_cells": 1,
+ "reused_max_error": 0.0,
+ "status": "certified",
+ "tolerance": 0.5,
+ "total_cells": 3600
+}

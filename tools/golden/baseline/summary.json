@@ -1,0 +1,99 @@
+{
+ "cases": {
+  "core_canyon_full": {
+   "area": "core",
+   "n_arrays": 6,
+   "n_metrics": 3,
+   "note": "urban canyon full recomputation",
+   "status": "OK"
+  },
+  "core_occlusion_full": {
+   "area": "core",
+   "n_arrays": 6,
+   "n_metrics": 2,
+   "note": "occlusion scene",
+   "status": "OK"
+  },
+  "core_single_box_full": {
+   "area": "core",
+   "n_arrays": 6,
+   "n_metrics": 6,
+   "note": "canonical 80m scene, full recomputation",
+   "status": "OK"
+  },
+  "incr_add_building": {
+   "area": "incremental",
+   "n_arrays": 9,
+   "n_metrics": 14,
+   "note": "certified incremental, AddBuildingEdit",
+   "status": "OK"
+  },
+  "incr_change_height": {
+   "area": "incremental",
+   "n_arrays": 9,
+   "n_metrics": 14,
+   "note": "certified incremental, ChangeHeightEdit",
+   "status": "OK"
+  },
+  "incr_exact_add_building": {
+   "area": "incremental",
+   "n_arrays": 7,
+   "n_metrics": 2,
+   "note": "exact incremental, AddBuildingEdit",
+   "status": "OK"
+  },
+  "incr_remove_building": {
+   "area": "incremental",
+   "n_arrays": 9,
+   "n_metrics": 14,
+   "note": "certified incremental, RemoveBuildingEdit",
+   "status": "OK"
+  },
+  "mesh_box_geometry": {
+   "area": "mesh",
+   "n_arrays": 4,
+   "n_metrics": 4,
+   "note": "box mesh invariants",
+   "status": "OK"
+  },
+  "mesh_pitched_roof_incremental": {
+   "area": "mesh",
+   "n_arrays": 7,
+   "n_metrics": 12,
+   "note": "certified incremental on a triangular mesh edit",
+   "status": "OK"
+  },
+  "terrain_flat_parity": {
+   "area": "terrain",
+   "n_arrays": 9,
+   "n_metrics": 4,
+   "note": "flat terrain must match flat-ground reference",
+   "status": "OK"
+  },
+  "terrain_inclined": {
+   "area": "terrain",
+   "n_arrays": 7,
+   "n_metrics": 2,
+   "note": "inclined synthetic slope",
+   "status": "OK"
+  },
+  "vegetation_core_trees": {
+   "area": "vegetation",
+   "n_arrays": 8,
+   "n_metrics": 4,
+   "note": "six core trees, nominal geometry",
+   "status": "OK"
+  },
+  "vegetation_tree_states": {
+   "area": "vegetation",
+   "n_arrays": 6,
+   "n_metrics": 3,
+   "note": "tree geometry across uncertainty states",
+   "status": "OK"
+  }
+ },
+ "gpu_available": true,
+ "numpy": "2.2.6",
+ "platform": "Windows-11-10.0.26300-SP0",
+ "python": "3.12.6"
+}
