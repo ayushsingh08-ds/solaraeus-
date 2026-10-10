@@ -17,7 +17,7 @@ from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds, bu
 
 
 @dataclass
-class TwoPanelParams:
+class DualPanelParams:
     """
     Mathematical parameterization of two rectangular overhead shade panels.
 
@@ -67,8 +67,8 @@ class TwoPanelParams:
         )
 
     @classmethod
-    def from_panels(cls, p1: ShadePanelParams, p2: ShadePanelParams) -> TwoPanelParams:
-        """Constructs TwoPanelParams from two single panel instances."""
+    def from_panels(cls, p1: ShadePanelParams, p2: ShadePanelParams) -> DualPanelParams:
+        """Constructs DualPanelParams from two single panel instances."""
         return cls(
             x1=p1.x, y1=p1.y, length1=p1.length, width1=p1.width,
             height1=p1.height, heading_deg1=p1.heading_deg, albedo1=p1.albedo,
@@ -99,13 +99,13 @@ class TwoPanelParams:
         ]
         return all(math.isfinite(v) for v in vals)
 
-    def canonicalize(self) -> TwoPanelParams:
+    def canonicalize(self) -> DualPanelParams:
         """
         Orders panels canonically so (panel1, panel2) is unique under permutation symmetry.
         Ordering rule: panel with smaller x coordinate comes first; tie-break by y.
         """
         if (self.x1 > self.x2) or (math.isclose(self.x1, self.x2, abs_tol=1e-5) and self.y1 > self.y2):
-            return TwoPanelParams(
+            return DualPanelParams(
                 x1=self.x2, y1=self.y2, length1=self.length2, width1=self.width2,
                 height1=self.height2, heading_deg1=self.heading_deg2, albedo1=self.albedo2,
                 x2=self.x1, y2=self.y1, length2=self.length1, width2=self.width1,
@@ -138,7 +138,7 @@ class TwoPanelParams:
         }
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any]) -> TwoPanelParams:
+    def from_dict(cls, data: Dict[str, Any]) -> DualPanelParams:
         """Instantiates parameters from dictionary."""
         if "panel1" in data and "panel2" in data:
             p1 = ShadePanelParams.from_dict(data["panel1"])
@@ -169,8 +169,8 @@ class TwoPanelParams:
         ], dtype=np.float64)
 
     @classmethod
-    def from_vector(cls, v: np.ndarray) -> TwoPanelParams:
-        """Instantiates TwoPanelParams from 14-element vector."""
+    def from_vector(cls, v: np.ndarray) -> DualPanelParams:
+        """Instantiates DualPanelParams from 14-element vector."""
         return cls(
             x1=float(v[0]), y1=float(v[1]), length1=float(v[2]), width1=float(v[3]),
             height1=float(v[4]), heading_deg1=float(v[5]), albedo1=float(v[6]),
@@ -196,7 +196,7 @@ class TwoPanelParams:
 
 
 @dataclass
-class TwoPanelBounds:
+class DualPanelBounds:
     """
     Configurable bounds and construction constraints for two-panel optimization.
     """
@@ -206,30 +206,30 @@ class TwoPanelBounds:
     max_total_area_m2: float = 60.0
     min_total_area_m2: float = 10.0
 
-    def contains(self, p: TwoPanelParams) -> bool:
+    def contains(self, p: DualPanelParams) -> bool:
         """Checks if both panels satisfy individual parameter bounds."""
         if not p.is_finite():
             return False
         return self.panel_bounds.contains(p.panel1) and self.panel_bounds.contains(p.panel2)
 
-    def clip(self, p: TwoPanelParams) -> TwoPanelParams:
+    def clip(self, p: DualPanelParams) -> DualPanelParams:
         """Clips both panels into allowable box bounds."""
         c1 = self.panel_bounds.clip(p.panel1)
         c2 = self.panel_bounds.clip(p.panel2)
-        return TwoPanelParams.from_panels(c1, c2)
+        return DualPanelParams.from_panels(c1, c2)
 
     def sample_uniform(self, rng: np.random.Generator, n_samples: Optional[int] = None) -> Any:
         """Samples random two-panel candidate(s) uniformly within parameter bounds."""
-        def _sample_one() -> TwoPanelParams:
+        def _sample_one() -> DualPanelParams:
             p1 = self.panel_bounds.sample_uniform(rng)
             p2 = self.panel_bounds.sample_uniform(rng)
-            return TwoPanelParams.from_panels(p1, p2).canonicalize()
+            return DualPanelParams.from_panels(p1, p2).canonicalize()
 
         if n_samples is not None:
             return [_sample_one() for _ in range(n_samples)]
         return _sample_one()
 
-    def sample_lhs(self, n_samples: int, rng: Optional[np.random.Generator] = None) -> List[TwoPanelParams]:
+    def sample_lhs(self, n_samples: int, rng: Optional[np.random.Generator] = None) -> List[DualPanelParams]:
         """
         Samples candidates using Latin Hypercube Sampling across all 14 dimensions.
         """
@@ -266,12 +266,12 @@ class TwoPanelBounds:
         scaled = bounds_arr[:, 0] + lhs_matrix * (bounds_arr[:, 1] - bounds_arr[:, 0])
         result = []
         for i in range(n_samples):
-            candidate = TwoPanelParams.from_vector(scaled[i]).canonicalize()
+            candidate = DualPanelParams.from_vector(scaled[i]).canonicalize()
             result.append(candidate)
         return result
 
     @classmethod
-    def get_canonical_church_street_bounds(cls) -> TwoPanelBounds:
+    def get_canonical_church_street_bounds(cls) -> DualPanelBounds:
         """Preconfigured realistic bounds for Church Street two-panel optimization."""
         return cls(
             panel_bounds=ParameterBounds.get_canonical_church_street_bounds(),

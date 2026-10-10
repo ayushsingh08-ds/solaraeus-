@@ -22,17 +22,17 @@ try:
 except ImportError:
     SKLEARN_AVAILABLE = False
 
-from solaraeus.placement.dual_panel_parameters import TwoPanelParams
-from solaraeus.placement.dual_panel_evaluation_ledger import TwoPanelCandidateRecord
+from solaraeus.placement.dual_panel_parameters import DualPanelParams
+from solaraeus.placement.dual_panel_evaluation_ledger import DualPanelCandidateRecord
 
 
-TWO_PANEL_FEATURE_NAMES: Tuple[str, ...] = (
+DUAL_PANEL_FEATURE_NAMES: Tuple[str, ...] = (
     "x1", "y1", "length1", "width1", "height1", "heading_deg1", "albedo1", "area1_m2",
     "x2", "y2", "length2", "width2", "height2", "heading_deg2", "albedo2", "area2_m2",
     "total_area_m2", "center_distance_m", "separation_distance_m", "delta_height_m",
 )
 
-TWO_PANEL_DEFAULT_TARGETS: Tuple[str, ...] = (
+DUAL_PANEL_DEFAULT_TARGETS: Tuple[str, ...] = (
     "objective_value",
     "mean_utci_c",
     "p90_utci_c",
@@ -44,7 +44,7 @@ TWO_PANEL_DEFAULT_TARGETS: Tuple[str, ...] = (
 
 
 @dataclass
-class TwoPanelSurrogateConfig:
+class DualPanelSurrogateConfig:
     """Hyperparameters and configuration for two-panel surrogate model training."""
     model_type: str = "random_forest"         # "random_forest", "extra_trees"
     n_estimators: int = 100
@@ -52,8 +52,8 @@ class TwoPanelSurrogateConfig:
     min_samples_split: int = 2
     min_samples_leaf: int = 1
     seed: int = 42
-    target_names: Tuple[str, ...] = TWO_PANEL_DEFAULT_TARGETS
-    feature_names: Tuple[str, ...] = TWO_PANEL_FEATURE_NAMES
+    target_names: Tuple[str, ...] = DUAL_PANEL_DEFAULT_TARGETS
+    feature_names: Tuple[str, ...] = DUAL_PANEL_FEATURE_NAMES
     use_feature_scaling: bool = True
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,7 +71,7 @@ class TwoPanelSurrogateConfig:
 
 
 @dataclass
-class TwoPanelSurrogatePrediction:
+class DualPanelSurrogatePrediction:
     """Pointwise prediction containing target means, uncertainties, and feasibility probability."""
     means: Dict[str, float]
     stds: Dict[str, float]
@@ -95,14 +95,14 @@ class TwoPanelSurrogatePrediction:
         }
 
 
-def extract_two_panel_features(params: TwoPanelParams | Dict[str, Any],
-                               feature_names: Sequence[str] = TWO_PANEL_FEATURE_NAMES) -> np.ndarray:
+def extract_dual_panel_features(params: DualPanelParams | Dict[str, Any],
+                               feature_names: Sequence[str] = DUAL_PANEL_FEATURE_NAMES) -> np.ndarray:
     """
     Extracts permutation-invariant numeric feature vector for a two-panel configuration.
     Canonicalizes so x1 <= x2 before feature extraction.
     """
     if isinstance(params, dict):
-        p = TwoPanelParams.from_dict(params).canonicalize()
+        p = DualPanelParams.from_dict(params).canonicalize()
     else:
         p = params.canonicalize()
 
@@ -127,7 +127,7 @@ def extract_two_panel_features(params: TwoPanelParams | Dict[str, Any],
     return np.array([float(feat_map.get(f, 0.0)) for f in feature_names], dtype=np.float64)
 
 
-def extract_two_panel_targets(record: TwoPanelCandidateRecord, target_names: Sequence[str]) -> np.ndarray:
+def extract_dual_panel_targets(record: DualPanelCandidateRecord, target_names: Sequence[str]) -> np.ndarray:
     """Extracts ground-truth physics targets from a two-panel record."""
     vals = []
     m = record.metrics or {}
@@ -142,7 +142,7 @@ def extract_two_panel_targets(record: TwoPanelCandidateRecord, target_names: Seq
     return np.array(vals, dtype=np.float64)
 
 
-class TwoPanelSurrogateModel:
+class DualPanelSurrogateModel:
     """
     Ensemble surrogate model predicting thermal comfort objectives and uncertainty for two-panel interventions.
 
@@ -152,10 +152,10 @@ class TwoPanelSurrogateModel:
       P(feasible | x): Feasibility classification probability
     """
 
-    def __init__(self, config: Optional[TwoPanelSurrogateConfig] = None):
+    def __init__(self, config: Optional[DualPanelSurrogateConfig] = None):
         if not SKLEARN_AVAILABLE:
-            raise ImportError("scikit-learn is required for TwoPanelSurrogateModel.")
-        self.config = config or TwoPanelSurrogateConfig()
+            raise ImportError("scikit-learn is required for DualPanelSurrogateModel.")
+        self.config = config or DualPanelSurrogateConfig()
         self.is_fitted: bool = False
         self.regressors: Dict[str, Any] = {}
         self.classifier: Optional[Any] = None
@@ -186,7 +186,7 @@ class TwoPanelSurrogateModel:
                 n_jobs=-1,
             )
 
-    def fit(self, records: List[TwoPanelCandidateRecord]) -> Dict[str, Any]:
+    def fit(self, records: List[DualPanelCandidateRecord]) -> Dict[str, Any]:
         """
         Fits multi-target regressors on valid physically evaluated records and classifier on all records.
         """
@@ -200,7 +200,7 @@ class TwoPanelSurrogateModel:
         X_all_list = []
         y_feas_list = []
         for r in records:
-            X_all_list.append(extract_two_panel_features(r.params, self.config.feature_names))
+            X_all_list.append(extract_dual_panel_features(r.params, self.config.feature_names))
             y_feas_list.append(1 if r.is_feasible else 0)
 
         X_all = np.array(X_all_list, dtype=np.float64)
@@ -235,8 +235,8 @@ class TwoPanelSurrogateModel:
         X_train_list = []
         Y_train_list = []
         for r in trainable_records:
-            X_train_list.append(extract_two_panel_features(r.params, self.config.feature_names))
-            Y_train_list.append(extract_two_panel_targets(r, self.config.target_names))
+            X_train_list.append(extract_dual_panel_features(r.params, self.config.feature_names))
+            Y_train_list.append(extract_dual_panel_targets(r, self.config.target_names))
 
         X_train = np.array(X_train_list, dtype=np.float64)
         Y_train = np.array(Y_train_list, dtype=np.float64)
@@ -284,12 +284,12 @@ class TwoPanelSurrogateModel:
         self.is_fitted = True
         return self.training_metrics
 
-    def predict(self, params: TwoPanelParams | Dict[str, Any]) -> TwoPanelSurrogatePrediction:
+    def predict(self, params: DualPanelParams | Dict[str, Any]) -> DualPanelSurrogatePrediction:
         """Pointwise surrogate prediction with uncertainty quantification."""
         if not self.is_fitted:
-            raise RuntimeError("TwoPanelSurrogateModel must be fitted before predict.")
+            raise RuntimeError("DualPanelSurrogateModel must be fitted before predict.")
 
-        x_vec = extract_two_panel_features(params, self.config.feature_names).reshape(1, -1)
+        x_vec = extract_dual_panel_features(params, self.config.feature_names).reshape(1, -1)
         x_scaled = self.scaler.transform(x_vec) if self.scaler is not None else x_vec
 
         means: Dict[str, float] = {}
@@ -316,19 +316,19 @@ class TwoPanelSurrogateModel:
                 p_feas = 0.0
             risk = 1.0 - p_feas
 
-        return TwoPanelSurrogatePrediction(
+        return DualPanelSurrogatePrediction(
             means=means,
             stds=stds,
             feasibility_probability=p_feas,
             feasibility_risk=risk,
         )
 
-    def predict_batch(self, params_list: Sequence[TwoPanelParams | Dict[str, Any]]) -> List[TwoPanelSurrogatePrediction]:
+    def predict_batch(self, params_list: Sequence[DualPanelParams | Dict[str, Any]]) -> List[DualPanelSurrogatePrediction]:
         """Batch surrogate prediction for candidate screening."""
         if not self.is_fitted or not params_list:
             return []
 
-        X_vecs = np.array([extract_two_panel_features(p, self.config.feature_names) for p in params_list], dtype=np.float64)
+        X_vecs = np.array([extract_dual_panel_features(p, self.config.feature_names) for p in params_list], dtype=np.float64)
         X_scaled = self.scaler.transform(X_vecs) if self.scaler is not None else X_vecs
 
         n = len(params_list)
@@ -356,7 +356,7 @@ class TwoPanelSurrogateModel:
             m = {t_name: float(means_dict[t_name][i]) for t_name in self.config.target_names}
             s = {t_name: float(stds_dict[t_name][i]) for t_name in self.config.target_names}
             p_f = float(p_feas_arr[i])
-            results.append(TwoPanelSurrogatePrediction(
+            results.append(DualPanelSurrogatePrediction(
                 means=m, stds=s, feasibility_probability=p_f, feasibility_risk=1.0 - p_f
             ))
         return results

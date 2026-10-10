@@ -3,7 +3,7 @@ Geographically Constrained AI Intervention Optimization Package for SOLARAEUS.
 
 Provides parameterization, geographic feasibility validation, multi-criteria comfort objectives,
 candidate ledgers, derivative-free search optimizers, surrogate modeling, uncertainty-aware acquisition,
-and multi-path physical validation for single-panel and two-panel shade interventions.
+and multi-path physical validation for single-panel and dual-panel shade interventions.
 """
 
 from __future__ import annotations
@@ -36,33 +36,33 @@ from solaraeus.placement.surrogate_placement_solver import (
     SurrogateOptimizerConfig, SurrogateOptimizationEngine
 )
 
-# Two-Panel Multi-Intervention Exports
+# Dual-Panel Multi-Intervention Exports
 from solaraeus.placement.dual_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
+    DualPanelParams, DualPanelBounds
 )
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelRejectionReason, TwoPanelFeasibilityResult, TwoPanelConstraints, check_two_panel_feasibility
+    DualPanelRejectionReason, DualPanelFeasibilityResult, DualPanelConstraints, check_dual_panel_feasibility
 )
 from solaraeus.placement.dual_panel_objective import (
-    TwoPanelComfortObjectiveConfig, TwoPanelEvaluationMetrics, compute_two_panel_objective, compute_pareto_front
+    DualPanelComfortObjectiveConfig, DualPanelEvaluationMetrics, compute_dual_panel_objective, compute_pareto_front
 )
 from solaraeus.placement.dual_panel_evaluation_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
+    DualPanelCandidateRecord, DualPanelCandidateLedger
 )
 from solaraeus.placement.dual_panel_surrogate_model import (
-    TWO_PANEL_FEATURE_NAMES, TWO_PANEL_DEFAULT_TARGETS, TwoPanelSurrogateConfig,
-    TwoPanelSurrogatePrediction, extract_two_panel_features, extract_two_panel_targets,
-    TwoPanelSurrogateModel
+    DUAL_PANEL_FEATURE_NAMES, DUAL_PANEL_DEFAULT_TARGETS, DualPanelSurrogateConfig,
+    DualPanelSurrogatePrediction, extract_dual_panel_features, extract_dual_panel_targets,
+    DualPanelSurrogateModel
 )
 from solaraeus.placement.dual_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
-    compute_normalized_two_panel_distance
+    DualPanelAcquisitionConfig, DualPanelAcquisitionEngine, generate_dual_panel_seeds,
+    compute_normalized_dual_panel_distance
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
+    DualPanelOptimizerConfig, DualPanelOptimizationEngine
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
-    TwoPanelValidationReport, TwoPanelMultiPathSummary, validate_two_panel_multi_path
+    DualPanelValidationReport, DualPanelMultiPathSummary, validate_dual_panel_multi_path
 )
 
 __all__ = [
@@ -92,35 +92,35 @@ __all__ = [
     "CandidateAcquisitionEngine",
     "SurrogateOptimizerConfig",
     "SurrogateOptimizationEngine",
-    # Two-panel exports
-    "TwoPanelParams",
-    "TwoPanelBounds",
-    "TwoPanelRejectionReason",
-    "TwoPanelFeasibilityResult",
-    "TwoPanelConstraints",
-    "check_two_panel_feasibility",
-    "TwoPanelComfortObjectiveConfig",
-    "TwoPanelEvaluationMetrics",
-    "compute_two_panel_objective",
+    # Dual-panel exports
+    "DualPanelParams",
+    "DualPanelBounds",
+    "DualPanelRejectionReason",
+    "DualPanelFeasibilityResult",
+    "DualPanelConstraints",
+    "check_dual_panel_feasibility",
+    "DualPanelComfortObjectiveConfig",
+    "DualPanelEvaluationMetrics",
+    "compute_dual_panel_objective",
     "compute_pareto_front",
-    "TwoPanelCandidateRecord",
-    "TwoPanelCandidateLedger",
-    "TWO_PANEL_FEATURE_NAMES",
-    "TWO_PANEL_DEFAULT_TARGETS",
-    "TwoPanelSurrogateConfig",
-    "TwoPanelSurrogatePrediction",
-    "extract_two_panel_features",
-    "extract_two_panel_targets",
-    "TwoPanelSurrogateModel",
-    "TwoPanelAcquisitionConfig",
-    "TwoPanelAcquisitionEngine",
-    "generate_two_panel_seeds",
-    "compute_normalized_two_panel_distance",
-    "TwoPanelOptimizerConfig",
-    "TwoPanelOptimizationEngine",
-    "TwoPanelValidationReport",
-    "TwoPanelMultiPathSummary",
-    "validate_two_panel_multi_path",
+    "DualPanelCandidateRecord",
+    "DualPanelCandidateLedger",
+    "DUAL_PANEL_FEATURE_NAMES",
+    "DUAL_PANEL_DEFAULT_TARGETS",
+    "DualPanelSurrogateConfig",
+    "DualPanelSurrogatePrediction",
+    "extract_dual_panel_features",
+    "extract_dual_panel_targets",
+    "DualPanelSurrogateModel",
+    "DualPanelAcquisitionConfig",
+    "DualPanelAcquisitionEngine",
+    "generate_dual_panel_seeds",
+    "compute_normalized_dual_panel_distance",
+    "DualPanelOptimizerConfig",
+    "DualPanelOptimizationEngine",
+    "DualPanelValidationReport",
+    "DualPanelMultiPathSummary",
+    "validate_dual_panel_multi_path",
     # Robustness and Sensitivity exports
     "WeatherScenario",
     "SolarTimestampScenario",

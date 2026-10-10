@@ -52,30 +52,30 @@ from solaraeus.placement.objective import (
     ComfortObjectiveConfig, compute_objective as compute_single_objective
 )
 from solaraeus.placement.dual_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
+    DualPanelParams, DualPanelBounds
 )
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
+    DualPanelConstraints, check_dual_panel_feasibility, DualPanelRejectionReason
 )
 from solaraeus.placement.dual_panel_objective import (
-    TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
+    DualPanelComfortObjectiveConfig, compute_dual_panel_objective, compute_pareto_front
 )
 from solaraeus.placement.dual_panel_evaluation_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
+    DualPanelCandidateRecord, DualPanelCandidateLedger
 )
 from solaraeus.placement.dual_panel_surrogate_model import (
-    TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
+    DualPanelSurrogateConfig, DualPanelSurrogateModel, extract_dual_panel_features
 )
 from solaraeus.placement.dual_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
-    compute_normalized_two_panel_distance
+    DualPanelAcquisitionConfig, DualPanelAcquisitionEngine, generate_dual_panel_seeds,
+    compute_normalized_dual_panel_distance
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
-    validate_two_panel_multi_path
+    validate_dual_panel_multi_path
 )
 
 
-def create_synthetic_two_panel_scene() -> Tuple[Scene, SimulationConfig, Weather]:
+def create_synthetic_dual_panel_scene() -> Tuple[Scene, SimulationConfig, Weather]:
     """Helper creating a fast 30x30 synthetic scene with one building."""
     grid_cfg = PedestrianGridConfig(extent_x=30.0, extent_y=30.0, resolution=1.0, pedestrian_height=1.5)
     scene = Scene(pedestrian_grid=grid_cfg)
@@ -104,8 +104,8 @@ def create_synthetic_two_panel_scene() -> Tuple[Scene, SimulationConfig, Weather
 
 
 # 1. Two-panel parameter serialization
-def test_two_panel_parameter_serialization():
-    p = TwoPanelParams(
+def test_dual_panel_parameter_serialization():
+    p = DualPanelParams(
         x1=120.0, y1=60.0, length1=4.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=135.0, y2=62.0, length2=5.0, width2=3.0, height2=3.5, heading_deg2=95.0, albedo2=0.7,
     )
@@ -116,18 +116,18 @@ def test_two_panel_parameter_serialization():
 
     # Serialization roundtrip dict
     d = p.to_dict()
-    p_from_d = TwoPanelParams.from_dict(d)
+    p_from_d = DualPanelParams.from_dict(d)
     assert math.isclose(p_from_d.x1, p.x1)
     assert math.isclose(p_from_d.total_area, p.total_area)
 
     # Vector roundtrip
     vec = p.to_vector()
     assert len(vec) == 14
-    p_from_vec = TwoPanelParams.from_vector(vec)
+    p_from_vec = DualPanelParams.from_vector(vec)
     assert math.isclose(p_from_vec.x2, p.x2)
 
     # Canonicalization: lower x must come first
-    p_flipped = TwoPanelParams(
+    p_flipped = DualPanelParams(
         x1=140.0, y1=60.0, length1=4.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=120.0, y2=62.0, length2=5.0, width2=3.0, height2=3.5, heading_deg2=95.0, albedo2=0.7,
     )
@@ -137,8 +137,8 @@ def test_two_panel_parameter_serialization():
 
 
 # 2. Two-panel watertight mesh generation
-def test_two_panel_watertight_mesh_generation():
-    p = TwoPanelParams(
+def test_dual_panel_watertight_mesh_generation():
+    p = DualPanelParams(
         x1=10.0, y1=10.0, length1=4.0, width1=2.5, height1=3.0, heading_deg1=45.0, albedo1=0.5,
         x2=20.0, y2=20.0, length2=5.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
@@ -159,83 +159,83 @@ def test_two_panel_watertight_mesh_generation():
 
 # 3. Individual panel feasibility
 def test_individual_panel_feasibility():
-    constraints = TwoPanelConstraints()
+    constraints = DualPanelConstraints()
     # Panel 1 has underside height 1.8m < min 2.5m
-    p_invalid1 = TwoPanelParams(
+    p_invalid1 = DualPanelParams(
         x1=120.0, y1=60.0, length1=4.0, width1=3.0, height1=1.8, heading_deg1=90.0, albedo1=0.6,
         x2=140.0, y2=60.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
-    res = check_two_panel_feasibility(p_invalid1, constraints)
+    res = check_dual_panel_feasibility(p_invalid1, constraints)
     assert not res.is_valid
-    assert res.rejection_reason == TwoPanelRejectionReason.INSUFFICIENT_CLEARANCE
+    assert res.rejection_reason == DualPanelRejectionReason.INSUFFICIENT_CLEARANCE
 
 
 # 4. Panel-to-panel collision rejection
 def test_panel_to_panel_collision_rejection():
-    constraints = TwoPanelConstraints()
+    constraints = DualPanelConstraints()
     # Panels placed at exact same center -> overlapping
-    p_overlap = TwoPanelParams(
+    p_overlap = DualPanelParams(
         x1=125.0, y1=60.0, length1=5.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=126.0, y2=60.0, length2=5.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
-    res = check_two_panel_feasibility(p_overlap, constraints)
+    res = check_dual_panel_feasibility(p_overlap, constraints)
     assert not res.is_valid
-    assert res.rejection_reason == TwoPanelRejectionReason.PANEL_COLLISION
+    assert res.rejection_reason == DualPanelRejectionReason.PANEL_COLLISION
 
 
 # 5. Minimum separation rejection
 def test_minimum_separation_rejection():
-    constraints = TwoPanelConstraints(min_panel_separation_m=2.0)
+    constraints = DualPanelConstraints(min_panel_separation_m=2.0)
     # Panels separated by 1.0m (centers at x=120 and x=125 with length=4 along heading 90 deg -> half length 2.0 each -> gap 1.0m)
-    p_close = TwoPanelParams(
+    p_close = DualPanelParams(
         x1=120.0, y1=60.0, length1=4.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=125.0, y2=60.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
-    res = check_two_panel_feasibility(p_close, constraints)
+    res = check_dual_panel_feasibility(p_close, constraints)
     assert not res.is_valid
-    assert res.rejection_reason == TwoPanelRejectionReason.INSUFFICIENT_PANEL_SEPARATION
+    assert res.rejection_reason == DualPanelRejectionReason.INSUFFICIENT_PANEL_SEPARATION
 
 
 # 6. Combined building-clearance validation
 def test_combined_building_clearance_validation():
     bldg_poly = Polygon([(100.0, 50.0), (115.0, 50.0), (115.0, 65.0), (100.0, 65.0)])
     single_c = FeasibilityConstraints(building_footprints=MultiPolygon([bldg_poly]), min_building_setback_m=1.0)
-    constraints = TwoPanelConstraints(single_constraints=single_c)
+    constraints = DualPanelConstraints(single_constraints=single_c)
 
     # Panel 1 placed inside building footprint
-    p_bldg = TwoPanelParams(
+    p_bldg = DualPanelParams(
         x1=105.0, y1=55.0, length1=4.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=130.0, y2=60.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
-    res = check_two_panel_feasibility(p_bldg, constraints)
+    res = check_dual_panel_feasibility(p_bldg, constraints)
     assert not res.is_valid
-    assert res.rejection_reason == TwoPanelRejectionReason.BUILDING_COLLISION
+    assert res.rejection_reason == DualPanelRejectionReason.BUILDING_COLLISION
 
 
 # 7. Combined pedestrian-corridor containment
 def test_combined_pedestrian_corridor_containment():
     corridor = Polygon([(110.0, 55.0), (150.0, 55.0), (150.0, 70.0), (110.0, 70.0)])
     single_c = FeasibilityConstraints(allowed_area=corridor)
-    constraints = TwoPanelConstraints(single_constraints=single_c)
+    constraints = DualPanelConstraints(single_constraints=single_c)
 
     # Panel 2 placed far outside corridor at x=180, y=90
-    p_oob = TwoPanelParams(
+    p_oob = DualPanelParams(
         x1=120.0, y1=60.0, length1=4.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=180.0, y2=90.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
-    res = check_two_panel_feasibility(p_oob, constraints)
+    res = check_dual_panel_feasibility(p_oob, constraints)
     assert not res.is_valid
-    assert res.rejection_reason == TwoPanelRejectionReason.OUT_OF_BOUNDS
+    assert res.rejection_reason == DualPanelRejectionReason.OUT_OF_BOUNDS
 
 
 # 8. Union of affected cells without duplicates
 def test_union_of_affected_cells_without_duplicates():
-    scene, config, weather = create_synthetic_two_panel_scene()
+    scene, config, weather = create_synthetic_dual_panel_scene()
     grid = PedestrianGrid(scene.pedestrian_grid)
     dt_utc = datetime(2026, 10, 7, 12, 0, 0, tzinfo=timezone.utc)
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=12.0, y1=15.0, length1=4.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=22.0, y2=15.0, length2=4.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
@@ -256,11 +256,11 @@ def test_union_of_affected_cells_without_duplicates():
 
 # 9. Multi-edit GPU incremental execution
 def test_multi_edit_gpu_incremental_execution():
-    scene, config, weather = create_synthetic_two_panel_scene()
+    scene, config, weather = create_synthetic_dual_panel_scene()
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=True)
     baseline_res = full_recompute(scene, weather, config, backend="cpu")
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=12.0, y1=15.0, length1=3.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=20.0, y2=15.0, length2=3.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
@@ -283,12 +283,12 @@ def test_multi_edit_gpu_incremental_execution():
 
 
 # 10. Two-panel GPU incremental/full parity
-def test_two_panel_gpu_incremental_full_parity():
-    scene, config, weather = create_synthetic_two_panel_scene()
+def test_dual_panel_gpu_incremental_full_parity():
+    scene, config, weather = create_synthetic_dual_panel_scene()
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=True)
     baseline_res = full_recompute(scene, weather, config, backend="cpu")
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=14.0, y1=14.0, length1=3.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=22.0, y2=14.0, length2=3.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
@@ -310,15 +310,15 @@ def test_two_panel_gpu_incremental_full_parity():
 
 # 11. CPU full/GPU full/GPU incremental parity
 def test_cpu_full_gpu_full_gpu_incremental_parity():
-    scene, config, weather = create_synthetic_two_panel_scene()
+    scene, config, weather = create_synthetic_dual_panel_scene()
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=True)
     baseline_res = full_recompute(scene, weather, config, backend="cpu")
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=13.0, y1=16.0, length1=3.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=21.0, y2=16.0, length2=3.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
-    report = validate_two_panel_multi_path(
+    report = validate_dual_panel_multi_path(
         candidate_id="TEST_CAND_0001",
         params=p,
         role="test_parity",
@@ -335,11 +335,11 @@ def test_cpu_full_gpu_full_gpu_incremental_parity():
 # 12. Certificate validation
 def test_certificate_validation():
     from solaraeus.incremental.certificate import verify_certificate
-    scene, config, weather = create_synthetic_two_panel_scene()
+    scene, config, weather = create_synthetic_dual_panel_scene()
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=True)
     baseline_res = full_recompute(scene, weather, config, backend="cpu")
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=15.0, y1=15.0, length1=4.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=23.0, y2=15.0, length2=4.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
@@ -363,12 +363,12 @@ def test_certificate_validation():
 
 # 13. Candidate ledger completeness
 def test_candidate_ledger_completeness(tmp_path):
-    ledger = TwoPanelCandidateLedger()
-    p = TwoPanelParams(
+    ledger = DualPanelCandidateLedger()
+    p = DualPanelParams(
         x1=120.0, y1=60.0, length1=4.0, width1=3.0, height1=3.2, heading_deg1=90.0, albedo1=0.6,
         x2=135.0, y2=62.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.6,
     )
-    rec = TwoPanelCandidateRecord(
+    rec = DualPanelCandidateRecord(
         candidate_id="CAND_0001_TEST",
         iteration=1,
         method="test",
@@ -401,16 +401,16 @@ def test_candidate_ledger_completeness(tmp_path):
 
 
 # 14. Surrogate training on two-panel data
-def test_surrogate_training_on_two_panel_data():
-    surrogate = TwoPanelSurrogateModel()
+def test_surrogate_training_on_dual_panel_data():
+    surrogate = DualPanelSurrogateModel()
     records = []
     # Create 5 synthetic feasible records
     for i in range(5):
-        p = TwoPanelParams(
+        p = DualPanelParams(
             x1=120.0 + i * 2.0, y1=60.0, length1=4.0, width1=3.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
             x2=135.0 + i * 2.0, y2=62.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.7,
         )
-        rec = TwoPanelCandidateRecord(
+        rec = DualPanelCandidateRecord(
             candidate_id=f"CAND_{i:04d}",
             iteration=i,
             method="test",
@@ -428,7 +428,7 @@ def test_surrogate_training_on_two_panel_data():
     assert train_res["n_train_samples"] == 5
 
     # Prediction test
-    test_p = TwoPanelParams(
+    test_p = DualPanelParams(
         x1=124.0, y1=60.0, length1=4.0, width1=3.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=139.0, y2=62.0, length2=4.0, width2=3.0, height2=3.2, heading_deg2=90.0, albedo2=0.7,
     )
@@ -440,11 +440,11 @@ def test_surrogate_training_on_two_panel_data():
 
 # 15. Fixed-seed reproducibility
 def test_fixed_seed_reproducibility():
-    bounds = TwoPanelBounds.get_canonical_church_street_bounds()
-    constraints = TwoPanelConstraints()
+    bounds = DualPanelBounds.get_canonical_church_street_bounds()
+    constraints = DualPanelConstraints()
 
-    seeds_a, _ = generate_two_panel_seeds(constraints, bounds, n_seeds=5, rng=np.random.default_rng(1234))
-    seeds_b, _ = generate_two_panel_seeds(constraints, bounds, n_seeds=5, rng=np.random.default_rng(1234))
+    seeds_a, _ = generate_dual_panel_seeds(constraints, bounds, n_seeds=5, rng=np.random.default_rng(1234))
+    seeds_b, _ = generate_dual_panel_seeds(constraints, bounds, n_seeds=5, rng=np.random.default_rng(1234))
 
     assert len(seeds_a) == len(seeds_b) == 5
     for sa, sb in zip(seeds_a, seeds_b):
@@ -455,12 +455,12 @@ def test_fixed_seed_reproducibility():
 
 # 16. Random-search comparison
 def test_random_search_comparison():
-    bounds = TwoPanelBounds.get_canonical_church_street_bounds()
+    bounds = DualPanelBounds.get_canonical_church_street_bounds()
     rng = np.random.default_rng(42)
     random_cands = bounds.sample_uniform(rng, n_samples=10)
     assert len(random_cands) == 10
     for c in random_cands:
-        assert isinstance(c, TwoPanelParams)
+        assert isinstance(c, DualPanelParams)
         assert c.is_finite()
         assert c.x1 <= c.x2  # Canonical ordering preserved
 
@@ -485,11 +485,11 @@ def test_frozen_directory_protection():
 
 # 18. GPU-unavailable fallback behavior
 def test_gpu_unavailable_fallback_behavior():
-    scene, config, weather = create_synthetic_two_panel_scene()
+    scene, config, weather = create_synthetic_dual_panel_scene()
     engine = GPUIncrementalEngine(fallback_to_cpu=True)
     baseline_res = full_recompute(scene, weather, config, backend="cpu")
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=12.0, y1=15.0, length1=3.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=20.0, y2=15.0, length2=3.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )

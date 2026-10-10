@@ -68,29 +68,29 @@ from solaraeus.placement.objective import (
     ComfortObjectiveConfig, compute_objective
 )
 from solaraeus.placement.dual_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
+    DualPanelParams, DualPanelBounds
 )
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
+    DualPanelConstraints, check_dual_panel_feasibility, DualPanelRejectionReason
 )
 from solaraeus.placement.dual_panel_objective import (
-    TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
+    DualPanelComfortObjectiveConfig, compute_dual_panel_objective, compute_pareto_front
 )
 from solaraeus.placement.dual_panel_evaluation_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
+    DualPanelCandidateRecord, DualPanelCandidateLedger
 )
 from solaraeus.placement.dual_panel_surrogate_model import (
-    TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
+    DualPanelSurrogateConfig, DualPanelSurrogateModel, extract_dual_panel_features
 )
 from solaraeus.placement.dual_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
-    compute_normalized_two_panel_distance
+    DualPanelAcquisitionConfig, DualPanelAcquisitionEngine, generate_dual_panel_seeds,
+    compute_normalized_dual_panel_distance
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
+    DualPanelOptimizerConfig, DualPanelOptimizationEngine
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
-    validate_two_panel_multi_path, TwoPanelValidationReport
+    validate_dual_panel_multi_path, DualPanelValidationReport
 )
 from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path
@@ -135,7 +135,7 @@ def run_preflight_synthetic_test():
     engine = GPUIncrementalEngine(fallback_to_cpu=True)
     base_res = full_recompute(scene, weather, config, backend="cpu")
 
-    p = TwoPanelParams(
+    p = DualPanelParams(
         x1=8.0, y1=10.0, length1=3.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=14.0, y2=10.0, length2=3.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
@@ -293,7 +293,7 @@ def main():
         min_underside_height_m=2.50,
         min_building_setback_m=0.50,
     )
-    two_panel_constraints = TwoPanelConstraints.from_single_constraints(
+    dual_panel_constraints = DualPanelConstraints.from_single_constraints(
         single=single_constraints,
         min_panel_separation_m=2.0,
         max_individual_area_m2=40.0,
@@ -301,9 +301,9 @@ def main():
         max_total_area_m2=60.0,
     )
 
-    two_panel_bounds = TwoPanelBounds.get_canonical_church_street_bounds()
+    dual_panel_bounds = DualPanelBounds.get_canonical_church_street_bounds()
 
-    obj_config = TwoPanelComfortObjectiveConfig(
+    obj_config = DualPanelComfortObjectiveConfig(
         weight_mean_utci=1.00,
         weight_p90_utci=0.50,
         weight_max_utci=0.00,
@@ -316,22 +316,22 @@ def main():
         feasibility_penalty=1000.0,
     )
 
-    opt_config = TwoPanelOptimizerConfig(
+    opt_config = DualPanelOptimizerConfig(
         seed=42,
         num_iterations=3,
         batch_size=5,
         seed_budget=10,
-        bounds=two_panel_bounds,
+        bounds=dual_panel_bounds,
         objective_config=obj_config,
     )
 
     gpu_engine = GPUIncrementalEngine()
-    optimizer = TwoPanelOptimizationEngine(
+    optimizer = DualPanelOptimizationEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,
         sim_config=sim_config,
-        feasibility_constraints=two_panel_constraints,
+        feasibility_constraints=dual_panel_constraints,
         eval_mask=ped_corridor_unbuilt_mask,
         config=opt_config,
         gpu_engine=gpu_engine,
@@ -369,14 +369,14 @@ def main():
 
     # Phase 5: Matched Two-Panel Random Search Baseline (for fair comparison)
     print("\n[Phase 5] Evaluating matched Two-Panel Random-Search Baseline...")
-    rand_ledger = TwoPanelCandidateLedger()
+    rand_ledger = DualPanelCandidateLedger()
     rand_rng = np.random.default_rng(9999)
     rand_eval_count = 0
     target_rand_evals = len(feasible_cands)
 
     while len(rand_ledger.get_feasible()) < target_rand_evals and rand_eval_count < 200:
         rand_eval_count += 1
-        rcand = two_panel_bounds.sample_uniform(rand_rng)
+        rcand = dual_panel_bounds.sample_uniform(rand_rng)
         r_rec = optimizer.evaluate_candidate(
             params=rcand,
             method="random_baseline",
@@ -392,7 +392,7 @@ def main():
 
     # Phase 6: Multi-Path Physical Validation Suite
     print("\n[Phase 6] Conducting Multi-Path Physical Solver Validation (CPU Full vs GPU Full vs GPU Incremental)...")
-    val_reports: List[TwoPanelValidationReport] = []
+    val_reports: List[DualPanelValidationReport] = []
 
     # Selected candidate 1: Best two-panel candidate
     val_targets = [
@@ -416,7 +416,7 @@ def main():
         val_targets.append((highest_unc_cand, "Highest-Uncertainty Candidate"))
 
     # Selected candidate 5: Separation boundary candidate (separation distance near 2.0m)
-    cands_by_sep = sorted(feasible_cands, key=lambda c: TwoPanelParams.from_dict(c.params).separation_distance())
+    cands_by_sep = sorted(feasible_cands, key=lambda c: DualPanelParams.from_dict(c.params).separation_distance())
     sep_boundary_cand = cands_by_sep[0]
     val_targets.append((sep_boundary_cand, "Panel-Separation Boundary Candidate"))
 
@@ -425,9 +425,9 @@ def main():
 
     # Execute two-panel multi-path audits
     for cand_rec, role in val_targets:
-        params_obj = TwoPanelParams.from_dict(cand_rec.params)
+        params_obj = DualPanelParams.from_dict(cand_rec.params)
         print(f"  Auditing: {cand_rec.candidate_id} ({role})...")
-        report = validate_two_panel_multi_path(
+        report = validate_dual_panel_multi_path(
             candidate_id=cand_rec.candidate_id,
             params=params_obj,
             role=role,
@@ -481,7 +481,7 @@ def main():
     rand_ledger.save_csv(out_dir / "random_baseline_ledger.csv")
 
     (out_dir / "optimizer_configuration.json").write_text(json.dumps(opt_config.to_dict(), indent=2), encoding="utf-8")
-    (out_dir / "two_panel_parameter_bounds.json").write_text(json.dumps(two_panel_bounds.panel_bounds.to_dict(), indent=2), encoding="utf-8")
+    (out_dir / "two_panel_parameter_bounds.json").write_text(json.dumps(dual_panel_bounds.panel_bounds.to_dict(), indent=2), encoding="utf-8")
     (out_dir / "objective_definition.json").write_text(json.dumps(obj_config.__dict__, indent=2), encoding="utf-8")
     (out_dir / "best_candidate.json").write_text(json.dumps(best_cand.to_dict(), indent=2), encoding="utf-8")
     (out_dir / "pareto_candidates.json").write_text(json.dumps(pareto_front, indent=2), encoding="utf-8")
@@ -540,7 +540,7 @@ def main():
             bx, by = p.exterior.xy
             ax.fill(bx, by, color="gray", alpha=0.4, label="Buildings" if i == 0 else "")
     # Draw best two panels
-    best_p_obj = TwoPanelParams.from_dict(best_cand.params)
+    best_p_obj = DualPanelParams.from_dict(best_cand.params)
     (bm1, bpoly1), (bm2, bpoly2) = best_p_obj.build_geometries()
     bx1, by1 = bpoly1.exterior.xy
     bx2, by2 = bpoly2.exterior.xy
@@ -637,7 +637,7 @@ def main():
 
     # Plot 7: Panel separation distribution
     fig, ax = plt.subplots(figsize=(8, 5))
-    seps = [TwoPanelParams.from_dict(c.params).separation_distance() for c in feasible_cands]
+    seps = [DualPanelParams.from_dict(c.params).separation_distance() for c in feasible_cands]
     ax.hist(seps, bins=12, color="lightseagreen", edgecolor="black")
     ax.axvline(2.0, color="red", linestyle="--", linewidth=2, label="Minimum Separation Limit (2.0 m)")
     ax.set_title("Distribution of Panel-to-Panel Separation Distances")

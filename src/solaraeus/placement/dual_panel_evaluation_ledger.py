@@ -17,7 +17,7 @@ import pandas as pd
 
 
 @dataclass
-class TwoPanelCandidateRecord:
+class DualPanelCandidateRecord:
     """Comprehensive ledger entry for a two-panel intervention proposal."""
     candidate_id: str
     iteration: int
@@ -66,7 +66,7 @@ class TwoPanelCandidateRecord:
             self.wall_time_s = self.total_runtime_s
 
     @classmethod
-    def from_dict(cls, d: Dict[str, Any]) -> TwoPanelCandidateRecord:
+    def from_dict(cls, d: Dict[str, Any]) -> DualPanelCandidateRecord:
         """Constructs record from serialized dictionary, ignoring unknown extra keys."""
         import dataclasses
         valid_fields = {f.name for f in dataclasses.fields(cls)}
@@ -111,35 +111,35 @@ class TwoPanelCandidateRecord:
         }
 
 
-class TwoPanelCandidateLedger:
+class DualPanelCandidateLedger:
     """In-memory database and exporter for two-panel optimization history."""
 
     def __init__(self):
-        self.records: List[TwoPanelCandidateRecord] = []
+        self.records: List[DualPanelCandidateRecord] = []
 
-    def add(self, record: TwoPanelCandidateRecord):
+    def add(self, record: DualPanelCandidateRecord):
         """Appends a candidate evaluation record."""
         self.records.append(record)
 
     def __len__(self) -> int:
         return len(self.records)
 
-    def get_feasible(self) -> List[TwoPanelCandidateRecord]:
+    def get_feasible(self) -> List[DualPanelCandidateRecord]:
         """Returns all geographically and structurally feasible candidates."""
         return [r for r in self.records if r.is_feasible]
 
-    def get_rejected(self) -> List[TwoPanelCandidateRecord]:
+    def get_rejected(self) -> List[DualPanelCandidateRecord]:
         """Returns all rejected candidates."""
         return [r for r in self.records if not r.is_feasible]
 
-    def get_best(self) -> Optional[TwoPanelCandidateRecord]:
+    def get_best(self) -> Optional[DualPanelCandidateRecord]:
         """Returns the feasible candidate with the lowest objective value."""
         feasible = self.get_feasible()
         if not feasible:
             return None
         return min(feasible, key=lambda r: r.objective_value)
 
-    def get_top_n(self, n: int = 5) -> List[TwoPanelCandidateRecord]:
+    def get_top_n(self, n: int = 5) -> List[DualPanelCandidateRecord]:
         """Returns the top N feasible candidates ordered by objective improvement."""
         feasible = self.get_feasible()
         feasible_sorted = sorted(feasible, key=lambda r: r.objective_value)

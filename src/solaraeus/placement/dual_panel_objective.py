@@ -15,7 +15,7 @@ from solaraeus.reference.full_recompute import SimulationResult
 
 
 @dataclass
-class TwoPanelComfortObjectiveConfig:
+class DualPanelComfortObjectiveConfig:
     """Configuration weights and costs for two-panel composite objective evaluation."""
     weight_mean_utci: float = 1.00
     weight_p90_utci: float = 0.50
@@ -31,7 +31,7 @@ class TwoPanelComfortObjectiveConfig:
 
 
 @dataclass
-class TwoPanelEvaluationMetrics:
+class DualPanelEvaluationMetrics:
     """Comprehensive diagnostic thermal comfort and spatial performance metrics for two-panel candidate."""
     mean_utci: float
     p90_utci: float
@@ -113,18 +113,18 @@ class TwoPanelEvaluationMetrics:
         }
 
 
-def compute_two_panel_objective(sim_result: SimulationResult,
+def compute_dual_panel_objective(sim_result: SimulationResult,
                                 baseline_result: SimulationResult,
                                 eval_mask: np.ndarray,
                                 area1_m2: float,
                                 area2_m2: float,
-                                config: Optional[TwoPanelComfortObjectiveConfig] = None,
-                                obstruction_penalty: float = 0.0) -> TwoPanelEvaluationMetrics:
+                                config: Optional[DualPanelComfortObjectiveConfig] = None,
+                                obstruction_penalty: float = 0.0) -> DualPanelEvaluationMetrics:
     """
     Computes objective metrics and composite scalar score over valid pedestrian evaluation cells.
     """
     if config is None:
-        config = TwoPanelComfortObjectiveConfig()
+        config = DualPanelComfortObjectiveConfig()
 
     cand_utci = sim_result.utci
     base_utci = baseline_result.utci
@@ -141,7 +141,7 @@ def compute_two_panel_objective(sim_result: SimulationResult,
     area_penalty = float(config.weight_area_penalty * total_area_m2)
 
     if cell_count == 0:
-        return TwoPanelEvaluationMetrics(
+        return DualPanelEvaluationMetrics(
             mean_utci=99.0, p90_utci=99.0, max_utci=99.0, min_utci=99.0,
             mean_tmrt=99.0, max_tmrt=99.0,
             pct_improved_cells=0.0, pct_comfortable_cells=0.0,
@@ -198,7 +198,7 @@ def compute_two_panel_objective(sim_result: SimulationResult,
         + obstruction_penalty
     )
 
-    return TwoPanelEvaluationMetrics(
+    return DualPanelEvaluationMetrics(
         mean_utci=mean_utci,
         p90_utci=p90_utci,
         max_utci=max_utci,
@@ -243,7 +243,7 @@ def compute_pareto_front(candidates: Sequence[Any]) -> List[Any]:
     2. Total panel area (minimize total_area_m2)
     3. Estimated construction cost (minimize estimated_construction_cost_usd)
 
-    Accepts either dictionaries or TwoPanelCandidateRecord objects.
+    Accepts either dictionaries or DualPanelCandidateRecord objects.
     """
     if not candidates:
         return []

@@ -33,46 +33,46 @@ from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.incremental.update import compute_exact_dirty_shadow_mask
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_parameters import DualPanelParams, DualPanelBounds
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelConstraints,
-    check_two_panel_feasibility,
-    TwoPanelFeasibilityResult,
-    TwoPanelRejectionReason,
+    DualPanelConstraints,
+    check_dual_panel_feasibility,
+    DualPanelFeasibilityResult,
+    DualPanelRejectionReason,
 )
 from solaraeus.placement.dual_panel_objective import (
-    TwoPanelComfortObjectiveConfig,
-    TwoPanelEvaluationMetrics,
-    compute_two_panel_objective,
+    DualPanelComfortObjectiveConfig,
+    DualPanelEvaluationMetrics,
+    compute_dual_panel_objective,
 )
 from solaraeus.placement.dual_panel_evaluation_ledger import (
-    TwoPanelCandidateRecord,
-    TwoPanelCandidateLedger,
+    DualPanelCandidateRecord,
+    DualPanelCandidateLedger,
 )
 from solaraeus.placement.dual_panel_surrogate_model import (
-    TwoPanelSurrogateConfig,
-    TwoPanelSurrogateModel,
-    TwoPanelSurrogatePrediction,
+    DualPanelSurrogateConfig,
+    DualPanelSurrogateModel,
+    DualPanelSurrogatePrediction,
     SKLEARN_AVAILABLE,
 )
 from solaraeus.placement.dual_panel_acquisition import (
-    TwoPanelAcquisitionConfig,
-    TwoPanelAcquisitionEngine,
-    generate_two_panel_seeds,
+    DualPanelAcquisitionConfig,
+    DualPanelAcquisitionEngine,
+    generate_dual_panel_seeds,
 )
 
 
 @dataclass
-class TwoPanelOptimizerConfig:
+class DualPanelOptimizerConfig:
     """Configuration for two-panel surrogate-assisted optimization search."""
     seed: int = 42
     num_iterations: int = 3              # Number of surrogate propose-eval-retrain iterations
     batch_size: int = 5                  # Number of candidates proposed per iteration
     seed_budget: int = 10                # Number of initial physical seed candidates
-    bounds: TwoPanelBounds = field(default_factory=TwoPanelBounds.get_canonical_church_street_bounds)
-    surrogate_config: TwoPanelSurrogateConfig = field(default_factory=TwoPanelSurrogateConfig)
-    acquisition_config: TwoPanelAcquisitionConfig = field(default_factory=TwoPanelAcquisitionConfig)
-    objective_config: TwoPanelComfortObjectiveConfig = field(default_factory=TwoPanelComfortObjectiveConfig)
+    bounds: DualPanelBounds = field(default_factory=DualPanelBounds.get_canonical_church_street_bounds)
+    surrogate_config: DualPanelSurrogateConfig = field(default_factory=DualPanelSurrogateConfig)
+    acquisition_config: DualPanelAcquisitionConfig = field(default_factory=DualPanelAcquisitionConfig)
+    objective_config: DualPanelComfortObjectiveConfig = field(default_factory=DualPanelComfortObjectiveConfig)
     fallback_to_cpu: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
@@ -109,7 +109,7 @@ class TwoPanelOptimizerConfig:
         }
 
 
-class TwoPanelOptimizationEngine:
+class DualPanelOptimizationEngine:
     """
     Coordinates multi-intervention surrogate-assisted optimization.
     Surrogate proposes candidates only; certified GPU/CPU physics solvers remain final authority.
@@ -121,9 +121,9 @@ class TwoPanelOptimizationEngine:
         baseline_result: SimulationResult,
         weather: Weather,
         sim_config: SimulationConfig,
-        feasibility_constraints: TwoPanelConstraints,
+        feasibility_constraints: DualPanelConstraints,
         eval_mask: np.ndarray,
-        config: Optional[TwoPanelOptimizerConfig] = None,
+        config: Optional[DualPanelOptimizerConfig] = None,
         gpu_engine: Optional[GPUIncrementalEngine] = None,
     ):
         self.baseline_scene = baseline_scene
@@ -132,9 +132,9 @@ class TwoPanelOptimizationEngine:
         self.sim_config = sim_config
         self.feasibility_constraints = feasibility_constraints
         self.eval_mask = eval_mask
-        self.config = config or TwoPanelOptimizerConfig()
+        self.config = config or DualPanelOptimizerConfig()
 
-        self.ledger = TwoPanelCandidateLedger()
+        self.ledger = DualPanelCandidateLedger()
         self.grid = PedestrianGrid(self.baseline_scene.pedestrian_grid)
 
         # Solar position calculation for exact shadow masks
@@ -152,8 +152,8 @@ class TwoPanelOptimizationEngine:
         self._is_preloaded = False
 
         # Tabular surrogate model and acquisition engine
-        self.surrogate = TwoPanelSurrogateModel(self.config.surrogate_config)
-        self.acquisition = TwoPanelAcquisitionEngine(self.config.acquisition_config)
+        self.surrogate = DualPanelSurrogateModel(self.config.surrogate_config)
+        self.acquisition = DualPanelAcquisitionEngine(self.config.acquisition_config)
         self.rng = np.random.default_rng(self.config.seed)
 
     def preload(self):
@@ -166,12 +166,12 @@ class TwoPanelOptimizationEngine:
 
     def evaluate_candidate(
         self,
-        params: TwoPanelParams,
+        params: DualPanelParams,
         method: str = "surrogate_proposal",
         iteration: Optional[int] = None,
         acquisition_strategy: Optional[str] = None,
-        surrogate_pred: Optional[TwoPanelSurrogatePrediction] = None,
-    ) -> TwoPanelCandidateRecord:
+        surrogate_pred: Optional[DualPanelSurrogatePrediction] = None,
+    ) -> DualPanelCandidateRecord:
         """
         Evaluates a proposed two-panel candidate through:
         1. Geographic and pairwise feasibility filtering.
@@ -188,9 +188,9 @@ class TwoPanelOptimizationEngine:
         params_canon = params.canonicalize()
 
         # 1. Geographic Feasibility Filter
-        feas_res = check_two_panel_feasibility(params_canon, self.feasibility_constraints)
+        feas_res = check_dual_panel_feasibility(params_canon, self.feasibility_constraints)
         if not feas_res.is_valid:
-            record = TwoPanelCandidateRecord(
+            record = DualPanelCandidateRecord(
                 candidate_id=cand_id,
                 iteration=iter_idx,
                 method=method,
@@ -269,7 +269,7 @@ class TwoPanelOptimizationEngine:
         d2h_time_ms = gpu_telemetry.get("d2h_time_ms", 0.0)
 
         # 5. Multi-Objective Thermal Comfort & Cost Evaluation
-        metrics = compute_two_panel_objective(
+        metrics = compute_dual_panel_objective(
             sim_result=update_res.result,
             baseline_result=self.baseline_result,
             eval_mask=self.eval_mask,
@@ -293,7 +293,7 @@ class TwoPanelOptimizationEngine:
         max_bound = float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0
         n_violations = getattr(cert, "n_violations", 0)
 
-        record = TwoPanelCandidateRecord(
+        record = DualPanelCandidateRecord(
             candidate_id=cand_id,
             iteration=iter_idx,
             method=method,
@@ -333,14 +333,14 @@ class TwoPanelOptimizationEngine:
         self,
         stage1_ledger_path: Optional[Path] = None,
         stage2_ledger_path: Optional[Path] = None,
-    ) -> TwoPanelCandidateLedger:
+    ) -> DualPanelCandidateLedger:
         """
         Executes full two-panel surrogate-assisted optimization cycle:
         Phase 1: Seed portfolio evaluation (duplicated Stage 2 best, LHS pairs, random pairs)
         Phase 2: Iterative surrogate propose-eval-retrain loop
         """
         # Phase 1: Physical Evaluation of Controlled Two-Panel Seed Portfolio
-        seeds, rejected_seeds = generate_two_panel_seeds(
+        seeds, rejected_seeds = generate_dual_panel_seeds(
             constraints=self.feasibility_constraints,
             bounds=self.config.bounds,
             n_seeds=self.config.seed_budget,
@@ -352,7 +352,7 @@ class TwoPanelOptimizationEngine:
         # Log any rejected seeds for machine-readable provenance
         for rej in rejected_seeds:
             cand_id = f"REJ_SEED_{len(self.ledger):04d}"
-            r_rec = TwoPanelCandidateRecord(
+            r_rec = DualPanelCandidateRecord(
                 candidate_id=cand_id,
                 iteration=len(self.ledger),
                 method=rej.get("method", "seed_proposal"),
@@ -395,7 +395,7 @@ class TwoPanelOptimizationEngine:
                 # Record screening rejections into ledger
                 for rej in rejected_in_screening:
                     c_id = f"REJ_ACQ_{len(self.ledger):04d}"
-                    r_rec = TwoPanelCandidateRecord(
+                    r_rec = DualPanelCandidateRecord(
                         candidate_id=c_id,
                         iteration=len(self.ledger),
                         method="acquisition_screening",

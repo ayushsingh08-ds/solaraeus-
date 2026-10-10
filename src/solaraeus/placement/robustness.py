@@ -29,30 +29,30 @@ from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_parameters import DualPanelParams, DualPanelBounds
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelConstraints,
-    check_two_panel_feasibility,
-    TwoPanelFeasibilityResult,
-    TwoPanelRejectionReason,
+    DualPanelConstraints,
+    check_dual_panel_feasibility,
+    DualPanelFeasibilityResult,
+    DualPanelRejectionReason,
 )
 from solaraeus.placement.dual_panel_objective import (
-    TwoPanelComfortObjectiveConfig,
-    TwoPanelEvaluationMetrics,
-    compute_two_panel_objective,
+    DualPanelComfortObjectiveConfig,
+    DualPanelEvaluationMetrics,
+    compute_dual_panel_objective,
     compute_pareto_front,
 )
 from solaraeus.placement.dual_panel_evaluation_ledger import (
-    TwoPanelCandidateRecord,
-    TwoPanelCandidateLedger,
+    DualPanelCandidateRecord,
+    DualPanelCandidateLedger,
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    TwoPanelOptimizerConfig,
-    TwoPanelOptimizationEngine,
+    DualPanelOptimizerConfig,
+    DualPanelOptimizationEngine,
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
-    validate_two_panel_multi_path,
-    TwoPanelValidationReport,
+    validate_dual_panel_multi_path,
+    DualPanelValidationReport,
 )
 
 
@@ -97,7 +97,7 @@ class ObjectiveWeightScenario:
     """Alternative objective weighting scenario."""
     name: str
     description: str
-    config: TwoPanelComfortObjectiveConfig
+    config: DualPanelComfortObjectiveConfig
     coverage_bonus_weight: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
@@ -248,7 +248,7 @@ def get_standard_objective_scenarios() -> Dict[str, ObjectiveWeightScenario]:
         "balanced": ObjectiveWeightScenario(
             name="balanced",
             description="Nominal balanced comfort and cost objective",
-            config=TwoPanelComfortObjectiveConfig(
+            config=DualPanelComfortObjectiveConfig(
                 weight_mean_utci=1.00,
                 weight_p90_utci=0.50,
                 weight_max_utci=0.00,
@@ -263,7 +263,7 @@ def get_standard_objective_scenarios() -> Dict[str, ObjectiveWeightScenario]:
         "comfort_focused": ObjectiveWeightScenario(
             name="comfort_focused",
             description="Aggressive pedestrian cooling prioritization with negligible cost sensitivity",
-            config=TwoPanelComfortObjectiveConfig(
+            config=DualPanelComfortObjectiveConfig(
                 weight_mean_utci=2.00,
                 weight_p90_utci=1.00,
                 weight_max_utci=0.00,
@@ -278,7 +278,7 @@ def get_standard_objective_scenarios() -> Dict[str, ObjectiveWeightScenario]:
         "cost_focused": ObjectiveWeightScenario(
             name="cost_focused",
             description="Strict budget minimization with heavy panel area and staging cost penalties",
-            config=TwoPanelComfortObjectiveConfig(
+            config=DualPanelComfortObjectiveConfig(
                 weight_mean_utci=0.50,
                 weight_p90_utci=0.20,
                 weight_max_utci=0.00,
@@ -293,7 +293,7 @@ def get_standard_objective_scenarios() -> Dict[str, ObjectiveWeightScenario]:
         "coverage_focused": ObjectiveWeightScenario(
             name="coverage_focused",
             description="Maximizing pedestrian footprint coverage and percentage of cells cooled",
-            config=TwoPanelComfortObjectiveConfig(
+            config=DualPanelComfortObjectiveConfig(
                 weight_mean_utci=0.80,
                 weight_p90_utci=0.40,
                 weight_max_utci=0.00,
@@ -379,7 +379,7 @@ def get_standard_constraint_scenarios() -> Dict[str, ConstraintSensitivityScenar
 
 
 def recompute_score_under_scenario(
-    record: TwoPanelCandidateRecord,
+    record: DualPanelCandidateRecord,
     scenario: ObjectiveWeightScenario,
 ) -> float:
     """Recomputes composite objective score for an evaluated record under alternative weights."""
@@ -411,15 +411,15 @@ def recompute_score_under_scenario(
 
 
 def evaluate_candidate_at_condition(
-    params: TwoPanelParams,
+    params: DualPanelParams,
     scene: Scene,
     baseline_result: SimulationResult,
     weather: Weather,
     config: SimulationConfig,
     eval_mask: np.ndarray,
-    obj_config: TwoPanelComfortObjectiveConfig,
+    obj_config: DualPanelComfortObjectiveConfig,
     gpu_engine: GPUIncrementalEngine,
-) -> Tuple[SimulationResult, TwoPanelEvaluationMetrics, Dict[str, Any]]:
+) -> Tuple[SimulationResult, DualPanelEvaluationMetrics, Dict[str, Any]]:
     """
     Evaluates a two-panel candidate under specific weather or solar conditions.
     Returns (updated_result, metrics, telemetry).
@@ -449,7 +449,7 @@ def evaluate_candidate_at_condition(
     )
     wall_s = time.perf_counter() - t0
 
-    metrics = compute_two_panel_objective(
+    metrics = compute_dual_panel_objective(
         sim_result=up_res.result,
         baseline_result=baseline_result,
         eval_mask=eval_mask,

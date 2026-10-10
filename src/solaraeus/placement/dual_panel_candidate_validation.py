@@ -24,7 +24,7 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.placement.dual_panel_parameters import TwoPanelParams
+from solaraeus.placement.dual_panel_parameters import DualPanelParams
 from solaraeus.placement.parameters import ShadePanelParams
 from solaraeus.placement.candidate_validation import (
     TOLERANCES_INCREMENTAL,
@@ -35,7 +35,7 @@ from solaraeus.placement.candidate_validation import (
 
 
 @dataclass
-class TwoPanelValidationReport:
+class DualPanelValidationReport:
     """Multi-path audit report for a two-panel intervention candidate."""
     candidate_id: str
     role: str
@@ -80,9 +80,9 @@ class TwoPanelValidationReport:
 
 
 @dataclass
-class TwoPanelMultiPathSummary:
+class DualPanelMultiPathSummary:
     """Comprehensive summary of multi-path audits across all selected two-panel candidates."""
-    reports: List[TwoPanelValidationReport]
+    reports: List[DualPanelValidationReport]
     total_validated: int
     total_passed: int
     all_passed: bool
@@ -96,16 +96,16 @@ class TwoPanelMultiPathSummary:
         }
 
 
-def validate_two_panel_multi_path(
+def validate_dual_panel_multi_path(
     candidate_id: str,
-    params: TwoPanelParams,
+    params: DualPanelParams,
     role: str,
     baseline_scene: Scene,
     baseline_result: SimulationResult,
     weather: Weather,
     config: SimulationConfig,
     gpu_engine: Optional[GPUIncrementalEngine] = None,
-) -> TwoPanelValidationReport:
+) -> DualPanelValidationReport:
     """
     Executes CPU full, GPU full, and GPU incremental solvers for a two-panel candidate,
     and conducts complete cross-path parity audits against reference tolerances.
@@ -204,7 +204,7 @@ def validate_two_panel_multi_path(
         n_violations == 0
     )
 
-    return TwoPanelValidationReport(
+    return DualPanelValidationReport(
         candidate_id=candidate_id,
         role=role,
         params=params_canon.to_dict(),

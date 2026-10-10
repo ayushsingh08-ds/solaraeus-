@@ -19,22 +19,22 @@ from typing import Dict, Any, List, Optional, Tuple, Sequence
 import numpy as np
 
 from solaraeus.placement.parameters import ShadePanelParams
-from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_parameters import DualPanelParams, DualPanelBounds
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelConstraints,
-    check_two_panel_feasibility,
-    TwoPanelFeasibilityResult,
-    TwoPanelRejectionReason,
+    DualPanelConstraints,
+    check_dual_panel_feasibility,
+    DualPanelFeasibilityResult,
+    DualPanelRejectionReason,
 )
 from solaraeus.placement.dual_panel_surrogate_model import (
-    TwoPanelSurrogateModel,
-    TwoPanelSurrogatePrediction,
+    DualPanelSurrogateModel,
+    DualPanelSurrogatePrediction,
 )
 from solaraeus.placement.dual_panel_objective import compute_pareto_front
 
 
 @dataclass
-class TwoPanelAcquisitionConfig:
+class DualPanelAcquisitionConfig:
     """Configuration for two-panel candidate acquisition portfolio."""
     strategy: str = "portfolio"          # "portfolio", "predicted_best", "uncertainty", "random"
     pool_size: int = 1500                # Number of candidate samples screened per acquisition round
@@ -43,7 +43,7 @@ class TwoPanelAcquisitionConfig:
     min_diversity_dist: float = 0.05     # Minimum normalized Euclidean distance between batch candidates
 
 
-def compute_normalized_two_panel_distance(p1: TwoPanelParams, p2: TwoPanelParams, bounds: TwoPanelBounds) -> float:
+def compute_normalized_dual_panel_distance(p1: DualPanelParams, p2: DualPanelParams, bounds: DualPanelBounds) -> float:
     """Computes normalized Euclidean distance between two 14-parameter candidate vectors."""
     v1 = p1.canonicalize().to_vector()
     v2 = p2.canonicalize().to_vector()
@@ -58,14 +58,14 @@ def compute_normalized_two_panel_distance(p1: TwoPanelParams, p2: TwoPanelParams
     return float(np.linalg.norm(diff_norm) / math.sqrt(len(ranges)))
 
 
-def generate_two_panel_seeds(
-    constraints: TwoPanelConstraints,
-    bounds: TwoPanelBounds,
+def generate_dual_panel_seeds(
+    constraints: DualPanelConstraints,
+    bounds: DualPanelBounds,
     n_seeds: int = 10,
     stage1_ledger_path: Optional[Path] = None,
     stage2_ledger_path: Optional[Path] = None,
     rng: Optional[np.random.Generator] = None,
-) -> Tuple[List[TwoPanelParams], List[Dict[str, Any]]]:
+) -> Tuple[List[DualPanelParams], List[Dict[str, Any]]]:
     """
     Generates controlled initial two-panel seed candidates using:
     1. Duplicated best single-panel designs with valid separation.
@@ -79,15 +79,15 @@ def generate_two_panel_seeds(
     if rng is None:
         rng = np.random.default_rng(42)
 
-    feasible_seeds: List[TwoPanelParams] = []
+    feasible_seeds: List[DualPanelParams] = []
     rejected_proposals: List[Dict[str, Any]] = []
 
-    def _test_and_add(cand: TwoPanelParams, method: str) -> bool:
+    def _test_and_add(cand: DualPanelParams, method: str) -> bool:
         c_can = cand.canonicalize()
-        res = check_two_panel_feasibility(c_can, constraints)
+        res = check_dual_panel_feasibility(c_can, constraints)
         if res.is_valid:
             # Check diversity against already accepted seeds
-            if all(compute_normalized_two_panel_distance(c_can, s, bounds) >= 0.04 for s in feasible_seeds):
+            if all(compute_normalized_dual_panel_distance(c_can, s, bounds) >= 0.04 for s in feasible_seeds):
                 feasible_seeds.append(c_can)
                 return True
         else:
@@ -111,7 +111,7 @@ def generate_two_panel_seeds(
             x=best_s2.x + dx, y=best_s2.y + dy, length=best_s2.length, width=best_s2.width,
             height=best_s2.height, heading_deg=best_s2.heading_deg, albedo=best_s2.albedo
         )
-        cand = TwoPanelParams.from_panels(best_s2, p2_offset)
+        cand = DualPanelParams.from_panels(best_s2, p2_offset)
         _test_and_add(cand, "seed_duplicated_best_offset")
         if len(feasible_seeds) >= 2:
             break
@@ -132,7 +132,7 @@ def generate_two_panel_seeds(
     if len(top_singles) >= 2:
         for i in range(min(5, len(top_singles))):
             for j in range(i + 1, min(10, len(top_singles))):
-                cand = TwoPanelParams.from_panels(top_singles[i], top_singles[j])
+                cand = DualPanelParams.from_panels(top_singles[i], top_singles[j])
                 _test_and_add(cand, "seed_top_single_pair")
                 if len(feasible_seeds) >= 4:
                     break
@@ -154,36 +154,36 @@ def generate_two_panel_seeds(
     return feasible_seeds[:n_seeds], rejected_proposals
 
 
-class TwoPanelAcquisitionEngine:
+class DualPanelAcquisitionEngine:
     """
     Proposes new two-panel intervention candidates using surrogate predictions,
     ensemble uncertainty, boundary exploration, and geometric feasibility filtering.
     """
 
-    def __init__(self, config: Optional[TwoPanelAcquisitionConfig] = None):
-        self.config = config or TwoPanelAcquisitionConfig()
+    def __init__(self, config: Optional[DualPanelAcquisitionConfig] = None):
+        self.config = config or DualPanelAcquisitionConfig()
         self.rng = np.random.default_rng(self.config.seed)
 
     def propose_batch(
         self,
-        surrogate: TwoPanelSurrogateModel,
-        constraints: TwoPanelConstraints,
-        bounds: TwoPanelBounds,
+        surrogate: DualPanelSurrogateModel,
+        constraints: DualPanelConstraints,
+        bounds: DualPanelBounds,
         batch_size: int = 5,
         rng: Optional[np.random.Generator] = None,
-    ) -> Tuple[List[Tuple[TwoPanelParams, str, TwoPanelSurrogatePrediction]], List[Dict[str, Any]]]:
+    ) -> Tuple[List[Tuple[DualPanelParams, str, DualPanelSurrogatePrediction]], List[Dict[str, Any]]]:
         """
         Proposes a diverse, uncertainty-aware batch of feasible two-panel candidates.
 
         Returns:
-            proposals: List of (TwoPanelParams, acquisition_strategy_name, surrogate_prediction)
+            proposals: List of (DualPanelParams, acquisition_strategy_name, surrogate_prediction)
             rejected_in_screening: Machine-readable rejections encountered during candidate pool generation.
         """
         if rng is None:
             rng = self.rng
 
         # 1. Generate screening pool of candidate proposals
-        pool: List[TwoPanelParams] = []
+        pool: List[DualPanelParams] = []
         rejected_in_screening: List[Dict[str, Any]] = []
 
         # Draw LHS and uniform candidates
@@ -192,7 +192,7 @@ class TwoPanelAcquisitionEngine:
 
         for c in (lhs_pool + uniform_pool):
             c_can = c.canonicalize()
-            res = check_two_panel_feasibility(c_can, constraints)
+            res = check_dual_panel_feasibility(c_can, constraints)
             if res.is_valid:
                 pool.append(c_can)
             else:
@@ -212,11 +212,11 @@ class TwoPanelAcquisitionEngine:
         predictions = surrogate.predict_batch(pool)
 
         # 3. Portfolio selection across distinct exploration/exploitation objectives
-        selected: List[Tuple[TwoPanelParams, str, TwoPanelSurrogatePrediction]] = []
+        selected: List[Tuple[DualPanelParams, str, DualPanelSurrogatePrediction]] = []
 
-        def _is_diverse(cand: TwoPanelParams) -> bool:
+        def _is_diverse(cand: DualPanelParams) -> bool:
             return all(
-                compute_normalized_two_panel_distance(cand, s[0], bounds) >= self.config.min_diversity_dist
+                compute_normalized_dual_panel_distance(cand, s[0], bounds) >= self.config.min_diversity_dist
                 for s in selected
             )
 

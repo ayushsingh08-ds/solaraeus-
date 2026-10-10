@@ -40,27 +40,27 @@ from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.placement.parameters import ShadePanelParams, build_panel_geometry
 from solaraeus.placement.feasibility import FeasibilityConstraints, check_feasibility
 from solaraeus.placement.objective import ComfortObjectiveConfig, compute_objective
-from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_parameters import DualPanelParams, DualPanelBounds
 from solaraeus.placement.dual_panel_feasibility import (
-    TwoPanelConstraints,
-    check_two_panel_feasibility,
-    TwoPanelRejectionReason,
+    DualPanelConstraints,
+    check_dual_panel_feasibility,
+    DualPanelRejectionReason,
 )
 from solaraeus.placement.dual_panel_objective import (
-    TwoPanelComfortObjectiveConfig,
-    compute_two_panel_objective,
+    DualPanelComfortObjectiveConfig,
+    compute_dual_panel_objective,
     compute_pareto_front,
 )
 from solaraeus.placement.dual_panel_evaluation_ledger import (
-    TwoPanelCandidateRecord,
-    TwoPanelCandidateLedger,
+    DualPanelCandidateRecord,
+    DualPanelCandidateLedger,
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    TwoPanelOptimizerConfig,
-    TwoPanelOptimizationEngine,
+    DualPanelOptimizerConfig,
+    DualPanelOptimizationEngine,
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
-    validate_two_panel_multi_path,
+    validate_dual_panel_multi_path,
 )
 from solaraeus.placement.robustness import (
     WeatherScenario,
@@ -102,7 +102,7 @@ def synthetic_scene_and_baseline():
     single_c = FeasibilityConstraints.from_scene(
         scene=scene, allowed_area=allowed_poly, min_underside_height_m=2.5, min_building_setback_m=0.5
     )
-    constraints = TwoPanelConstraints.from_single_constraints(
+    constraints = DualPanelConstraints.from_single_constraints(
         single=single_c, min_panel_separation_m=2.0, max_individual_area_m2=30.0, max_total_area_m2=50.0
     )
 
@@ -113,7 +113,7 @@ def synthetic_scene_and_baseline():
 def test_random_seed_reproducibility(synthetic_scene_and_baseline):
     """Verifies that running with identical seed produces identical initial candidates."""
     scene, base_res, weather, config, constraints = synthetic_scene_and_baseline
-    bounds = TwoPanelBounds.get_canonical_church_street_bounds()
+    bounds = DualPanelBounds.get_canonical_church_street_bounds()
 
     rng1 = np.random.default_rng(42)
     sample1 = bounds.sample_uniform(rng1)
@@ -131,7 +131,7 @@ def test_random_seed_reproducibility(synthetic_scene_and_baseline):
 # Test 2: Different seeds produce independent but valid runs
 def test_different_seeds_independent(synthetic_scene_and_baseline):
     """Verifies that seeds 7, 42, and 12345 produce distinct samples."""
-    bounds = TwoPanelBounds.get_canonical_church_street_bounds()
+    bounds = DualPanelBounds.get_canonical_church_street_bounds()
 
     s7 = bounds.sample_uniform(np.random.default_rng(7))
     s42 = bounds.sample_uniform(np.random.default_rng(42))
@@ -145,14 +145,14 @@ def test_different_seeds_independent(synthetic_scene_and_baseline):
 # Test 3: Evaluation-budget configuration
 def test_evaluation_budget_configuration():
     """Verifies budget math and scaling configurations."""
-    cfg = TwoPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=3, batch_size=5)
+    cfg = DualPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=3, batch_size=5)
     d = cfg.to_dict()
     assert d["total_target_budget"] == 25
 
-    cfg_med = TwoPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=8, batch_size=5)
+    cfg_med = DualPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=8, batch_size=5)
     assert cfg_med.to_dict()["total_target_budget"] == 50
 
-    cfg_ext = TwoPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=18, batch_size=5)
+    cfg_ext = DualPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=18, batch_size=5)
     assert cfg_ext.to_dict()["total_target_budget"] == 100
 
 
@@ -219,12 +219,12 @@ def test_constraint_sensitivity_configuration():
 # Test 8: Candidate ranking consistency
 def test_candidate_ranking_consistency():
     """Verifies that recompute_score_under_scenario calculates consistent and ordered scores."""
-    rec1 = TwoPanelCandidateRecord(
+    rec1 = DualPanelCandidateRecord(
         candidate_id="C1", iteration=0, method="test", params={}, is_feasible=True,
         total_panel_area=15.0,
         metrics={"mean_utci_c": 36.0, "p90_utci_c": 39.0, "max_utci_c": 41.0, "mean_tmrt_c": 55.0, "percentage_cells_improved_pct": 30.0, "estimated_construction_cost_usd": 12000.0}
     )
-    rec2 = TwoPanelCandidateRecord(
+    rec2 = DualPanelCandidateRecord(
         candidate_id="C2", iteration=1, method="test", params={}, is_feasible=True,
         total_panel_area=25.0,
         metrics={"mean_utci_c": 35.8, "p90_utci_c": 38.5, "max_utci_c": 40.5, "mean_tmrt_c": 54.0, "percentage_cells_improved_pct": 45.0, "estimated_construction_cost_usd": 18000.0}
@@ -244,9 +244,9 @@ def test_candidate_ranking_consistency():
 
 # Test 9: Candidate ledger completeness
 def test_candidate_ledger_completeness():
-    """Verifies that TwoPanelCandidateLedger correctly serializes and filters all fields."""
-    ledger = TwoPanelCandidateLedger()
-    rec = TwoPanelCandidateRecord(
+    """Verifies that DualPanelCandidateLedger correctly serializes and filters all fields."""
+    ledger = DualPanelCandidateLedger()
+    rec = DualPanelCandidateRecord(
         candidate_id="CAND_0001", iteration=1, method="surrogate",
         params={"x1": 10.0, "y1": 12.0, "length1": 3.0, "width1": 2.0, "height1": 3.0, "heading_deg1": 90.0, "albedo1": 0.6,
                 "x2": 16.0, "y2": 12.0, "length2": 3.0, "width2": 2.0, "height2": 3.0, "heading_deg2": 90.0, "albedo2": 0.6},
@@ -266,7 +266,7 @@ def test_candidate_ledger_completeness():
 # Test 10: Certificate-failure handling
 def test_certificate_failure_handling():
     """Verifies that certificate failures or violations are recorded properly."""
-    rec_violation = TwoPanelCandidateRecord(
+    rec_violation = DualPanelCandidateRecord(
         candidate_id="CAND_FAIL", iteration=0, method="test", params={}, is_feasible=True,
         certificate_status="violation", certificate_violations=2, max_certificate_bound_k=1.25,
         objective_value=float("inf"), metrics=None, rejection_reason="CERTIFICATE_VIOLATION"
@@ -279,12 +279,12 @@ def test_certificate_failure_handling():
 def test_cpu_gpu_incremental_parity(synthetic_scene_and_baseline):
     """Verifies parity between CPU Full and GPU Incremental on synthetic two-panel scene."""
     scene, base_res, weather, config, constraints = synthetic_scene_and_baseline
-    params = TwoPanelParams(
+    params = DualPanelParams(
         x1=10.0, y1=10.0, length1=3.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=16.0, y2=10.0, length2=3.0, width2=2.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
     engine = GPUIncrementalEngine(fallback_to_cpu=True)
-    report = validate_two_panel_multi_path(
+    report = validate_dual_panel_multi_path(
         candidate_id="TEST_PARITY", params=params, role="Test",
         baseline_scene=scene, baseline_result=base_res, weather=weather,
         config=config, gpu_engine=engine
@@ -329,29 +329,29 @@ def test_single_panel_regression_preservation(synthetic_scene_and_baseline):
 
 
 # Test 14: Two-panel feasibility preservation
-def test_two_panel_feasibility_preservation(synthetic_scene_and_baseline):
+def test_dual_panel_feasibility_preservation(synthetic_scene_and_baseline):
     """Verifies collision, separation, and area constraints for two panels."""
     scene, base_res, weather, config, constraints = synthetic_scene_and_baseline
 
     # Overlapping / colliding panels
-    colliding = TwoPanelParams(
+    colliding = DualPanelParams(
         x1=10.0, y1=10.0, length1=4.0, width1=3.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,
         x2=11.0, y2=10.0, length2=4.0, width2=3.0, height2=3.0, heading_deg2=90.0, albedo2=0.6,
     )
-    res_col = check_two_panel_feasibility(colliding, constraints)
+    res_col = check_dual_panel_feasibility(colliding, constraints)
     assert not res_col.is_valid
     assert res_col.rejection_reason in (
-        TwoPanelRejectionReason.PANEL_COLLISION,
-        TwoPanelRejectionReason.INSUFFICIENT_PANEL_SEPARATION,
+        DualPanelRejectionReason.PANEL_COLLISION,
+        DualPanelRejectionReason.INSUFFICIENT_PANEL_SEPARATION,
     )
 
 
 # Test 15: No duplicate panel or candidate records
 def test_no_duplicate_candidate_records():
     """Verifies ledger rejects or identifies duplicate candidate IDs."""
-    ledger = TwoPanelCandidateLedger()
-    rec1 = TwoPanelCandidateRecord(candidate_id="C1", iteration=0, method="test", params={}, is_feasible=True)
-    rec2 = TwoPanelCandidateRecord(candidate_id="C2", iteration=1, method="test", params={}, is_feasible=True)
+    ledger = DualPanelCandidateLedger()
+    rec1 = DualPanelCandidateRecord(candidate_id="C1", iteration=0, method="test", params={}, is_feasible=True)
+    rec2 = DualPanelCandidateRecord(candidate_id="C2", iteration=1, method="test", params={}, is_feasible=True)
     ledger.add(rec1)
     ledger.add(rec2)
     ids = [r.candidate_id for r in ledger.records]
@@ -366,7 +366,7 @@ def test_deterministic_report_generation():
         "mean_tmrt_c": 56.10, "percentage_cells_improved_pct": 35.0,
         "estimated_construction_cost_usd": 15000.0,
     }
-    rec = TwoPanelCandidateRecord(
+    rec = DualPanelCandidateRecord(
         candidate_id="DET_TEST", iteration=0, method="test", params={}, is_feasible=True,
         total_panel_area=20.0, metrics=m_dict,
     )
