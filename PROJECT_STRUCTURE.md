@@ -1,5 +1,15 @@
 # SOLARAEUS — Project Structure Audit
 
+> **STALE — describes the pre-overhaul tree at `pre-overhaul`.**
+> The overhaul on branch `overhaul` has since moved and archived part of what
+> this document describes. Paths named here as `src/solaraeus/`,
+> `researchpaper/`, `weekly_report/`, `research_paper_sol/`, `context.md` and
+> `tools/` no longer resolve. Read
+> [REFACTOR_REPORT.md](REFACTOR_REPORT.md) §3 for the old -> new path table and
+> §4 for which of this audit's "Inferred" claims (I1-I8) survived
+> re-verification. Regenerating this file is Phase 10 of the overhaul and has
+> **not** been done yet.
+
 **Audit date:** 2026-10-10 · **Branch:** `main` · **Commit basis:** workspace HEAD
 **Method:** every claim below is backed by a file:line citation read from the working tree, or by an AST-derived import graph built with a purpose-written extractor over all 255 Python files. Cycles and fan-in/out were computed with Tarjan SCC.
 
