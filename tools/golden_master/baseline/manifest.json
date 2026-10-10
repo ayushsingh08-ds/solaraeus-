@@ -1,0 +1,42 @@
+{
+  "captured_at": "2026-10-10T20:14:28",
+  "env": {
+    "cupy": "14.2.0",
+    "numpy": "2.2.6",
+    "pyproj": "3.7.2",
+    "pythermalcomfort": "4.5.0",
+    "python": "3.12.6",
+    "scipy": "1.17.1",
+    "sklearn": "1.6.1",
+    "trimesh": "5.1.0"
+  },
+  "git_describe": "pre-cleanup",
+  "git_sha": "b9d59372aa741c79b0650f877005b625f5961327",
+  "gpu_available": true,
+  "scenarios": {
+    "incremental_cpu": {
+      "n_arrays": 24,
+      "n_scalars": 20,
+      "run_to_run_max_abs_diff": 0.0,
+      "status": "CAPTURED"
+    },
+    "incremental_gpu": {
+      "n_arrays": 24,
+      "n_scalars": 20,
+      "run_to_run_max_abs_diff": 0.0,
+      "status": "CAPTURED"
+    },
+    "single_building_cpu": {
+      "n_arrays": 7,
+      "n_scalars": 7,
+      "run_to_run_max_abs_diff": 0.0,
+      "status": "CAPTURED"
+    },
+    "single_building_gpu": {
+      "n_arrays": 7,
+      "n_scalars": 7,
+      "run_to_run_max_abs_diff": 0.0,
+      "status": "CAPTURED"
+    }
+  }
+}

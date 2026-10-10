@@ -1,0 +1,9 @@
+{
+  "air_temperature_c": 28.0,
+  "is_daylight": true,
+  "num_buildings": 1,
+  "solar_altitude_deg": 24.482031232271652,
+  "solar_azimuth_deg": 82.12663604246802,
+  "solar_zenith_deg": 65.51796876772835,
+  "total_cells": 6400
+}
