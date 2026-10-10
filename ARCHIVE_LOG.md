@@ -45,3 +45,40 @@ artifacts (`tree_geometry_scene_manifest.json`, `stage_NN_test_results.json`,
 Verified before archiving: no reference in `tests/` (besides the kept gates test, which
 reads only the COMPLETE siblings), `src/`, `examples/`, kept `scripts/`, or
 `research_paper_sol/`. Keeper test green; golden-master GREEN after this batch.
+
+---
+
+## Batch 2 — superseded stage 25/26 lineages · NHD #3 (Decisions 2 & 4)
+
+Note on Decision 4 ("retarget the stage 25/26 tests before archiving"): both stage tests
+are **artifact readers**, not script runners — neither imports a `scripts/` module (they
+read committed `results/` dirs). So there is no script target to retarget; each test
+already reads the *kept* lineage's artifacts. No retarget was required.
+
+### Stage 26 — Decision 2 (user: "deferral script authoritative; archive the other with a note")
+
+| archived path | what it was | evidence it is safe to archive |
+|---|---|---|
+| `scripts/execute_stage_26_field_tree_validation.py` | PENDING-track producer (`STAGE_26_FIELD_VALIDATION_PENDING`) | orphan (no importer); the committed `results/stage_26_field_tree_validation/` already carries the deferral record (`stage_26_deferred_status.json` = `STAGE_26_FIELD_VALIDATION_DEFERRED`); `tests/test_stage_26_field_tree_validation.py` is deferral-tolerant and passes |
+
+**Note (reproducibility):** the committed stage-26 dir is **co-produced**. `field_observation_schema.json`,
+`tree_existence_validation.json`, `field_photo_manifest.json` and the tree CSVs originate from the
+now-archived PENDING script; `stage_26_deferred_status.json` (the authoritative DEFERRED record) and
+`stage_26_test_results.json` come from the kept `execute_stage_26_field_validation_deferral.py`. All
+committed files are **kept** as test-guarded evidence; only the PENDING *script* is retired. Regenerating
+the schema/existence/photo-manifest files is retired with it (recover the script via `pre-cleanup`).
+
+### Stage 25 — evidence-derived · **corrects the earlier plan line**
+
+The earlier plan named `stage_25_real_dtm_validation` as the one to archive. That is **reversed**:
+`stage_25_real_dtm_validation/` is the **contract** — `tests/test_stage_25_real_dtm_validation.py`
+asserts its `STAGE_25_SYNTHETIC_TERRAIN_ONLY` / `REGIONAL_REFERENCE_ONLY` tokens, and the paper's
+limitations declaration (`research_paper_sol/solaraeus.tex:484`, `FABDEM_REGIONAL_REFERENCE_ONLY`) rests
+on it. It is **kept**. The unreferenced duplicate is archived instead:
+
+| archived path | what it was | evidence it is safe to archive |
+|---|---|---|
+| `scripts/execute_stage_25_available_terrain_validation.py` | duplicate producer | orphan (no importer) |
+| `results/stage_25_available_terrain_validation/` | duplicate run (`APPROVED_AS_REGIONAL_REFERENCE_ONLY`) | same 8-file set as the kept `stage_25_real_dtm_validation/`, whose richer artifact subsumes both facets (regional-reference-only **and** not-street-scale); referenced by no test, paper, src, or kept script |
+
+Both stage tests green after this batch; golden-master GREEN.
