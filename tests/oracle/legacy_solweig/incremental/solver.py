@@ -9,11 +9,11 @@ import time
 from typing import Optional
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid, GeometricEdit, EditBoundingBox
-from solaraeus.core.solweig import (
+from legacy_solweig.core.geometry import UrbanGrid, GeometricEdit, EditBoundingBox
+from legacy_solweig.core.solweig import (
     ReferenceSOLWEIGSolver, WeatherParameters, SOLWEIGConfig, SOLWEIGState
 )
-from solaraeus.incremental.bounds import evaluate_certificate, CertificateResult
+from legacy_solweig.incremental.bounds import evaluate_certificate, CertificateResult
 
 
 @dataclass

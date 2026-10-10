@@ -10,7 +10,7 @@ from typing import Tuple, Optional
 import math
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid
+from legacy_solweig.core.geometry import UrbanGrid
 
 SIGMA = 5.670374419e-8  # Stefan-Boltzmann constant (W / m^2 K^4)
 

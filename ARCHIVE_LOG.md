@@ -82,3 +82,34 @@ on it. It is **kept**. The unreferenced duplicate is archived instead:
 | `results/stage_25_available_terrain_validation/` | duplicate run (`APPROVED_AS_REGIONAL_REFERENCE_ONLY`) | same 8-file set as the kept `stage_25_real_dtm_validation/`, whose richer artifact subsumes both facets (regional-reference-only **and** not-street-scale); referenced by no test, paper, src, or kept script |
 
 Both stage tests green after this batch; golden-master GREEN.
+
+---
+
+## Batch 3 — legacy SOLWEIG oracle relocated · Decision 1
+
+**Move (not a deletion; tracked as git renames, fully reversible).** The 7-file legacy
+SOLWEIG reference engine `src/solaraeus/` was a name-collision blocker: it occupied the
+`solaraeus` package name the live engine (`urban_comfort`) must take. It is a
+deterministic reference oracle used only by tests, so it becomes a test-only fixture:
+
+| from | to |
+|---|---|
+| `src/solaraeus/{__init__,core/geometry,core/solweig,incremental/bounds,incremental/solver,benchmark/adversarial,benchmark/runner}.py` | `tests/oracle/legacy_solweig/…` (same tree) |
+
+- Internal absolute imports rewritten `solaraeus.*` → `legacy_solweig.*` (5 modules).
+- Oracle tests retargeted `from solaraeus.*` → `from legacy_solweig.*`:
+  `tests/test_solweig_reference.py`, `tests/test_certificate_soundness.py`,
+  `tests/test_adversarial_suite.py` (the independent cross-check — kept).
+- New `tests/conftest.py` puts `tests/oracle/` on `sys.path` so `import legacy_solweig`
+  resolves without shipping it. The `solaraeus` name is now free in `src/`.
+- Not touched: `tests/test_final_3d_scene_geometry.py` names the committed artifact
+  `solaraeus_integrated_scene.glb` (KEEP VERBATIM — an artifact filename, not an import).
+
+**Archived (git-rm, recover via `pre-cleanup`).**
+
+| archived path | what it was | evidence it is safe to archive |
+|---|---|---|
+| `scripts/run_first_milestone.py` | `run_`-prefixed Milestone-1 demo driving the legacy oracle | orphan — imported by nothing; named only in docs (DIAGNOSIS / PROJECT_STRUCTURE / context); not a test/example/CLI target and reproduces no paper number (paper numbers come from the `urban_comfort` stages, not this legacy demo) |
+
+Verified: 15 oracle tests pass (unchanged from baseline); full suite still collects
+(457 tests, no import errors); golden-master GREEN (4/4, max|diff|=0.0).

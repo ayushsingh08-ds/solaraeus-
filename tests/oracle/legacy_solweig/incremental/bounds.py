@@ -9,8 +9,8 @@ from typing import Tuple, Optional
 import math
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid, EditBoundingBox
-from solaraeus.core.solweig import WeatherParameters, SOLWEIGConfig, SOLWEIGState, SIGMA
+from legacy_solweig.core.geometry import UrbanGrid, EditBoundingBox
+from legacy_solweig.core.solweig import WeatherParameters, SOLWEIGConfig, SOLWEIGState, SIGMA
 
 
 @dataclass

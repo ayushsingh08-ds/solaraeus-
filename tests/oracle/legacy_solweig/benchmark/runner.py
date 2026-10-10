@@ -10,12 +10,12 @@ import time
 from typing import List, Dict, Any, Optional
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid, GeometricEdit
-from solaraeus.core.solweig import (
+from legacy_solweig.core.geometry import UrbanGrid, GeometricEdit
+from legacy_solweig.core.solweig import (
     ReferenceSOLWEIGSolver, WeatherParameters, SOLWEIGConfig, SOLWEIGState
 )
-from solaraeus.incremental.solver import IncrementalSOLWEIGSolver, IncrementalUpdateResult
-from solaraeus.benchmark.adversarial import AdversarialCase
+from legacy_solweig.incremental.solver import IncrementalSOLWEIGSolver, IncrementalUpdateResult
+from legacy_solweig.benchmark.adversarial import AdversarialCase
 
 
 @dataclass

@@ -13,10 +13,10 @@ from dataclasses import dataclass
 from typing import Tuple, List
 import numpy as np
 
-from solaraeus.core.geometry import (
+from legacy_solweig.core.geometry import (
     UrbanGrid, GeometricEdit, AddBuilding, RemoveBuilding, ChangeHeight, MoveBuilding
 )
-from solaraeus.core.solweig import WeatherParameters, SOLWEIGConfig
+from legacy_solweig.core.solweig import WeatherParameters, SOLWEIGConfig
 
 
 @dataclass
