@@ -15,7 +15,7 @@ import numpy as np
 
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.incremental.affected_region import AffectedRegionResult
+from urban_comfort.incremental.regions import AffectedRegionResult
 from urban_comfort.solar.solar_position import SolarPosition
 
 

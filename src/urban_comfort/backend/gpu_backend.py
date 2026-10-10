@@ -30,7 +30,7 @@ from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import SolarPosition, calculate_solar_position
 
 # CUDA C++ Source Code for Ray-Triangle & Horizon Search Kernels

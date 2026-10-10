@@ -13,7 +13,7 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 @dataclass

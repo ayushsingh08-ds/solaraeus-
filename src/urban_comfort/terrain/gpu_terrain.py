@@ -20,7 +20,7 @@ except ImportError:
 from urban_comfort.backend.gpu_backend import GPUBackend
 from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene
 from urban_comfort.terrain.terrain_solver import TerrainAwareCPUSolver
 

@@ -28,11 +28,12 @@ from urban_comfort.config import (
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.incremental.certificate import ErrorCertificate, generate_error_certificate
-from urban_comfort.incremental.update import GeometricEdit, IncrementalUpdateResult
+from urban_comfort.incremental.edits import GeometricEdit
+from urban_comfort.incremental.update import IncrementalUpdateResult
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import calculate_solar_position
 
 

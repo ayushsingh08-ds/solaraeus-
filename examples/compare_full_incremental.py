@@ -37,7 +37,8 @@ from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.primitives import BoundingBox2D, Building
 from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.incremental.certificate import verify_certificate
-from urban_comfort.incremental.update import AddBuildingEdit, incremental_update_certified
+from urban_comfort.incremental.edits import AddBuildingEdit
+from urban_comfort.incremental.update import incremental_update_certified
 from urban_comfort.reference.full_recompute import full_recompute
 
 

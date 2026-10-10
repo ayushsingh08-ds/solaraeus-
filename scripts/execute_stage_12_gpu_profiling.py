@@ -38,7 +38,7 @@ from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 def main():

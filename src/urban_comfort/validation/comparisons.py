@@ -9,7 +9,7 @@ from typing import Dict
 
 import numpy as np
 
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 @dataclass

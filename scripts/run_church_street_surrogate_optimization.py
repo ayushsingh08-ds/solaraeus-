@@ -59,7 +59,7 @@ from urban_comfort.optimization.validation import (
     MultiPathValidationSummary,
     validate_candidate_multi_path,
 )
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 def sha256_file(path: Path) -> str:

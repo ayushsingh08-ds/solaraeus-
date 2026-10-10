@@ -5,11 +5,8 @@ Full reference recomputation path for single-timestep SOLWEIG-compatible urban t
 from __future__ import annotations
 
 import time
-from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
-
-import numpy as np
+from typing import Optional
 
 from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.config import (
@@ -23,26 +20,10 @@ from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
 from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-
-
-@dataclass
-class SimulationResult:
-    """Complete simulation output across all computed physical fields."""
-    shadow_mask: np.ndarray                     # Binary direct beam visibility (1.0 lit, 0.0 shadow)
-    direct_irradiance: np.ndarray               # Direct horizontal shortwave irradiance (W / m^2)
-    visibility_fields: Dict[str, np.ndarray]    # {"svf": np.ndarray}
-    shortwave_flux: np.ndarray                  # Total absorbed shortwave flux density (W / m^2)
-    longwave_flux: np.ndarray                   # Total absorbed longwave flux density (W / m^2)
-    tmrt: np.ndarray                            # Mean Radiant Temperature in Celsius (deg C)
-    utci: np.ndarray                            # Universal Thermal Climate Index in Celsius (deg C)
-    metadata: Dict[str, Any]                    # Timestamps, runtimes, solar parameters, diagnostics
-
-    @property
-    def svf(self) -> np.ndarray:
-        return self.visibility_fields["svf"]
 
 
 def full_recompute(scene: Scene, weather: Weather,

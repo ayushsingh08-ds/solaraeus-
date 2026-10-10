@@ -28,7 +28,8 @@ from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.result import SimulationResult
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def sha256_file(path: Path) -> str:

@@ -28,7 +28,7 @@ from urban_comfort.optimization.parameters import (
     ShadePanelParams,
     build_panel_geometry,
 )
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 @dataclass

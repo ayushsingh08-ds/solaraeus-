@@ -34,14 +34,9 @@ from urban_comfort.geometry.scene import (
     create_single_box_scene,
 )
 from urban_comfort.incremental.certificate import verify_certificate
+from urban_comfort.incremental.edits import AddBuildingEdit, ChangeHeightEdit, RemoveBuildingEdit
 from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.update import (
-    AddBuildingEdit,
-    ChangeHeightEdit,
-    RemoveBuildingEdit,
-    incremental_update_certified,
-    incremental_update_exact,
-)
+from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
 from urban_comfort.reference.full_recompute import full_recompute
 from urban_comfort.terrain.dtm import TerrainGrid
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene

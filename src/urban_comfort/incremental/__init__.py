@@ -3,7 +3,6 @@ Incremental computation subpackage for dependency tracking, caching, certificate
 """
 
 from urban_comfort.incremental.affected_region import (
-    AffectedRegionResult,
     compute_candidate_affected_region,
     project_box_shadow,
 )
@@ -26,6 +25,13 @@ from urban_comfort.incremental.dependency_graph import (
     EDIT_TRIGGER_MAP,
     DependencyGraph,
 )
+from urban_comfort.incremental.edits import (
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    GeometricEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
+)
 from urban_comfort.incremental.mesh_affected_region import (
     compute_mesh_candidate_affected_region,
     project_mesh_shadow,
@@ -38,13 +44,9 @@ from urban_comfort.incremental.mesh_update import (
     RemoveMeshEdit,
     ReplaceMeshEdit,
 )
+from urban_comfort.incremental.regions import AffectedRegionResult
 from urban_comfort.incremental.update import (
-    AddBuildingEdit,
-    ChangeHeightEdit,
-    GeometricEdit,
     IncrementalUpdateResult,
-    MoveBuildingEdit,
-    RemoveBuildingEdit,
     incremental_update_certified,
     incremental_update_exact,
 )

@@ -86,7 +86,8 @@ from urban_comfort.optimization.two_panel_validation import (
     TwoPanelValidationReport,
     validate_two_panel_multi_path,
 )
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.result import SimulationResult
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def sha256_file(path: Path) -> str:

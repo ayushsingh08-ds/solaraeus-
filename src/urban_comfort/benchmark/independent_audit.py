@@ -32,7 +32,8 @@ from urban_comfort.config import (
 )
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.incremental.update import ChangeHeightEdit, incremental_update_certified
+from urban_comfort.incremental.edits import ChangeHeightEdit
+from urban_comfort.incremental.update import incremental_update_certified
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt

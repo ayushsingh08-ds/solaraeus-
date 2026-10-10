@@ -30,8 +30,10 @@ from urban_comfort.incremental.cache import (
 )
 from urban_comfort.incremental.certificate import ErrorCertificate, verify_certificate
 from urban_comfort.incremental.dependency_graph import DependencyGraph
-from urban_comfort.incremental.update import GeometricEdit, incremental_update_certified
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.incremental.edits import GeometricEdit
+from urban_comfort.incremental.update import incremental_update_certified
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 
 SOFTWARE_VERSION = "0.2.0-research-prototype"
 

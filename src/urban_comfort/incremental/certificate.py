@@ -15,9 +15,9 @@ from urban_comfort.config import SIGMA, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.incremental.affected_region import compute_candidate_affected_region
-from urban_comfort.incremental.update import GeometricEdit
+from urban_comfort.incremental.edits import GeometricEdit
 from urban_comfort.radiation.longwave import compute_air_emissivity
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import SolarPosition
 
 

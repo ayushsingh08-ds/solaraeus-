@@ -51,7 +51,7 @@ from urban_comfort.incremental.cache import (
 from urban_comfort.incremental.certificate import verify_certificate
 from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 def sha256_file(path: Path) -> str:

@@ -28,15 +28,13 @@ from urban_comfort.config import (
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.incremental.certificate import verify_certificate
-from urban_comfort.incremental.update import (
-    GeometricEdit,
-    incremental_update_certified,
-    incremental_update_exact,
-)
+from urban_comfort.incremental.edits import GeometricEdit
+from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
 from urban_comfort.visibility.shadow import compute_direct_shadow_mask

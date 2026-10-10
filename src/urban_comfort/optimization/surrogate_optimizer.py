@@ -34,7 +34,7 @@ from urban_comfort.optimization.surrogate import (
     SurrogateModel,
     SurrogatePrediction,
 )
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 @dataclass

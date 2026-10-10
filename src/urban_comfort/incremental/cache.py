@@ -14,7 +14,7 @@ import numpy as np
 from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.incremental.dependency_graph import DependencyGraph
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import SolarPosition
 
 

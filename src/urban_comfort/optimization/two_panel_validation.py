@@ -30,7 +30,8 @@ from urban_comfort.optimization.validation import (
     PathComparisonMetrics,
     _compare_results,
 )
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 
 
 @dataclass

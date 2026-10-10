@@ -8,7 +8,8 @@ import numpy as np
 
 from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import create_single_box_scene
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.validation.comparisons import (
     compare_arrays,
     compare_results,

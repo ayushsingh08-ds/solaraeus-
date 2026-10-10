@@ -38,12 +38,7 @@ from urban_comfort.benchmark.scenes import create_scaling_scene
 from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.primitives import BoundingBox2D, Building
 from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
-from urban_comfort.incremental.update import (
-    AddBuildingEdit,
-    ChangeHeightEdit,
-    MoveBuildingEdit,
-    RemoveBuildingEdit,
-)
+from urban_comfort.incremental.edits import AddBuildingEdit, ChangeHeightEdit, MoveBuildingEdit, RemoveBuildingEdit
 
 
 def write_csv(filepath: str, records: List[BenchmarkRecord]):

@@ -8,6 +8,7 @@ from __future__ import annotations
 import math
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
 from typing import Any, Optional, Tuple
 
 import numpy as np
@@ -19,115 +20,20 @@ from urban_comfort.config import (
     SimulationConfig,
     Weather,
 )
-from urban_comfort.geometry.primitives import Building
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.certificate import generate_error_certificate
+from urban_comfort.incremental.edits import (
+    GeometricEdit,
+)
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import SolarPosition, calculate_solar_position
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
 from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-
-
-@dataclass
-class GeometricEdit:
-    """Base class for geometric building edits."""
-    edit_type: str
-
-    def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
-        """Applies edit to scene and returns (new_scene, modified_volume_bounds_3d)."""
-        raise NotImplementedError
-
-
-@dataclass
-class AddBuildingEdit(GeometricEdit):
-    building: Building
-
-    def __init__(self, building: Building):
-        super().__init__(edit_type="building_added")
-        self.building = building
-
-    def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
-        new_scene = Scene.from_dict(scene.to_dict())
-        new_scene.add_building(self.building)
-        return new_scene, self.building.bounds_3d
-
-
-@dataclass
-class RemoveBuildingEdit(GeometricEdit):
-    building_id: str
-
-    def __init__(self, building_id: str):
-        super().__init__(edit_type="building_removed")
-        self.building_id = building_id
-
-    def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
-        new_scene = Scene.from_dict(scene.to_dict())
-        removed = new_scene.remove_building(self.building_id)
-        return new_scene, removed.bounds_3d
-
-
-@dataclass
-class ChangeHeightEdit(GeometricEdit):
-    building_id: str
-    new_height: float
-
-    def __init__(self, building_id: str, new_height: float):
-        super().__init__(edit_type="building_height_changed")
-        self.building_id = building_id
-        self.new_height = new_height
-
-    def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
-        new_scene = Scene.from_dict(scene.to_dict())
-        bldg = new_scene.buildings[self.building_id]
-        old_bounds = bldg.bounds_3d
-        bldg.height = self.new_height
-        new_bounds = bldg.bounds_3d
-
-        # The differential volume of geometry changed is between min(old_h, new_h) and max(old_h, new_h)
-        diff_bounds = (
-            min(old_bounds[0], new_bounds[0]),
-            max(old_bounds[1], new_bounds[1]),
-            min(old_bounds[2], new_bounds[2]),
-            max(old_bounds[3], new_bounds[3]),
-            min(old_bounds[5], new_bounds[5]),
-            max(old_bounds[5], new_bounds[5]),
-        )
-        return new_scene, diff_bounds
-
-
-@dataclass
-class MoveBuildingEdit(GeometricEdit):
-    building_id: str
-    shift_x: float
-    shift_y: float
-
-    def __init__(self, building_id: str, shift_x: float, shift_y: float):
-        super().__init__(edit_type="building_moved")
-        self.building_id = building_id
-        self.shift_x = shift_x
-        self.shift_y = shift_y
-
-    def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
-        new_scene = Scene.from_dict(scene.to_dict())
-        bldg = new_scene.buildings[self.building_id]
-        old_bounds = bldg.bounds_3d
-
-        old_pos = bldg.position
-        bldg.position = (old_pos[0] + self.shift_x, old_pos[1] + self.shift_y, old_pos[2])
-        new_bounds = bldg.bounds_3d
-
-        union_bounds = (
-            min(old_bounds[0], new_bounds[0]),
-            max(old_bounds[1], new_bounds[1]),
-            min(old_bounds[2], new_bounds[2]),
-            max(old_bounds[3], new_bounds[3]),
-            min(old_bounds[4], new_bounds[4]),
-            max(old_bounds[5], new_bounds[5]),
-        )
-        return new_scene, union_bounds
 
 
 @dataclass
@@ -236,7 +142,6 @@ def incremental_update_exact(previous_scene: Scene,
     # Apply edit to get modified volume bounding box
     _, edit_bounds_3d = edit.apply(previous_scene)
 
-    from datetime import datetime, timezone
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
@@ -350,10 +255,6 @@ def incremental_update_certified(previous_scene: Scene,
             previous_scene, updated_scene, previous_result, edit, weather, config
         )
 
-    from datetime import datetime, timezone
-
-    from urban_comfort.incremental.certificate import generate_error_certificate
-
     t_start = time.perf_counter()
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
@@ -370,7 +271,6 @@ def incremental_update_certified(previous_scene: Scene,
 
     if cert.status == "fallback":
         # Fallback to full recomputation
-        from urban_comfort.reference.full_recompute import full_recompute
         full_res = full_recompute(updated_scene, weather, config)
         total_cells = grid.total_cells
         update_res = IncrementalUpdateResult(

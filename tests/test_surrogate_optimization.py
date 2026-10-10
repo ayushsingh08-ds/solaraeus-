@@ -57,7 +57,8 @@ from urban_comfort.optimization.surrogate_optimizer import (
     SurrogateOptimizerConfig,
 )
 from urban_comfort.optimization.validation import validate_candidate_multi_path
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FROZEN_STAGE1_DIR = REPO_ROOT / "results" / "church_street_intervention_optimization_20261007_102725"

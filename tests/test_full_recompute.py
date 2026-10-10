@@ -8,7 +8,8 @@ import pytest
 
 from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import create_canyon_scene, create_single_box_scene
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 
 
 @pytest.fixture

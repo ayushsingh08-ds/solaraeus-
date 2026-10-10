@@ -12,7 +12,7 @@ from urban_comfort.geometry.primitives import BoundingBox2D, Building
 from urban_comfort.geometry.scene import PedestrianGridConfig, Scene, create_single_box_scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.incremental.affected_region import compute_candidate_affected_region
-from urban_comfort.incremental.update import (
+from urban_comfort.incremental.edits import (
     AddBuildingEdit,
     ChangeHeightEdit,
     MoveBuildingEdit,

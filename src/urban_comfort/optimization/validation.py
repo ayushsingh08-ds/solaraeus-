@@ -26,7 +26,8 @@ from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
 from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 
 # Documented Project Physical Tolerances
 TOLERANCES_INCREMENTAL = {

@@ -41,7 +41,8 @@ from urban_comfort.incremental.update import incremental_update_certified
 from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
 from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
 from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.result import SimulationResult
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def sha256_file(path: Path) -> str:

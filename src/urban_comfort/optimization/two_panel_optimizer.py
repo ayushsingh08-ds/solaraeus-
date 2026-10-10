@@ -54,7 +54,7 @@ from urban_comfort.optimization.two_panel_surrogate import (
     TwoPanelSurrogateModel,
     TwoPanelSurrogatePrediction,
 )
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import calculate_solar_position
 
 

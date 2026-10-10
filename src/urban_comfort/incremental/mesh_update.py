@@ -12,7 +12,7 @@ from typing import Tuple
 
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.incremental.update import GeometricEdit
+from urban_comfort.incremental.edits import GeometricEdit
 
 
 @dataclass

@@ -7,34 +7,21 @@ including old projection, new projection, intermediate convex envelope, and nume
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Tuple
 
 import numpy as np
 
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.incremental.update import (
+from urban_comfort.incremental.edits import (
     AddBuildingEdit,
     ChangeHeightEdit,
     GeometricEdit,
     MoveBuildingEdit,
     RemoveBuildingEdit,
 )
+from urban_comfort.incremental.regions import AffectedRegionResult
 from urban_comfort.solar.solar_position import SolarPosition
-
-
-@dataclass
-class AffectedRegionResult:
-    """Candidate affected region output with fallback diagnostics."""
-    candidate_mask: np.ndarray             # (ny, nx) boolean mask: True where candidate region applies
-    candidate_bbox: Tuple[float, float, float, float] # (xmin, xmax, ymin, ymax) in world coordinates
-    is_fallback: bool                      # True if numerical instability forces full recomputation
-    fallback_reason: Optional[str]         # Descriptive reason when is_fallback is True
-    shadow_length_m: float                 # Estimated maximum shadow plume length (m)
-    safety_margin_m: float                 # Applied safety margin padding (m)
-    old_projection_bbox: Tuple[float, float, float, float]
-    new_projection_bbox: Tuple[float, float, float, float]
 
 
 def project_box_shadow(box_3d: Tuple[float, float, float, float, float, float],

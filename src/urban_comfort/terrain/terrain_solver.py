@@ -22,7 +22,8 @@ from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor

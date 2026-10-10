@@ -33,7 +33,7 @@ from urban_comfort.optimization.two_panel_objective import (
     compute_two_panel_objective,
 )
 from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 @dataclass

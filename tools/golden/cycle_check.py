@@ -8,11 +8,22 @@ intra-project imports to real files, and reports:
   3. imports that occur *inside a function body* (the usual way a project hides
      a cycle from the interpreter while keeping it in the source).
 
-Exit status is 1 when any cycle is found, so this is usable directly as a CI gate.
+Two kinds of cycle are reported separately, because they have different
+consequences:
+
+  * **top-level cycles** are fatal: the interpreter cannot build the modules and
+    `import` raises.  The gate fails on these, and the post-overhaul target is
+    zero.
+  * **lazy cycles** exist only through imports written *inside a function body*.
+    They import cleanly as long as nothing calls the function during module
+    initialisation.  `--strict` counts them as failures too.  They are the
+    deliberate shape of the optional-GPU dispatch (`full_recompute` must not
+    import CuPy at module scope), so a small number is expected and is listed
+    rather than hidden.
 
 Usage
 -----
-    python tools/golden/cycle_check.py [--roots src] [--quiet]
+    python tools/golden/cycle_check.py [--roots src] [--quiet] [--strict]
 """
 
 from __future__ import annotations
@@ -157,6 +168,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--roots", nargs="*", default=["src"])
     parser.add_argument("--quiet", action="store_true")
+    parser.add_argument(
+        "--strict", action="store_true", help="also fail on lazy (function-local) cycles"
+    )
     args = parser.parse_args()
 
     root_dirs = [REPO_ROOT / r for r in args.roots]
@@ -167,7 +181,18 @@ def main() -> int:
     print(f"internal import edges: {sum(len(v) for v in edges.values())}")
 
     components = tarjan(edges)
-    cycles = [c for c in components if len(c) > 1]
+    all_cycles = [c for c in components if len(c) > 1]
+    # A component is "top-level" (fatal) when it survives deleting the
+    # function-local edges; otherwise its back-edges are all lazy.
+    top_level_edges = {
+        src: {dst for dst in dsts if dst not in local_edges.get(src, set())}
+        for src, dsts in edges.items()
+    }
+    top_level_ids = {
+        tuple(sorted(c)): c for c in tarjan(top_level_edges) if len(c) > 1
+    }
+    cycles = [c for c in all_cycles if tuple(sorted(c)) in top_level_ids]
+    lazy_cycles = [c for c in all_cycles if tuple(sorted(c)) not in top_level_ids]
     self_loops = [f for f, deps in edges.items() if f in deps]
 
     def rel(p: str) -> str:
@@ -177,16 +202,22 @@ def main() -> int:
             return p
 
     if cycles:
-        print(f"\nCYCLES FOUND: {len(cycles)}")
+        print(f"\nTOP-LEVEL CYCLES FOUND: {len(cycles)}")
         for component in cycles:
             print(f"  cycle ({len(component)} files):")
             for member in sorted(component):
-                # show which of the cycle's own edges are function-local
+                print(f"      {rel(member)}")
+    else:
+        print("\ntop-level cycles: none (import graph is acyclic)")
+
+    if lazy_cycles:
+        print(f"\nlazy cycles (function-local back-edges only): {len(lazy_cycles)}")
+        for component in lazy_cycles:
+            print(f"  cycle ({len(component)} files):")
+            for member in sorted(component):
                 locals_here = sorted(local_edges.get(member, set()) & set(component))
                 marker = "  (function-local edge)" if locals_here else ""
                 print(f"      {rel(member)}{marker}")
-    else:
-        print("\nno cycles: import graph is acyclic")
 
     if self_loops:
         print(f"\nself-loops: {len(self_loops)}")
@@ -199,7 +230,8 @@ def main() -> int:
             if local_edges[src_file]:
                 print(f"    {rel(src_file)} -> {[rel(t) for t in sorted(local_edges[src_file])]}")
 
-    return 1 if (cycles or self_loops) else 0
+    failed = bool(cycles or self_loops) or (args.strict and bool(lazy_cycles))
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

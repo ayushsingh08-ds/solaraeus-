@@ -44,7 +44,7 @@ from urban_comfort.optimization.parameters import (
     build_panel_geometry,
 )
 from urban_comfort.optimization.validation import run_multi_path_validation_suite
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.reference.result import SimulationResult
 
 
 def sha256_file(path: Path) -> str:

@@ -9,13 +9,13 @@ from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.primitives import BoundingBox2D, Building
 from urban_comfort.geometry.scene import PedestrianGridConfig, Scene, create_single_box_scene
 from urban_comfort.incremental.certificate import CertificateViolationError, verify_certificate
-from urban_comfort.incremental.update import (
+from urban_comfort.incremental.edits import (
     AddBuildingEdit,
     ChangeHeightEdit,
     MoveBuildingEdit,
     RemoveBuildingEdit,
-    incremental_update_certified,
 )
+from urban_comfort.incremental.update import incremental_update_certified
 from urban_comfort.reference.full_recompute import full_recompute
 
 
