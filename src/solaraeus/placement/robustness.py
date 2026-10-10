@@ -47,8 +47,8 @@ from solaraeus.placement.dual_panel_evaluation_ledger import (
     DualPanelCandidateLedger,
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    DualPanelOptimizerConfig,
-    DualPanelOptimizationEngine,
+    DualPanelPlacementSolverConfig,
+    DualPanelPlacementSolverEngine,
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
     validate_dual_panel_multi_path,

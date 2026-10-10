@@ -47,7 +47,7 @@ from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
 from solaraeus.placement.placement_solver import (
-    OptimizerConfig, OptimizationEngine
+    PlacementSolverConfig, PlacementSolverEngine
 )
 from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
@@ -59,7 +59,7 @@ from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine, compute_lcb_score, compute_ei_score
 )
 from solaraeus.placement.surrogate_placement_solver import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+    SurrogatePlacementSolverConfig, SurrogatePlacementSolverEngine
 )
 
 
@@ -289,7 +289,7 @@ def test_invalid_candidate_handling():
         allowed_area=box(0, 0, 20, 20),
         min_underside_height_m=2.5,
     )
-    engine = OptimizationEngine(
+    engine = PlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
         weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,
@@ -297,7 +297,7 @@ def test_invalid_candidate_handling():
         sim_config=SimulationConfig(backend="cpu"),
         feasibility_constraints=constraints,
         eval_mask=np.ones(grid.shape, dtype=bool),
-        config=OptimizerConfig(fallback_to_cpu=True),
+        config=PlacementSolverConfig(fallback_to_cpu=True),
     )
 
     # Infeasible candidate (height < 2.5m)
@@ -375,7 +375,7 @@ def test_surrogate_assisted_optimizer_integration():
         albedo_min=0.3, albedo_max=0.8
     )
 
-    opt_cfg = SurrogateOptimizerConfig(
+    opt_cfg = SurrogatePlacementSolverConfig(
         seed=42,
         num_iterations=2,
         batch_size=2,
@@ -385,7 +385,7 @@ def test_surrogate_assisted_optimizer_integration():
         acquisition_config=AcquisitionConfig(pool_size=100, seed=42),
     )
 
-    engine = SurrogateOptimizationEngine(
+    engine = SurrogatePlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
         weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,

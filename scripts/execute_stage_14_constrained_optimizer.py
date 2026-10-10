@@ -59,7 +59,7 @@ from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
 from solaraeus.placement.placement_solver import (
-    OptimizerConfig, OptimizationEngine
+    PlacementSolverConfig, PlacementSolverEngine
 )
 
 
@@ -478,7 +478,7 @@ def main():
     print("=" * 60)
 
     bounds = ParameterBounds.get_canonical_church_street_bounds()
-    opt_config = OptimizerConfig(
+    opt_config = PlacementSolverConfig(
         seed=42,
         budget_random=10,
         budget_lhs=10,
@@ -539,7 +539,7 @@ def main():
     (out_dir / "optimizer_configuration.json").write_text(json.dumps(opt_config_dict, indent=2), encoding="utf-8")
 
     # Instantiate Optimizer
-    opt_engine = OptimizationEngine(
+    opt_engine = PlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,

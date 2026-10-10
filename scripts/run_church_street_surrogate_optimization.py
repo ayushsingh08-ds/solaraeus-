@@ -58,7 +58,7 @@ from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
 from solaraeus.placement.placement_solver import (
-    OptimizerConfig, OptimizationEngine
+    PlacementSolverConfig, PlacementSolverEngine
 )
 from solaraeus.placement.surrogate_model import (
     SurrogateConfig, SurrogatePrediction, SurrogateModel, extract_features
@@ -67,7 +67,7 @@ from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine
 )
 from solaraeus.placement.surrogate_placement_solver import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+    SurrogatePlacementSolverConfig, SurrogatePlacementSolverEngine
 )
 from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, run_multi_path_validation_suite,
@@ -277,7 +277,7 @@ def main():
         seed=42,
         min_diversity_dist=0.03,
     )
-    surr_opt_config = SurrogateOptimizerConfig(
+    surr_opt_config = SurrogatePlacementSolverConfig(
         seed=42,
         num_iterations=4,
         batch_size=5,             # 4 iterations x 5 candidates = 20 proposed candidates
@@ -291,7 +291,7 @@ def main():
     gpu_engine = GPUIncrementalEngine()
     assert gpu_engine.is_available, "GPU backend must be available for intervention optimization!"
 
-    surr_engine = SurrogateOptimizationEngine(
+    surr_engine = SurrogatePlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,
@@ -332,14 +332,14 @@ def main():
     rand_rng = np.random.default_rng(12345)
     rand_proposed = opt_bounds.sample_uniform(rand_rng, 20)
     
-    rand_opt_engine = OptimizationEngine(
+    rand_opt_engine = PlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,
         sim_config=sim_config,
         feasibility_constraints=constraints,
         eval_mask=ped_corridor_unbuilt_mask,
-        config=OptimizerConfig(seed=12345, bounds=opt_bounds, objective_config=obj_cfg),
+        config=PlacementSolverConfig(seed=12345, bounds=opt_bounds, objective_config=obj_cfg),
         gpu_engine=gpu_engine,
     )
     

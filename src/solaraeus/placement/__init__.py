@@ -21,7 +21,7 @@ from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
 from solaraeus.placement.placement_solver import (
-    OptimizationEngine, OptimizerConfig
+    PlacementSolverEngine, PlacementSolverConfig
 )
 from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, MultiPathValidationSummary, run_multi_path_validation_suite
@@ -33,7 +33,7 @@ from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine
 )
 from solaraeus.placement.surrogate_placement_solver import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+    SurrogatePlacementSolverConfig, SurrogatePlacementSolverEngine
 )
 
 # Dual-Panel Multi-Intervention Exports
@@ -59,7 +59,7 @@ from solaraeus.placement.dual_panel_acquisition import (
     compute_normalized_dual_panel_distance
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    DualPanelOptimizerConfig, DualPanelOptimizationEngine
+    DualPanelPlacementSolverConfig, DualPanelPlacementSolverEngine
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
     DualPanelValidationReport, DualPanelMultiPathSummary, validate_dual_panel_multi_path
@@ -79,8 +79,8 @@ __all__ = [
     "compute_objective",
     "CandidateRecord",
     "CandidateLedger",
-    "OptimizationEngine",
-    "OptimizerConfig",
+    "PlacementSolverEngine",
+    "PlacementSolverConfig",
     "validate_candidate_multi_path",
     "MultiPathValidationSummary",
     "run_multi_path_validation_suite",
@@ -90,8 +90,8 @@ __all__ = [
     "FallbackSurrogateModel",
     "AcquisitionConfig",
     "CandidateAcquisitionEngine",
-    "SurrogateOptimizerConfig",
-    "SurrogateOptimizationEngine",
+    "SurrogatePlacementSolverConfig",
+    "SurrogatePlacementSolverEngine",
     # Dual-panel exports
     "DualPanelParams",
     "DualPanelBounds",
@@ -116,8 +116,8 @@ __all__ = [
     "DualPanelAcquisitionEngine",
     "generate_dual_panel_seeds",
     "compute_normalized_dual_panel_distance",
-    "DualPanelOptimizerConfig",
-    "DualPanelOptimizationEngine",
+    "DualPanelPlacementSolverConfig",
+    "DualPanelPlacementSolverEngine",
     "DualPanelValidationReport",
     "DualPanelMultiPathSummary",
     "validate_dual_panel_multi_path",

@@ -87,7 +87,7 @@ from solaraeus.placement.dual_panel_acquisition import (
     compute_normalized_dual_panel_distance
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    DualPanelOptimizerConfig, DualPanelOptimizationEngine
+    DualPanelPlacementSolverConfig, DualPanelPlacementSolverEngine
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
     validate_dual_panel_multi_path, DualPanelValidationReport
@@ -316,7 +316,7 @@ def main():
         feasibility_penalty=1000.0,
     )
 
-    opt_config = DualPanelOptimizerConfig(
+    opt_config = DualPanelPlacementSolverConfig(
         seed=42,
         num_iterations=3,
         batch_size=5,
@@ -326,7 +326,7 @@ def main():
     )
 
     gpu_engine = GPUIncrementalEngine()
-    optimizer = DualPanelOptimizationEngine(
+    optimizer = DualPanelPlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,

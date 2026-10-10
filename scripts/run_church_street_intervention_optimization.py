@@ -52,7 +52,7 @@ from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
 from solaraeus.placement.placement_solver import (
-    OptimizerConfig, OptimizationEngine
+    PlacementSolverConfig, PlacementSolverEngine
 )
 from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, run_multi_path_validation_suite,
@@ -241,7 +241,7 @@ def main():
     )
 
     # Controlled search budget: 1 deterministic + 25 random + 10 LHS + 15 evolutionary
-    opt_config = OptimizerConfig(
+    opt_config = PlacementSolverConfig(
         seed=42,
         budget_random=25,
         budget_lhs=10,
@@ -258,7 +258,7 @@ def main():
     gpu_engine = GPUIncrementalEngine()
     assert gpu_engine.is_available, "GPU backend must be available for intervention optimization!"
 
-    engine = OptimizationEngine(
+    engine = PlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,

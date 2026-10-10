@@ -63,7 +63,7 @@ from solaraeus.placement.dual_panel_acquisition import (
 
 
 @dataclass
-class DualPanelOptimizerConfig:
+class DualPanelPlacementSolverConfig:
     """Configuration for two-panel surrogate-assisted optimization search."""
     seed: int = 42
     num_iterations: int = 3              # Number of surrogate propose-eval-retrain iterations
@@ -109,7 +109,7 @@ class DualPanelOptimizerConfig:
         }
 
 
-class DualPanelOptimizationEngine:
+class DualPanelPlacementSolverEngine:
     """
     Coordinates multi-intervention surrogate-assisted optimization.
     Surrogate proposes candidates only; certified GPU/CPU physics solvers remain final authority.
@@ -123,7 +123,7 @@ class DualPanelOptimizationEngine:
         sim_config: SimulationConfig,
         feasibility_constraints: DualPanelConstraints,
         eval_mask: np.ndarray,
-        config: Optional[DualPanelOptimizerConfig] = None,
+        config: Optional[DualPanelPlacementSolverConfig] = None,
         gpu_engine: Optional[GPUIncrementalEngine] = None,
     ):
         self.baseline_scene = baseline_scene
@@ -132,7 +132,7 @@ class DualPanelOptimizationEngine:
         self.sim_config = sim_config
         self.feasibility_constraints = feasibility_constraints
         self.eval_mask = eval_mask
-        self.config = config or DualPanelOptimizerConfig()
+        self.config = config or DualPanelPlacementSolverConfig()
 
         self.ledger = DualPanelCandidateLedger()
         self.grid = PedestrianGrid(self.baseline_scene.pedestrian_grid)

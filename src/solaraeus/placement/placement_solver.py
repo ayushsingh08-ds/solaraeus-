@@ -27,7 +27,7 @@ from solaraeus.placement.evaluation_ledger import CandidateRecord, CandidateLedg
 
 
 @dataclass
-class OptimizerConfig:
+class PlacementSolverConfig:
     """Configuration for intervention optimization search."""
     seed: int = 42
     budget_random: int = 25
@@ -42,7 +42,7 @@ class OptimizerConfig:
     fallback_to_cpu: bool = False
 
 
-class OptimizationEngine:
+class PlacementSolverEngine:
     """
     Main physics-in-the-loop optimization coordinator.
     Ensures that only geographically feasible candidates are simulated using
@@ -57,7 +57,7 @@ class OptimizationEngine:
         sim_config: SimulationConfig,
         feasibility_constraints: FeasibilityConstraints,
         eval_mask: np.ndarray,
-        config: Optional[OptimizerConfig] = None,
+        config: Optional[PlacementSolverConfig] = None,
         gpu_engine: Optional[GPUIncrementalEngine] = None,
     ):
         self.baseline_scene = baseline_scene
@@ -66,7 +66,7 @@ class OptimizationEngine:
         self.sim_config = sim_config
         self.feasibility_constraints = feasibility_constraints
         self.eval_mask = eval_mask
-        self.config = config or OptimizerConfig()
+        self.config = config or PlacementSolverConfig()
         self.ledger = CandidateLedger()
 
         self.gpu_engine = gpu_engine or GPUIncrementalEngine(fallback_to_cpu=self.config.fallback_to_cpu)

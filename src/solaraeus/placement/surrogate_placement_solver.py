@@ -25,7 +25,7 @@ from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds, bu
 from solaraeus.placement.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
 from solaraeus.placement.objective import ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 from solaraeus.placement.evaluation_ledger import CandidateRecord, CandidateLedger
-from solaraeus.placement.placement_solver import OptimizationEngine, OptimizerConfig
+from solaraeus.placement.placement_solver import PlacementSolverEngine, PlacementSolverConfig
 from solaraeus.placement.surrogate_model import (
     SurrogateConfig, SurrogateModel, SurrogatePrediction, FallbackSurrogateModel, SKLEARN_AVAILABLE
 )
@@ -33,7 +33,7 @@ from solaraeus.placement.acquisition import AcquisitionConfig, CandidateAcquisit
 
 
 @dataclass
-class SurrogateOptimizerConfig:
+class SurrogatePlacementSolverConfig:
     """Configuration for surrogate-assisted optimization search."""
     seed: int = 42
     num_iterations: int = 4              # Number of surrogate propose-eval-retrain iterations
@@ -69,7 +69,7 @@ class SurrogateOptimizerConfig:
         }
 
 
-class SurrogateOptimizationEngine:
+class SurrogatePlacementSolverEngine:
     """
     Surrogate-assisted optimization engine with physics-in-the-loop GPU incremental evaluation.
     
@@ -85,7 +85,7 @@ class SurrogateOptimizationEngine:
         sim_config: SimulationConfig,
         feasibility_constraints: FeasibilityConstraints,
         eval_mask: np.ndarray,
-        config: Optional[SurrogateOptimizerConfig] = None,
+        config: Optional[SurrogatePlacementSolverConfig] = None,
         gpu_engine: Optional[GPUIncrementalEngine] = None,
     ):
         self.baseline_scene = baseline_scene
@@ -94,16 +94,16 @@ class SurrogateOptimizationEngine:
         self.sim_config = sim_config
         self.feasibility_constraints = feasibility_constraints
         self.eval_mask = eval_mask
-        self.config = config or SurrogateOptimizerConfig()
+        self.config = config or SurrogatePlacementSolverConfig()
 
         # Optimizer configuration for physics evaluation
-        base_opt_config = OptimizerConfig(
+        base_opt_config = PlacementSolverConfig(
             seed=self.config.seed,
             bounds=self.config.bounds,
             objective_config=self.config.objective_config,
             fallback_to_cpu=self.config.fallback_to_cpu,
         )
-        self.opt_engine = OptimizationEngine(
+        self.opt_engine = PlacementSolverEngine(
             baseline_scene=baseline_scene,
             baseline_result=baseline_result,
             weather=weather,

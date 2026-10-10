@@ -56,8 +56,8 @@ from solaraeus.placement.dual_panel_evaluation_ledger import (
     DualPanelCandidateLedger,
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    DualPanelOptimizerConfig,
-    DualPanelOptimizationEngine,
+    DualPanelPlacementSolverConfig,
+    DualPanelPlacementSolverEngine,
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
     validate_dual_panel_multi_path,
@@ -145,14 +145,14 @@ def test_different_seeds_independent(synthetic_scene_and_baseline):
 # Test 3: Evaluation-budget configuration
 def test_evaluation_budget_configuration():
     """Verifies budget math and scaling configurations."""
-    cfg = DualPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=3, batch_size=5)
+    cfg = DualPanelPlacementSolverConfig(seed=42, seed_budget=10, num_iterations=3, batch_size=5)
     d = cfg.to_dict()
     assert d["total_target_budget"] == 25
 
-    cfg_med = DualPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=8, batch_size=5)
+    cfg_med = DualPanelPlacementSolverConfig(seed=42, seed_budget=10, num_iterations=8, batch_size=5)
     assert cfg_med.to_dict()["total_target_budget"] == 50
 
-    cfg_ext = DualPanelOptimizerConfig(seed=42, seed_budget=10, num_iterations=18, batch_size=5)
+    cfg_ext = DualPanelPlacementSolverConfig(seed=42, seed_budget=10, num_iterations=18, batch_size=5)
     assert cfg_ext.to_dict()["total_target_budget"] == 100
 
 

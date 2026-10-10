@@ -75,7 +75,7 @@ from solaraeus.placement.dual_panel_acquisition import (
     DualPanelAcquisitionConfig, DualPanelAcquisitionEngine, generate_dual_panel_seeds
 )
 from solaraeus.placement.dual_panel_placement_solver import (
-    DualPanelOptimizerConfig, DualPanelOptimizationEngine
+    DualPanelPlacementSolverConfig, DualPanelPlacementSolverEngine
 )
 from solaraeus.placement.dual_panel_candidate_validation import (
     validate_dual_panel_multi_path, DualPanelValidationReport
@@ -294,11 +294,11 @@ def main():
     for s in [7, 12345]:
         def _run_seed(seed_val=s):
             print(f"  Executing optimizer with Seed {seed_val} (Budget: 25 evaluations)...")
-            opt_cfg_s = DualPanelOptimizerConfig(
+            opt_cfg_s = DualPanelPlacementSolverConfig(
                 seed=seed_val, num_iterations=3, batch_size=5, seed_budget=10,
                 bounds=dual_panel_bounds, objective_config=obj_config,
             )
-            engine_s = DualPanelOptimizationEngine(
+            engine_s = DualPanelPlacementSolverEngine(
                 baseline_scene=baseline_scene, baseline_result=baseline_result,
                 weather=weather, sim_config=sim_config,
                 feasibility_constraints=dual_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
@@ -343,11 +343,11 @@ def main():
     # Medium budget: 50 evaluations (seed_budget=10 + 8 iterations of batch_size=5 = 50)
     def _run_budget_50():
         print("  Executing medium budget (50 physical evaluations)...")
-        opt_cfg_50 = DualPanelOptimizerConfig(
+        opt_cfg_50 = DualPanelPlacementSolverConfig(
             seed=42, num_iterations=8, batch_size=5, seed_budget=10,
             bounds=dual_panel_bounds, objective_config=obj_config,
         )
-        engine_50 = DualPanelOptimizationEngine(
+        engine_50 = DualPanelPlacementSolverEngine(
             baseline_scene=baseline_scene, baseline_result=baseline_result,
             weather=weather, sim_config=sim_config,
             feasibility_constraints=dual_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
@@ -373,11 +373,11 @@ def main():
     # Extended budget: 100 evaluations (seed_budget=10 + 18 iterations of batch_size=5 = 100)
     def _run_budget_100():
         print("  Executing extended budget (100 physical evaluations)...")
-        opt_cfg_100 = DualPanelOptimizerConfig(
+        opt_cfg_100 = DualPanelPlacementSolverConfig(
             seed=42, num_iterations=18, batch_size=5, seed_budget=10,
             bounds=dual_panel_bounds, objective_config=obj_config,
         )
-        engine_100 = DualPanelOptimizationEngine(
+        engine_100 = DualPanelPlacementSolverEngine(
             baseline_scene=baseline_scene, baseline_result=baseline_result,
             weather=weather, sim_config=sim_config,
             feasibility_constraints=dual_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
