@@ -58,41 +58,41 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.parameters import (
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from solaraeus.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     FeasibilityConstraints, check_feasibility
 )
-from solaraeus.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, compute_objective
 )
-from solaraeus.optimization.two_panel_parameters import (
+from solaraeus.placement.dual_panel_parameters import (
     TwoPanelParams, TwoPanelBounds
 )
-from solaraeus.optimization.two_panel_feasibility import (
+from solaraeus.placement.dual_panel_feasibility import (
     TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
 )
-from solaraeus.optimization.two_panel_objective import (
+from solaraeus.placement.dual_panel_objective import (
     TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
 )
-from solaraeus.optimization.two_panel_ledger import (
+from solaraeus.placement.dual_panel_evaluation_ledger import (
     TwoPanelCandidateRecord, TwoPanelCandidateLedger
 )
-from solaraeus.optimization.two_panel_surrogate import (
+from solaraeus.placement.dual_panel_surrogate_model import (
     TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
 )
-from solaraeus.optimization.two_panel_acquisition import (
+from solaraeus.placement.dual_panel_acquisition import (
     TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
     compute_normalized_two_panel_distance
 )
-from solaraeus.optimization.two_panel_optimizer import (
+from solaraeus.placement.dual_panel_placement_solver import (
     TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
 )
-from solaraeus.optimization.two_panel_validation import (
+from solaraeus.placement.dual_panel_candidate_validation import (
     validate_two_panel_multi_path, TwoPanelValidationReport
 )
-from solaraeus.optimization.validation import (
+from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path
 )
 

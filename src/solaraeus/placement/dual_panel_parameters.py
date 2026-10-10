@@ -13,7 +13,7 @@ import numpy as np
 from shapely.geometry import Polygon
 
 from solaraeus.core.geometry.mesh import TriangleMesh
-from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
+from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
 
 
 @dataclass

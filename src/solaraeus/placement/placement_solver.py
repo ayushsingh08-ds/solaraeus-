@@ -20,10 +20,10 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
-from solaraeus.optimization.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
-from solaraeus.optimization.objective import ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-from solaraeus.optimization.ledger import CandidateRecord, CandidateLedger
+from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
+from solaraeus.placement.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
+from solaraeus.placement.objective import ComfortObjectiveConfig, EvaluationMetrics, compute_objective
+from solaraeus.placement.evaluation_ledger import CandidateRecord, CandidateLedger
 
 
 @dataclass

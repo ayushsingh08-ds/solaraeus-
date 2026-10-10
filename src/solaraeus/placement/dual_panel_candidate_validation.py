@@ -24,9 +24,9 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.two_panel_parameters import TwoPanelParams
-from solaraeus.optimization.parameters import ShadePanelParams
-from solaraeus.optimization.validation import (
+from solaraeus.placement.dual_panel_parameters import TwoPanelParams
+from solaraeus.placement.parameters import ShadePanelParams
+from solaraeus.placement.candidate_validation import (
     TOLERANCES_INCREMENTAL,
     TOLERANCES_SOLVER_EQUIVALENCE,
     PathComparisonMetrics,

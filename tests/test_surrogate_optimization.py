@@ -34,31 +34,31 @@ from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.parameters import (
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from solaraeus.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     RejectionReason, FeasibilityConstraints, check_feasibility
 )
-from solaraeus.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 )
-from solaraeus.optimization.ledger import (
+from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
-from solaraeus.optimization.optimizer import (
+from solaraeus.placement.placement_solver import (
     OptimizerConfig, OptimizationEngine
 )
-from solaraeus.optimization.validation import (
+from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
 )
-from solaraeus.optimization.surrogate import (
+from solaraeus.placement.surrogate_model import (
     SurrogateConfig, SurrogatePrediction, SurrogateModel, FallbackSurrogateModel
 )
-from solaraeus.optimization.acquisition import (
+from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine, compute_lcb_score, compute_ei_score
 )
-from solaraeus.optimization.surrogate_optimizer import (
+from solaraeus.placement.surrogate_placement_solver import (
     SurrogateOptimizerConfig, SurrogateOptimizationEngine
 )
 

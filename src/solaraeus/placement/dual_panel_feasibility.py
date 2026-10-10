@@ -20,13 +20,13 @@ from typing import Dict, Any, List, Optional
 import shapely
 from shapely.geometry import Polygon, MultiPolygon
 
-from solaraeus.optimization.parameters import build_panel_geometry
-from solaraeus.optimization.feasibility import (
+from solaraeus.placement.parameters import build_panel_geometry
+from solaraeus.placement.feasibility import (
     RejectionReason as SingleRejectionReason,
     FeasibilityConstraints,
     check_feasibility as check_single_feasibility,
 )
-from solaraeus.optimization.two_panel_parameters import TwoPanelParams
+from solaraeus.placement.dual_panel_parameters import TwoPanelParams
 
 
 class TwoPanelRejectionReason(str, Enum):

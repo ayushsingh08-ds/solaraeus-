@@ -24,8 +24,8 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.parameters import ShadePanelParams, build_panel_geometry
-from solaraeus.optimization.ledger import CandidateRecord, CandidateLedger
+from solaraeus.placement.parameters import ShadePanelParams, build_panel_geometry
+from solaraeus.placement.evaluation_ledger import CandidateRecord, CandidateLedger
 
 
 # Documented Project Physical Tolerances

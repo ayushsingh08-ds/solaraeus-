@@ -50,8 +50,8 @@ from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.update import incremental_update_certified
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.parameters import ShadePanelParams, build_panel_geometry
-from solaraeus.optimization.objective import ComfortObjectiveConfig, compute_objective
+from solaraeus.placement.parameters import ShadePanelParams, build_panel_geometry
+from solaraeus.placement.objective import ComfortObjectiveConfig, compute_objective
 
 
 def sha256_file(path: Path) -> str:

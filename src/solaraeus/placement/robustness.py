@@ -29,28 +29,28 @@ from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
-from solaraeus.optimization.two_panel_feasibility import (
+from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_feasibility import (
     TwoPanelConstraints,
     check_two_panel_feasibility,
     TwoPanelFeasibilityResult,
     TwoPanelRejectionReason,
 )
-from solaraeus.optimization.two_panel_objective import (
+from solaraeus.placement.dual_panel_objective import (
     TwoPanelComfortObjectiveConfig,
     TwoPanelEvaluationMetrics,
     compute_two_panel_objective,
     compute_pareto_front,
 )
-from solaraeus.optimization.two_panel_ledger import (
+from solaraeus.placement.dual_panel_evaluation_ledger import (
     TwoPanelCandidateRecord,
     TwoPanelCandidateLedger,
 )
-from solaraeus.optimization.two_panel_optimizer import (
+from solaraeus.placement.dual_panel_placement_solver import (
     TwoPanelOptimizerConfig,
     TwoPanelOptimizationEngine,
 )
-from solaraeus.optimization.two_panel_validation import (
+from solaraeus.placement.dual_panel_candidate_validation import (
     validate_two_panel_multi_path,
     TwoPanelValidationReport,
 )

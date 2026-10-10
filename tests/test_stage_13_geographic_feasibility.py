@@ -5,8 +5,8 @@ Pytest integration for Stage 13: Geographic Feasibility & Intervention Parameter
 import json
 from pathlib import Path
 import pytest
-from solaraeus.optimization.parameters import ShadePanelParams
-from solaraeus.optimization.feasibility import (
+from solaraeus.placement.parameters import ShadePanelParams
+from solaraeus.placement.feasibility import (
     FeasibilityConstraints, check_feasibility, RejectionReason
 )
 

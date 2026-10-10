@@ -13,9 +13,9 @@ from typing import Dict, Any, List, Optional, Tuple, Sequence
 import numpy as np
 from scipy.stats import norm
 
-from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds
-from solaraeus.optimization.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
-from solaraeus.optimization.surrogate import SurrogateModel, SurrogatePrediction, FallbackSurrogateModel
+from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds
+from solaraeus.placement.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
+from solaraeus.placement.surrogate_model import SurrogateModel, SurrogatePrediction, FallbackSurrogateModel
 
 
 @dataclass

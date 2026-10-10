@@ -23,8 +23,8 @@ except ImportError:
     SKLEARN_AVAILABLE = False
 
 
-from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds
-from solaraeus.optimization.ledger import CandidateRecord
+from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds
+from solaraeus.placement.evaluation_ledger import CandidateRecord
 
 
 FEATURE_NAMES: Tuple[str, ...] = (

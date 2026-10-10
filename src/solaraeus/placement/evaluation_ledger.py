@@ -13,9 +13,9 @@ import json
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
-from solaraeus.optimization.parameters import ShadePanelParams
-from solaraeus.optimization.feasibility import FeasibilityResult
-from solaraeus.optimization.objective import EvaluationMetrics
+from solaraeus.placement.parameters import ShadePanelParams
+from solaraeus.placement.feasibility import FeasibilityResult
+from solaraeus.placement.objective import EvaluationMetrics
 
 
 @dataclass

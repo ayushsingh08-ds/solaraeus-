@@ -8,60 +8,60 @@ and multi-path physical validation for single-panel and two-panel shade interven
 
 from __future__ import annotations
 
-from solaraeus.optimization.parameters import (
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from solaraeus.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     RejectionReason, FeasibilityConstraints, FeasibilityResult, check_feasibility
 )
-from solaraeus.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 )
-from solaraeus.optimization.ledger import (
+from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
-from solaraeus.optimization.optimizer import (
+from solaraeus.placement.placement_solver import (
     OptimizationEngine, OptimizerConfig
 )
-from solaraeus.optimization.validation import (
+from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, MultiPathValidationSummary, run_multi_path_validation_suite
 )
-from solaraeus.optimization.surrogate import (
+from solaraeus.placement.surrogate_model import (
     SurrogateConfig, SurrogatePrediction, SurrogateModel, FallbackSurrogateModel
 )
-from solaraeus.optimization.acquisition import (
+from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine
 )
-from solaraeus.optimization.surrogate_optimizer import (
+from solaraeus.placement.surrogate_placement_solver import (
     SurrogateOptimizerConfig, SurrogateOptimizationEngine
 )
 
 # Two-Panel Multi-Intervention Exports
-from solaraeus.optimization.two_panel_parameters import (
+from solaraeus.placement.dual_panel_parameters import (
     TwoPanelParams, TwoPanelBounds
 )
-from solaraeus.optimization.two_panel_feasibility import (
+from solaraeus.placement.dual_panel_feasibility import (
     TwoPanelRejectionReason, TwoPanelFeasibilityResult, TwoPanelConstraints, check_two_panel_feasibility
 )
-from solaraeus.optimization.two_panel_objective import (
+from solaraeus.placement.dual_panel_objective import (
     TwoPanelComfortObjectiveConfig, TwoPanelEvaluationMetrics, compute_two_panel_objective, compute_pareto_front
 )
-from solaraeus.optimization.two_panel_ledger import (
+from solaraeus.placement.dual_panel_evaluation_ledger import (
     TwoPanelCandidateRecord, TwoPanelCandidateLedger
 )
-from solaraeus.optimization.two_panel_surrogate import (
+from solaraeus.placement.dual_panel_surrogate_model import (
     TWO_PANEL_FEATURE_NAMES, TWO_PANEL_DEFAULT_TARGETS, TwoPanelSurrogateConfig,
     TwoPanelSurrogatePrediction, extract_two_panel_features, extract_two_panel_targets,
     TwoPanelSurrogateModel
 )
-from solaraeus.optimization.two_panel_acquisition import (
+from solaraeus.placement.dual_panel_acquisition import (
     TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
     compute_normalized_two_panel_distance
 )
-from solaraeus.optimization.two_panel_optimizer import (
+from solaraeus.placement.dual_panel_placement_solver import (
     TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
 )
-from solaraeus.optimization.two_panel_validation import (
+from solaraeus.placement.dual_panel_candidate_validation import (
     TwoPanelValidationReport, TwoPanelMultiPathSummary, validate_two_panel_multi_path
 )
 
@@ -135,7 +135,7 @@ __all__ = [
     "evaluate_candidate_at_condition",
 ]
 
-from solaraeus.optimization.robustness import (
+from solaraeus.placement.robustness import (
     WeatherScenario,
     SolarTimestampScenario,
     ObjectiveWeightScenario,

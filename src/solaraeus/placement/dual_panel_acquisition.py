@@ -18,19 +18,19 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional, Tuple, Sequence
 import numpy as np
 
-from solaraeus.optimization.parameters import ShadePanelParams
-from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
-from solaraeus.optimization.two_panel_feasibility import (
+from solaraeus.placement.parameters import ShadePanelParams
+from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_feasibility import (
     TwoPanelConstraints,
     check_two_panel_feasibility,
     TwoPanelFeasibilityResult,
     TwoPanelRejectionReason,
 )
-from solaraeus.optimization.two_panel_surrogate import (
+from solaraeus.placement.dual_panel_surrogate_model import (
     TwoPanelSurrogateModel,
     TwoPanelSurrogatePrediction,
 )
-from solaraeus.optimization.two_panel_objective import compute_pareto_front
+from solaraeus.placement.dual_panel_objective import compute_pareto_front
 
 
 @dataclass

@@ -33,29 +33,29 @@ from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.incremental.update import compute_exact_dirty_shadow_mask
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
-from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
-from solaraeus.optimization.two_panel_feasibility import (
+from solaraeus.placement.dual_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_feasibility import (
     TwoPanelConstraints,
     check_two_panel_feasibility,
     TwoPanelFeasibilityResult,
     TwoPanelRejectionReason,
 )
-from solaraeus.optimization.two_panel_objective import (
+from solaraeus.placement.dual_panel_objective import (
     TwoPanelComfortObjectiveConfig,
     TwoPanelEvaluationMetrics,
     compute_two_panel_objective,
 )
-from solaraeus.optimization.two_panel_ledger import (
+from solaraeus.placement.dual_panel_evaluation_ledger import (
     TwoPanelCandidateRecord,
     TwoPanelCandidateLedger,
 )
-from solaraeus.optimization.two_panel_surrogate import (
+from solaraeus.placement.dual_panel_surrogate_model import (
     TwoPanelSurrogateConfig,
     TwoPanelSurrogateModel,
     TwoPanelSurrogatePrediction,
     SKLEARN_AVAILABLE,
 )
-from solaraeus.optimization.two_panel_acquisition import (
+from solaraeus.placement.dual_panel_acquisition import (
     TwoPanelAcquisitionConfig,
     TwoPanelAcquisitionEngine,
     generate_two_panel_seeds,

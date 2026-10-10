@@ -22,8 +22,8 @@ try:
 except ImportError:
     SKLEARN_AVAILABLE = False
 
-from solaraeus.optimization.two_panel_parameters import TwoPanelParams
-from solaraeus.optimization.two_panel_ledger import TwoPanelCandidateRecord
+from solaraeus.placement.dual_panel_parameters import TwoPanelParams
+from solaraeus.placement.dual_panel_evaluation_ledger import TwoPanelCandidateRecord
 
 
 TWO_PANEL_FEATURE_NAMES: Tuple[str, ...] = (

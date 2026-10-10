@@ -35,8 +35,8 @@ sys.path.insert(0, str(root_dir / "src"))
 
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
-from solaraeus.optimization.feasibility import (
+from solaraeus.placement.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
+from solaraeus.placement.feasibility import (
     RejectionReason, FeasibilityResult, FeasibilityConstraints, check_feasibility
 )
 
