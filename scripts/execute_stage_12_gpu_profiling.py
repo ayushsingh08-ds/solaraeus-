@@ -41,8 +41,8 @@ from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.update import incremental_update_certified
-from solaraeus.backend import CPUBackend, GPUBackend, is_gpu_available
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.backends import CPUBackend, GPUBackend, is_gpu_available
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 
 
 def main():

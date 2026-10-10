@@ -53,8 +53,8 @@ from solaraeus.solar.solar_position import calculate_solar_position, SolarPositi
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.certificate import generate_error_certificate, verify_certificate
-from solaraeus.backend.gpu_backend import GPUBackend, is_cupy_available
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
+from solaraeus.backends.gpu import GPUBackend, is_cupy_available
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
 
 
 def sha256_file(path: Path) -> str:

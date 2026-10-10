@@ -32,8 +32,8 @@ from solaraeus.geometry.mesh import TriangleMesh
 from solaraeus.geometry.scene import Scene
 from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
-from solaraeus.backend.gpu_backend import GPUBackend
-from solaraeus.backend.cpu_backend import CPUBackend
+from solaraeus.backends.gpu import GPUBackend
+from solaraeus.backends.cpu import CPUBackend
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 
 

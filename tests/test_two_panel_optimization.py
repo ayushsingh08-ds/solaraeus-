@@ -41,7 +41,7 @@ from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.incremental.affected_region import compute_candidate_affected_region
 from solaraeus.solar.solar_position import calculate_solar_position
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.optimization.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )

@@ -27,8 +27,8 @@ from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.certificate import verify_certificate
-from solaraeus.backend.gpu_backend import GPUBackend, is_cupy_available
-from solaraeus.backend.gpu_incremental import (
+from solaraeus.backends.gpu import GPUBackend, is_cupy_available
+from solaraeus.backends.gpu_incremental import (
     GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
 )
 

@@ -33,7 +33,7 @@ from solaraeus.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
-from solaraeus.backend import CPUBackend, GPUBackend, is_gpu_available, get_backend
+from solaraeus.backends import CPUBackend, GPUBackend, is_gpu_available, get_backend
 
 
 def sha256_file(path: Path) -> str:

@@ -10,7 +10,7 @@ import time
 from typing import Optional, Any
 import numpy as np
 
-from solaraeus.backend.base import SimulationBackend, BackendProfileMetrics
+from solaraeus.backends.base import SimulationBackend, BackendProfileMetrics
 from solaraeus.config import Weather, SimulationConfig
 from solaraeus.geometry.scene import Scene
 from solaraeus.grid.pedestrian_grid import PedestrianGrid

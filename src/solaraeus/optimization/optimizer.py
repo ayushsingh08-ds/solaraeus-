@@ -19,7 +19,7 @@ from solaraeus.geometry.scene import Scene
 from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
 from solaraeus.optimization.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
 from solaraeus.optimization.objective import ComfortObjectiveConfig, EvaluationMetrics, compute_objective

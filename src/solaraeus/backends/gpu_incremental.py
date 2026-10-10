@@ -27,8 +27,8 @@ from solaraeus.incremental.update import GeometricEdit, IncrementalUpdateResult
 from solaraeus.incremental.certificate import (
     generate_error_certificate, verify_certificate, ErrorCertificate
 )
-from solaraeus.backend.base import FlattenedSceneGeometry, BackendProfileMetrics
-from solaraeus.backend.gpu_backend import GPUBackend, is_cupy_available
+from solaraeus.backends.base import FlattenedSceneGeometry, BackendProfileMetrics
+from solaraeus.backends.gpu import GPUBackend, is_cupy_available
 from solaraeus.radiation.shortwave import compute_shortwave_fluxes
 from solaraeus.radiation.longwave import compute_longwave_fluxes
 from solaraeus.radiation.tmrt import compute_tmrt

@@ -32,7 +32,7 @@ from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.incremental.update import compute_exact_dirty_shadow_mask
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
 from solaraeus.optimization.two_panel_feasibility import (
     TwoPanelConstraints,

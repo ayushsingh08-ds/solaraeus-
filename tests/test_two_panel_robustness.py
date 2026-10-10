@@ -35,7 +35,7 @@ from solaraeus.geometry.primitives import Building, BoundingBox2D
 from solaraeus.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.optimization.parameters import ShadePanelParams, build_panel_geometry
 from solaraeus.optimization.feasibility import FeasibilityConstraints, check_feasibility

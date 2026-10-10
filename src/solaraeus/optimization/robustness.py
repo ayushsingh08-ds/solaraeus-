@@ -28,7 +28,7 @@ from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
-from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
 from solaraeus.optimization.two_panel_feasibility import (
     TwoPanelConstraints,

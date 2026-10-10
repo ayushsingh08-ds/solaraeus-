@@ -7,12 +7,12 @@ Provides CPU and GPU execution backends with runtime selection and geometry flat
 from __future__ import annotations
 from typing import Optional
 
-from solaraeus.backend.base import (
+from solaraeus.backends.base import (
     SimulationBackend, FlattenedSceneGeometry, BackendProfileMetrics
 )
-from solaraeus.backend.cpu_backend import CPUBackend
-from solaraeus.backend.gpu_backend import GPUBackend, is_cupy_available
-from solaraeus.backend.gpu_incremental import (
+from solaraeus.backends.cpu import CPUBackend
+from solaraeus.backends.gpu import GPUBackend, is_cupy_available
+from solaraeus.backends.gpu_incremental import (
     GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
 )
 

@@ -57,10 +57,10 @@ def full_recompute(scene: Scene, weather: Weather,
     """
     selected_backend = (backend or getattr(config, "backend", "cpu")).lower()
     if selected_backend == "gpu":
-        from solaraeus.backend.gpu_backend import GPUBackend
+        from solaraeus.backends.gpu import GPUBackend
         return GPUBackend().full_simulate(scene, weather, config)
     elif selected_backend == "auto":
-        from solaraeus.backend import get_backend
+        from solaraeus.backends import get_backend
         return get_backend("auto").full_simulate(scene, weather, config)
 
     t_start = time.perf_counter()

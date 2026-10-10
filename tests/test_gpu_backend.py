@@ -21,7 +21,7 @@ from solaraeus.geometry.mesh import TriangleMesh, create_box_mesh
 from solaraeus.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition, calculate_solar_position
-from solaraeus.backend import (
+from solaraeus.backends import (
     SimulationBackend, CPUBackend, GPUBackend,
     get_backend, is_gpu_available, FlattenedSceneGeometry
 )

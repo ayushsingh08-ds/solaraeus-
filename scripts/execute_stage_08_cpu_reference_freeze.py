@@ -38,7 +38,7 @@ from solaraeus.incremental.cache import SimulationCache
 from solaraeus.incremental.dependency_graph import DependencyGraph
 from solaraeus.incremental.update import incremental_update_certified, incremental_update_exact, IncrementalUpdateResult
 from solaraeus.incremental.certificate import generate_error_certificate, verify_certificate, ErrorCertificate
-from solaraeus.backend import CPUBackend, get_backend, is_gpu_available
+from solaraeus.backends import CPUBackend, get_backend, is_gpu_available
 
 
 def sha256_file(path: Path) -> str:

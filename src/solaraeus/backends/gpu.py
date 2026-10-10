@@ -11,10 +11,10 @@ import time
 from typing import Optional, Tuple, Dict, Any, List
 import numpy as np
 
-from solaraeus.backend.base import (
+from solaraeus.backends.base import (
     SimulationBackend, FlattenedSceneGeometry, BackendProfileMetrics
 )
-from solaraeus.backend.cpu_backend import CPUBackend
+from solaraeus.backends.cpu import CPUBackend
 from solaraeus.config import (
     Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )

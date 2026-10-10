@@ -34,7 +34,7 @@ def _load_manifest() -> dict:
 
 def _gpu_available() -> bool:
     try:
-        from solaraeus.backend import is_gpu_available
+        from solaraeus.backends import is_gpu_available
         return bool(is_gpu_available())
     except Exception:
         return False

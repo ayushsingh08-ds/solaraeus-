@@ -217,7 +217,7 @@ def incremental_update_exact(previous_scene: Scene,
     Executes an exact incremental update, recomputing only cells within provably affected regions.
     """
     if backend.lower() == "gpu":
-        from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+        from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
         engine = GPUIncrementalEngine()
         return engine.execute_exact_update(
             previous_scene, updated_scene, previous_result, edit, weather, config
@@ -337,7 +337,7 @@ def incremental_update_certified(previous_scene: Scene,
     - Guarantees: |T_mrt_inc - T_mrt_full| <= B_T(x) <= tolerance on all reused cells.
     """
     if backend.lower() == "gpu":
-        from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+        from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
         engine = GPUIncrementalEngine()
         return engine.execute_certified_update(
             previous_scene, updated_scene, previous_result, edit, weather, config

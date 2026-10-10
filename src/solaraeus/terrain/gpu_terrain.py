@@ -20,7 +20,7 @@ from solaraeus.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, D
 from solaraeus.grid.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import SimulationResult
-from solaraeus.backend.gpu_backend import GPUBackend
+from solaraeus.backends.gpu import GPUBackend
 from solaraeus.terrain.terrain_scene import TerrainAwareScene
 from solaraeus.terrain.terrain_solver import TerrainAwareCPUSolver
 
