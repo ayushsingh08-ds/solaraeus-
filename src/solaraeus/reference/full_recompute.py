@@ -83,7 +83,7 @@ def full_recompute(scene: Scene, weather: Weather,
     t0_svf = time.perf_counter()
     svf = compute_sky_view_factor(
         scene, grid,
-        num_azimuths=config.sky_patch_configuration,
+        azimuth_count=config.sky_patch_configuration,
         max_search_dist_m=config.max_svf_search_dist_m
     )
     t_svf = time.perf_counter() - t0_svf

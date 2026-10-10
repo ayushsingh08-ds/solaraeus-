@@ -527,7 +527,7 @@ class GPUBackend(SimulationBackend):
 
     def compute_sky_view_factor(self, scene: Scene,
                                 grid: PedestrianGrid,
-                                num_azimuths: int = 32,
+                                azimuth_count: int = 32,
                                 max_search_dist_m: float = 120.0,
                                 roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
         """
@@ -543,7 +543,7 @@ class GPUBackend(SimulationBackend):
         if not self.is_available():
             if self._fallback_to_cpu:
                 return self._cpu_backend.compute_sky_view_factor(
-                    scene, grid, num_azimuths, max_search_dist_m, roi_mask
+                    scene, grid, azimuth_count, max_search_dist_m, roi_mask
                 )
             raise RuntimeError("GPU execution requested but no compatible CUDA device detected.")
 
@@ -599,7 +599,7 @@ class GPUBackend(SimulationBackend):
                 np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
                 np.int32(nx), np.int32(ny),
                 np.float64(grid.z_ped),
-                np.int32(num_azimuths), np.float64(max_search_dist_m), np.float64(step_dx),
+                np.int32(azimuth_count), np.float64(max_search_dist_m), np.float64(step_dx),
                 d_svf
             )
         )
@@ -615,7 +615,7 @@ class GPUBackend(SimulationBackend):
         mem_info = dev.mem_info
 
         eval_pts = int(np.sum(roi_mask)) if roi_mask is not None else (ny * nx)
-        svf_rays = eval_pts * num_azimuths
+        svf_rays = eval_pts * azimuth_count
 
         self._profile_metrics = BackendProfileMetrics(
             backend_name="gpu",
@@ -661,7 +661,7 @@ class GPUBackend(SimulationBackend):
         t0_svf = time.perf_counter()
         svf = self.compute_sky_view_factor(
             scene, grid,
-            num_azimuths=config.sky_patch_configuration,
+            azimuth_count=config.sky_patch_configuration,
             max_search_dist_m=config.max_svf_search_dist_m
         )
         t_svf = time.perf_counter() - t0_svf

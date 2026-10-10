@@ -259,7 +259,7 @@ def incremental_update_exact(previous_scene: Scene,
     if np.any(svf_dirty_mask):
         recomputed_svf = compute_sky_view_factor(
             updated_scene, grid,
-            num_azimuths=config.sky_patch_configuration,
+            azimuth_count=config.sky_patch_configuration,
             max_search_dist_m=svf_search_dist,
             roi_mask=svf_dirty_mask
         )
@@ -397,7 +397,7 @@ def incremental_update_certified(previous_scene: Scene,
     if np.any(dirty_mask):
         recomputed_svf = compute_sky_view_factor(
             updated_scene, grid,
-            num_azimuths=config.sky_patch_configuration,
+            azimuth_count=config.sky_patch_configuration,
             max_search_dist_m=config.max_svf_search_dist_m,
             roi_mask=dirty_mask
         )

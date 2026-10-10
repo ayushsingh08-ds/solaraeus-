@@ -163,8 +163,8 @@ def test_synthetic_canyon_shadow_and_svf_parity():
     assert diff_shadow == 0, f"Canyon shadow mismatch: {diff_shadow} differing cells"
 
     # 2. SVF comparison
-    cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=60.0)
-    gpu_svf = gpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=60.0)
+    cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=60.0)
+    gpu_svf = gpu_b.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=60.0)
 
     svf_max_diff = np.max(np.abs(cpu_svf - gpu_svf))
     svf_mean_diff = np.mean(np.abs(cpu_svf - gpu_svf))
@@ -204,8 +204,8 @@ def test_synthetic_triangle_mesh_shadow_and_svf_parity():
     assert np.array_equal(cpu_shadow, gpu_shadow), "Mesh shadow mask discrepancy between CPU and GPU"
 
     # SVF check
-    cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=50.0)
-    gpu_svf = gpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=50.0)
+    cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=50.0)
+    gpu_svf = gpu_b.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=50.0)
 
     max_diff = np.max(np.abs(cpu_svf - gpu_svf))
     assert max_diff < 1e-4, f"Mesh SVF max diff exceeded: {max_diff:.6e}"
@@ -240,8 +240,8 @@ def test_synthetic_mixed_scene_parity():
     gpu_shadow = gpu_b.compute_direct_shadow(scene, grid, solar_pos)
     assert np.array_equal(cpu_shadow, gpu_shadow)
 
-    cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=60.0)
-    gpu_svf = gpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=60.0)
+    cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=60.0)
+    gpu_svf = gpu_b.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=60.0)
     assert np.max(np.abs(cpu_svf - gpu_svf)) < 1e-4
 
 

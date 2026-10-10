@@ -100,7 +100,7 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
     if np.any(dirty_mask):
         recomp_svf = compute_sky_view_factor(
             updated_scene, grid,
-            num_azimuths=config.sky_patch_configuration,
+            azimuth_count=config.sky_patch_configuration,
             max_search_dist_m=config.max_svf_search_dist_m,
             roi_mask=dirty_mask
         )

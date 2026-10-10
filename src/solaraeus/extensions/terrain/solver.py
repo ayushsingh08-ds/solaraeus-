@@ -135,7 +135,7 @@ class TerrainAwareCPUSolver:
         # For SVF, compute baseline building SVF then modulate by terrain slope horizon
         svf = compute_sky_view_factor(
             scene.base_scene, grid,
-            num_azimuths=config.sky_patch_configuration,
+            azimuth_count=config.sky_patch_configuration,
             max_search_dist_m=config.max_svf_search_dist_m
         )
         # If terrain has slope, SVF is bounded by (1 + cos(slope))/2

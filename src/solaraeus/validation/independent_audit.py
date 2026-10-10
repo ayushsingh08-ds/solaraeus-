@@ -322,7 +322,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m1_shadow[m1_dirty_mask] = m1_recomp_shadow[m1_dirty_mask]
     
     m1_svf = prev_res.svf.copy()
-    m1_recomp_svf = compute_sky_view_factor(new_scene, grid, num_azimuths=config.sky_patch_configuration,
+    m1_recomp_svf = compute_sky_view_factor(new_scene, grid, azimuth_count=config.sky_patch_configuration,
                                            max_search_dist_m=config.max_svf_search_dist_m, roi_mask=m1_dirty_mask)
     m1_svf[m1_dirty_mask] = m1_recomp_svf[m1_dirty_mask]
     
@@ -365,7 +365,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m2_dirty_mask[bldg_slice_y, bldg_slice_x] = True
     
     m2_svf = prev_res.svf.copy()
-    m2_recomp_svf = compute_sky_view_factor(new_scene, grid, num_azimuths=config.sky_patch_configuration,
+    m2_recomp_svf = compute_sky_view_factor(new_scene, grid, azimuth_count=config.sky_patch_configuration,
                                            max_search_dist_m=config.max_svf_search_dist_m, roi_mask=m2_dirty_mask)
     m2_svf[m2_dirty_mask] = m2_recomp_svf[m2_dirty_mask]
     
@@ -431,7 +431,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m4_shadow = full_res.shadow_mask.copy() # exact shadow
     m4_close_mask = dist_to_bldg <= 5.0
     m4_svf = prev_res.svf.copy()
-    m4_recomp_svf = compute_sky_view_factor(new_scene, grid, num_azimuths=config.sky_patch_configuration,
+    m4_recomp_svf = compute_sky_view_factor(new_scene, grid, azimuth_count=config.sky_patch_configuration,
                                            max_search_dist_m=config.max_svf_search_dist_m, roi_mask=m4_close_mask)
     m4_svf[m4_close_mask] = m4_recomp_svf[m4_close_mask]
     

@@ -97,7 +97,7 @@ def rasterize_scene_meshes_to_height_grid(scene: Scene, grid: PedestrianGrid) ->
 
 def compute_mesh_sky_view_factor(scene: Scene,
                                  grid: PedestrianGrid,
-                                 num_azimuths: int = 32,
+                                 azimuth_count: int = 32,
                                  max_search_dist_m: float = 120.0,
                                  roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
     """
@@ -106,7 +106,7 @@ def compute_mesh_sky_view_factor(scene: Scene,
     Parameters:
         scene: Scene containing active TriangleMeshes.
         grid: PedestrianGrid defining receptor coordinates.
-        num_azimuths: Number of discrete horizon search directions (default 32).
+        azimuth_count: Number of discrete horizon search directions (default 32).
         max_search_dist_m: Maximum horizon search radius in meters.
         roi_mask: Optional (ny, nx) boolean mask for selective evaluation.
         
@@ -136,7 +136,7 @@ def compute_mesh_sky_view_factor(scene: Scene,
     z_ped = grid.z_ped
     n_pts = len(x_pts)
 
-    azimuths_deg = np.linspace(0.0, 360.0, num_azimuths, endpoint=False)
+    azimuths_deg = np.linspace(0.0, 360.0, azimuth_count, endpoint=False)
     step_dx = max(0.5, grid.dx * 0.5)
     steps = np.arange(step_dx, max_search_dist_m + step_dx, step_dx)
 
@@ -182,7 +182,7 @@ def compute_mesh_sky_view_factor(scene: Scene,
             # cos^2(elev) = 1 / (1 + tan^2(elev))
             batch_cos2 += 1.0 / (1.0 + max_tan_elev ** 2)
 
-        batch_svf = batch_cos2 / float(num_azimuths)
+        batch_svf = batch_cos2 / float(azimuth_count)
 
         # Footprint check: receptors inside or under building envelopes have SVF = 0.0
         recept_ix = np.clip(

@@ -248,7 +248,7 @@ class SimulationBackend(ABC):
     @abstractmethod
     def compute_sky_view_factor(self, scene: Scene,
                                 grid: PedestrianGrid,
-                                num_azimuths: int = 32,
+                                azimuth_count: int = 32,
                                 max_search_dist_m: float = 120.0,
                                 roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
         """Computes 2D Sky View Factor in [0.0, 1.0]."""

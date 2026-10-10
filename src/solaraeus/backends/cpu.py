@@ -67,7 +67,7 @@ class CPUBackend(SimulationBackend):
 
     def compute_sky_view_factor(self, scene: Scene,
                                 grid: PedestrianGrid,
-                                num_azimuths: int = 32,
+                                azimuth_count: int = 32,
                                 max_search_dist_m: float = 120.0,
                                 roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
         """
@@ -76,14 +76,14 @@ class CPUBackend(SimulationBackend):
         t0 = time.perf_counter()
         svf = compute_sky_view_factor(
             scene, grid,
-            num_azimuths=num_azimuths,
+            azimuth_count=azimuth_count,
             max_search_dist_m=max_search_dist_m,
             roi_mask=roi_mask
         )
         t_svf = time.perf_counter() - t0
 
         n_pts = int(np.sum(roi_mask)) if roi_mask is not None else grid.total_cells
-        svf_rays = n_pts * num_azimuths
+        svf_rays = n_pts * azimuth_count
         n_tris = sum(len(m.triangles) for m in scene.get_active_meshes())
         n_bldgs = len(scene.get_active_buildings())
 

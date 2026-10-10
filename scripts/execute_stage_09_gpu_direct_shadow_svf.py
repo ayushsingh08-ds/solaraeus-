@@ -202,11 +202,11 @@ def main():
 
     # Test 7: SVF CPU/GPU Comparison (Church Street)
     t0 = time.perf_counter()
-    cpu_svf = cpu_backend.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=120.0)
+    cpu_svf = cpu_backend.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=120.0)
     t_cpu_svf = time.perf_counter() - t0
 
     t0 = time.perf_counter()
-    gpu_svf = gpu_backend.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=120.0)
+    gpu_svf = gpu_backend.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=120.0)
     cp.cuda.Stream.null.synchronize()
     t_gpu_svf = time.perf_counter() - t0
 
@@ -226,7 +226,7 @@ def main():
 
     # Test 10: Determinism Test (Repeated GPU Executions)
     gpu_shadow_2 = gpu_backend.compute_direct_shadow(scene, grid, solar_pos)
-    gpu_svf_2 = gpu_backend.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=120.0)
+    gpu_svf_2 = gpu_backend.compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=120.0)
     t10_pass = np.array_equal(gpu_shadow, gpu_shadow_2) and np.array_equal(gpu_svf, gpu_svf_2)
     gpu_test_results.append({"id": 10, "name": "Determinism test", "pass": t10_pass, "details": "Exact bit-identical output across consecutive GPU kernel invocations"})
 

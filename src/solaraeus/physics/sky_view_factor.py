@@ -13,7 +13,7 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 
 
 def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
-                            num_azimuths: int = 32,
+                            azimuth_count: int = 32,
                             max_search_dist_m: float = 120.0,
                             roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
     """
@@ -22,7 +22,7 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
     Parameters:
         scene: Scene object with active buildings.
         grid: PedestrianGrid defining calculation receptors.
-        num_azimuths: Number of discrete horizon search directions (default 32).
+        azimuth_count: Number of discrete horizon search directions (default 32).
         max_search_dist_m: Maximum search horizon in meters.
         roi_mask: Optional (ny, nx) boolean mask for selective computation.
         
@@ -61,7 +61,7 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
         h_mesh_grid = rasterize_scene_meshes_to_height_grid(scene, grid)
 
     # Precompute azimuth unit vectors
-    azimuths_deg = np.linspace(0.0, 360.0, num_azimuths, endpoint=False)
+    azimuths_deg = np.linspace(0.0, 360.0, azimuth_count, endpoint=False)
     cos2_elev_sum = np.zeros(n_pts, dtype=np.float64)
 
     # Distance sampling steps along ray
@@ -129,7 +129,7 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
             # cos^2(elev) = 1 / (1 + tan^2(elev))
             batch_cos2 += 1.0 / (1.0 + max_tan_elev ** 2)
 
-        batch_svf = batch_cos2 / float(num_azimuths)
+        batch_svf = batch_cos2 / float(azimuth_count)
 
         # Inside AABB building footprint check: if receptor is inside a building, SVF = 0.0
         for bounds in bldg_boxes:

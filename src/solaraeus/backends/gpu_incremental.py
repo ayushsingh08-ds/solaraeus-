@@ -371,9 +371,9 @@ class GPUIncrementalEngine:
         # Profiling Metrics
         dev = cp.cuda.Device()
         mem_info = dev.mem_info
-        num_azimuths = config.sky_patch_configuration
-        total_rays = total_cells * (1 + num_azimuths)
-        affected_rays = n_recomputed * (1 + num_azimuths)
+        azimuth_count = config.sky_patch_configuration
+        total_rays = total_cells * (1 + azimuth_count)
+        affected_rays = n_recomputed * (1 + azimuth_count)
         ray_reduction_pct = ((total_rays - affected_rays) / float(total_rays)) * 100.0 if total_rays > 0 else 0.0
 
         metrics = GPUIncrementalProfileMetrics(
