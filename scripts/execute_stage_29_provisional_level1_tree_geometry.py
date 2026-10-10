@@ -17,7 +17,7 @@ from pathlib import Path
 # Add src to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from solaraeus.vegetation.tree import Tree, get_core_trees
+from solaraeus.extensions.vegetation.tree import Tree, get_core_trees
 
 
 def execute_stage_29(workspace_root: Path) -> dict:

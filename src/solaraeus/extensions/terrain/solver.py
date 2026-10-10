@@ -23,7 +23,7 @@ from solaraeus.physics.longwave import compute_longwave_fluxes
 from solaraeus.physics.mean_radiant_temperature import compute_tmrt
 from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
-from solaraeus.terrain.terrain_scene import TerrainAwareScene
+from solaraeus.extensions.terrain.scene import TerrainAwareScene
 
 
 class TerrainAwareCPUSolver:

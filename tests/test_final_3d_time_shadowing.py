@@ -6,7 +6,7 @@ import math
 from datetime import date
 import numpy as np
 import pytest
-from solaraeus.integration.time_shadowing import time_shadowing_engine
+from solaraeus.extensions.time_shadowing import time_shadowing_engine
 
 
 def test_analytic_shadow_length_and_direction():

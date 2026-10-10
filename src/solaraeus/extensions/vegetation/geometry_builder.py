@@ -11,8 +11,8 @@ from typing import Dict, List, Optional
 import numpy as np
 import trimesh
 
-from solaraeus.integration.tree_loader import TreeRecord, tree_loader
-from solaraeus.integration.terrain_loader import terrain_loader
+from solaraeus.extensions.vegetation.loader import TreeRecord, tree_loader
+from solaraeus.extensions.terrain.loader import terrain_loader
 
 
 class TreeGeometryBuilder:

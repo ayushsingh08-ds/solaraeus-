@@ -20,7 +20,7 @@ sys.path.insert(0, str(root_dir / "src"))
 from solaraeus.core.config import Weather, SimulationConfig
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, create_single_box_scene
-from solaraeus.terrain import (
+from solaraeus.extensions.terrain import (
     TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver, TerrainAwareGPUBackend
 )
 

@@ -6,7 +6,7 @@ from datetime import date
 from pathlib import Path
 import numpy as np
 import pytest
-from solaraeus.integration.tmrt_3d import tmrt_3d_engine
+from solaraeus.extensions.mean_radiant_temperature_3d import tmrt_3d_engine
 from solaraeus.physics.sun_model import sun_model
 from solaraeus.physics.cloud_model import cloud_model
 

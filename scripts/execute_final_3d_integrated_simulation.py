@@ -44,14 +44,14 @@ import pandas as pd
 import trimesh
 
 from solaraeus.sites.church_street.coordinates import transformer, CoordinateSystemDefinition
-from solaraeus.integration.terrain_loader import terrain_loader
-from solaraeus.integration.tree_loader import tree_loader
-from solaraeus.integration.tree_geometry_builder import tree_geometry_builder
+from solaraeus.extensions.terrain.loader import terrain_loader
+from solaraeus.extensions.vegetation.loader import tree_loader
+from solaraeus.extensions.vegetation.geometry_builder import tree_geometry_builder
 from solaraeus.physics.sun_model import sun_model, IST
 from solaraeus.physics.cloud_model import cloud_model, CloudState
-from solaraeus.integration.time_shadowing import time_shadowing_engine
-from solaraeus.integration.tmrt_3d import tmrt_3d_engine
-from solaraeus.integration.utci_3d import utci_3d_engine
+from solaraeus.extensions.time_shadowing import time_shadowing_engine
+from solaraeus.extensions.mean_radiant_temperature_3d import tmrt_3d_engine
+from solaraeus.extensions.utci_3d import utci_3d_engine
 from solaraeus.sites.church_street.scene_builder import ChurchStreetAdapter
 
 

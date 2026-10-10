@@ -21,8 +21,8 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.backends.gpu import GPUBackend
-from solaraeus.terrain.terrain_scene import TerrainAwareScene
-from solaraeus.terrain.terrain_solver import TerrainAwareCPUSolver
+from solaraeus.extensions.terrain.scene import TerrainAwareScene
+from solaraeus.extensions.terrain.solver import TerrainAwareCPUSolver
 
 
 # CUDA C++ Kernel for Terrain-Aware Direct Shadows

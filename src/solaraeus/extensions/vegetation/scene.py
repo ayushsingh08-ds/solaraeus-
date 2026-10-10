@@ -12,9 +12,9 @@ import numpy as np
 
 from solaraeus.core.geometry.primitives import Building
 from solaraeus.core.geometry.scene import Scene
-from solaraeus.terrain.dtm import TerrainGrid
-from solaraeus.terrain.terrain_scene import TerrainAwareScene
-from solaraeus.vegetation.tree import Tree
+from solaraeus.extensions.terrain.dtm import TerrainGrid
+from solaraeus.extensions.terrain.scene import TerrainAwareScene
+from solaraeus.extensions.vegetation.tree import Tree
 
 
 @dataclass

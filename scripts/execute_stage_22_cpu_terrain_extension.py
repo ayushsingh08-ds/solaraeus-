@@ -21,7 +21,7 @@ from solaraeus.core.config import Weather, SimulationConfig
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, create_single_box_scene
 from solaraeus.reference.full_recompute import full_recompute
-from solaraeus.terrain import TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver
+from solaraeus.extensions.terrain import TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver
 
 root_dir = Path(__file__).resolve().parent.parent
 
@@ -230,7 +230,7 @@ The `2.1.0-cpu-terrain` extension augments the frozen `2.0.0-cpu-ref` solver wit
 
 ## Usage
 ```python
-from solaraeus.terrain import TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver
+from solaraeus.extensions.terrain import TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver
 
 # 1. Create Terrain
 terrain = TerrainGrid.create_inclined(bounds, base_elevation=0.0, slope_x=0.03)

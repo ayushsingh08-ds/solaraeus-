@@ -28,10 +28,10 @@ from solaraeus.physics.longwave import compute_longwave_fluxes
 from solaraeus.physics.mean_radiant_temperature import compute_tmrt
 from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult
-from solaraeus.terrain.gpu_terrain import TerrainAwareGPUBackend
-from solaraeus.vegetation.tree import Tree
-from solaraeus.vegetation.tree_scene import TreeAwareScene
-from solaraeus.vegetation.tree_solver import TreeAwareCPUSolver
+from solaraeus.extensions.terrain.gpu import TerrainAwareGPUBackend
+from solaraeus.extensions.vegetation.tree import Tree
+from solaraeus.extensions.vegetation.scene import TreeAwareScene
+from solaraeus.extensions.vegetation.solver import TreeAwareCPUSolver
 
 
 TREE_SHADOW_KERNEL_SRC = r"""

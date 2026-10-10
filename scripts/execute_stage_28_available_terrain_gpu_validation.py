@@ -31,10 +31,10 @@ from solaraeus.core.config import (
 )
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.terrain.dtm import TerrainGrid
-from solaraeus.terrain.terrain_scene import TerrainAwareScene
-from solaraeus.terrain.terrain_solver import TerrainAwareCPUSolver
-from solaraeus.terrain.gpu_terrain import TerrainAwareGPUBackend
+from solaraeus.extensions.terrain.dtm import TerrainGrid
+from solaraeus.extensions.terrain.scene import TerrainAwareScene
+from solaraeus.extensions.terrain.solver import TerrainAwareCPUSolver
+from solaraeus.extensions.terrain.gpu import TerrainAwareGPUBackend
 
 
 def create_test_scene():

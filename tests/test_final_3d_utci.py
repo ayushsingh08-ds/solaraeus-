@@ -4,7 +4,7 @@ Test suite for 3D UTCI Comfort Calculation (Part 11, 16).
 
 import numpy as np
 import pytest
-from solaraeus.integration.utci_3d import utci_3d_engine
+from solaraeus.extensions.utci_3d import utci_3d_engine
 
 
 def test_utci_responds_to_tmrt():

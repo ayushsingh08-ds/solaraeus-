@@ -22,9 +22,9 @@ from solaraeus.physics.longwave import compute_longwave_fluxes
 from solaraeus.physics.mean_radiant_temperature import compute_tmrt
 from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult
-from solaraeus.terrain.terrain_solver import TerrainAwareCPUSolver
-from solaraeus.vegetation.tree import Tree
-from solaraeus.vegetation.tree_scene import TreeAwareScene
+from solaraeus.extensions.terrain.solver import TerrainAwareCPUSolver
+from solaraeus.extensions.vegetation.tree import Tree
+from solaraeus.extensions.vegetation.scene import TreeAwareScene
 
 
 class TreeAwareCPUSolver:

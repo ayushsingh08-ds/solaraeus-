@@ -35,12 +35,12 @@ from solaraeus.core.config import (
 )
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.terrain.dtm import TerrainGrid
-from solaraeus.terrain.terrain_scene import TerrainAwareScene
-from solaraeus.vegetation.tree import Tree, get_core_trees
-from solaraeus.vegetation.tree_scene import TreeAwareScene
-from solaraeus.vegetation.tree_solver import TreeAwareCPUSolver
-from solaraeus.vegetation.gpu_tree import TreeAwareGPUBackend
+from solaraeus.extensions.terrain.dtm import TerrainGrid
+from solaraeus.extensions.terrain.scene import TerrainAwareScene
+from solaraeus.extensions.vegetation.tree import Tree, get_core_trees
+from solaraeus.extensions.vegetation.scene import TreeAwareScene
+from solaraeus.extensions.vegetation.solver import TreeAwareCPUSolver
+from solaraeus.extensions.vegetation.gpu import TreeAwareGPUBackend
 
 
 def create_base_scene():
