@@ -6,20 +6,21 @@ Axis-Aligned Bounding Box (AABB) and equivalent triangular-mesh representations.
 """
 
 from __future__ import annotations
+
 import csv
 import json
 import os
 import tempfile
-import numpy as np
+
 import pytest
 
 from urban_comfort.benchmark.aabb_vs_mesh_benchmark import (
-    get_canonical_benchmark_scenes,
     build_scene_pair,
-    run_single_comparison,
+    get_canonical_benchmark_scenes,
     run_aabb_vs_mesh_benchmark,
+    run_single_comparison,
 )
-from urban_comfort.config import Weather, SimulationConfig
+from urban_comfort.config import SimulationConfig, Weather
 
 
 @pytest.fixture

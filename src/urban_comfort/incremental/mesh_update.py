@@ -6,9 +6,9 @@ of TriangleMesh objects within the certified incremental recomputation framework
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Tuple, Optional
-import numpy as np
+from typing import Tuple
 
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene

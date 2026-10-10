@@ -6,7 +6,6 @@ REFACTOR_REPORT.md can be checked by hand.
 
 from __future__ import annotations
 
-import collections
 import glob
 import json
 import os
@@ -109,7 +108,6 @@ def i6_orphan_reachability() -> None:
 def i7_cycle() -> None:
     """Re-verify the import cycle and which edges are function-local."""
     heading("I7  import cycle in incremental/backend/reference (top-level vs function-local)")
-    sys.path.insert(0, str(REPO / "tools" / "golden"))
     print("  (see tools/golden/cycle_check.py for the authoritative SCC report)")
 
 

@@ -19,30 +19,26 @@ Demonstrates:
 """
 
 from __future__ import annotations
-import os
-import sys
-import time
+
 import json
-import numpy as np
+import os
+import time
 
 # Use Agg backend for headless matplotlib rendering
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
+import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-import matplotlib.patches as patches
 
-# Ensure src is on path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
-
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
-    AddBuildingEdit, incremental_update_certified
-)
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.incremental.certificate import verify_certificate
+from urban_comfort.incremental.update import AddBuildingEdit, incremental_update_certified
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def run_comparative_experiment():

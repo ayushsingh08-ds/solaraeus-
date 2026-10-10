@@ -20,7 +20,6 @@ from __future__ import annotations
 import argparse
 import ast
 import collections
-import re
 import sys
 from pathlib import Path
 
@@ -96,18 +95,23 @@ def scan(root_dirs: list[Path]):
                 dotted = ("." * node.level) + (node.module or "")
                 all_imports.add((dotted, True))
 
-        def record(dotted: str, is_local: bool) -> None:
+        def record(owner: str, dotted: str, is_local: bool) -> None:
+            """Add one edge from *owner*; ``owner`` is a parameter, not a closure.
+
+            Binding the loop variable through a parameter keeps the function
+            independent of when it is called (see ruff B023).
+            """
             target = resolve(dotted)
-            if target and target != rel:
-                edges[rel].add(target)
+            if target and target != owner:
+                edges[owner].add(target)
                 if is_local:
-                    local_edges[rel].add(target)
+                    local_edges[owner].add(target)
 
         for dotted in top_level:
-            record(dotted, False)
+            record(rel, dotted, False)
         for dotted, _ in all_imports:
             if dotted not in top_level:
-                record(dotted, True)
+                record(rel, dotted, True)
 
     return edges, local_edges
 

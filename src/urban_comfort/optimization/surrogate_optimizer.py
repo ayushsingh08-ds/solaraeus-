@@ -7,29 +7,34 @@ certificate validation, and immutable ledger recording.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import hashlib
 import json
 import math
 import time
+from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
-from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
-from urban_comfort.optimization.objective import ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-from urban_comfort.optimization.ledger import CandidateRecord, CandidateLedger
-from urban_comfort.optimization.optimizer import OptimizationEngine, OptimizerConfig
-from urban_comfort.optimization.surrogate import (
-    SurrogateConfig, SurrogateModel, SurrogatePrediction, FallbackSurrogateModel, SKLEARN_AVAILABLE
-)
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.scene import Scene
 from urban_comfort.optimization.acquisition import AcquisitionConfig, CandidateAcquisitionEngine
+from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
+from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
+from urban_comfort.optimization.objective import ComfortObjectiveConfig
+from urban_comfort.optimization.optimizer import OptimizationEngine, OptimizerConfig
+from urban_comfort.optimization.parameters import ParameterBounds, ShadePanelParams
+from urban_comfort.optimization.surrogate import (
+    SKLEARN_AVAILABLE,
+    FallbackSurrogateModel,
+    SurrogateConfig,
+    SurrogateModel,
+    SurrogatePrediction,
+)
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 @dataclass

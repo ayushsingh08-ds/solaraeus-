@@ -3,21 +3,20 @@ Unit tests for the error certificate engine and mathematical soundness checks:
 Verifies actual_error(x) <= predicted_bound(x) <= tolerance across all 4 building edits.
 """
 
-import math
-import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
-from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene, create_single_box_scene
+from urban_comfort.incremental.certificate import CertificateViolationError, verify_certificate
 from urban_comfort.incremental.update import (
-    AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
-    incremental_update_certified
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
+    incremental_update_certified,
 )
-from urban_comfort.incremental.certificate import (
-    verify_certificate, CertificateViolationError
-)
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 @pytest.fixture

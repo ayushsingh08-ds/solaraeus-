@@ -2,9 +2,8 @@
 Test suite for Cinematic Visual Styling & Physics Isolation (Part 15A, 16).
 """
 
-from pathlib import Path
 import json
-import pytest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 STYLE_DIR = ROOT / "results/final_3d_integrated_simulation/styling"

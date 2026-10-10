@@ -4,7 +4,6 @@ Pytest validation suite for Stage 22: Terrain-Aware CPU Reference Solver Extensi
 
 import json
 from pathlib import Path
-import pytest
 
 root_dir = Path(__file__).resolve().parent.parent
 stage_22_dir = root_dir / "results" / "stage_22_cpu_terrain_extension"

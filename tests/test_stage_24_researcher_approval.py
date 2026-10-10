@@ -4,6 +4,7 @@ Tests for SOLARAEUS Stage 24: Researcher Approval Closure
 
 import json
 from pathlib import Path
+
 import pytest
 
 

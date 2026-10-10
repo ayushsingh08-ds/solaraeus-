@@ -4,6 +4,7 @@ Tests for SOLARAEUS Stage 31: GPU Tree-Shadow Backend
 
 import json
 from pathlib import Path
+
 import pytest
 
 

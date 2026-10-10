@@ -8,16 +8,12 @@ Tokens: STAGE_29_PROVISIONAL_LEVEL1_TREE_GEOMETRY_COMPLETE
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import json
 import math
-import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
-# Add src to sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-
-from urban_comfort.vegetation.tree import Tree, get_core_trees
+from urban_comfort.vegetation.tree import get_core_trees
 
 
 def execute_stage_29(workspace_root: Path) -> dict:

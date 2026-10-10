@@ -2,11 +2,10 @@
 Test suite for Tree Map Placement & Uncertainty Envelopes (Part 6, 16).
 """
 
-import json
 from pathlib import Path
-import pytest
-from urban_comfort.integration.tree_loader import tree_loader
+
 from urban_comfort.integration.tree_geometry_builder import tree_geometry_builder
+from urban_comfort.integration.tree_loader import tree_loader
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

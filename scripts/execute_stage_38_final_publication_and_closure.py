@@ -31,12 +31,11 @@ Tokens:
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import csv
 import hashlib
 import json
+from datetime import datetime, timezone
 from pathlib import Path
-
 
 EXPECTED_HASHES = {
     "results/church_street_static_20261006_232110/provenance.json": "af2600043f0004570986c7d6426410e799a8f1b8e99072ad271c758b2c87ea4b",

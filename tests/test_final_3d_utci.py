@@ -3,7 +3,7 @@ Test suite for 3D UTCI Comfort Calculation (Part 11, 16).
 """
 
 import numpy as np
-import pytest
+
 from urban_comfort.integration.utci_3d import utci_3d_engine
 
 

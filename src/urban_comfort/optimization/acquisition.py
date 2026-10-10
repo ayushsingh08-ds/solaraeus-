@@ -7,15 +7,17 @@ Strictly filters all proposed candidates through geographic feasibility before e
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import math
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 from scipy.stats import norm
 
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds
-from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
-from urban_comfort.optimization.surrogate import SurrogateModel, SurrogatePrediction, FallbackSurrogateModel
+from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
+from urban_comfort.optimization.parameters import ParameterBounds, ShadePanelParams
+from urban_comfort.optimization.surrogate import FallbackSurrogateModel, SurrogateModel
 
 
 @dataclass

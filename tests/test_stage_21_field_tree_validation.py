@@ -5,7 +5,6 @@ Pytest validation suite for Stage 21: Field Validation of Tree Dimensions and Ex
 import csv
 import json
 from pathlib import Path
-import pytest
 
 root_dir = Path(__file__).resolve().parent.parent
 stage_21_dir = root_dir / "results" / "stage_21_field_tree_validation"

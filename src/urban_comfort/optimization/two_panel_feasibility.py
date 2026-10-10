@@ -14,18 +14,21 @@ Evaluates candidates before expensive GPU/CPU simulations, enforcing:
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, Any, List, Optional
-import shapely
-from shapely.geometry import Polygon, MultiPolygon
+from typing import Any, Dict
 
-from urban_comfort.optimization.parameters import build_panel_geometry
+from urban_comfort.optimization.feasibility import (
+    FeasibilityConstraints,
+)
 from urban_comfort.optimization.feasibility import (
     RejectionReason as SingleRejectionReason,
-    FeasibilityConstraints,
+)
+from urban_comfort.optimization.feasibility import (
     check_feasibility as check_single_feasibility,
 )
+from urban_comfort.optimization.parameters import build_panel_geometry
 from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
 
 

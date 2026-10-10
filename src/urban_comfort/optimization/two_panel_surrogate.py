@@ -7,24 +7,25 @@ Features are permutation-invariant via canonical coordinate ordering.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import hashlib
 import json
 import math
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
 import numpy as np
 
 try:
-    from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, RandomForestClassifier
+    from sklearn.ensemble import ExtraTreesRegressor, RandomForestClassifier, RandomForestRegressor
+    from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     from sklearn.preprocessing import StandardScaler
-    from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
     SKLEARN_AVAILABLE = True
 except ImportError:
     SKLEARN_AVAILABLE = False
 
-from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
 from urban_comfort.optimization.two_panel_ledger import TwoPanelCandidateRecord
-
+from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
 
 TWO_PANEL_FEATURE_NAMES: Tuple[str, ...] = (
     "x1", "y1", "length1", "width1", "height1", "heading_deg1", "albedo1", "area1_m2",

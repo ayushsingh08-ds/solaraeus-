@@ -2,9 +2,8 @@
 Test suite for 3D Feasibility Checking (Part 14, 16).
 """
 
-from pathlib import Path
 import json
-import pytest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

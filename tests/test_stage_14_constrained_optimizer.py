@@ -4,7 +4,6 @@ Pytest integration for Stage 14: Baseline Search and Constrained AI Optimizer.
 
 import json
 from pathlib import Path
-import pytest
 
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results" / "stage_14_constrained_optimizer"
 

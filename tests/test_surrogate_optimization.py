@@ -18,50 +18,46 @@ Tests all 13 required test cases:
 """
 
 from __future__ import annotations
-import hashlib
+
 import json
 import math
-from pathlib import Path
 import tempfile
+from pathlib import Path
+
 import numpy as np
-import pytest
 from shapely.geometry import Polygon, box
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.optimization.acquisition import (
+    AcquisitionConfig,
+    CandidateAcquisitionEngine,
+    compute_ei_score,
+    compute_lcb_score,
 )
 from urban_comfort.optimization.feasibility import (
-    RejectionReason, FeasibilityConstraints, check_feasibility
+    FeasibilityConstraints,
+    RejectionReason,
+    check_feasibility,
 )
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-)
-from urban_comfort.optimization.ledger import (
-    CandidateRecord, CandidateLedger
-)
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
-)
-from urban_comfort.optimization.validation import (
-    validate_candidate_multi_path, TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
-)
+from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
+from urban_comfort.optimization.optimizer import OptimizationEngine, OptimizerConfig
+from urban_comfort.optimization.parameters import ParameterBounds, ShadePanelParams
 from urban_comfort.optimization.surrogate import (
-    SurrogateConfig, SurrogatePrediction, SurrogateModel, FallbackSurrogateModel
-)
-from urban_comfort.optimization.acquisition import (
-    AcquisitionConfig, CandidateAcquisitionEngine, compute_lcb_score, compute_ei_score
+    FallbackSurrogateModel,
+    SurrogateConfig,
+    SurrogateModel,
+    SurrogatePrediction,
 )
 from urban_comfort.optimization.surrogate_optimizer import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+    SurrogateOptimizationEngine,
+    SurrogateOptimizerConfig,
 )
-
+from urban_comfort.optimization.validation import validate_candidate_multi_path
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 FROZEN_STAGE1_DIR = REPO_ROOT / "results" / "church_street_intervention_optimization_20261007_102725"

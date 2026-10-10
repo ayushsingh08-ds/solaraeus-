@@ -3,15 +3,14 @@ Scene graph and synthetic urban scene generators.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple, Any
-import json
 
-from urban_comfort.config import (
-    Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-)
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
+import json
+from dataclasses import dataclass, field
+from typing import Any, Dict, List
+
+from urban_comfort.config import DEFAULT_GROUND_MATERIAL, DEFAULT_WALL_MATERIAL, Material
 from urban_comfort.geometry.mesh import TriangleMesh
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
 
 
 @dataclass

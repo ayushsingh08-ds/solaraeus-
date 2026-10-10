@@ -3,9 +3,8 @@ Configuration schemas, physical constants, and boundary condition data models.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field, asdict
-from typing import Dict, Any
-import json
+
+from dataclasses import dataclass
 
 SIGMA = 5.670374419e-8  # Stefan-Boltzmann constant (W / m^2 K^4)
 

@@ -3,11 +3,9 @@ Unit tests for the reference deterministic SOLWEIG solver.
 """
 
 import numpy as np
-import pytest
-from solaraeus.core.geometry import UrbanGrid, AddBuilding
-from solaraeus.core.solweig import (
-    ReferenceSOLWEIGSolver, WeatherParameters, SOLWEIGConfig, compute_shadow_mask, compute_sky_view_factor
-)
+
+from solaraeus.core.geometry import UrbanGrid
+from solaraeus.core.solweig import ReferenceSOLWEIGSolver, SOLWEIGConfig, WeatherParameters
 
 
 def test_flat_terrain_analytical_limits():

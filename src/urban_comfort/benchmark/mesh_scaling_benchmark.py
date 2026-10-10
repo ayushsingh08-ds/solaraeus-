@@ -9,27 +9,28 @@ across systematic parametric variations of:
 """
 
 from __future__ import annotations
+
 import csv
-from dataclasses import dataclass, asdict
-from datetime import datetime, timezone
 import json
 import math
 import os
 import time
 import tracemalloc
-from typing import Dict, List, Tuple, Any, Optional
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.mesh import create_box_mesh
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
 from urban_comfort.incremental.mesh_update import ChangeMeshHeightEdit
 from urban_comfort.incremental.update import incremental_update_certified
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.solar.solar_position import calculate_solar_position
+from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
 def create_mesh_scaling_scene(num_buildings: int,

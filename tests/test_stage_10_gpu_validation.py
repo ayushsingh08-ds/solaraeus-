@@ -4,8 +4,8 @@ Unit tests for Stage 10: Complete GPU Full-vs-CPU Validation.
 
 import json
 from pathlib import Path
+
 import pytest
-import numpy as np
 
 
 @pytest.fixture

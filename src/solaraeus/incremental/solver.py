@@ -4,16 +4,21 @@ Executes certificate evaluation and selective recomputation with provable error 
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import time
+from dataclasses import dataclass
 from typing import Optional
+
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid, GeometricEdit, EditBoundingBox
+from solaraeus.core.geometry import GeometricEdit, UrbanGrid
 from solaraeus.core.solweig import (
-    ReferenceSOLWEIGSolver, WeatherParameters, SOLWEIGConfig, SOLWEIGState
+    ReferenceSOLWEIGSolver,
+    SOLWEIGConfig,
+    SOLWEIGState,
+    WeatherParameters,
 )
-from solaraeus.incremental.bounds import evaluate_certificate, CertificateResult
+from solaraeus.incremental.bounds import CertificateResult, evaluate_certificate
 
 
 @dataclass

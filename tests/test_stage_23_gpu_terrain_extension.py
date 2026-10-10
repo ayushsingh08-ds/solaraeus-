@@ -4,7 +4,6 @@ Pytest validation suite for Stage 23: Terrain-Aware GPU and Incremental Extensio
 
 import json
 from pathlib import Path
-import pytest
 
 root_dir = Path(__file__).resolve().parent.parent
 stage_23_dir = root_dir / "results" / "stage_23_gpu_terrain_extension"

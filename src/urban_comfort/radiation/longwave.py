@@ -3,10 +3,12 @@ Longwave thermal radiation calculations from sky, walls, and ground onto a human
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 import numpy as np
 
-from urban_comfort.config import Weather, Material, SIGMA
+from urban_comfort.config import SIGMA, Material, Weather
 
 
 @dataclass

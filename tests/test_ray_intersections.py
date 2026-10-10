@@ -3,12 +3,10 @@ Unit tests for CPU Ray-AABB intersection routines.
 """
 
 import math
-import numpy as np
-import pytest
 
-from urban_comfort.visibility.ray_intersection import (
-    intersect_ray_aabb, intersect_rays_aabb_batch
-)
+import numpy as np
+
+from urban_comfort.visibility.ray_intersection import intersect_ray_aabb, intersect_rays_aabb_batch
 
 
 def test_single_ray_intersection_hit():

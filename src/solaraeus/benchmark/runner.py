@@ -5,17 +5,17 @@ verifies mathematical soundness (actual <= bound), and profiles speedup.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import time
-from typing import List, Dict, Any, Optional
+from dataclasses import dataclass
+from typing import List
+
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid, GeometricEdit
-from solaraeus.core.solweig import (
-    ReferenceSOLWEIGSolver, WeatherParameters, SOLWEIGConfig, SOLWEIGState
-)
-from solaraeus.incremental.solver import IncrementalSOLWEIGSolver, IncrementalUpdateResult
 from solaraeus.benchmark.adversarial import AdversarialCase
+from solaraeus.core.geometry import GeometricEdit, UrbanGrid
+from solaraeus.core.solweig import ReferenceSOLWEIGSolver, SOLWEIGConfig, WeatherParameters
+from solaraeus.incremental.solver import IncrementalSOLWEIGSolver
 
 
 @dataclass

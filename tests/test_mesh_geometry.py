@@ -3,21 +3,23 @@ Unit tests for TriangleMesh data structure, geometric validation, and synthetic 
 """
 
 from __future__ import annotations
+
 import math
-import pytest
+
 import numpy as np
+import pytest
 
 from urban_comfort.geometry.mesh import (
     TriangleMesh,
     create_box_mesh,
-    create_rotated_box_mesh,
-    create_pitched_roof_mesh,
+    create_l_shaped_mesh,
     create_overhang_mesh,
+    create_pitched_roof_mesh,
+    create_rotated_box_mesh,
     create_wall_mesh,
-    create_l_shaped_mesh
 )
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 
 
 def test_triangle_mesh_valid_construction():

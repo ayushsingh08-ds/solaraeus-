@@ -3,8 +3,8 @@ Test suite for Scene Geometry & Trimesh Generation (Part 7, 16).
 """
 
 from pathlib import Path
+
 import trimesh
-import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 SCENE_DIR = ROOT / "results/final_3d_integrated_simulation/scene"

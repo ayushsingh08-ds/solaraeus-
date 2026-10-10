@@ -5,16 +5,16 @@ comparing metrics, shapes, tolerances, and checksums.
 """
 
 from __future__ import annotations
+
 import hashlib
 import json
-import os
 import platform
 import subprocess
 import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
+
 import numpy as np
 
 root_dir = Path(__file__).resolve().parent.parent

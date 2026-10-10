@@ -7,47 +7,38 @@ results/independent_audit_20261006_033239).
 """
 
 from __future__ import annotations
-import csv
-from datetime import datetime, timezone
-import json
-import math
-import os
-import platform
-import sys
-import time
-from typing import Dict, List, Any
 
-# Ensure src is in sys.path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
+import csv
+import json
+import os
+from datetime import datetime, timezone
 
 import matplotlib
+
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
-import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
-    ChangeHeightEdit, AddBuildingEdit, RemoveBuildingEdit, MoveBuildingEdit,
-    incremental_update_certified
-)
-from urban_comfort.benchmark.scenes import create_scaling_scene
 from urban_comfort.benchmark.independent_audit import (
     audit_certificate_independently,
-    build_dependency_coverage_audit,
-    run_mutation_tests,
-    run_detailed_timing_audit,
-    build_provenance_record,
+    build_analytical_verification_table,
     build_canonical_benchmark_table,
+    build_dependency_coverage_audit,
+    build_provenance_record,
     build_timing_reconciliation_table,
-    build_analytical_verification_table
+    run_mutation_tests,
 )
-from urban_comfort.benchmark.repeated_edits import run_repeated_edit_sequence
+from urban_comfort.benchmark.scenes import create_scaling_scene
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.incremental.update import (
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
+    incremental_update_certified,
+)
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def main():

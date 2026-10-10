@@ -4,8 +4,9 @@ Computes equivalent human thermal comfort temperature from T_air, T_mrt, wind sp
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Union, Tuple
+
+from typing import Union
+
 import numpy as np
 
 # Try importing pythermalcomfort for certified multi-variate polynomial

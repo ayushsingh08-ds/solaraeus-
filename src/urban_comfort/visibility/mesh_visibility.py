@@ -6,8 +6,10 @@ using exact top-surface mesh height rasterization, consistent with SOLWEIG/UMEP 
 """
 
 from __future__ import annotations
+
 import math
-from typing import Optional, List, Tuple
+from typing import Optional
+
 import numpy as np
 
 from urban_comfort.geometry.mesh import TriangleMesh

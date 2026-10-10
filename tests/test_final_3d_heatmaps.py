@@ -2,9 +2,8 @@
 Test suite for Dynamic Heatmap Generation (Part 12, 16).
 """
 
-from pathlib import Path
 import json
-import pytest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 HM_DIR = ROOT / "results/final_3d_integrated_simulation/heatmaps"

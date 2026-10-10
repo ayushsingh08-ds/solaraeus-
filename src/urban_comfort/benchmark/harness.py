@@ -9,25 +9,29 @@ Implements Work Package 1 requirements:
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, asdict, field
-import hashlib
-import json
-import time
-import os
-import psutil
-from typing import Dict, Any, Optional, List, Tuple
-import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
+import hashlib
+import os
+import time
+from dataclasses import asdict, dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
+import numpy as np
+import psutil
+
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.update import GeometricEdit, incremental_update_certified
-from urban_comfort.incremental.certificate import verify_certificate, ErrorCertificate
-from urban_comfort.incremental.cache import SimulationCache, compute_scene_hash, compute_config_hash, compute_weather_hash
+from urban_comfort.incremental.cache import (
+    SimulationCache,
+    compute_config_hash,
+    compute_scene_hash,
+    compute_weather_hash,
+)
+from urban_comfort.incremental.certificate import ErrorCertificate, verify_certificate
 from urban_comfort.incremental.dependency_graph import DependencyGraph
-
+from urban_comfort.incremental.update import GeometricEdit, incremental_update_certified
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 SOFTWARE_VERSION = "0.2.0-research-prototype"
 

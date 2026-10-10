@@ -5,8 +5,8 @@ and updates data/processed/researcher_signoff.json and approved_building_heights
 """
 
 from __future__ import annotations
+
 import csv
-from datetime import datetime, timezone
 import json
 from pathlib import Path
 

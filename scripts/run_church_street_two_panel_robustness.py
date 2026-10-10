@@ -17,91 +17,76 @@ Outputs to: results/church_street_two_panel_robustness_<UTC_TIMESTAMP>/
 """
 
 from __future__ import annotations
-import csv
-from datetime import datetime, timezone
+
 import hashlib
 import json
-import math
-import os
-from pathlib import Path
-import sys
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
 
 import matplotlib
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 from pyproj import Transformer
-from shapely.geometry import Point, Polygon, MultiPolygon, shape
-from shapely.ops import transform, unary_union
 from shapely.affinity import translate
+from shapely.geometry import Point, shape
+from shapely.ops import transform
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
-)
-from urban_comfort.optimization.feasibility import (
-    FeasibilityConstraints, check_feasibility
-)
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, compute_objective
-)
-from urban_comfort.optimization.two_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
-)
-from urban_comfort.optimization.two_panel_feasibility import (
-    TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
-)
-from urban_comfort.optimization.two_panel_objective import (
-    TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
-)
-from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
-)
-from urban_comfort.optimization.two_panel_surrogate import (
-    TwoPanelSurrogateConfig, TwoPanelSurrogateModel
-)
-from urban_comfort.optimization.two_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds
-)
-from urban_comfort.optimization.two_panel_optimizer import (
-    TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
-)
-from urban_comfort.optimization.two_panel_validation import (
-    validate_two_panel_multi_path, TwoPanelValidationReport
-)
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.scene import Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.optimization.feasibility import FeasibilityConstraints
 from urban_comfort.optimization.robustness import (
-    WeatherScenario, SolarTimestampScenario, ObjectiveWeightScenario,
-    ConstraintSensitivityScenario, RobustnessStudyConfig,
-    get_standard_weather_scenarios, get_standard_solar_timestamps,
-    get_standard_objective_scenarios, get_standard_constraint_scenarios,
-    recompute_score_under_scenario, evaluate_candidate_at_condition,
+    evaluate_candidate_at_condition,
+    get_standard_constraint_scenarios,
+    get_standard_objective_scenarios,
+    get_standard_solar_timestamps,
+    get_standard_weather_scenarios,
+    recompute_score_under_scenario,
 )
 from urban_comfort.optimization.robustness_plots import (
-    plot_best_objective_vs_random_seed,
     plot_best_objective_vs_evaluation_budget,
-    plot_candidate_ranking_across_weather_scenarios,
+    plot_best_objective_vs_random_seed,
+    plot_building_setback_sensitivity,
     plot_candidate_ranking_across_solar_timestamps,
+    plot_candidate_ranking_across_weather_scenarios,
+    plot_comfort_improvement_vs_estimated_cost,
+    plot_comfort_improvement_vs_total_area,
+    plot_cpu_gpu_incremental_parity_errors,
+    plot_improved_cell_coverage_comparison,
     plot_objective_weight_sensitivity,
     plot_panel_separation_sensitivity,
-    plot_building_setback_sensitivity,
-    plot_comfort_improvement_vs_total_area,
-    plot_comfort_improvement_vs_estimated_cost,
-    plot_improved_cell_coverage_comparison,
-    plot_cpu_gpu_incremental_parity_errors,
-    plot_reused_vs_recomputed_cells,
     plot_pareto_fronts_across_scenarios,
+    plot_reused_vs_recomputed_cells,
 )
+from urban_comfort.optimization.two_panel_feasibility import (
+    TwoPanelConstraints,
+    TwoPanelRejectionReason,
+    check_two_panel_feasibility,
+)
+from urban_comfort.optimization.two_panel_ledger import (
+    TwoPanelCandidateLedger,
+    TwoPanelCandidateRecord,
+)
+from urban_comfort.optimization.two_panel_objective import (
+    TwoPanelComfortObjectiveConfig,
+    compute_pareto_front,
+)
+from urban_comfort.optimization.two_panel_optimizer import (
+    TwoPanelOptimizationEngine,
+    TwoPanelOptimizerConfig,
+)
+from urban_comfort.optimization.two_panel_parameters import TwoPanelBounds, TwoPanelParams
+from urban_comfort.optimization.two_panel_validation import (
+    TwoPanelValidationReport,
+    validate_two_panel_multi_path,
+)
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 
 def sha256_file(path: Path) -> str:
@@ -116,7 +101,6 @@ def main():
     start_wall_time = time.time()
     root_dir = Path(__file__).resolve().parent.parent
 
-    # Directory Paths & Frozen References
     baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
     prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
@@ -661,7 +645,6 @@ def main():
     })
 
     # =========================================================================
-    # STUDY DIMENSION 8: THREE-PATH PHYSICAL VALIDATION (CPU vs GPU Full vs Inc)
     # =========================================================================
     print("\n[Study 8] Conducting Three-Path Physical Parity Audits Across Key Candidates...")
     val_targets = [

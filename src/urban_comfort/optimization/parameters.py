@@ -6,9 +6,11 @@ and 3D geometric mesh construction for rectangular overhead shade structures.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import math
-from typing import Dict, Any, List, Tuple, Optional
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 from shapely.geometry import Polygon
 

@@ -6,9 +6,9 @@ Verifies complete pipeline execution, physical energy bounds, and determinism.
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.scene import create_single_box_scene, create_canyon_scene
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.scene import create_canyon_scene, create_single_box_scene
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 
 @pytest.fixture

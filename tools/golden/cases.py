@@ -14,49 +14,40 @@ Comparison contract (from the overhaul brief):
 
 from __future__ import annotations
 
-import sys
 from dataclasses import dataclass, field
-from pathlib import Path
 from typing import Any, Callable
 
 import numpy as np
 
-REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-SRC = REPO_ROOT / "src"
-if str(SRC) not in sys.path:
-    sys.path.insert(0, str(SRC))
-
-# --- library imports (resolved after sys.path bootstrap above) -----------------
-from urban_comfort.comfort.utci import compute_utci  # noqa: E402
-from urban_comfort.config import SimulationConfig, Weather  # noqa: E402
-from urban_comfort.geometry.mesh import (  # noqa: E402
+# The package is installed (editable); no sys.path manipulation is needed.
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.mesh import (
     create_box_mesh,
     create_pitched_roof_mesh,
 )
-from urban_comfort.geometry.primitives import BoundingBox2D, Building  # noqa: E402
-from urban_comfort.geometry.scene import (  # noqa: E402
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import (
     PedestrianGridConfig,
     Scene,
     create_canyon_scene,
     create_occlusion_scene,
     create_single_box_scene,
 )
-from urban_comfort.incremental.certificate import verify_certificate  # noqa: E402
-from urban_comfort.incremental.mesh_update import AddMeshEdit  # noqa: E402
-from urban_comfort.incremental.update import (  # noqa: E402
+from urban_comfort.incremental.certificate import verify_certificate
+from urban_comfort.incremental.mesh_update import AddMeshEdit
+from urban_comfort.incremental.update import (
     AddBuildingEdit,
     ChangeHeightEdit,
     RemoveBuildingEdit,
     incremental_update_certified,
     incremental_update_exact,
 )
-from urban_comfort.reference.full_recompute import full_recompute  # noqa: E402
-from urban_comfort.terrain.dtm import TerrainGrid  # noqa: E402
-from urban_comfort.terrain.terrain_scene import TerrainAwareScene  # noqa: E402
-from urban_comfort.terrain.terrain_solver import TerrainAwareCPUSolver  # noqa: E402
-from urban_comfort.vegetation.tree import Tree, get_core_trees  # noqa: E402
-from urban_comfort.vegetation.tree_scene import TreeAwareScene  # noqa: E402
-from urban_comfort.vegetation.tree_solver import TreeAwareCPUSolver  # noqa: E402
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.terrain.dtm import TerrainGrid
+from urban_comfort.terrain.terrain_scene import TerrainAwareScene
+from urban_comfort.vegetation.tree import get_core_trees
+from urban_comfort.vegetation.tree_scene import TreeAwareScene
+from urban_comfort.vegetation.tree_solver import TreeAwareCPUSolver
 
 # ---------------------------------------------------------------------------
 # Fixed, small, fast settings.  These are deliberately tiny so the whole golden

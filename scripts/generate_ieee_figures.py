@@ -7,9 +7,10 @@ Divides the tasks cleanly into 4 focused, compact diagrams:
   - Fig 4: Active Surrogate Multi-Intervention Optimization Loop
 """
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 from pathlib import Path
+
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
 
 # Configure Matplotlib for Publication Typography
 plt.rcParams['font.family'] = 'sans-serif'

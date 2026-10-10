@@ -8,31 +8,32 @@ and certified bounded error against full recomputation.
 """
 
 from __future__ import annotations
-import math
+
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Optional, Tuple, Dict, Any, List
+from typing import Optional, Tuple
+
 import numpy as np
 
+from urban_comfort.backend.base import FlattenedSceneGeometry
+from urban_comfort.backend.gpu_backend import GPUBackend
+from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
 )
-from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.incremental.certificate import ErrorCertificate, generate_error_certificate
 from urban_comfort.incremental.update import GeometricEdit, IncrementalUpdateResult
-from urban_comfort.incremental.certificate import (
-    generate_error_certificate, verify_certificate, ErrorCertificate
-)
-from urban_comfort.backend.base import FlattenedSceneGeometry, BackendProfileMetrics
-from urban_comfort.backend.gpu_backend import GPUBackend, is_cupy_available
-from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
+from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.comfort.utci import compute_utci
+from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.solar.solar_position import calculate_solar_position
 
 
 @dataclass
@@ -480,7 +481,8 @@ class GPUIncrementalEngine:
         # 1. Determine affected region mask
         t0_cand = time.perf_counter()
         from urban_comfort.incremental.update import (
-            compute_exact_dirty_shadow_mask, compute_exact_dirty_svf_mask
+            compute_exact_dirty_shadow_mask,
+            compute_exact_dirty_svf_mask,
         )
         _, edit_bounds_3d = edit.apply(previous_scene)
         shadow_dirty_mask = compute_exact_dirty_shadow_mask(grid, edit_bounds_3d, solar_pos)

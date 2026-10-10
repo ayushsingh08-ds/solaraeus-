@@ -7,12 +7,13 @@ GPU incremental performance metrics, certificate verification results, and therm
 """
 
 from __future__ import annotations
-import csv
-from dataclasses import dataclass, field
+
 import json
 import math
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Any, List, Optional
+from typing import Any, Dict, List, Optional
+
 import pandas as pd
 
 

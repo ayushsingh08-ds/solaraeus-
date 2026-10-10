@@ -1,7 +1,7 @@
 import csv
 import json
-import math
 from pathlib import Path
+
 import pyproj
 import pytest
 

@@ -9,36 +9,32 @@ all required deliverables in results/stage_13_geographic_feasibility/.
 """
 
 from __future__ import annotations
+
 import csv
 import json
-import math
-import os
-import sys
-import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
 
+import matplotlib
 import numpy as np
-import shapely
-from shapely.geometry import shape, Point, Polygon, MultiPolygon
-from shapely.ops import transform, unary_union
 from pyproj import Transformer
 from shapely.affinity import translate
-import matplotlib
+from shapely.geometry import Polygon, shape
+from shapely.ops import transform
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-# Ensure src is on path
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
 from urban_comfort.optimization.feasibility import (
-    RejectionReason, FeasibilityResult, FeasibilityConstraints, check_feasibility
+    FeasibilityConstraints,
+    RejectionReason,
+    check_feasibility,
 )
+from urban_comfort.optimization.parameters import ParameterBounds, ShadePanelParams
 
 
 def main():

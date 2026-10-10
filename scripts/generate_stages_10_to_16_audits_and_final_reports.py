@@ -4,15 +4,14 @@ for SOLARAEUS Solver Development Stages 10 through 16.
 """
 
 from __future__ import annotations
-import json
+
 import hashlib
-import os
+import json
 import platform
 import subprocess
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Any, Dict
 
 root_dir = Path(__file__).resolve().parent.parent
 

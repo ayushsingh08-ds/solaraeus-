@@ -2,9 +2,9 @@
 Test suite for Coupled Physical Cloud Model (Part 8A, 16).
 """
 
-import math
 import numpy as np
 import pytest
+
 from urban_comfort.solar.cloud_model import cloud_model
 
 

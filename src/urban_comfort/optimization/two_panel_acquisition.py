@@ -11,26 +11,26 @@ guided by the two-panel tabular surrogate model and strictly filtered through ge
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import json
 import math
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 
 from urban_comfort.optimization.parameters import ShadePanelParams
-from urban_comfort.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
 from urban_comfort.optimization.two_panel_feasibility import (
     TwoPanelConstraints,
     check_two_panel_feasibility,
-    TwoPanelFeasibilityResult,
-    TwoPanelRejectionReason,
 )
+from urban_comfort.optimization.two_panel_objective import compute_pareto_front
+from urban_comfort.optimization.two_panel_parameters import TwoPanelBounds, TwoPanelParams
 from urban_comfort.optimization.two_panel_surrogate import (
     TwoPanelSurrogateModel,
     TwoPanelSurrogatePrediction,
 )
-from urban_comfort.optimization.two_panel_objective import compute_pareto_front
 
 
 @dataclass

@@ -15,32 +15,31 @@ Audits:
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import json
 import math
-import os
 import platform
 import time
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Any, Dict, List
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, SIGMA, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.update import (
-    GeometricEdit, AddBuildingEdit, RemoveBuildingEdit,
-    ChangeHeightEdit, MoveBuildingEdit, incremental_update_certified
+from urban_comfort.config import (
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
 )
-from urban_comfort.incremental.affected_region import compute_candidate_affected_region
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from urban_comfort.geometry.scene import Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.update import ChangeHeightEdit, incremental_update_certified
+from urban_comfort.radiation.longwave import compute_longwave_fluxes
 from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
-from urban_comfort.radiation.longwave import compute_longwave_fluxes, compute_air_emissivity
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.comfort.utci import compute_utci
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.solar.solar_position import calculate_solar_position
+from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
 def audit_certificate_independently(

@@ -6,27 +6,32 @@ directional visibility / Sky View Factor (SVF) with strict numerical parity to t
 """
 
 from __future__ import annotations
-import math
+
 import time
-from typing import Optional, Tuple, Dict, Any, List
+from typing import Optional
+
 import numpy as np
 
 from urban_comfort.backend.base import (
-    SimulationBackend, FlattenedSceneGeometry, BackendProfileMetrics
+    BackendProfileMetrics,
+    FlattenedSceneGeometry,
+    SimulationBackend,
 )
 from urban_comfort.backend.cpu_backend import CPUBackend
+from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
 )
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
+from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.reference.full_recompute import SimulationResult
-
+from urban_comfort.solar.solar_position import SolarPosition, calculate_solar_position
 
 # CUDA C++ Source Code for Ray-Triangle & Horizon Search Kernels
 CUDA_KERNELS_SOURCE = r'''

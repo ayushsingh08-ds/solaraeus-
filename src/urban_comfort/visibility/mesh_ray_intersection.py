@@ -7,12 +7,13 @@ and vectorized batch intersection for pedestrian-grid receivers.
 """
 
 from __future__ import annotations
-from typing import Tuple, Optional, List
+
+from typing import List, Optional, Tuple
+
 import numpy as np
 
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.visibility.ray_intersection import intersect_ray_aabb, intersect_rays_aabb_batch
-
 
 EPS_ORIGIN_DEFAULT = 1e-6   # Minimum distance t from ray origin to ignore surface self-hits (m)
 EPS_DET_DEFAULT = 1e-10      # Parallel ray / coplanar determinant threshold

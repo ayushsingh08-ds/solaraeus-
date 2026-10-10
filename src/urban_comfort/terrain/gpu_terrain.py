@@ -4,9 +4,10 @@ Implements GPU-accelerated ray tracing with digital terrain models using CuPy an
 """
 
 from __future__ import annotations
-import math
+
 import time
-from typing import Optional, Dict, Any, Tuple, List
+from typing import Any, Dict, Tuple
+
 import numpy as np
 
 try:
@@ -16,14 +17,12 @@ except ImportError:
     cp = None
     CUPY_AVAILABLE = False
 
-from urban_comfort.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import SimulationResult
 from urban_comfort.backend.gpu_backend import GPUBackend
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.reference.full_recompute import SimulationResult
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene
 from urban_comfort.terrain.terrain_solver import TerrainAwareCPUSolver
-
 
 # CUDA C++ Kernel for Terrain-Aware Direct Shadows
 CUDA_TERRAIN_SHADOW_KERNEL = r'''

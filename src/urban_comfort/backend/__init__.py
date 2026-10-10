@@ -5,15 +5,18 @@ Provides CPU and GPU execution backends with runtime selection and geometry flat
 """
 
 from __future__ import annotations
-from typing import Optional
 
 from urban_comfort.backend.base import (
-    SimulationBackend, FlattenedSceneGeometry, BackendProfileMetrics
+    BackendProfileMetrics,
+    FlattenedSceneGeometry,
+    SimulationBackend,
 )
 from urban_comfort.backend.cpu_backend import CPUBackend
 from urban_comfort.backend.gpu_backend import GPUBackend, is_cupy_available
 from urban_comfort.backend.gpu_incremental import (
-    GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
+    GPUIncrementalEngine,
+    GPUIncrementalProfileMetrics,
+    GPUResidentState,
 )
 
 

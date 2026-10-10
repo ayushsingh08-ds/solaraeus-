@@ -5,9 +5,11 @@ Implements exact 2.5D shadow-marching, multi-azimuth Sky View Factor (SVF),
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Tuple, Optional
+
 import math
+from dataclasses import dataclass
+from typing import Optional, Tuple
+
 import numpy as np
 
 from solaraeus.core.geometry import UrbanGrid

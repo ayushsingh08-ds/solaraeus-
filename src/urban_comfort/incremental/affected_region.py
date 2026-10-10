@@ -5,18 +5,23 @@ including old projection, new projection, intermediate convex envelope, and nume
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import math
-from typing import Tuple, Optional, List
+from dataclasses import dataclass
+from typing import Optional, Tuple
+
 import numpy as np
 
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition
 from urban_comfort.incremental.update import (
-    GeometricEdit, AddBuildingEdit, RemoveBuildingEdit,
-    ChangeHeightEdit, MoveBuildingEdit
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    GeometricEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
 )
+from urban_comfort.solar.solar_position import SolarPosition
 
 
 @dataclass

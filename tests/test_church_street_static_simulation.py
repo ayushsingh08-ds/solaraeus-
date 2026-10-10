@@ -13,17 +13,15 @@ Verifies:
 """
 
 from __future__ import annotations
+
 import json
 import math
 from pathlib import Path
-from datetime import datetime, timezone
+
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig, Material
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
 
 
 @pytest.fixture(scope="module")

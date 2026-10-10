@@ -12,21 +12,21 @@ within documented project physical and numerical tolerances without loosening an
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-import math
+
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, Material
+from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
 from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
-from urban_comfort.optimization.ledger import CandidateRecord, CandidateLedger
-
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 # Documented Project Physical Tolerances
 TOLERANCES_INCREMENTAL = {

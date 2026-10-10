@@ -12,23 +12,23 @@ For every edit:
 """
 
 import os
-import sys
-import time
-import json
-import numpy as np
+
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-# Ensure package is discoverable
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
-
-from solaraeus.core.geometry import (
-    UrbanGrid, AddBuilding, RemoveBuilding, ChangeHeight, MoveBuilding
-)
-from solaraeus.core.solweig import WeatherParameters, SOLWEIGConfig
-from solaraeus.benchmark.runner import run_experiment, format_markdown_table, VerificationRecord
 from solaraeus.benchmark.adversarial import create_adversarial_suite
+from solaraeus.benchmark.runner import format_markdown_table, run_experiment
+from solaraeus.core.geometry import (
+    AddBuilding,
+    ChangeHeight,
+    MoveBuilding,
+    RemoveBuilding,
+    UrbanGrid,
+)
+from solaraeus.core.solweig import SOLWEIGConfig, WeatherParameters
 
 
 def run_milestone1_evaluation():

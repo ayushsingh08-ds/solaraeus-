@@ -8,8 +8,10 @@ Computes fine-grained distributional metrics on certificate slack and bound-to-e
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, asdict
-from typing import Dict, Any, List, Optional
+
+from dataclasses import asdict, dataclass
+from typing import Any, Dict
+
 import numpy as np
 
 from urban_comfort.incremental.certificate import ErrorCertificate

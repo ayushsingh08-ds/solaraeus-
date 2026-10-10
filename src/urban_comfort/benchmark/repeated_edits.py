@@ -17,20 +17,25 @@ Measures:
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, asdict
+
 import time
-from typing import List, Dict, Any, Tuple
+from dataclasses import asdict, dataclass
+from typing import Any, Dict, List
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.update import (
-    AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
-    incremental_update_certified
-)
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.incremental.certificate import verify_certificate
+from urban_comfort.incremental.update import (
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
+    incremental_update_certified,
+)
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 @dataclass

@@ -4,7 +4,9 @@ Supports both single-ray queries and vectorized multi-ray batch intersections.
 """
 
 from __future__ import annotations
-from typing import Tuple, Optional
+
+from typing import Optional, Tuple
+
 import numpy as np
 
 

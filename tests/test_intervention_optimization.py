@@ -17,39 +17,30 @@ Covers the 12 specific testing requirements:
 """
 
 from __future__ import annotations
-import math
-import os
+
 from pathlib import Path
-import shutil
-import tempfile
+
 import numpy as np
 import pytest
-from shapely.geometry import Polygon, box
+from shapely.geometry import box
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
-)
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.optimization.feasibility import (
-    RejectionReason, FeasibilityConstraints, check_feasibility
+    FeasibilityConstraints,
+    RejectionReason,
+    check_feasibility,
 )
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, EvaluationMetrics, compute_objective
+from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
+from urban_comfort.optimization.optimizer import OptimizationEngine, OptimizerConfig
+from urban_comfort.optimization.parameters import (
+    ParameterBounds,
+    ShadePanelParams,
+    build_panel_geometry,
 )
-from urban_comfort.optimization.ledger import (
-    CandidateRecord, CandidateLedger
-)
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
-)
-from urban_comfort.optimization.validation import (
-    validate_candidate_multi_path, run_multi_path_validation_suite
-)
+from urban_comfort.optimization.validation import validate_candidate_multi_path
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 # ---------------------------------------------------------------------------

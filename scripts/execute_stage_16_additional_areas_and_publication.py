@@ -26,32 +26,27 @@ Produces all deliverables in:
 """
 
 from __future__ import annotations
+
 import csv
-from datetime import datetime, timezone
 import hashlib
 import json
-import math
-import os
-from pathlib import Path
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
 
 import numpy as np
-import sys
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.update import incremental_update_certified
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.mesh import create_box_mesh
+from urban_comfort.geometry.scene import Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid, PedestrianGridConfig
+from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
+from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def sha256_file(path: Path) -> str:

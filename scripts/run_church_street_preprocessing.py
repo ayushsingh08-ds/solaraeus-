@@ -15,30 +15,24 @@ triangular-mesh representation using approved but partly uncertain building-heig
 from __future__ import annotations
 
 import csv
-from datetime import datetime, timezone
 import hashlib
 import json
-import math
-import os
-from pathlib import Path
 import sys
-from typing import Any, Dict, List, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
 
 import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-import numpy as np
-from shapely.geometry import shape, Polygon
 
-# Ensure src is on sys.path
+matplotlib.use("Agg")
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
+import numpy as np
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
 workspace_root = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(workspace_root / "src"))
 
 from urban_comfort.preprocessing.church_street_adapter import (
     ChurchStreetAdapter,
-    PreprocessingConfig,
     PreprocessedSceneResult,
 )
 

@@ -4,8 +4,8 @@ Unit tests for Stage 11: GPU Incremental Recomputation & Parity Validation.
 
 import json
 from pathlib import Path
+
 import pytest
-import numpy as np
 
 
 @pytest.fixture

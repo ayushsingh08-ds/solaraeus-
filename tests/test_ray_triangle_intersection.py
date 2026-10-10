@@ -3,17 +3,19 @@ Unit tests for CPU ray-triangle and ray-mesh intersection routines.
 """
 
 from __future__ import annotations
-import math
-import pytest
-import numpy as np
 
+import math
+
+import numpy as np
+import pytest
+
+from urban_comfort.geometry.mesh import create_box_mesh
 from urban_comfort.visibility.mesh_ray_intersection import (
-    intersect_ray_triangle,
     intersect_ray_mesh,
+    intersect_ray_triangle,
     intersect_rays_mesh_batch,
-    intersect_rays_scene_meshes
+    intersect_rays_scene_meshes,
 )
-from urban_comfort.geometry.mesh import create_box_mesh, TriangleMesh
 
 
 @pytest.fixture

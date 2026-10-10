@@ -4,7 +4,6 @@ Pytest integration for Stage 15: Final Candidate Validation & Uncertainty Analys
 
 import json
 from pathlib import Path
-import pytest
 
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results" / "stage_15_final_validation"
 

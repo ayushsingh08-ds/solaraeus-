@@ -14,66 +14,52 @@ Executes Stage 2 optimization for overhead shade panels on Bengaluru Church Stre
 """
 
 from __future__ import annotations
-import csv
-from datetime import datetime, timezone
+
 import hashlib
 import json
-import math
-import os
-from pathlib import Path
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List, Tuple
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 import numpy as np
 from pyproj import Transformer
-from shapely.geometry import Point, Polygon, MultiPolygon, shape
-from shapely.ops import transform, unary_union
 from shapely.affinity import translate
-import sys
+from shapely.geometry import MultiPolygon, Point, Polygon, shape
+from shapely.ops import transform
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.scene import Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.mesh_update import AddMeshEdit
+from urban_comfort.optimization.acquisition import AcquisitionConfig
+from urban_comfort.optimization.feasibility import FeasibilityConstraints
+from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
+from urban_comfort.optimization.objective import ComfortObjectiveConfig
+from urban_comfort.optimization.optimizer import OptimizationEngine, OptimizerConfig
 from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
+    ParameterBounds,
+    ShadePanelParams,
+    build_panel_geometry,
 )
-from urban_comfort.optimization.feasibility import (
-    RejectionReason, FeasibilityConstraints, check_feasibility
-)
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-)
-from urban_comfort.optimization.ledger import (
-    CandidateRecord, CandidateLedger
-)
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
-)
-from urban_comfort.optimization.surrogate import (
-    SurrogateConfig, SurrogatePrediction, SurrogateModel, extract_features
-)
-from urban_comfort.optimization.acquisition import (
-    AcquisitionConfig, CandidateAcquisitionEngine
-)
+from urban_comfort.optimization.surrogate import SurrogateConfig
 from urban_comfort.optimization.surrogate_optimizer import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+    SurrogateOptimizationEngine,
+    SurrogateOptimizerConfig,
 )
 from urban_comfort.optimization.validation import (
-    validate_candidate_multi_path, run_multi_path_validation_suite,
-    MultiPathValidationSummary, CandidateValidationReport,
-    TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
+    CandidateValidationReport,
+    MultiPathValidationSummary,
+    validate_candidate_multi_path,
 )
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 def sha256_file(path: Path) -> str:
@@ -362,7 +348,6 @@ def main():
     stage1_rand_best_obj = min(r["objective_value"] for r in stage1_rand) if stage1_rand else None
     stage1_evo_best_obj = min(r["objective_value"] for r in stage1_evo) if stage1_evo else None
 
-    # 8. Final Multi-Path Physical Validation (CPU Full ~= GPU Full ~= GPU Incremental)
     print("\n[Phase 6] Running Multi-Path Physical Validation across required candidates...")
     # Required candidate selection:
     # 1. Surrogate-selected best candidate

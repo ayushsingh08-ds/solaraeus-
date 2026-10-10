@@ -8,35 +8,29 @@ soundness, and exports all required Stage 11 artifacts to results/stage_11_gpu_i
 """
 
 from __future__ import annotations
-import json
-import math
-import os
-import platform
-import sys
-import time
+
 import hashlib
+import json
+import time
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Any, Dict
 
 import numpy as np
 
-# Ensure src is on path
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
 import cupy as cp
 
-from urban_comfort.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from urban_comfort.backend import is_gpu_available
+from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.incremental.certificate import verify_certificate
 from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.certificate import generate_error_certificate, verify_certificate
-from urban_comfort.backend import GPUBackend, is_gpu_available
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 def sha256_file(path: Path) -> str:

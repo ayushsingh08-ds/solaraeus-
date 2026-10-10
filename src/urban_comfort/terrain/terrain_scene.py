@@ -4,11 +4,13 @@ Maintains 100% backward compatibility with flat-ground Scene when terrain is Non
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Optional, Dict, Any, List, Tuple
+
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
+from urban_comfort.geometry.primitives import Building
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.terrain.dtm import TerrainGrid
 

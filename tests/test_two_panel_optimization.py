@@ -24,55 +24,40 @@ Tests all 19 mandatory Stage 3 specifications:
 """
 
 from __future__ import annotations
-from datetime import datetime, timezone
-import math
-from pathlib import Path
-from typing import Tuple, Dict, Any, List
-import pytest
-import numpy as np
-from shapely.geometry import Polygon, MultiPolygon
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
-from urban_comfort.incremental.affected_region import compute_candidate_affected_region
-from urban_comfort.solar.solar_position import calculate_solar_position
+import math
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Tuple
+
+import numpy as np
+from shapely.geometry import MultiPolygon, Polygon
+
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
-)
-from urban_comfort.optimization.feasibility import (
-    FeasibilityConstraints, check_feasibility as check_single_feasibility
-)
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, compute_objective as compute_single_objective
-)
-from urban_comfort.optimization.two_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
-)
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.affected_region import compute_candidate_affected_region
+from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
+from urban_comfort.optimization.feasibility import FeasibilityConstraints
+from urban_comfort.optimization.feasibility import check_feasibility as check_single_feasibility
+from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.optimization.two_panel_acquisition import generate_two_panel_seeds
 from urban_comfort.optimization.two_panel_feasibility import (
-    TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
-)
-from urban_comfort.optimization.two_panel_objective import (
-    TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
+    TwoPanelConstraints,
+    TwoPanelRejectionReason,
+    check_two_panel_feasibility,
 )
 from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
+    TwoPanelCandidateLedger,
+    TwoPanelCandidateRecord,
 )
-from urban_comfort.optimization.two_panel_surrogate import (
-    TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
-)
-from urban_comfort.optimization.two_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
-    compute_normalized_two_panel_distance
-)
-from urban_comfort.optimization.two_panel_validation import (
-    validate_two_panel_multi_path
-)
+from urban_comfort.optimization.two_panel_parameters import TwoPanelBounds, TwoPanelParams
+from urban_comfort.optimization.two_panel_surrogate import TwoPanelSurrogateModel
+from urban_comfort.optimization.two_panel_validation import validate_two_panel_multi_path
+from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.solar.solar_position import calculate_solar_position
 
 
 def create_synthetic_two_panel_scene() -> Tuple[Scene, SimulationConfig, Weather]:

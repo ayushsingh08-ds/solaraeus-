@@ -7,8 +7,10 @@ estimated construction cost, and Pareto front identification across thermal impr
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Dict, Any, List, Optional
+
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
 import numpy as np
 
 from urban_comfort.reference.full_recompute import SimulationResult

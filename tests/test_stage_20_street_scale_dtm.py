@@ -4,7 +4,6 @@ Pytest validation suite for Stage 20: Street-Scale DTM Acquisition or Validation
 
 import json
 from pathlib import Path
-import pytest
 
 root_dir = Path(__file__).resolve().parent.parent
 stage_20_dir = root_dir / "results" / "stage_20_street_scale_dtm"

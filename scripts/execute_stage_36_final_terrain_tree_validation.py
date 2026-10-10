@@ -13,30 +13,23 @@ Token: STAGE_36_PROVISIONAL_TERRAIN_TREE_VALIDATION_COMPLETE
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import csv
 import json
-import math
-import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 
-# Add src to sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-
-from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-)
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.terrain.dtm import TerrainGrid
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene
-from urban_comfort.vegetation.tree import Tree, get_core_trees
+from urban_comfort.vegetation.gpu_tree import TreeAwareGPUBackend
+from urban_comfort.vegetation.tree import get_core_trees
 from urban_comfort.vegetation.tree_scene import TreeAwareScene
 from urban_comfort.vegetation.tree_solver import TreeAwareCPUSolver
-from urban_comfort.vegetation.gpu_tree import TreeAwareGPUBackend
 
 
 def execute_stage_36(workspace_root: Path) -> dict:
@@ -115,7 +108,6 @@ def execute_stage_36(workspace_root: Path) -> dict:
 
             sc_tree = TreeAwareScene(terrain_scene=sc_terrain, trees=t_list)
 
-            # 4 paths
             t0 = time.perf_counter()
             rf_cpu = TreeAwareCPUSolver.simulate(sc_tree, weather, config)
             t_cpu_f = time.perf_counter() - t0

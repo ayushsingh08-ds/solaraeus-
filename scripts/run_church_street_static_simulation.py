@@ -12,37 +12,34 @@ estimated solar radiation, and assumed material properties."
 """
 
 from __future__ import annotations
-import os
-import sys
-import json
-import time
-import math
+
 import hashlib
+import json
+import math
 import platform
 import subprocess
-from pathlib import Path
+import time
 from datetime import datetime, timezone
-from typing import Dict, Any, Tuple, List
+from pathlib import Path
+from typing import Dict
 
-import numpy as np
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 from matplotlib.patches import Polygon as MplPolygon
-from shapely.geometry import shape, Point, Polygon
-from shapely.ops import transform
-from shapely.affinity import translate
 from pyproj import Transformer
+from shapely.affinity import translate
+from shapely.geometry import Point, shape
+from shapely.ops import transform
 
-# Add src to pythonpath
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-
-from urban_comfort.config import Weather, SimulationConfig, Material
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
 
 
 def compute_sha256(filepath: Path) -> str:

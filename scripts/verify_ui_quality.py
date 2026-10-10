@@ -4,10 +4,11 @@ Validates all requirements specified in Part C through Part I and VERIFICATION s
 Generates results/final_3d_integrated_simulation/ui_quality/ui_quality_report.json.
 """
 
+import hashlib
+import json
 import os
 import re
-import json
-import hashlib
+
 import numpy as np
 from PIL import Image
 

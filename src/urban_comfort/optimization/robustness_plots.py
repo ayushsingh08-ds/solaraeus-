@@ -18,13 +18,14 @@ Generates the 13 required scientific figures:
 """
 
 from __future__ import annotations
-import math
+
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
+
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 import numpy as np
 
 

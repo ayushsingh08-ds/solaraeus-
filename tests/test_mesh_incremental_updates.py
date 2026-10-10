@@ -3,28 +3,29 @@ Unit tests for exact and certified incremental recomputations on triangular mesh
 """
 
 from __future__ import annotations
-import math
-import time
-import pytest
-import numpy as np
 
+import time
+
+import numpy as np
+import pytest
+
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.mesh import (
     create_box_mesh,
-    create_rotated_box_mesh,
     create_pitched_roof_mesh,
-    create_overhang_mesh
+    create_rotated_box_mesh,
 )
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.config import SimulationConfig, Weather
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.mesh_update import (
-    AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
-)
-from urban_comfort.incremental.update import (
-    incremental_update_exact, incremental_update_certified
-)
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.incremental.certificate import verify_certificate
+from urban_comfort.incremental.mesh_update import (
+    AddMeshEdit,
+    ChangeMeshHeightEdit,
+    MoveMeshEdit,
+    RemoveMeshEdit,
+    ReplaceMeshEdit,
+)
+from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 @pytest.fixture

@@ -6,8 +6,10 @@ including mean UTCI, P90 thermal stress, peak temperature, comfort exceedances, 
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Dict, Any, Optional
+
+from dataclasses import dataclass
+from typing import Any, Dict, Optional
+
 import numpy as np
 
 from urban_comfort.reference.full_recompute import SimulationResult

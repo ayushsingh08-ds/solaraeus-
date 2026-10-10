@@ -6,18 +6,20 @@ and certified incremental recomputation efficiency.
 """
 
 from __future__ import annotations
+
 import csv
 import json
 import os
 import tempfile
+
 import pytest
 
 from urban_comfort.benchmark.mesh_scaling_benchmark import (
     create_mesh_scaling_scene,
-    run_scaling_trial,
     run_mesh_scaling_benchmark,
+    run_scaling_trial,
 )
-from urban_comfort.config import Weather, SimulationConfig
+from urban_comfort.config import SimulationConfig, Weather
 
 
 @pytest.fixture

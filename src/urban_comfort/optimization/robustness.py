@@ -13,47 +13,27 @@ Provides comprehensive multi-dimensional sensitivity evaluations:
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from datetime import datetime, timezone
-import json
-import math
-from pathlib import Path
+
 import time
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Tuple
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
-from urban_comfort.optimization.two_panel_feasibility import (
-    TwoPanelConstraints,
-    check_two_panel_feasibility,
-    TwoPanelFeasibilityResult,
-    TwoPanelRejectionReason,
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.scene import Scene
+from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
+from urban_comfort.optimization.two_panel_ledger import (
+    TwoPanelCandidateRecord,
 )
 from urban_comfort.optimization.two_panel_objective import (
     TwoPanelComfortObjectiveConfig,
     TwoPanelEvaluationMetrics,
     compute_two_panel_objective,
-    compute_pareto_front,
 )
-from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord,
-    TwoPanelCandidateLedger,
-)
-from urban_comfort.optimization.two_panel_optimizer import (
-    TwoPanelOptimizerConfig,
-    TwoPanelOptimizationEngine,
-)
-from urban_comfort.optimization.two_panel_validation import (
-    validate_two_panel_multi_path,
-    TwoPanelValidationReport,
-)
+from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 @dataclass

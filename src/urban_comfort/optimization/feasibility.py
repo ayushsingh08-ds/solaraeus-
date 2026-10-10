@@ -10,16 +10,16 @@ Evaluates candidates before expensive physics simulations, rejecting designs tha
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, Any, List, Optional, Tuple
-import numpy as np
-import shapely
-from shapely.geometry import Polygon, MultiPolygon
+from typing import Any, Dict, List, Optional
+
+from shapely.geometry import MultiPolygon, Polygon
 from shapely.ops import unary_union
 
-from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
 from urban_comfort.geometry.scene import Scene
+from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
 
 
 class RejectionReason(str, Enum):

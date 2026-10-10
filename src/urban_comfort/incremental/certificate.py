@@ -4,19 +4,21 @@ Provides closed-form, mathematically sound upper bounds on T_mrt error prior to 
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Tuple, Optional, List, Dict, Any
+
 import math
+from dataclasses import dataclass
+from typing import List, Optional, Tuple
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, SIGMA
+from urban_comfort.config import SIGMA, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.radiation.longwave import compute_air_emissivity
-from urban_comfort.incremental.update import GeometricEdit, AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit
 from urban_comfort.incremental.affected_region import compute_candidate_affected_region
+from urban_comfort.incremental.update import GeometricEdit
+from urban_comfort.radiation.longwave import compute_air_emissivity
 from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.solar.solar_position import SolarPosition
 
 
 class CertificateViolationError(Exception):
@@ -154,7 +156,7 @@ def generate_error_certificate(scene_before: Scene,
     a_l = 0.97
 
     # Extract materials from scene (or fall back to defaults)
-    from urban_comfort.config import DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    from urban_comfort.config import DEFAULT_GROUND_MATERIAL, DEFAULT_WALL_MATERIAL
     wall_mat = scene_after.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
     ground_mat = scene_after.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
     albedo_ground = ground_mat.albedo

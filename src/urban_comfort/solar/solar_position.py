@@ -4,11 +4,11 @@ Calculates solar altitude, azimuth, and local Cartesian sun vectors.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
-from datetime import datetime, timezone
+
 import math
+from dataclasses import dataclass
+from datetime import datetime
 from typing import Tuple
-import numpy as np
 
 
 @dataclass(frozen=True)

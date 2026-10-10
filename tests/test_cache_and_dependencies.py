@@ -3,19 +3,27 @@ Unit tests for dependency graph traversal, hashing, and cache maintenance.
 """
 
 import numpy as np
-import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import create_single_box_scene
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.dependency_graph import (
-    DependencyGraph, FIELD_SHADOW, FIELD_SVF, FIELD_SHORTWAVE,
-    FIELD_LONGWAVE, FIELD_TMRT, FIELD_UTCI, INPUT_GEOMETRY, INPUT_WIND, INPUT_ALBEDO
-)
 from urban_comfort.incremental.cache import (
-    SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash
+    SimulationCache,
+    compute_scene_hash,
+    compute_weather_hash,
 )
+from urban_comfort.incremental.dependency_graph import (
+    FIELD_LONGWAVE,
+    FIELD_SHADOW,
+    FIELD_SHORTWAVE,
+    FIELD_SVF,
+    FIELD_TMRT,
+    FIELD_UTCI,
+    INPUT_ALBEDO,
+    INPUT_GEOMETRY,
+    INPUT_WIND,
+    DependencyGraph,
+)
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def test_hash_determinism_and_sensitivity():

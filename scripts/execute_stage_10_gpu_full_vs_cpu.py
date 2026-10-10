@@ -8,33 +8,28 @@ and generates all stage-10 deliverables in results/stage_10_gpu_full_cpu_validat
 """
 
 from __future__ import annotations
+
+import hashlib
 import json
-import math
-import os
 import platform
 import sys
 import time
-import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Any, Dict
 
 import numpy as np
 
-# Ensure src is on path
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
 import cupy as cp
 
-from urban_comfort.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from urban_comfort.backend import CPUBackend, GPUBackend, is_gpu_available
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.backend import CPUBackend, GPUBackend, is_gpu_available, get_backend
 
 
 def sha256_file(path: Path) -> str:

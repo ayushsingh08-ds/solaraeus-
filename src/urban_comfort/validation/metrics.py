@@ -4,7 +4,9 @@ Includes shadow IoU, UTCI thermal category agreement, and error percentiles.
 """
 
 from __future__ import annotations
+
 from typing import Dict, Tuple
+
 import numpy as np
 
 from urban_comfort.comfort.utci import get_thermal_stress_category

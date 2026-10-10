@@ -4,7 +4,6 @@ Pytest integration for Stage 16: Additional-Area Testing and Publication Package
 
 import json
 from pathlib import Path
-import pytest
 
 AREAS_DIR = Path(__file__).resolve().parent.parent / "results" / "stage_16_additional_areas"
 PUB_DIR = Path(__file__).resolve().parent.parent / "results" / "stage_16_publication_package"

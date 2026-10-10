@@ -7,25 +7,26 @@ Quantifies tree-ensemble variance without Gaussian process matrix inversion inst
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import hashlib
 import json
 import math
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Sequence, Tuple
+
 import numpy as np
 
 try:
-    from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor, RandomForestClassifier
+    from sklearn.ensemble import ExtraTreesRegressor, RandomForestClassifier, RandomForestRegressor
+    from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     from sklearn.preprocessing import StandardScaler
-    from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
     SKLEARN_AVAILABLE = True
 except ImportError:
     SKLEARN_AVAILABLE = False
 
 
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds
 from urban_comfort.optimization.ledger import CandidateRecord
-
+from urban_comfort.optimization.parameters import ShadePanelParams
 
 FEATURE_NAMES: Tuple[str, ...] = (
     "x", "y", "length", "width", "height", "heading_deg", "albedo", "area_m2"

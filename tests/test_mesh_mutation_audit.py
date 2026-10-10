@@ -7,25 +7,20 @@ certificate violations when safety invariants or error bounds are corrupted.
 """
 
 from __future__ import annotations
-import math
+
+from typing import Tuple
+
 import numpy as np
 import pytest
 
-from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-)
-from urban_comfort.geometry.mesh import create_box_mesh, create_pitched_roof_mesh
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.benchmark.independent_audit import audit_certificate_independently
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.mesh import create_box_mesh
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.incremental.mesh_update import ChangeMeshHeightEdit
 from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.benchmark.independent_audit import audit_certificate_independently
-from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
-from urban_comfort.radiation.longwave import compute_longwave_fluxes
-from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.comfort.utci import compute_utci
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 @pytest.fixture

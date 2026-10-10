@@ -3,12 +3,12 @@ Generate All Required Viewer Screenshots, Style Comparison, and Time-Lapse Video
 for SOLARAEUS Data-Driven 3D Simulation
 """
 
-import os
 import json
-import numpy as np
-from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageEnhance
-import cv2
 from pathlib import Path
+
+import cv2
+import numpy as np
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 RESULTS_DIR = BASE_DIR / "results" / "final_3d_integrated_simulation"

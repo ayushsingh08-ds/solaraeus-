@@ -3,8 +3,9 @@ Pedestrian calculation grid representation and spatial coordinate mapping.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Tuple, Optional
+
+from typing import Optional, Tuple
+
 import numpy as np
 
 from urban_comfort.geometry.scene import PedestrianGridConfig

@@ -7,8 +7,7 @@ Maintains 100% backward compatibility with flat-ground and terrain scenes.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any, List, Tuple
-import numpy as np
+from typing import Any, Dict, List, Optional
 
 from urban_comfort.geometry.primitives import Building
 from urban_comfort.geometry.scene import Scene

@@ -2,10 +2,10 @@
 Test suite for 3D Ray Tracing & Certificates (Part 9, 16).
 """
 
-from pathlib import Path
-import pandas as pd
 import json
-import pytest
+from pathlib import Path
+
+import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

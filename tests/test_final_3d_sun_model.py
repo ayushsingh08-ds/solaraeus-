@@ -4,7 +4,7 @@ Test suite for Astronomical Solar Model (Part 8, 16).
 
 from datetime import date
 from pathlib import Path
-import pytest
+
 from urban_comfort.solar.sun_model import sun_model
 
 ROOT = Path(__file__).resolve().parent.parent

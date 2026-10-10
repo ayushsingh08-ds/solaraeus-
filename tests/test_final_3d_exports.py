@@ -2,9 +2,8 @@
 Test suite for Final 3D Exports & Reports (Part 17, 18, 16).
 """
 
-from pathlib import Path
 import json
-import pytest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

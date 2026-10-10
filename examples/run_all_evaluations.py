@@ -14,36 +14,35 @@ Executes Work Packages 1 through 10:
 """
 
 from __future__ import annotations
-import os
-import sys
+
 import csv
 import json
-import time
+import os
 import shutil
-from typing import List, Dict, Any
-import numpy as np
+import time
+from typing import List
 
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-import matplotlib.patches as patches
 
-# Ensure src is on path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
-
-from urban_comfort.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL, SIGMA
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
-    AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
-    incremental_update_certified
-)
-from urban_comfort.benchmark.harness import run_benchmark_trial, BenchmarkRecord
-from urban_comfort.benchmark.scenes import create_scaling_scene
+from urban_comfort.benchmark.harness import BenchmarkRecord, run_benchmark_trial
 from urban_comfort.benchmark.independent_reference import (
-    run_analytical_reference_suite, EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT
+    EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT,
+    run_analytical_reference_suite,
+)
+from urban_comfort.benchmark.scenes import create_scaling_scene
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
+from urban_comfort.incremental.update import (
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
 )
 
 

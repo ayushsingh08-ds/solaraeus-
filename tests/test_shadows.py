@@ -3,15 +3,15 @@ Unit tests for direct solar shadows and multi-azimuth sky view factor calculatio
 """
 
 import math
-import numpy as np
-import pytest
 
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+import numpy as np
+
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
 def test_empty_scene_shadows():

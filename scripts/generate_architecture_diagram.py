@@ -5,9 +5,10 @@ Font: Times New Roman, size 11pt equivalent
 Collision-free layout with clean margins and professional colors.
 """
 
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 from pathlib import Path
+
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
 
 # Configure Matplotlib for Publication Typography
 plt.rcParams['font.family'] = 'serif'

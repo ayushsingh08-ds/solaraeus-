@@ -7,12 +7,9 @@ Provides reproducible urban scenes:
 """
 
 from __future__ import annotations
-import math
-from typing import List, Tuple
-import numpy as np
 
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 
 
 def create_scaling_scene(extent_m: float,

@@ -3,8 +3,9 @@ Geometric primitives representing buildings, footprints, and bounding volumes.
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Tuple, Optional
+from typing import Tuple
 
 
 @dataclass(frozen=True)

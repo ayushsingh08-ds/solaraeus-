@@ -8,22 +8,27 @@ and constrained differential evolution.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-import math
+
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from dataclasses import dataclass, field
+from typing import List, Optional, Tuple
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, Material
+from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
 from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
-from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility, RejectionReason
-from urban_comfort.optimization.objective import ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-from urban_comfort.optimization.ledger import CandidateRecord, CandidateLedger
+from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
+from urban_comfort.optimization.ledger import CandidateLedger, CandidateRecord
+from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
+from urban_comfort.optimization.parameters import (
+    ParameterBounds,
+    ShadePanelParams,
+    build_panel_geometry,
+)
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 @dataclass

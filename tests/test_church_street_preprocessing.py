@@ -5,16 +5,14 @@ Unit tests for Bengaluru Church Street geospatial preprocessing and mesh generat
 from __future__ import annotations
 
 import json
-from pathlib import Path
+
 import numpy as np
 import pytest
 from shapely.geometry import Polygon
 
 from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
 from urban_comfort.preprocessing.church_street_adapter import (
     ChurchStreetAdapter,
-    PreprocessingConfig,
     PreprocessedSceneResult,
 )
 

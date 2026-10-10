@@ -7,15 +7,12 @@ certificate verification results, and thermal comfort objective scores.
 """
 
 from __future__ import annotations
-import csv
-from dataclasses import dataclass, field
-import json
-from pathlib import Path
-from typing import Dict, Any, List, Optional
 
-from urban_comfort.optimization.parameters import ShadePanelParams
-from urban_comfort.optimization.feasibility import FeasibilityResult
-from urban_comfort.optimization.objective import EvaluationMetrics
+import csv
+import json
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional
 
 
 @dataclass

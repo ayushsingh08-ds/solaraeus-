@@ -3,12 +3,13 @@ Directional sky visibility and multi-azimuth Sky View Factor (SVF) calculation.
 """
 
 from __future__ import annotations
+
 import math
-from typing import Optional, List
+from typing import Optional
+
 import numpy as np
 
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.primitives import Building
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 
 

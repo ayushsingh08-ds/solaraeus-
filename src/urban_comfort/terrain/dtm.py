@@ -4,8 +4,10 @@ Part of SOLARAEUS 2.1.0-cpu-terrain extension.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
-from typing import Tuple, Optional, Dict, Any
+
+from dataclasses import dataclass
+from typing import Optional, Tuple
+
 import numpy as np
 
 from urban_comfort.geometry.primitives import BoundingBox2D

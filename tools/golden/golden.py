@@ -20,6 +20,7 @@ string metrics      exactly equal
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import json
 import platform
 import shutil
@@ -29,8 +30,30 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import cases as golden_cases  # noqa: E402
+
+def _load_cases():
+    """Load the sibling ``cases`` module by file path, without touching sys.path.
+
+    The module must be registered in ``sys.modules`` *before* execution: module
+    code (``@dataclass`` on annotated classes, forward references) looks itself
+    up by ``__module__`` and raises ``AttributeError`` if the entry is missing.
+    """
+    spec = importlib.util.spec_from_file_location(
+        "golden_cases", Path(__file__).resolve().parent / "cases.py"
+    )
+    if spec is None or spec.loader is None:  # pragma: no cover - defensive
+        raise ImportError("cannot locate tools/golden/cases.py")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    try:
+        spec.loader.exec_module(module)
+    except BaseException:
+        sys.modules.pop(spec.name, None)
+        raise
+    return module
+
+
+golden_cases = _load_cases()
 
 DEFAULT_DIR = Path(__file__).resolve().parent / "baseline"
 RTOL = 1e-9
@@ -47,8 +70,25 @@ def gpu_available() -> bool:
         return False
 
 
-def capture(out_dir: Path, only: list[str] | None) -> dict:
-    """Run every case and persist its fields and metrics; return a summary."""
+def capture(out_dir: Path, only: list[str] | None, force: bool = False) -> dict:
+    """Run every case and persist its fields and metrics; return a summary.
+
+    The frozen baseline is the project's regression evidence, so writing into
+    it requires an explicit ``force=True``.  Capture into a scratch directory
+    and compare against the baseline to check a change (that is `make golden`).
+    """
+    resolved = out_dir.resolve()
+    if resolved == DEFAULT_DIR.resolve() and (DEFAULT_DIR / "summary.json").exists():
+        if not force:
+            raise SystemExit(
+                f"refusing to overwrite the frozen golden baseline at {DEFAULT_DIR}\n"
+                "Capture to a scratch directory and compare instead:\n"
+                "    make golden\n"
+                "Re-capture the baseline only when behaviour intentionally changes:\n"
+                "    make golden-capture   (passes --force)"
+            )
+        print("!! --force: overwriting the frozen golden baseline")
+
     out_dir.mkdir(parents=True, exist_ok=True)
     has_gpu = gpu_available()
     selected = [c for c in golden_cases.CASES if not only or c.name in only]
@@ -203,11 +243,16 @@ def main() -> int:
     parser.add_argument("--out", type=Path, default=DEFAULT_DIR)
     parser.add_argument("--baseline", type=Path, default=DEFAULT_DIR)
     parser.add_argument("--only", nargs="*", default=None)
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="capture: allow overwriting the frozen baseline directory",
+    )
     args = parser.parse_args()
 
     if args.command == "capture":
         print(f"capturing golden master -> {args.out}")
-        summary = capture(args.out, args.only)
+        summary = capture(args.out, args.only, force=args.force)
         ok = sum(1 for c in summary["cases"].values() if c["status"] == "OK")
         print(f"captured {ok}/{len(summary['cases'])} cases; "
               f"gpu_available={summary['gpu_available']}")

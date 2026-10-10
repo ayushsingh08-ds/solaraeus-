@@ -9,55 +9,42 @@ and constrained differential evolution. Conducts complete multi-path physical va
 """
 
 from __future__ import annotations
-import csv
-from datetime import datetime, timezone
+
 import hashlib
 import json
 import math
-import os
-from pathlib import Path
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 import numpy as np
 from pyproj import Transformer
-from shapely.geometry import Point, Polygon, MultiPolygon, shape
-from shapely.ops import transform, unary_union
 from shapely.affinity import translate
-import sys
-root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
+from shapely.geometry import MultiPolygon, Point, Polygon, shape
+from shapely.ops import transform
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
+root_dir = Path(__file__).resolve().parent.parent
+
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.scene import Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.mesh_update import AddMeshEdit
+from urban_comfort.optimization.feasibility import FeasibilityConstraints
+from urban_comfort.optimization.objective import ComfortObjectiveConfig
+from urban_comfort.optimization.optimizer import OptimizationEngine, OptimizerConfig
 from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
+    ParameterBounds,
+    ShadePanelParams,
+    build_panel_geometry,
 )
-from urban_comfort.optimization.feasibility import (
-    RejectionReason, FeasibilityConstraints, check_feasibility
-)
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-)
-from urban_comfort.optimization.ledger import (
-    CandidateRecord, CandidateLedger
-)
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
-)
-from urban_comfort.optimization.validation import (
-    validate_candidate_multi_path, run_multi_path_validation_suite,
-    MultiPathValidationSummary, TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
-)
+from urban_comfort.optimization.validation import run_multi_path_validation_suite
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 def sha256_file(path: Path) -> str:
@@ -338,7 +325,6 @@ def main():
     print(f"    - GPU Recomputed: {gm_best['recomputed_cells']} / {gm_best['total_cells']} ({gm_best['ray_work_reduction_pct']:.2f}% ray work reduction)")
     print(f"    - GPU Kernel:     {gm_best['gpu_kernel_time_ms']:.3f} ms")
 
-    # 7. Multi-Path Physical Validation of Selected Candidates
     print("\n[Phase 6] Running Multi-Path Physical Validation (CPU Full ~= GPU Full ~= GPU Incremental)...")
     val_rng = np.random.default_rng(42)
     val_summary = run_multi_path_validation_suite(

@@ -20,12 +20,9 @@ Preserves all scientific attributes and uncertainty bounds:
 from __future__ import annotations
 
 import csv
-import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
-
-from urban_comfort.integration.coordinates import transformer
+from typing import Any, Dict, List, Optional
 
 
 @dataclass

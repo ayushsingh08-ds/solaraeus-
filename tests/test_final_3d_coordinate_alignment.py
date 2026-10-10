@@ -4,7 +4,7 @@ Test suite for Authoritative Coordinate Alignment (Part 4, 16).
 
 import json
 from pathlib import Path
-import pytest
+
 from urban_comfort.integration.coordinates import transformer
 
 ROOT = Path(__file__).resolve().parent.parent

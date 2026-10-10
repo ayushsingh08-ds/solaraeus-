@@ -9,14 +9,20 @@ Covers:
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Tuple, List
+from typing import List
+
 import numpy as np
 
 from solaraeus.core.geometry import (
-    UrbanGrid, GeometricEdit, AddBuilding, RemoveBuilding, ChangeHeight, MoveBuilding
+    AddBuilding,
+    GeometricEdit,
+    MoveBuilding,
+    RemoveBuilding,
+    UrbanGrid,
 )
-from solaraeus.core.solweig import WeatherParameters, SOLWEIGConfig
+from solaraeus.core.solweig import SOLWEIGConfig, WeatherParameters
 
 
 @dataclass

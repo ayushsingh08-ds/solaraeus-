@@ -3,24 +3,29 @@ Full reference recomputation path for single-timestep SOLWEIG-compatible urban t
 """
 
 from __future__ import annotations
+
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from typing import Dict, Any, Optional
-import time
+from typing import Any, Dict, Optional
+
 import numpy as np
 
+from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
 )
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
+from urban_comfort.radiation.longwave import compute_longwave_fluxes
+from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
+from urban_comfort.radiation.tmrt import compute_tmrt
+from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
-from urban_comfort.radiation.shortwave import compute_shortwave_fluxes, ShortwaveFluxes
-from urban_comfort.radiation.longwave import compute_longwave_fluxes, LongwaveFluxes
-from urban_comfort.radiation.tmrt import compute_tmrt, RadiantState
-from urban_comfort.comfort.utci import compute_utci
+from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
 @dataclass

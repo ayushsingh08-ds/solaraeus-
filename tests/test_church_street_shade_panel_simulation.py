@@ -14,10 +14,9 @@ Verifies:
 
 import json
 from pathlib import Path
+
 import numpy as np
 import pytest
-
-from urban_comfort.geometry.mesh import TriangleMesh
 
 
 @pytest.fixture(scope="module")

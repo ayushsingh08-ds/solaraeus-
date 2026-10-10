@@ -4,9 +4,9 @@ Enables fine-grained, dependency-aware invalidation upon scene or weather modifi
 """
 
 from __future__ import annotations
-from typing import Dict, List, Set, FrozenSet
-from collections import defaultdict, deque
 
+from collections import defaultdict, deque
+from typing import Dict, List, Set
 
 # Canonical field identifiers
 FIELD_SHADOW = "shadow_mask"

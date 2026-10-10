@@ -7,12 +7,12 @@ anchoring trunk bases to sampled terrain elevation.
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
-import numpy as np
+from typing import List, Optional
+
 import trimesh
 
-from urban_comfort.integration.tree_loader import TreeRecord, tree_loader
 from urban_comfort.integration.terrain_loader import terrain_loader
+from urban_comfort.integration.tree_loader import TreeRecord, tree_loader
 
 
 class TreeGeometryBuilder:

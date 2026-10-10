@@ -13,22 +13,20 @@ Success token: STAGE_27_AVAILABLE_TERRAIN_CPU_VALIDATION_COMPLETE
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import json
-import math
-import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 
-# Add src to sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
-
 from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
 )
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.terrain.dtm import TerrainGrid
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene
 from urban_comfort.terrain.terrain_solver import TerrainAwareCPUSolver

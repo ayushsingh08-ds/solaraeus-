@@ -4,11 +4,13 @@ Includes direct beam, diffuse sky, and surface-reflected fluxes.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
+
 import math
+from dataclasses import dataclass
+
 import numpy as np
 
-from urban_comfort.config import Weather, Material
+from urban_comfort.config import Material, Weather
 from urban_comfort.solar.solar_position import SolarPosition
 
 

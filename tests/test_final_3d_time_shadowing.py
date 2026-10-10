@@ -4,8 +4,10 @@ Test suite for Time-Based Shadowing and Continuous Integration (Part 8B, 16).
 
 import math
 from datetime import date
+
 import numpy as np
 import pytest
+
 from urban_comfort.integration.time_shadowing import time_shadowing_engine
 
 

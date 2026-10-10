@@ -2,10 +2,10 @@
 Test suite for 3D In-Scene Optimization (Part 14, 16).
 """
 
-from pathlib import Path
 import json
+from pathlib import Path
+
 import pandas as pd
-import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 OPT_DIR = ROOT / "results/final_3d_integrated_simulation/optimization"

@@ -5,25 +5,27 @@ while maintaining exact bit-level parity with 2.0.0-cpu-ref when terrain is disa
 """
 
 from __future__ import annotations
-from datetime import datetime, timezone
+
 import time
-from typing import Optional, Dict, Any, Tuple
+from datetime import datetime, timezone
+
 import numpy as np
 
-from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-)
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
-from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
-from urban_comfort.radiation.longwave import compute_longwave_fluxes
-from urban_comfort.radiation.tmrt import compute_tmrt
 from urban_comfort.comfort.utci import compute_utci
+from urban_comfort.config import (
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
+)
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.radiation.longwave import compute_longwave_fluxes
+from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
+from urban_comfort.radiation.tmrt import compute_tmrt
 from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.terrain.terrain_scene import TerrainAwareScene
+from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
 
 
 class TerrainAwareCPUSolver:

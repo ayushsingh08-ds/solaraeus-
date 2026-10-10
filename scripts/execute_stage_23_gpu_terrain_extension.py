@@ -5,23 +5,23 @@ verifies GPU resident incremental updates, and records GPU profiling metrics.
 """
 
 from __future__ import annotations
-import hashlib
+
 import json
-import os
-import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
+
 import numpy as np
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, create_single_box_scene
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import create_single_box_scene
 from urban_comfort.terrain import (
-    TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver, TerrainAwareGPUBackend
+    TerrainAwareCPUSolver,
+    TerrainAwareGPUBackend,
+    TerrainAwareScene,
+    TerrainGrid,
 )
 
 

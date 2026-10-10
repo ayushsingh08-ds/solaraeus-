@@ -4,17 +4,17 @@ Generates comprehensive review artifacts and formal audit report.
 """
 
 from __future__ import annotations
+
 import csv
-from datetime import datetime, timezone
 import hashlib
 import json
 import math
 import os
+from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, List, Any
 
 import pyproj
-from shapely.geometry import shape, Polygon
+from shapely.geometry import Polygon, shape
 
 
 def compute_sha256(filepath: Path) -> str:

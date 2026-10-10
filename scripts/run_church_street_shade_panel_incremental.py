@@ -17,41 +17,41 @@ Strictly adheres to:
 """
 
 from __future__ import annotations
+
+import hashlib
 import json
-import math
-import os
 import sys
 import time
-import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Any, Dict
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-import numpy as np
 import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import shapely
-import shapely.geometry as sg
-from shapely.geometry import shape, Point
-from shapely.ops import transform
-from pyproj import Transformer
+import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, Material
+matplotlib.use("Agg")
+import matplotlib.patches as patches
+import matplotlib.pyplot as plt
+from pyproj import Transformer
+from shapely.geometry import Point, shape
+from shapely.ops import transform
+
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.incremental.cache import (
+    SimulationCache,
+    compute_config_hash,
+    compute_scene_hash,
+    compute_weather_hash,
+)
+from urban_comfort.incremental.certificate import verify_certificate
 from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.cache import SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash
-from urban_comfort.incremental.dependency_graph import DependencyGraph
-from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact, IncrementalUpdateResult
-from urban_comfort.incremental.certificate import generate_error_certificate, verify_certificate, ErrorCertificate, CertificateVerification
+from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
+from urban_comfort.reference.full_recompute import SimulationResult
 
 
 def sha256_file(path: Path) -> str:

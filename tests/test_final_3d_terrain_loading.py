@@ -2,10 +2,11 @@
 Test suite for Terrain Loading & Classification (Part 5, 16).
 """
 
-import json
 from pathlib import Path
+
 import numpy as np
 import pytest
+
 from urban_comfort.integration.terrain_loader import terrain_loader
 
 ROOT = Path(__file__).resolve().parent.parent

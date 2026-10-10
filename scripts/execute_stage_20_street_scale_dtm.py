@@ -5,11 +5,11 @@ defines synthetic terrain models for solver validation, and enforces safety boun
 """
 
 from __future__ import annotations
+
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
+
 import matplotlib.pyplot as plt
 import numpy as np
 

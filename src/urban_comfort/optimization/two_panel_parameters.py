@@ -6,14 +6,20 @@ and 3D geometric mesh construction for dual rectangular overhead shade structure
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import math
-from typing import Dict, Any, List, Tuple, Optional
+from dataclasses import dataclass, field
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 from shapely.geometry import Polygon
 
 from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
+from urban_comfort.optimization.parameters import (
+    ParameterBounds,
+    ShadePanelParams,
+    build_panel_geometry,
+)
 
 
 @dataclass

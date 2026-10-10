@@ -27,74 +27,51 @@ Executes Stage 3 optimization for dual overhead shade panels on Bengaluru Church
 """
 
 from __future__ import annotations
-import csv
-from datetime import datetime, timezone
+
 import hashlib
 import json
-import math
-import os
-from pathlib import Path
-import sys
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict, List
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 import numpy as np
 from pyproj import Transformer
-from shapely.geometry import Point, Polygon, MultiPolygon, shape
-from shapely.ops import transform, unary_union
 from shapely.affinity import translate
+from shapely.geometry import MultiPolygon, Point, Polygon, shape
+from shapely.ops import transform
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
-)
-from urban_comfort.optimization.feasibility import (
-    FeasibilityConstraints, check_feasibility
-)
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, compute_objective
-)
-from urban_comfort.optimization.two_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
-)
-from urban_comfort.optimization.two_panel_feasibility import (
-    TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
-)
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
+from urban_comfort.optimization.feasibility import FeasibilityConstraints
+from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.optimization.two_panel_feasibility import TwoPanelConstraints
+from urban_comfort.optimization.two_panel_ledger import TwoPanelCandidateLedger
 from urban_comfort.optimization.two_panel_objective import (
-    TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
-)
-from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
-)
-from urban_comfort.optimization.two_panel_surrogate import (
-    TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
-)
-from urban_comfort.optimization.two_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
-    compute_normalized_two_panel_distance
+    TwoPanelComfortObjectiveConfig,
+    compute_pareto_front,
 )
 from urban_comfort.optimization.two_panel_optimizer import (
-    TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
+    TwoPanelOptimizationEngine,
+    TwoPanelOptimizerConfig,
 )
+from urban_comfort.optimization.two_panel_parameters import TwoPanelBounds, TwoPanelParams
 from urban_comfort.optimization.two_panel_validation import (
-    validate_two_panel_multi_path, TwoPanelValidationReport
+    TwoPanelValidationReport,
+    validate_two_panel_multi_path,
 )
-from urban_comfort.optimization.validation import (
-    validate_candidate_multi_path
-)
+from urban_comfort.optimization.validation import validate_candidate_multi_path
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 
 def sha256_file(path: Path) -> str:
@@ -153,7 +130,6 @@ def main():
     start_wall_time = time.time()
     root_dir = Path(__file__).resolve().parent.parent
 
-    # Directory Paths
     baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
     prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
@@ -390,7 +366,6 @@ def main():
     print(f"  Random baseline best objective: {rand_best.objective_value:.4f} ({rand_best.candidate_id})")
     print(f"  Surrogate optimization advantage: {rand_best.objective_value - best_cand.objective_value:+.4f} composite score")
 
-    # Phase 6: Multi-Path Physical Validation Suite
     print("\n[Phase 6] Conducting Multi-Path Physical Solver Validation (CPU Full vs GPU Full vs GPU Incremental)...")
     val_reports: List[TwoPanelValidationReport] = []
 

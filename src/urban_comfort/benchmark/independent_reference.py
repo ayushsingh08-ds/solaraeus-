@@ -10,9 +10,11 @@ Implements Work Package 8:
 """
 
 from __future__ import annotations
+
 import math
 from dataclasses import dataclass
-from typing import Dict, Any, Tuple, List
+from typing import Any, Dict, List
+
 import numpy as np
 
 from urban_comfort.config import SIGMA

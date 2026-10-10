@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import csv
 import json
-import math
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -22,12 +21,12 @@ from typing import Any, Dict, List, Optional, Tuple
 import mapbox_earcut
 import numpy as np
 from pyproj import Transformer
-from shapely.geometry import shape, Polygon, MultiPolygon
+from shapely.geometry import MultiPolygon, Polygon, shape
 
 from urban_comfort.config import (
-    Material,
     DEFAULT_GROUND_MATERIAL,
     DEFAULT_WALL_MATERIAL,
+    Material,
 )
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import GroundPlane, PedestrianGridConfig, Scene

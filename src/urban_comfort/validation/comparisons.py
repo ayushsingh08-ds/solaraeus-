@@ -3,8 +3,10 @@ Numerical comparison tools and pointwise error metrics between microclimate simu
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Dict, Any, Optional
+from typing import Dict
+
 import numpy as np
 
 from urban_comfort.reference.full_recompute import SimulationResult

@@ -10,12 +10,9 @@ Provides strict, reversible transformations between:
 
 from __future__ import annotations
 
-import json
 from dataclasses import asdict, dataclass
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
-import numpy as np
 from pyproj import Transformer
 
 

@@ -8,34 +8,27 @@ Produces all stage-specific artifacts in results/stage_07_certificate_and_cpu_au
 """
 
 from __future__ import annotations
+
 import csv
+import hashlib
 import json
-import math
-import os
 import platform
-import sys
 import time
 import tracemalloc
-import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import Dict, List
 
 import numpy as np
 
-# Ensure src is on path
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
 from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
-from urban_comfort.incremental.certificate import verify_certificate, ErrorCertificate
+from urban_comfort.incremental.update import incremental_update_certified
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 
 def sha256_file(path: Path) -> str:

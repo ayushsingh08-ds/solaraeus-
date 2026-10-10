@@ -6,17 +6,19 @@ directional visibility / SVF, and full thermal comfort recomputations.
 """
 
 from __future__ import annotations
+
 import time
-from typing import Optional, Any
+from typing import Any, Optional
+
 import numpy as np
 
-from urban_comfort.backend.base import SimulationBackend, BackendProfileMetrics
-from urban_comfort.config import Weather, SimulationConfig
+from urban_comfort.backend.base import BackendProfileMetrics, SimulationBackend
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
 class CPUBackend(SimulationBackend):

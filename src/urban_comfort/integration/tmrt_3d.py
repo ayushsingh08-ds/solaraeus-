@@ -18,12 +18,11 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Tuple
 
 import numpy as np
 
 from urban_comfort.config import SIGMA
-from urban_comfort.radiation.tmrt import compute_tmrt
 from urban_comfort.solar.cloud_model import CloudState, cloud_model
 from urban_comfort.solar.solar_position import SolarPosition
 

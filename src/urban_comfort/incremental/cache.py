@@ -3,17 +3,19 @@ Simulation cache and field metadata tracking for certified incremental reuse.
 """
 
 from __future__ import annotations
-from dataclasses import dataclass, field
+
 import hashlib
 import json
-from typing import Dict, List, Optional, Set, Any
+from dataclasses import dataclass
+from typing import Dict, List, Optional, Set
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
 from urban_comfort.incremental.dependency_graph import DependencyGraph
+from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.solar.solar_position import SolarPosition
 
 
 def compute_scene_hash(scene: Scene) -> str:

@@ -20,40 +20,33 @@ Executes Parts 1 to 18 of the final data-driven 3D simulation integration:
 
 from __future__ import annotations
 
-import csv
-from dataclasses import asdict, dataclass
 import hashlib
 import json
-import math
-import os
-import shutil
-import sys
-from datetime import date, datetime, timedelta, timezone
+from dataclasses import asdict
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT / "src"))
 
-from typing import Any, Dict, List, Optional, Tuple
 
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import trimesh
 
-from urban_comfort.integration.coordinates import transformer, CoordinateSystemDefinition
+from urban_comfort.integration.coordinates import transformer
 from urban_comfort.integration.terrain_loader import terrain_loader
-from urban_comfort.integration.tree_loader import tree_loader
-from urban_comfort.integration.tree_geometry_builder import tree_geometry_builder
-from urban_comfort.solar.sun_model import sun_model, IST
-from urban_comfort.solar.cloud_model import cloud_model, CloudState
 from urban_comfort.integration.time_shadowing import time_shadowing_engine
 from urban_comfort.integration.tmrt_3d import tmrt_3d_engine
+from urban_comfort.integration.tree_geometry_builder import tree_geometry_builder
+from urban_comfort.integration.tree_loader import tree_loader
 from urban_comfort.integration.utci_3d import utci_3d_engine
 from urban_comfort.preprocessing.church_street_adapter import ChurchStreetAdapter
-
+from urban_comfort.solar.cloud_model import cloud_model
+from urban_comfort.solar.sun_model import sun_model
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

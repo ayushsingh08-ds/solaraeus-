@@ -7,12 +7,12 @@ as effective.
 """
 
 from __future__ import annotations
-import pytest
-import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.benchmark.scenes import create_scaling_scene
+import pytest
+
 from urban_comfort.benchmark.independent_audit import run_mutation_tests
+from urban_comfort.benchmark.scenes import create_scaling_scene
+from urban_comfort.config import SimulationConfig, Weather
 
 
 @pytest.fixture

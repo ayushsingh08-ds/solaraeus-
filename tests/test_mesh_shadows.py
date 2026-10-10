@@ -3,22 +3,24 @@ Unit tests for direct solar shadow mask calculation on triangular meshes.
 """
 
 from __future__ import annotations
+
 import math
-import pytest
+
 import numpy as np
+import pytest
 
 from urban_comfort.geometry.mesh import (
     create_box_mesh,
-    create_rotated_box_mesh,
+    create_overhang_mesh,
     create_pitched_roof_mesh,
-    create_overhang_mesh
+    create_rotated_box_mesh,
 )
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 from urban_comfort.visibility.mesh_shadow import compute_mesh_direct_shadow_mask
+from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
 @pytest.fixture

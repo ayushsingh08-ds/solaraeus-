@@ -3,12 +3,13 @@ Unit tests for the mesh certificate audit module.
 """
 
 from __future__ import annotations
-import os
+
 import csv
-import pytest
+import os
 
 from urban_comfort.benchmark.mesh_certificate_audit import (
-    run_mesh_certificate_audit, SCENARIO_DEFINITIONS
+    SCENARIO_DEFINITIONS,
+    run_mesh_certificate_audit,
 )
 
 

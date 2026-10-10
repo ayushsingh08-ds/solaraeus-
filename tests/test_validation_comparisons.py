@@ -3,17 +3,21 @@ Unit tests for numerical comparison metrics and verification tools.
 """
 
 import math
-import numpy as np
-import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
+import numpy as np
+
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.scene import create_single_box_scene
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 from urban_comfort.validation.comparisons import (
-    compare_arrays, compare_results, format_comparison_summary, ComparisonMetrics
+    compare_arrays,
+    compare_results,
+    format_comparison_summary,
 )
 from urban_comfort.validation.metrics import (
-    compute_shadow_iou, compute_utci_category_agreement, compute_error_percentiles
+    compute_error_percentiles,
+    compute_shadow_iou,
+    compute_utci_category_agreement,
 )
 
 

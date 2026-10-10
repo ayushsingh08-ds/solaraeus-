@@ -3,8 +3,10 @@ Geometric representation and editing operations for 2.5D urban heightfield model
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Tuple, Optional
+from typing import Tuple
+
 import numpy as np
 
 

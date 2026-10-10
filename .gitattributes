@@ -1,0 +1,25 @@
+# Normalise line endings repo-wide: LF in the repository and in the working
+# tree, on every platform.  Without this, a Windows clone with core.autocrlf
+# rewrites every file it touches, which buries real changes in whitespace noise.
+* text=auto eol=lf
+
+# Binary artifacts must never be line-ending converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.npz binary
+*.npy binary
+*.tif binary
+*.tiff binary
+*.glb binary
+*.gltf binary
+*.bin binary
+*.zip binary
+
+# Generated / vendored third-party trees are excluded from language stats and
+# diff churn.
+simulation_3d/vendor/** -diff linguist-vendored

@@ -4,6 +4,7 @@ Tests for SOLARAEUS Stage 34: Terrain/Tree Parity and Certificate Validation
 
 import json
 from pathlib import Path
+
 import pytest
 
 

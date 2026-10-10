@@ -3,11 +3,12 @@ Direct solar shadow mask computation for triangular meshes across pedestrian gri
 """
 
 from __future__ import annotations
-from typing import Optional, List
+
+from typing import Optional
+
 import numpy as np
 
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.solar.solar_position import SolarPosition
 from urban_comfort.visibility.mesh_ray_intersection import intersect_rays_scene_meshes

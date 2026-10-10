@@ -5,7 +5,6 @@ Pytest validation suite for Stage 19: Researcher Approval of Terrain and Tree Da
 import csv
 import json
 from pathlib import Path
-import pytest
 
 root_dir = Path(__file__).resolve().parent.parent
 stage_19_dir = root_dir / "results" / "stage_19_researcher_approval"

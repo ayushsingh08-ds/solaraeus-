@@ -7,33 +7,36 @@ mathematical soundness, user tolerance compliance, and recomputation efficiency.
 """
 
 from __future__ import annotations
+
 import csv
-from dataclasses import dataclass
-from datetime import datetime, timezone
 import json
-import math
 import os
 import time
-from typing import Dict, List, Tuple, Any, Optional
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
+from urban_comfort.benchmark.independent_audit import audit_certificate_independently
+from urban_comfort.config import SimulationConfig, Weather
 from urban_comfort.geometry.mesh import (
-    TriangleMesh,
     create_box_mesh,
-    create_rotated_box_mesh,
-    create_pitched_roof_mesh,
+    create_l_shaped_mesh,
     create_overhang_mesh,
-    create_l_shaped_mesh
+    create_pitched_roof_mesh,
+    create_rotated_box_mesh,
 )
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import full_recompute
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.incremental.mesh_update import (
-    AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
+    AddMeshEdit,
+    ChangeMeshHeightEdit,
+    MoveMeshEdit,
+    RemoveMeshEdit,
+    ReplaceMeshEdit,
 )
 from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.benchmark.independent_audit import audit_certificate_independently
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 @dataclass

@@ -11,21 +11,22 @@ watertight triangular-mesh representations across standard urban scenes:
 """
 
 from __future__ import annotations
+
 import csv
-from dataclasses import dataclass, asdict
-from datetime import datetime, timezone
 import json
-import math
 import os
 import time
-from typing import Dict, List, Tuple, Any, Optional
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.mesh import create_box_mesh
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
+from urban_comfort.reference.full_recompute import full_recompute
 from urban_comfort.validation.metrics import compute_shadow_iou, compute_utci_category_agreement
 
 

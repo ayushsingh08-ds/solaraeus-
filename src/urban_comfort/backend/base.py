@@ -6,16 +6,18 @@ execution pipelines.
 """
 
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional, Any
+from dataclasses import dataclass
+from typing import Any, Dict, List, Optional, Tuple
+
 import numpy as np
 
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.mesh import create_box_mesh
 from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.config import Weather, SimulationConfig
 
 
 @dataclass

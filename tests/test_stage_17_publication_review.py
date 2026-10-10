@@ -4,7 +4,6 @@ Pytest validation suite for Stage 17: Publication Review and Archival Release.
 
 import json
 from pathlib import Path
-import pytest
 
 root_dir = Path(__file__).resolve().parent.parent
 stage_17_dir = root_dir / "results" / "stage_17_publication_review"

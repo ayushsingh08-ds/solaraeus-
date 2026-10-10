@@ -2,14 +2,10 @@
 Unit tests for deterministic solar position calculations.
 """
 
-from datetime import datetime, timezone
 import math
-import pytest
-import numpy as np
+from datetime import datetime, timezone
 
-from urban_comfort.solar.solar_position import (
-    calculate_solar_position, calculate_julian_day, SolarPosition
-)
+from urban_comfort.solar.solar_position import calculate_julian_day, calculate_solar_position
 
 
 def test_julian_day():

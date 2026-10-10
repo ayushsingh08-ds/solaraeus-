@@ -21,60 +21,43 @@ Verifies:
 """
 
 from __future__ import annotations
-import copy
-from datetime import datetime, timezone
-import json
-import math
-from pathlib import Path
-import pytest
-import numpy as np
-from shapely.geometry import Polygon, Point
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
+from pathlib import Path
+
+import numpy as np
+import pytest
+from shapely.geometry import Polygon
+
 from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
-from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
-from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
-from urban_comfort.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
+from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.optimization.robustness import (
+    get_standard_constraint_scenarios,
+    get_standard_objective_scenarios,
+    get_standard_solar_timestamps,
+    get_standard_weather_scenarios,
+    recompute_score_under_scenario,
+)
 from urban_comfort.optimization.two_panel_feasibility import (
     TwoPanelConstraints,
-    check_two_panel_feasibility,
     TwoPanelRejectionReason,
-)
-from urban_comfort.optimization.two_panel_objective import (
-    TwoPanelComfortObjectiveConfig,
-    compute_two_panel_objective,
-    compute_pareto_front,
+    check_two_panel_feasibility,
 )
 from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord,
     TwoPanelCandidateLedger,
+    TwoPanelCandidateRecord,
 )
 from urban_comfort.optimization.two_panel_optimizer import (
     TwoPanelOptimizerConfig,
-    TwoPanelOptimizationEngine,
 )
+from urban_comfort.optimization.two_panel_parameters import TwoPanelBounds, TwoPanelParams
 from urban_comfort.optimization.two_panel_validation import (
     validate_two_panel_multi_path,
 )
-from urban_comfort.optimization.robustness import (
-    WeatherScenario,
-    SolarTimestampScenario,
-    ObjectiveWeightScenario,
-    ConstraintSensitivityScenario,
-    RobustnessStudyConfig,
-    get_standard_weather_scenarios,
-    get_standard_solar_timestamps,
-    get_standard_objective_scenarios,
-    get_standard_constraint_scenarios,
-    recompute_score_under_scenario,
-    evaluate_candidate_at_condition,
-)
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 @pytest.fixture

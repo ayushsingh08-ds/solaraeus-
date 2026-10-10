@@ -11,22 +11,26 @@ across diverse synthetic geometries and boundary conditions.
 """
 
 from __future__ import annotations
+
 import math
+
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition, calculate_solar_position
 from urban_comfort.backend import (
-    SimulationBackend, CPUBackend, GPUBackend,
-    get_backend, is_gpu_available, FlattenedSceneGeometry
+    CPUBackend,
+    FlattenedSceneGeometry,
+    GPUBackend,
+    get_backend,
+    is_gpu_available,
 )
+from urban_comfort.config import Material, SimulationConfig, Weather
+from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
+from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.reference.full_recompute import full_recompute
-
+from urban_comfort.solar.solar_position import SolarPosition
 
 # Check if CUDA GPU is functional
 HAS_GPU = is_gpu_available()

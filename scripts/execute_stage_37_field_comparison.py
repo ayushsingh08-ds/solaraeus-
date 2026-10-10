@@ -11,14 +11,10 @@ Token: STAGE_37_FIELD_DATA_UNAVAILABLE
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import csv
 import json
-import sys
+from datetime import datetime, timezone
 from pathlib import Path
-
-# Add src to sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 
 def execute_stage_37(workspace_root: Path) -> dict:

@@ -4,7 +4,6 @@ Test suite for Data Inventory & File Protection Audit (Part 2, 3, 16).
 
 import json
 from pathlib import Path
-import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

@@ -3,30 +3,27 @@ Unit tests for conservative candidate affected-region calculation on triangular 
 """
 
 from __future__ import annotations
+
 import math
-import pytest
+
 import numpy as np
+import pytest
 
 from urban_comfort.geometry.mesh import (
     create_box_mesh,
-    create_rotated_box_mesh,
     create_pitched_roof_mesh,
-    create_overhang_mesh
+    create_rotated_box_mesh,
 )
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
+from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
+from urban_comfort.incremental.affected_region import (
+    compute_candidate_affected_region,
+    project_box_shadow,
+)
+from urban_comfort.incremental.mesh_affected_region import project_mesh_shadow
+from urban_comfort.incremental.mesh_update import AddMeshEdit, MoveMeshEdit, ReplaceMeshEdit
 from urban_comfort.solar.solar_position import SolarPosition
 from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.incremental.affected_region import (
-    compute_candidate_affected_region, project_box_shadow
-)
-from urban_comfort.incremental.mesh_affected_region import (
-    project_mesh_shadow, compute_mesh_candidate_affected_region
-)
-from urban_comfort.incremental.mesh_update import (
-    AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
-)
 
 
 @pytest.fixture

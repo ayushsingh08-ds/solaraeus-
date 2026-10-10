@@ -3,7 +3,9 @@ Mean Radiant Temperature (T_mrt) calculation via Stefan-Boltzmann law inversion.
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 import numpy as np
 
 from urban_comfort.config import SIGMA

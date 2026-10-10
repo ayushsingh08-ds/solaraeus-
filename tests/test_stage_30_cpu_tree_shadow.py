@@ -4,6 +4,7 @@ Tests for SOLARAEUS Stage 30: CPU Tree-Shadow Reference Solver
 
 import json
 from pathlib import Path
+
 import pytest
 
 

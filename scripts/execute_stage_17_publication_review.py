@@ -5,13 +5,12 @@ provenance, licensing, path scrubbing, and internal consistency.
 """
 
 from __future__ import annotations
+
 import hashlib
 import json
-import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Dict, Any, List
 
 root_dir = Path(__file__).resolve().parent.parent
 

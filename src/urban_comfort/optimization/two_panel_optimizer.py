@@ -15,51 +15,47 @@ Coordinates:
 """
 
 from __future__ import annotations
+
+import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-import hashlib
-import json
-import math
 from pathlib import Path
-import time
-from typing import Dict, Any, List, Optional, Tuple, Sequence
+from typing import Any, Dict, Optional
+
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig, Material
+from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
 from urban_comfort.incremental.update import compute_exact_dirty_shadow_mask
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
-from urban_comfort.optimization.two_panel_feasibility import (
-    TwoPanelConstraints,
-    check_two_panel_feasibility,
-    TwoPanelFeasibilityResult,
-    TwoPanelRejectionReason,
-)
-from urban_comfort.optimization.two_panel_objective import (
-    TwoPanelComfortObjectiveConfig,
-    TwoPanelEvaluationMetrics,
-    compute_two_panel_objective,
-)
-from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord,
-    TwoPanelCandidateLedger,
-)
-from urban_comfort.optimization.two_panel_surrogate import (
-    TwoPanelSurrogateConfig,
-    TwoPanelSurrogateModel,
-    TwoPanelSurrogatePrediction,
-    SKLEARN_AVAILABLE,
-)
 from urban_comfort.optimization.two_panel_acquisition import (
     TwoPanelAcquisitionConfig,
     TwoPanelAcquisitionEngine,
     generate_two_panel_seeds,
 )
+from urban_comfort.optimization.two_panel_feasibility import (
+    TwoPanelConstraints,
+    check_two_panel_feasibility,
+)
+from urban_comfort.optimization.two_panel_ledger import (
+    TwoPanelCandidateLedger,
+    TwoPanelCandidateRecord,
+)
+from urban_comfort.optimization.two_panel_objective import (
+    TwoPanelComfortObjectiveConfig,
+    compute_two_panel_objective,
+)
+from urban_comfort.optimization.two_panel_parameters import TwoPanelBounds, TwoPanelParams
+from urban_comfort.optimization.two_panel_surrogate import (
+    SKLEARN_AVAILABLE,
+    TwoPanelSurrogateConfig,
+    TwoPanelSurrogateModel,
+    TwoPanelSurrogatePrediction,
+)
+from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.solar.solar_position import calculate_solar_position
 
 
 @dataclass

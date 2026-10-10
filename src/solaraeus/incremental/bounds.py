@@ -4,13 +4,14 @@ and conservative Lipschitz / interval propagation to Mean Radiant Temperature (T
 """
 
 from __future__ import annotations
-from dataclasses import dataclass
-from typing import Tuple, Optional
+
 import math
+from dataclasses import dataclass
+
 import numpy as np
 
-from solaraeus.core.geometry import UrbanGrid, EditBoundingBox
-from solaraeus.core.solweig import WeatherParameters, SOLWEIGConfig, SOLWEIGState, SIGMA
+from solaraeus.core.geometry import EditBoundingBox, UrbanGrid
+from solaraeus.core.solweig import SIGMA, SOLWEIGConfig, SOLWEIGState, WeatherParameters
 
 
 @dataclass

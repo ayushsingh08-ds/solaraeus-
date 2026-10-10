@@ -15,14 +15,13 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 from datetime import date
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 import numpy as np
 import pandas as pd
 
+from urban_comfort.solar.cloud_model import CloudState, cloud_model
 from urban_comfort.solar.sun_model import sun_model
-from urban_comfort.solar.cloud_model import cloud_model, CloudState
 
 
 @dataclass

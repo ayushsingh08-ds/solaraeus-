@@ -17,54 +17,44 @@ All artifacts exported to: results/publication_validation_<timestamp>/
 """
 
 from __future__ import annotations
+
+import csv
+import json
+import math
 import os
 import sys
 import time
-import json
-import csv
-import math
-from typing import List, Dict, Any, Tuple
-import numpy as np
+from typing import Any, Dict, List
 
 # Use Agg backend for headless matplotlib rendering
 import matplotlib
+import numpy as np
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib.patches as patches
 
-# Ensure src is discoverable
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
-
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
-    AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
-    incremental_update_certified
-)
-from urban_comfort.benchmark.harness import (
-    BenchmarkRecord, ReproducibilityRecord, TimingBreakdownRecord,
-    run_repeated_benchmark_trials
-)
-from urban_comfort.benchmark.scenes import create_scaling_scene
-from urban_comfort.benchmark.tightness import (
-    CertificateTightnessMetrics, evaluate_certificate_tightness
-)
-from urban_comfort.benchmark.repeated_edits import (
-    RepeatedEditRecord, run_repeated_edit_sequence
-)
-from urban_comfort.benchmark.baseline_comparison import (
-    BaselineComparisonRecord, compare_all_baselines
-)
+from urban_comfort.benchmark.baseline_comparison import compare_all_baselines
+from urban_comfort.benchmark.harness import run_repeated_benchmark_trials
 from urban_comfort.benchmark.independent_reference import run_independent_reference_tests
+from urban_comfort.benchmark.repeated_edits import run_repeated_edit_sequence
+from urban_comfort.benchmark.scenes import create_scaling_scene
+from urban_comfort.benchmark.tightness import evaluate_certificate_tightness
+from urban_comfort.config import SimulationConfig, Weather
+from urban_comfort.geometry.primitives import BoundingBox2D, Building
+from urban_comfort.incremental.update import (
+    AddBuildingEdit,
+    ChangeHeightEdit,
+    MoveBuildingEdit,
+    RemoveBuildingEdit,
+)
+from urban_comfort.reference.full_recompute import full_recompute
 
 
 def save_csv(records: List[Any], filepath: str) -> None:
     """Serializes a list of dataclass instances or dictionaries to CSV."""
     if not records:
         return
-    from dataclasses import is_dataclass, asdict
+    from dataclasses import asdict, is_dataclass
     dict_records = []
     for r in records:
         if is_dataclass(r):

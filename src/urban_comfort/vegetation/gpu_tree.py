@@ -5,10 +5,11 @@ Implements GPU CUDA tree shadow ray-tracing and tree-aware incremental recomputa
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 import math
 import time
-from typing import Dict, List, Optional, Tuple, Any
+from datetime import datetime, timezone
+from typing import Any, Dict, Tuple
+
 import numpy as np
 
 try:
@@ -18,21 +19,22 @@ except ImportError:
     cp = None
     HAS_CUPY = False
 
+from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.config import (
-    Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    DEFAULT_GROUND_MATERIAL,
+    DEFAULT_WALL_MATERIAL,
+    SimulationConfig,
+    Weather,
 )
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.longwave import compute_longwave_fluxes
+from urban_comfort.radiation.shortwave import compute_shortwave_fluxes
 from urban_comfort.radiation.tmrt import compute_tmrt
-from urban_comfort.comfort.utci import compute_utci
 from urban_comfort.reference.full_recompute import SimulationResult
+from urban_comfort.solar.solar_position import calculate_solar_position
 from urban_comfort.terrain.gpu_terrain import TerrainAwareGPUBackend
-from urban_comfort.vegetation.tree import Tree
 from urban_comfort.vegetation.tree_scene import TreeAwareScene
 from urban_comfort.vegetation.tree_solver import TreeAwareCPUSolver
-
 
 TREE_SHADOW_KERNEL_SRC = r"""
 extern "C" __global__

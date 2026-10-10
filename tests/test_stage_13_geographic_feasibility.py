@@ -4,11 +4,6 @@ Pytest integration for Stage 13: Geographic Feasibility & Intervention Parameter
 
 import json
 from pathlib import Path
-import pytest
-from urban_comfort.optimization.parameters import ShadePanelParams
-from urban_comfort.optimization.feasibility import (
-    FeasibilityConstraints, check_feasibility, RejectionReason
-)
 
 RESULTS_DIR = Path(__file__).resolve().parent.parent / "results" / "stage_13_geographic_feasibility"
 

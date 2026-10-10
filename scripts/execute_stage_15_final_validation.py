@@ -15,42 +15,33 @@ and exports all 9 required deliverables to results/stage_15_final_validation/.
 """
 
 from __future__ import annotations
+
 import csv
-from datetime import datetime, timezone
 import hashlib
 import json
-import math
-import os
-from pathlib import Path
 import time
-from typing import Dict, Any, List, Optional, Tuple
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Dict
 
 import numpy as np
 from pyproj import Transformer
-from shapely.geometry import Point, Polygon, shape
-from shapely.ops import transform
 from shapely.affinity import translate
-import sys
+from shapely.geometry import Point, shape
+from shapely.ops import transform
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
+from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from urban_comfort.config import Material, SimulationConfig, Weather
 from urban_comfort.geometry.scene import Scene
 from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 from urban_comfort.incremental.mesh_update import AddMeshEdit
 from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
-    ShadePanelParams, ParameterBounds, build_panel_geometry
-)
-from urban_comfort.optimization.feasibility import (
-    RejectionReason, FeasibilityConstraints, check_feasibility
-)
-from urban_comfort.optimization.objective import (
-    ComfortObjectiveConfig, EvaluationMetrics, compute_objective
-)
+from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
+from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
+from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
+from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
 
 
 def sha256_file(path: Path) -> str:
@@ -201,7 +192,6 @@ def main():
         feasibility_penalty=1000.0,
     )
 
-    # 2. Select Candidates for Full Multi-Path Validation
     print("\n[Phase 2] Assembling candidate validation set...")
     best_csv = stage_14_dir / "optimizer_best_candidates.csv"
     with open(best_csv, "r", encoding="utf-8") as f:
@@ -249,7 +239,6 @@ def main():
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=False)
     gpu_engine.preload_resident_baseline(baseline_scene, grid, baseline_result)
 
-    # 3. Multi-Path Validation (CPU Full, CPU Inc, GPU Full, GPU Inc)
     print("\n[Phase 3] Executing 4-path physical simulations across candidate set...")
     validation_results = []
     parity_reports = []
@@ -308,7 +297,6 @@ def main():
         materials_updated["SHADE_PANEL_ASSUMED_001"] = mat_panel
         updated_scene.materials = materials_updated
 
-        # Path 1: GPU Incremental
         t0 = time.perf_counter()
         gpu_inc_update, cert = gpu_engine.execute_certified_update(
             previous_scene=baseline_scene,
@@ -321,7 +309,6 @@ def main():
         t_gpu_inc = time.perf_counter() - t0
         res_gpu_inc = gpu_inc_update.result
 
-        # Path 2: CPU Incremental
         sim_config_cpu = SimulationConfig(
             latitude=sim_config.latitude, longitude=sim_config.longitude, date=sim_config.date,
             local_time=sim_config.local_time, pedestrian_height=sim_config.pedestrian_height,
@@ -342,12 +329,10 @@ def main():
         t_cpu_inc = time.perf_counter() - t0
         res_cpu_inc = cpu_inc_update.result
 
-        # Path 3: CPU Full
         t0 = time.perf_counter()
         res_cpu_full = full_recompute(scene=updated_scene, weather=weather, config=sim_config_cpu, backend="cpu")
         t_cpu_full = time.perf_counter() - t0
 
-        # Path 4: GPU Full
         t0 = time.perf_counter()
         res_gpu_full = full_recompute(scene=updated_scene, weather=weather, config=sim_config, backend="gpu")
         t_gpu_full = time.perf_counter() - t0
@@ -674,11 +659,9 @@ conducted for the optimal shade panel interventions on Church Street, Bengaluru.
     t1_pass = all(c["is_feasible"] for c in constraint_reports)
     tests.append({"id": 1, "name": "Final candidates pass all geographic feasibility checks", "pass": bool(t1_pass)})
 
-    # Test 2: Full and incremental paths agree within tolerance (max error <= 0.50 K)
     t2_pass = all(p["gpu_inc_vs_gpu_full"]["pass"] for p in parity_reports)
     tests.append({"id": 2, "name": "Full and incremental paths agree within certified tolerance", "pass": bool(t2_pass)})
 
-    # Test 3: CPU and GPU paths agree within tolerance (solver equivalence < 1e-9 K)
     t3_pass = all(p["cpu_full_vs_gpu_full"]["pass"] for p in parity_reports)
     tests.append({"id": 3, "name": "CPU reference and GPU full solver agree within machine precision", "pass": bool(t3_pass)})
 

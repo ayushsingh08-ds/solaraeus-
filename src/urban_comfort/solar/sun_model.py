@@ -8,17 +8,15 @@ for Bengaluru (12.9749° N, 77.6054° E, UTC+05:30).
 from __future__ import annotations
 
 import csv
-import math
-from dataclasses import asdict, dataclass
-from datetime import date, datetime, time, timedelta, timezone
+from dataclasses import dataclass
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import trimesh
 
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-
+from urban_comfort.solar.solar_position import SolarPosition, calculate_solar_position
 
 IST = timezone(timedelta(hours=5, minutes=30))
 
