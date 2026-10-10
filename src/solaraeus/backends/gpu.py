@@ -20,11 +20,11 @@ from solaraeus.core.config import (
 )
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
-from solaraeus.radiation.shortwave import compute_shortwave_fluxes
-from solaraeus.radiation.longwave import compute_longwave_fluxes
-from solaraeus.radiation.tmrt import compute_tmrt
-from solaraeus.comfort.utci import compute_utci
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.physics.shortwave import compute_shortwave_fluxes
+from solaraeus.physics.longwave import compute_longwave_fluxes
+from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult
 
 

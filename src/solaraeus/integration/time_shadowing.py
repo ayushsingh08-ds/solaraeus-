@@ -21,8 +21,8 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-from solaraeus.solar.sun_model import sun_model
-from solaraeus.solar.cloud_model import cloud_model, CloudState
+from solaraeus.physics.sun_model import sun_model
+from solaraeus.physics.cloud_model import cloud_model, CloudState
 
 
 @dataclass

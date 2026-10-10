@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import Dict, Tuple
 import numpy as np
 
-from solaraeus.comfort.utci import get_thermal_stress_category
+from solaraeus.physics.utci import get_thermal_stress_category
 
 
 def compute_shadow_iou(mask_a: np.ndarray, mask_b: np.ndarray) -> float:

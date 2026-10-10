@@ -24,10 +24,10 @@ from solaraeus.core.config import Weather, SimulationConfig
 from solaraeus.core.geometry.mesh import TriangleMesh, create_box_mesh
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
-from solaraeus.visibility.shadow import compute_direct_shadow_mask
-from solaraeus.visibility.directional_visibility import compute_sky_view_factor
+from solaraeus.physics.shadow import compute_direct_shadow_mask
+from solaraeus.physics.sky_view_factor import compute_sky_view_factor
 from solaraeus.incremental.mesh_update import ChangeMeshHeightEdit
 from solaraeus.incremental.update import incremental_update_certified
 

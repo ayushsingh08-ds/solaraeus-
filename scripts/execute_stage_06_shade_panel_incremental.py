@@ -28,7 +28,7 @@ from solaraeus.core.config import Weather, SimulationConfig, Material
 from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.cache import SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash

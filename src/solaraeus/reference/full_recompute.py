@@ -14,13 +14,13 @@ from solaraeus.core.config import (
 )
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
-from solaraeus.visibility.shadow import compute_direct_shadow_mask
-from solaraeus.visibility.directional_visibility import compute_sky_view_factor
-from solaraeus.radiation.shortwave import compute_shortwave_fluxes, ShortwaveFluxes
-from solaraeus.radiation.longwave import compute_longwave_fluxes, LongwaveFluxes
-from solaraeus.radiation.tmrt import compute_tmrt, RadiantState
-from solaraeus.comfort.utci import compute_utci
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.physics.shadow import compute_direct_shadow_mask
+from solaraeus.physics.sky_view_factor import compute_sky_view_factor
+from solaraeus.physics.shortwave import compute_shortwave_fluxes, ShortwaveFluxes
+from solaraeus.physics.longwave import compute_longwave_fluxes, LongwaveFluxes
+from solaraeus.physics.mean_radiant_temperature import compute_tmrt, RadiantState
+from solaraeus.physics.utci import compute_utci
 
 
 @dataclass

@@ -21,7 +21,7 @@ import numpy as np
 from solaraeus.core.config import Weather, SimulationConfig
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.update import GeometricEdit, incremental_update_certified
 from solaraeus.incremental.certificate import verify_certificate, ErrorCertificate

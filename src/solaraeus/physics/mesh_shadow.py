@@ -9,8 +9,8 @@ import numpy as np
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import SolarPosition
-from solaraeus.visibility.mesh_ray_intersection import intersect_rays_scene_meshes
+from solaraeus.physics.solar_position import SolarPosition
+from solaraeus.physics.mesh_ray_intersection import intersect_rays_scene_meshes
 
 
 def compute_mesh_direct_shadow_mask(scene: Scene,

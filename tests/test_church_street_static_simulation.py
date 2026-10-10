@@ -23,7 +23,7 @@ import pytest
 from solaraeus.core.config import Weather, SimulationConfig, Material
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.physics.solar_position import calculate_solar_position
 
 
 @pytest.fixture(scope="module")

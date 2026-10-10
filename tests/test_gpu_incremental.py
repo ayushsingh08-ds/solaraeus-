@@ -23,7 +23,7 @@ from solaraeus.core.geometry.mesh import create_box_mesh, create_overhang_mesh, 
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.certificate import verify_certificate

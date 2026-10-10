@@ -11,7 +11,7 @@ from typing import Tuple, Optional, List
 import numpy as np
 
 from solaraeus.core.geometry.mesh import TriangleMesh
-from solaraeus.visibility.ray_intersection import intersect_ray_aabb, intersect_rays_aabb_batch
+from solaraeus.physics.ray_intersection import intersect_ray_aabb, intersect_rays_aabb_batch
 
 
 EPS_ORIGIN_DEFAULT = 1e-6   # Minimum distance t from ray origin to ignore surface self-hits (m)

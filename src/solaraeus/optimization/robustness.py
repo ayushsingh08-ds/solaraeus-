@@ -26,7 +26,7 @@ from solaraeus.core.config import Weather, SimulationConfig, Material
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
-from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds

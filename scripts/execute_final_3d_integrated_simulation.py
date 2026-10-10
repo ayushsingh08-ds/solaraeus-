@@ -47,8 +47,8 @@ from solaraeus.integration.coordinates import transformer, CoordinateSystemDefin
 from solaraeus.integration.terrain_loader import terrain_loader
 from solaraeus.integration.tree_loader import tree_loader
 from solaraeus.integration.tree_geometry_builder import tree_geometry_builder
-from solaraeus.solar.sun_model import sun_model, IST
-from solaraeus.solar.cloud_model import cloud_model, CloudState
+from solaraeus.physics.sun_model import sun_model, IST
+from solaraeus.physics.cloud_model import cloud_model, CloudState
 from solaraeus.integration.time_shadowing import time_shadowing_engine
 from solaraeus.integration.tmrt_3d import tmrt_3d_engine
 from solaraeus.integration.utci_3d import utci_3d_engine

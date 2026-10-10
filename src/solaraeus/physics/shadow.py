@@ -9,8 +9,8 @@ import numpy as np
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.geometry.primitives import Building
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import SolarPosition
-from solaraeus.visibility.ray_intersection import intersect_rays_aabb_batch
+from solaraeus.physics.solar_position import SolarPosition
+from solaraeus.physics.ray_intersection import intersect_rays_aabb_batch
 
 
 def compute_direct_shadow_mask(scene: Scene, grid: PedestrianGrid,
@@ -76,7 +76,7 @@ def compute_direct_shadow_mask(scene: Scene, grid: PedestrianGrid,
 
     # Test occlusion against triangular meshes
     if active_meshes:
-        from solaraeus.visibility.mesh_ray_intersection import intersect_rays_scene_meshes
+        from solaraeus.physics.mesh_ray_intersection import intersect_rays_scene_meshes
         mesh_hits, _ = intersect_rays_scene_meshes(origins, sun_dir, active_meshes, early_exit=True)
         is_occluded |= mesh_hits
 

@@ -41,7 +41,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from solaraeus.core.config import Weather, SimulationConfig, Material
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 
 
@@ -346,7 +346,7 @@ def main():
     
     # Identify unbuilt cells outside all building footprints
     # A cell is built if it falls inside any building 2D bounding footprint or mesh top surface >= pedestrian height
-    from solaraeus.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top = rasterize_scene_meshes_to_height_grid(context_scene, grid)
     unbuilt_mask = (h_top <= grid.z_ped)
     

@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
-from solaraeus.comfort.utci import compute_utci, get_thermal_stress_category
+from solaraeus.physics.utci import compute_utci, get_thermal_stress_category
 
 
 @dataclass

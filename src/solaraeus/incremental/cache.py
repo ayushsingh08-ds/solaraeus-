@@ -11,7 +11,7 @@ import numpy as np
 
 from solaraeus.core.config import Weather, SimulationConfig
 from solaraeus.core.geometry.scene import Scene
-from solaraeus.solar.solar_position import SolarPosition
+from solaraeus.physics.solar_position import SolarPosition
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.dependency_graph import DependencyGraph
 

@@ -27,12 +27,12 @@ from solaraeus.core.geometry.mesh import (
 )
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import SolarPosition
-from solaraeus.visibility.mesh_ray_intersection import (
+from solaraeus.physics.solar_position import SolarPosition
+from solaraeus.physics.mesh_ray_intersection import (
     intersect_ray_mesh, intersect_rays_mesh_batch
 )
-from solaraeus.visibility.shadow import compute_direct_shadow_mask
-from solaraeus.visibility.directional_visibility import compute_sky_view_factor
+from solaraeus.physics.shadow import compute_direct_shadow_mask
+from solaraeus.physics.sky_view_factor import compute_sky_view_factor
 from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.incremental.mesh_update import (
     AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit
@@ -109,7 +109,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
         max_svf_search_dist_m=30.0
     )
     # Check that solar altitude is indeed low (> 5.0 deg and < 10.0 deg)
-    from solaraeus.solar.solar_position import calculate_solar_position
+    from solaraeus.physics.solar_position import calculate_solar_position
     from datetime import datetime, timezone
     dt_utc = datetime.strptime(f"{config.date} {config.local_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)

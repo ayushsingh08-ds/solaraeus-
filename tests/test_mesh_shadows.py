@@ -16,9 +16,9 @@ from solaraeus.core.geometry.mesh import (
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import SolarPosition
-from solaraeus.visibility.shadow import compute_direct_shadow_mask
-from solaraeus.visibility.mesh_shadow import compute_mesh_direct_shadow_mask
+from solaraeus.physics.solar_position import SolarPosition
+from solaraeus.physics.shadow import compute_direct_shadow_mask
+from solaraeus.physics.mesh_shadow import compute_mesh_direct_shadow_mask
 
 
 @pytest.fixture

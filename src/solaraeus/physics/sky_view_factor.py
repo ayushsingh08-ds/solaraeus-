@@ -57,7 +57,7 @@ def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,
     # Pre-rasterize meshes to height grid if meshes are present
     h_mesh_grid: Optional[np.ndarray] = None
     if active_meshes:
-        from solaraeus.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+        from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
         h_mesh_grid = rasterize_scene_meshes_to_height_grid(scene, grid)
 
     # Precompute azimuth unit vectors

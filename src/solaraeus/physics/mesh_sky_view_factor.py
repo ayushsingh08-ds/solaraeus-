@@ -13,7 +13,7 @@ import numpy as np
 from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.visibility.mesh_ray_intersection import intersect_rays_mesh_batch
+from solaraeus.physics.mesh_ray_intersection import intersect_rays_mesh_batch
 
 
 def rasterize_mesh_to_height_grid(mesh: TriangleMesh,

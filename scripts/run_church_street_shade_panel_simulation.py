@@ -39,7 +39,7 @@ from solaraeus.core.config import Weather, SimulationConfig, Material
 from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 
 
@@ -450,7 +450,7 @@ def main():
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
     
     # Unbuilt pedestrian cells: determined strictly by 123 building footprints (identical between runs)
-    from solaraeus.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
     

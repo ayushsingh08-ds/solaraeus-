@@ -214,7 +214,7 @@ def main():
     pts = [Point(x, y) for x, y in zip(X.ravel(), Y.ravel())]
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
 
-    from solaraeus.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
     ped_corridor_unbuilt_mask = ped_corridor_mask & unbuilt_mask

@@ -18,14 +18,14 @@ from solaraeus.core.geometry.mesh import create_box_mesh, create_pitched_roof_me
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import full_recompute
-from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import ChangeMeshHeightEdit
 from solaraeus.incremental.update import incremental_update_certified
 from solaraeus.benchmark.independent_audit import audit_certificate_independently
-from solaraeus.radiation.shortwave import compute_shortwave_fluxes
-from solaraeus.radiation.longwave import compute_longwave_fluxes
-from solaraeus.radiation.tmrt import compute_tmrt
-from solaraeus.comfort.utci import compute_utci
+from solaraeus.physics.shortwave import compute_shortwave_fluxes
+from solaraeus.physics.longwave import compute_longwave_fluxes
+from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.utci import compute_utci
 
 
 @pytest.fixture

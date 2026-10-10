@@ -7,7 +7,7 @@ import math
 import pytest
 import numpy as np
 
-from solaraeus.visibility.mesh_ray_intersection import (
+from solaraeus.physics.mesh_ray_intersection import (
     intersect_ray_triangle,
     intersect_ray_mesh,
     intersect_rays_mesh_batch,

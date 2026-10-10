@@ -12,8 +12,8 @@ import numpy as np
 from solaraeus.core.config import Weather, SimulationConfig, SIGMA
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import SolarPosition
-from solaraeus.radiation.longwave import compute_air_emissivity
+from solaraeus.physics.solar_position import SolarPosition
+from solaraeus.physics.longwave import compute_air_emissivity
 from solaraeus.incremental.update import GeometricEdit, AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit
 from solaraeus.incremental.affected_region import compute_candidate_affected_region
 from solaraeus.reference.full_recompute import SimulationResult

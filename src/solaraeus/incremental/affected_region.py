@@ -12,7 +12,7 @@ import numpy as np
 
 from solaraeus.core.geometry.scene import Scene
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.solar.solar_position import SolarPosition
+from solaraeus.physics.solar_position import SolarPosition
 from solaraeus.incremental.update import (
     GeometricEdit, AddBuildingEdit, RemoveBuildingEdit,
     ChangeHeightEdit, MoveBuildingEdit

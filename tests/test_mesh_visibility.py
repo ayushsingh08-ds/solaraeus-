@@ -17,8 +17,8 @@ from solaraeus.core.geometry.mesh import (
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.core.pedestrian_grid import PedestrianGrid
-from solaraeus.visibility.directional_visibility import compute_sky_view_factor
-from solaraeus.visibility.mesh_visibility import (
+from solaraeus.physics.sky_view_factor import compute_sky_view_factor
+from solaraeus.physics.mesh_sky_view_factor import (
     compute_mesh_sky_view_factor,
     rasterize_mesh_to_height_grid,
     rasterize_scene_meshes_to_height_grid

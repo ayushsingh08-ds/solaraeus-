@@ -7,7 +7,7 @@ import math
 import pytest
 import numpy as np
 
-from solaraeus.solar.solar_position import (
+from solaraeus.physics.solar_position import (
     calculate_solar_position, calculate_julian_day, SolarPosition
 )
 

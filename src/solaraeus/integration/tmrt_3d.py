@@ -23,9 +23,9 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 
 from solaraeus.core.config import SIGMA
-from solaraeus.radiation.tmrt import compute_tmrt
-from solaraeus.solar.cloud_model import CloudState, cloud_model
-from solaraeus.solar.solar_position import SolarPosition
+from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.cloud_model import CloudState, cloud_model
+from solaraeus.physics.solar_position import SolarPosition
 
 
 @dataclass

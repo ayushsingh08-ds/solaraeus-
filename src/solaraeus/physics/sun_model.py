@@ -17,7 +17,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 import trimesh
 
-from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
 
 
 IST = timezone(timedelta(hours=5, minutes=30))
