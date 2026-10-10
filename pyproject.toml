@@ -60,7 +60,12 @@ dev = [
   "opencv-python>=4.9",
 ]
 
-all = ["solaraeus[gpu,viewer-export,dev]"]
+# Deliberately excludes [gpu]: `cupy-cuda12x` needs a CUDA toolkit at install
+# time, so pulling it in by default makes `make install-dev` fail on any
+# CPU-only machine or CI runner. Install GPU support explicitly with
+# `pip install -e ".[gpu]"`. The engine imports CuPy lazily and runs on CPU
+# without it.
+all = ["solaraeus[viewer-export,dev]"]
 
 [project.scripts]
 solaraeus = "urban_comfort.cli:main"

@@ -36,7 +36,7 @@ inventory from Phase 0 are the reference points.
 
 ```bash
 git checkout overhaul
-pip install -e ".[all]"        # or: make install-dev
+make install-dev               # pip install -e ".[all]" (never pulls CuPy)
 make lint                      # ruff, enforced set, whole maintained tree
 make types                     # mypy, strict on urban_comfort.config
 make test                      # 442 passed
