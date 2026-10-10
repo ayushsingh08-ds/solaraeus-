@@ -392,9 +392,10 @@ Output: **stdout only.** No files written. ~6,400 cells.
 scripts/run_church_street_preprocessing.py
   → preprocessing/church_street_adapter.py:290 process()
       :112 to_local_xy  → integration/coordinates.py:74 (WGS84→UTM43N→local)
-      :119 load_core_heights ← data/processed/approved_building_heights.csv
-      :150 load_context_heights ← data/review/final_context_tree_decision_table.csv
-      :195 triangulate_and_extrude → geometry/mesh.py TriangleMesh
+      :130 load_core_heights ← data/processed/approved_building_heights.csv  (handoff fallback :122)
+      :152 load_context_heights ← <handoff_v2>/data/processed/context_height_review.csv
+      :305/:308 process() loads footprints ← <handoff_v2>/data/processed/buildings_{site,shadow_context}.geojson
+      :195 triangulate_and_extrude → geometry/mesh.py TriangleMesh (mapbox_earcut)
   → results/church_street_preprocessing_<UTC>/ artifacts
 scripts/run_church_street_static_simulation.py     → reference/full_recompute.py (28,120 cells, 123 bldgs)
 scripts/run_church_street_shade_panel_simulation.py→ mesh edits on ShadePanelParams
@@ -412,7 +413,7 @@ scripts/run_church_street_two_panel_robustness.py        → optimization/robust
 scripts/execute_final_3d_integrated_simulation.py:70 main()  (898-line orchestrator, Parts 1–18)
   → integration/coordinates.py:133        transformer singleton
   → integration/terrain_loader.py:183     terrain_loader (FABDEM GeoTIFF or synthetic profile)
-  → integration/tree_loader.py:247        tree_loader (data/review/core_tree_review.csv)
+  → integration/tree_loader.py:247        tree_loader (core trees T08–T13 hardcoded :104-171; reads only tree_dimension_uncertainty_bounds.csv :77)
   → integration/tree_geometry_builder.py:97
   → solar/sun_model.py:217                sun_model (Bengaluru 12.9749N 77.6054E IST)
   → solar/cloud_model.py:248              cloud_model (parametric, NOT observed)
@@ -526,10 +527,10 @@ Legend: **E** = external touchpoints. All `src/` files listed individually; test
 | `vegetation/tree_scene.py` | Data model — `TreeAwareScene` :21 | terrain_scene, tree | tree_solver, gpu_tree | none |
 | `vegetation/tree_solver.py` | Core logic — `TreeAwareCPUSolver` :30, `simulate_incremental` :177 | tree_scene, visibility, radiation | scripts, tests | none |
 | `vegetation/gpu_tree.py` | Core logic + GPU — kernel :37, `TreeAwareGPUBackend` :148 | tree_scene, gpu_backend, tree_solver | scripts, tests | **CuPy / CUDA** |
-| `preprocessing/church_street_adapter.py` | ★ Ingest — `PreprocessingConfig` :37, `to_local_xy` :112, `load_core_heights` :119, `load_context_heights` :150, `triangulate_and_extrude` :195, `process` :290 | coordinates, mesh, scene, shapely | 3D pipeline, church street scripts, tests | **reads** `data/processed/approved_building_heights.csv`, `data/processed/researcher_signoff.json`, `data/review/*.csv`, `bengaluru_church_street_manual_handoff_v2/.../data/processed/*.geojson` |
+| `preprocessing/church_street_adapter.py` | ★ Ingest — `PreprocessingConfig` :37, `to_local_xy` :112, `load_core_heights` :119, `load_context_heights` :150, `triangulate_and_extrude` :195, `process` :290 | coordinates, mesh, scene, shapely, mapbox_earcut | 3D pipeline, church street scripts, tests | **reads** `data/processed/approved_building_heights.csv` :130 (handoff fallback :122), `<handoff_v2>/data/processed/context_height_review.csv` :152, `<handoff_v2>/data/processed/buildings_{site,shadow_context}.geojson` :305/:308. **Does not** read `researcher_signoff.json` (path stored :49, never opened). **Writes nothing** — returns in-memory `PreprocessedSceneResult` |
 | `integration/coordinates.py` | Utility — `CoordinateSystemDefinition` :23, `CoordinateTransformer` :37, WGS84↔UTM43N↔local↔Three.js, `transformer` singleton :133 | pyproj | adapter, 3D pipeline, tests | **EPSG:4326 / EPSG:32643**; Three.js Y-up axis flip :84 |
 | `integration/terrain_loader.py` | Ingest — `TerrainLoader` :47, `sample_elevation` :83, `generate_mesh` :105, singleton :183 | dtm, rasterio | 3D pipeline, tests | **reads** `data/interim/terrain/fabdem_local_reference.tif` :59, `fabdem_clipped_utm43.tif` :63; labels :50 |
-| `integration/tree_loader.py` | Ingest — `TreeRecord` :32, `TreeLoader` :52, singleton :247 | pytest? no; csv/json | 3D pipeline, tests | **reads** `data/review/core_tree_review.csv` :66, `data/review/tree_dimension_uncertainty_bounds.csv` :68 |
+| `integration/tree_loader.py` | Ingest — `TreeRecord` :32, `TreeLoader` :52, **core trees T08–T13 hardcoded** :104-171, singleton :247 | csv/json | 3D pipeline, tests | **reads only** `data/review/tree_dimension_uncertainty_bounds.csv` :77 (guarded by `.exists()`; else hardcoded `default_bounds` :174). `core_tree_review.csv` is a **provenance string** (:66, stamped as `source_file` :227) — **never opened**. Singleton :247 performs file I/O **at import time** (CWD-relative) |
 | `integration/tree_geometry_builder.py` | Core logic — `TreeGeometryBuilder` :18, `build_tree_mesh` :24, `build_forest_scene` :79 | tree_loader, terrain_loader, trimesh | 3D pipeline, tests | writes GLB via trimesh |
 | `integration/time_shadowing.py` | Core logic — `ShadowStepResult` :29, `TimeShadowingEngine` :43, `simulate_day` :78, singleton :203 | solar_position, cloud_model | 3D pipeline, tests | none |
 | `integration/tmrt_3d.py` | Core logic — `Tmrt3DResult` :32, `Tmrt3DEngine` :47, `compute_field` :70, singleton :221 | solar_position, cloud_model | 3D pipeline, tests | none |
@@ -705,12 +706,13 @@ Derived by resolving every `tests/*.py` import back to its source module (test n
 | Artifact | Producer | Consumer | Contract |
 |---|---|---|---|
 | `configs/baseline_scene.json` | hand-written / M2 | `examples/single_building.py:22` via `Scene.load_json`, `tests/test_geometry.py:129` | `Scene.to_dict()` schema `geometry/scene.py:91` |
-| `data/processed/approved_building_heights.csv` | `scripts/resolve_researcher_signoff.py`, `generate_church_street_review.py` | `preprocessing/church_street_adapter.py:46` | CSV of 37 core building heights |
-| `data/processed/researcher_signoff.json` | `resolve_researcher_signoff.py` | `church_street_adapter.py:49`; SHA-256 pinned in `execute_stage_38_final_publication_and_closure.py:55` | signoff gate |
-| `data/review/core_tree_review.csv` | `generate_church_street_review.py` | `integration/tree_loader.py:66` | tree geometry + existence status |
-| `data/review/tree_dimension_uncertainty_bounds.csv` | review scripts | `integration/tree_loader.py:68` | min/nominal/max bounds |
+| `data/processed/approved_building_heights.csv` | `scripts/resolve_researcher_signoff.py`, `generate_church_street_review.py` | `preprocessing/church_street_adapter.py:130` (`load_core_heights`, handoff fallback :122) | CSV of 37 core building heights |
+| `data/processed/researcher_signoff.json` | `resolve_researcher_signoff.py` | `run_church_street_preprocessing.py:76,136` (verification block); SHA-256 pinned in `execute_stage_38_final_publication_and_closure.py:55`. **Not** read by `church_street_adapter.py` (path stored :49, unused) | signoff gate |
+| `data/review/core_tree_review.csv` | `generate_church_street_review.py` | **none** — core trees T08–T13 are **hardcoded** in `tree_loader.py:104-171`; path stored (:66) + stamped `source_file` (:227) but **never opened** | provenance label only |
+| `data/review/tree_dimension_uncertainty_bounds.csv` | review scripts | `integration/tree_loader.py:77` (guarded by `.exists()`; else hardcoded `default_bounds` :174) | min/nominal/max bounds |
 | `data/interim/terrain/fabdem_local_reference.tif` | Stage 20/25/27 scripts | `integration/terrain_loader.py:59` | elevation raster, `FABDEM_REGIONAL_REFERENCE_ONLY` |
-| `bengaluru_church_street_manual_handoff_v2/.../data/processed/*.geojson` | external handoff (checked in) | `church_street_adapter.py:42`, `generate_church_street_review.py:154` | WGS84 footprints |
+| `<handoff_v2>/data/processed/buildings_{site,shadow_context}.geojson` | external handoff (checked in) | `church_street_adapter.py:305/:308` (`process()`), `generate_church_street_review.py:154` | WGS84 footprints |
+| `<handoff_v2>/data/processed/context_height_review.csv` | external handoff + `refine_handoff_v2.py` | `church_street_adapter.py:152` (`load_context_heights`), `run_church_street_preprocessing.py:85` | context-building heights (ML → floor → 9.6 m canyon fallback) |
 | `simulation_3d/church_street_data.js` / `.json` | **no producer in repo** (frozen artifact) | `simulation_3d/index.html:575`, `scripts/verify_ui_quality.py:166` | `window.CHURCH_STREET_DATA` — buildings/trees/interventions/thermal_grid |
 | `results/stage_NN_*/**.json` | `scripts/execute_stage_NN_*.py` | 40 artifact-contract test modules | status tokens + manifest keys |
 | `results/final_3d_integrated_simulation/**` | `execute_final_3d_integrated_simulation.py` | `viewer_app.py`, `verify_ui_quality.py`, `generate_viewer_screenshots_and_style_report.py` | GLB scene + npy fields + JSON manifests |
@@ -724,11 +726,11 @@ Derived by resolving every `tests/*.py` import back to its source module (test n
 ```mermaid
 flowchart TD
     A["External handoff GeoJSON<br/>bengaluru_church_street_manual_handoff_v2/"] --> B["generate_church_street_review.py<br/>+ resolve_researcher_signoff.py"]
-    B --> C["data/review/*.csv<br/>data/processed/approved_building_heights.csv<br/>data/processed/researcher_signoff.json"]
-    C --> D["preprocessing/church_street_adapter.py:290<br/>load heights :119/:150 → triangulate :195"]
+    B --> C["data/processed/approved_building_heights.csv<br/>handoff context_height_review.csv<br/>handoff buildings_*.geojson<br/>(researcher_signoff.json = gate, not geometry)"]
+    C --> D["preprocessing/church_street_adapter.py:290 process()<br/>heights :130/:152 + geojson :305 → triangulate :195"]
     D --> E["Scene{meshes: TriangleMesh}<br/>local metric metres"]
     F["FABDEM GeoTIFF<br/>data/interim/terrain/"] --> G["integration/terrain_loader.py:83"]
-    H["BBMP tree census<br/>data/review/core_tree_review.csv"] --> I["integration/tree_loader.py:73"]
+    H["Core trees T08–T13 hardcoded<br/>tree_loader.py:104-171<br/>+ uncertainty_bounds.csv :77"] --> I["integration/tree_loader.py:247"]
     E --> J["TerrainAwareScene / TreeAwareScene"]
     G --> J
     I --> J
@@ -801,7 +803,7 @@ flowchart TD
 
 ## 9. Risks and findings
 
-### 9.1 Circular dependencies — **1 real cycle group (9 files)**
+### 9.1 Circular dependencies — **1 SCC of 9 files; import-time-acyclic (DAG)**
 
 Tarjan SCC over the source-only graph finds exactly one strongly-connected component:
 
@@ -831,7 +833,7 @@ backend/__init__.py L13-15 → cpu_backend, gpu_backend, gpu_incremental
 cpu_backend.py L108 → reference/full_recompute.py
 ```
 
-**Severity: medium, not currently harmful.** Three back-edges are function-local (`import` inside a function body: `full_recompute.py:60,63`; `update.py:220,346,365`; `gpu_incremental.py:201,226,467,482`), which is why the package imports cleanly. But `certificate.py:17` importing the edit classes from `update.py` **while `update.py:346` imports `generate_error_certificate` from `certificate.py`** is a genuine top-level cycle held together by import ordering. Any reordering or a `from __future__` removal can turn this into an `ImportError`.
+**Severity: low–medium — a maintainability concern, not an import-time hazard.** The SCC above is computed over *all* import edges. Every back-edge that would close a cycle is **function-local** (deferred `import` inside a function body: `full_recompute.py:60,63`; `update.py:220,346,365`; `gpu_incremental.py:201,226,467,482`; `affected_region.py:148,173`). The **top-level** import graph is therefore a **DAG**: `certificate.py:17` imports the edit classes from `update.py` at module scope, but the reverse edge `update.py:346 → certificate.generate_error_certificate` is deferred inside a function body — so the package imports cleanly in any order and **no reordering can produce an `ImportError`.** The real cost is navigational and testability: these five modules cannot be read, reasoned about, or unit-tested in isolation, and the deferred imports hide the true dependency direction from static tooling and IDEs.
 
 **Recommended fix:** extract `GeometricEdit` + the 4 building edits + `Mesh`/`Building` edit classes into `incremental/edits.py`, and move `SimulationResult` into `reference/result.py`. That breaks the cycle at zero behavioral cost.
 
@@ -858,7 +860,8 @@ cpu_backend.py L108 → reference/full_recompute.py
 | `src/urban_comfort/terrain/gpu_terrain.py`, `vegetation/gpu_tree.py`, `terrain/terrain_solver.py`, `terrain/terrain_scene.py`, `vegetation/tree*.py`, `terrain/dtm.py` | **No src importers and no direct unit-test importers** — reachable only from `scripts/execute_stage_2x/3x_*.py`. Removing those scripts orphans the entire terrain + vegetation extensions (13 files, ~1,200 LOC). |
 | `benchmark/baseline_comparison.py`, `harness.py`, `independent_reference.py`, `repeated_edits.py`, `tightness.py` | No direct unit-test importers — reachable only via `examples/`. |
 | `optimization/robustness_plots.py` | Matplotlib-only, imported solely by `run_church_street_two_panel_robustness.py`. |
-| `simulation_3d/church_street_data.js` + `.json` | **Ingested but never generated.** No script in the repo writes them; they are frozen 330 KB payloads. If the Church Street pipeline is re-run with different parameters, the viewer silently shows stale data. |
+| `simulation_3d/church_street_data.js` + `.json` | **Ingested but never generated — verified.** `grep church_street_data` over all 255 `.py` finds **one reader** (`verify_ui_quality.py:166`) and **zero writers**; `execute_final_3d_integrated_simulation.py` writes only under `results/final_3d_integrated_simulation/`, never into `simulation_3d/`. Frozen 330 KB payload whose `thermal_grid` is **95×74 @ 4 m** — not the engine default 75×50 (`tmrt_3d.py:51`, `time_shadowing.py:48`) — so it came from a non-default run no committed script reproduces. Re-running the pipeline silently leaves the viewer stale. |
+| `<handoff_v2>/data/processed/{church_street_centerline.geojson, intervention_geometry.geojson, local_scene_geometry.json}` | **Orphaned handoff artifacts.** Consumed by **no engine/adapter code path** — the adapter reads only `buildings_{site,shadow_context}.geojson` + `context_height_review.csv` + `approved_building_heights.csv`. These three appear only in handoff manifests (`SHA256SUMS.txt`, `provenance.json`) and the final-3D `data_inventory.json` catalogue; never parsed as geometry. |
 | `researchpaper/*.pdf` (17 files, 154 MB) | Unreferenced by any code or doc. |
 | `weekly_report/*.docx` (4 files) | Unreferenced. |
 
@@ -889,6 +892,8 @@ Also untested directly: `backend/base.py`, `backend/cpu_backend.py`, `benchmark/
 - **`context.md` is 237 KB** — a single-document "development log" that duplicates `README.md` content and is 11× larger than the README. It is the de-facto specification and the maintenance liability.
 - **`sys.path` manipulation is the module-discovery mechanism** in every script/example (`sys.path.insert(0, .../src)` appears in all 5 examples and all 59 scripts). No editable install. This is why script execution depends on CWD-independent absolute path construction — which is done correctly, but is fragile.
 - **Reproducibility of results is artifact-based, not run-based.** 40 test modules pin the committed `results/` tree. If `results/` is regenerated, up to 40 tests can fail purely because a timestamp or a floating-point value shifted.
+- **Hard-coded timestamped result directories couple the staged pipeline to one historical run.** At least 10 stage scripts embed the literals `results/church_street_preprocessing_20261006_224238` and `results/church_street_static_20261006_232110` (`execute_stage_05`–`08`, `12`–`15`, around `.py:68-89`). A re-run of preprocessing or the static baseline writes a **new** `_<UTC>` directory that none of these stages read — the pipeline silently keeps consuming the frozen 2026-10-06 artifacts.
+- **Import-time file I/O in module singletons.** `integration/tree_loader.py:247` (`tree_loader = TreeLoader()`), `terrain_loader.py:183`, `time_shadowing.py:203`, `tmrt_3d.py:221`, `coordinates.py:133` all instantiate module-level singletons at import; `tree_loader` / `terrain_loader` touch the filesystem **relative to the current working directory**. Importing the package from the wrong CWD changes behaviour (missing-file fallback vs real data) with no error.
 
 ---
 
@@ -905,7 +910,7 @@ Also untested directly: `backend/base.py`, `backend/cpu_backend.py`, `benchmark/
 | JavaScript (vendored, third-party) | **2** | `simulation_3d/vendor/three.min.js`, `vendor/OrbitControls.js` — **skipped: minified/vendored library**, functionally described via `index.html:573-574` |
 | `.pyc` bytecode | 174 | **Skipped: generated bytecode** (gitignored via `.gitignore` → `__pycache__/`) |
 | `.json` | 580 | **Skipped as bulk**: role inferred from the writer/reader pair that references them (mapped in §6.10). Directly parsed: `configs/baseline_scene.json`, `results/FINAL_PROJECT_COMPLETION_STATUS.json`, `simulation_3d/church_street_data.json`, every stage manifest referenced by an artifact-contract test. |
-| `.csv` | 119 | **Skipped as bulk**: schema inferred from the reader module (e.g. `data/processed/approved_building_heights.csv` → `church_street_adapter.py:46`) |
+| `.csv` | 119 | **Skipped as bulk**: schema inferred from the reader module (e.g. `data/processed/approved_building_heights.csv` → `church_street_adapter.py:130`) |
 | `.md` | 112 | **Skipped as bulk**: `README.md` and `docs/gpu_backend_architecture.md` read in full; `context.md` (237 KB) read in part — header + milestones 1–11 + work packages 1–10 (`context.md` truncated at ~12 k tokens; the remaining ~200 KB is stage-by-stage narrative whose claims are independently verified by the tests and the `results/stage_*` manifests) |
 | `.png` (211) / `.jpg` (41) / `.svg` (1) | 253 | **Skipped: binary images.** Referenced where code cites them (`research_paper_sol/fig*.png` ← `solaraeus.tex:168,207,252,311`) |
 | `.npz` (58) / `.npy` (10) / `.parquet` (8) | 76 | **Skipped: binary arrays.** Schema is pinned in code (`np.savez_compressed` key lists at `examples/compare_full_incremental.py:146-176`) |
@@ -915,7 +920,7 @@ Also untested directly: `backend/base.py`, `backend/cpu_backend.py`, `benchmark/
 | `.docx` (4) / `.woff2` (6) / `.zip` (2) | 12 | **Skipped: binary.** `weekly_report/*.docx` unreferenced; fonts loaded via `simulation_3d/fonts.css`; zips are gitignored dataset archives |
 | `.tex` (4) | 4 | Read: `solaraeus.tex` (structure + figure refs); `fig1_architecture.tex`, `fig2_dataflow.tex`, `fig2_methodology.tex` role only (TikZ vector sources for the PNGs) |
 | `.gitignore`, `.toml` | 3 | Read. The single `.toml` (`overturemaps_pyproject.toml`) belongs to a vendored upstream tool. |
-| Core analysis tooling I wrote | 4 scripts | `importgraph.py`, `digest2.py`, `circles.py`, `edges.py` — run in the system temp dir, **not added to the repository** |
+| Core analysis tooling I wrote | 4 scripts | `_audit_graph.py` (AST import graph + Tarjan SCC), `_audit_info.py` (per-file docstring/defs/LOC), `_audit_touch.py` (external-lib / test / subprocess touchpoints), `_audit_disk.py` (literal path-reference scan) — untracked scratch in the worktree root, **removed at audit end** |
 
 **Totals: 1,837 present files** (1,546 git-tracked; the difference is gitignored dataset archives and bytecode). **Read/parsed in full or in structural detail: 369** (255 Python + 6 JS + 4 shell-level config + key JSON/MD/tex). **Skipped by category: 1,468**, every category listed with reason above. No file was omitted silently.
 
@@ -923,13 +928,13 @@ Also untested directly: `backend/base.py`, `backend/cpu_backend.py`, `benchmark/
 
 | # | Claim | Why inferred, not verified |
 |---|---|---|
-| I1 | `simulation_3d/church_street_data.js` is produced by `execute_final_3d_integrated_simulation.py` | **Inferred.** `grep` for `church_street_data` across all `.py` finds only `verify_ui_quality.py:166` (a reader). No writer exists. The shape of the payload (buildings + trees + interventions + `thermal_grid`) matches that pipeline's output, and both carry `reference_date "2024-04-15"` and the Church Street coordinate. Treat as **frozen artifact with no in-repo regeneration path**. |
+| I1 | ~~`church_street_data.js` is produced by `execute_final_3d_integrated_simulation.py`~~ — **retracted** | **Now verified-negative.** `grep church_street_data` across all 255 `.py` finds **one reader** (`verify_ui_quality.py:166`) and **zero writers**; the final-3D pipeline writes only to `results/final_3d_integrated_simulation/`, never into `simulation_3d/`. The payload grid (95×74) does **not** match engine defaults (75×50). It is a **frozen artifact with no in-repo regeneration path** (§9.4), not an output of that script. |
 | I2 | The 4 `.py` files under `bengaluru_church_street_*` are upstream third-party tooling, not project code | **Inferred** from directory nesting (`.../sources/overture_cli_core.py` sits beside `overturemaps_pyproject.toml`), not from a license or README statement. |
 | I3 | `researchpaper/*.pdf` are the paper's bibliography | **Inferred** from filenames matching cited-author patterns (`lindberg`, `mattheos`, etc.) and the `.tex` `\cite{}` keys. No BibTeX file exists linking key → PDF. |
 | I4 | `weekly_report/*.docx` are progress reports for the same project | **Inferred** from filename + directory name. Binary content not parsed. |
 | I5 | `results/` directories other than `stage_*` map 1-to-1 to the `run_church_street_*.py` scripts | **Inferred** from timestamp/name correspondence (`church_street_two_panel_robustness_20261007_122543` ↔ `run_church_street_two_panel_robustness.py`). The scripts write `results/<name>_<UTC>/`, but I did not execute them to confirm each output directory's precise contents. |
 | I6 | The deep §9.4 orphan assessment for terrain/vegetation assumes the stage scripts are the *only* consumers | **Inferred** from the import graph. A consumer could exist via a dynamically-constructed import (`importlib` appears in exactly 1 file) that AST analysis would miss. I found no such usage, but the statement is bounded by that limitation. |
-| I7 | The `certificate.py ↔ update.py` top-level cycle is "currently harmless" | **Inferred, but supported by hard evidence:** the full suite passes (457/457) and `pytest` collects all 85 modules, which proves the import order works *as committed today*. It does not prove it is robust to reordering. |
+| I7 | The incremental ↔ backend ↔ reference import cluster is import-safe | **Verified, not merely inferred.** Every reverse edge is function-local (`update.py:346`, `full_recompute.py:60,63`, `gpu_incremental.py:201,226,467,482`, `affected_region.py:148,173`), so the **top-level graph is a DAG** and import order is irrelevant; `pytest` additionally collects all 85 modules. This is a maintainability/testability concern, **not** an `ImportError` risk (§9.1). |
 | I8 | `results/stage_NN/**` content schemas | **Inferred** from the asserting lines in the contract tests, not from reading every one of the 483 result JSON files. |
 
 ---
@@ -942,7 +947,7 @@ Also untested directly: `backend/base.py`, `backend/cpu_backend.py`, `benchmark/
 4. **The contribution lives in one directory:** [src/urban_comfort/incremental/](src/urban_comfort/incremental/) — [update.py](src/urban_comfort/incremental/update.py) (edits + selective recompute) and [certificate.py](src/urban_comfort/incremental/certificate.py) (the provable bound). Read those two first.
 5. **`SimulationResult` is the universal contract** — 7 NumPy arrays + a metadata dict ([full_recompute.py:27](src/urban_comfort/reference/full_recompute.py#L27)). Everything flows through it; nothing between input and output touches disk.
 6. **Run the proof yourself:** `python -m pytest -o pythonpath=src -q` → **457 passed** (verified in this audit, 118 s). Then `python examples/compare_full_incremental.py` to see the certificate audit printed end-to-end.
-7. **One real architectural defect:** a 9-file import cycle in the incremental/backend/reference cluster, held together only by function-local imports. Fix by extracting `edits.py` and `result.py`.
+7. **One real architectural smell:** a 9-file SCC in the incremental/backend/reference cluster. It is **import-safe** (the back-edges are deferred inside functions, so the top-level graph is a DAG), but it can't be unit-tested in isolation. Fix by extracting `edits.py` and `result.py`.
 8. **One real duplication:** `src/solaraeus/` (7 files, 1,163 LOC) is a second, older, fully isolated implementation of the same idea. `README.md` never mentions it. Decide to delete or document it.
 9. **Test coverage is misleading:** 457 tests pass, but 40 of 85 modules (47 %) assert *committed JSON status strings* in `results/`, not behaviour. The terrain and vegetation solvers (13 files) have no direct unit test at all.
 10. **The web viewer is display-only:** [viewer_app.py](results/final_3d_integrated_simulation/viewer/viewer_app.py) serves [simulation_3d/](simulation_3d/) on port 8080; [app.js](simulation_3d/app.js) reads a frozen 330 KB payload that **no script in the repo regenerates** — the single biggest reproducibility gap for the demo.
