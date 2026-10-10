@@ -125,7 +125,6 @@ ignore = [
   "B905",  # 21 zip(...) without strict= -- the zipped sequences are equal length
   "B007",  # 11 unused loop control variables
   "B009",  # 6 getattr() with a constant attribute
-  "B006",  # 1 mutable argument default, inside the legacy package removed in P2
   # Pyflakes rule deferred: 32 unused locals whose removal needs per-site
   # judgement (the right-hand side may have a side effect we must keep).
   "F841",
@@ -138,7 +137,7 @@ ignore = [
 "examples/**" = ["ARG001", "ARG002", "E402", "PTH123"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["urban_comfort", "solaraeus"]
+known-first-party = ["urban_comfort"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -170,13 +169,6 @@ warn_return_any = true
 # with ignore_errors off (tools/mypy-report.toml) to list the tightening
 # backlog: 55 errors in 24 files at the time of this overhaul.
 module = ["urban_comfort.*"]
-disallow_untyped_defs = false
-ignore_errors = true
-
-[[tool.mypy.overrides]]
-# The legacy 2.5D package is archived in Phase 2 of the overhaul.  It is excluded
-# from the type gate because it is scheduled for removal, not for adoption.
-module = ["solaraeus.*"]
 disallow_untyped_defs = false
 ignore_errors = true
 

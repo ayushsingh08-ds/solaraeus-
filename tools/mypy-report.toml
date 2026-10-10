@@ -30,5 +30,3 @@ warn_return_any = true
 module = ["urban_comfort.*"]
 disallow_untyped_defs = false
 # No `ignore_errors` here on purpose: this config exists to print the backlog.
-# The legacy `solaraeus` package is also left unreported-free so its errors stay
-# visible until Phase 2 archives it.
