@@ -200,10 +200,10 @@ def generate_error_certificate(scene_before: Scene,
 
     t_cached = np.power(s_cached / SIGMA, 0.25)
     t_lower = np.power(s_lower / SIGMA, 0.25)
-    b_t = t_cached - t_lower  # Conservative bound in Kelvin
+    thermal_error_bound_k = t_cached - t_lower  # Conservative bound in Kelvin
 
     # Dirty mask: cells where bound exceeds tolerance
-    dirty_mask = b_t > float(tolerance_k)
+    dirty_mask = thermal_error_bound_k > float(tolerance_k)
     affected_count = int(np.sum(dirty_mask))
     reused_count = (ny * nx) - affected_count
 
@@ -220,8 +220,8 @@ def generate_error_certificate(scene_before: Scene,
     return ErrorCertificate(
         status="certified",
         tolerance=tolerance_k,
-        predicted_error_bound=b_t,
-        max_predicted_bound=float(np.max(b_t)),
+        predicted_error_bound=thermal_error_bound_k,
+        max_predicted_bound=float(np.max(thermal_error_bound_k)),
         affected_cells=affected_count,
         reused_cells=reused_count,
         total_cells=ny * nx,
