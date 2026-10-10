@@ -38,9 +38,9 @@ from pyproj import Transformer
 # Add src to pythonpath
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 

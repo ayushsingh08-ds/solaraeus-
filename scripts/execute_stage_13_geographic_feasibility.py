@@ -33,8 +33,8 @@ import matplotlib.pyplot as plt
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
 from solaraeus.optimization.feasibility import (
     RejectionReason, FeasibilityResult, FeasibilityConstraints, check_feasibility

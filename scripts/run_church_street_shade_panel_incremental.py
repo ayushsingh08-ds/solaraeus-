@@ -41,10 +41,10 @@ from shapely.geometry import shape, Point
 from shapely.ops import transform
 from pyproj import Transformer
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit

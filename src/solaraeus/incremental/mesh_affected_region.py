@@ -11,9 +11,9 @@ import math
 from typing import Tuple, Optional, List
 import numpy as np
 
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition
 from solaraeus.incremental.affected_region import AffectedRegionResult
 

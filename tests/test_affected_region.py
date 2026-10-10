@@ -7,10 +7,10 @@ import math
 import numpy as np
 import pytest
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition
 from solaraeus.visibility.shadow import compute_direct_shadow_mask
 from solaraeus.incremental.update import (

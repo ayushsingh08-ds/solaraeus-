@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Tuple, Optional
 import numpy as np
 
-from solaraeus.geometry.scene import PedestrianGridConfig
+from solaraeus.core.geometry.scene import PedestrianGridConfig
 
 
 class PedestrianGrid:

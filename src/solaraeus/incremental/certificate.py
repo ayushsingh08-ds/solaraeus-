@@ -9,9 +9,9 @@ from typing import Tuple, Optional, List, Dict, Any
 import math
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig, SIGMA
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, SIGMA
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition
 from solaraeus.radiation.longwave import compute_air_emissivity
 from solaraeus.incremental.update import GeometricEdit, AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit
@@ -154,7 +154,7 @@ def generate_error_certificate(scene_before: Scene,
     a_l = 0.97
 
     # Extract materials from scene (or fall back to defaults)
-    from solaraeus.config import DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+    from solaraeus.core.config import DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
     wall_mat = scene_after.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
     ground_mat = scene_after.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
     albedo_ground = ground_mat.albedo

@@ -11,8 +11,8 @@ import math
 from typing import List, Tuple
 import numpy as np
 
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 
 
 def create_scaling_scene(extent_m: float,

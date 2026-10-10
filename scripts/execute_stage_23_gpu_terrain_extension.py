@@ -17,9 +17,9 @@ import numpy as np
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, create_single_box_scene
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, create_single_box_scene
 from solaraeus.terrain import (
     TerrainGrid, TerrainAwareScene, TerrainAwareCPUSolver, TerrainAwareGPUBackend
 )

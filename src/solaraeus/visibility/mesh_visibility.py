@@ -10,9 +10,9 @@ import math
 from typing import Optional, List, Tuple
 import numpy as np
 
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.visibility.mesh_ray_intersection import intersect_rays_mesh_batch
 
 

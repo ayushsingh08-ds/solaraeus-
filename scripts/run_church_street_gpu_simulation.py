@@ -27,10 +27,10 @@ import numpy as np
 # Add src to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.backends.gpu import GPUBackend
 from solaraeus.backends.cpu import CPUBackend

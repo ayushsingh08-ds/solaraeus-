@@ -8,8 +8,8 @@ from dataclasses import dataclass, field
 from typing import Optional, Dict, Any, List, Tuple
 import numpy as np
 
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene
 from solaraeus.terrain.dtm import TerrainGrid
 
 

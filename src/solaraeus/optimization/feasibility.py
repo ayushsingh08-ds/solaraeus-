@@ -19,7 +19,7 @@ from shapely.geometry import Polygon, MultiPolygon
 from shapely.ops import unary_union
 
 from solaraeus.optimization.parameters import ShadePanelParams, build_panel_geometry
-from solaraeus.geometry.scene import Scene
+from solaraeus.core.geometry.scene import Scene
 
 
 class RejectionReason(str, Enum):

@@ -10,8 +10,8 @@ from dataclasses import dataclass
 from typing import Tuple, Optional
 import numpy as np
 
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
 from solaraeus.incremental.update import GeometricEdit
 
 

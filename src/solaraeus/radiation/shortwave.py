@@ -8,7 +8,7 @@ from dataclasses import dataclass
 import math
 import numpy as np
 
-from solaraeus.config import Weather, Material
+from solaraeus.core.config import Weather, Material
 from solaraeus.solar.solar_position import SolarPosition
 
 

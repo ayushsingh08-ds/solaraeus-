@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.mesh import TriangleMesh
 
 
 @pytest.fixture(scope="module")

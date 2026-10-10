@@ -21,10 +21,10 @@ import time
 from typing import Dict, List, Tuple, Any, Optional
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.mesh import TriangleMesh, create_box_mesh
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.mesh import TriangleMesh, create_box_mesh
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.validation.metrics import compute_shadow_iou, compute_utci_category_agreement
 

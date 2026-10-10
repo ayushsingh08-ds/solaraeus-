@@ -13,7 +13,7 @@ from solaraeus.visibility.mesh_ray_intersection import (
     intersect_rays_mesh_batch,
     intersect_rays_scene_meshes
 )
-from solaraeus.geometry.mesh import create_box_mesh, TriangleMesh
+from solaraeus.core.geometry.mesh import create_box_mesh, TriangleMesh
 
 
 @pytest.fixture

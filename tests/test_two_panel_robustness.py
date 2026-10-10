@@ -30,10 +30,10 @@ import pytest
 import numpy as np
 from shapely.geometry import Polygon, Point
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit

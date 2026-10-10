@@ -35,9 +35,9 @@ import matplotlib.patches as patches
 # Ensure src is discoverable
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,

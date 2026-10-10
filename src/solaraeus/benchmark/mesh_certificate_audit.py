@@ -17,8 +17,8 @@ import time
 from typing import Dict, List, Tuple, Any, Optional
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.mesh import (
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.mesh import (
     TriangleMesh,
     create_box_mesh,
     create_rotated_box_mesh,
@@ -26,8 +26,8 @@ from solaraeus.geometry.mesh import (
     create_overhang_mesh,
     create_l_shaped_mesh
 )
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.incremental.mesh_update import (
     AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit

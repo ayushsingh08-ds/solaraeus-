@@ -24,9 +24,9 @@ _SRC = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "src"
 if sys.path and sys.path[0] != _SRC:
     sys.path.insert(0, _SRC)
 
-from solaraeus.config import Weather, SimulationConfig  # noqa: E402
-from solaraeus.geometry.primitives import Building, BoundingBox2D  # noqa: E402
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig  # noqa: E402
+from solaraeus.core.config import Weather, SimulationConfig  # noqa: E402
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D  # noqa: E402
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig  # noqa: E402
 from solaraeus.reference.full_recompute import full_recompute  # noqa: E402
 from solaraeus.incremental.update import AddBuildingEdit, incremental_update_certified  # noqa: E402
 from solaraeus.incremental.certificate import verify_certificate  # noqa: E402

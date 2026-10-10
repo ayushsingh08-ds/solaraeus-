@@ -9,8 +9,8 @@ import json
 from typing import Dict, List, Optional, Set, Any
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.scene import Scene
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.scene import Scene
 from solaraeus.solar.solar_position import SolarPosition
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.dependency_graph import DependencyGraph

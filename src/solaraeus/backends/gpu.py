@@ -15,11 +15,11 @@ from solaraeus.backends.base import (
     SimulationBackend, FlattenedSceneGeometry, BackendProfileMetrics
 )
 from solaraeus.backends.cpu import CPUBackend
-from solaraeus.config import (
+from solaraeus.core.config import (
     Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.radiation.shortwave import compute_shortwave_fluxes
 from solaraeus.radiation.longwave import compute_longwave_fluxes

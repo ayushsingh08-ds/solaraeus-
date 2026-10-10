@@ -5,8 +5,8 @@ Unit tests for the pedestrian calculation grid.
 import numpy as np
 import pytest
 
-from solaraeus.geometry.scene import PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 
 
 def test_pedestrian_grid_initialization():

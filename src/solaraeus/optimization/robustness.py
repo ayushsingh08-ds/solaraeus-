@@ -22,9 +22,9 @@ import time
 from typing import Dict, Any, List, Optional, Tuple, Sequence
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import AddMultiMeshEdit

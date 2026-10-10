@@ -15,12 +15,12 @@ from datetime import datetime, timezone
 from typing import Optional, Tuple, Dict, Any, List
 import numpy as np
 
-from solaraeus.config import (
+from solaraeus.core.config import (
     Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.update import GeometricEdit, IncrementalUpdateResult

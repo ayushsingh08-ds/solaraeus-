@@ -6,7 +6,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import numpy as np
 
-from solaraeus.config import Weather, Material, SIGMA
+from solaraeus.core.config import Weather, Material, SIGMA
 
 
 @dataclass

@@ -5,9 +5,9 @@ Unit tests for dependency graph traversal, hashing, and cache maintenance.
 import numpy as np
 import pytest
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import create_single_box_scene
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import create_single_box_scene
 from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.incremental.dependency_graph import (
     DependencyGraph, FIELD_SHADOW, FIELD_SVF, FIELD_SHORTWAVE,

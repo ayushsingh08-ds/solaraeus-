@@ -17,16 +17,16 @@ import math
 import pytest
 import numpy as np
 
-from solaraeus.config import SimulationConfig, Weather
-from solaraeus.geometry.mesh import (
+from solaraeus.core.config import SimulationConfig, Weather
+from solaraeus.core.geometry.mesh import (
     TriangleMesh,
     create_box_mesh,
     create_rotated_box_mesh,
     create_pitched_roof_mesh,
     create_l_shaped_mesh
 )
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition
 from solaraeus.visibility.mesh_ray_intersection import (
     intersect_ray_mesh, intersect_rays_mesh_batch

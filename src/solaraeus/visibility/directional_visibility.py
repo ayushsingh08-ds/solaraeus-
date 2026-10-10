@@ -7,9 +7,9 @@ import math
 from typing import Optional, List
 import numpy as np
 
-from solaraeus.geometry.scene import Scene
-from solaraeus.geometry.primitives import Building
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.geometry.primitives import Building
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 
 
 def compute_sky_view_factor(scene: Scene, grid: PedestrianGrid,

@@ -22,7 +22,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 
-from solaraeus.config import SIGMA
+from solaraeus.core.config import SIGMA
 from solaraeus.radiation.tmrt import compute_tmrt
 from solaraeus.solar.cloud_model import CloudState, cloud_model
 from solaraeus.solar.solar_position import SolarPosition

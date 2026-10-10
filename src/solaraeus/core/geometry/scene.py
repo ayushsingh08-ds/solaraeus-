@@ -7,11 +7,11 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple, Any
 import json
 
-from solaraeus.config import (
+from solaraeus.core.config import (
     Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.mesh import TriangleMesh
 
 
 @dataclass

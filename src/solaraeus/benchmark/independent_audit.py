@@ -24,10 +24,10 @@ import time
 from typing import Dict, List, Tuple, Any, Optional
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig, SIGMA, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, SIGMA, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.update import (

@@ -19,7 +19,7 @@ from solaraeus.benchmark.aabb_vs_mesh_benchmark import (
     run_single_comparison,
     run_aabb_vs_mesh_benchmark,
 )
-from solaraeus.config import Weather, SimulationConfig
+from solaraeus.core.config import Weather, SimulationConfig
 
 
 @pytest.fixture

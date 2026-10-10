@@ -24,13 +24,13 @@ import numpy as np
 from pyproj import Transformer
 from shapely.geometry import shape, Polygon, MultiPolygon
 
-from solaraeus.config import (
+from solaraeus.core.config import (
     Material,
     DEFAULT_GROUND_MATERIAL,
     DEFAULT_WALL_MATERIAL,
 )
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import GroundPlane, PedestrianGridConfig, Scene
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import GroundPlane, PedestrianGridConfig, Scene
 
 
 @dataclass

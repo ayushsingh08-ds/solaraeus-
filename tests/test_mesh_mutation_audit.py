@@ -11,12 +11,12 @@ import math
 import numpy as np
 import pytest
 
-from solaraeus.config import (
+from solaraeus.core.config import (
     Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from solaraeus.geometry.mesh import create_box_mesh, create_pitched_roof_mesh
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.mesh import create_box_mesh, create_pitched_roof_mesh
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import ChangeMeshHeightEdit

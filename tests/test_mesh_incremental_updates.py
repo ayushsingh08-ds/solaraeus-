@@ -8,15 +8,15 @@ import time
 import pytest
 import numpy as np
 
-from solaraeus.geometry.mesh import (
+from solaraeus.core.geometry.mesh import (
     create_box_mesh,
     create_rotated_box_mesh,
     create_pitched_roof_mesh,
     create_overhang_mesh
 )
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.config import SimulationConfig, Weather
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.config import SimulationConfig, Weather
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.incremental.mesh_update import (
     AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit

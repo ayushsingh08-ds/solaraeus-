@@ -18,11 +18,11 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.mesh import create_box_mesh, create_overhang_mesh, TriangleMesh
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import create_box_mesh, create_overhang_mesh, TriangleMesh
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit

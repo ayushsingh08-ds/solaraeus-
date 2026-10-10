@@ -10,7 +10,7 @@ from __future__ import annotations
 from typing import Tuple, Optional, List
 import numpy as np
 
-from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.visibility.ray_intersection import intersect_ray_aabb, intersect_rays_aabb_batch
 
 

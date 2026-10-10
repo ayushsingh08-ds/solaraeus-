@@ -20,10 +20,10 @@ import tracemalloc
 from typing import Dict, List, Tuple, Any, Optional
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.mesh import TriangleMesh, create_box_mesh
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.mesh import TriangleMesh, create_box_mesh
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.visibility.shadow import compute_direct_shadow_mask

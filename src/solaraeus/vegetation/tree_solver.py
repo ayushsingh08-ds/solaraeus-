@@ -12,10 +12,10 @@ import time
 from typing import Dict, List, Optional, Tuple, Any
 import numpy as np
 
-from solaraeus.config import (
+from solaraeus.core.config import (
     Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.radiation.shortwave import compute_shortwave_fluxes
 from solaraeus.radiation.longwave import compute_longwave_fluxes

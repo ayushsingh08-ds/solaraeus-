@@ -12,7 +12,7 @@ from typing import Dict, Any, List, Tuple, Optional
 import numpy as np
 from shapely.geometry import Polygon
 
-from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
 
 

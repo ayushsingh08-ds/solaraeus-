@@ -10,7 +10,7 @@ from __future__ import annotations
 import pytest
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig
+from solaraeus.core.config import Weather, SimulationConfig
 from solaraeus.benchmark.scenes import create_scaling_scene
 from solaraeus.benchmark.independent_audit import run_mutation_tests
 

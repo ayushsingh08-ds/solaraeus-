@@ -6,9 +6,9 @@ from __future__ import annotations
 from typing import Optional, List
 import numpy as np
 
-from solaraeus.geometry.scene import Scene
-from solaraeus.geometry.primitives import Building
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.geometry.primitives import Building
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition
 from solaraeus.visibility.ray_intersection import intersect_rays_aabb_batch
 

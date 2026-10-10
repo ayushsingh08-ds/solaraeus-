@@ -26,11 +26,11 @@ import numpy as np
 import pytest
 from shapely.geometry import Polygon, box
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.optimization.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry

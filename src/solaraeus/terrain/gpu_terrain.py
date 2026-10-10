@@ -16,8 +16,8 @@ except ImportError:
     cp = None
     CUPY_AVAILABLE = False
 
-from solaraeus.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.backends.gpu import GPUBackend

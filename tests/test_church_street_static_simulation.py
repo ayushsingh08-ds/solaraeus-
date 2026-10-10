@@ -20,9 +20,9 @@ from datetime import datetime, timezone
 import numpy as np
 import pytest
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position
 
 

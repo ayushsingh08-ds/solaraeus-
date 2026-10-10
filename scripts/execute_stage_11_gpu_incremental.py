@@ -27,10 +27,10 @@ sys.path.insert(0, str(root_dir / "src"))
 
 import cupy as cp
 
-from solaraeus.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from solaraeus.geometry.mesh import TriangleMesh
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.incremental.mesh_update import AddMeshEdit

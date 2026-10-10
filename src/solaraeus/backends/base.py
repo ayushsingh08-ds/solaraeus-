@@ -11,11 +11,11 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Tuple, Optional, Any
 import numpy as np
 
-from solaraeus.geometry.scene import Scene
-from solaraeus.geometry.mesh import TriangleMesh, create_box_mesh
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.geometry.mesh import TriangleMesh, create_box_mesh
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.solar.solar_position import SolarPosition
-from solaraeus.config import Weather, SimulationConfig
+from solaraeus.core.config import Weather, SimulationConfig
 
 
 @dataclass

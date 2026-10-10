@@ -22,9 +22,9 @@ import time
 from typing import List, Dict, Any, Tuple
 import numpy as np
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.primitives import Building, BoundingBox2D
-from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,

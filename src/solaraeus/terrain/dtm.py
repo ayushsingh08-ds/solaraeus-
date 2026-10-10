@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from typing import Tuple, Optional, Dict, Any
 import numpy as np
 
-from solaraeus.geometry.primitives import BoundingBox2D
+from solaraeus.core.geometry.primitives import BoundingBox2D
 
 
 @dataclass

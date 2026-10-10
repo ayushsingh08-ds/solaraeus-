@@ -17,7 +17,7 @@ from solaraeus.benchmark.mesh_scaling_benchmark import (
     run_scaling_trial,
     run_mesh_scaling_benchmark,
 )
-from solaraeus.config import Weather, SimulationConfig
+from solaraeus.core.config import Weather, SimulationConfig
 
 
 @pytest.fixture

@@ -6,8 +6,8 @@ Verifies complete pipeline execution, physical energy bounds, and determinism.
 import numpy as np
 import pytest
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.scene import create_single_box_scene, create_canyon_scene
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.scene import create_single_box_scene, create_canyon_scene
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 
 

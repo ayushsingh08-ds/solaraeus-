@@ -15,7 +15,7 @@ from dataclasses import dataclass
 from typing import Dict, Any, Tuple, List
 import numpy as np
 
-from solaraeus.config import SIGMA
+from solaraeus.core.config import SIGMA
 from solaraeus.radiation.tmrt import compute_tmrt
 
 

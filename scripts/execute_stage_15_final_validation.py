@@ -35,9 +35,9 @@ import sys
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from solaraeus.config import Weather, SimulationConfig, Material
-from solaraeus.geometry.scene import Scene
-from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.incremental.mesh_update import AddMeshEdit
 from solaraeus.incremental.update import incremental_update_certified

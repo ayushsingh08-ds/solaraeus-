@@ -6,8 +6,8 @@ import math
 import numpy as np
 import pytest
 
-from solaraeus.config import Weather, SimulationConfig
-from solaraeus.geometry.scene import create_single_box_scene
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.scene import create_single_box_scene
 from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 from solaraeus.validation.comparisons import (
     compare_arrays, compare_results, format_comparison_summary, ComparisonMetrics
