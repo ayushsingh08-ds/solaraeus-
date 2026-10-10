@@ -30,7 +30,9 @@ def test_cloud_radiation_monotonicity():
     m_overcast = cloud_model.generate_cloud_mask(state_overcast)
 
     rad_few = cloud_model.compute_radiation_coupling(state_few, 850.0, 140.0, 360.0, m_few)
-    rad_overcast = cloud_model.compute_radiation_coupling(state_overcast, 850.0, 140.0, 360.0, m_overcast)
+    rad_overcast = cloud_model.compute_radiation_coupling(
+        state_overcast, 850.0, 140.0, 360.0, m_overcast
+    )
 
     # Overcast must have lower direct beam than Few
     assert rad_overcast["mean_dni"] < rad_few["mean_dni"]
@@ -48,7 +50,9 @@ def test_analytic_shadow_offset():
         mask, sun_altitude_deg=45.0, sun_azimuth_deg=180.0, cloud_height_m=1000.0
     )
     assert abs(offset_m[0]) < 1e-3, "East-west shift should be ~0 when sun is Due South"
-    assert offset_m[1] == pytest.approx(1000.0, rel=1e-3), "Northward shadow shift should equal 1000m"
+    assert offset_m[1] == pytest.approx(1000.0, rel=1e-3), (
+        "Northward shadow shift should equal 1000m"
+    )
 
 
 def test_seed_reproducibility():

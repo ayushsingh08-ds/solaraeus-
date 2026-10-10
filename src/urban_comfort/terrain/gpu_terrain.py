@@ -12,6 +12,7 @@ import numpy as np
 
 try:
     import cupy as cp
+
     CUPY_AVAILABLE = True
 except ImportError:
     cp = None
@@ -25,7 +26,7 @@ from urban_comfort.terrain.terrain_scene import TerrainAwareScene
 from urban_comfort.terrain.terrain_solver import TerrainAwareCPUSolver
 
 # CUDA C++ Kernel for Terrain-Aware Direct Shadows
-CUDA_TERRAIN_SHADOW_KERNEL = r'''
+CUDA_TERRAIN_SHADOW_KERNEL = r"""
 extern "C" {
 
 __global__
@@ -129,7 +130,7 @@ void terrain_shadow_kernel(
     out_shadow_mask[idx] = 1.0;
 }
 }
-'''
+"""
 
 
 class TerrainAwareGPUBackend:
@@ -137,6 +138,7 @@ class TerrainAwareGPUBackend:
     GPU-accelerated solver backend for terrain-aware urban thermal simulation.
     API Version: 2.1.0-gpu-terrain
     """
+
     VERSION: str = "2.1.0-gpu-terrain"
 
     def __init__(self):
@@ -146,12 +148,14 @@ class TerrainAwareGPUBackend:
         self._shadow_kernel = cp.RawKernel(CUDA_TERRAIN_SHADOW_KERNEL, "terrain_shadow_kernel")
 
     @classmethod
-    def simulate(cls, scene: TerrainAwareScene, weather: Weather,
-                 config: SimulationConfig) -> SimulationResult:
+    def simulate(
+        cls, scene: TerrainAwareScene, weather: Weather, config: SimulationConfig
+    ) -> SimulationResult:
         return cls().full_simulate(scene, weather, config)
 
-    def full_simulate(self, scene: TerrainAwareScene, weather: Weather,
-                      config: SimulationConfig) -> SimulationResult:
+    def full_simulate(
+        self, scene: TerrainAwareScene, weather: Weather, config: SimulationConfig
+    ) -> SimulationResult:
         """
         Executes full GPU simulation with terrain awareness.
         If terrain is None, delegates directly to GPUBackend (flat ground) for exact parity.
@@ -189,7 +193,9 @@ class TerrainAwareGPUBackend:
         b_boxes = []
         for b in buildings:
             b_boxes.extend([b.xmin, b.xmax, b.ymin, b.ymax, b.zmin, b.zmax])
-        b_boxes_np = np.array(b_boxes, dtype=np.float64) if b_boxes else np.zeros((0,), dtype=np.float64)
+        b_boxes_np = (
+            np.array(b_boxes, dtype=np.float64) if b_boxes else np.zeros((0,), dtype=np.float64)
+        )
 
         # 5. Upload to GPU
         d_origins = cp.asarray(ray_origins_np)
@@ -218,13 +224,25 @@ class TerrainAwareGPUBackend:
         blocks = (n_rays + threads_per_block - 1) // threads_per_block
 
         self._shadow_kernel(
-            (blocks,), (threads_per_block,),
+            (blocks,),
+            (threads_per_block,),
             (
-                d_origins, d_dir, d_bldgs, d_elev, d_valid,
-                n_rays, len(buildings),
-                t_xmin, t_ymin, t_dx, t_dy, t_nx, t_ny,
-                check_terrain, d_shadow
-            )
+                d_origins,
+                d_dir,
+                d_bldgs,
+                d_elev,
+                d_valid,
+                n_rays,
+                len(buildings),
+                t_xmin,
+                t_ymin,
+                t_dx,
+                t_dy,
+                t_nx,
+                t_ny,
+                check_terrain,
+                d_shadow,
+            ),
         )
         cp.cuda.Stream.null.synchronize()
 
@@ -239,7 +257,9 @@ class TerrainAwareGPUBackend:
         metadata["backend"] = "GPU_CUDA"
         metadata["gpu_device"] = cp.cuda.runtime.getDeviceProperties(0)["name"].decode("utf-8")
         metadata["gpu_runtime_sec"] = t_total
-        metadata["gpu_vram_used_mb"] = float(cp.get_default_memory_pool().used_bytes()) / (1024 * 1024)
+        metadata["gpu_vram_used_mb"] = float(cp.get_default_memory_pool().used_bytes()) / (
+            1024 * 1024
+        )
 
         return SimulationResult(
             shadow_mask=gpu_shadow_mask,
@@ -249,14 +269,17 @@ class TerrainAwareGPUBackend:
             longwave_flux=res_cpu.longwave_flux,
             tmrt=res_cpu.tmrt,
             utci=res_cpu.utci,
-            metadata=metadata
+            metadata=metadata,
         )
 
-    def incremental_simulate(self, previous_result: SimulationResult,
-                             scene: TerrainAwareScene,
-                             dirty_mask: np.ndarray,
-                             weather: Weather,
-                             config: SimulationConfig) -> Tuple[SimulationResult, Dict[str, Any]]:
+    def incremental_simulate(
+        self,
+        previous_result: SimulationResult,
+        scene: TerrainAwareScene,
+        dirty_mask: np.ndarray,
+        weather: Weather,
+        config: SimulationConfig,
+    ) -> Tuple[SimulationResult, Dict[str, Any]]:
         """
         Executes resident GPU incremental update, recomputing exclusively within dirty_mask.
         """
@@ -281,7 +304,7 @@ class TerrainAwareGPUBackend:
             "runtime_sec": t_inc,
             "speedup_vs_full": full_res.metadata.get("gpu_runtime_sec", 0.05) / max(1e-5, t_inc),
             "certificate_bound_k": 0.0812,
-            "max_error_k": float(np.nanmax(np.abs(updated_tmrt - full_res.tmrt)))
+            "max_error_k": float(np.nanmax(np.abs(updated_tmrt - full_res.tmrt))),
         }
 
         updated_res = SimulationResult(
@@ -292,6 +315,6 @@ class TerrainAwareGPUBackend:
             longwave_flux=full_res.longwave_flux,
             tmrt=updated_tmrt,
             utci=updated_utci,
-            metadata=full_res.metadata
+            metadata=full_res.metadata,
         )
         return updated_res, inc_metrics

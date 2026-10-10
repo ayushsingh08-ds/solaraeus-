@@ -33,13 +33,15 @@ from urban_comfort.visibility.directional_visibility import compute_sky_view_fac
 from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
-def create_mesh_scaling_scene(num_buildings: int,
-                              extent_m: float = 100.0,
-                              resolution_m: float = 1.0,
-                              pedestrian_height_m: float = 1.1) -> Scene:
+def create_mesh_scaling_scene(
+    num_buildings: int,
+    extent_m: float = 100.0,
+    resolution_m: float = 1.0,
+    pedestrian_height_m: float = 1.1,
+) -> Scene:
     """
     Constructs a reproducible synthetic urban scene with a regular grid of box meshes.
-    
+
     Parameters:
         num_buildings: Number of box buildings (1, 4, 16, 64, 256).
                        Yields exactly 12 * num_buildings triangles.
@@ -51,7 +53,7 @@ def create_mesh_scaling_scene(num_buildings: int,
         extent_x=extent_m,
         extent_y=extent_m,
         resolution=resolution_m,
-        pedestrian_height=pedestrian_height_m
+        pedestrian_height=pedestrian_height_m,
     )
     scene = Scene(pedestrian_grid=grid_cfg)
 
@@ -73,10 +75,13 @@ def create_mesh_scaling_scene(num_buildings: int,
             height = 15.0 + ((ix * 3 + iy * 5) % 4) * 3.0  # 15.0 to 24.0m
             mesh = create_box_mesh(
                 box_id=f"box_{bldg_idx}",
-                xmin=x1, xmax=x2,
-                ymin=y1, ymax=y2,
-                zmin=0.0, zmax=height,
-                material_id="default_wall"
+                xmin=x1,
+                xmax=x2,
+                ymin=y1,
+                ymax=y2,
+                zmin=0.0,
+                zmax=height,
+                material_id="default_wall",
             )
             scene.add_mesh(mesh)
             bldg_idx += 1
@@ -84,11 +89,9 @@ def create_mesh_scaling_scene(num_buildings: int,
     return scene
 
 
-def run_scaling_trial(scene: Scene,
-                      config: SimulationConfig,
-                      weather: Weather,
-                      config_type: str,
-                      tier_id: str) -> Dict[str, Any]:
+def run_scaling_trial(
+    scene: Scene, config: SimulationConfig, weather: Weather, config_type: str, tier_id: str
+) -> Dict[str, Any]:
     """
     Executes a single scaling trial:
     - Measures peak heap memory and execution time of full recompute.
@@ -106,6 +109,7 @@ def run_scaling_trial(scene: Scene,
 
     # Solar position
     from datetime import datetime, timezone
+
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
@@ -118,9 +122,10 @@ def run_scaling_trial(scene: Scene,
     # SVF timing
     t0_svf = time.perf_counter()
     svf = compute_sky_view_factor(
-        scene, grid,
+        scene,
+        grid,
         num_azimuths=config.sky_patch_configuration,
-        max_search_dist_m=config.max_svf_search_dist_m
+        max_search_dist_m=config.max_svf_search_dist_m,
     )
     t_svf = time.perf_counter() - t0_svf
 
@@ -173,10 +178,15 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
     """
     if output_dir is None:
         base_results = "results"
-        mesh_dirs = [
-            os.path.join(base_results, d) for d in os.listdir(base_results)
-            if d.startswith("mesh_validation_") and os.path.isdir(os.path.join(base_results, d))
-        ] if os.path.exists(base_results) else []
+        mesh_dirs = (
+            [
+                os.path.join(base_results, d)
+                for d in os.listdir(base_results)
+                if d.startswith("mesh_validation_") and os.path.isdir(os.path.join(base_results, d))
+            ]
+            if os.path.exists(base_results)
+            else []
+        )
 
         if mesh_dirs:
             output_dir = sorted(mesh_dirs)[-1]
@@ -192,7 +202,7 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
         wind_speed=1.5,
         wind_direction=180.0,
         direct_normal_irradiance=850.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
 
     records: List[Dict[str, Any]] = []
@@ -220,7 +230,7 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
             tmrt_tolerance=0.5,
             numerical_tolerance=0.05,
             sky_patch_configuration=16,
-            max_svf_search_dist_m=100.0
+            max_svf_search_dist_m=100.0,
         )
         scene = create_mesh_scaling_scene(n_bldgs, extent_m=100.0, resolution_m=1.0)
         rec = run_scaling_trial(scene, cfg, weather, "triangle_scaling", tier_id)
@@ -247,7 +257,7 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
             tmrt_tolerance=0.5,
             numerical_tolerance=0.05,
             sky_patch_configuration=16,
-            max_svf_search_dist_m=80.0
+            max_svf_search_dist_m=80.0,
         )
         scene = create_mesh_scaling_scene(16, extent_m=80.0, resolution_m=res)
         rec = run_scaling_trial(scene, cfg, weather, "resolution_scaling", tier_id)
@@ -285,10 +295,14 @@ if __name__ == "__main__":
     summary = run_mesh_scaling_benchmark()
     print(f"Scaling benchmark completed! Output: {summary['output_directory']}")
     for r in summary["triangle_scaling"]:
-        print(f"  [Tri] {r['tier_id']}: M={r['mesh_triangle_count']}, "
-              f"Full={r['time_full_recompute_sec']:.3f}s, Mem={r['peak_memory_mb']:.1f}MB, "
-              f"Speedup={r['speedup_ratio']:.2f}x")
+        print(
+            f"  [Tri] {r['tier_id']}: M={r['mesh_triangle_count']}, "
+            f"Full={r['time_full_recompute_sec']:.3f}s, Mem={r['peak_memory_mb']:.1f}MB, "
+            f"Speedup={r['speedup_ratio']:.2f}x"
+        )
     for r in summary["resolution_scaling"]:
-        print(f"  [Res] {r['tier_id']}: dx={r['grid_resolution_m']}m, N={r['grid_cells_total']}, "
-              f"Full={r['time_full_recompute_sec']:.3f}s, Mem={r['peak_memory_mb']:.1f}MB, "
-              f"Speedup={r['speedup_ratio']:.2f}x")
+        print(
+            f"  [Res] {r['tier_id']}: dx={r['grid_resolution_m']}m, N={r['grid_cells_total']}, "
+            f"Full={r['time_full_recompute_sec']:.3f}s, Mem={r['peak_memory_mb']:.1f}MB, "
+            f"Speedup={r['speedup_ratio']:.2f}x"
+        )

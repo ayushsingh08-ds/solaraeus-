@@ -78,11 +78,7 @@ class CloudModel:
         """Create cloud state object."""
         if preset in self.PRESETS:
             p_data = self.PRESETS[preset]
-            cov = (
-                custom_cover
-                if custom_cover is not None
-                else p_data["cover"]
-            )
+            cov = custom_cover if custom_cover is not None else p_data["cover"]
             oktas = p_data["oktas"]
             tau = p_data["tau"]
         else:
@@ -108,7 +104,11 @@ class CloudModel:
         )
 
     def generate_cloud_mask(
-        self, state: CloudState, elapsed_seconds: float = 0.0, nx: Optional[int] = None, ny: Optional[int] = None
+        self,
+        state: CloudState,
+        elapsed_seconds: float = 0.0,
+        nx: Optional[int] = None,
+        ny: Optional[int] = None,
     ) -> np.ndarray:
         """
         Synthesizes a 2D spatial cloud density mask (shape: ny, nx) in [0, 1].
@@ -224,12 +224,12 @@ class CloudModel:
         # Diffuse fraction modification:
         # Clear sky diffuse fraction ~ 0.18; under 100% cloud cover ~ 0.95
         # Diffuse radiation increases under broken clouds due to forward scattering
-        diffuse_multiplier = 1.0 + 0.85 * (c ** 0.8) - 0.45 * (c ** 2.5)
+        diffuse_multiplier = 1.0 + 0.85 * (c**0.8) - 0.45 * (c**2.5)
         dhi_val = clear_dhi * diffuse_multiplier
 
         # Sky longwave augmentation (Maykut & Church 1973 formulation):
         # L_sky(c) = L_sky_clear * (1.0 + 0.22 * c^1.5)
-        l_sky_val = clear_l_sky * (1.0 + 0.22 * (c ** 1.5))
+        l_sky_val = clear_l_sky * (1.0 + 0.22 * (c**1.5))
 
         return {
             "cloud_transmittance_field": cloud_transmittance_field,

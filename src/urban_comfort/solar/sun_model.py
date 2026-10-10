@@ -201,7 +201,7 @@ class SunModel:
                 pz = centroid[2] + dome_radius * pos.sun_vector[2]
                 sphere = trimesh.creation.icosphere(radius=3.5)
                 sphere.apply_translation([px, py, pz])
-                scene.add_geometry(sphere, node_name=f"sun_marker_{int(h*10)}")
+                scene.add_geometry(sphere, node_name=f"sun_marker_{int(h * 10)}")
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         glb_data = scene.export(file_type="glb")

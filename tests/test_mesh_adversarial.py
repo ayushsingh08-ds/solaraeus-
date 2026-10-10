@@ -50,11 +50,13 @@ from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 def base_env():
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
-        date="2026-06-21", local_time="12:00:00",
+        latitude=40.7128,
+        longitude=-74.0060,
+        date="2026-06-21",
+        local_time="12:00:00",
         tmrt_tolerance=2.0,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=30.0
+        max_svf_search_dist_m=30.0,
     )
     weather = Weather(
         air_temperature=300.15,
@@ -62,7 +64,7 @@ def base_env():
         wind_speed=1.5,
         wind_direction=180.0,
         direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
     return grid_cfg, config, weather
 
@@ -70,32 +72,37 @@ def base_env():
 def test_adv_mesh_01_extreme_aspect_ratio_sliver():
     """Needle-thin sliver triangles (aspect ratio 500:1) must not produce NaNs or divide-by-zero."""
     # Sliver triangle: length 50m, base 0.1m
-    verts = np.array([
-        [0.0, 0.0, 0.0],
-        [50.0, 0.0, 0.0],
-        [25.0, 0.1, 0.0],
-        # Add slight thickness in Z to make a 3D prism
-        [0.0, 0.0, 5.0],
-        [50.0, 0.0, 5.0],
-        [25.0, 0.1, 5.0],
-    ], dtype=np.float64)
+    verts = np.array(
+        [
+            [0.0, 0.0, 0.0],
+            [50.0, 0.0, 0.0],
+            [25.0, 0.1, 0.0],
+            # Add slight thickness in Z to make a 3D prism
+            [0.0, 0.0, 5.0],
+            [50.0, 0.0, 5.0],
+            [25.0, 0.1, 5.0],
+        ],
+        dtype=np.float64,
+    )
 
-    tris = np.array([
-        [0, 1, 2], [3, 5, 4],
-        [0, 3, 4], [0, 4, 1],
-        [1, 4, 5], [1, 5, 2],
-        [2, 5, 3], [2, 3, 0]
-    ], dtype=np.int64)
+    tris = np.array(
+        [[0, 1, 2], [3, 5, 4], [0, 3, 4], [0, 4, 1], [1, 4, 5], [1, 5, 2], [2, 5, 3], [2, 3, 0]],
+        dtype=np.int64,
+    )
 
     sliver_mesh = TriangleMesh(id="sliver", vertices=verts, triangles=tris)
 
     # Shoot ray downwards through center of sliver
-    hit = intersect_ray_mesh(origin=(25.0, 0.05, 10.0), direction=(0.0, 0.0, -1.0), mesh=sliver_mesh)
+    hit = intersect_ray_mesh(
+        origin=(25.0, 0.05, 10.0), direction=(0.0, 0.0, -1.0), mesh=sliver_mesh
+    )
     assert hit is not None
     assert abs(hit - 5.0) < 1e-4, f"Expected hit distance 5.0m, got {hit}"
 
     # Shoot ray that cleanly misses
-    miss = intersect_ray_mesh(origin=(25.0, 0.5, 10.0), direction=(0.0, 0.0, -1.0), mesh=sliver_mesh)
+    miss = intersect_ray_mesh(
+        origin=(25.0, 0.5, 10.0), direction=(0.0, 0.0, -1.0), mesh=sliver_mesh
+    )
     assert miss is None
 
 
@@ -104,17 +111,22 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
     grid_cfg, _, weather = base_env
     # Grazing sun at ~6.6 deg (10:10 UTC in June for NYC)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
-        date="2026-06-21", local_time="10:10:00",
+        latitude=40.7128,
+        longitude=-74.0060,
+        date="2026-06-21",
+        local_time="10:10:00",
         tmrt_tolerance=2.5,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=30.0
+        max_svf_search_dist_m=30.0,
     )
     # Check that solar altitude is indeed low (> 5.0 deg and < 10.0 deg)
     from datetime import datetime, timezone
 
     from urban_comfort.solar.solar_position import calculate_solar_position
-    dt_utc = datetime.strptime(f"{config.date} {config.local_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+
+    dt_utc = datetime.strptime(f"{config.date} {config.local_time}", "%Y-%m-%d %H:%M:%S").replace(
+        tzinfo=timezone.utc
+    )
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
     assert 4.0 <= solar_pos.altitude_deg <= 15.0, f"Solar altitude is {solar_pos.altitude_deg}"
 
@@ -127,16 +139,20 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
     scene_new, _ = edit.apply(scene_base)
 
     res_full = full_recompute(scene_new, weather, config)
-    res_inc, cert = incremental_update_certified(scene_base, scene_new, res_base, edit, weather, config)
+    res_inc, cert = incremental_update_certified(
+        scene_base, scene_new, res_base, edit, weather, config
+    )
 
     audit = audit_certificate_independently(
         full_tmrt=res_full.tmrt,
         incremental_tmrt=res_inc.result.tmrt,
         predicted_bound=cert.predicted_error_bound,
         reused_mask=res_inc.reused_mask,
-        tolerance=config.tmrt_tolerance
+        tolerance=config.tmrt_tolerance,
     )
-    assert audit["is_sound"] is True, f"Found {audit['num_certificate_violations']} violations under grazing sun!"
+    assert audit["is_sound"] is True, (
+        f"Found {audit['num_certificate_violations']} violations under grazing sun!"
+    )
     assert audit["num_certificate_violations"] == 0
 
 
@@ -153,10 +169,16 @@ def test_adv_mesh_03_sequential_compounding_edits(base_env):
     # Perform 5 edits in the center/northeast quadrant [40, 80]
     edits = [
         AddMeshEdit(create_box_mesh("b1", 40.0, 50.0, 40.0, 50.0, 0.0, 10.0)),
-        AddMeshEdit(create_pitched_roof_mesh("p1", 60.0, 75.0, 60.0, 75.0, eave_height=8.0, ridge_height=14.0)),
+        AddMeshEdit(
+            create_pitched_roof_mesh(
+                "p1", 60.0, 75.0, 60.0, 75.0, eave_height=8.0, ridge_height=14.0
+            )
+        ),
         MoveMeshEdit("b1", shift_x=5.0, shift_y=5.0),
-        ReplaceMeshEdit("b1", create_rotated_box_mesh("b1", 47.5, 47.5, 12.0, 12.0, 15.0, angle_deg=30.0)),
-        RemoveMeshEdit("p1")
+        ReplaceMeshEdit(
+            "b1", create_rotated_box_mesh("b1", 47.5, 47.5, 12.0, 12.0, 15.0, angle_deg=30.0)
+        ),
+        RemoveMeshEdit("p1"),
     ]
 
     for i, edit in enumerate(edits):
@@ -172,7 +194,9 @@ def test_adv_mesh_03_sequential_compounding_edits(base_env):
 
     # Distant corner cell (5, 5) at (5.5m, 5.5m) should remain unchanged
     final_distant_tmrt = curr_res.tmrt[5, 5]
-    assert abs(final_distant_tmrt - initial_distant_tmrt) < 1e-10, "Distant cell drifted across compounding edits!"
+    assert abs(final_distant_tmrt - initial_distant_tmrt) < 1e-10, (
+        "Distant cell drifted across compounding edits!"
+    )
 
 
 def test_adv_mesh_04_revert_edit_drift(base_env):
@@ -193,7 +217,9 @@ def test_adv_mesh_04_revert_edit_drift(base_env):
     # 2. Revert by removing mesh
     edit_rem = RemoveMeshEdit("temp")
     scene_revert, _ = edit_rem.apply(scene_mid)
-    res_revert = incremental_update_exact(scene_mid, scene_revert, res_mid.result, edit_rem, weather, config)
+    res_revert = incremental_update_exact(
+        scene_mid, scene_revert, res_mid.result, edit_rem, weather, config
+    )
 
     # Compare reverted result with original baseline
     revert_drift = np.abs(res_revert.result.tmrt - res_base.tmrt)
@@ -204,26 +230,28 @@ def test_adv_mesh_04_revert_edit_drift(base_env):
 def test_adv_mesh_05_ray_grazing_triangle_edge():
     """Rays aimed directly at a shared edge between two triangles must resolve consistently."""
     # Two triangles sharing edge from (0, 0, 0) to (10, 0, 0)
-    verts = np.array([
-        [0.0, 0.0, 0.0],
-        [10.0, 0.0, 0.0],
-        [5.0, 5.0, 0.0],
-        [5.0, -5.0, 0.0],
-    ], dtype=np.float64)
+    verts = np.array(
+        [
+            [0.0, 0.0, 0.0],
+            [10.0, 0.0, 0.0],
+            [5.0, 5.0, 0.0],
+            [5.0, -5.0, 0.0],
+        ],
+        dtype=np.float64,
+    )
 
-    tris = np.array([
-        [0, 1, 2],  # Triangle in +Y
-        [0, 3, 1],  # Triangle in -Y
-    ], dtype=np.int64)
+    tris = np.array(
+        [
+            [0, 1, 2],  # Triangle in +Y
+            [0, 3, 1],  # Triangle in -Y
+        ],
+        dtype=np.int64,
+    )
 
     mesh = TriangleMesh(id="shared_edge", vertices=verts, triangles=tris)
 
     # Cast 100 rays along the shared line y=0 between x=0.1 and x=9.9
-    origins = np.column_stack([
-        np.linspace(0.1, 9.9, 100),
-        np.zeros(100),
-        np.full(100, 5.0)
-    ])
+    origins = np.column_stack([np.linspace(0.1, 9.9, 100), np.zeros(100), np.full(100, 5.0)])
     hits, t_hits = intersect_rays_mesh_batch(origins, direction=(0.0, 0.0, -1.0), mesh=mesh)
 
     # Every single ray along the shared edge must register an intersection at t=5.0m
@@ -261,15 +289,24 @@ def test_adv_mesh_07_concave_self_occlusion(base_env):
     sy = math.cos(az_rad) * math.cos(alt_rad)
     sz = math.sin(alt_rad)
     solar_pos = SolarPosition(
-        altitude_deg=45.0, azimuth_deg=225.0, zenith_deg=45.0,
-        sun_vector=(sx, sy, sz), is_daylight=True
+        altitude_deg=45.0,
+        azimuth_deg=225.0,
+        zenith_deg=45.0,
+        sun_vector=(sx, sy, sz),
+        is_daylight=True,
     )
 
     # L-shaped building [30, 60] x [30, 60] with corner cut out
-    l_mesh = create_l_shaped_mesh("l_mesh", xmin=30.0, ymin=30.0,
-                                  total_width=30.0, total_length=30.0,
-                                  wing_width=15.0, wing_length=15.0,
-                                  height=15.0)
+    l_mesh = create_l_shaped_mesh(
+        "l_mesh",
+        xmin=30.0,
+        ymin=30.0,
+        total_width=30.0,
+        total_length=30.0,
+        wing_width=15.0,
+        wing_length=15.0,
+        height=15.0,
+    )
     scene = Scene(pedestrian_grid=grid_cfg)
     scene.add_mesh(l_mesh)
 
@@ -290,7 +327,7 @@ def test_adv_mesh_08_degenerate_mesh_rejection():
         TriangleMesh(
             id="nan_mesh",
             vertices=np.array([[0, 0, 0], [1, 0, float("nan")], [0, 1, 0]], dtype=np.float64),
-            triangles=np.array([[0, 1, 2]], dtype=np.int64)
+            triangles=np.array([[0, 1, 2]], dtype=np.int64),
         )
 
     # 2. Inf coordinate
@@ -298,7 +335,7 @@ def test_adv_mesh_08_degenerate_mesh_rejection():
         TriangleMesh(
             id="inf_mesh",
             vertices=np.array([[0, 0, 0], [1, 0, float("inf")], [0, 1, 0]], dtype=np.float64),
-            triangles=np.array([[0, 1, 2]], dtype=np.int64)
+            triangles=np.array([[0, 1, 2]], dtype=np.int64),
         )
 
     # 3. Collinear degenerate triangle (area = 0)
@@ -306,7 +343,7 @@ def test_adv_mesh_08_degenerate_mesh_rejection():
         TriangleMesh(
             id="collinear",
             vertices=np.array([[0, 0, 0], [1, 0, 0], [2, 0, 0]], dtype=np.float64),
-            triangles=np.array([[0, 1, 2]], dtype=np.int64)
+            triangles=np.array([[0, 1, 2]], dtype=np.int64),
         )
 
     # 4. Out-of-bounds vertex index
@@ -314,5 +351,5 @@ def test_adv_mesh_08_degenerate_mesh_rejection():
         TriangleMesh(
             id="oob",
             vertices=np.array([[0, 0, 0], [1, 0, 0], [0, 1, 0]], dtype=np.float64),
-            triangles=np.array([[0, 1, 5]], dtype=np.int64)
+            triangles=np.array([[0, 1, 5]], dtype=np.int64),
         )

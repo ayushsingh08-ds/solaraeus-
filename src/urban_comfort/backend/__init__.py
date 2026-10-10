@@ -28,11 +28,11 @@ def is_gpu_available() -> bool:
 def get_backend(name: str = "cpu", fallback_to_cpu: bool = False) -> SimulationBackend:
     """
     Factory function returning the requested simulation backend.
-    
+
     Parameters:
         name: 'cpu', 'gpu', or 'auto'.
         fallback_to_cpu: If True, falls back to CPUBackend when GPU is unavailable.
-        
+
     Returns:
         SimulationBackend instance.
     """
@@ -61,4 +61,3 @@ __all__ = [
     "is_gpu_available",
     "get_backend",
 ]
-

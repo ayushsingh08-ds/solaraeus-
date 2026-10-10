@@ -24,8 +24,9 @@ from urban_comfort.incremental.regions import AffectedRegionResult
 from urban_comfort.solar.solar_position import SolarPosition
 
 
-def project_box_shadow(box_3d: Tuple[float, float, float, float, float, float],
-                       solar_pos: SolarPosition, z_ped: float) -> Tuple[float, float, float, float, float]:
+def project_box_shadow(
+    box_3d: Tuple[float, float, float, float, float, float], solar_pos: SolarPosition, z_ped: float
+) -> Tuple[float, float, float, float, float]:
     """
     Projects a 3D box along the anti-sun trajectory onto the horizontal plane at z_ped.
     Returns (proj_xmin, proj_xmax, proj_ymin, proj_ymax, shadow_length_m).
@@ -45,8 +46,8 @@ def project_box_shadow(box_3d: Tuple[float, float, float, float, float, float],
     sx, sy, _ = solar_pos.sun_vector
     norm_h = math.hypot(sx, sy)
     if norm_h > 1e-6:
-        dx = - (sx / norm_h) * shadow_len
-        dy = - (sy / norm_h) * shadow_len
+        dx = -(sx / norm_h) * shadow_len
+        dy = -(sy / norm_h) * shadow_len
     else:
         dx = 0.0
         dy = 0.0
@@ -59,16 +60,18 @@ def project_box_shadow(box_3d: Tuple[float, float, float, float, float, float],
     return (proj_xmin, proj_xmax, proj_ymin, proj_ymax, shadow_len)
 
 
-def compute_candidate_affected_region(scene_before: Scene,
-                                      scene_after: Scene,
-                                      edit: GeometricEdit,
-                                      solar_pos: SolarPosition,
-                                      grid: PedestrianGrid,
-                                      safety_margin_cells: int = 2,
-                                      min_altitude_deg: float = 5.0) -> AffectedRegionResult:
+def compute_candidate_affected_region(
+    scene_before: Scene,
+    scene_after: Scene,
+    edit: GeometricEdit,
+    solar_pos: SolarPosition,
+    grid: PedestrianGrid,
+    safety_margin_cells: int = 2,
+    min_altitude_deg: float = 5.0,
+) -> AffectedRegionResult:
     """
     Computes a conservative candidate affected region on the pedestrian grid.
-    
+
     Guarantees:
     - Encompasses the old geometry footprint and shadow projection.
     - Encompasses the new geometry footprint and shadow projection.
@@ -90,14 +93,18 @@ def compute_candidate_affected_region(scene_before: Scene,
             shadow_length_m=0.0,
             safety_margin_m=0.0,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=empty_bbox
+            new_projection_bbox=empty_bbox,
         )
 
     if solar_pos.altitude_deg < min_altitude_deg:
         return AffectedRegionResult(
             candidate_mask=full_mask,
-            candidate_bbox=(grid.origin_x, grid.origin_x + grid.config.extent_x,
-                            grid.origin_y, grid.origin_y + grid.config.extent_y),
+            candidate_bbox=(
+                grid.origin_x,
+                grid.origin_x + grid.config.extent_x,
+                grid.origin_y,
+                grid.origin_y + grid.config.extent_y,
+            ),
             is_fallback=True,
             fallback_reason=(
                 f"Solar altitude ({solar_pos.altitude_deg:.2f} deg) is below numerical "
@@ -107,37 +114,79 @@ def compute_candidate_affected_region(scene_before: Scene,
             shadow_length_m=float("inf"),
             safety_margin_m=0.0,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=empty_bbox
+            new_projection_bbox=empty_bbox,
         )
 
     # 2. Extract Geometry and Project Shadows
     if isinstance(edit, AddBuildingEdit):
-        old_box = (edit.building.xmin, edit.building.xmax, edit.building.ymin, edit.building.ymax, 0.0, 0.0)
+        old_box = (
+            edit.building.xmin,
+            edit.building.xmax,
+            edit.building.ymin,
+            edit.building.ymax,
+            0.0,
+            0.0,
+        )
         new_box = edit.building.bounds_3d
-        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
-        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(
+            old_box, solar_pos, grid.z_ped
+        )
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(
+            new_box, solar_pos, grid.z_ped
+        )
     elif isinstance(edit, RemoveBuildingEdit):
         bldg_old = scene_before.buildings[edit.building_id]
         old_box = bldg_old.bounds_3d
         new_box = (bldg_old.xmin, bldg_old.xmax, bldg_old.ymin, bldg_old.ymax, 0.0, 0.0)
-        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
-        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(
+            old_box, solar_pos, grid.z_ped
+        )
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(
+            new_box, solar_pos, grid.z_ped
+        )
     elif isinstance(edit, ChangeHeightEdit):
         bldg_old = scene_before.buildings[edit.building_id]
         old_box = bldg_old.bounds_3d
-        new_box = (bldg_old.xmin, bldg_old.xmax, bldg_old.ymin, bldg_old.ymax, bldg_old.zmin, edit.new_height)
-        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
-        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
+        new_box = (
+            bldg_old.xmin,
+            bldg_old.xmax,
+            bldg_old.ymin,
+            bldg_old.ymax,
+            bldg_old.zmin,
+            edit.new_height,
+        )
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(
+            old_box, solar_pos, grid.z_ped
+        )
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(
+            new_box, solar_pos, grid.z_ped
+        )
     elif isinstance(edit, MoveBuildingEdit):
         bldg_old = scene_before.buildings[edit.building_id]
         old_box = bldg_old.bounds_3d
-        new_box = (bldg_old.xmin + edit.shift_x, bldg_old.xmax + edit.shift_x,
-                   bldg_old.ymin + edit.shift_y, bldg_old.ymax + edit.shift_y,
-                   bldg_old.zmin, bldg_old.zmax)
-        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(old_box, solar_pos, grid.z_ped)
-        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(new_box, solar_pos, grid.z_ped)
-    elif type(edit).__name__ in ("AddMeshEdit", "RemoveMeshEdit", "ReplaceMeshEdit", "MoveMeshEdit", "ChangeMeshHeightEdit"):
+        new_box = (
+            bldg_old.xmin + edit.shift_x,
+            bldg_old.xmax + edit.shift_x,
+            bldg_old.ymin + edit.shift_y,
+            bldg_old.ymax + edit.shift_y,
+            bldg_old.zmin,
+            bldg_old.zmax,
+        )
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_box_shadow(
+            old_box, solar_pos, grid.z_ped
+        )
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_box_shadow(
+            new_box, solar_pos, grid.z_ped
+        )
+    elif type(edit).__name__ in (
+        "AddMeshEdit",
+        "RemoveMeshEdit",
+        "ReplaceMeshEdit",
+        "MoveMeshEdit",
+        "ChangeMeshHeightEdit",
+    ):
         from urban_comfort.incremental.mesh_affected_region import project_mesh_shadow
+
         if type(edit).__name__ == "AddMeshEdit":
             mesh_old = None
             mesh_new = getattr(edit, "mesh")
@@ -147,22 +196,27 @@ def compute_candidate_affected_region(scene_before: Scene,
         elif type(edit).__name__ == "ReplaceMeshEdit":
             mesh_old = scene_before.meshes.get(getattr(edit, "mesh_id"))
             mesh_new = getattr(edit, "new_mesh")
-        else: # MoveMeshEdit, ChangeMeshHeightEdit
+        else:  # MoveMeshEdit, ChangeMeshHeightEdit
             mesh_old = scene_before.meshes.get(getattr(edit, "mesh_id"))
             new_scene, _ = edit.apply(scene_before)
             mesh_new = new_scene.meshes.get(getattr(edit, "mesh_id"))
 
         if mesh_old is not None and mesh_old.enabled:
-            p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_mesh_shadow(mesh_old, solar_pos, grid.z_ped)
+            p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_mesh_shadow(
+                mesh_old, solar_pos, grid.z_ped
+            )
         else:
             p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = 0.0, 0.0, 0.0, 0.0, 0.0
 
         if mesh_new is not None and mesh_new.enabled:
-            p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_mesh_shadow(mesh_new, solar_pos, grid.z_ped)
+            p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_mesh_shadow(
+                mesh_new, solar_pos, grid.z_ped
+            )
         else:
             p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = 0.0, 0.0, 0.0, 0.0, 0.0
     elif type(edit).__name__ == "AddMultiMeshEdit":
         from urban_comfort.incremental.mesh_affected_region import project_mesh_shadow
+
         meshes = getattr(edit, "meshes", [])
         margin_m = safety_margin_cells * grid.dx
         if not meshes:
@@ -174,7 +228,7 @@ def compute_candidate_affected_region(scene_before: Scene,
                 shadow_length_m=0.0,
                 safety_margin_m=margin_m,
                 old_projection_bbox=empty_bbox,
-                new_projection_bbox=empty_bbox
+                new_projection_bbox=empty_bbox,
             )
 
         # Boolean union of candidate masks across all meshes
@@ -212,20 +266,24 @@ def compute_candidate_affected_region(scene_before: Scene,
             shadow_length_m=len_new,
             safety_margin_m=margin_m,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=(p_new_x1, p_new_x2, p_new_y1, p_new_y2)
+            new_projection_bbox=(p_new_x1, p_new_x2, p_new_y1, p_new_y2),
         )
     else:
         # Fallback for unknown edit type
         return AffectedRegionResult(
             candidate_mask=full_mask,
-            candidate_bbox=(grid.origin_x, grid.origin_x + grid.config.extent_x,
-                            grid.origin_y, grid.origin_y + grid.config.extent_y),
+            candidate_bbox=(
+                grid.origin_x,
+                grid.origin_x + grid.config.extent_x,
+                grid.origin_y,
+                grid.origin_y + grid.config.extent_y,
+            ),
             is_fallback=True,
             fallback_reason=f"Unsupported edit type '{type(edit).__name__}'; full recompute mandated.",
             shadow_length_m=0.0,
             safety_margin_m=0.0,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=empty_bbox
+            new_projection_bbox=empty_bbox,
         )
 
     old_proj_bbox = (p_old_x1, p_old_x2, p_old_y1, p_old_y2)
@@ -260,5 +318,5 @@ def compute_candidate_affected_region(scene_before: Scene,
         shadow_length_m=max(len_old, len_new),
         safety_margin_m=margin_m,
         old_projection_bbox=old_proj_bbox,
-        new_projection_bbox=new_proj_bbox
+        new_projection_bbox=new_proj_bbox,
     )

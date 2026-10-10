@@ -54,7 +54,11 @@ def test_stages_30_to_36_complete(results_dir):
         36: "STAGE_36_PROVISIONAL_TERRAIN_TREE_VALIDATION_COMPLETE",
     }
     for stage_num, expected_token in expected_tokens.items():
-        stage_subdirs = [d for d in results_dir.glob(f"stage_{stage_num}_*") if not d.name.endswith(".json") and not d.name.endswith(".md")]
+        stage_subdirs = [
+            d
+            for d in results_dir.glob(f"stage_{stage_num}_*")
+            if not d.name.endswith(".json") and not d.name.endswith(".md")
+        ]
         assert len(stage_subdirs) >= 1, f"Missing directory for stage {stage_num}"
         s_dir = stage_subdirs[0]
         test_res_file = s_dir / f"stage_{stage_num}_test_results.json"

@@ -18,20 +18,20 @@ from urban_comfort.grid.pedestrian_grid import PedestrianGrid
 from urban_comfort.visibility.mesh_ray_intersection import intersect_rays_mesh_batch
 
 
-def rasterize_mesh_to_height_grid(mesh: TriangleMesh,
-                                  grid: PedestrianGrid,
-                                  out_grid: Optional[np.ndarray] = None) -> np.ndarray:
+def rasterize_mesh_to_height_grid(
+    mesh: TriangleMesh, grid: PedestrianGrid, out_grid: Optional[np.ndarray] = None
+) -> np.ndarray:
     """
     Computes the maximum vertical top-surface height field of a TriangleMesh on the pedestrian grid.
-    
+
     Uses downward vertical ray casting from above the mesh bounding box to find the exact
     uppermost envelope elevation at every grid cell center.
-    
+
     Parameters:
         mesh: TriangleMesh instance.
         grid: PedestrianGrid providing spatial coordinates.
         out_grid: Optional (ny, nx) array to accumulate into via np.maximum.
-        
+
     Returns:
         h_grid: (ny, nx) float64 array of obstacle heights in meters (0.0 where no mesh exists).
     """
@@ -64,11 +64,9 @@ def rasterize_mesh_to_height_grid(mesh: TriangleMesh,
 
     # Shoot rays downward from above the mesh top
     z_high = mesh.zmax + 1.0
-    origins = np.column_stack([
-        sub_X.ravel(),
-        sub_Y.ravel(),
-        np.full(n_sub, z_high, dtype=np.float64)
-    ])
+    origins = np.column_stack(
+        [sub_X.ravel(), sub_Y.ravel(), np.full(n_sub, z_high, dtype=np.float64)]
+    )
     direction = (0.0, 0.0, -1.0)
 
     hits, t_hits = intersect_rays_mesh_batch(origins, direction, mesh)
@@ -76,8 +74,7 @@ def rasterize_mesh_to_height_grid(mesh: TriangleMesh,
     if np.any(hits):
         sub_heights = np.where(hits, z_high - t_hits, 0.0).reshape(sub_X.shape)
         h_grid[iy_min:iy_max, ix_min:ix_max] = np.maximum(
-            h_grid[iy_min:iy_max, ix_min:ix_max],
-            sub_heights
+            h_grid[iy_min:iy_max, ix_min:ix_max], sub_heights
         )
 
     return h_grid
@@ -86,7 +83,7 @@ def rasterize_mesh_to_height_grid(mesh: TriangleMesh,
 def rasterize_scene_meshes_to_height_grid(scene: Scene, grid: PedestrianGrid) -> np.ndarray:
     """
     Rasterizes all active triangular meshes in a Scene onto the pedestrian grid.
-    
+
     Returns:
         h_grid: (ny, nx) float64 array of maximum surface heights across all active meshes.
     """
@@ -97,21 +94,23 @@ def rasterize_scene_meshes_to_height_grid(scene: Scene, grid: PedestrianGrid) ->
     return h_grid
 
 
-def compute_mesh_sky_view_factor(scene: Scene,
-                                 grid: PedestrianGrid,
-                                 num_azimuths: int = 32,
-                                 max_search_dist_m: float = 120.0,
-                                 roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+def compute_mesh_sky_view_factor(
+    scene: Scene,
+    grid: PedestrianGrid,
+    num_azimuths: int = 32,
+    max_search_dist_m: float = 120.0,
+    roi_mask: Optional[np.ndarray] = None,
+) -> np.ndarray:
     """
     Computes hemispherical Sky View Factor (SVF) in [0.0, 1.0] for triangular meshes.
-    
+
     Parameters:
         scene: Scene containing active TriangleMeshes.
         grid: PedestrianGrid defining receptor coordinates.
         num_azimuths: Number of discrete horizon search directions (default 32).
         max_search_dist_m: Maximum horizon search radius in meters.
         roi_mask: Optional (ny, nx) boolean mask for selective evaluation.
-        
+
     Returns:
         svf: (ny, nx) float64 array of Sky View Factors in [0.0, 1.0].
     """
@@ -161,19 +160,17 @@ def compute_mesh_sky_view_factor(scene: Scene,
 
             # Grid index mapping
             sample_ix = np.clip(
-                np.floor((sample_x - grid.origin_x) / grid.dx).astype(np.int64),
-                0, nx - 1
+                np.floor((sample_x - grid.origin_x) / grid.dx).astype(np.int64), 0, nx - 1
             )
             sample_iy = np.clip(
-                np.floor((sample_y - grid.origin_y) / grid.dx).astype(np.int64),
-                0, ny - 1
+                np.floor((sample_y - grid.origin_y) / grid.dx).astype(np.int64), 0, ny - 1
             )
 
             in_bounds = (
-                (sample_x >= grid.origin_x) &
-                (sample_x <= grid.origin_x + grid.extent_x) &
-                (sample_y >= grid.origin_y) &
-                (sample_y <= grid.origin_y + grid.extent_y)
+                (sample_x >= grid.origin_x)
+                & (sample_x <= grid.origin_x + grid.extent_x)
+                & (sample_y >= grid.origin_y)
+                & (sample_y <= grid.origin_y + grid.extent_y)
             )
 
             sample_h = np.where(in_bounds, h_mesh_grid[sample_iy, sample_ix], 0.0)
@@ -182,22 +179,18 @@ def compute_mesh_sky_view_factor(scene: Scene,
             max_tan_elev = np.max(tan_elev, axis=1)
 
             # cos^2(elev) = 1 / (1 + tan^2(elev))
-            batch_cos2 += 1.0 / (1.0 + max_tan_elev ** 2)
+            batch_cos2 += 1.0 / (1.0 + max_tan_elev**2)
 
         batch_svf = batch_cos2 / float(num_azimuths)
 
         # Footprint check: receptors inside or under building envelopes have SVF = 0.0
-        recept_ix = np.clip(
-            np.floor((bx - grid.origin_x) / grid.dx).astype(np.int64),
-            0, nx - 1
-        )
-        recept_iy = np.clip(
-            np.floor((by - grid.origin_y) / grid.dx).astype(np.int64),
-            0, ny - 1
-        )
+        recept_ix = np.clip(np.floor((bx - grid.origin_x) / grid.dx).astype(np.int64), 0, nx - 1)
+        recept_iy = np.clip(np.floor((by - grid.origin_y) / grid.dx).astype(np.int64), 0, ny - 1)
         inside_footprint = h_mesh_grid[recept_iy, recept_ix] > z_ped
         batch_svf[inside_footprint] = 0.0
 
-        svf[eval_indices_y[b_start:b_end], eval_indices_x[b_start:b_end]] = np.clip(batch_svf, 0.0, 1.0)
+        svf[eval_indices_y[b_start:b_end], eval_indices_x[b_start:b_end]] = np.clip(
+            batch_svf, 0.0, 1.0
+        )
 
     return svf

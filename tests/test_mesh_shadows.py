@@ -44,7 +44,7 @@ def solar_setup():
         azimuth_deg=az_deg,
         zenith_deg=45.0,
         sun_vector=(sx, sy, sz),
-        is_daylight=True
+        is_daylight=True,
     )
     return grid, solar_pos
 
@@ -66,7 +66,9 @@ def test_triangulated_box_vs_aabb_exact_parity(solar_setup):
 
     # Parity check: shadow masks must be 100% identical across all 6,400 cells
     diff_cells = int(np.sum(shadow_aabb != shadow_mesh))
-    assert diff_cells == 0, f"Expected 0 cell differences between AABB and mesh box, found {diff_cells}"
+    assert diff_cells == 0, (
+        f"Expected 0 cell differences between AABB and mesh box, found {diff_cells}"
+    )
     assert np.array_equal(shadow_aabb, shadow_mesh)
 
     # Also test dedicated compute_mesh_direct_shadow_mask function
@@ -79,9 +81,13 @@ def test_rotated_box_shadow_direction(solar_setup):
 
     # Square building 16x16 at center (40, 40), rotated 45 degrees
     mesh = create_rotated_box_mesh(
-        "rot_box", center_x=40.0, center_y=40.0,
-        width_x=16.0, width_y=16.0, height=20.0,
-        angle_deg=45.0
+        "rot_box",
+        center_x=40.0,
+        center_y=40.0,
+        width_x=16.0,
+        width_y=16.0,
+        height=20.0,
+        angle_deg=45.0,
     )
     scene = Scene(pedestrian_grid=grid.config)
     scene.add_mesh(mesh)
@@ -103,8 +109,14 @@ def test_pitched_roof_shadow_reach(solar_setup):
     eave_h = 10.0
     ridge_h = 20.0
     pitched_mesh = create_pitched_roof_mesh(
-        "pitched", xmin=30.0, xmax=50.0, ymin=20.0, ymax=40.0,
-        eave_height=eave_h, ridge_height=ridge_h, ridge_orientation="x"
+        "pitched",
+        xmin=30.0,
+        xmax=50.0,
+        ymin=20.0,
+        ymax=40.0,
+        eave_height=eave_h,
+        ridge_height=ridge_h,
+        ridge_orientation="x",
     )
     flat_mesh = create_box_mesh("flat_ridge", 30.0, 50.0, 20.0, 40.0, 0.0, ridge_h)
 
@@ -124,7 +136,9 @@ def test_pitched_roof_shadow_reach(solar_setup):
     shaded_pitch_count = int(np.sum(shadow_pitch == 0.0))
     shaded_flat_count = int(np.sum(shadow_flat == 0.0))
 
-    assert shaded_pitch_count < shaded_flat_count, "Pitched roof must cast less shadow than flat roof of same peak height"
+    assert shaded_pitch_count < shaded_flat_count, (
+        "Pitched roof must cast less shadow than flat roof of same peak height"
+    )
     # At x=40, y=48 (< 48.9m) must be shaded, while y=50 (> 48.9m) must be lit
     assert shadow_pitch[48, 40] == 0.0, "Cell at y=48 must be shaded by ridge"
     assert shadow_pitch[50, 40] == 1.0, "Cell at y=50 must be illuminated beyond shadow tip"
@@ -136,9 +150,15 @@ def test_overhang_building_shadow(solar_setup):
     # Building [30, 50] x [20, 35] of height 16m with 10m overhang extending North (up to y = 45m)
     # The overhang is suspended between z=12m and z=16m
     oh_mesh = create_overhang_mesh(
-        "oh_bldg", xmin=30.0, xmax=50.0, ymin=20.0, ymax=35.0,
-        base_height=16.0, overhang_depth=10.0, overhang_direction="north",
-        overhang_thickness=4.0
+        "oh_bldg",
+        xmin=30.0,
+        xmax=50.0,
+        ymin=20.0,
+        ymax=35.0,
+        base_height=16.0,
+        overhang_depth=10.0,
+        overhang_direction="north",
+        overhang_thickness=4.0,
     )
     scene = Scene(pedestrian_grid=grid.config)
     scene.add_mesh(oh_mesh)
@@ -201,7 +221,7 @@ def test_nighttime_zero_illumination(solar_setup):
         azimuth_deg=0.0,
         zenith_deg=105.0,
         sun_vector=(0.0, 0.0, -1.0),
-        is_daylight=False
+        is_daylight=False,
     )
     mesh = create_box_mesh("m", 30.0, 50.0, 30.0, 50.0, 0.0, 20.0)
     scene = Scene(pedestrian_grid=grid.config)

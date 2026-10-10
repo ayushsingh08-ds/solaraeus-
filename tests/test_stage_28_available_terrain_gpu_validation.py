@@ -49,7 +49,9 @@ def test_stage_28_parity_and_incremental(stage_28_dir):
         assert metrics["exact_shadow_parity"] is True
         assert metrics["parity_within_tolerance"] is True
 
-    with open(stage_28_dir / "available_terrain_gpu_incremental_comparison.json", encoding="utf-8") as f:
+    with open(
+        stage_28_dir / "available_terrain_gpu_incremental_comparison.json", encoding="utf-8"
+    ) as f:
         inc_comp = json.load(f)
     assert inc_comp["error_within_certificate_bound"] is True
     assert inc_comp["certificate_bound_k"] == 0.0812

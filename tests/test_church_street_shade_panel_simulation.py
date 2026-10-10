@@ -31,7 +31,7 @@ def test_panel_mesh_validation_artifact(shade_run_dir):
     """Verifies that panel_validation.json confirms valid watertight 8-vert 12-tri mesh."""
     panel_val_path = shade_run_dir / "panel_validation.json"
     assert panel_val_path.exists()
-    
+
     val = json.loads(panel_val_path.read_text(encoding="utf-8"))
     assert val["panel_id"] == "BLR_SHADE_001"
     assert val["object_id"] == "CANOPY_001"
@@ -53,7 +53,7 @@ def test_configuration_equality(shade_run_dir):
     """Verifies that baseline and intervention configurations are identical except for the panel."""
     cfg_path = shade_run_dir / "configuration_comparison.json"
     assert cfg_path.exists()
-    
+
     cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
     assert cfg["status"] == "identical_except_intervention_panel"
     assert cfg["grid_resolution"] == 2.0
@@ -86,34 +86,34 @@ def test_difference_arrays_and_physical_effects(shade_run_dir):
     """Verifies shape equality, 0 NaNs/Infs, and significant local cooling under panel."""
     diff_path = shade_run_dir / "difference_fields.npz"
     assert diff_path.exists()
-    
+
     with np.load(diff_path) as data:
         diff_shadow = data["diff_shadow"]
         diff_svf = data["diff_svf"]
         diff_tmrt = data["diff_tmrt"]
         diff_utci = data["diff_utci"]
-        
+
     assert diff_shadow.shape == (148, 190)
     assert diff_svf.shape == (148, 190)
     assert diff_tmrt.shape == (148, 190)
     assert diff_utci.shape == (148, 190)
-    
+
     assert not np.any(np.isnan(diff_shadow))
     assert not np.any(np.isnan(diff_svf))
     assert not np.any(np.isnan(diff_tmrt))
     assert not np.any(np.isnan(diff_utci))
-    
+
     assert not np.any(np.isinf(diff_tmrt))
     assert not np.any(np.isinf(diff_utci))
-    
+
     # Shadow mask difference must only be 0.0 (unchanged) or -1.0 (new shadow cast by panel)
     unique_shadow_diff = np.unique(diff_shadow)
     assert np.all(np.isin(unique_shadow_diff, [-1.0, 0.0]))
-    
+
     # At least 1 cell must be newly shaded
     n_shaded = int(np.sum(diff_shadow == -1.0))
     assert n_shaded >= 4
-    
+
     # Significant cooling in shaded cells
     min_tmrt_diff = float(np.min(diff_tmrt))
     min_utci_diff = float(np.min(diff_utci))
@@ -126,7 +126,7 @@ def test_quality_checks_json(shade_run_dir):
     qc_path = shade_run_dir / "quality_checks.json"
     assert qc_path.exists()
     qc = json.loads(qc_path.read_text(encoding="utf-8"))
-    
+
     assert qc["status"] == "PASSED"
     assert qc["shape_equality"] is True
     assert qc["svf_range_checks"]["svf_valid_interval"] is True
@@ -144,7 +144,7 @@ def test_all_12_diagnostic_plots_exist(shade_run_dir):
     """Verifies that all 12 required diagnostic plots were generated."""
     plots_dir = shade_run_dir / "plots"
     assert plots_dir.exists()
-    
+
     expected_plots = [
         "baseline_geometry.png",
         "intervention_geometry.png",
@@ -170,10 +170,10 @@ def test_readiness_decision_and_mandatory_qualification(shade_run_dir):
     report_path = shade_run_dir / "shade_panel_full_recomputation_report.md"
     assert report_path.exists()
     text = report_path.read_text(encoding="utf-8")
-    
+
     mandatory_qual = "The shade-panel result is an exploratory full-recomputation comparison using real-world building geometry, partly uncertain building-height estimates, off-site weather forcing, estimated solar radiation, and assumed material properties."
     assert mandatory_qual in text
-    
+
     assert "READY_FOR_SHADE_PANEL_INCREMENTAL_COMPARISON" in text
     assert "Full-recomputation intervention comparison" in text
     assert "Exploratory real-world geometry case study" in text
@@ -183,6 +183,7 @@ def test_readiness_decision_and_mandatory_qualification(shade_run_dir):
 # =========================================================================
 # Incremental Intervention Comparison Tests
 # =========================================================================
+
 
 @pytest.fixture(scope="module")
 def shade_inc_run_dir() -> Path:
@@ -197,7 +198,7 @@ def test_incremental_provenance_and_metadata(shade_inc_run_dir):
     prov_path = shade_inc_run_dir / "provenance.json"
     assert prov_path.exists()
     prov = json.loads(prov_path.read_text(encoding="utf-8"))
-    
+
     assert prov["incremental_computation_used"] is True
     assert prov["reused_cell_count"] == 28048
     assert prov["recomputed_cell_count"] == 72
@@ -221,7 +222,7 @@ def test_incremental_cache_and_dependencies(shade_inc_run_dir):
     cache_path = shade_inc_run_dir / "cache_dependency_summary.json"
     assert cache_path.exists()
     cdata = json.loads(cache_path.read_text(encoding="utf-8"))
-    
+
     assert cdata["cached_fields_count"] == 7
     assert cdata["edit_type"] == "mesh_added"
     assert "shadow_mask" in cdata["invalidated_downstream_fields"]
@@ -241,7 +242,7 @@ def test_incremental_numerical_parity_vs_frozen_full(shade_inc_run_dir, shade_ru
     inc_tot_lw = np.load(shade_inc_run_dir / "incremental_longwave.npz")["l_total"]
     inc_tmrt = np.load(shade_inc_run_dir / "incremental_tmrt.npz")["tmrt"]
     inc_utci = np.load(shade_inc_run_dir / "incremental_utci.npz")["utci"]
-    
+
     # Load frozen full reference fields
     full_shadow = np.load(shade_run_dir / "intervention_shadow.npz")["shadow_mask"]
     full_svf = np.load(shade_run_dir / "intervention_visibility.npz")["svf"]
@@ -250,35 +251,35 @@ def test_incremental_numerical_parity_vs_frozen_full(shade_inc_run_dir, shade_ru
     full_tot_lw = np.load(shade_run_dir / "intervention_longwave.npz")["l_total"]
     full_tmrt = np.load(shade_run_dir / "intervention_tmrt.npz")["tmrt"]
     full_utci = np.load(shade_run_dir / "intervention_utci.npz")["utci"]
-    
+
     # Grid shape check
     assert inc_shadow.shape == full_shadow.shape == (148, 190)
     assert inc_svf.shape == full_svf.shape == (148, 190)
     assert inc_tmrt.shape == full_tmrt.shape == (148, 190)
     assert inc_utci.shape == full_utci.shape == (148, 190)
-    
+
     # NaN and Inf check
     assert not np.any(np.isnan(inc_tmrt))
     assert not np.any(np.isinf(inc_tmrt))
     assert not np.any(np.isnan(inc_svf))
     assert not np.any(np.isnan(inc_utci))
-    
+
     # Direct shadow and direct shortwave must match identically
     max_shadow_err = float(np.max(np.abs(inc_shadow - full_shadow)))
     max_dir_sw_err = float(np.max(np.abs(inc_dir_sw - full_dir_sw)))
     assert max_shadow_err == 0.0, f"Direct shadow mismatch: {max_shadow_err}"
     assert max_dir_sw_err == 0.0, f"Direct shortwave mismatch: {max_dir_sw_err}"
-    
+
     # Tmrt maximum error must strictly satisfy the 0.5 K tolerance
     tmrt_err = np.abs(inc_tmrt - full_tmrt)
     max_tmrt_err = float(np.max(tmrt_err))
     assert max_tmrt_err <= 0.50, f"Tmrt error ({max_tmrt_err:.4f} K) exceeded tolerance (0.50 K)"
     assert max_tmrt_err < 0.05, f"Tmrt error ({max_tmrt_err:.4f} K) higher than expected ~0.03 K"
-    
+
     # SVF maximum error within 0.01
     max_svf_err = float(np.max(np.abs(inc_svf - full_svf)))
     assert max_svf_err < 0.01, f"SVF error ({max_svf_err:.4f}) exceeded 0.01"
-    
+
     # UTCI maximum error within tolerance
     max_utci_err = float(np.max(np.abs(inc_utci - full_utci)))
     assert max_utci_err <= 0.50, f"UTCI error ({max_utci_err:.4f} K) exceeded tolerance"
@@ -289,7 +290,7 @@ def test_incremental_error_certificate_soundness(shade_inc_run_dir):
     cert_path = shade_inc_run_dir / "certificate_verification.json"
     assert cert_path.exists()
     cver = json.loads(cert_path.read_text(encoding="utf-8"))
-    
+
     assert cver["status"] == "certified"
     assert cver["is_valid"] is True
     assert cver["num_violations"] == 0
@@ -298,7 +299,7 @@ def test_incremental_error_certificate_soundness(shade_inc_run_dir):
     assert cver["reused_max_error_k"] <= cver["tolerance_k"]
     assert cver["reused_cells"] == 28048
     assert cver["affected_cells"] == 72
-    
+
     # Verify certificate field arrays
     fields_npz = shade_inc_run_dir / "certificate_fields.npz"
     assert fields_npz.exists()
@@ -308,7 +309,7 @@ def test_incremental_error_certificate_soundness(shade_inc_run_dir):
         slack = cdata["slack_map"]
         reused_mask = cdata["reused_mask"]
         recomp_mask = cdata["recomputed_mask"]
-        
+
     assert bound.shape == (148, 190)
     assert np.all(slack >= -1e-10), "Negative slack indicates certificate violation!"
     assert np.all(actual_err[reused_mask] <= 0.50 + 1e-10)
@@ -320,7 +321,7 @@ def test_incremental_all_10_diagnostic_plots_exist(shade_inc_run_dir):
     """Verifies that all 10 required diagnostic publication plots exist and are non-empty."""
     plots_dir = shade_inc_run_dir / "plots"
     assert plots_dir.exists()
-    
+
     expected_plots = [
         "fig01_incremental_vs_full_tmrt.png",
         "fig02_error_certificate_bound_map.png",
@@ -344,7 +345,7 @@ def test_incremental_quality_checks_and_readiness(shade_inc_run_dir):
     qc_path = shade_inc_run_dir / "quality_checks.json"
     assert qc_path.exists()
     qc = json.loads(qc_path.read_text(encoding="utf-8"))
-    
+
     assert qc["all_checks_passed"] is True
     assert qc["readiness_decision"] == "ACCEPTED_FOR_RESEARCH"
     assert qc["checks"]["same_grid_shape"] is True
@@ -353,7 +354,7 @@ def test_incremental_quality_checks_and_readiness(shade_inc_run_dir):
     assert qc["checks"]["certificate_violations_zero"] is True
     assert qc["checks"]["maximum_error_within_tolerance"] is True
     assert qc["checks"]["incremental_computation_flag_true"] is True
-    
+
     # Check report file
     rep_path = shade_inc_run_dir / "church_street_shade_panel_incremental_report.md"
     assert rep_path.exists()
@@ -361,4 +362,3 @@ def test_incremental_quality_checks_and_readiness(shade_inc_run_dir):
     assert "READINESS DECISION: ACCEPTED_FOR_RESEARCH" in rep_text
     assert "Certificate Violations:          0 (SOUND & VALID)" in rep_text
     assert "Cache Reuse Fraction:            99.74%" in rep_text
-

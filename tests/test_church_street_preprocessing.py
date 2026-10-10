@@ -78,6 +78,7 @@ def test_church_street_triangulate_and_extrude_synthetic(adapter: ChurchStreetAd
 
     # Watertightness check
     from collections import defaultdict
+
     edge_counts = defaultdict(int)
     for tri in mesh.triangles:
         for i in range(3):

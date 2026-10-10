@@ -36,24 +36,42 @@ from urban_comfort.optimization.two_panel_surrogate import (
 @dataclass
 class TwoPanelAcquisitionConfig:
     """Configuration for two-panel candidate acquisition portfolio."""
-    strategy: str = "portfolio"          # "portfolio", "predicted_best", "uncertainty", "random"
-    pool_size: int = 1500                # Number of candidate samples screened per acquisition round
-    kappa: float = 1.5                   # LCB exploration coefficient
+
+    strategy: str = "portfolio"  # "portfolio", "predicted_best", "uncertainty", "random"
+    pool_size: int = 1500  # Number of candidate samples screened per acquisition round
+    kappa: float = 1.5  # LCB exploration coefficient
     seed: int = 42
-    min_diversity_dist: float = 0.05     # Minimum normalized Euclidean distance between batch candidates
+    min_diversity_dist: float = (
+        0.05  # Minimum normalized Euclidean distance between batch candidates
+    )
 
 
-def compute_normalized_two_panel_distance(p1: TwoPanelParams, p2: TwoPanelParams, bounds: TwoPanelBounds) -> float:
+def compute_normalized_two_panel_distance(
+    p1: TwoPanelParams, p2: TwoPanelParams, bounds: TwoPanelBounds
+) -> float:
     """Computes normalized Euclidean distance between two 14-parameter candidate vectors."""
     v1 = p1.canonicalize().to_vector()
     v2 = p2.canonicalize().to_vector()
     pb = bounds.panel_bounds
-    ranges = np.array([
-        pb.x_max - pb.x_min, pb.y_max - pb.y_min, pb.length_max - pb.length_min, pb.width_max - pb.width_min,
-        pb.height_max - pb.height_min, pb.heading_max - pb.heading_min, pb.albedo_max - pb.albedo_min,
-        pb.x_max - pb.x_min, pb.y_max - pb.y_min, pb.length_max - pb.length_min, pb.width_max - pb.width_min,
-        pb.height_max - pb.height_min, pb.heading_max - pb.heading_min, pb.albedo_max - pb.albedo_min,
-    ], dtype=np.float64)
+    ranges = np.array(
+        [
+            pb.x_max - pb.x_min,
+            pb.y_max - pb.y_min,
+            pb.length_max - pb.length_min,
+            pb.width_max - pb.width_min,
+            pb.height_max - pb.height_min,
+            pb.heading_max - pb.heading_min,
+            pb.albedo_max - pb.albedo_min,
+            pb.x_max - pb.x_min,
+            pb.y_max - pb.y_min,
+            pb.length_max - pb.length_min,
+            pb.width_max - pb.width_min,
+            pb.height_max - pb.height_min,
+            pb.heading_max - pb.heading_min,
+            pb.albedo_max - pb.albedo_min,
+        ],
+        dtype=np.float64,
+    )
     diff_norm = (v1 - v2) / ranges
     return float(np.linalg.norm(diff_norm) / math.sqrt(len(ranges)))
 
@@ -87,17 +105,22 @@ def generate_two_panel_seeds(
         res = check_two_panel_feasibility(c_can, constraints)
         if res.is_valid:
             # Check diversity against already accepted seeds
-            if all(compute_normalized_two_panel_distance(c_can, s, bounds) >= 0.04 for s in feasible_seeds):
+            if all(
+                compute_normalized_two_panel_distance(c_can, s, bounds) >= 0.04
+                for s in feasible_seeds
+            ):
                 feasible_seeds.append(c_can)
                 return True
         else:
-            rejected_proposals.append({
-                "method": method,
-                "params": c_can.to_dict(),
-                "rejection_reason": res.rejection_reason.value,
-                "rejection_message": res.message,
-                "details": res.details,
-            })
+            rejected_proposals.append(
+                {
+                    "method": method,
+                    "params": c_can.to_dict(),
+                    "rejection_reason": res.rejection_reason.value,
+                    "rejection_message": res.message,
+                    "details": res.details,
+                }
+            )
         return False
 
     # 1. Duplicated Stage 2 Best Candidate (CAND_0063_SURR) with spatial offset along corridor
@@ -108,8 +131,13 @@ def generate_two_panel_seeds(
     # Church Street corridor runs along heading ~102 deg. An offset of dx ~ 18m, dy ~ -3m stays inside corridor
     for dx, dy in [(18.0, -3.5), (15.0, -2.5), (22.0, -4.5)]:
         p2_offset = ShadePanelParams(
-            x=best_s2.x + dx, y=best_s2.y + dy, length=best_s2.length, width=best_s2.width,
-            height=best_s2.height, heading_deg=best_s2.heading_deg, albedo=best_s2.albedo
+            x=best_s2.x + dx,
+            y=best_s2.y + dy,
+            length=best_s2.length,
+            width=best_s2.width,
+            height=best_s2.height,
+            heading_deg=best_s2.heading_deg,
+            albedo=best_s2.albedo,
         )
         cand = TwoPanelParams.from_panels(best_s2, p2_offset)
         _test_and_add(cand, "seed_duplicated_best_offset")
@@ -190,23 +218,27 @@ class TwoPanelAcquisitionEngine:
         lhs_pool = bounds.sample_lhs(n_samples=self.config.pool_size // 2, rng=rng)
         uniform_pool = bounds.sample_uniform(rng, n_samples=self.config.pool_size // 2)
 
-        for c in (lhs_pool + uniform_pool):
+        for c in lhs_pool + uniform_pool:
             c_can = c.canonicalize()
             res = check_two_panel_feasibility(c_can, constraints)
             if res.is_valid:
                 pool.append(c_can)
             else:
-                rejected_in_screening.append({
-                    "params": c_can.to_dict(),
-                    "rejection_reason": res.rejection_reason.value,
-                    "rejection_message": res.message,
-                    "details": res.details,
-                })
+                rejected_in_screening.append(
+                    {
+                        "params": c_can.to_dict(),
+                        "rejection_reason": res.rejection_reason.value,
+                        "rejection_message": res.message,
+                        "details": res.details,
+                    }
+                )
 
         if not pool:
             # Fallback if pool is empty
             fallback = bounds.sample_uniform(rng)
-            return [(fallback, "fallback_random", surrogate.predict(fallback))], rejected_in_screening
+            return [
+                (fallback, "fallback_random", surrogate.predict(fallback))
+            ], rejected_in_screening
 
         # 2. Score pool candidates with surrogate model
         predictions = surrogate.predict_batch(pool)
@@ -216,7 +248,8 @@ class TwoPanelAcquisitionEngine:
 
         def _is_diverse(cand: TwoPanelParams) -> bool:
             return all(
-                compute_normalized_two_panel_distance(cand, s[0], bounds) >= self.config.min_diversity_dist
+                compute_normalized_two_panel_distance(cand, s[0], bounds)
+                >= self.config.min_diversity_dist
                 for s in selected
             )
 
@@ -232,7 +265,9 @@ class TwoPanelAcquisitionEngine:
         # LCB = mean - kappa * std
         sorted_by_lcb = sorted(
             range(len(pool)),
-            key=lambda i: predictions[i].objective_mean - self.config.kappa * predictions[i].objective_std
+            key=lambda i: (
+                predictions[i].objective_mean - self.config.kappa * predictions[i].objective_std
+            ),
         )
         for idx in sorted_by_lcb:
             cand = pool[idx]
@@ -241,7 +276,9 @@ class TwoPanelAcquisitionEngine:
                 break
 
         # Strategy C: High Uncertainty (Pure epistemic exploration)
-        sorted_by_unc = sorted(range(len(pool)), key=lambda i: predictions[i].objective_std, reverse=True)
+        sorted_by_unc = sorted(
+            range(len(pool)), key=lambda i: predictions[i].objective_std, reverse=True
+        )
         for idx in sorted_by_unc:
             cand = pool[idx]
             if _is_diverse(cand):
@@ -250,12 +287,17 @@ class TwoPanelAcquisitionEngine:
 
         # Strategy D: Boundary Candidate (Separation distance near minimum threshold 2.0m - 2.5m)
         pool_with_sep = [
-            (i, pool[i].separation_distance()) for i in range(len(pool))
-            if constraints.min_panel_separation_m <= pool[i].separation_distance() <= constraints.min_panel_separation_m + 0.8
+            (i, pool[i].separation_distance())
+            for i in range(len(pool))
+            if constraints.min_panel_separation_m
+            <= pool[i].separation_distance()
+            <= constraints.min_panel_separation_m + 0.8
         ]
         if pool_with_sep:
             # Pick the lowest predicted objective among near-boundary candidates
-            sorted_boundary = sorted(pool_with_sep, key=lambda item: predictions[item[0]].objective_mean)
+            sorted_boundary = sorted(
+                pool_with_sep, key=lambda item: predictions[item[0]].objective_mean
+            )
             for idx, sep in sorted_boundary:
                 cand = pool[idx]
                 if _is_diverse(cand):
@@ -266,12 +308,16 @@ class TwoPanelAcquisitionEngine:
         # Screen candidates that trade off high predicted thermal improvement vs lower total area
         pareto_cands_meta = []
         for i in range(len(pool)):
-            pareto_cands_meta.append({
-                "pool_idx": i,
-                "thermal_improvement_utci_c": predictions[i].means.get("thermal_improvement_utci_c", 0.0),
-                "total_area_m2": pool[i].total_area,
-                "estimated_construction_cost_usd": 10000.0 + pool[i].total_area * 250.0,
-            })
+            pareto_cands_meta.append(
+                {
+                    "pool_idx": i,
+                    "thermal_improvement_utci_c": predictions[i].means.get(
+                        "thermal_improvement_utci_c", 0.0
+                    ),
+                    "total_area_m2": pool[i].total_area,
+                    "estimated_construction_cost_usd": 10000.0 + pool[i].total_area * 250.0,
+                }
+            )
         pareto_front_items = compute_pareto_front(pareto_cands_meta)
         if pareto_front_items:
             for item in pareto_front_items:

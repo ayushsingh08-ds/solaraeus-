@@ -79,8 +79,9 @@ class PedestrianGrid:
             raise IndexError(f"Cell indices ({iy}, {ix}) out of grid boundaries.")
         return (float(self.x_coords[ix]), float(self.y_coords[iy]), float(self.z_ped))
 
-    def bounding_box_slices(self, xmin: float, xmax: float,
-                            ymin: float, ymax: float) -> Tuple[slice, slice]:
+    def bounding_box_slices(
+        self, xmin: float, xmax: float, ymin: float, ymax: float
+    ) -> Tuple[slice, slice]:
         """
         Computes clamped index slices (slice_y, slice_x) covering a world-space bounding box.
         """

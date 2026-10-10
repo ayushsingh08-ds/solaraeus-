@@ -33,7 +33,7 @@ def compute_weather_hash(weather: Weather) -> str:
         weather.wind_speed,
         weather.wind_direction,
         weather.direct_normal_irradiance,
-        weather.diffuse_horizontal_irradiance
+        weather.diffuse_horizontal_irradiance,
     )
     return hashlib.sha256(str(data).encode("utf-8")).hexdigest()
 
@@ -47,7 +47,7 @@ def compute_config_hash(config: SimulationConfig) -> str:
         config.local_time,
         config.pedestrian_height,
         config.grid_resolution,
-        config.sky_patch_configuration
+        config.sky_patch_configuration,
     )
     return hashlib.sha256(str(data).encode("utf-8")).hexdigest()
 
@@ -55,14 +55,15 @@ def compute_config_hash(config: SimulationConfig) -> str:
 @dataclass
 class FieldMetadata:
     """Audit metadata recording lineage and spatial validity of a cached field."""
+
     field_name: str
     dependencies: List[str]
     source_scene_hash: str
     source_config_hash: str
     source_weather_hash: str
-    valid_mask: np.ndarray       # Shape (ny, nx) boolean mask indicating valid cells
-    exact_or_approximate: str    # "exact" or "approximate"
-    error_bound: Optional[np.ndarray] = None # Optional upper bound B(x) if approximate
+    valid_mask: np.ndarray  # Shape (ny, nx) boolean mask indicating valid cells
+    exact_or_approximate: str  # "exact" or "approximate"
+    error_bound: Optional[np.ndarray] = None  # Optional upper bound B(x) if approximate
 
     @property
     def is_fully_valid(self) -> bool:
@@ -92,8 +93,14 @@ class SimulationCache:
         self.fields: Dict[str, np.ndarray] = {}
         self.metadata: Dict[str, FieldMetadata] = {}
 
-    def populate(self, scene: Scene, weather: Weather, config: SimulationConfig,
-                 result: SimulationResult, exact: bool = True):
+    def populate(
+        self,
+        scene: Scene,
+        weather: Weather,
+        config: SimulationConfig,
+        result: SimulationResult,
+        exact: bool = True,
+    ):
         """Populates the cache with newly computed ground-truth simulation fields."""
         self.scene_hash = compute_scene_hash(scene)
         self.weather_hash = compute_weather_hash(weather)
@@ -126,11 +133,12 @@ class SimulationCache:
                 source_weather_hash=self.weather_hash,
                 valid_mask=full_valid_mask.copy(),
                 exact_or_approximate=exact_str,
-                error_bound=np.zeros_like(arr) if exact else None
+                error_bound=np.zeros_like(arr) if exact else None,
             )
 
-    def invalidate_fields(self, field_names: Set[str],
-                          dirty_spatial_mask: Optional[np.ndarray] = None):
+    def invalidate_fields(
+        self, field_names: Set[str], dirty_spatial_mask: Optional[np.ndarray] = None
+    ):
         """
         Invalidates specified fields either globally or within a candidate spatial region.
         """
@@ -144,9 +152,15 @@ class SimulationCache:
                     # Mark candidate dirty region as invalid
                     meta.valid_mask[dirty_spatial_mask] = False
 
-    def can_reuse_cell(self, field_name: str, iy: int, ix: int,
-                       target_scene_hash: str, target_weather_hash: str,
-                       target_config_hash: str) -> bool:
+    def can_reuse_cell(
+        self,
+        field_name: str,
+        iy: int,
+        ix: int,
+        target_scene_hash: str,
+        target_weather_hash: str,
+        target_config_hash: str,
+    ) -> bool:
         """
         Checks whether cell (iy, ix) of a field can be safely reused for the target state.
         """
@@ -158,9 +172,11 @@ class SimulationCache:
             return False
 
         # If hashes match exactly, field is completely valid
-        if (meta.source_scene_hash == target_scene_hash and
-            meta.source_weather_hash == target_weather_hash and
-            meta.source_config_hash == target_config_hash):
+        if (
+            meta.source_scene_hash == target_scene_hash
+            and meta.source_weather_hash == target_weather_hash
+            and meta.source_config_hash == target_config_hash
+        ):
             return True
 
         return False

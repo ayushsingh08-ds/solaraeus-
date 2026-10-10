@@ -23,18 +23,21 @@ from urban_comfort.optimization.surrogate import FallbackSurrogateModel, Surroga
 @dataclass
 class AcquisitionConfig:
     """Configuration for candidate acquisition policies."""
-    strategy: str = "hybrid"             # "hybrid", "lcb", "ei", "uncertainty"
-    kappa: float = 2.0                   # Lower Confidence Bound exploration weight
-    xi: float = 0.01                     # Expected Improvement exploration margin
-    pool_size: int = 1000                # Number of candidate samples drawn per acquisition round
+
+    strategy: str = "hybrid"  # "hybrid", "lcb", "ei", "uncertainty"
+    kappa: float = 2.0  # Lower Confidence Bound exploration weight
+    xi: float = 0.01  # Expected Improvement exploration margin
+    pool_size: int = 1000  # Number of candidate samples drawn per acquisition round
     seed: int = 42
-    min_diversity_dist: float = 0.03     # Minimum normalized Euclidean distance between batch candidates
+    min_diversity_dist: float = (
+        0.03  # Minimum normalized Euclidean distance between batch candidates
+    )
 
 
 def compute_lcb_score(mu: np.ndarray, sigma: np.ndarray, kappa: float = 2.0) -> np.ndarray:
     """
     Computes Lower Confidence Bound score for minimization.
-    
+
     Since we minimize objective f(x), the LCB is:
       LCB(x) = mu(x) - kappa * sigma(x)
     To formulate as an acquisition value to maximize (higher is better):
@@ -43,7 +46,9 @@ def compute_lcb_score(mu: np.ndarray, sigma: np.ndarray, kappa: float = 2.0) -> 
     return kappa * sigma - mu
 
 
-def compute_ei_score(mu: np.ndarray, sigma: np.ndarray, y_best: float, xi: float = 0.01) -> np.ndarray:
+def compute_ei_score(
+    mu: np.ndarray, sigma: np.ndarray, y_best: float, xi: float = 0.01
+) -> np.ndarray:
     """
     Closed-form Expected Improvement for minimization:
       EI(x) = (y_best - mu(x) - xi) * Phi(Z) + sigma(x) * phi(Z)
@@ -65,17 +70,22 @@ def compute_ei_score(mu: np.ndarray, sigma: np.ndarray, y_best: float, xi: float
     return np.maximum(0.0, ei)
 
 
-def compute_normalized_distance(p1: ShadePanelParams, p2: ShadePanelParams, bounds: ParameterBounds) -> float:
+def compute_normalized_distance(
+    p1: ShadePanelParams, p2: ShadePanelParams, bounds: ParameterBounds
+) -> float:
     """Computes normalized Euclidean distance between two candidate parameter vectors in [0, 1]^d."""
-    ranges = np.array([
-        bounds.x_max - bounds.x_min,
-        bounds.y_max - bounds.y_min,
-        bounds.length_max - bounds.length_min,
-        bounds.width_max - bounds.width_min,
-        bounds.height_max - bounds.height_min,
-        bounds.heading_max - bounds.heading_min,
-        bounds.albedo_max - bounds.albedo_min,
-    ], dtype=np.float64)
+    ranges = np.array(
+        [
+            bounds.x_max - bounds.x_min,
+            bounds.y_max - bounds.y_min,
+            bounds.length_max - bounds.length_min,
+            bounds.width_max - bounds.width_min,
+            bounds.height_max - bounds.height_min,
+            bounds.heading_max - bounds.heading_min,
+            bounds.albedo_max - bounds.albedo_min,
+        ],
+        dtype=np.float64,
+    )
     v1 = bounds.to_vector(p1)
     v2 = bounds.to_vector(p2)
     diff_norm = (v1 - v2) / ranges
@@ -103,7 +113,7 @@ class CandidateAcquisitionEngine:
     ) -> Tuple[List[Dict[str, Any]], Dict[str, Any]]:
         """
         Generates and selects an acquisition batch of geographically feasible candidates.
-        
+
         Returns:
             Tuple of:
               - proposed_candidates: List of dicts with params, tag, prediction, scores
@@ -132,11 +142,13 @@ class CandidateAcquisitionEngine:
                 reason = res.rejection_reason.value
                 rejected_counts[reason] = rejected_counts.get(reason, 0) + 1
                 if len(rejected_details) < 100:
-                    rejected_details.append({
-                        "params": p.to_dict(),
-                        "reason": reason,
-                        "message": res.message,
-                    })
+                    rejected_details.append(
+                        {
+                            "params": p.to_dict(),
+                            "reason": reason,
+                            "message": res.message,
+                        }
+                    )
 
         if not feasible_pool:
             raise RuntimeError(
@@ -150,19 +162,43 @@ class CandidateAcquisitionEngine:
         # 4. Compute Acquisition Values
         mu_obj = np.array([pred.objective_mean for pred in predictions], dtype=np.float64)
         sigma_obj = np.array([pred.objective_std for pred in predictions], dtype=np.float64)
-        mu_utci = np.array([pred.means.get("mean_utci_c", 36.5) for pred in predictions], dtype=np.float64)
+        mu_utci = np.array(
+            [pred.means.get("mean_utci_c", 36.5) for pred in predictions], dtype=np.float64
+        )
         areas = np.array([p.area for p in feasible_pool], dtype=np.float64)
 
         lcb_scores = compute_lcb_score(mu_obj, sigma_obj, kappa=self.config.kappa)
-        ei_scores = compute_ei_score(mu_obj, sigma_obj, y_best=current_best_objective, xi=self.config.xi)
+        ei_scores = compute_ei_score(
+            mu_obj, sigma_obj, y_best=current_best_objective, xi=self.config.xi
+        )
         unc_scores = sigma_obj.copy()
 
         # Boundary distance score: candidate closeness to parameter bounds
         boundary_closeness = np.zeros(len(feasible_pool), dtype=np.float64)
         for i, p in enumerate(feasible_pool):
             v = bounds.to_vector(p)
-            mins = np.array([bounds.x_min, bounds.y_min, bounds.length_min, bounds.width_min, bounds.height_min, bounds.heading_min, bounds.albedo_min])
-            maxs = np.array([bounds.x_max, bounds.y_max, bounds.length_max, bounds.width_max, bounds.height_max, bounds.heading_max, bounds.albedo_max])
+            mins = np.array(
+                [
+                    bounds.x_min,
+                    bounds.y_min,
+                    bounds.length_min,
+                    bounds.width_min,
+                    bounds.height_min,
+                    bounds.heading_min,
+                    bounds.albedo_min,
+                ]
+            )
+            maxs = np.array(
+                [
+                    bounds.x_max,
+                    bounds.y_max,
+                    bounds.length_max,
+                    bounds.width_max,
+                    bounds.height_max,
+                    bounds.heading_max,
+                    bounds.albedo_max,
+                ]
+            )
             norm_dist_to_edges = np.minimum((v - mins) / (maxs - mins), (maxs - v) / (maxs - mins))
             boundary_closeness[i] = float(np.min(norm_dist_to_edges))
 
@@ -186,7 +222,10 @@ class CandidateAcquisitionEngine:
 
         def is_diverse(candidate: ShadePanelParams) -> bool:
             for sp in selected_params:
-                if compute_normalized_distance(candidate, sp, bounds) < self.config.min_diversity_dist:
+                if (
+                    compute_normalized_distance(candidate, sp, bounds)
+                    < self.config.min_diversity_dist
+                ):
                     return False
             return True
 
@@ -198,16 +237,18 @@ class CandidateAcquisitionEngine:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": "surrogate_best_ei",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": "surrogate_best_ei",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                     break
 
             # Role 2: Maximum Uncertainty (Exploration)
@@ -216,35 +257,39 @@ class CandidateAcquisitionEngine:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": "surrogate_high_uncertainty",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": "surrogate_high_uncertainty",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                     break
 
             # Role 3: Boundary Candidate (Closest to geometric bounds)
-            bound_ranked = np.argsort(boundary_closeness) # closest to bound edge first
+            bound_ranked = np.argsort(boundary_closeness)  # closest to bound edge first
             for idx in bound_ranked:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": "surrogate_boundary",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                            "boundary_distance": float(boundary_closeness[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": "surrogate_boundary",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                                "boundary_distance": float(boundary_closeness[idx]),
+                            },
+                        }
+                    )
                     break
 
             # Role 4: Pareto Front Candidate
@@ -256,16 +301,18 @@ class CandidateAcquisitionEngine:
                     cand = feasible_pool[idx]
                     if is_diverse(cand):
                         selected_params.append(cand)
-                        selected_candidates.append({
-                            "params": cand,
-                            "role": "surrogate_pareto",
-                            "prediction": predictions[idx],
-                            "acquisition_scores": {
-                                "ei": float(ei_scores[idx]),
-                                "lcb": float(lcb_scores[idx]),
-                                "uncertainty": float(unc_scores[idx]),
-                            },
-                        })
+                        selected_candidates.append(
+                            {
+                                "params": cand,
+                                "role": "surrogate_pareto",
+                                "prediction": predictions[idx],
+                                "acquisition_scores": {
+                                    "ei": float(ei_scores[idx]),
+                                    "lcb": float(lcb_scores[idx]),
+                                    "uncertainty": float(unc_scores[idx]),
+                                },
+                            }
+                        )
                         break
 
             # Role 5: Random Feasible Exploration
@@ -274,16 +321,18 @@ class CandidateAcquisitionEngine:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": "surrogate_random_exploration",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": "surrogate_random_exploration",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                     break
 
         elif self.config.strategy == "lcb":
@@ -292,16 +341,18 @@ class CandidateAcquisitionEngine:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": f"surrogate_lcb_rank_{len(selected_candidates)+1}",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": f"surrogate_lcb_rank_{len(selected_candidates) + 1}",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                 if len(selected_candidates) >= batch_size:
                     break
 
@@ -311,35 +362,39 @@ class CandidateAcquisitionEngine:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": f"surrogate_ei_rank_{len(selected_candidates)+1}",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": f"surrogate_ei_rank_{len(selected_candidates) + 1}",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                 if len(selected_candidates) >= batch_size:
                     break
 
-        else: # uncertainty
+        else:  # uncertainty
             ranked = np.argsort(-unc_scores)
             for idx in ranked:
                 cand = feasible_pool[idx]
                 if is_diverse(cand):
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": f"surrogate_unc_rank_{len(selected_candidates)+1}",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": f"surrogate_unc_rank_{len(selected_candidates) + 1}",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                 if len(selected_candidates) >= batch_size:
                     break
 
@@ -350,16 +405,18 @@ class CandidateAcquisitionEngine:
                 cand = feasible_pool[idx]
                 if cand not in selected_params:
                     selected_params.append(cand)
-                    selected_candidates.append({
-                        "params": cand,
-                        "role": f"surrogate_fill_{len(selected_candidates)+1}",
-                        "prediction": predictions[idx],
-                        "acquisition_scores": {
-                            "ei": float(ei_scores[idx]),
-                            "lcb": float(lcb_scores[idx]),
-                            "uncertainty": float(unc_scores[idx]),
-                        },
-                    })
+                    selected_candidates.append(
+                        {
+                            "params": cand,
+                            "role": f"surrogate_fill_{len(selected_candidates) + 1}",
+                            "prediction": predictions[idx],
+                            "acquisition_scores": {
+                                "ei": float(ei_scores[idx]),
+                                "lcb": float(lcb_scores[idx]),
+                                "uncertainty": float(unc_scores[idx]),
+                            },
+                        }
+                    )
                 if len(selected_candidates) >= batch_size:
                     break
 

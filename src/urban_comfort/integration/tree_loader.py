@@ -90,12 +90,8 @@ class TreeLoader:
                             "base_height": {},
                         }
                     bounds_by_tree[tid]["height"][b_key] = float(row["height_m"])
-                    bounds_by_tree[tid]["diameter"][b_key] = float(
-                        row["crown_diameter_m"]
-                    )
-                    bounds_by_tree[tid]["base_height"][b_key] = float(
-                        row["crown_base_height_m"]
-                    )
+                    bounds_by_tree[tid]["diameter"][b_key] = float(row["crown_diameter_m"])
+                    bounds_by_tree[tid]["base_height"][b_key] = float(row["crown_base_height_m"])
 
         # Authoritative Core Trees definitions (T08 to T13)
         core_trees_data = [

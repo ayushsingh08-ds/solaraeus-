@@ -24,7 +24,7 @@ from urban_comfort.solar.solar_position import SolarPosition
 class FlattenedSceneGeometry:
     """
     Contiguous array representation of 3D scene geometry suitable for GPU buffers.
-    
+
     Attributes:
         vertices: (N_v, 3) float64 array of 3D vertex positions in local coordinates.
         triangles: (N_t, 3) int32 array of vertex indices (0-based) for each triangle.
@@ -37,6 +37,7 @@ class FlattenedSceneGeometry:
         bldg_material_ids: (N_b,) int32 index mapping each building to material_names.
         bounds_3d: Overall bounding box (xmin, xmax, ymin, ymax, zmin, zmax) across all objects.
     """
+
     vertices: np.ndarray
     triangles: np.ndarray
     triangle_object_ids: np.ndarray
@@ -61,11 +62,12 @@ class FlattenedSceneGeometry:
         return len(self.bldg_boxes)
 
     @classmethod
-    def from_scene(cls, scene: Scene,
-                   convert_buildings_to_triangles: bool = False) -> FlattenedSceneGeometry:
+    def from_scene(
+        cls, scene: Scene, convert_buildings_to_triangles: bool = False
+    ) -> FlattenedSceneGeometry:
         """
         Extracts and flattens all active geometry from a Scene into contiguous arrays.
-        
+
         Parameters:
             scene: Scene instance containing meshes and/or buildings.
             convert_buildings_to_triangles: If True, converts AABB buildings into 12-triangle
@@ -75,7 +77,11 @@ class FlattenedSceneGeometry:
         active_buildings = scene.get_active_buildings()
 
         # Material lookup
-        material_names: List[str] = list(scene.materials.keys()) if hasattr(scene, "materials") and scene.materials else ["default_wall", "default_ground"]
+        material_names: List[str] = (
+            list(scene.materials.keys())
+            if hasattr(scene, "materials") and scene.materials
+            else ["default_wall", "default_ground"]
+        )
         mat_to_idx = {name: i for i, name in enumerate(material_names)}
 
         object_names: List[str] = []
@@ -129,8 +135,13 @@ class FlattenedSceneGeometry:
             if convert_buildings_to_triangles:
                 box_mesh = create_box_mesh(
                     bldg.id,
-                    bldg.xmin, bldg.xmax, bldg.ymin, bldg.ymax, bldg.zmin, bldg.zmax,
-                    material_id=bldg.material_id
+                    bldg.xmin,
+                    bldg.xmax,
+                    bldg.ymin,
+                    bldg.ymax,
+                    bldg.zmin,
+                    bldg.zmax,
+                    material_id=bldg.material_id,
                 )
                 obj_idx = len(object_names)
                 object_names.append(bldg.id)
@@ -200,13 +211,14 @@ class FlattenedSceneGeometry:
             bldg_boxes=all_bldg_boxes,
             bldg_ids=bldg_ids,
             bldg_material_ids=all_bldg_mats,
-            bounds_3d=(xmin, xmax, ymin, ymax, zmin, zmax)
+            bounds_3d=(xmin, xmax, ymin, ymax, zmin, zmax),
         )
 
 
 @dataclass
 class BackendProfileMetrics:
     """Runtime and memory metrics for simulation backend execution."""
+
     backend_name: str
     scene_upload_time_s: float = 0.0
     kernel_runtime_s: float = 0.0
@@ -240,25 +252,29 @@ class SimulationBackend(ABC):
         pass
 
     @abstractmethod
-    def compute_direct_shadow(self, scene: Scene,
-                              grid: PedestrianGrid,
-                              solar_pos: SolarPosition,
-                              roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def compute_direct_shadow(
+        self,
+        scene: Scene,
+        grid: PedestrianGrid,
+        solar_pos: SolarPosition,
+        roi_mask: Optional[np.ndarray] = None,
+    ) -> np.ndarray:
         """Computes 2D binary direct shadow mask (1.0 = lit, 0.0 = shadow)."""
         pass
 
     @abstractmethod
-    def compute_sky_view_factor(self, scene: Scene,
-                                grid: PedestrianGrid,
-                                num_azimuths: int = 32,
-                                max_search_dist_m: float = 120.0,
-                                roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def compute_sky_view_factor(
+        self,
+        scene: Scene,
+        grid: PedestrianGrid,
+        num_azimuths: int = 32,
+        max_search_dist_m: float = 120.0,
+        roi_mask: Optional[np.ndarray] = None,
+    ) -> np.ndarray:
         """Computes 2D Sky View Factor in [0.0, 1.0]."""
         pass
 
     @abstractmethod
-    def full_simulate(self, scene: Scene,
-                      weather: Weather,
-                      config: SimulationConfig) -> Any:
+    def full_simulate(self, scene: Scene, weather: Weather, config: SimulationConfig) -> Any:
         """Executes full microclimate simulation across all physical fields."""
         pass

@@ -177,7 +177,9 @@ def main() -> int:
     edges, local_edges = scan(root_dirs)
 
     files_count = len({f for f in edges} | {t for ts in edges.values() for t in ts})
-    print(f"scanned {files_count} modules under {[str(r.relative_to(REPO_ROOT)) for r in root_dirs]}")
+    print(
+        f"scanned {files_count} modules under {[str(r.relative_to(REPO_ROOT)) for r in root_dirs]}"
+    )
     print(f"internal import edges: {sum(len(v) for v in edges.values())}")
 
     components = tarjan(edges)
@@ -188,9 +190,7 @@ def main() -> int:
         src: {dst for dst in dsts if dst not in local_edges.get(src, set())}
         for src, dsts in edges.items()
     }
-    top_level_ids = {
-        tuple(sorted(c)): c for c in tarjan(top_level_edges) if len(c) > 1
-    }
+    top_level_ids = {tuple(sorted(c)): c for c in tarjan(top_level_edges) if len(c) > 1}
     cycles = [c for c in all_cycles if tuple(sorted(c)) in top_level_ids]
     lazy_cycles = [c for c in all_cycles if tuple(sorted(c)) not in top_level_ids]
     self_loops = [f for f, deps in edges.items() if f in deps]

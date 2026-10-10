@@ -40,7 +40,10 @@ def test_stage_20_fabdem_regional_only():
     with open(qual_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     assert data["fabdem_quality"]["quality_verdict"] == "FAIL_FOR_MICROSCALE_SIMULATION"
-    assert data["synthetic_terrain_quality"]["quality_verdict"] == "PASS_FOR_NUMERICAL_SOLVER_VERIFICATION"
+    assert (
+        data["synthetic_terrain_quality"]["quality_verdict"]
+        == "PASS_FOR_NUMERICAL_SOLVER_VERIFICATION"
+    )
 
 
 def test_stage_20_promotion_decision():

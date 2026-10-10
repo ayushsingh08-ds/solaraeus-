@@ -19,23 +19,23 @@ from urban_comfort.incremental.regions import AffectedRegionResult
 from urban_comfort.solar.solar_position import SolarPosition
 
 
-def project_mesh_shadow(mesh: TriangleMesh,
-                        solar_pos: SolarPosition,
-                        z_ped: float) -> Tuple[float, float, float, float, float]:
+def project_mesh_shadow(
+    mesh: TriangleMesh, solar_pos: SolarPosition, z_ped: float
+) -> Tuple[float, float, float, float, float]:
     """
     Projects all 3D vertices of a TriangleMesh along the anti-sun trajectory onto the plane at z_ped.
-    
+
     Mathematical Soundness Guarantee:
     Since each triangle in the mesh is planar, any point in the triangle is an affine convex
     combination of its 3 vertices. Because projection along the sun vector is affine, the ground
     projection of every point on every triangle is strictly contained within the convex hull
     (and bounding box) of the projected vertices.
-    
+
     Parameters:
         mesh: TriangleMesh instance.
         solar_pos: Current SolarPosition.
         z_ped: Pedestrian receptor plane height (m).
-        
+
     Returns:
         (proj_xmin, proj_xmax, proj_ymin, proj_ymax, shadow_length_m)
     """
@@ -85,15 +85,17 @@ def project_mesh_shadow(mesh: TriangleMesh,
     return (proj_xmin, proj_xmax, proj_ymin, proj_ymax, shadow_length_m)
 
 
-def compute_mesh_candidate_affected_region(mesh_before: Optional[TriangleMesh],
-                                          mesh_after: Optional[TriangleMesh],
-                                          solar_pos: SolarPosition,
-                                          grid: PedestrianGrid,
-                                          safety_margin_cells: int = 2,
-                                          min_altitude_deg: float = 5.0) -> AffectedRegionResult:
+def compute_mesh_candidate_affected_region(
+    mesh_before: Optional[TriangleMesh],
+    mesh_after: Optional[TriangleMesh],
+    solar_pos: SolarPosition,
+    grid: PedestrianGrid,
+    safety_margin_cells: int = 2,
+    min_altitude_deg: float = 5.0,
+) -> AffectedRegionResult:
     """
     Computes a conservative candidate affected region on the pedestrian grid for mesh changes.
-    
+
     Guarantees:
     - 100% containment of direct shadow differences between mesh_before and mesh_after.
     - Safety margin padding (+2 cells by default).
@@ -113,14 +115,18 @@ def compute_mesh_candidate_affected_region(mesh_before: Optional[TriangleMesh],
             shadow_length_m=0.0,
             safety_margin_m=0.0,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=empty_bbox
+            new_projection_bbox=empty_bbox,
         )
 
     if solar_pos.altitude_deg < min_altitude_deg:
         return AffectedRegionResult(
             candidate_mask=full_mask,
-            candidate_bbox=(grid.origin_x, grid.origin_x + grid.extent_x,
-                            grid.origin_y, grid.origin_y + grid.extent_y),
+            candidate_bbox=(
+                grid.origin_x,
+                grid.origin_x + grid.extent_x,
+                grid.origin_y,
+                grid.origin_y + grid.extent_y,
+            ),
             is_fallback=True,
             fallback_reason=(
                 f"Solar altitude ({solar_pos.altitude_deg:.2f} deg) is below numerical "
@@ -130,19 +136,23 @@ def compute_mesh_candidate_affected_region(mesh_before: Optional[TriangleMesh],
             shadow_length_m=float("inf"),
             safety_margin_m=0.0,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=empty_bbox
+            new_projection_bbox=empty_bbox,
         )
 
     # 2. Project Shadows of Mesh Before and Mesh After
     if mesh_before is not None and mesh_before.enabled:
-        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_mesh_shadow(mesh_before, solar_pos, grid.z_ped)
+        p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = project_mesh_shadow(
+            mesh_before, solar_pos, grid.z_ped
+        )
         old_proj_bbox = (p_old_x1, p_old_x2, p_old_y1, p_old_y2)
     else:
         p_old_x1, p_old_x2, p_old_y1, p_old_y2, len_old = 0.0, 0.0, 0.0, 0.0, 0.0
         old_proj_bbox = empty_bbox
 
     if mesh_after is not None and mesh_after.enabled:
-        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_mesh_shadow(mesh_after, solar_pos, grid.z_ped)
+        p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = project_mesh_shadow(
+            mesh_after, solar_pos, grid.z_ped
+        )
         new_proj_bbox = (p_new_x1, p_new_x2, p_new_y1, p_new_y2)
     else:
         p_new_x1, p_new_x2, p_new_y1, p_new_y2, len_new = 0.0, 0.0, 0.0, 0.0, 0.0
@@ -158,7 +168,7 @@ def compute_mesh_candidate_affected_region(mesh_before: Optional[TriangleMesh],
             shadow_length_m=0.0,
             safety_margin_m=0.0,
             old_projection_bbox=empty_bbox,
-            new_projection_bbox=empty_bbox
+            new_projection_bbox=empty_bbox,
         )
 
     # Combine projection bounding boxes
@@ -191,5 +201,5 @@ def compute_mesh_candidate_affected_region(mesh_before: Optional[TriangleMesh],
         shadow_length_m=max(len_old, len_new),
         safety_margin_m=margin_m,
         old_projection_bbox=old_proj_bbox,
-        new_projection_bbox=new_proj_bbox
+        new_projection_bbox=new_proj_bbox,
     )

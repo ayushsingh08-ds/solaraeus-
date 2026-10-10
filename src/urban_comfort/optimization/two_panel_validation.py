@@ -37,6 +37,7 @@ from urban_comfort.reference.result import SimulationResult
 @dataclass
 class TwoPanelValidationReport:
     """Multi-path audit report for a two-panel intervention candidate."""
+
     candidate_id: str
     role: str
     params: Dict[str, Any]
@@ -82,6 +83,7 @@ class TwoPanelValidationReport:
 @dataclass
 class TwoPanelMultiPathSummary:
     """Comprehensive summary of multi-path audits across all selected two-panel candidates."""
+
     reports: List[TwoPanelValidationReport]
     total_validated: int
     total_passed: int
@@ -119,8 +121,20 @@ def validate_two_panel_multi_path(
     m1.material_id = mat1_id
     m2.material_id = mat2_id
 
-    mat1 = Material(id=mat1_id, albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat2 = Material(id=mat2_id, albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat1 = Material(
+        id=mat1_id,
+        albedo=float(params_canon.albedo1),
+        emissivity=0.90,
+        surface_temperature=308.15,
+        is_opaque=True,
+    )
+    mat2 = Material(
+        id=mat2_id,
+        albedo=float(params_canon.albedo2),
+        emissivity=0.90,
+        surface_temperature=308.15,
+        is_opaque=True,
+    )
 
     edit = AddMultiMeshEdit([m1, m2])
     intervention_scene, edit_bounds = edit.apply(baseline_scene)
@@ -166,13 +180,16 @@ def validate_two_panel_multi_path(
     reused_pct = (reused / total_cells) * 100.0 if total_cells > 0 else 0.0
     ray_reduction_pct = reused_pct
 
-    max_bound = float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0
+    max_bound = (
+        float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0
+    )
     n_violations = getattr(cert, "n_violations", 0)
 
     # 5. Pairwise Cross-Path Comparisons
     # Path A vs Path B (1): CPU Full vs GPU Full (Mathematical Solver Equivalence)
     cmp_cpu_gpu_full = _compare_results(
-        res_cpu_full, res_gpu_full,
+        res_cpu_full,
+        res_gpu_full,
         path_a_name="CPU_Full",
         path_b_name="GPU_Full",
         tolerances=TOLERANCES_SOLVER_EQUIVALENCE,
@@ -181,7 +198,8 @@ def validate_two_panel_multi_path(
 
     # Path A vs Path B (2): GPU Full vs GPU Incremental (Incremental Tracing Correctness)
     cmp_gpu_full_gpu_inc = _compare_results(
-        res_gpu_full, res_gpu_inc,
+        res_gpu_full,
+        res_gpu_inc,
         path_a_name="GPU_Full",
         path_b_name="GPU_Incremental",
         tolerances=TOLERANCES_INCREMENTAL,
@@ -190,7 +208,8 @@ def validate_two_panel_multi_path(
 
     # Path A vs Path B (3): CPU Full vs GPU Incremental (Full End-to-End Parity)
     cmp_cpu_full_gpu_inc = _compare_results(
-        res_cpu_full, res_gpu_inc,
+        res_cpu_full,
+        res_gpu_inc,
         path_a_name="CPU_Full",
         path_b_name="GPU_Incremental",
         tolerances=TOLERANCES_INCREMENTAL,
@@ -198,10 +217,10 @@ def validate_two_panel_multi_path(
     )
 
     all_passed = (
-        cmp_cpu_gpu_full.passed_all and
-        cmp_gpu_full_gpu_inc.passed_all and
-        cmp_cpu_full_gpu_inc.passed_all and
-        n_violations == 0
+        cmp_cpu_gpu_full.passed_all
+        and cmp_gpu_full_gpu_inc.passed_all
+        and cmp_cpu_full_gpu_inc.passed_all
+        and n_violations == 0
     )
 
     return TwoPanelValidationReport(

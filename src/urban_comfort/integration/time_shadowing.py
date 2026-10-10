@@ -34,8 +34,8 @@ class ShadowStepResult:
     analytic_shadow_length_10m: float
     shadow_direction_deg: float
     geometric_shadow_field: np.ndarray  # 1 = in shadow, 0 = sunlit
-    cloud_shadow_field: np.ndarray      # 1 = in cloud shadow, 0 = clear
-    combined_shadow_field: np.ndarray   # 1 = attenuated, 0 = full sun
+    cloud_shadow_field: np.ndarray  # 1 = in cloud shadow, 0 = clear
+    combined_shadow_field: np.ndarray  # 1 = attenuated, 0 = full sun
     dni_w_m2: float
 
 
@@ -141,7 +141,9 @@ class TimeShadowingEngine:
 
             # 3. Cloud Shadow
             elapsed_sec = (h - start_hour) * 3600.0
-            c_mask = cloud_model.generate_cloud_mask(cloud_state, elapsed_sec, nx=self.nx, ny=self.ny)
+            c_mask = cloud_model.generate_cloud_mask(
+                cloud_state, elapsed_sec, nx=self.nx, ny=self.ny
+            )
             proj_cloud, _ = cloud_model.compute_ground_shadow_projection(
                 c_mask, alt, az, cloud_state.cloud_base_height_m
             )
@@ -161,19 +163,21 @@ class TimeShadowingEngine:
 
             # Record
             props = self.compute_analytic_shadow_properties(10.0, alt, az)
-            records.append({
-                "time_ist": f"{int(h):02d}:{int((h%1)*60):02d}",
-                "hour_decimal": round(float(h), 3),
-                "altitude_deg": round(alt, 3),
-                "azimuth_deg": round(az, 3),
-                "is_daylight": pos.is_daylight,
-                "shadow_length_10m": round(props["shadow_length_m"], 2),
-                "shadow_direction_deg": round(props["shadow_azimuth_deg"], 2),
-                "mean_geometric_shadow": float(np.mean(geom_shadow)),
-                "mean_cloud_shadow": float(np.mean(cloud_shadow)),
-                "mean_combined_shadow": float(np.mean(combined_shadow)),
-                "dni_clear_w_m2": round(dni_clear, 1),
-            })
+            records.append(
+                {
+                    "time_ist": f"{int(h):02d}:{int((h % 1) * 60):02d}",
+                    "hour_decimal": round(float(h), 3),
+                    "altitude_deg": round(alt, 3),
+                    "azimuth_deg": round(az, 3),
+                    "is_daylight": pos.is_daylight,
+                    "shadow_length_10m": round(props["shadow_length_m"], 2),
+                    "shadow_direction_deg": round(props["shadow_azimuth_deg"], 2),
+                    "mean_geometric_shadow": float(np.mean(geom_shadow)),
+                    "mean_cloud_shadow": float(np.mean(cloud_shadow)),
+                    "mean_combined_shadow": float(np.mean(combined_shadow)),
+                    "dni_clear_w_m2": round(dni_clear, 1),
+                }
+            )
 
         df_timeseries = pd.DataFrame(records)
 

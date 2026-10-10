@@ -30,6 +30,7 @@ class TwoPanelParams:
     Panel 1: (x1, y1, length1, width1, height1, heading1, albedo1)
     Panel 2: (x2, y2, length2, width2, height2, heading2, albedo2)
     """
+
     x1: float
     y1: float
     length1: float
@@ -76,10 +77,20 @@ class TwoPanelParams:
     def from_panels(cls, p1: ShadePanelParams, p2: ShadePanelParams) -> TwoPanelParams:
         """Constructs TwoPanelParams from two single panel instances."""
         return cls(
-            x1=p1.x, y1=p1.y, length1=p1.length, width1=p1.width,
-            height1=p1.height, heading_deg1=p1.heading_deg, albedo1=p1.albedo,
-            x2=p2.x, y2=p2.y, length2=p2.length, width2=p2.width,
-            height2=p2.height, heading_deg2=p2.heading_deg, albedo2=p2.albedo,
+            x1=p1.x,
+            y1=p1.y,
+            length1=p1.length,
+            width1=p1.width,
+            height1=p1.height,
+            heading_deg1=p1.heading_deg,
+            albedo1=p1.albedo,
+            x2=p2.x,
+            y2=p2.y,
+            length2=p2.length,
+            width2=p2.width,
+            height2=p2.height,
+            heading_deg2=p2.heading_deg,
+            albedo2=p2.albedo,
         )
 
     @property
@@ -100,8 +111,20 @@ class TwoPanelParams:
     def is_finite(self) -> bool:
         """Returns True if all 14 parameter values are finite numbers."""
         vals = [
-            self.x1, self.y1, self.length1, self.width1, self.height1, self.heading_deg1, self.albedo1,
-            self.x2, self.y2, self.length2, self.width2, self.height2, self.heading_deg2, self.albedo2,
+            self.x1,
+            self.y1,
+            self.length1,
+            self.width1,
+            self.height1,
+            self.heading_deg1,
+            self.albedo1,
+            self.x2,
+            self.y2,
+            self.length2,
+            self.width2,
+            self.height2,
+            self.heading_deg2,
+            self.albedo2,
         ]
         return all(math.isfinite(v) for v in vals)
 
@@ -110,12 +133,24 @@ class TwoPanelParams:
         Orders panels canonically so (panel1, panel2) is unique under permutation symmetry.
         Ordering rule: panel with smaller x coordinate comes first; tie-break by y.
         """
-        if (self.x1 > self.x2) or (math.isclose(self.x1, self.x2, abs_tol=1e-5) and self.y1 > self.y2):
+        if (self.x1 > self.x2) or (
+            math.isclose(self.x1, self.x2, abs_tol=1e-5) and self.y1 > self.y2
+        ):
             return TwoPanelParams(
-                x1=self.x2, y1=self.y2, length1=self.length2, width1=self.width2,
-                height1=self.height2, heading_deg1=self.heading_deg2, albedo1=self.albedo2,
-                x2=self.x1, y2=self.y1, length2=self.length1, width2=self.width1,
-                height2=self.height1, heading_deg2=self.heading_deg1, albedo2=self.albedo1,
+                x1=self.x2,
+                y1=self.y2,
+                length1=self.length2,
+                width1=self.width2,
+                height1=self.height2,
+                heading_deg1=self.heading_deg2,
+                albedo1=self.albedo2,
+                x2=self.x1,
+                y2=self.y1,
+                length2=self.length1,
+                width2=self.width1,
+                height2=self.height1,
+                heading_deg2=self.heading_deg1,
+                albedo2=self.albedo1,
             )
         return self
 
@@ -169,29 +204,58 @@ class TwoPanelParams:
 
     def to_vector(self) -> np.ndarray:
         """Extracts 14-element float array."""
-        return np.array([
-            self.x1, self.y1, self.length1, self.width1, self.height1, self.heading_deg1, self.albedo1,
-            self.x2, self.y2, self.length2, self.width2, self.height2, self.heading_deg2, self.albedo2,
-        ], dtype=np.float64)
+        return np.array(
+            [
+                self.x1,
+                self.y1,
+                self.length1,
+                self.width1,
+                self.height1,
+                self.heading_deg1,
+                self.albedo1,
+                self.x2,
+                self.y2,
+                self.length2,
+                self.width2,
+                self.height2,
+                self.heading_deg2,
+                self.albedo2,
+            ],
+            dtype=np.float64,
+        )
 
     @classmethod
     def from_vector(cls, v: np.ndarray) -> TwoPanelParams:
         """Instantiates TwoPanelParams from 14-element vector."""
         return cls(
-            x1=float(v[0]), y1=float(v[1]), length1=float(v[2]), width1=float(v[3]),
-            height1=float(v[4]), heading_deg1=float(v[5]), albedo1=float(v[6]),
-            x2=float(v[7]), y2=float(v[8]), length2=float(v[9]), width2=float(v[10]),
-            height2=float(v[11]), heading_deg2=float(v[12]), albedo2=float(v[13]),
+            x1=float(v[0]),
+            y1=float(v[1]),
+            length1=float(v[2]),
+            width1=float(v[3]),
+            height1=float(v[4]),
+            heading_deg1=float(v[5]),
+            albedo1=float(v[6]),
+            x2=float(v[7]),
+            y2=float(v[8]),
+            length2=float(v[9]),
+            width2=float(v[10]),
+            height2=float(v[11]),
+            heading_deg2=float(v[12]),
+            albedo2=float(v[13]),
         )
 
-    def build_geometries(self,
-                         thickness_m: float = 0.1,
-                         id_prefix: str = "SHADE_PANEL") -> Tuple[Tuple[TriangleMesh, Polygon], Tuple[TriangleMesh, Polygon]]:
+    def build_geometries(
+        self, thickness_m: float = 0.1, id_prefix: str = "SHADE_PANEL"
+    ) -> Tuple[Tuple[TriangleMesh, Polygon], Tuple[TriangleMesh, Polygon]]:
         """
         Builds 3D watertight TriangleMeshes and 2D Shapely Polygons for both panels.
         """
-        mesh1, poly1 = build_panel_geometry(self.panel1, thickness_m=thickness_m, mesh_id=f"{id_prefix}_1")
-        mesh2, poly2 = build_panel_geometry(self.panel2, thickness_m=thickness_m, mesh_id=f"{id_prefix}_2")
+        mesh1, poly1 = build_panel_geometry(
+            self.panel1, thickness_m=thickness_m, mesh_id=f"{id_prefix}_1"
+        )
+        mesh2, poly2 = build_panel_geometry(
+            self.panel2, thickness_m=thickness_m, mesh_id=f"{id_prefix}_2"
+        )
         return (mesh1, poly1), (mesh2, poly2)
 
     def separation_distance(self) -> float:
@@ -206,7 +270,10 @@ class TwoPanelBounds:
     """
     Configurable bounds and construction constraints for two-panel optimization.
     """
-    panel_bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_church_street_bounds)
+
+    panel_bounds: ParameterBounds = field(
+        default_factory=ParameterBounds.get_canonical_church_street_bounds
+    )
     min_separation_m: float = 2.0
     max_individual_area_m2: float = 40.0
     max_total_area_m2: float = 60.0
@@ -226,6 +293,7 @@ class TwoPanelBounds:
 
     def sample_uniform(self, rng: np.random.Generator, n_samples: Optional[int] = None) -> Any:
         """Samples random two-panel candidate(s) uniformly within parameter bounds."""
+
         def _sample_one() -> TwoPanelParams:
             p1 = self.panel_bounds.sample_uniform(rng)
             p2 = self.panel_bounds.sample_uniform(rng)
@@ -235,7 +303,9 @@ class TwoPanelBounds:
             return [_sample_one() for _ in range(n_samples)]
         return _sample_one()
 
-    def sample_lhs(self, n_samples: int, rng: Optional[np.random.Generator] = None) -> List[TwoPanelParams]:
+    def sample_lhs(
+        self, n_samples: int, rng: Optional[np.random.Generator] = None
+    ) -> List[TwoPanelParams]:
         """
         Samples candidates using Latin Hypercube Sampling across all 14 dimensions.
         """
@@ -243,24 +313,27 @@ class TwoPanelBounds:
             rng = np.random.default_rng(42)
 
         pb = self.panel_bounds
-        bounds_arr = np.array([
-            # Panel 1
-            [pb.x_min, pb.x_max],
-            [pb.y_min, pb.y_max],
-            [pb.length_min, pb.length_max],
-            [pb.width_min, pb.width_max],
-            [pb.height_min, pb.height_max],
-            [pb.heading_min, pb.heading_max],
-            [pb.albedo_min, pb.albedo_max],
-            # Panel 2
-            [pb.x_min, pb.x_max],
-            [pb.y_min, pb.y_max],
-            [pb.length_min, pb.length_max],
-            [pb.width_min, pb.width_max],
-            [pb.height_min, pb.height_max],
-            [pb.heading_min, pb.heading_max],
-            [pb.albedo_min, pb.albedo_max],
-        ], dtype=np.float64)
+        bounds_arr = np.array(
+            [
+                # Panel 1
+                [pb.x_min, pb.x_max],
+                [pb.y_min, pb.y_max],
+                [pb.length_min, pb.length_max],
+                [pb.width_min, pb.width_max],
+                [pb.height_min, pb.height_max],
+                [pb.heading_min, pb.heading_max],
+                [pb.albedo_min, pb.albedo_max],
+                # Panel 2
+                [pb.x_min, pb.x_max],
+                [pb.y_min, pb.y_max],
+                [pb.length_min, pb.length_max],
+                [pb.width_min, pb.width_max],
+                [pb.height_min, pb.height_max],
+                [pb.heading_min, pb.heading_max],
+                [pb.albedo_min, pb.albedo_max],
+            ],
+            dtype=np.float64,
+        )
 
         d = 14
         lhs_matrix = np.zeros((n_samples, d), dtype=np.float64)

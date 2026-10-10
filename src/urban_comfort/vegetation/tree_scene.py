@@ -21,6 +21,7 @@ class TreeAwareScene:
     """
     Extends TerrainAwareScene with provisional Level 1 Tree geometries.
     """
+
     terrain_scene: TerrainAwareScene
     trees: List[Tree] = field(default_factory=list)
     version: str = "2.2.0-tree"

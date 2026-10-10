@@ -21,7 +21,7 @@ from urban_comfort.geometry.mesh import TriangleMesh
 class ShadePanelParams:
     """
     Mathematical parameterization of a single rectangular overhead shade panel.
-    
+
     Attributes:
         x: Center Easting coordinate in local grid coordinates (m).
         y: Center Northing coordinate in local grid coordinates (m).
@@ -33,6 +33,7 @@ class ShadePanelParams:
         tilt: Inclination angle from horizontal in degrees (default 0.0).
         emissivity: Thermal longwave emissivity of canopy surface (default 0.90).
     """
+
     x: float
     y: float
     length: float
@@ -43,17 +44,19 @@ class ShadePanelParams:
     tilt: float = 0.0
     emissivity: float = 0.90
 
-    def __init__(self,
-                 x: float,
-                 y: float,
-                 length: float,
-                 width: float,
-                 height: float,
-                 heading_deg: Optional[float] = None,
-                 albedo: float = 0.60,
-                 tilt: float = 0.0,
-                 emissivity: float = 0.90,
-                 azimuth: Optional[float] = None):
+    def __init__(
+        self,
+        x: float,
+        y: float,
+        length: float,
+        width: float,
+        height: float,
+        heading_deg: Optional[float] = None,
+        albedo: float = 0.60,
+        tilt: float = 0.0,
+        emissivity: float = 0.90,
+        azimuth: Optional[float] = None,
+    ):
         self.x = float(x)
         self.y = float(y)
         self.length = float(length)
@@ -85,7 +88,17 @@ class ShadePanelParams:
 
     def is_finite(self) -> bool:
         """Returns True if all parameter values are finite numbers."""
-        vals = [self.x, self.y, self.length, self.width, self.height, self.heading_deg, self.albedo, self.tilt, self.emissivity]
+        vals = [
+            self.x,
+            self.y,
+            self.length,
+            self.width,
+            self.height,
+            self.heading_deg,
+            self.albedo,
+            self.tilt,
+            self.emissivity,
+        ]
         return all(math.isfinite(v) for v in vals)
 
     def to_dict(self) -> Dict[str, float]:
@@ -126,6 +139,7 @@ class ShadePanelParams:
 @dataclass
 class ParameterBounds:
     """Configurable box bounds for candidate shade panel parameterization."""
+
     x_min: float = 100.0
     x_max: float = 160.0
     y_min: float = 50.0
@@ -146,13 +160,13 @@ class ParameterBounds:
         if not p.is_finite():
             return False
         return (
-            self.x_min <= p.x <= self.x_max and
-            self.y_min <= p.y <= self.y_max and
-            self.length_min <= p.length <= self.length_max and
-            self.width_min <= p.width <= self.width_max and
-            self.height_min <= p.height <= self.height_max and
-            self.heading_min <= p.heading_deg <= self.heading_max and
-            self.albedo_min <= p.albedo <= self.albedo_max
+            self.x_min <= p.x <= self.x_max
+            and self.y_min <= p.y <= self.y_max
+            and self.length_min <= p.length <= self.length_max
+            and self.width_min <= p.width <= self.width_max
+            and self.height_min <= p.height <= self.height_max
+            and self.heading_min <= p.heading_deg <= self.heading_max
+            and self.albedo_min <= p.albedo <= self.albedo_max
         )
 
     def clip(self, p: Any) -> Any:
@@ -230,15 +244,18 @@ class ParameterBounds:
 
         d = 7
         result: List[ShadePanelParams] = []
-        bounds_arr = np.array([
-            [self.x_min, self.x_max],
-            [self.y_min, self.y_max],
-            [self.length_min, self.length_max],
-            [self.width_min, self.width_max],
-            [self.height_min, self.height_max],
-            [self.heading_min, self.heading_max],
-            [self.albedo_min, self.albedo_max],
-        ], dtype=np.float64)
+        bounds_arr = np.array(
+            [
+                [self.x_min, self.x_max],
+                [self.y_min, self.y_max],
+                [self.length_min, self.length_max],
+                [self.width_min, self.width_max],
+                [self.height_min, self.height_max],
+                [self.heading_min, self.heading_max],
+                [self.albedo_min, self.albedo_max],
+            ],
+            dtype=np.float64,
+        )
 
         # Generate Latin Hypercube intervals
         lhs_matrix = np.zeros((n_samples, d), dtype=np.float64)
@@ -250,20 +267,24 @@ class ParameterBounds:
         # Scale to bounds
         scaled = bounds_arr[:, 0] + lhs_matrix * (bounds_arr[:, 1] - bounds_arr[:, 0])
         for i in range(n_samples):
-            result.append(ShadePanelParams(
-                x=float(scaled[i, 0]),
-                y=float(scaled[i, 1]),
-                length=float(scaled[i, 2]),
-                width=float(scaled[i, 3]),
-                height=float(scaled[i, 4]),
-                heading_deg=float(scaled[i, 5]),
-                albedo=float(scaled[i, 6]),
-            ))
+            result.append(
+                ShadePanelParams(
+                    x=float(scaled[i, 0]),
+                    y=float(scaled[i, 1]),
+                    length=float(scaled[i, 2]),
+                    width=float(scaled[i, 3]),
+                    height=float(scaled[i, 4]),
+                    heading_deg=float(scaled[i, 5]),
+                    albedo=float(scaled[i, 6]),
+                )
+            )
         return result
 
     def to_vector(self, p: ShadePanelParams) -> np.ndarray:
         """Extracts 7-element float array [x, y, length, width, height, heading, albedo]."""
-        return np.array([p.x, p.y, p.length, p.width, p.height, p.heading_deg, p.albedo], dtype=np.float64)
+        return np.array(
+            [p.x, p.y, p.length, p.width, p.height, p.heading_deg, p.albedo], dtype=np.float64
+        )
 
     def from_vector(self, v: np.ndarray) -> ShadePanelParams:
         """Instantiates ShadePanelParams from 7-element vector."""
@@ -322,13 +343,13 @@ class ParameterBounds:
         )
 
 
-def build_panel_geometry(params: ShadePanelParams,
-                         thickness_m: float = 0.1,
-                         mesh_id: str = "SHADE_PANEL") -> Tuple[TriangleMesh, Polygon]:
+def build_panel_geometry(
+    params: ShadePanelParams, thickness_m: float = 0.1, mesh_id: str = "SHADE_PANEL"
+) -> Tuple[TriangleMesh, Polygon]:
     """
     Constructs a watertight 3D TriangleMesh (8 vertices, 12 triangles) and 2D Shapely Polygon footprint
     for a rectangular overhead shade panel.
-    
+
     Coordinates:
     - Heading is clockwise angle from local grid North (+Y).
     - Longitudinal axis (length L) points along heading vector (sin theta, cos theta).
@@ -395,7 +416,7 @@ def build_panel_geometry(params: ShadePanelParams,
             "emissivity": 0.90,
             "initial_surface_temp_c": 35.0,
             "supporting_posts_included": False,
-        }
+        },
     )
 
     return mesh, polygon_2d

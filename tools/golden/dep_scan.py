@@ -85,8 +85,12 @@ def main() -> int:
     }
 
     def third_party(mod: str) -> bool:
-        return mod not in STDLIB and not mod.startswith("urban_comfort") \
-            and not mod.startswith("solaraeus") and mod != "__future__"
+        return (
+            mod not in STDLIB
+            and not mod.startswith("urban_comfort")
+            and not mod.startswith("solaraeus")
+            and mod != "__future__"
+        )
 
     for role, imports in role_imports.items():
         print("=" * 78)

@@ -22,7 +22,7 @@ class Tree:
     crown_radius_x: float
     crown_radius_y: float
     crown_base_height: float  # elevation above ground where crown starts
-    trunk_radius: float       # DBH / 2
+    trunk_radius: float  # DBH / 2
     transmissivity: float = 0.0
     geometry_state: str = "NOMINAL_PROVISIONAL"
     status: str = "PROVISIONAL_PHOTO_ESTIMATED"
@@ -133,7 +133,8 @@ def get_core_trees(
     raw_specs = {
         "T08": {
             "species": "Ficus religiosa",
-            "x": 20.07, "y": 4.12,
+            "x": 20.07,
+            "y": 4.12,
             "height": [11.0, 13.5, 16.0],
             "crown_dia": [9.5, 12.0, 15.0],
             "crown_base": [3.8, 4.2, 4.5],
@@ -141,7 +142,8 @@ def get_core_trees(
         },
         "T09": {
             "species": "Syzygium cumini",
-            "x": 34.82, "y": 4.05,
+            "x": 34.82,
+            "y": 4.05,
             "height": [9.0, 11.0, 13.0],
             "crown_dia": [7.0, 8.5, 10.5],
             "crown_base": [3.2, 3.8, 4.2],
@@ -149,7 +151,8 @@ def get_core_trees(
         },
         "T10": {
             "species": "Syzygium cumini",
-            "x": 50.15, "y": 4.21,
+            "x": 50.15,
+            "y": 4.21,
             "height": [7.5, 9.5, 11.5],
             "crown_dia": [6.0, 7.5, 9.0],
             "crown_base": [2.8, 3.2, 3.6],
@@ -157,7 +160,8 @@ def get_core_trees(
         },
         "T11": {
             "species": "Saraca asoca",
-            "x": 65.40, "y": 3.98,
+            "x": 65.40,
+            "y": 3.98,
             "height": [6.5, 8.0, 9.5],
             "crown_dia": [4.2, 5.5, 6.8],
             "crown_base": [2.4, 2.8, 3.2],
@@ -165,7 +169,8 @@ def get_core_trees(
         },
         "T12": {
             "species": "Saraca asoca",
-            "x": 80.20, "y": 4.10,
+            "x": 80.20,
+            "y": 4.10,
             "height": [6.0, 7.5, 9.0],
             "crown_dia": [3.8, 5.0, 6.2],
             "crown_base": [2.2, 2.6, 3.0],
@@ -173,7 +178,8 @@ def get_core_trees(
         },
         "T13": {
             "species": "Tecoma stans",
-            "x": 97.09, "y": 4.02,
+            "x": 97.09,
+            "y": 4.02,
             "height": [3.8, 5.0, 6.5],
             "crown_dia": [2.6, 3.5, 4.5],
             "crown_base": [1.4, 1.8, 2.2],

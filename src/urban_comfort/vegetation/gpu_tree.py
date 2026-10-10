@@ -14,6 +14,7 @@ import numpy as np
 
 try:
     import cupy as cp
+
     HAS_CUPY = True
 except ImportError:
     cp = None
@@ -152,6 +153,7 @@ class TreeAwareGPUBackend:
     GPU-accelerated backend for tree and terrain microclimate simulation.
     API Version: 2.2.0-gpu-tree
     """
+
     VERSION: str = "2.2.0-gpu-tree"
 
     _cuda_module = None
@@ -219,12 +221,19 @@ class TreeAwareGPUBackend:
         # Pack tree parameters
         tree_params = []
         for t in scene.trees:
-            tree_params.extend([
-                float(t.x), float(t.y), float(t.z_ground), float(t.height),
-                float(t.crown_radius_x), float(t.crown_radius_y),
-                float(t.crown_base_height), float(t.trunk_radius),
-                float(t.transmissivity),
-            ])
+            tree_params.extend(
+                [
+                    float(t.x),
+                    float(t.y),
+                    float(t.z_ground),
+                    float(t.height),
+                    float(t.crown_radius_x),
+                    float(t.crown_radius_y),
+                    float(t.crown_base_height),
+                    float(t.trunk_radius),
+                    float(t.transmissivity),
+                ]
+            )
         tree_params_arr = np.array(tree_params, dtype=np.float64)
 
         d_xx = cp.asarray(grid.X.ravel(), dtype=cp.float64)
@@ -242,9 +251,14 @@ class TreeAwareGPUBackend:
             (blocks,),
             (threads_per_block,),
             (
-                d_xx, d_yy, d_zz,
-                np.int32(ny), np.int32(nx),
-                np.float64(sun_dx), np.float64(sun_dy), np.float64(sun_dz),
+                d_xx,
+                d_yy,
+                d_zz,
+                np.int32(ny),
+                np.int32(nx),
+                np.float64(sun_dx),
+                np.float64(sun_dy),
+                np.float64(sun_dz),
                 np.int32(len(scene.trees)),
                 d_params,
                 d_shadow,
@@ -281,13 +295,21 @@ class TreeAwareGPUBackend:
         k_total = sw_fluxes.k_total.copy()
         for i in range(ny):
             for j in range(nx):
-                if tree_shadow_mask[i, j] and tree_transmission[i, j] > 0.0 and base_res.shadow_mask[i, j] > 0.0:
-                    k_dir_unblocked = sw_fluxes.k_dir[i, j] if combined_shadow_mask[i, j] > 0.0 else (sw_fluxes.k_total[i, j] - sw_fluxes.k_diff[i, j])
-                    k_total[i, j] = sw_fluxes.k_diff[i, j] + k_dir_unblocked * tree_transmission[i, j]
+                if (
+                    tree_shadow_mask[i, j]
+                    and tree_transmission[i, j] > 0.0
+                    and base_res.shadow_mask[i, j] > 0.0
+                ):
+                    k_dir_unblocked = (
+                        sw_fluxes.k_dir[i, j]
+                        if combined_shadow_mask[i, j] > 0.0
+                        else (sw_fluxes.k_total[i, j] - sw_fluxes.k_diff[i, j])
+                    )
+                    k_total[i, j] = (
+                        sw_fluxes.k_diff[i, j] + k_dir_unblocked * tree_transmission[i, j]
+                    )
 
-        lw_fluxes = compute_longwave_fluxes(
-            weather, clean_svf, ground_mat, wall_mat
-        )
+        lw_fluxes = compute_longwave_fluxes(weather, clean_svf, ground_mat, wall_mat)
         radiant_state = compute_tmrt(k_total, lw_fluxes.l_total)
         tmrt_c = np.where(valid_mask, radiant_state.tmrt_c, np.nan)
 
@@ -305,14 +327,16 @@ class TreeAwareGPUBackend:
         t_total = time.perf_counter() - t_start
 
         metadata = dict(base_res.metadata)
-        metadata.update({
-            "tree_version": cls.VERSION,
-            "tree_enabled": True,
-            "num_trees": len(scene.trees),
-            "tree_shadowed_cells": int(np.sum(tree_shadow_mask)),
-            "timing_gpu_tree_shadow_sec": t_gpu_shadow,
-            "timing_total_sec": t_total,
-        })
+        metadata.update(
+            {
+                "tree_version": cls.VERSION,
+                "tree_enabled": True,
+                "num_trees": len(scene.trees),
+                "tree_shadowed_cells": int(np.sum(tree_shadow_mask)),
+                "timing_gpu_tree_shadow_sec": t_gpu_shadow,
+                "timing_total_sec": t_total,
+            }
+        )
 
         return SimulationResult(
             shadow_mask=combined_shadow_mask,
@@ -384,7 +408,9 @@ class TreeAwareGPUBackend:
             min_y = min(t.y, t.y + sh_y) - r_max
             max_y = max(t.y, t.y + sh_y) + r_max
 
-            cell_mask = (grid.X >= min_x) & (grid.X <= max_x) & (grid.Y >= min_y) & (grid.Y <= max_y)
+            cell_mask = (
+                (grid.X >= min_x) & (grid.X <= max_x) & (grid.Y >= min_y) & (grid.Y <= max_y)
+            )
             affected_mask |= cell_mask
 
         # Ground truth solve for scene_after

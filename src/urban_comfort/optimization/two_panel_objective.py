@@ -19,30 +19,32 @@ from urban_comfort.reference.result import SimulationResult
 @dataclass
 class TwoPanelComfortObjectiveConfig:
     """Configuration weights and costs for two-panel composite objective evaluation."""
+
     weight_mean_utci: float = 1.00
     weight_p90_utci: float = 0.50
     weight_max_utci: float = 0.00
     weight_mean_tmrt: float = 0.00
-    weight_area_penalty: float = 0.005          # Penalty per square meter of shade panel
-    weight_construction_cost: float = 0.0001    # Penalty per dollar of construction cost
-    base_cost_per_panel: float = 5000.0         # Base foundation & installation cost per panel ($)
-    cost_per_m2: float = 250.0                  # Material and structural framing cost per m2 ($)
-    comfort_threshold_utci: float = 32.0        # UTCI moderate heat stress threshold (degC)
-    feasibility_penalty: float = 1000.0         # Penalty added for infeasible designs
-    obstruction_penalty: float = 0.0            # Penalty for pedestrian corridor narrowing
+    weight_area_penalty: float = 0.005  # Penalty per square meter of shade panel
+    weight_construction_cost: float = 0.0001  # Penalty per dollar of construction cost
+    base_cost_per_panel: float = 5000.0  # Base foundation & installation cost per panel ($)
+    cost_per_m2: float = 250.0  # Material and structural framing cost per m2 ($)
+    comfort_threshold_utci: float = 32.0  # UTCI moderate heat stress threshold (degC)
+    feasibility_penalty: float = 1000.0  # Penalty added for infeasible designs
+    obstruction_penalty: float = 0.0  # Penalty for pedestrian corridor narrowing
 
 
 @dataclass
 class TwoPanelEvaluationMetrics:
     """Comprehensive diagnostic thermal comfort and spatial performance metrics for two-panel candidate."""
+
     mean_utci: float
     p90_utci: float
     max_utci: float
     min_utci: float
     mean_tmrt: float
     max_tmrt: float
-    pct_improved_cells: float           # Percentage of evaluated cells where UTCI < baseline
-    pct_comfortable_cells: float        # Percentage of cells with UTCI < comfort_threshold
+    pct_improved_cells: float  # Percentage of evaluated cells where UTCI < baseline
+    pct_comfortable_cells: float  # Percentage of cells with UTCI < comfort_threshold
     area1_m2: float
     area2_m2: float
     total_area_m2: float
@@ -51,9 +53,11 @@ class TwoPanelEvaluationMetrics:
     construction_cost_penalty: float
     obstruction_penalty: float
     objective_value: float
-    delta_mean_utci: float              # candidate mean UTCI - baseline mean UTCI (negative is cooling)
-    delta_mean_tmrt: float              # candidate mean Tmrt - baseline mean Tmrt (negative is cooling)
-    thermal_improvement_utci: float     # baseline mean UTCI - candidate mean UTCI (positive is improvement)
+    delta_mean_utci: float  # candidate mean UTCI - baseline mean UTCI (negative is cooling)
+    delta_mean_tmrt: float  # candidate mean Tmrt - baseline mean Tmrt (negative is cooling)
+    thermal_improvement_utci: (
+        float  # baseline mean UTCI - candidate mean UTCI (positive is improvement)
+    )
     peak_local_tmrt_improvement: float  # maximum local Tmrt drop across evaluated cells (K)
     evaluated_cells_count: int
 
@@ -115,13 +119,15 @@ class TwoPanelEvaluationMetrics:
         }
 
 
-def compute_two_panel_objective(sim_result: SimulationResult,
-                                baseline_result: SimulationResult,
-                                eval_mask: np.ndarray,
-                                area1_m2: float,
-                                area2_m2: float,
-                                config: Optional[TwoPanelComfortObjectiveConfig] = None,
-                                obstruction_penalty: float = 0.0) -> TwoPanelEvaluationMetrics:
+def compute_two_panel_objective(
+    sim_result: SimulationResult,
+    baseline_result: SimulationResult,
+    eval_mask: np.ndarray,
+    area1_m2: float,
+    area2_m2: float,
+    config: Optional[TwoPanelComfortObjectiveConfig] = None,
+    obstruction_penalty: float = 0.0,
+) -> TwoPanelEvaluationMetrics:
     """
     Computes objective metrics and composite scalar score over valid pedestrian evaluation cells.
     """
@@ -144,16 +150,24 @@ def compute_two_panel_objective(sim_result: SimulationResult,
 
     if cell_count == 0:
         return TwoPanelEvaluationMetrics(
-            mean_utci=99.0, p90_utci=99.0, max_utci=99.0, min_utci=99.0,
-            mean_tmrt=99.0, max_tmrt=99.0,
-            pct_improved_cells=0.0, pct_comfortable_cells=0.0,
-            area1_m2=area1_m2, area2_m2=area2_m2, total_area_m2=total_area_m2,
+            mean_utci=99.0,
+            p90_utci=99.0,
+            max_utci=99.0,
+            min_utci=99.0,
+            mean_tmrt=99.0,
+            max_tmrt=99.0,
+            pct_improved_cells=0.0,
+            pct_comfortable_cells=0.0,
+            area1_m2=area1_m2,
+            area2_m2=area2_m2,
+            total_area_m2=total_area_m2,
             area_penalty=area_penalty,
             estimated_construction_cost=est_cost,
             construction_cost_penalty=cost_penalty,
             obstruction_penalty=obstruction_penalty,
             objective_value=999.0,
-            delta_mean_utci=0.0, delta_mean_tmrt=0.0,
+            delta_mean_utci=0.0,
+            delta_mean_tmrt=0.0,
             thermal_improvement_utci=0.0,
             peak_local_tmrt_improvement=0.0,
             evaluated_cells_count=0,
@@ -186,7 +200,9 @@ def compute_two_panel_objective(sim_result: SimulationResult,
     pct_comfortable = float((comfortable_cells / cell_count) * 100.0)
 
     local_tmrt_improvement = base_tmrt_vals - cand_tmrt_vals
-    peak_local_tmrt = float(np.max(local_tmrt_improvement)) if len(local_tmrt_improvement) > 0 else 0.0
+    peak_local_tmrt = (
+        float(np.max(local_tmrt_improvement)) if len(local_tmrt_improvement) > 0 else 0.0
+    )
 
     # Composite scalar objective:
     # minimize: mean_UTCI + 0.5 * P90_UTCI + area_penalty + construction_cost_penalty + obstruction_penalty
@@ -252,9 +268,14 @@ def compute_pareto_front(candidates: Sequence[Any]) -> List[Any]:
 
     # Filter only feasible if objects
     filtered = [
-        c for c in candidates
+        c
+        for c in candidates
         if (isinstance(c, dict) and c.get("is_feasible", True))
-        or (not isinstance(c, dict) and getattr(c, "is_feasible", True) and getattr(c, "metrics", None) is not None)
+        or (
+            not isinstance(c, dict)
+            and getattr(c, "is_feasible", True)
+            and getattr(c, "metrics", None) is not None
+        )
     ]
     if not filtered:
         return []

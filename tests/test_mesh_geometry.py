@@ -106,9 +106,13 @@ def test_create_box_mesh():
 def test_create_rotated_box_mesh():
     # Square 10x10 rotated by 45 degrees
     rbox = create_rotated_box_mesh(
-        "rbox", center_x=50.0, center_y=50.0,
-        width_x=10.0, width_y=10.0, height=20.0,
-        angle_deg=45.0
+        "rbox",
+        center_x=50.0,
+        center_y=50.0,
+        width_x=10.0,
+        width_y=10.0,
+        height=20.0,
+        angle_deg=45.0,
     )
     assert rbox.num_vertices == 8
     assert rbox.num_triangles == 12
@@ -129,8 +133,14 @@ def test_create_rotated_box_mesh():
 def test_create_pitched_roof_mesh():
     # Ridge parallel to X
     pitch_x = create_pitched_roof_mesh(
-        "pitch_x", xmin=10.0, xmax=30.0, ymin=10.0, ymax=20.0,
-        eave_height=12.0, ridge_height=18.0, ridge_orientation="x"
+        "pitch_x",
+        xmin=10.0,
+        xmax=30.0,
+        ymin=10.0,
+        ymax=20.0,
+        eave_height=12.0,
+        ridge_height=18.0,
+        ridge_orientation="x",
     )
     assert pitch_x.num_vertices == 10
     assert pitch_x.num_triangles == 16
@@ -138,8 +148,14 @@ def test_create_pitched_roof_mesh():
 
     # Ridge parallel to Y
     pitch_y = create_pitched_roof_mesh(
-        "pitch_y", xmin=10.0, xmax=30.0, ymin=10.0, ymax=20.0,
-        eave_height=12.0, ridge_height=18.0, ridge_orientation="y"
+        "pitch_y",
+        xmin=10.0,
+        xmax=30.0,
+        ymin=10.0,
+        ymax=20.0,
+        eave_height=12.0,
+        ridge_height=18.0,
+        ridge_orientation="y",
     )
     assert pitch_y.num_vertices == 10
     assert pitch_y.num_triangles == 16
@@ -152,8 +168,14 @@ def test_create_pitched_roof_mesh():
 
 def test_create_overhang_mesh():
     overhang = create_overhang_mesh(
-        "oh", xmin=20.0, xmax=40.0, ymin=20.0, ymax=40.0,
-        base_height=16.0, overhang_depth=6.0, overhang_direction="north"
+        "oh",
+        xmin=20.0,
+        xmax=40.0,
+        ymin=20.0,
+        ymax=40.0,
+        base_height=16.0,
+        overhang_depth=6.0,
+        overhang_direction="north",
     )
     assert overhang.num_vertices == 16
     assert overhang.num_triangles == 24
@@ -162,14 +184,15 @@ def test_create_overhang_mesh():
     assert overhang.zmin == 0.0 and overhang.zmax == 16.0
 
     with pytest.raises(ValueError, match="strictly less than"):
-        create_overhang_mesh("oh_bad", 0, 10, 0, 10, base_height=10.0, overhang_depth=2.0, overhang_thickness=12.0)
+        create_overhang_mesh(
+            "oh_bad", 0, 10, 0, 10, base_height=10.0, overhang_depth=2.0, overhang_thickness=12.0
+        )
 
 
 def test_create_wall_mesh():
     # 45-degree diagonal wall
     wall = create_wall_mesh(
-        "diag_wall", start_pt=(10.0, 10.0), end_pt=(20.0, 20.0),
-        thickness=0.5, height=8.0
+        "diag_wall", start_pt=(10.0, 10.0), end_pt=(20.0, 20.0), thickness=0.5, height=8.0
     )
     assert wall.num_vertices == 8
     assert wall.num_triangles == 12
@@ -179,10 +202,14 @@ def test_create_wall_mesh():
 
 def test_create_l_shaped_mesh():
     l_mesh = create_l_shaped_mesh(
-        "l_bldg", xmin=10.0, ymin=10.0,
-        total_width=30.0, total_length=40.0,
-        wing_width=12.0, wing_length=15.0,
-        height=22.0
+        "l_bldg",
+        xmin=10.0,
+        ymin=10.0,
+        total_width=30.0,
+        total_length=40.0,
+        wing_width=12.0,
+        wing_length=15.0,
+        height=22.0,
     )
     assert l_mesh.num_vertices == 12
     assert l_mesh.num_triangles == 20

@@ -23,7 +23,7 @@ def test_stage_10_required_files_exist(stage_10_dir):
         "gpu_full_runtime_metadata.json",
         "gpu_full_reproducibility_report.json",
         "stage_10_test_results.json",
-        "gpu_full_arrays.npz"
+        "gpu_full_arrays.npz",
     ]
     for fname in required:
         fpath = stage_10_dir / fname
@@ -43,7 +43,9 @@ def test_stage_10_test_suite_all_pass(stage_10_dir):
 
 
 def test_stage_10_certificate_valid(stage_10_dir):
-    cert = json.loads((stage_10_dir / "gpu_full_validation_certificate.json").read_text(encoding="utf-8"))
+    cert = json.loads(
+        (stage_10_dir / "gpu_full_validation_certificate.json").read_text(encoding="utf-8")
+    )
     assert cert["is_valid"] is True
     assert cert["token"] == "STAGE_10_GPU_FULL_VS_CPU_VALIDATION_COMPLETE"
     for field, diff in cert["field_discrepancies"].items():
@@ -64,7 +66,9 @@ def test_stage_10_numerical_parity_tolerances(stage_10_dir):
 
 
 def test_stage_10_reproducibility(stage_10_dir):
-    rep = json.loads((stage_10_dir / "gpu_full_reproducibility_report.json").read_text(encoding="utf-8"))
+    rep = json.loads(
+        (stage_10_dir / "gpu_full_reproducibility_report.json").read_text(encoding="utf-8")
+    )
     assert rep["pass"] is True
     assert rep["inter_trial_shadow_differences"] == 0
     assert rep["inter_trial_svf_max_abs_diff"] == 0.0

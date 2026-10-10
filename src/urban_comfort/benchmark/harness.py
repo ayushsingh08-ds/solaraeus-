@@ -41,6 +41,7 @@ SOFTWARE_VERSION = "0.2.0-research-prototype"
 @dataclass
 class BenchmarkRecord:
     """Standardized 30-field schema for reproducible SOLWEIG benchmark runs."""
+
     scene_id: str
     domain_width: float
     domain_height: float
@@ -69,17 +70,25 @@ class BenchmarkRecord:
     certificate_bound_maximum: float
     certificate_violations: int
     fallback_status: bool
-    memory_usage_if_available: float   # Process RSS in Megabytes (MB)
+    memory_usage_if_available: float  # Process RSS in Megabytes (MB)
     software_version: str
     configuration_hash: str
 
     @property
     def speedup(self) -> float:
-        return self.full_recompute_time / self.incremental_total_time if self.incremental_total_time > 0 else 1.0
+        return (
+            self.full_recompute_time / self.incremental_total_time
+            if self.incremental_total_time > 0
+            else 1.0
+        )
 
     @property
     def reused_fraction(self) -> float:
-        return self.reused_cell_count / float(self.grid_cell_count) if self.grid_cell_count > 0 else 0.0
+        return (
+            self.reused_cell_count / float(self.grid_cell_count)
+            if self.grid_cell_count > 0
+            else 0.0
+        )
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -94,7 +103,9 @@ def get_current_rss_mb() -> float:
         return -1.0
 
 
-def compute_combined_hash(scene: Scene, edit: GeometricEdit, weather: Weather, config: SimulationConfig) -> str:
+def compute_combined_hash(
+    scene: Scene, edit: GeometricEdit, weather: Weather, config: SimulationConfig
+) -> str:
     """Computes a deterministic SHA-256 hash identifying the experimental scenario."""
     s_hash = compute_scene_hash(scene)
     w_hash = compute_weather_hash(weather)
@@ -104,13 +115,15 @@ def compute_combined_hash(scene: Scene, edit: GeometricEdit, weather: Weather, c
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()[:16]
 
 
-def run_benchmark_trial(scene_before: Scene,
-                        edit: GeometricEdit,
-                        weather: Weather,
-                        config: SimulationConfig,
-                        scene_id: str = "custom_scene",
-                        edit_magnitude: float = 1.0,
-                        cache: Optional[SimulationCache] = None) -> Tuple[BenchmarkRecord, SimulationResult, SimulationResult, ErrorCertificate]:
+def run_benchmark_trial(
+    scene_before: Scene,
+    edit: GeometricEdit,
+    weather: Weather,
+    config: SimulationConfig,
+    scene_id: str = "custom_scene",
+    edit_magnitude: float = 1.0,
+    cache: Optional[SimulationCache] = None,
+) -> Tuple[BenchmarkRecord, SimulationResult, SimulationResult, ErrorCertificate]:
     """
     Executes a complete, instrumented benchmark trial comparing full recomputation
     against certified incremental update with granular phase timing.
@@ -170,7 +183,7 @@ def run_benchmark_trial(scene_before: Scene,
     solar_az = float(res_full.metadata.get("solar_azimuth_deg", 0.0))
     cfg_hash = compute_combined_hash(scene_before, edit, weather, config)
 
-    weather_desc = f"Tair={weather.air_temperature-273.15:.1f}C_DNI={weather.direct_normal_irradiance:.0f}_DHI={weather.diffuse_horizontal_irradiance:.0f}"
+    weather_desc = f"Tair={weather.air_temperature - 273.15:.1f}C_DNI={weather.direct_normal_irradiance:.0f}_DHI={weather.diffuse_horizontal_irradiance:.0f}"
 
     rec = BenchmarkRecord(
         scene_id=scene_id,
@@ -203,7 +216,7 @@ def run_benchmark_trial(scene_before: Scene,
         fallback_status=(cert.status == "fallback"),
         memory_usage_if_available=get_current_rss_mb(),
         software_version=SOFTWARE_VERSION,
-        configuration_hash=cfg_hash
+        configuration_hash=cfg_hash,
     )
 
     return rec, res_full, res_inc, cert
@@ -212,6 +225,7 @@ def run_benchmark_trial(scene_before: Scene,
 @dataclass
 class ReproducibilityRecord:
     """Aggregated statistical metrics across N benchmark repetitions."""
+
     scene_id: str
     num_trials: int
     full_time_mean_sec: float
@@ -241,6 +255,7 @@ class ReproducibilityRecord:
 @dataclass
 class TimingBreakdownRecord:
     """Detailed median phase timing audit for incremental vs full recomputation."""
+
     scene_id: str
     full_recompute_median_sec: float
     dependency_analysis_median_sec: float
@@ -256,13 +271,22 @@ class TimingBreakdownRecord:
         return asdict(self)
 
 
-def run_repeated_benchmark_trials(scene_before: Scene,
-                                  edit: GeometricEdit,
-                                  weather: Weather,
-                                  config: SimulationConfig,
-                                  n_trials: int = 5,
-                                  scene_id: str = "custom_scene",
-                                  edit_magnitude: float = 1.0) -> Tuple[ReproducibilityRecord, TimingBreakdownRecord, BenchmarkRecord, SimulationResult, SimulationResult, ErrorCertificate]:
+def run_repeated_benchmark_trials(
+    scene_before: Scene,
+    edit: GeometricEdit,
+    weather: Weather,
+    config: SimulationConfig,
+    n_trials: int = 5,
+    scene_id: str = "custom_scene",
+    edit_magnitude: float = 1.0,
+) -> Tuple[
+    ReproducibilityRecord,
+    TimingBreakdownRecord,
+    BenchmarkRecord,
+    SimulationResult,
+    SimulationResult,
+    ErrorCertificate,
+]:
     """
     Executes N identical trials of a benchmark scenario to measure statistical
     reproducibility and granular timing distributions.
@@ -282,8 +306,7 @@ def run_repeated_benchmark_trials(scene_before: Scene,
 
     for _ in range(n_trials):
         rec, res_full, res_inc, cert = run_benchmark_trial(
-            scene_before, edit, weather, config,
-            scene_id=scene_id, edit_magnitude=edit_magnitude
+            scene_before, edit, weather, config, scene_id=scene_id, edit_magnitude=edit_magnitude
         )
         full_times.append(rec.full_recompute_time)
         inc_times.append(rec.incremental_total_time)
@@ -332,7 +355,7 @@ def run_repeated_benchmark_trials(scene_before: Scene,
         recomputed_cells=last_rec.recomputed_cell_count,
         reused_fraction=last_rec.reused_fraction,
         max_actual_error_k=last_rec.maximum_tmrt_error,
-        violations_observed=last_rec.certificate_violations
+        violations_observed=last_rec.certificate_violations,
     )
 
     med_cand = float(np.median(cand_times))
@@ -353,7 +376,7 @@ def run_repeated_benchmark_trials(scene_before: Scene,
         result_assembly_median_sec=med_assembly,
         total_incremental_median_sec=med_inc,
         primary_end_to_end_speedup=med_speedup,
-        certificate_and_overhead_percentage=overhead_pct
+        certificate_and_overhead_percentage=overhead_pct,
     )
 
     return repro_rec, timing_rec, last_rec, last_res_full, last_res_inc, last_cert

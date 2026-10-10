@@ -43,6 +43,7 @@ from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 @dataclass
 class BaselineComparisonRecord:
     """Record comparing solver methodologies."""
+
     method_name: str
     runtime_sec: float
     speedup: float
@@ -60,13 +61,15 @@ class BaselineComparisonRecord:
         return asdict(self)
 
 
-def run_non_certified_dirty_region_update(previous_scene: Scene,
-                                          updated_scene: Scene,
-                                          previous_result: SimulationResult,
-                                          edit: GeometricEdit,
-                                          weather: Weather,
-                                          config: SimulationConfig,
-                                          margin_m: float = 5.0) -> Tuple[SimulationResult, float, int, int]:
+def run_non_certified_dirty_region_update(
+    previous_scene: Scene,
+    updated_scene: Scene,
+    previous_result: SimulationResult,
+    edit: GeometricEdit,
+    weather: Weather,
+    config: SimulationConfig,
+    margin_m: float = 5.0,
+) -> Tuple[SimulationResult, float, int, int]:
     """
     Executes a naive non-certified dirty-region update:
     Recomputes only within the immediate building footprint bounding box plus a fixed margin.
@@ -74,6 +77,7 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
     """
     t0 = time.perf_counter()
     from datetime import datetime, timezone
+
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
@@ -99,23 +103,28 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
     # Selective recompute on naive box
     new_shadow = previous_result.shadow_mask.copy()
     if np.any(dirty_mask):
-        recomp_shadow = compute_direct_shadow_mask(updated_scene, grid, solar_pos, roi_mask=dirty_mask)
+        recomp_shadow = compute_direct_shadow_mask(
+            updated_scene, grid, solar_pos, roi_mask=dirty_mask
+        )
         new_shadow[dirty_mask] = recomp_shadow[dirty_mask]
 
     new_svf = previous_result.svf.copy()
     if np.any(dirty_mask):
         recomp_svf = compute_sky_view_factor(
-            updated_scene, grid,
+            updated_scene,
+            grid,
             num_azimuths=config.sky_patch_configuration,
             max_search_dist_m=config.max_svf_search_dist_m,
-            roi_mask=dirty_mask
+            roi_mask=dirty_mask,
         )
         new_svf[dirty_mask] = recomp_svf[dirty_mask]
 
     wall_mat = updated_scene.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
     ground_mat = updated_scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
 
-    sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
+    sw_fluxes = compute_shortwave_fluxes(
+        weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat
+    )
     lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
     radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
 
@@ -124,7 +133,7 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
         air_temp_c=air_temp_c,
         tmrt_c=radiant_state.tmrt_c,
         wind_speed_ms=weather.wind_speed,
-        relative_humidity=weather.relative_humidity
+        relative_humidity=weather.relative_humidity,
     )
 
     t_elapsed = time.perf_counter() - t0
@@ -137,18 +146,20 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
         longwave_flux=lw_fluxes.l_total,
         tmrt=radiant_state.tmrt_c,
         utci=utci,
-        metadata={"is_naive_baseline": True, "margin_m": margin_m}
+        metadata={"is_naive_baseline": True, "margin_m": margin_m},
     )
 
     return result, t_elapsed, reused_count, recomputed_count
 
 
-def compare_all_baselines(scene_before: Scene,
-                          scene_after: Scene,
-                          res_baseline: SimulationResult,
-                          edit: GeometricEdit,
-                          weather: Weather,
-                          config: SimulationConfig) -> List[BaselineComparisonRecord]:
+def compare_all_baselines(
+    scene_before: Scene,
+    scene_after: Scene,
+    res_baseline: SimulationResult,
+    edit: GeometricEdit,
+    weather: Weather,
+    config: SimulationConfig,
+) -> List[BaselineComparisonRecord]:
     """
     Compares Full Recompute, Non-Certified Dirty Box, Exact Incremental, and Certified Incremental.
     """
@@ -172,7 +183,7 @@ def compare_all_baselines(scene_before: Scene,
         max_predicted_bound_k=0.0,
         has_certificate=False,
         is_sound=True,
-        violations_count=0
+        violations_count=0,
     )
 
     # 2. Non-Certified Dirty-Region (Naive 5m Box)
@@ -192,12 +203,14 @@ def compare_all_baselines(scene_before: Scene,
         max_predicted_bound_k=float("nan"),
         has_certificate=False,
         is_sound=False,  # Unsound: large uncertified errors outside bounding box
-        violations_count=int(np.sum(err_naive > config.tmrt_tolerance))
+        violations_count=int(np.sum(err_naive > config.tmrt_tolerance)),
     )
 
     # 3. Exact Incremental Update
     t0 = time.perf_counter()
-    inc_exact_res = incremental_update_exact(scene_before, scene_after, res_baseline, edit, weather, config)
+    inc_exact_res = incremental_update_exact(
+        scene_before, scene_after, res_baseline, edit, weather, config
+    )
     t_exact = time.perf_counter() - t0
     err_exact = np.abs(inc_exact_res.result.tmrt - res_full.tmrt)
     rec_exact = BaselineComparisonRecord(
@@ -212,7 +225,7 @@ def compare_all_baselines(scene_before: Scene,
         max_predicted_bound_k=0.0,
         has_certificate=False,
         is_sound=True,
-        violations_count=0
+        violations_count=0,
     )
 
     # 4. Certified Incremental Update
@@ -236,7 +249,7 @@ def compare_all_baselines(scene_before: Scene,
         max_predicted_bound_k=float(cert.max_predicted_bound),
         has_certificate=True,
         is_sound=verif.is_valid,
-        violations_count=verif.num_violations
+        violations_count=verif.num_violations,
     )
 
     return [rec_full, rec_naive, rec_exact, rec_cert]

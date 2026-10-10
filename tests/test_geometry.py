@@ -75,13 +75,19 @@ def test_weather_and_config_validation():
         wind_speed=2.5,
         wind_direction=180.0,
         direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
     assert w.air_temperature == 298.15
 
     with pytest.raises(ValueError):
-        Weather(air_temperature=-5.0, relative_humidity=50.0, wind_speed=2.0,
-                wind_direction=0.0, direct_normal_irradiance=0.0, diffuse_horizontal_irradiance=0.0)
+        Weather(
+            air_temperature=-5.0,
+            relative_humidity=50.0,
+            wind_speed=2.0,
+            wind_direction=0.0,
+            direct_normal_irradiance=0.0,
+            diffuse_horizontal_irradiance=0.0,
+        )
 
     cfg = SimulationConfig(latitude=40.7128, longitude=-74.0060, grid_resolution=1.0)
     assert cfg.pedestrian_height == 1.1
@@ -99,7 +105,9 @@ def test_scene_graph_and_serialization(tmp_path):
 
     # Add duplicate building ID
     with pytest.raises(ValueError):
-        scene.add_building(Building(id="bldg_center", footprint=BoundingBox2D(0, 5, 0, 5), height=10))
+        scene.add_building(
+            Building(id="bldg_center", footprint=BoundingBox2D(0, 5, 0, 5), height=10)
+        )
 
     # Remove building
     removed = scene.remove_building("bldg_center")

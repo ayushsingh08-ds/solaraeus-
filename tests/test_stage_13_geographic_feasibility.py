@@ -24,11 +24,15 @@ def test_stage_13_test_suite_status():
     assert report["total_tests"] == 9
     assert report["tests_passed"] == 9
     assert report["tests_failed"] == 0
-    assert report["success_token"] == "STAGE_13_GEOGRAPHIC_FEASIBILITY_AND_PARAMETERIZATION_COMPLETE"
+    assert (
+        report["success_token"] == "STAGE_13_GEOGRAPHIC_FEASIBILITY_AND_PARAMETERIZATION_COMPLETE"
+    )
 
 
 def test_stage_13_candidate_screening_metrics():
-    report = json.loads((RESULTS_DIR / "candidate_feasibility_report.json").read_text(encoding="utf-8"))
+    report = json.loads(
+        (RESULTS_DIR / "candidate_feasibility_report.json").read_text(encoding="utf-8")
+    )
     assert report["total_screened"] >= 100
     assert report["feasible_count"] > 0
     assert report["infeasible_count"] > 0

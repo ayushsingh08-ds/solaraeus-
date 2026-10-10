@@ -48,18 +48,29 @@ from urban_comfort.reference.full_recompute import full_recompute
 # ---------------------------------------------------------------------------
 def test_parameter_bounds():
     bounds = ParameterBounds(
-        x_min=0.0, x_max=10.0,
-        y_min=0.0, y_max=10.0,
-        length_min=2.0, length_max=8.0,
-        width_min=1.0, width_max=4.0,
-        height_min=2.5, height_max=5.0,
-        heading_min=0.0, heading_max=180.0,
-        albedo_min=0.1, albedo_max=0.9,
+        x_min=0.0,
+        x_max=10.0,
+        y_min=0.0,
+        y_max=10.0,
+        length_min=2.0,
+        length_max=8.0,
+        width_min=1.0,
+        width_max=4.0,
+        height_min=2.5,
+        height_max=5.0,
+        heading_min=0.0,
+        heading_max=180.0,
+        albedo_min=0.1,
+        albedo_max=0.9,
     )
-    valid_p = ShadePanelParams(x=5.0, y=5.0, length=4.0, width=2.0, height=3.0, heading_deg=45.0, albedo=0.5)
+    valid_p = ShadePanelParams(
+        x=5.0, y=5.0, length=4.0, width=2.0, height=3.0, heading_deg=45.0, albedo=0.5
+    )
     assert bounds.contains(valid_p)
 
-    out_p = ShadePanelParams(x=15.0, y=5.0, length=4.0, width=2.0, height=3.0, heading_deg=45.0, albedo=0.5)
+    out_p = ShadePanelParams(
+        x=15.0, y=5.0, length=4.0, width=2.0, height=3.0, heading_deg=45.0, albedo=0.5
+    )
     assert not bounds.contains(out_p)
 
     # Vector conversion roundtrip
@@ -82,32 +93,44 @@ def test_parameter_bounds():
 # ---------------------------------------------------------------------------
 def test_invalid_geometry_rejection():
     constraints = FeasibilityConstraints(
-        min_length_m=2.0, max_length_m=10.0,
-        min_width_m=1.0, max_width_m=5.0,
-        min_area_m2=5.0, max_area_m2=40.0,
-        min_aspect_ratio=1.0, max_aspect_ratio=4.0,
+        min_length_m=2.0,
+        max_length_m=10.0,
+        min_width_m=1.0,
+        max_width_m=5.0,
+        min_area_m2=5.0,
+        max_area_m2=40.0,
+        min_aspect_ratio=1.0,
+        max_aspect_ratio=4.0,
     )
 
     # Non-finite coordinates
-    nan_p = ShadePanelParams(x=float("nan"), y=5.0, length=4.0, width=2.0, height=3.0, heading_deg=0.0, albedo=0.5)
+    nan_p = ShadePanelParams(
+        x=float("nan"), y=5.0, length=4.0, width=2.0, height=3.0, heading_deg=0.0, albedo=0.5
+    )
     res_nan = check_feasibility(nan_p, constraints)
     assert not res_nan.is_valid
     assert res_nan.rejection_reason == RejectionReason.INVALID_COORDINATES
 
     # Below min dimensions
-    small_p = ShadePanelParams(x=5.0, y=5.0, length=1.0, width=1.0, height=3.0, heading_deg=0.0, albedo=0.5)
+    small_p = ShadePanelParams(
+        x=5.0, y=5.0, length=1.0, width=1.0, height=3.0, heading_deg=0.0, albedo=0.5
+    )
     res_small = check_feasibility(small_p, constraints)
     assert not res_small.is_valid
     assert res_small.rejection_reason == RejectionReason.BELOW_MIN_DIMENSIONS
 
     # Exceeds max dimensions
-    huge_p = ShadePanelParams(x=5.0, y=5.0, length=15.0, width=4.0, height=3.0, heading_deg=0.0, albedo=0.5)
+    huge_p = ShadePanelParams(
+        x=5.0, y=5.0, length=15.0, width=4.0, height=3.0, heading_deg=0.0, albedo=0.5
+    )
     res_huge = check_feasibility(huge_p, constraints)
     assert not res_huge.is_valid
     assert res_huge.rejection_reason == RejectionReason.EXCEEDS_MAX_DIMENSIONS
 
     # Aspect ratio violation
-    skinny_p = ShadePanelParams(x=5.0, y=5.0, length=9.0, width=1.2, height=3.0, heading_deg=0.0, albedo=0.5)
+    skinny_p = ShadePanelParams(
+        x=5.0, y=5.0, length=9.0, width=1.2, height=3.0, heading_deg=0.0, albedo=0.5
+    )
     res_skinny = check_feasibility(skinny_p, constraints)
     assert not res_skinny.is_valid
     assert res_skinny.rejection_reason == RejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION
@@ -124,19 +147,25 @@ def test_building_collision_rejection():
     )
 
     # Directly intersecting building
-    colliding_p = ShadePanelParams(x=25.0, y=25.0, length=4.0, width=3.0, height=3.5, heading_deg=0.0, albedo=0.5)
+    colliding_p = ShadePanelParams(
+        x=25.0, y=25.0, length=4.0, width=3.0, height=3.5, heading_deg=0.0, albedo=0.5
+    )
     res_col = check_feasibility(colliding_p, constraints)
     assert not res_col.is_valid
     assert res_col.rejection_reason == RejectionReason.BUILDING_COLLISION
 
     # Violating 1.0 m setback buffer (e.g. at 18.5, right edge is 19.5, distance to 20.0 is 0.5 < 1.0)
-    setback_violating_p = ShadePanelParams(x=18.5, y=25.0, length=3.0, width=2.0, height=3.5, heading_deg=0.0, albedo=0.5)
+    setback_violating_p = ShadePanelParams(
+        x=18.5, y=25.0, length=3.0, width=2.0, height=3.5, heading_deg=0.0, albedo=0.5
+    )
     res_sb = check_feasibility(setback_violating_p, constraints)
     assert not res_sb.is_valid
     assert res_sb.rejection_reason == RejectionReason.BUILDING_COLLISION
 
     # Safe outside setback
-    safe_p = ShadePanelParams(x=10.0, y=25.0, length=3.0, width=2.0, height=3.5, heading_deg=0.0, albedo=0.5)
+    safe_p = ShadePanelParams(
+        x=10.0, y=25.0, length=3.0, width=2.0, height=3.5, heading_deg=0.0, albedo=0.5
+    )
     res_safe = check_feasibility(safe_p, constraints)
     assert res_safe.is_valid
 
@@ -148,13 +177,17 @@ def test_pedestrian_clearance_rejection():
     constraints = FeasibilityConstraints(min_underside_height_m=2.50)
 
     # Height 2.2 m < 2.50 m
-    low_p = ShadePanelParams(x=10.0, y=10.0, length=4.0, width=2.0, height=2.20, heading_deg=0.0, albedo=0.5)
+    low_p = ShadePanelParams(
+        x=10.0, y=10.0, length=4.0, width=2.0, height=2.20, heading_deg=0.0, albedo=0.5
+    )
     res_low = check_feasibility(low_p, constraints)
     assert not res_low.is_valid
     assert res_low.rejection_reason == RejectionReason.INSUFFICIENT_CLEARANCE
 
     # Height 2.8 m >= 2.50 m
-    ok_p = ShadePanelParams(x=10.0, y=10.0, length=4.0, width=2.0, height=2.80, heading_deg=0.0, albedo=0.5)
+    ok_p = ShadePanelParams(
+        x=10.0, y=10.0, length=4.0, width=2.0, height=2.80, heading_deg=0.0, albedo=0.5
+    )
     res_ok = check_feasibility(ok_p, constraints)
     assert res_ok.is_valid
 
@@ -214,22 +247,26 @@ def test_random_search_reproducibility():
 def _make_synthetic_scene_and_results():
     # 20m x 20m domain with 2m resolution -> 10 x 10 = 100 cells
     ped_grid = PedestrianGridConfig(
-        extent_x=20.0, extent_y=20.0,
-        origin_x=0.0, origin_y=0.0,
+        extent_x=20.0,
+        extent_y=20.0,
+        origin_x=0.0,
+        origin_y=0.0,
         resolution=2.0,
         pedestrian_height=1.1,
     )
-    bldgs = {
-        "B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)
-    }
+    bldgs = {"B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)}
     scene = Scene(
         buildings=bldgs,
         meshes={},
         pedestrian_grid=ped_grid,
         materials={
-            "default_wall": Material(id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature=305.15),
-            "default_ground": Material(id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature=308.15),
-        }
+            "default_wall": Material(
+                id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature=305.15
+            ),
+            "default_ground": Material(
+                id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature=308.15
+            ),
+        },
     )
     weather = Weather(
         air_temperature=305.15,
@@ -258,9 +295,12 @@ def _make_synthetic_scene_and_results():
         building_footprints=box(0.0, 0.0, 4.0, 4.0),
         min_building_setback_m=0.5,
         min_underside_height_m=2.5,
-        min_length_m=2.0, max_length_m=6.0,
-        min_width_m=1.0, max_width_m=3.0,
-        min_area_m2=2.0, max_area_m2=18.0,
+        min_length_m=2.0,
+        max_length_m=6.0,
+        min_width_m=1.0,
+        max_width_m=3.0,
+        min_area_m2=2.0,
+        max_area_m2=18.0,
     )
     eval_mask = np.ones(base_res.shadow_mask.shape, dtype=bool)
     return scene, base_res, weather, sim_cfg, constraints, eval_mask
@@ -273,13 +313,20 @@ def test_optimizer_to_solver_integration():
     scene, base_res, weather, sim_cfg, constraints, eval_mask = _make_synthetic_scene_and_results()
 
     bounds = ParameterBounds(
-        x_min=6.0, x_max=14.0,
-        y_min=6.0, y_max=14.0,
-        length_min=2.0, length_max=4.0,
-        width_min=1.0, width_max=2.0,
-        height_min=2.8, height_max=4.0,
-        heading_min=0.0, heading_max=90.0,
-        albedo_min=0.3, albedo_max=0.8,
+        x_min=6.0,
+        x_max=14.0,
+        y_min=6.0,
+        y_max=14.0,
+        length_min=2.0,
+        length_max=4.0,
+        width_min=1.0,
+        width_max=2.0,
+        height_min=2.8,
+        height_max=4.0,
+        heading_min=0.0,
+        heading_max=90.0,
+        albedo_min=0.3,
+        albedo_max=0.8,
     )
     opt_cfg = OptimizerConfig(
         seed=42,
@@ -321,8 +368,10 @@ def test_certificate_failure_handling():
     class FailingIncrementalEngine:
         is_available = True
         last_metrics = None
+
         def preload_resident_baseline(self, *args, **kwargs):
             return 0.0
+
         def execute_certified_update(self, *args, **kwargs):
             raise RuntimeError("Mock GPU CUDA kernel out of memory error!")
 
@@ -338,7 +387,9 @@ def test_certificate_failure_handling():
         gpu_engine=FailingIncrementalEngine(),
     )
 
-    valid_cand = ShadePanelParams(x=10.0, y=10.0, length=3.0, width=2.0, height=3.0, heading_deg=0.0, albedo=0.5)
+    valid_cand = ShadePanelParams(
+        x=10.0, y=10.0, length=3.0, width=2.0, height=3.0, heading_deg=0.0, albedo=0.5
+    )
     rec = engine.evaluate_candidate(valid_cand, method="test_failure")
 
     assert not rec.is_feasible
@@ -358,11 +409,30 @@ def test_candidate_ledger_completeness(tmp_path: Path):
         candidate_id="CAND_0001",
         iteration=0,
         method="random",
-        params={"x": 10.0, "y": 10.0, "length": 4.0, "width": 2.0, "height": 3.0, "heading_deg": 0.0, "albedo": 0.6, "area_m2": 8.0},
+        params={
+            "x": 10.0,
+            "y": 10.0,
+            "length": 4.0,
+            "width": 2.0,
+            "height": 3.0,
+            "heading_deg": 0.0,
+            "albedo": 0.6,
+            "area_m2": 8.0,
+        },
         is_feasible=True,
         objective_value=32.45,
-        metrics={"mean_utci_c": 30.1, "p90_utci_c": 33.2, "pct_improved_cells": 12.5, "delta_mean_utci_c": -0.15},
-        gpu_metrics={"recomputed_cells": 10, "reused_cells": 90, "ray_work_reduction_pct": 90.0, "gpu_kernel_time_ms": 12.3},
+        metrics={
+            "mean_utci_c": 30.1,
+            "p90_utci_c": 33.2,
+            "pct_improved_cells": 12.5,
+            "delta_mean_utci_c": -0.15,
+        },
+        gpu_metrics={
+            "recomputed_cells": 10,
+            "reused_cells": 90,
+            "ray_work_reduction_pct": 90.0,
+            "gpu_kernel_time_ms": 12.3,
+        },
         certificate_status="certified",
         certificate_violations=0,
         max_predicted_bound_k=0.025,
@@ -372,7 +442,16 @@ def test_candidate_ledger_completeness(tmp_path: Path):
         candidate_id="CAND_0002",
         iteration=1,
         method="random",
-        params={"x": 2.0, "y": 2.0, "length": 4.0, "width": 2.0, "height": 3.0, "heading_deg": 0.0, "albedo": 0.6, "area_m2": 8.0},
+        params={
+            "x": 2.0,
+            "y": 2.0,
+            "length": 4.0,
+            "width": 2.0,
+            "height": 3.0,
+            "heading_deg": 0.0,
+            "albedo": 0.6,
+            "area_m2": 8.0,
+        },
         is_feasible=False,
         rejection_reason=RejectionReason.BUILDING_COLLISION.value,
         rejection_message="Collision with building B1",
@@ -427,7 +506,16 @@ def test_best_candidate_selection():
             candidate_id=f"CAND_{i:04d}",
             iteration=i,
             method="test",
-            params={"x": float(i), "y": 10.0, "length": 4.0, "width": 2.0, "height": 3.0, "heading_deg": 0.0, "albedo": 0.5, "area_m2": 8.0},
+            params={
+                "x": float(i),
+                "y": 10.0,
+                "length": 4.0,
+                "width": 2.0,
+                "height": 3.0,
+                "heading_deg": 0.0,
+                "albedo": 0.5,
+                "area_m2": 8.0,
+            },
             is_feasible=True,
             objective_value=score,
         )
@@ -438,7 +526,16 @@ def test_best_candidate_selection():
         candidate_id="CAND_INVAL",
         iteration=99,
         method="test",
-        params={"x": 99.0, "y": 99.0, "length": 4.0, "width": 2.0, "height": 3.0, "heading_deg": 0.0, "albedo": 0.5, "area_m2": 8.0},
+        params={
+            "x": 99.0,
+            "y": 99.0,
+            "length": 4.0,
+            "width": 2.0,
+            "height": 3.0,
+            "heading_deg": 0.0,
+            "albedo": 0.5,
+            "area_m2": 8.0,
+        },
         is_feasible=False,
         rejection_reason="OUT_OF_BOUNDS",
         objective_value=float("inf"),

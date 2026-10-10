@@ -56,7 +56,10 @@ def test_stage_26_existence_status(stage_26_dir):
     else:
         with open(stage_26_dir / "tree_existence_validation.json", encoding="utf-8") as f:
             data = json.load(f)
-        assert data["status"] in ("STAGE_26_FIELD_VALIDATION_PENDING", "STAGE_26_FIELD_VALIDATION_DEFERRED")
+        assert data["status"] in (
+            "STAGE_26_FIELD_VALIDATION_PENDING",
+            "STAGE_26_FIELD_VALIDATION_DEFERRED",
+        )
         assert data["classification"] == "PHOTO_ESTIMATED_ONLY"
         assert data["calibrated_geometry_claims_permitted"] is False
 
@@ -64,5 +67,8 @@ def test_stage_26_existence_status(stage_26_dir):
 def test_stage_26_test_results(stage_26_dir):
     with open(stage_26_dir / "stage_26_test_results.json", encoding="utf-8") as f:
         data = json.load(f)
-    assert data["status"] in ("STAGE_26_FIELD_VALIDATION_DEFERRED", "STAGE_26_FIELD_VALIDATION_PENDING")
+    assert data["status"] in (
+        "STAGE_26_FIELD_VALIDATION_DEFERRED",
+        "STAGE_26_FIELD_VALIDATION_PENDING",
+    )
     assert data["acceptance_criteria_met"] is True

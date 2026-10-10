@@ -263,9 +263,7 @@ def case_mesh_pitched_roof_incremental():
     fields["certificate_bound"] = np.asarray(cert.predicted_error_bound, dtype=np.float64)
     metrics = {"edit": "AddMeshPitchedRoof"}
     metrics.update(_certificate_metrics(cert, verification))
-    metrics["max_actual_error"] = float(
-        np.max(np.abs(fields["tmrt"] - ground_truth.tmrt))
-    )
+    metrics["max_actual_error"] = float(np.max(np.abs(fields["tmrt"] - ground_truth.tmrt)))
     return fields, metrics
 
 
@@ -297,7 +295,9 @@ def case_terrain_flat_parity():
     terr_scene = TerrainAwareScene(base_scene=base, terrain=flat)
     terr_result = TreeAwareCPUSolver.simulate(
         TreeAwareScene.from_base_scene(base, terrain=flat, trees=[]),
-        GOLDEN_WEATHER, GOLDEN_CONFIG, pedestrian_height_m=1.1,
+        GOLDEN_WEATHER,
+        GOLDEN_CONFIG,
+        pedestrian_height_m=1.1,
     )
     flat_result = full_recompute(base, GOLDEN_WEATHER, GOLDEN_CONFIG)
     fields = _fields_from_result(terr_result)
@@ -342,7 +342,8 @@ def case_vegetation_core_trees():
     result = TreeAwareCPUSolver.simulate(scene, GOLDEN_WEATHER, GOLDEN_CONFIG)
     bare = TreeAwareCPUSolver.simulate(
         TreeAwareScene.from_base_scene(base, terrain=None, trees=[]),
-        GOLDEN_WEATHER, GOLDEN_CONFIG,
+        GOLDEN_WEATHER,
+        GOLDEN_CONFIG,
     )
     fields = _fields_from_result(result)
     fields["bare_tmrt"] = np.asarray(bare.tmrt, dtype=np.float64)
@@ -360,9 +361,7 @@ def case_vegetation_tree_states():
     fields: dict[str, np.ndarray] = {}
     metrics: dict[str, Any] = {}
     for state in ("CONSERVATIVE_SMALL", "NOMINAL_PROVISIONAL", "CONSERVATIVE_LARGE"):
-        trees = [
-            t for t in get_core_trees(geometry_state=state) if t.tree_id == "T08"
-        ]
+        trees = [t for t in get_core_trees(geometry_state=state) if t.tree_id == "T08"]
         tree = trees[0]
         fields[f"{state}_crown_top"] = np.asarray([tree.crown_top_z], dtype=np.float64)
         fields[f"{state}_crown_base"] = np.asarray([tree.crown_base_z], dtype=np.float64)
@@ -379,28 +378,64 @@ def case_vegetation_tree_states():
 # Registry
 # ---------------------------------------------------------------------------
 CASES: list[GoldenCase] = [
-    GoldenCase("core_single_box_full", "core", case_single_box_full,
-               "canonical 80m scene, full recomputation"),
+    GoldenCase(
+        "core_single_box_full",
+        "core",
+        case_single_box_full,
+        "canonical 80m scene, full recomputation",
+    ),
     GoldenCase("core_canyon_full", "core", case_canyon_full, "urban canyon full recomputation"),
     GoldenCase("core_occlusion_full", "core", case_occlusion_full, "occlusion scene"),
-    GoldenCase("incr_add_building", "incremental", case_incremental_add_building,
-               "certified incremental, AddBuildingEdit"),
-    GoldenCase("incr_remove_building", "incremental", case_incremental_remove_building,
-               "certified incremental, RemoveBuildingEdit"),
-    GoldenCase("incr_change_height", "incremental", case_incremental_change_height,
-               "certified incremental, ChangeHeightEdit"),
-    GoldenCase("incr_exact_add_building", "incremental", case_incremental_exact_add_building,
-               "exact incremental, AddBuildingEdit"),
-    GoldenCase("mesh_pitched_roof_incremental", "mesh", case_mesh_pitched_roof_incremental,
-               "certified incremental on a triangular mesh edit"),
+    GoldenCase(
+        "incr_add_building",
+        "incremental",
+        case_incremental_add_building,
+        "certified incremental, AddBuildingEdit",
+    ),
+    GoldenCase(
+        "incr_remove_building",
+        "incremental",
+        case_incremental_remove_building,
+        "certified incremental, RemoveBuildingEdit",
+    ),
+    GoldenCase(
+        "incr_change_height",
+        "incremental",
+        case_incremental_change_height,
+        "certified incremental, ChangeHeightEdit",
+    ),
+    GoldenCase(
+        "incr_exact_add_building",
+        "incremental",
+        case_incremental_exact_add_building,
+        "exact incremental, AddBuildingEdit",
+    ),
+    GoldenCase(
+        "mesh_pitched_roof_incremental",
+        "mesh",
+        case_mesh_pitched_roof_incremental,
+        "certified incremental on a triangular mesh edit",
+    ),
     GoldenCase("mesh_box_geometry", "mesh", case_box_mesh_geometry, "box mesh invariants"),
-    GoldenCase("terrain_flat_parity", "terrain", case_terrain_flat_parity,
-               "flat terrain must match flat-ground reference"),
+    GoldenCase(
+        "terrain_flat_parity",
+        "terrain",
+        case_terrain_flat_parity,
+        "flat terrain must match flat-ground reference",
+    ),
     GoldenCase("terrain_inclined", "terrain", case_terrain_inclined, "inclined synthetic slope"),
-    GoldenCase("vegetation_core_trees", "vegetation", case_vegetation_core_trees,
-               "six core trees, nominal geometry"),
-    GoldenCase("vegetation_tree_states", "vegetation", case_vegetation_tree_states,
-               "tree geometry across uncertainty states"),
+    GoldenCase(
+        "vegetation_core_trees",
+        "vegetation",
+        case_vegetation_core_trees,
+        "six core trees, nominal geometry",
+    ),
+    GoldenCase(
+        "vegetation_tree_states",
+        "vegetation",
+        case_vegetation_tree_states,
+        "tree geometry across uncertainty states",
+    ),
 ]
 
 

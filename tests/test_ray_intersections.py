@@ -58,12 +58,14 @@ def test_ray_origin_inside_box():
 
 def test_batch_ray_intersection():
     box = (10.0, 20.0, 10.0, 20.0, 0.0, 15.0)
-    origins = np.array([
-        [0.0, 15.0, 5.0],   # Hit at t=10
-        [0.0, 25.0, 5.0],   # Miss (y=25 > 20)
-        [0.0, 15.0, 20.0],  # Miss (z=20 > 15)
-        [15.0, 15.0, 5.0],  # Inside -> Hit at t=0
-    ])
+    origins = np.array(
+        [
+            [0.0, 15.0, 5.0],  # Hit at t=10
+            [0.0, 25.0, 5.0],  # Miss (y=25 > 20)
+            [0.0, 15.0, 20.0],  # Miss (z=20 > 15)
+            [15.0, 15.0, 5.0],  # Inside -> Hit at t=0
+        ]
+    )
     direction = (1.0, 0.0, 0.0)
 
     hits, t_hits = intersect_rays_aabb_batch(origins, direction, box)

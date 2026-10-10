@@ -34,11 +34,13 @@ class TerrainAwareCPUSolver:
     Authoritative CPU reference solver supporting optional terrain models.
     API Version: 2.1.0-cpu-terrain
     """
+
     VERSION: str = "2.1.0-cpu-terrain"
 
     @classmethod
-    def simulate(cls, scene: TerrainAwareScene, weather: Weather,
-                 config: SimulationConfig) -> SimulationResult:
+    def simulate(
+        cls, scene: TerrainAwareScene, weather: Weather, config: SimulationConfig
+    ) -> SimulationResult:
         """
         Executes a deterministic simulation with terrain awareness.
         If scene.terrain is None, delegates directly to 2.0.0-cpu-ref for 100% parity.
@@ -67,7 +69,7 @@ class TerrainAwareCPUSolver:
         # First compute building shadows using relative building heights (building.z - local_terrain)
         # Or standard box intersection with ray origins at actual 3D receptor heights
         t0_shadow = time.perf_counter()
-        
+
         # We ray trace against active buildings
         shadow_mask = np.zeros(grid.shape, dtype=np.float64)
         sun_vec = solar_pos.sun_vector
@@ -85,10 +87,10 @@ class TerrainAwareCPUSolver:
         else:
             # Domain cells illuminated unless occluded by building or terrain
             shadow_mask.fill(1.0)
-            
+
             # Kay-Kajiya slab test against building 3D bounding boxes
             inv_dir = np.where(np.abs(ray_dir) > 1e-9, 1.0 / ray_dir, np.inf)
-            
+
             # Vectorized test per building
             for b in buildings:
                 # b.xmin, b.xmax, b.ymin, b.ymax, b.zmin, b.zmax
@@ -124,7 +126,7 @@ class TerrainAwareCPUSolver:
                     rx = grid.X + ray_dir[0] * dist
                     ry = grid.Y + ray_dir[1] * dist
                     rz = z_rec + ray_dir[2] * dist
-                    
+
                     z_terrain_sample, v_sample = scene.terrain.sample_elevation(rx, ry)
                     terrain_hit = v_sample & (z_terrain_sample > rz)
                     shadow_mask[terrain_hit] = 0.0
@@ -137,16 +139,25 @@ class TerrainAwareCPUSolver:
         t0_svf = time.perf_counter()
         # For SVF, compute baseline building SVF then modulate by terrain slope horizon
         svf = compute_sky_view_factor(
-            scene.base_scene, grid,
+            scene.base_scene,
+            grid,
             num_azimuths=config.sky_patch_configuration,
-            max_search_dist_m=config.max_svf_search_dist_m
+            max_search_dist_m=config.max_svf_search_dist_m,
         )
         # If terrain has slope, SVF is bounded by (1 + cos(slope))/2
         if scene.terrain is not None:
             nx, ny, nz = scene.terrain.compute_surface_normals()
             # Sample normal onto grid
-            gx = np.clip((grid.X - scene.terrain.bounds.xmin) / max(1e-9, scene.terrain.dx), 0, scene.terrain.nx - 1).astype(int)
-            gy = np.clip((grid.Y - scene.terrain.bounds.ymin) / max(1e-9, scene.terrain.dy), 0, scene.terrain.ny - 1).astype(int)
+            gx = np.clip(
+                (grid.X - scene.terrain.bounds.xmin) / max(1e-9, scene.terrain.dx),
+                0,
+                scene.terrain.nx - 1,
+            ).astype(int)
+            gy = np.clip(
+                (grid.Y - scene.terrain.bounds.ymin) / max(1e-9, scene.terrain.dy),
+                0,
+                scene.terrain.ny - 1,
+            ).astype(int)
             local_nz = nz[gy, gx]
             slope_svf_limit = 0.5 * (1.0 + np.clip(local_nz, 0.0, 1.0))
             svf = np.minimum(svf, slope_svf_limit)
@@ -164,11 +175,9 @@ class TerrainAwareCPUSolver:
         sw_fluxes = compute_shortwave_fluxes(
             weather, solar_pos, shadow_mask, clean_svf, ground_mat, wall_mat
         )
-        lw_fluxes = compute_longwave_fluxes(
-            weather, clean_svf, ground_mat, wall_mat
-        )
+        lw_fluxes = compute_longwave_fluxes(weather, clean_svf, ground_mat, wall_mat)
         radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
-        
+
         # Mask invalid cells to NaN
         tmrt_c = np.where(valid_mask, radiant_state.tmrt_c, np.nan)
         t_rad = time.perf_counter() - t0_rad
@@ -181,7 +190,7 @@ class TerrainAwareCPUSolver:
             air_temp_c=air_temp_c,
             tmrt_c=clean_tmrt,
             wind_speed_ms=weather.wind_speed,
-            relative_humidity=weather.relative_humidity
+            relative_humidity=weather.relative_humidity,
         )
         utci = np.where(valid_mask, utci, np.nan)
         t_utci = time.perf_counter() - t0_utci
@@ -205,7 +214,7 @@ class TerrainAwareCPUSolver:
             "total_cells": grid.total_cells,
             "valid_cells": int(np.sum(valid_mask)),
             "invalid_cells": int(np.sum(~valid_mask)),
-            "air_temperature_c": air_temp_c
+            "air_temperature_c": air_temp_c,
         }
 
         return SimulationResult(
@@ -216,5 +225,5 @@ class TerrainAwareCPUSolver:
             longwave_flux=lw_fluxes.l_total,
             tmrt=tmrt_c,
             utci=utci,
-            metadata=metadata
+            metadata=metadata,
         )

@@ -14,20 +14,22 @@ from urban_comfort.solar.solar_position import SolarPosition
 from urban_comfort.visibility.mesh_ray_intersection import intersect_rays_scene_meshes
 
 
-def compute_mesh_direct_shadow_mask(scene: Scene,
-                                    grid: PedestrianGrid,
-                                    solar_pos: SolarPosition,
-                                    roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+def compute_mesh_direct_shadow_mask(
+    scene: Scene,
+    grid: PedestrianGrid,
+    solar_pos: SolarPosition,
+    roi_mask: Optional[np.ndarray] = None,
+) -> np.ndarray:
     """
     Computes a 2D binary direct solar shadow mask across the pedestrian grid for mesh geometry.
-    
+
     Parameters:
         scene: Scene object containing active meshes.
         grid: PedestrianGrid defining receptor coordinates at z_ped (1.1m).
         solar_pos: SolarPosition containing the normalized unit sun vector.
         roi_mask: Optional (ny, nx) boolean mask for selective computation.
                   Cells outside roi_mask retain default 1.0 (illuminated).
-                  
+
     Returns:
         shadow_mask: (ny, nx) float64 array: 1.0 = illuminated, 0.0 = shaded.
     """
@@ -61,9 +63,11 @@ def compute_mesh_direct_shadow_mask(scene: Scene,
 
     # Vectorized multi-mesh ray intersection with early-exit occlusion
     is_occluded, _ = intersect_rays_scene_meshes(
-        origins, sun_dir, active_meshes,
+        origins,
+        sun_dir,
+        active_meshes,
         early_exit=True,
-        cull_backfaces=False  # Two-sided evaluation for opaque envelopes
+        cull_backfaces=False,  # Two-sided evaluation for opaque envelopes
     )
 
     # Apply occlusion results: shaded cells set to 0.0

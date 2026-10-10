@@ -40,6 +40,7 @@ from urban_comfort.solar.solar_position import calculate_solar_position
 @dataclass
 class GPUIncrementalProfileMetrics:
     """Detailed performance and memory metrics for GPU incremental execution."""
+
     backend_name: str = "gpu_incremental"
     device_name: str = "CUDA GPU"
     total_pipeline_time_s: float = 0.0
@@ -116,9 +117,9 @@ class GPUIncrementalEngine:
     def last_metrics(self) -> Optional[GPUIncrementalProfileMetrics]:
         return self._last_metrics
 
-    def preload_resident_baseline(self, static_scene: Scene,
-                                  grid: PedestrianGrid,
-                                  baseline_result: SimulationResult) -> float:
+    def preload_resident_baseline(
+        self, static_scene: Scene, grid: PedestrianGrid, baseline_result: SimulationResult
+    ) -> float:
         """
         Uploads static scene geometry and baseline physical fields into GPU memory once.
         Returns upload duration in seconds.
@@ -150,7 +151,9 @@ class GPUIncrementalEngine:
         self._resident_state.bounds_3d = geom.bounds_3d
 
         # Upload baseline fields
-        self._resident_state.d_baseline_shadow = cp.asarray(baseline_result.shadow_mask.astype(np.float64))
+        self._resident_state.d_baseline_shadow = cp.asarray(
+            baseline_result.shadow_mask.astype(np.float64)
+        )
         self._resident_state.d_baseline_svf = cp.asarray(baseline_result.svf.astype(np.float64))
 
         # Rasterize static height grid on GPU
@@ -163,17 +166,23 @@ class GPUIncrementalEngine:
         if geom.num_triangles > 0:
             scene_zmax = float(geom.bounds_3d[5])
             raster_kernel(
-                grid_2d, block_2d,
+                grid_2d,
+                block_2d,
                 (
                     self._resident_state.d_static_verts,
                     self._resident_state.d_static_tris,
                     np.int32(geom.num_triangles),
-                    np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                    np.int32(nx), np.int32(ny),
+                    np.float64(grid.origin_x),
+                    np.float64(grid.origin_y),
+                    np.float64(grid.dx),
+                    np.int32(nx),
+                    np.int32(ny),
                     np.float64(scene_zmax + 1.0),
-                    np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                    d_height_grid
-                )
+                    np.float64(1e-6),
+                    np.float64(1e-10),
+                    np.float64(1e-9),
+                    d_height_grid,
+                ),
             )
 
         self._resident_state.d_static_height_grid = d_height_grid
@@ -184,13 +193,15 @@ class GPUIncrementalEngine:
         cp.cuda.Stream.null.synchronize()
         return time.perf_counter() - t0
 
-    def execute_certified_update(self,
-                                 previous_scene: Scene,
-                                 updated_scene: Scene,
-                                 previous_result: SimulationResult,
-                                 edit: GeometricEdit,
-                                 weather: Weather,
-                                 config: SimulationConfig) -> Tuple[IncrementalUpdateResult, ErrorCertificate]:
+    def execute_certified_update(
+        self,
+        previous_scene: Scene,
+        updated_scene: Scene,
+        previous_result: SimulationResult,
+        edit: GeometricEdit,
+        weather: Weather,
+        config: SimulationConfig,
+    ) -> Tuple[IncrementalUpdateResult, ErrorCertificate]:
         """
         Executes certified incremental update on GPU:
         - Evaluates computable error certificate B_T(x).
@@ -201,6 +212,7 @@ class GPUIncrementalEngine:
         if not self.is_available:
             if self._fallback_to_cpu:
                 from urban_comfort.incremental.update import incremental_update_certified
+
                 return incremental_update_certified(
                     previous_scene, updated_scene, previous_result, edit, weather, config
                 )
@@ -219,13 +231,13 @@ class GPUIncrementalEngine:
         # 1. Error Certificate Construction
         t0_cert = time.perf_counter()
         cert = generate_error_certificate(
-            previous_scene, updated_scene, edit, previous_result,
-            solar_pos, grid, weather, config
+            previous_scene, updated_scene, edit, previous_result, solar_pos, grid, weather, config
         )
         t_cert = time.perf_counter() - t0_cert
 
         if cert.status == "fallback":
             from urban_comfort.reference.full_recompute import full_recompute
+
             full_res = full_recompute(updated_scene, weather, config, backend="gpu")
             update_res = IncrementalUpdateResult(
                 result=full_res,
@@ -236,7 +248,7 @@ class GPUIncrementalEngine:
                 reused_fraction=0.0,
                 time_incremental_sec=time.perf_counter() - t_start,
                 time_candidate_region_sec=t_cert,
-                time_selective_recompute_sec=time.perf_counter() - t_start - t_cert
+                time_selective_recompute_sec=time.perf_counter() - t_start - t_cert,
             )
             return update_res, cert
 
@@ -279,15 +291,23 @@ class GPUIncrementalEngine:
         if interv_geom.num_triangles > 0:
             scene_zmax = float(interv_geom.bounds_3d[5])
             raster_kernel(
-                grid_2d, block_2d,
+                grid_2d,
+                block_2d,
                 (
-                    d_interv_verts, d_interv_tris, np.int32(interv_geom.num_triangles),
-                    np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                    np.int32(nx), np.int32(ny),
+                    d_interv_verts,
+                    d_interv_tris,
+                    np.int32(interv_geom.num_triangles),
+                    np.float64(grid.origin_x),
+                    np.float64(grid.origin_y),
+                    np.float64(grid.dx),
+                    np.int32(nx),
+                    np.int32(ny),
                     np.float64(scene_zmax + 1.0),
-                    np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                    d_height_grid
-                )
+                    np.float64(1e-6),
+                    np.float64(1e-10),
+                    np.float64(1e-9),
+                    d_height_grid,
+                ),
             )
 
         cp.cuda.Stream.null.synchronize()
@@ -300,33 +320,48 @@ class GPUIncrementalEngine:
             block_dim = 256
             grid_dim = (total_cells + block_dim - 1) // block_dim
             shadow_kernel(
-                (grid_dim,), (block_dim,),
+                (grid_dim,),
+                (block_dim,),
                 (
-                    self._resident_state.d_origins, d_sun_dir,
-                    d_interv_verts, d_interv_tris, d_interv_boxes,
-                    np.int32(1), d_dirty_1d,  # has_roi=1, only recomputes dirty cells
-                    np.int32(total_cells), np.int32(interv_geom.num_triangles), np.int32(interv_geom.num_buildings),
-                    np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                    d_out_shadow
-                )
+                    self._resident_state.d_origins,
+                    d_sun_dir,
+                    d_interv_verts,
+                    d_interv_tris,
+                    d_interv_boxes,
+                    np.int32(1),
+                    d_dirty_1d,  # has_roi=1, only recomputes dirty cells
+                    np.int32(total_cells),
+                    np.int32(interv_geom.num_triangles),
+                    np.int32(interv_geom.num_buildings),
+                    np.float64(1e-6),
+                    np.float64(1e-10),
+                    np.float64(1e-9),
+                    d_out_shadow,
+                ),
             )
 
             # 4b. SVF horizon scan on dirty cells
             step_dx = max(0.5, grid.dx * 0.5)
             svf_kernel(
-                grid_2d, block_2d,
+                grid_2d,
+                block_2d,
                 (
-                    d_height_grid, d_interv_boxes,
-                    np.int32(1), d_dirty_2d,  # has_roi=1, only recomputes dirty cells
+                    d_height_grid,
+                    d_interv_boxes,
+                    np.int32(1),
+                    d_dirty_2d,  # has_roi=1, only recomputes dirty cells
                     np.int32(interv_geom.num_buildings),
-                    np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                    np.int32(nx), np.int32(ny),
+                    np.float64(grid.origin_x),
+                    np.float64(grid.origin_y),
+                    np.float64(grid.dx),
+                    np.int32(nx),
+                    np.int32(ny),
                     np.float64(grid.z_ped),
                     np.int32(config.sky_patch_configuration),
                     np.float64(config.max_svf_search_dist_m),
                     np.float64(step_dx),
-                    d_out_svf
-                )
+                    d_out_svf,
+                ),
             )
 
         cp.cuda.Stream.null.synchronize()
@@ -355,7 +390,9 @@ class GPUIncrementalEngine:
         wall_mat = updated_scene.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
         ground_mat = updated_scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
 
-        sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
+        sw_fluxes = compute_shortwave_fluxes(
+            weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat
+        )
         lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
         radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
 
@@ -364,7 +401,7 @@ class GPUIncrementalEngine:
             air_temp_c=air_temp_c,
             tmrt_c=radiant_state.tmrt_c,
             wind_speed_ms=weather.wind_speed,
-            relative_humidity=weather.relative_humidity
+            relative_humidity=weather.relative_humidity,
         )
         t_rad = time.perf_counter() - t0_rad
 
@@ -376,7 +413,9 @@ class GPUIncrementalEngine:
         num_azimuths = config.sky_patch_configuration
         total_rays = total_cells * (1 + num_azimuths)
         affected_rays = n_recomputed * (1 + num_azimuths)
-        ray_reduction_pct = ((total_rays - affected_rays) / float(total_rays)) * 100.0 if total_rays > 0 else 0.0
+        ray_reduction_pct = (
+            ((total_rays - affected_rays) / float(total_rays)) * 100.0 if total_rays > 0 else 0.0
+        )
 
         metrics = GPUIncrementalProfileMetrics(
             backend_name="gpu_incremental",
@@ -396,7 +435,8 @@ class GPUIncrementalEngine:
             total_rays=total_rays,
             ray_work_reduction_pct=ray_reduction_pct,
             num_static_triangles=self._resident_state.num_static_triangles,
-            num_intervention_triangles=interv_geom.num_triangles - self._resident_state.num_static_triangles
+            num_intervention_triangles=interv_geom.num_triangles
+            - self._resident_state.num_static_triangles,
         )
         self._last_metrics = metrics
 
@@ -423,7 +463,7 @@ class GPUIncrementalEngine:
             "peak_gpu_memory_mb": metrics.peak_gpu_memory_mb,
             "tmrt_tolerance": config.tmrt_tolerance,
             "max_predicted_bound": cert.max_predicted_bound,
-            "gpu_profile": metrics.__dict__
+            "gpu_profile": metrics.__dict__,
         }
 
         result = SimulationResult(
@@ -434,7 +474,7 @@ class GPUIncrementalEngine:
             longwave_flux=lw_fluxes.l_total,
             tmrt=radiant_state.tmrt_c,
             utci=utci,
-            metadata=metadata
+            metadata=metadata,
         )
 
         update_res = IncrementalUpdateResult(
@@ -446,18 +486,20 @@ class GPUIncrementalEngine:
             reused_fraction=metrics.reused_fraction,
             time_incremental_sec=t_total,
             time_candidate_region_sec=cert.timing_candidate_region_sec,
-            time_selective_recompute_sec=(t_kernel + t_h2d + t_d2h)
+            time_selective_recompute_sec=(t_kernel + t_h2d + t_d2h),
         )
 
         return update_res, cert
 
-    def execute_exact_update(self,
-                             previous_scene: Scene,
-                             updated_scene: Scene,
-                             previous_result: SimulationResult,
-                             edit: GeometricEdit,
-                             weather: Weather,
-                             config: SimulationConfig) -> IncrementalUpdateResult:
+    def execute_exact_update(
+        self,
+        previous_scene: Scene,
+        updated_scene: Scene,
+        previous_result: SimulationResult,
+        edit: GeometricEdit,
+        weather: Weather,
+        config: SimulationConfig,
+    ) -> IncrementalUpdateResult:
         """
         Executes exact incremental update on GPU:
         - Evaluates exact geometric affected region candidate mask.
@@ -467,6 +509,7 @@ class GPUIncrementalEngine:
         if not self.is_available:
             if self._fallback_to_cpu:
                 from urban_comfort.incremental.update import incremental_update_exact
+
                 return incremental_update_exact(
                     previous_scene, updated_scene, previous_result, edit, weather, config
                 )
@@ -485,9 +528,12 @@ class GPUIncrementalEngine:
             compute_exact_dirty_shadow_mask,
             compute_exact_dirty_svf_mask,
         )
+
         _, edit_bounds_3d = edit.apply(previous_scene)
         shadow_dirty_mask = compute_exact_dirty_shadow_mask(grid, edit_bounds_3d, solar_pos)
-        svf_dirty_mask = compute_exact_dirty_svf_mask(grid, edit_bounds_3d, config.max_svf_search_dist_m)
+        svf_dirty_mask = compute_exact_dirty_svf_mask(
+            grid, edit_bounds_3d, config.max_svf_search_dist_m
+        )
         combined_mask = shadow_dirty_mask | svf_dirty_mask
         t_cand = time.perf_counter() - t0_cand
 
@@ -527,47 +573,70 @@ class GPUIncrementalEngine:
         if interv_geom.num_triangles > 0:
             scene_zmax = float(interv_geom.bounds_3d[5])
             raster_kernel(
-                grid_2d, block_2d,
+                grid_2d,
+                block_2d,
                 (
-                    d_interv_verts, d_interv_tris, np.int32(interv_geom.num_triangles),
-                    np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                    np.int32(nx), np.int32(ny),
+                    d_interv_verts,
+                    d_interv_tris,
+                    np.int32(interv_geom.num_triangles),
+                    np.float64(grid.origin_x),
+                    np.float64(grid.origin_y),
+                    np.float64(grid.dx),
+                    np.int32(nx),
+                    np.int32(ny),
                     np.float64(scene_zmax + 1.0),
-                    np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                    d_height_grid
-                )
+                    np.float64(1e-6),
+                    np.float64(1e-10),
+                    np.float64(1e-9),
+                    d_height_grid,
+                ),
             )
 
         if n_recomputed > 0:
             block_dim = 256
             grid_dim = (total_cells + block_dim - 1) // block_dim
             shadow_kernel(
-                (grid_dim,), (block_dim,),
+                (grid_dim,),
+                (block_dim,),
                 (
-                    self._resident_state.d_origins, d_sun_dir,
-                    d_interv_verts, d_interv_tris, d_interv_boxes,
-                    np.int32(1), d_dirty_1d,
-                    np.int32(total_cells), np.int32(interv_geom.num_triangles), np.int32(interv_geom.num_buildings),
-                    np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                    d_out_shadow
-                )
+                    self._resident_state.d_origins,
+                    d_sun_dir,
+                    d_interv_verts,
+                    d_interv_tris,
+                    d_interv_boxes,
+                    np.int32(1),
+                    d_dirty_1d,
+                    np.int32(total_cells),
+                    np.int32(interv_geom.num_triangles),
+                    np.int32(interv_geom.num_buildings),
+                    np.float64(1e-6),
+                    np.float64(1e-10),
+                    np.float64(1e-9),
+                    d_out_shadow,
+                ),
             )
 
             step_dx = max(0.5, grid.dx * 0.5)
             svf_kernel(
-                grid_2d, block_2d,
+                grid_2d,
+                block_2d,
                 (
-                    d_height_grid, d_interv_boxes,
-                    np.int32(1), d_dirty_2d,
+                    d_height_grid,
+                    d_interv_boxes,
+                    np.int32(1),
+                    d_dirty_2d,
                     np.int32(interv_geom.num_buildings),
-                    np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                    np.int32(nx), np.int32(ny),
+                    np.float64(grid.origin_x),
+                    np.float64(grid.origin_y),
+                    np.float64(grid.dx),
+                    np.int32(nx),
+                    np.int32(ny),
                     np.float64(grid.z_ped),
                     np.int32(config.sky_patch_configuration),
                     np.float64(config.max_svf_search_dist_m),
                     np.float64(step_dx),
-                    d_out_svf
-                )
+                    d_out_svf,
+                ),
             )
 
         cp.cuda.Stream.null.synchronize()
@@ -587,7 +656,9 @@ class GPUIncrementalEngine:
         wall_mat = updated_scene.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
         ground_mat = updated_scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
 
-        sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
+        sw_fluxes = compute_shortwave_fluxes(
+            weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat
+        )
         lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
         radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
 
@@ -596,7 +667,7 @@ class GPUIncrementalEngine:
             air_temp_c=air_temp_c,
             tmrt_c=radiant_state.tmrt_c,
             wind_speed_ms=weather.wind_speed,
-            relative_humidity=weather.relative_humidity
+            relative_humidity=weather.relative_humidity,
         )
 
         t_total = time.perf_counter() - t_start
@@ -610,7 +681,7 @@ class GPUIncrementalEngine:
             "recomputed_cells": n_recomputed,
             "reused_cells": n_reused,
             "reused_fraction": n_reused / float(total_cells) if total_cells > 0 else 1.0,
-            "timing_total_sec": t_total
+            "timing_total_sec": t_total,
         }
 
         result = SimulationResult(
@@ -621,7 +692,7 @@ class GPUIncrementalEngine:
             longwave_flux=lw_fluxes.l_total,
             tmrt=radiant_state.tmrt_c,
             utci=utci,
-            metadata=metadata
+            metadata=metadata,
         )
 
         return IncrementalUpdateResult(
@@ -633,5 +704,5 @@ class GPUIncrementalEngine:
             reused_fraction=n_reused / float(total_cells) if total_cells > 0 else 1.0,
             time_incremental_sec=t_total,
             time_candidate_region_sec=t_cand,
-            time_selective_recompute_sec=t_recomp
+            time_selective_recompute_sec=t_recomp,
         )

@@ -18,31 +18,33 @@ from urban_comfort.reference.result import SimulationResult
 @dataclass
 class ComfortObjectiveConfig:
     """Configuration weights for scalar composite objective evaluation."""
+
     weight_mean_utci: float = 1.00
     weight_p90_utci: float = 0.50
     weight_max_utci: float = 0.00
     weight_mean_tmrt: float = 0.00
-    weight_area_penalty: float = 0.005     # Penalty per square meter of shade panel
-    comfort_threshold_utci: float = 32.0   # UTCI moderate heat stress threshold (degC)
-    feasibility_penalty: float = 1000.0    # Penalty added for infeasible designs
+    weight_area_penalty: float = 0.005  # Penalty per square meter of shade panel
+    comfort_threshold_utci: float = 32.0  # UTCI moderate heat stress threshold (degC)
+    feasibility_penalty: float = 1000.0  # Penalty added for infeasible designs
 
 
 @dataclass
 class EvaluationMetrics:
     """Diagnostic thermal comfort and spatial performance metrics for a candidate."""
+
     mean_utci: float
     p90_utci: float
     max_utci: float
     min_utci: float
     mean_tmrt: float
     max_tmrt: float
-    pct_improved_cells: float          # Percentage of evaluated cells where UTCI < baseline
-    pct_comfortable_cells: float       # Percentage of cells with UTCI < comfort_threshold
+    pct_improved_cells: float  # Percentage of evaluated cells where UTCI < baseline
+    pct_comfortable_cells: float  # Percentage of cells with UTCI < comfort_threshold
     area_m2: float
     area_penalty: float
     objective_value: float
-    delta_mean_utci: float             # candidate mean UTCI - baseline mean UTCI (negative is cooling)
-    delta_mean_tmrt: float             # candidate mean Tmrt - baseline mean Tmrt
+    delta_mean_utci: float  # candidate mean UTCI - baseline mean UTCI (negative is cooling)
+    delta_mean_tmrt: float  # candidate mean Tmrt - baseline mean Tmrt
     evaluated_cells_count: int
     peak_local_tmrt_improvement: float = 0.0  # maximum local Tmrt drop across evaluated cells (K)
 
@@ -66,21 +68,23 @@ class EvaluationMetrics:
         }
 
 
-def compute_objective(sim_result: SimulationResult,
-                      baseline_result: SimulationResult,
-                      eval_mask: np.ndarray,
-                      panel_area_m2: float,
-                      config: Optional[ComfortObjectiveConfig] = None) -> EvaluationMetrics:
+def compute_objective(
+    sim_result: SimulationResult,
+    baseline_result: SimulationResult,
+    eval_mask: np.ndarray,
+    panel_area_m2: float,
+    config: Optional[ComfortObjectiveConfig] = None,
+) -> EvaluationMetrics:
     """
     Computes objective metrics and scalar objective score over valid pedestrian evaluation cells.
-    
+
     Args:
         sim_result: Output from candidate simulation.
         baseline_result: Baseline unshaded simulation reference.
         eval_mask: Boolean mask indicating pedestrian receptors to aggregate (e.g. corridor cells).
         panel_area_m2: Planar area of candidate shade canopy in square meters.
         config: Weighting and threshold configuration.
-        
+
     Returns:
         EvaluationMetrics containing individual metrics and scalar objective_value.
     """
@@ -99,11 +103,20 @@ def compute_objective(sim_result: SimulationResult,
     if cell_count == 0:
         # Fallback for empty domain
         return EvaluationMetrics(
-            mean_utci=99.0, p90_utci=99.0, max_utci=99.0, min_utci=99.0,
-            mean_tmrt=99.0, max_tmrt=99.0, pct_improved_cells=0.0,
-            pct_comfortable_cells=0.0, area_m2=panel_area_m2,
-            area_penalty=0.0, objective_value=config.feasibility_penalty,
-            delta_mean_utci=0.0, delta_mean_tmrt=0.0, evaluated_cells_count=0
+            mean_utci=99.0,
+            p90_utci=99.0,
+            max_utci=99.0,
+            min_utci=99.0,
+            mean_tmrt=99.0,
+            max_tmrt=99.0,
+            pct_improved_cells=0.0,
+            pct_comfortable_cells=0.0,
+            area_m2=panel_area_m2,
+            area_penalty=0.0,
+            objective_value=config.feasibility_penalty,
+            delta_mean_utci=0.0,
+            delta_mean_tmrt=0.0,
+            evaluated_cells_count=0,
         )
 
     eval_cand_utci = cand_utci[valid_mask]
@@ -135,11 +148,11 @@ def compute_objective(sim_result: SimulationResult,
 
     # Scalar objective
     objective = (
-        config.weight_mean_utci * mean_utci +
-        config.weight_p90_utci * p90_utci +
-        config.weight_max_utci * max_utci +
-        config.weight_mean_tmrt * mean_tmrt +
-        area_penalty
+        config.weight_mean_utci * mean_utci
+        + config.weight_p90_utci * p90_utci
+        + config.weight_max_utci * max_utci
+        + config.weight_mean_tmrt * mean_tmrt
+        + area_penalty
     )
 
     return EvaluationMetrics(

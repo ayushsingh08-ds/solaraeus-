@@ -56,7 +56,12 @@ def test_canonical_benchmark_scene_definitions():
     scenes = get_canonical_benchmark_scenes()
     assert len(scenes) == 4
     scene_ids = [s.scene_id for s in scenes]
-    assert scene_ids == ["isolated_building", "urban_canyon", "enclosed_courtyard", "dense_3x3_grid"]
+    assert scene_ids == [
+        "isolated_building",
+        "urban_canyon",
+        "enclosed_courtyard",
+        "dense_3x3_grid",
+    ]
 
     expected_bldg_counts = [1, 2, 4, 9]
     for s, exp_b in zip(scenes, expected_bldg_counts):

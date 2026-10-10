@@ -9,7 +9,7 @@ CITY   ?= church_street_bengaluru
 PIPELINE ?= static
 
 .DEFAULT_GOAL := help
-.PHONY: help install install-dev lock lint lint-debt lint-all format types types-report test test-fast test-slow golden golden-capture doctor city viewer viewer-install viewer-test docker ci clean
+.PHONY: help install install-dev lock lint lint-debt lint-all format format-check types types-report test test-fast test-slow golden golden-capture doctor city viewer viewer-install viewer-test docker ci clean
 
 help: ## list available targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -43,6 +43,9 @@ lint-all: ## lint the whole tree, including the legacy scripts/ and examples/ (n
 format: ## auto-format with ruff
 	$(PYTHON) -m ruff format src tests tools
 	$(PYTHON) -m ruff check --fix src tests tools
+
+format-check: ## fail if the tree is not ruff-formatted (what CI runs)
+	$(PYTHON) -m ruff format --check src tests tools
 
 types: ## run mypy (gradual: strict on core contracts, lenient elsewhere)
 	$(PYTHON) -m mypy
@@ -86,7 +89,7 @@ viewer-test: ## run viewer unit + end-to-end tests
 docker: ## build the CPU container image
 	docker build -t solaraeus:cpu -f Dockerfile .
 
-ci: lint types test-fast golden ## what continuous integration runs
+ci: lint format-check types test-fast golden ## what continuous integration runs
 
 clean: ## remove caches and generated local artifacts
 	$(PYTHON) tools/clean.py

@@ -35,6 +35,7 @@ class TreeAwareCPUSolver:
     Authoritative CPU reference solver supporting Level 1 provisional tree geometries.
     API Version: 2.2.0-cpu-tree
     """
+
     VERSION: str = "2.2.0-cpu-tree"
 
     @classmethod
@@ -92,7 +93,9 @@ class TreeAwareCPUSolver:
                         if t.intersects_ray(origin, ray_dir):
                             tree_shadow_mask[i, j] = True
                             if t.transmissivity > 0.0:
-                                tree_transmission[i, j] = min(tree_transmission[i, j], t.transmissivity)
+                                tree_transmission[i, j] = min(
+                                    tree_transmission[i, j], t.transmissivity
+                                )
                             else:
                                 tree_transmission[i, j] = 0.0
                             break
@@ -129,13 +132,21 @@ class TreeAwareCPUSolver:
         # If any tree has partial transmissivity, blend k_dir
         for i in range(ny):
             for j in range(nx):
-                if tree_shadow_mask[i, j] and tree_transmission[i, j] > 0.0 and base_res.shadow_mask[i, j] > 0.0:
-                    k_dir_unblocked = sw_fluxes.k_dir[i, j] if combined_shadow_mask[i, j] > 0.0 else (sw_fluxes.k_total[i, j] - sw_fluxes.k_diff[i, j])
-                    k_total[i, j] = sw_fluxes.k_diff[i, j] + k_dir_unblocked * tree_transmission[i, j]
+                if (
+                    tree_shadow_mask[i, j]
+                    and tree_transmission[i, j] > 0.0
+                    and base_res.shadow_mask[i, j] > 0.0
+                ):
+                    k_dir_unblocked = (
+                        sw_fluxes.k_dir[i, j]
+                        if combined_shadow_mask[i, j] > 0.0
+                        else (sw_fluxes.k_total[i, j] - sw_fluxes.k_diff[i, j])
+                    )
+                    k_total[i, j] = (
+                        sw_fluxes.k_diff[i, j] + k_dir_unblocked * tree_transmission[i, j]
+                    )
 
-        lw_fluxes = compute_longwave_fluxes(
-            weather, clean_svf, ground_mat, wall_mat
-        )
+        lw_fluxes = compute_longwave_fluxes(weather, clean_svf, ground_mat, wall_mat)
         radiant_state = compute_tmrt(k_total, lw_fluxes.l_total)
         tmrt_c = np.where(valid_mask, radiant_state.tmrt_c, np.nan)
         t_rad = time.perf_counter() - t0_rad
@@ -156,14 +167,16 @@ class TreeAwareCPUSolver:
         t_total = time.perf_counter() - t_start
 
         metadata = dict(base_res.metadata)
-        metadata.update({
-            "tree_version": cls.VERSION,
-            "tree_enabled": True,
-            "num_trees": len(scene.trees),
-            "tree_shadowed_cells": int(np.sum(tree_shadow_mask)),
-            "timing_tree_shadow_sec": t_shadow,
-            "timing_total_sec": t_total,
-        })
+        metadata.update(
+            {
+                "tree_version": cls.VERSION,
+                "tree_enabled": True,
+                "num_trees": len(scene.trees),
+                "tree_shadowed_cells": int(np.sum(tree_shadow_mask)),
+                "timing_tree_shadow_sec": t_shadow,
+                "timing_total_sec": t_total,
+            }
+        )
 
         return SimulationResult(
             shadow_mask=combined_shadow_mask,
@@ -229,7 +242,9 @@ class TreeAwareCPUSolver:
             min_y = min(t.y, t.y + sh_y) - r_max
             max_y = max(t.y, t.y + sh_y) + r_max
 
-            cell_mask = (grid.X >= min_x) & (grid.X <= max_x) & (grid.Y >= min_y) & (grid.Y <= max_y)
+            cell_mask = (
+                (grid.X >= min_x) & (grid.X <= max_x) & (grid.Y >= min_y) & (grid.Y <= max_y)
+            )
             affected_mask |= cell_mask
 
         full_result = cls.simulate(scene_after, weather, config)
@@ -270,7 +285,10 @@ class TreeAwareCPUSolver:
         updated_res = SimulationResult(
             shadow_mask=shadow_mask,
             direct_irradiance=direct_irradiance,
-            visibility_fields={"svf": svf, "tree_shadow_mask": full_result.visibility_fields.get("tree_shadow_mask")},
+            visibility_fields={
+                "svf": svf,
+                "tree_shadow_mask": full_result.visibility_fields.get("tree_shadow_mask"),
+            },
             shortwave_flux=k_total,
             longwave_flux=l_total,
             tmrt=tmrt,
@@ -278,4 +296,3 @@ class TreeAwareCPUSolver:
             metadata=full_result.metadata,
         )
         return updated_res, affected_mask, metrics
-

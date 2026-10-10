@@ -10,17 +10,19 @@ from typing import Optional, Tuple
 import numpy as np
 
 
-def intersect_ray_aabb(origin: Tuple[float, float, float],
-                       direction: Tuple[float, float, float],
-                       box_bounds: Tuple[float, float, float, float, float, float]) -> Optional[float]:
+def intersect_ray_aabb(
+    origin: Tuple[float, float, float],
+    direction: Tuple[float, float, float],
+    box_bounds: Tuple[float, float, float, float, float, float],
+) -> Optional[float]:
     """
     Computes ray intersection with an Axis-Aligned Bounding Box (AABB).
-    
+
     Parameters:
         origin: (ox, oy, oz) ray starting point.
         direction: (dx, dy, dz) normalized ray propagation vector.
         box_bounds: (xmin, xmax, ymin, ymax, zmin, zmax).
-        
+
     Returns:
         Hit distance t >= 0 if intersection occurs, otherwise None.
     """
@@ -69,17 +71,19 @@ def intersect_ray_aabb(origin: Tuple[float, float, float],
     return None
 
 
-def intersect_rays_aabb_batch(origins: np.ndarray,
-                              direction: Tuple[float, float, float],
-                              box_bounds: Tuple[float, float, float, float, float, float]) -> Tuple[np.ndarray, np.ndarray]:
+def intersect_rays_aabb_batch(
+    origins: np.ndarray,
+    direction: Tuple[float, float, float],
+    box_bounds: Tuple[float, float, float, float, float, float],
+) -> Tuple[np.ndarray, np.ndarray]:
     """
     Vectorized batch intersection of N rays along a shared direction against one AABB.
-    
+
     Parameters:
         origins: Shape (N, 3) float64 array of ray origins.
         direction: (dx, dy, dz) unit direction vector.
         box_bounds: (xmin, xmax, ymin, ymax, zmin, zmax).
-        
+
     Returns:
         hits: Shape (N,) boolean mask indicating intersections.
         t_hits: Shape (N,) float64 hit distances (inf for misses).

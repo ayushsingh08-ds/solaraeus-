@@ -34,7 +34,7 @@ from urban_comfort.reference.result import SimulationResult
 from urban_comfort.solar.solar_position import SolarPosition, calculate_solar_position
 
 # CUDA C++ Source Code for Ray-Triangle & Horizon Search Kernels
-CUDA_KERNELS_SOURCE = r'''
+CUDA_KERNELS_SOURCE = r"""
 extern "C" {
 
 __global__
@@ -387,13 +387,14 @@ void compute_svf_horizon_kernel(
 }
 
 } // extern "C"
-'''
+"""
 
 
 def is_cupy_available() -> bool:
     """Checks whether CuPy is installed and can detect a functional CUDA GPU."""
     try:
         import cupy as cp
+
         return bool(cp.cuda.is_available() and cp.cuda.runtime.getDeviceCount() > 0)
     except Exception:
         return False
@@ -430,13 +431,17 @@ class GPUBackend(SimulationBackend):
                     "CUDA drivers and CuPy (cupy-cuda12x) are installed."
                 )
             import cupy as cp
+
             self._cuda_module = cp.RawModule(code=CUDA_KERNELS_SOURCE)
         return self._cuda_module
 
-    def compute_direct_shadow(self, scene: Scene,
-                              grid: PedestrianGrid,
-                              solar_pos: SolarPosition,
-                              roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def compute_direct_shadow(
+        self,
+        scene: Scene,
+        grid: PedestrianGrid,
+        solar_pos: SolarPosition,
+        roi_mask: Optional[np.ndarray] = None,
+    ) -> np.ndarray:
         """
         Computes 2D binary direct solar shadow mask on the GPU.
         """
@@ -458,6 +463,7 @@ class GPUBackend(SimulationBackend):
             raise RuntimeError("GPU execution requested but no compatible CUDA device detected.")
 
         import cupy as cp
+
         module = self._get_module()
         shadow_kernel = module.get_function("moller_trumbore_shadow_kernel")
 
@@ -480,7 +486,11 @@ class GPUBackend(SimulationBackend):
         d_boxes = cp.asarray(geom.bldg_boxes)
         d_out = cp.ones(n_rays, dtype=cp.float64)
 
-        d_roi = cp.asarray(roi_mask.ravel().astype(np.uint8)) if roi_mask is not None else cp.zeros(1, dtype=cp.uint8)
+        d_roi = (
+            cp.asarray(roi_mask.ravel().astype(np.uint8))
+            if roi_mask is not None
+            else cp.zeros(1, dtype=cp.uint8)
+        )
         has_roi = np.int32(1 if roi_mask is not None else 0)
 
         cp.cuda.Stream.null.synchronize()
@@ -492,14 +502,24 @@ class GPUBackend(SimulationBackend):
 
         t0_kernel = time.perf_counter()
         shadow_kernel(
-            (grid_dim,), (block_dim,),
+            (grid_dim,),
+            (block_dim,),
             (
-                d_origins, d_dir, d_verts, d_tris, d_boxes,
-                has_roi, d_roi,
-                np.int32(n_rays), np.int32(geom.num_triangles), np.int32(geom.num_buildings),
-                np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                d_out
-            )
+                d_origins,
+                d_dir,
+                d_verts,
+                d_tris,
+                d_boxes,
+                has_roi,
+                d_roi,
+                np.int32(n_rays),
+                np.int32(geom.num_triangles),
+                np.int32(geom.num_buildings),
+                np.float64(1e-6),
+                np.float64(1e-10),
+                np.float64(1e-9),
+                d_out,
+            ),
         )
         cp.cuda.Stream.null.synchronize()
         t_kernel = time.perf_counter() - t0_kernel
@@ -525,16 +545,19 @@ class GPUBackend(SimulationBackend):
             total_ray_count=n_rays,
             num_triangles=geom.num_triangles,
             num_buildings=geom.num_buildings,
-            device_name=f"CUDA {dev.id}"
+            device_name=f"CUDA {dev.id}",
         )
 
         return shadow_mask
 
-    def compute_sky_view_factor(self, scene: Scene,
-                                grid: PedestrianGrid,
-                                num_azimuths: int = 32,
-                                max_search_dist_m: float = 120.0,
-                                roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def compute_sky_view_factor(
+        self,
+        scene: Scene,
+        grid: PedestrianGrid,
+        num_azimuths: int = 32,
+        max_search_dist_m: float = 120.0,
+        roi_mask: Optional[np.ndarray] = None,
+    ) -> np.ndarray:
         """
         Computes 2D Sky View Factor on the GPU via mesh rasterization and horizon scan.
         """
@@ -553,6 +576,7 @@ class GPUBackend(SimulationBackend):
             raise RuntimeError("GPU execution requested but no compatible CUDA device detected.")
 
         import cupy as cp
+
         module = self._get_module()
         raster_kernel = module.get_function("rasterize_mesh_height_kernel")
         svf_kernel = module.get_function("compute_svf_horizon_kernel")
@@ -566,7 +590,11 @@ class GPUBackend(SimulationBackend):
         d_boxes = cp.asarray(geom.bldg_boxes)
         d_height_grid = cp.zeros((ny, nx), dtype=cp.float64)
         d_svf = cp.ones((ny, nx), dtype=cp.float64)
-        d_roi = cp.asarray(roi_mask.astype(np.uint8)) if roi_mask is not None else cp.zeros(1, dtype=cp.uint8)
+        d_roi = (
+            cp.asarray(roi_mask.astype(np.uint8))
+            if roi_mask is not None
+            else cp.zeros(1, dtype=cp.uint8)
+        )
         has_roi = np.int32(1 if roi_mask is not None else 0)
 
         scene_zmax = float(geom.bounds_3d[5])
@@ -583,30 +611,46 @@ class GPUBackend(SimulationBackend):
         # Step 1: Rasterize meshes to height grid (if meshes present)
         if geom.num_triangles > 0:
             raster_kernel(
-                grid_2d, block_2d,
+                grid_2d,
+                block_2d,
                 (
-                    d_verts, d_tris, np.int32(geom.num_triangles),
-                    np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                    np.int32(nx), np.int32(ny),
+                    d_verts,
+                    d_tris,
+                    np.int32(geom.num_triangles),
+                    np.float64(grid.origin_x),
+                    np.float64(grid.origin_y),
+                    np.float64(grid.dx),
+                    np.int32(nx),
+                    np.int32(ny),
                     np.float64(scene_zmax + 1.0),
-                    np.float64(1e-6), np.float64(1e-10), np.float64(1e-9),
-                    d_height_grid
-                )
+                    np.float64(1e-6),
+                    np.float64(1e-10),
+                    np.float64(1e-9),
+                    d_height_grid,
+                ),
             )
 
         # Step 2: Compute SVF horizon elevation scan
         svf_kernel(
-            grid_2d, block_2d,
+            grid_2d,
+            block_2d,
             (
-                d_height_grid, d_boxes,
-                has_roi, d_roi,
+                d_height_grid,
+                d_boxes,
+                has_roi,
+                d_roi,
                 np.int32(geom.num_buildings),
-                np.float64(grid.origin_x), np.float64(grid.origin_y), np.float64(grid.dx),
-                np.int32(nx), np.int32(ny),
+                np.float64(grid.origin_x),
+                np.float64(grid.origin_y),
+                np.float64(grid.dx),
+                np.int32(nx),
+                np.int32(ny),
                 np.float64(grid.z_ped),
-                np.int32(num_azimuths), np.float64(max_search_dist_m), np.float64(step_dx),
-                d_svf
-            )
+                np.int32(num_azimuths),
+                np.float64(max_search_dist_m),
+                np.float64(step_dx),
+                d_svf,
+            ),
         )
         cp.cuda.Stream.null.synchronize()
         t_kernel = time.perf_counter() - t0_kernel
@@ -634,14 +678,14 @@ class GPUBackend(SimulationBackend):
             total_ray_count=svf_rays,
             num_triangles=geom.num_triangles,
             num_buildings=geom.num_buildings,
-            device_name=f"CUDA {dev.id}"
+            device_name=f"CUDA {dev.id}",
         )
 
         return svf
 
-    def full_simulate(self, scene: Scene,
-                      weather: Weather,
-                      config: SimulationConfig) -> SimulationResult:
+    def full_simulate(
+        self, scene: Scene, weather: Weather, config: SimulationConfig
+    ) -> SimulationResult:
         """
         Executes a deterministic full recomputation using the GPU backend for ray-based steps.
         """
@@ -650,6 +694,7 @@ class GPUBackend(SimulationBackend):
         # 1. Parse Datetime and Compute Solar Position
         dt_str = f"{config.date} {config.local_time}"
         from datetime import datetime, timezone
+
         dt_naive = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
         dt_utc = dt_naive.replace(tzinfo=timezone.utc)
         solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
@@ -665,9 +710,10 @@ class GPUBackend(SimulationBackend):
         # 4. Directional Visibility / SVF on GPU
         t0_svf = time.perf_counter()
         svf = self.compute_sky_view_factor(
-            scene, grid,
+            scene,
+            grid,
             num_azimuths=config.sky_patch_configuration,
-            max_search_dist_m=config.max_svf_search_dist_m
+            max_search_dist_m=config.max_svf_search_dist_m,
         )
         t_svf = time.perf_counter() - t0_svf
 
@@ -679,9 +725,7 @@ class GPUBackend(SimulationBackend):
         sw_fluxes = compute_shortwave_fluxes(
             weather, solar_pos, shadow_mask, svf, ground_mat, wall_mat
         )
-        lw_fluxes = compute_longwave_fluxes(
-            weather, svf, ground_mat, wall_mat
-        )
+        lw_fluxes = compute_longwave_fluxes(weather, svf, ground_mat, wall_mat)
         radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
         t_rad = time.perf_counter() - t0_rad
 
@@ -692,7 +736,7 @@ class GPUBackend(SimulationBackend):
             air_temp_c=air_temp_c,
             tmrt_c=radiant_state.tmrt_c,
             wind_speed_ms=weather.wind_speed,
-            relative_humidity=weather.relative_humidity
+            relative_humidity=weather.relative_humidity,
         )
         t_utci = time.perf_counter() - t0_utci
 
@@ -714,7 +758,7 @@ class GPUBackend(SimulationBackend):
             "total_cells": grid.total_cells,
             "air_temperature_c": air_temp_c,
             "backend": "gpu",
-            "gpu_profile": self._profile_metrics.__dict__ if self._profile_metrics else None
+            "gpu_profile": self._profile_metrics.__dict__ if self._profile_metrics else None,
         }
 
         return SimulationResult(
@@ -725,5 +769,5 @@ class GPUBackend(SimulationBackend):
             longwave_flux=lw_fluxes.l_total,
             tmrt=radiant_state.tmrt_c,
             utci=utci,
-            metadata=metadata
+            metadata=metadata,
         )

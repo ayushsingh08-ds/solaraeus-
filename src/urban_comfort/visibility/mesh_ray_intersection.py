@@ -15,23 +15,25 @@ import numpy as np
 from urban_comfort.geometry.mesh import TriangleMesh
 from urban_comfort.visibility.ray_intersection import intersect_ray_aabb, intersect_rays_aabb_batch
 
-EPS_ORIGIN_DEFAULT = 1e-6   # Minimum distance t from ray origin to ignore surface self-hits (m)
-EPS_DET_DEFAULT = 1e-10      # Parallel ray / coplanar determinant threshold
-EPS_BARY_DEFAULT = 1e-9      # Barycentric coordinate boundary tolerance for shared edges
+EPS_ORIGIN_DEFAULT = 1e-6  # Minimum distance t from ray origin to ignore surface self-hits (m)
+EPS_DET_DEFAULT = 1e-10  # Parallel ray / coplanar determinant threshold
+EPS_BARY_DEFAULT = 1e-9  # Barycentric coordinate boundary tolerance for shared edges
 
 
-def intersect_ray_triangle(origin: Tuple[float, float, float],
-                           direction: Tuple[float, float, float],
-                           v0: Tuple[float, float, float] | np.ndarray,
-                           v1: Tuple[float, float, float] | np.ndarray,
-                           v2: Tuple[float, float, float] | np.ndarray,
-                           eps_origin: float = EPS_ORIGIN_DEFAULT,
-                           eps_det: float = EPS_DET_DEFAULT,
-                           eps_bary: float = EPS_BARY_DEFAULT,
-                           cull_backfaces: bool = False) -> Optional[Tuple[float, float, float]]:
+def intersect_ray_triangle(
+    origin: Tuple[float, float, float],
+    direction: Tuple[float, float, float],
+    v0: Tuple[float, float, float] | np.ndarray,
+    v1: Tuple[float, float, float] | np.ndarray,
+    v2: Tuple[float, float, float] | np.ndarray,
+    eps_origin: float = EPS_ORIGIN_DEFAULT,
+    eps_det: float = EPS_DET_DEFAULT,
+    eps_bary: float = EPS_BARY_DEFAULT,
+    cull_backfaces: bool = False,
+) -> Optional[Tuple[float, float, float]]:
     """
     Computes ray-triangle intersection using the Möller-Trumbore algorithm.
-    
+
     Parameters:
         origin: (ox, oy, oz) ray starting point.
         direction: (dx, dy, dz) ray propagation direction vector.
@@ -40,7 +42,7 @@ def intersect_ray_triangle(origin: Tuple[float, float, float],
         eps_det: Threshold below which ray is considered parallel to triangle plane.
         eps_bary: Tolerance for edge inclusion to prevent seam dropouts.
         cull_backfaces: If True, only intersections where ray opposes normal are accepted.
-        
+
     Returns:
         (t, u, v) if an intersection occurs with t >= eps_origin, otherwise None.
     """
@@ -105,16 +107,18 @@ def intersect_ray_triangle(origin: Tuple[float, float, float],
     return (float(t), float(u), float(v))
 
 
-def intersect_ray_mesh(origin: Tuple[float, float, float],
-                       direction: Tuple[float, float, float],
-                       mesh: TriangleMesh,
-                       eps_origin: float = EPS_ORIGIN_DEFAULT,
-                       eps_det: float = EPS_DET_DEFAULT,
-                       eps_bary: float = EPS_BARY_DEFAULT,
-                       cull_backfaces: bool = False) -> Optional[float]:
+def intersect_ray_mesh(
+    origin: Tuple[float, float, float],
+    direction: Tuple[float, float, float],
+    mesh: TriangleMesh,
+    eps_origin: float = EPS_ORIGIN_DEFAULT,
+    eps_det: float = EPS_DET_DEFAULT,
+    eps_bary: float = EPS_BARY_DEFAULT,
+    cull_backfaces: bool = False,
+) -> Optional[float]:
     """
     Computes the nearest valid positive intersection of a single ray against a TriangleMesh.
-    
+
     Returns:
         Closest hit distance t >= eps_origin, or None if no intersection occurs.
     """
@@ -137,10 +141,15 @@ def intersect_ray_mesh(origin: Tuple[float, float, float],
 
     for tri in tris:
         hit = intersect_ray_triangle(
-            origin, direction,
-            verts[tri[0]], verts[tri[1]], verts[tri[2]],
-            eps_origin=eps_origin, eps_det=eps_det, eps_bary=eps_bary,
-            cull_backfaces=cull_backfaces
+            origin,
+            direction,
+            verts[tri[0]],
+            verts[tri[1]],
+            verts[tri[2]],
+            eps_origin=eps_origin,
+            eps_det=eps_det,
+            eps_bary=eps_bary,
+            cull_backfaces=cull_backfaces,
         )
         if hit is not None:
             t = hit[0]
@@ -150,16 +159,18 @@ def intersect_ray_mesh(origin: Tuple[float, float, float],
     return nearest_t
 
 
-def intersect_rays_mesh_batch(origins: np.ndarray,
-                              direction: Tuple[float, float, float],
-                              mesh: TriangleMesh,
-                              eps_origin: float = EPS_ORIGIN_DEFAULT,
-                              eps_det: float = EPS_DET_DEFAULT,
-                              eps_bary: float = EPS_BARY_DEFAULT,
-                              cull_backfaces: bool = False) -> Tuple[np.ndarray, np.ndarray]:
+def intersect_rays_mesh_batch(
+    origins: np.ndarray,
+    direction: Tuple[float, float, float],
+    mesh: TriangleMesh,
+    eps_origin: float = EPS_ORIGIN_DEFAULT,
+    eps_det: float = EPS_DET_DEFAULT,
+    eps_bary: float = EPS_BARY_DEFAULT,
+    cull_backfaces: bool = False,
+) -> Tuple[np.ndarray, np.ndarray]:
     """
     Vectorized batch intersection of N rays along a shared direction against all triangles of a mesh.
-    
+
     Parameters:
         origins: Shape (N, 3) float64 array of ray origins.
         direction: (dx, dy, dz) normalized ray propagation vector.
@@ -168,7 +179,7 @@ def intersect_rays_mesh_batch(origins: np.ndarray,
         eps_det: Parallel ray threshold.
         eps_bary: Barycentric edge inclusion tolerance.
         cull_backfaces: Back-face culling toggle.
-        
+
     Returns:
         hits: Shape (N,) boolean mask indicating intersections.
         t_hits: Shape (N,) float64 nearest hit distances (np.inf for misses).
@@ -182,7 +193,7 @@ def intersect_rays_mesh_batch(origins: np.ndarray,
 
     dx, dy, dz = direction
     dir_vec = np.array([dx, dy, dz], dtype=np.float64)
-    dir_len_sq = float(np.sum(dir_vec ** 2))
+    dir_len_sq = float(np.sum(dir_vec**2))
     if not np.isfinite(dir_len_sq) or dir_len_sq < 1e-14:
         return hits, t_hits
 
@@ -190,9 +201,12 @@ def intersect_rays_mesh_batch(origins: np.ndarray,
     box_hits, _ = intersect_rays_aabb_batch(origins, direction, mesh.bounds_3d)
     b = mesh.bounds_3d
     inside_box = (
-        (origins[:, 0] >= b[0]) & (origins[:, 0] <= b[1]) &
-        (origins[:, 1] >= b[2]) & (origins[:, 1] <= b[3]) &
-        (origins[:, 2] >= b[4]) & (origins[:, 2] <= b[5])
+        (origins[:, 0] >= b[0])
+        & (origins[:, 0] <= b[1])
+        & (origins[:, 1] >= b[2])
+        & (origins[:, 1] <= b[3])
+        & (origins[:, 2] >= b[4])
+        & (origins[:, 2] <= b[5])
     )
     active_ray_indices = np.where(box_hits | inside_box)[0]
     if len(active_ray_indices) == 0:
@@ -259,17 +273,19 @@ def intersect_rays_mesh_batch(origins: np.ndarray,
     return hits, t_hits
 
 
-def intersect_rays_scene_meshes(origins: np.ndarray,
-                                direction: Tuple[float, float, float],
-                                meshes: List[TriangleMesh],
-                                early_exit: bool = True,
-                                eps_origin: float = EPS_ORIGIN_DEFAULT,
-                                eps_det: float = EPS_DET_DEFAULT,
-                                eps_bary: float = EPS_BARY_DEFAULT,
-                                cull_backfaces: bool = False) -> Tuple[np.ndarray, np.ndarray]:
+def intersect_rays_scene_meshes(
+    origins: np.ndarray,
+    direction: Tuple[float, float, float],
+    meshes: List[TriangleMesh],
+    early_exit: bool = True,
+    eps_origin: float = EPS_ORIGIN_DEFAULT,
+    eps_det: float = EPS_DET_DEFAULT,
+    eps_bary: float = EPS_BARY_DEFAULT,
+    cull_backfaces: bool = False,
+) -> Tuple[np.ndarray, np.ndarray]:
     """
     Tests an array of rays against all active meshes in a scene.
-    
+
     If early_exit is True (e.g. for binary shadow occlusion), rays that have already
     found a hit are excluded from subsequent mesh intersection tests.
     """
@@ -290,18 +306,26 @@ def intersect_rays_scene_meshes(origins: np.ndarray,
             if len(unoccluded_idx) == 0:
                 break
             mesh_hits, mesh_t = intersect_rays_mesh_batch(
-                origins[unoccluded_idx], direction, mesh,
-                eps_origin=eps_origin, eps_det=eps_det, eps_bary=eps_bary,
-                cull_backfaces=cull_backfaces
+                origins[unoccluded_idx],
+                direction,
+                mesh,
+                eps_origin=eps_origin,
+                eps_det=eps_det,
+                eps_bary=eps_bary,
+                cull_backfaces=cull_backfaces,
             )
             hit_sub_idx = unoccluded_idx[mesh_hits]
             hits[hit_sub_idx] = True
             t_hits[hit_sub_idx] = mesh_t[mesh_hits]
         else:
             mesh_hits, mesh_t = intersect_rays_mesh_batch(
-                origins, direction, mesh,
-                eps_origin=eps_origin, eps_det=eps_det, eps_bary=eps_bary,
-                cull_backfaces=cull_backfaces
+                origins,
+                direction,
+                mesh,
+                eps_origin=eps_origin,
+                eps_det=eps_det,
+                eps_bary=eps_bary,
+                cull_backfaces=cull_backfaces,
             )
             hits |= mesh_hits
             t_hits = np.minimum(t_hits, mesh_t)

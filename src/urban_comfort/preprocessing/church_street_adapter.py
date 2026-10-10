@@ -225,7 +225,7 @@ class ChurchStreetAdapter:
         for i in range(n_verts):
             x1, y1 = ext_coords[i]
             x2, y2 = ext_coords[(i + 1) % n_verts]
-            signed_area += (x1 * y2 - x2 * y1)
+            signed_area += x1 * y2 - x2 * y1
         signed_area *= 0.5
 
         if abs(signed_area) < 1e-6:
@@ -264,7 +264,9 @@ class ChurchStreetAdapter:
 
         # 2. Roof triangles (+Z normal, same winding as CCW 2D)
         for tri in tri_2d:
-            triangles_list.append((int(tri[0] + n_verts), int(tri[1] + n_verts), int(tri[2] + n_verts)))
+            triangles_list.append(
+                (int(tri[0] + n_verts), int(tri[1] + n_verts), int(tri[2] + n_verts))
+            )
 
         # 3. Floor/Base triangles (-Z normal, reversed winding)
         for tri in tri_2d:
@@ -331,22 +333,26 @@ class ChurchStreetAdapter:
                 # Take largest polygon part if MultiPolygon
                 poly = max(geom.geoms, key=lambda p: p.area)
             else:
-                rejected_or_failed_features.append({
-                    "building_id": b_id,
-                    "reason": f"Unsupported geometry type: {geom.geom_type}",
-                    "is_core": is_core,
-                })
+                rejected_or_failed_features.append(
+                    {
+                        "building_id": b_id,
+                        "reason": f"Unsupported geometry type: {geom.geom_type}",
+                        "is_core": is_core,
+                    }
+                )
                 return None
 
             # Height assignment
             if is_core or (b_id in core_height_policy):
                 h_info = core_height_policy.get(b_id)
                 if h_info is None:
-                    rejected_or_failed_features.append({
-                        "building_id": b_id,
-                        "reason": "Missing from approved core heights table",
-                        "is_core": is_core,
-                    })
+                    rejected_or_failed_features.append(
+                        {
+                            "building_id": b_id,
+                            "reason": "Missing from approved core heights table",
+                            "is_core": is_core,
+                        }
+                    )
                     return None
                 height_m = h_info["approved_height_m"]
                 status = h_info["status"]
@@ -397,15 +403,25 @@ class ChurchStreetAdapter:
                     metadata=meta,
                 )
             except Exception as e:
-                rejected_or_failed_features.append({
-                    "building_id": b_id,
-                    "reason": f"Triangulation/extrusion failure: {str(e)}",
-                    "is_core": is_core,
-                })
+                rejected_or_failed_features.append(
+                    {
+                        "building_id": b_id,
+                        "reason": f"Triangulation/extrusion failure: {str(e)}",
+                        "is_core": is_core,
+                    }
+                )
                 return None
 
             # Calculate geometric statistics
-            roof_area = float(np.sum(mesh.face_areas[2 * mesh.metadata["footprint_vertices"] : 2 * mesh.metadata["footprint_vertices"] + (mesh.metadata["footprint_vertices"] - 2)]))
+            roof_area = float(
+                np.sum(
+                    mesh.face_areas[
+                        2 * mesh.metadata["footprint_vertices"] : 2
+                        * mesh.metadata["footprint_vertices"]
+                        + (mesh.metadata["footprint_vertices"] - 2)
+                    ]
+                )
+            )
             poly_area = mesh.metadata["polygon_area_m2"]
             area_discrepancy = abs(roof_area - poly_area)
 
@@ -432,15 +448,17 @@ class ChurchStreetAdapter:
             mesh_statistics.append(stat_entry)
 
             if status == "UNCERTAIN" or uncertainty in ("HIGH", "EXTREME"):
-                uncertain_buildings.append({
-                    "building_id": b_id,
-                    "is_core": is_core,
-                    "height_m": height_m,
-                    "uncertainty_flag": uncertainty,
-                    "status": status,
-                    "method": method,
-                    "notes": notes,
-                })
+                uncertain_buildings.append(
+                    {
+                        "building_id": b_id,
+                        "is_core": is_core,
+                        "height_m": height_m,
+                        "uncertainty_flag": uncertainty,
+                        "status": status,
+                        "method": method,
+                        "notes": notes,
+                    }
+                )
 
             return mesh
 
@@ -494,10 +512,18 @@ class ChurchStreetAdapter:
         }
 
         # Height policy summary with clear distinction between Decision Status and Uncertainty Tier
-        approved_core = sum(1 for m in mesh_statistics if m["is_core"] and m["status"] == "APPROVED")
-        uncertain_core = sum(1 for m in mesh_statistics if m["is_core"] and m["status"] == "UNCERTAIN")
-        accepted_context = sum(1 for m in mesh_statistics if not m["is_core"] and m["status"] == "ACCEPTED")
-        uncertain_context = sum(1 for m in mesh_statistics if not m["is_core"] and m["status"] == "UNCERTAIN")
+        approved_core = sum(
+            1 for m in mesh_statistics if m["is_core"] and m["status"] == "APPROVED"
+        )
+        uncertain_core = sum(
+            1 for m in mesh_statistics if m["is_core"] and m["status"] == "UNCERTAIN"
+        )
+        accepted_context = sum(
+            1 for m in mesh_statistics if not m["is_core"] and m["status"] == "ACCEPTED"
+        )
+        uncertain_context = sum(
+            1 for m in mesh_statistics if not m["is_core"] and m["status"] == "UNCERTAIN"
+        )
 
         moderate_cnt = sum(1 for m in mesh_statistics if m["uncertainty_flag"] == "MODERATE")
         high_cnt = sum(1 for m in mesh_statistics if m["uncertainty_flag"] == "HIGH")
@@ -524,13 +550,55 @@ class ChurchStreetAdapter:
                 "high_or_extreme_sensitivity_cohort": high_or_extreme_cohort,  # 40
             },
             "cross_tabulation": {
-                "approved_core_moderate": sum(1 for m in mesh_statistics if m["is_core"] and m["status"] == "APPROVED" and m["uncertainty_flag"] == "MODERATE"),
-                "approved_core_high": sum(1 for m in mesh_statistics if m["is_core"] and m["status"] == "APPROVED" and m["uncertainty_flag"] == "HIGH"),
-                "accepted_context_moderate": sum(1 for m in mesh_statistics if not m["is_core"] and m["status"] == "ACCEPTED" and m["uncertainty_flag"] == "MODERATE"),
-                "accepted_context_high": sum(1 for m in mesh_statistics if not m["is_core"] and m["status"] == "ACCEPTED" and m["uncertainty_flag"] == "HIGH"),
-                "uncertain_core_high": sum(1 for m in mesh_statistics if m["is_core"] and m["status"] == "UNCERTAIN" and m["uncertainty_flag"] == "HIGH"),
-                "uncertain_core_extreme": sum(1 for m in mesh_statistics if m["is_core"] and m["status"] == "UNCERTAIN" and m["uncertainty_flag"] == "EXTREME"),
-                "uncertain_context_extreme": sum(1 for m in mesh_statistics if not m["is_core"] and m["status"] == "UNCERTAIN" and m["uncertainty_flag"] == "EXTREME"),
+                "approved_core_moderate": sum(
+                    1
+                    for m in mesh_statistics
+                    if m["is_core"]
+                    and m["status"] == "APPROVED"
+                    and m["uncertainty_flag"] == "MODERATE"
+                ),
+                "approved_core_high": sum(
+                    1
+                    for m in mesh_statistics
+                    if m["is_core"]
+                    and m["status"] == "APPROVED"
+                    and m["uncertainty_flag"] == "HIGH"
+                ),
+                "accepted_context_moderate": sum(
+                    1
+                    for m in mesh_statistics
+                    if not m["is_core"]
+                    and m["status"] == "ACCEPTED"
+                    and m["uncertainty_flag"] == "MODERATE"
+                ),
+                "accepted_context_high": sum(
+                    1
+                    for m in mesh_statistics
+                    if not m["is_core"]
+                    and m["status"] == "ACCEPTED"
+                    and m["uncertainty_flag"] == "HIGH"
+                ),
+                "uncertain_core_high": sum(
+                    1
+                    for m in mesh_statistics
+                    if m["is_core"]
+                    and m["status"] == "UNCERTAIN"
+                    and m["uncertainty_flag"] == "HIGH"
+                ),
+                "uncertain_core_extreme": sum(
+                    1
+                    for m in mesh_statistics
+                    if m["is_core"]
+                    and m["status"] == "UNCERTAIN"
+                    and m["uncertainty_flag"] == "EXTREME"
+                ),
+                "uncertain_context_extreme": sum(
+                    1
+                    for m in mesh_statistics
+                    if not m["is_core"]
+                    and m["status"] == "UNCERTAIN"
+                    and m["uncertainty_flag"] == "EXTREME"
+                ),
             },
             "commercial_canyon_fallback_height_m": self.config.commercial_canyon_fallback_m,
             "scientific_framing": (

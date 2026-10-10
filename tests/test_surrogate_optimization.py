@@ -61,7 +61,9 @@ from urban_comfort.reference.full_recompute import full_recompute
 from urban_comfort.reference.result import SimulationResult
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-FROZEN_STAGE1_DIR = REPO_ROOT / "results" / "church_street_intervention_optimization_20261007_102725"
+FROZEN_STAGE1_DIR = (
+    REPO_ROOT / "results" / "church_street_intervention_optimization_20261007_102725"
+)
 STAGE1_LEDGER_PATH = FROZEN_STAGE1_DIR / "candidate_ledger.json"
 
 
@@ -78,7 +80,9 @@ def load_stage1_ledger() -> CandidateLedger:
             is_feasible=item["is_feasible"],
             rejection_reason=item.get("rejection_reason"),
             rejection_message=item.get("rejection_message"),
-            objective_value=float(item["objective_value"]) if item.get("objective_value") is not None else float("inf"),
+            objective_value=float(item["objective_value"])
+            if item.get("objective_value") is not None
+            else float("inf"),
             metrics=item.get("metrics"),
             gpu_metrics=item.get("gpu_metrics"),
             certificate_status=item.get("certificate_status"),
@@ -152,8 +156,12 @@ def test_candidate_prediction_shape_and_schema():
     surrogate.fit(ledger.records)
 
     cands = [
-        ShadePanelParams(x=130.0, y=62.0, length=5.0, width=3.0, height=3.2, heading_deg=100.0, albedo=0.6),
-        ShadePanelParams(x=140.0, y=58.0, length=3.5, width=2.2, height=3.8, heading_deg=110.0, albedo=0.75),
+        ShadePanelParams(
+            x=130.0, y=62.0, length=5.0, width=3.0, height=3.2, heading_deg=100.0, albedo=0.6
+        ),
+        ShadePanelParams(
+            x=140.0, y=58.0, length=3.5, width=2.2, height=3.8, heading_deg=110.0, albedo=0.75
+        ),
     ]
 
     preds = surrogate.predict_batch(cands)
@@ -184,7 +192,9 @@ def test_uncertainty_output():
     surrogate = SurrogateModel(SurrogateConfig(n_estimators=50, seed=42))
     surrogate.fit(ledger.records)
 
-    test_cand = ShadePanelParams(x=120.0, y=65.0, length=6.0, width=3.0, height=4.0, heading_deg=90.0, albedo=0.5)
+    test_cand = ShadePanelParams(
+        x=120.0, y=65.0, length=6.0, width=3.0, height=4.0, heading_deg=90.0, albedo=0.5
+    )
     pred = surrogate.predict(test_cand)
 
     # Standard deviation must be strictly positive for unobserved design
@@ -236,10 +246,20 @@ def test_feasibility_filtering_before_simulation():
         max_width_m=4.5,
     )
     bounds = ParameterBounds(
-        x_min=110.0, x_max=150.0, y_min=55.0, y_max=70.0,
-        length_min=3.0, length_max=10.0, width_min=2.0, width_max=4.0,
-        height_min=2.5, height_max=4.5, heading_min=80.0, heading_max=120.0,
-        albedo_min=0.2, albedo_max=0.8
+        x_min=110.0,
+        x_max=150.0,
+        y_min=55.0,
+        y_max=70.0,
+        length_min=3.0,
+        length_max=10.0,
+        width_min=2.0,
+        width_max=4.0,
+        height_min=2.5,
+        height_max=4.5,
+        heading_min=80.0,
+        heading_max=120.0,
+        albedo_min=0.2,
+        albedo_max=0.8,
     )
 
     acq = CandidateAcquisitionEngine(AcquisitionConfig(pool_size=200, seed=42))
@@ -267,7 +287,14 @@ def test_feasibility_filtering_before_simulation():
 # ---------------------------------------------------------------------------
 def test_invalid_candidate_handling():
     # Synthetic scene for testing exception isolation
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(
+        extent_x=20.0,
+        extent_y=20.0,
+        origin_x=0.0,
+        origin_y=0.0,
+        resolution=2.0,
+        pedestrian_height=1.1,
+    )
     scene = Scene(buildings={}, pedestrian_grid=grid_cfg)
     grid = PedestrianGrid(grid_cfg)
     zeros = np.zeros(grid.shape, dtype=np.float64)
@@ -289,8 +316,14 @@ def test_invalid_candidate_handling():
     engine = OptimizationEngine(
         baseline_scene=scene,
         baseline_result=base_res,
-        weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,
-                        direct_normal_irradiance=600.0, diffuse_horizontal_irradiance=100.0),
+        weather=Weather(
+            air_temperature=300.0,
+            relative_humidity=50.0,
+            wind_speed=1.0,
+            wind_direction=0.0,
+            direct_normal_irradiance=600.0,
+            diffuse_horizontal_irradiance=100.0,
+        ),
         sim_config=SimulationConfig(backend="cpu"),
         feasibility_constraints=constraints,
         eval_mask=np.ones(grid.shape, dtype=bool),
@@ -298,7 +331,9 @@ def test_invalid_candidate_handling():
     )
 
     # Infeasible candidate (height < 2.5m)
-    p_infeasible = ShadePanelParams(x=10.0, y=10.0, length=4.0, width=2.0, height=1.5, heading_deg=0.0, albedo=0.5)
+    p_infeasible = ShadePanelParams(
+        x=10.0, y=10.0, length=4.0, width=2.0, height=1.5, heading_deg=0.0, albedo=0.5
+    )
     rec_inf = engine.evaluate_candidate(p_infeasible, method="test_infeasible")
 
     assert rec_inf.is_feasible is False
@@ -315,7 +350,9 @@ def test_invalid_candidate_handling():
 # ---------------------------------------------------------------------------
 def test_ledger_append_and_provenance():
     ledger = CandidateLedger()
-    p = ShadePanelParams(x=10.0, y=10.0, length=4.0, width=2.0, height=3.0, heading_deg=0.0, albedo=0.5)
+    p = ShadePanelParams(
+        x=10.0, y=10.0, length=4.0, width=2.0, height=3.0, heading_deg=0.0, albedo=0.5
+    )
 
     rec = CandidateRecord(
         candidate_id="CAND_9999_TEST",
@@ -347,7 +384,14 @@ def test_ledger_append_and_provenance():
 # Test 9: Surrogate-assisted optimizer integration
 # ---------------------------------------------------------------------------
 def test_surrogate_assisted_optimizer_integration():
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(
+        extent_x=20.0,
+        extent_y=20.0,
+        origin_x=0.0,
+        origin_y=0.0,
+        resolution=2.0,
+        pedestrian_height=1.1,
+    )
     scene = Scene(buildings={}, pedestrian_grid=grid_cfg)
     grid = PedestrianGrid(grid_cfg)
     zeros = np.zeros(grid.shape, dtype=np.float64)
@@ -366,10 +410,20 @@ def test_surrogate_assisted_optimizer_integration():
         min_underside_height_m=2.5,
     )
     bounds = ParameterBounds(
-        x_min=4.0, x_max=16.0, y_min=4.0, y_max=16.0,
-        length_min=2.5, length_max=6.0, width_min=1.5, width_max=3.5,
-        height_min=2.5, height_max=4.0, heading_min=0.0, heading_max=90.0,
-        albedo_min=0.3, albedo_max=0.8
+        x_min=4.0,
+        x_max=16.0,
+        y_min=4.0,
+        y_max=16.0,
+        length_min=2.5,
+        length_max=6.0,
+        width_min=1.5,
+        width_max=3.5,
+        height_min=2.5,
+        height_max=4.0,
+        heading_min=0.0,
+        heading_max=90.0,
+        albedo_min=0.3,
+        albedo_max=0.8,
     )
 
     opt_cfg = SurrogateOptimizerConfig(
@@ -385,8 +439,14 @@ def test_surrogate_assisted_optimizer_integration():
     engine = SurrogateOptimizationEngine(
         baseline_scene=scene,
         baseline_result=base_res,
-        weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,
-                        direct_normal_irradiance=600.0, diffuse_horizontal_irradiance=100.0),
+        weather=Weather(
+            air_temperature=300.0,
+            relative_humidity=50.0,
+            wind_speed=1.0,
+            wind_direction=0.0,
+            direct_normal_irradiance=600.0,
+            diffuse_horizontal_irradiance=100.0,
+        ),
         sim_config=SimulationConfig(backend="cpu"),
         feasibility_constraints=constraints,
         eval_mask=np.ones(grid.shape, dtype=bool),
@@ -430,30 +490,56 @@ def test_final_multi_path_validation():
     best_params = ShadePanelParams.from_dict(cand_dict["params"])
 
     # Synthetic validation scene
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(
+        extent_x=20.0,
+        extent_y=20.0,
+        origin_x=0.0,
+        origin_y=0.0,
+        resolution=2.0,
+        pedestrian_height=1.1,
+    )
     scene = Scene(
-        buildings={"B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)},
+        buildings={
+            "B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)
+        },
         pedestrian_grid=grid_cfg,
         materials={
-            "default_wall": Material(id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature=305.15),
-            "default_ground": Material(id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature=308.15),
-        }
+            "default_wall": Material(
+                id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature=305.15
+            ),
+            "default_ground": Material(
+                id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature=308.15
+            ),
+        },
     )
     weather = Weather(
-        air_temperature=305.15, relative_humidity=40.0, wind_speed=1.5, wind_direction=90.0,
-        direct_normal_irradiance=700.0, diffuse_horizontal_irradiance=150.0
+        air_temperature=305.15,
+        relative_humidity=40.0,
+        wind_speed=1.5,
+        wind_direction=90.0,
+        direct_normal_irradiance=700.0,
+        diffuse_horizontal_irradiance=150.0,
     )
     sim_cfg = SimulationConfig(
-        latitude=12.97, longitude=77.60, date="2024-04-15", local_time="10:00:00",
-        pedestrian_height=1.1, grid_resolution=2.0, tmrt_tolerance=0.50,
-        sky_patch_configuration=32, max_svf_search_dist_m=30.0, backend="auto"
+        latitude=12.97,
+        longitude=77.60,
+        date="2024-04-15",
+        local_time="10:00:00",
+        pedestrian_height=1.1,
+        grid_resolution=2.0,
+        tmrt_tolerance=0.50,
+        sky_patch_configuration=32,
+        max_svf_search_dist_m=30.0,
+        backend="auto",
     )
     base_res = full_recompute(scene, weather, sim_cfg, backend="auto")
 
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=True)
     val_report = validate_candidate_multi_path(
         candidate_id="TEST_CAND_001",
-        params=ShadePanelParams(x=10.0, y=10.0, length=4.0, width=2.0, height=3.0, heading_deg=45.0, albedo=0.6),
+        params=ShadePanelParams(
+            x=10.0, y=10.0, length=4.0, width=2.0, height=3.0, heading_deg=45.0, albedo=0.6
+        ),
         role="test_best",
         baseline_scene=scene,
         baseline_result=base_res,
@@ -503,7 +589,9 @@ def test_fallback_behavior_surrogate_unavailable():
     assert fallback_model.is_fitted is True
     assert metrics["model_type"] == "fallback_empirical"
 
-    test_cand = ShadePanelParams(x=130.0, y=60.0, length=4.0, width=2.5, height=3.2, heading_deg=100.0, albedo=0.7)
+    test_cand = ShadePanelParams(
+        x=130.0, y=60.0, length=4.0, width=2.5, height=3.2, heading_deg=100.0, albedo=0.7
+    )
     pred = fallback_model.predict(test_cand)
 
     assert isinstance(pred, SurrogatePrediction)

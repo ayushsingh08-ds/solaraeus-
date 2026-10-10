@@ -14,7 +14,10 @@ def test_final_simulation_status():
     assert p.exists()
     with open(p, "r", encoding="utf-8") as f:
         data = json.load(f)
-    assert data["success_token"] == "SOLARAEUS_DATA_DRIVEN_3D_SIMULATION_COMPLETE_WITH_DOCUMENTED_LIMITATIONS"
+    assert (
+        data["success_token"]
+        == "SOLARAEUS_DATA_DRIVEN_3D_SIMULATION_COMPLETE_WITH_DOCUMENTED_LIMITATIONS"
+    )
     summary = data["validation_summary"]
     for k, v in summary.items():
         assert v is True, f"Validation failure for: {k}"

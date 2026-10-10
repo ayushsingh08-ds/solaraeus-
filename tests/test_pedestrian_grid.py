@@ -21,9 +21,9 @@ def test_pedestrian_grid_initialization():
     assert grid.z_ped == 1.1
 
     # Check coordinate bounds
-    assert np.isclose(grid.X[0, 0], 1.0) # Center of first cell: [0, 2] -> 1.0
+    assert np.isclose(grid.X[0, 0], 1.0)  # Center of first cell: [0, 2] -> 1.0
     assert np.isclose(grid.Y[0, 0], 1.0)
-    assert np.isclose(grid.X[-1, -1], 49.0) # Center of last cell: [48, 50] -> 49.0
+    assert np.isclose(grid.X[-1, -1], 49.0)  # Center of last cell: [48, 50] -> 49.0
     assert np.isclose(grid.Y[-1, -1], 29.0)
     assert np.all(grid.Z == 1.1)
 
@@ -48,11 +48,13 @@ def test_pedestrian_grid_index_mappings():
 
 
 def test_world_to_cell_and_cell_to_world():
-    cfg = PedestrianGridConfig(extent_x=50.0, extent_y=50.0, origin_x=10.0, origin_y=20.0, resolution=1.0)
+    cfg = PedestrianGridConfig(
+        extent_x=50.0, extent_y=50.0, origin_x=10.0, origin_y=20.0, resolution=1.0
+    )
     grid = PedestrianGrid(cfg)
 
     cell = grid.world_to_cell(15.4, 25.6)
-    assert cell == (5, 5) # (25.6 - 20) -> 5, (15.4 - 10) -> 5
+    assert cell == (5, 5)  # (25.6 - 20) -> 5, (15.4 - 10) -> 5
 
     wx, wy, wz = grid.cell_to_world(5, 5)
     assert np.isclose(wx, 15.5)
@@ -81,5 +83,5 @@ def test_flat_points_array():
     grid = PedestrianGrid(cfg)
     pts = grid.get_flat_points()
 
-    assert pts.shape == (4, 3) # 2x2 cells, each with 3 coordinates
+    assert pts.shape == (4, 3)  # 2x2 cells, each with 3 coordinates
     assert np.all(pts[:, 2] == 1.1)

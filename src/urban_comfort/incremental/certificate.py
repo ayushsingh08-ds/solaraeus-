@@ -23,21 +23,23 @@ from urban_comfort.solar.solar_position import SolarPosition
 
 class CertificateViolationError(Exception):
     """Raised when actual numerical error exceeds the predicted certificate upper bound."""
+
     pass
 
 
 @dataclass
 class ErrorCertificate:
     """Certified upper bound and audit contract for incremental reuse."""
-    status: str                            # "certified", "uncertified", or "fallback"
-    tolerance: float                       # User tolerance threshold epsilon_T (K)
-    predicted_error_bound: np.ndarray      # Shape (ny, nx) B_T(x) in Kelvin
-    max_predicted_bound: float             # Max B_T across domain (K)
-    affected_cells: int                    # Cells where B_T > tolerance (dirty)
-    reused_cells: int                      # Cells where B_T <= tolerance (safe for reuse)
+
+    status: str  # "certified", "uncertified", or "fallback"
+    tolerance: float  # User tolerance threshold epsilon_T (K)
+    predicted_error_bound: np.ndarray  # Shape (ny, nx) B_T(x) in Kelvin
+    max_predicted_bound: float  # Max B_T across domain (K)
+    affected_cells: int  # Cells where B_T > tolerance (dirty)
+    reused_cells: int  # Cells where B_T <= tolerance (safe for reuse)
     total_cells: int
-    assumptions: List[str]                 # Documented physical and numerical assumptions
-    reasons_for_fallback: Optional[str] = None    # Reason if status == "fallback"
+    assumptions: List[str]  # Documented physical and numerical assumptions
+    reasons_for_fallback: Optional[str] = None  # Reason if status == "fallback"
     timing_candidate_region_sec: float = 0.0
     timing_certificate_eval_sec: float = 0.0
 
@@ -53,18 +55,21 @@ class ErrorCertificate:
 @dataclass
 class CertificateVerification:
     """Pointwise verification diagnostics comparing actual error against certificate bound."""
-    is_valid: bool                         # True if actual_error <= predicted_bound + numerical_slack everywhere
-    num_violations: int                    # Number of cells where actual > bound
-    max_violation: float                   # Max (actual_error - predicted_bound) (K)
-    reused_max_error: float                # Max actual error among reused cells (K)
-    is_within_tolerance: bool              # True if reused_max_error <= tolerance
-    actual_error_map: np.ndarray           # Shape (ny, nx) actual |T_inc - T_full|
-    slack_map: np.ndarray                  # Shape (ny, nx) predicted_bound - actual_error (>= 0 for sound bound)
+
+    is_valid: bool  # True if actual_error <= predicted_bound + numerical_slack everywhere
+    num_violations: int  # Number of cells where actual > bound
+    max_violation: float  # Max (actual_error - predicted_bound) (K)
+    reused_max_error: float  # Max actual error among reused cells (K)
+    is_within_tolerance: bool  # True if reused_max_error <= tolerance
+    actual_error_map: np.ndarray  # Shape (ny, nx) actual |T_inc - T_full|
+    slack_map: np.ndarray  # Shape (ny, nx) predicted_bound - actual_error (>= 0 for sound bound)
 
 
-def compute_svf_decay_bound(grid: PedestrianGrid,
-                            edit_bounds_3d: Tuple[float, float, float, float, float, float],
-                            max_search_dist_m: float) -> np.ndarray:
+def compute_svf_decay_bound(
+    grid: PedestrianGrid,
+    edit_bounds_3d: Tuple[float, float, float, float, float, float],
+    max_search_dist_m: float,
+) -> np.ndarray:
     """
     Computes a conservative upper bound on |Delta SVF(x)| as a function of Euclidean
     distance from the edit bounding box.
@@ -94,7 +99,7 @@ def compute_svf_decay_bound(grid: PedestrianGrid,
 
     # Solid angle bound: Delta_Omega <= min(2*pi, (w_proj * delta_h) / r^2)
     r_eff = np.maximum(dx, dist)
-    svf_bound = (w_proj * delta_h) / (2.0 * math.pi * (r_eff ** 2))
+    svf_bound = (w_proj * delta_h) / (2.0 * math.pi * (r_eff**2))
 
     # Cells inside or adjacent to footprint can change up to 1.0
     svf_bound[dist < dx] = 1.0
@@ -107,18 +112,21 @@ def compute_svf_decay_bound(grid: PedestrianGrid,
     return svf_bound
 
 
-def generate_error_certificate(scene_before: Scene,
-                               scene_after: Scene,
-                               edit: GeometricEdit,
-                               cached_result: SimulationResult,
-                               solar_pos: SolarPosition,
-                               grid: PedestrianGrid,
-                               weather: Weather,
-                               config: SimulationConfig) -> ErrorCertificate:
+def generate_error_certificate(
+    scene_before: Scene,
+    scene_after: Scene,
+    edit: GeometricEdit,
+    cached_result: SimulationResult,
+    solar_pos: SolarPosition,
+    grid: PedestrianGrid,
+    weather: Weather,
+    config: SimulationConfig,
+) -> ErrorCertificate:
     """
     Constructs a certified upper bound B_T(x) in O(1) vectorized operations per cell.
     """
     import time
+
     t_start_cert_gen = time.perf_counter()
     ny, nx = grid.shape
     tolerance_k = config.tmrt_tolerance
@@ -140,7 +148,7 @@ def generate_error_certificate(scene_before: Scene,
             assumptions=["Low solar altitude or numerical instability mandated full fallback."],
             reasons_for_fallback=cand_res.fallback_reason,
             timing_candidate_region_sec=t_cand,
-            timing_certificate_eval_sec=0.0
+            timing_certificate_eval_sec=0.0,
         )
 
     # 2. Direct shortwave potential perturbation
@@ -157,6 +165,7 @@ def generate_error_certificate(scene_before: Scene,
 
     # Extract materials from scene (or fall back to defaults)
     from urban_comfort.config import DEFAULT_GROUND_MATERIAL, DEFAULT_WALL_MATERIAL
+
     wall_mat = scene_after.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
     ground_mat = scene_after.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
     albedo_ground = ground_mat.albedo
@@ -165,9 +174,7 @@ def generate_error_certificate(scene_before: Scene,
     # Human standing cylinder sums direct beam across exposed vertical cardinal faces: |sx| + |sy|
     side_direct_factor = abs(sx) + abs(sy)
     k_dir_max_step = weather.direct_normal_irradiance * (
-        f_up * sin_alt +
-        f_side * side_direct_factor +
-        f_down * albedo_ground * sin_alt
+        f_up * sin_alt + f_side * side_direct_factor + f_down * albedo_ground * sin_alt
     )
     delta_s_dir = np.where(cand_res.candidate_mask, a_k * k_dir_max_step, 0.0)
 
@@ -177,16 +184,22 @@ def generate_error_certificate(scene_before: Scene,
 
     # 4. Diffuse and Longwave sensitivity
     c_diff = (
-        f_up * weather.diffuse_horizontal_irradiance +
-        f_side * 4.0 * (0.5 * weather.diffuse_horizontal_irradiance +
-                        0.5 * albedo_wall * (weather.direct_normal_irradiance + weather.diffuse_horizontal_irradiance)) +
-        f_down * albedo_ground * weather.diffuse_horizontal_irradiance
+        f_up * weather.diffuse_horizontal_irradiance
+        + f_side
+        * 4.0
+        * (
+            0.5 * weather.diffuse_horizontal_irradiance
+            + 0.5
+            * albedo_wall
+            * (weather.direct_normal_irradiance + weather.diffuse_horizontal_irradiance)
+        )
+        + f_down * albedo_ground * weather.diffuse_horizontal_irradiance
     )
     delta_s_diff = a_k * c_diff * delta_svf_max
 
     eps_air = compute_air_emissivity(weather.air_temperature, weather.relative_humidity)
-    l_sky = eps_air * SIGMA * (weather.air_temperature ** 4)
-    l_wall = wall_mat.emissivity * SIGMA * (wall_mat.surface_temperature ** 4)
+    l_sky = eps_air * SIGMA * (weather.air_temperature**4)
+    l_wall = wall_mat.emissivity * SIGMA * (wall_mat.surface_temperature**4)
     l_contrast = abs(l_sky - l_wall)
 
     c_long = (f_up + 2.0 * f_side) * l_contrast
@@ -214,7 +227,7 @@ def generate_error_certificate(scene_before: Scene,
         "Shortwave absorption a_k=0.70, longwave absorption a_l=0.97",
         "Direct shadow bounded by directional frustum Minkowski envelope + safety margin",
         "SVF bounded by solid-angle distance decay proportional to W*delta_h / (2*pi*r^2)",
-        "Concave Stefan-Boltzmann interval propagation guarantees upper-bounding of both warming and cooling"
+        "Concave Stefan-Boltzmann interval propagation guarantees upper-bounding of both warming and cooling",
     ]
 
     t_cert_eval = time.perf_counter() - t0_eval
@@ -230,14 +243,16 @@ def generate_error_certificate(scene_before: Scene,
         assumptions=assumptions,
         reasons_for_fallback=None,
         timing_candidate_region_sec=t_cand,
-        timing_certificate_eval_sec=t_cert_eval
+        timing_certificate_eval_sec=t_cert_eval,
     )
 
 
-def verify_certificate(certificate: ErrorCertificate,
-                       incremental_tmrt: np.ndarray,
-                       full_recomputed_tmrt: np.ndarray,
-                       numerical_slack: float = 1e-10) -> CertificateVerification:
+def verify_certificate(
+    certificate: ErrorCertificate,
+    incremental_tmrt: np.ndarray,
+    full_recomputed_tmrt: np.ndarray,
+    numerical_slack: float = 1e-10,
+) -> CertificateVerification:
     """
     Verifies the mathematical soundness and tolerance compliance of an error certificate.
     """
@@ -259,7 +274,7 @@ def verify_certificate(certificate: ErrorCertificate,
         reused_max_err = 0.0
         is_within_tol = True
 
-    is_valid = (num_violations == 0)
+    is_valid = num_violations == 0
 
     if not is_valid:
         raise CertificateViolationError(
@@ -274,5 +289,5 @@ def verify_certificate(certificate: ErrorCertificate,
         reused_max_error=reused_max_err,
         is_within_tolerance=is_within_tol,
         actual_error_map=actual_error,
-        slack_map=slack
+        slack_map=slack,
     )

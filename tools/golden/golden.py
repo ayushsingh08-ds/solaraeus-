@@ -254,13 +254,14 @@ def main() -> int:
         print(f"capturing golden master -> {args.out}")
         summary = capture(args.out, args.only, force=args.force)
         ok = sum(1 for c in summary["cases"].values() if c["status"] == "OK")
-        print(f"captured {ok}/{len(summary['cases'])} cases; "
-              f"gpu_available={summary['gpu_available']}")
+        print(
+            f"captured {ok}/{len(summary['cases'])} cases; gpu_available={summary['gpu_available']}"
+        )
         return 0
 
-    candidate_dir = args.out if args.out != DEFAULT_DIR else Path(
-        __file__
-    ).resolve().parent / "candidate"
+    candidate_dir = (
+        args.out if args.out != DEFAULT_DIR else Path(__file__).resolve().parent / "candidate"
+    )
     print(f"comparing {candidate_dir} vs baseline {args.baseline}")
     mismatches, report = compare(args.baseline, candidate_dir)
     (candidate_dir / "comparison.json").write_text(

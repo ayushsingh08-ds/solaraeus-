@@ -51,12 +51,19 @@ def test_compare_arrays_known_perturbation():
 def test_compare_results_full_pipeline():
     scene = create_single_box_scene(extent_m=40.0)
     weather = Weather(
-        air_temperature=300.15, relative_humidity=50.0, wind_speed=2.0,
-        wind_direction=180.0, direct_normal_irradiance=700.0, diffuse_horizontal_irradiance=150.0
+        air_temperature=300.15,
+        relative_humidity=50.0,
+        wind_speed=2.0,
+        wind_direction=180.0,
+        direct_normal_irradiance=700.0,
+        diffuse_horizontal_irradiance=150.0,
     )
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060, date="2024-07-15", local_time="12:00:00",
-        sky_patch_configuration=16
+        latitude=40.7128,
+        longitude=-74.0060,
+        date="2024-07-15",
+        local_time="12:00:00",
+        sky_patch_configuration=16,
     )
 
     res_ref = full_recompute(scene, weather, config)
@@ -65,7 +72,9 @@ def test_compare_results_full_pipeline():
     # Identical executions must pass all field checks
     comparisons = compare_results(res_test, res_ref, tmrt_tolerance=0.5)
     for field_name, m in comparisons.items():
-        assert m.is_within_tolerance, f"Field '{field_name}' unexpectedly failed identity comparison!"
+        assert m.is_within_tolerance, (
+            f"Field '{field_name}' unexpectedly failed identity comparison!"
+        )
 
     summary_table = format_comparison_summary(comparisons)
     assert "PASS" in summary_table
@@ -75,8 +84,12 @@ def test_compare_results_full_pipeline():
 def test_compare_results_perturbed_tmrt_detection():
     scene = create_single_box_scene(extent_m=30.0)
     weather = Weather(
-        air_temperature=300.15, relative_humidity=50.0, wind_speed=2.0,
-        wind_direction=180.0, direct_normal_irradiance=700.0, diffuse_horizontal_irradiance=150.0
+        air_temperature=300.15,
+        relative_humidity=50.0,
+        wind_speed=2.0,
+        wind_direction=180.0,
+        direct_normal_irradiance=700.0,
+        diffuse_horizontal_irradiance=150.0,
     )
     config = SimulationConfig(sky_patch_configuration=16)
 
@@ -92,7 +105,7 @@ def test_compare_results_perturbed_tmrt_detection():
         longwave_flux=res_ref.longwave_flux.copy(),
         tmrt=perturbed_tmrt,
         utci=res_ref.utci.copy(),
-        metadata=res_ref.metadata.copy()
+        metadata=res_ref.metadata.copy(),
     )
 
     comparisons = compare_results(res_perturbed, res_ref, tmrt_tolerance=0.5)

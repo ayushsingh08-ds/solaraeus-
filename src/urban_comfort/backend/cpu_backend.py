@@ -40,10 +40,13 @@ class CPUBackend(SimulationBackend):
     def last_profile_metrics(self) -> Optional[BackendProfileMetrics]:
         return self._profile_metrics
 
-    def compute_direct_shadow(self, scene: Scene,
-                              grid: PedestrianGrid,
-                              solar_pos: SolarPosition,
-                              roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def compute_direct_shadow(
+        self,
+        scene: Scene,
+        grid: PedestrianGrid,
+        solar_pos: SolarPosition,
+        roi_mask: Optional[np.ndarray] = None,
+    ) -> np.ndarray:
         """
         Computes direct solar shadow mask using the trusted CPU solver.
         """
@@ -63,24 +66,28 @@ class CPUBackend(SimulationBackend):
             total_ray_count=n_rays,
             num_triangles=n_tris,
             num_buildings=n_bldgs,
-            device_name="CPU"
+            device_name="CPU",
         )
         return shadow_mask
 
-    def compute_sky_view_factor(self, scene: Scene,
-                                grid: PedestrianGrid,
-                                num_azimuths: int = 32,
-                                max_search_dist_m: float = 120.0,
-                                roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+    def compute_sky_view_factor(
+        self,
+        scene: Scene,
+        grid: PedestrianGrid,
+        num_azimuths: int = 32,
+        max_search_dist_m: float = 120.0,
+        roi_mask: Optional[np.ndarray] = None,
+    ) -> np.ndarray:
         """
         Computes Sky View Factor using the trusted CPU horizon scan solver.
         """
         t0 = time.perf_counter()
         svf = compute_sky_view_factor(
-            scene, grid,
+            scene,
+            grid,
             num_azimuths=num_azimuths,
             max_search_dist_m=max_search_dist_m,
-            roi_mask=roi_mask
+            roi_mask=roi_mask,
         )
         t_svf = time.perf_counter() - t0
 
@@ -97,15 +104,14 @@ class CPUBackend(SimulationBackend):
             total_ray_count=svf_rays,
             num_triangles=n_tris,
             num_buildings=n_bldgs,
-            device_name="CPU"
+            device_name="CPU",
         )
         return svf
 
-    def full_simulate(self, scene: Scene,
-                      weather: Weather,
-                      config: SimulationConfig) -> Any:
+    def full_simulate(self, scene: Scene, weather: Weather, config: SimulationConfig) -> Any:
         """
         Executes full simulation using the trusted CPU reference solver.
         """
         from urban_comfort.reference.full_recompute import full_recompute
+
         return full_recompute(scene, weather, config)

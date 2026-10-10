@@ -167,8 +167,10 @@ def cmd_golden(args: argparse.Namespace) -> int:
         argv += ["--out", args.out or str(tools_dir / "candidate")]
     else:
         argv += [
-            "--baseline", args.baseline or str(tools_dir / "baseline"),
-            "--out", args.out or str(tools_dir / "candidate"),
+            "--baseline",
+            args.baseline or str(tools_dir / "baseline"),
+            "--out",
+            args.out or str(tools_dir / "candidate"),
         ]
     return subprocess.call(argv, cwd=str(_repo_root()))
 
@@ -184,7 +186,9 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("version", help="print the package version").set_defaults(func=cmd_version)
 
     doctor = sub.add_parser("doctor", help="check the runtime environment")
-    doctor.add_argument("--allow-no-gpu", action="store_true", help="do not warn about a missing GPU")
+    doctor.add_argument(
+        "--allow-no-gpu", action="store_true", help="do not warn about a missing GPU"
+    )
     doctor.set_defaults(func=cmd_doctor)
 
     sub.add_parser("info", help="list pipelines and configured cities").set_defaults(func=cmd_info)

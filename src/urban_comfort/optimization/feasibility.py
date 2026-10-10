@@ -24,6 +24,7 @@ from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_
 
 class RejectionReason(str, Enum):
     """Machine-readable rejection categories for infeasible designs."""
+
     VALID = "VALID"
     INVALID_COORDINATES = "INVALID_COORDINATES"
     OUT_OF_BOUNDS = "OUT_OF_BOUNDS"
@@ -38,6 +39,7 @@ class RejectionReason(str, Enum):
 @dataclass
 class FeasibilityResult:
     """Evaluation outcome from the geographic feasibility validator."""
+
     is_valid: bool
     rejection_reason: RejectionReason
     message: str
@@ -55,6 +57,7 @@ class FeasibilityResult:
 @dataclass
 class FeasibilityConstraints:
     """Configurable geometric, urbanistic, and clearance constraints."""
+
     allowed_area: Optional[Polygon] = None
     prohibited_areas: List[Polygon] = field(default_factory=list)
     building_footprints: Optional[MultiPolygon] = None
@@ -72,22 +75,21 @@ class FeasibilityConstraints:
     containment_tolerance_m: float = 0.05
 
     @classmethod
-    def from_scene(cls,
-                   scene: Scene,
-                   allowed_area: Optional[Polygon] = None,
-                   prohibited_areas: Optional[List[Polygon]] = None,
-                   min_underside_height_m: float = 2.50,
-                   max_underside_height_m: float = 5.50,
-                   min_building_setback_m: float = 0.50) -> FeasibilityConstraints:
+    def from_scene(
+        cls,
+        scene: Scene,
+        allowed_area: Optional[Polygon] = None,
+        prohibited_areas: Optional[List[Polygon]] = None,
+        min_underside_height_m: float = 2.50,
+        max_underside_height_m: float = 5.50,
+        min_building_setback_m: float = 0.50,
+    ) -> FeasibilityConstraints:
         """Constructs constraints automatically from a 3D Scene container."""
         bldg_polys: List[Polygon] = []
 
         # From AABB buildings
         for b in scene.buildings.values():
-            bp = Polygon([
-                (b.xmin, b.ymin), (b.xmax, b.ymin),
-                (b.xmax, b.ymax), (b.xmin, b.ymax)
-            ])
+            bp = Polygon([(b.xmin, b.ymin), (b.xmax, b.ymin), (b.xmax, b.ymax), (b.xmin, b.ymax)])
             bldg_polys.append(bp)
 
         # From TriangleMeshes
@@ -95,6 +97,7 @@ class FeasibilityConstraints:
             if m.num_vertices > 0:
                 v = m.vertices[:, :2]
                 from shapely.geometry import MultiPoint
+
                 hull = MultiPoint(v).convex_hull
                 if isinstance(hull, Polygon) and hull.area > 0.01:
                     bldg_polys.append(hull)
@@ -113,11 +116,12 @@ class FeasibilityConstraints:
         )
 
 
-def check_feasibility(params: ShadePanelParams,
-                      constraints: FeasibilityConstraints) -> FeasibilityResult:
+def check_feasibility(
+    params: ShadePanelParams, constraints: FeasibilityConstraints
+) -> FeasibilityResult:
     """
     Evaluates candidate parameters against geographic and regulatory feasibility rules.
-    
+
     Returns:
         FeasibilityResult with machine-readable rejection reason and metric details.
     """
@@ -127,25 +131,43 @@ def check_feasibility(params: ShadePanelParams,
             is_valid=False,
             rejection_reason=RejectionReason.INVALID_COORDINATES,
             message="Candidate parameter contains non-finite (NaN or Inf) coordinate values.",
-            details={"params": params.to_dict()}
+            details={"params": params.to_dict()},
         )
 
     # 2. Dimensions and Aspect Ratio Check
     area = params.area
-    if area < constraints.min_area_m2 or params.length < constraints.min_length_m or params.width < constraints.min_width_m:
+    if (
+        area < constraints.min_area_m2
+        or params.length < constraints.min_length_m
+        or params.width < constraints.min_width_m
+    ):
         return FeasibilityResult(
             is_valid=False,
             rejection_reason=RejectionReason.BELOW_MIN_DIMENSIONS,
             message=f"Panel footprint area ({area:.2f} m2) or dimensions below minimum allowable threshold.",
-            details={"area_m2": area, "min_area_m2": constraints.min_area_m2, "length": params.length, "width": params.width}
+            details={
+                "area_m2": area,
+                "min_area_m2": constraints.min_area_m2,
+                "length": params.length,
+                "width": params.width,
+            },
         )
 
-    if area > constraints.max_area_m2 or params.length > constraints.max_length_m or params.width > constraints.max_width_m:
+    if (
+        area > constraints.max_area_m2
+        or params.length > constraints.max_length_m
+        or params.width > constraints.max_width_m
+    ):
         return FeasibilityResult(
             is_valid=False,
             rejection_reason=RejectionReason.EXCEEDS_MAX_DIMENSIONS,
             message=f"Panel footprint area ({area:.2f} m2) or dimensions exceed maximum allowable threshold ({constraints.max_area_m2} m2).",
-            details={"area_m2": area, "max_area_m2": constraints.max_area_m2, "length": params.length, "width": params.width}
+            details={
+                "area_m2": area,
+                "max_area_m2": constraints.max_area_m2,
+                "length": params.length,
+                "width": params.width,
+            },
         )
 
     aspect_ratio = max(params.length, params.width) / max(1e-6, min(params.length, params.width))
@@ -154,7 +176,10 @@ def check_feasibility(params: ShadePanelParams,
             is_valid=False,
             rejection_reason=RejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION,
             message=f"Aspect ratio ({aspect_ratio:.2f}) violates construction limits [{constraints.min_aspect_ratio}, {constraints.max_aspect_ratio}].",
-            details={"aspect_ratio": aspect_ratio, "max_aspect_ratio": constraints.max_aspect_ratio}
+            details={
+                "aspect_ratio": aspect_ratio,
+                "max_aspect_ratio": constraints.max_aspect_ratio,
+            },
         )
 
     # 3. Pedestrian Underside Clearance Check
@@ -163,7 +188,10 @@ def check_feasibility(params: ShadePanelParams,
             is_valid=False,
             rejection_reason=RejectionReason.INSUFFICIENT_CLEARANCE,
             message=f"Underside height ({params.height:.2f} m) violates minimum pedestrian clearance ({constraints.min_underside_height_m:.2f} m).",
-            details={"height_m": params.height, "min_clearance_m": constraints.min_underside_height_m}
+            details={
+                "height_m": params.height,
+                "min_clearance_m": constraints.min_underside_height_m,
+            },
         )
 
     if params.height > constraints.max_underside_height_m:
@@ -171,7 +199,7 @@ def check_feasibility(params: ShadePanelParams,
             is_valid=False,
             rejection_reason=RejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION,
             message=f"Underside height ({params.height:.2f} m) exceeds structural maximum limit ({constraints.max_underside_height_m:.2f} m).",
-            details={"height_m": params.height, "max_height_m": constraints.max_underside_height_m}
+            details={"height_m": params.height, "max_height_m": constraints.max_underside_height_m},
         )
 
     # 4. Construct 2D Footprint Polygon
@@ -185,7 +213,7 @@ def check_feasibility(params: ShadePanelParams,
                 is_valid=False,
                 rejection_reason=RejectionReason.BUILDING_COLLISION,
                 message=f"Panel footprint collides directly with building geometry ({overlap:.2f} m2 collision overlap).",
-                details={"collision_overlap_m2": overlap}
+                details={"collision_overlap_m2": overlap},
             )
 
         dist_to_bldgs = panel_polygon.distance(constraints.building_footprints)
@@ -194,7 +222,10 @@ def check_feasibility(params: ShadePanelParams,
                 is_valid=False,
                 rejection_reason=RejectionReason.BUILDING_COLLISION,
                 message=f"Panel distance to nearest building ({dist_to_bldgs:.3f} m) violates minimum setback ({constraints.min_building_setback_m:.2f} m).",
-                details={"distance_to_building_m": dist_to_bldgs, "min_setback_m": constraints.min_building_setback_m}
+                details={
+                    "distance_to_building_m": dist_to_bldgs,
+                    "min_setback_m": constraints.min_building_setback_m,
+                },
             )
 
     # 6. Prohibited Zone Collision Check
@@ -205,7 +236,7 @@ def check_feasibility(params: ShadePanelParams,
                 is_valid=False,
                 rejection_reason=RejectionReason.PROHIBITED_ZONE_OBSTRUCTION,
                 message=f"Panel footprint intersects prohibited exclusion zone #{i} with {overlap_area:.2f} m2 overlap.",
-                details={"zone_index": i, "overlap_area_m2": overlap_area}
+                details={"zone_index": i, "overlap_area_m2": overlap_area},
             )
 
     # 7. Allowed Area Containment Check
@@ -218,7 +249,11 @@ def check_feasibility(params: ShadePanelParams,
                 is_valid=False,
                 rejection_reason=RejectionReason.OUT_OF_BOUNDS,
                 message=f"Panel footprint extends outside allowed intervention boundary (only {containment_pct:.1f}% contained).",
-                details={"containment_pct": containment_pct, "panel_area": panel_polygon.area, "contained_area": inter_area}
+                details={
+                    "containment_pct": containment_pct,
+                    "panel_area": panel_polygon.area,
+                    "contained_area": inter_area,
+                },
             )
 
     # Passed all feasibility checks
@@ -230,6 +265,8 @@ def check_feasibility(params: ShadePanelParams,
             "area_m2": area,
             "aspect_ratio": aspect_ratio,
             "underside_height_m": params.height,
-            "distance_to_building_m": float(panel_polygon.distance(constraints.building_footprints)) if constraints.building_footprints is not None else float("inf")
-        }
+            "distance_to_building_m": float(panel_polygon.distance(constraints.building_footprints))
+            if constraints.building_footprints is not None
+            else float("inf"),
+        },
     )

@@ -35,7 +35,9 @@ def test_shadow_length_diurnal_variation():
 
 def test_time_integrated_durations():
     ref_date = date(2024, 4, 15)
-    sim = time_shadowing_engine.simulate_day(ref_date, start_hour=8.0, end_hour=16.0, step_minutes=30.0)
+    sim = time_shadowing_engine.simulate_day(
+        ref_date, start_hour=8.0, end_hour=16.0, step_minutes=30.0
+    )
     total_hours = 8.0  # 8.0 to 16.0
 
     sunlit = sim["sunlit_duration_map"]

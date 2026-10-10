@@ -118,7 +118,9 @@ def test_ray_starting_on_or_near_surface(canonical_triangle):
     assert res is None
 
     # But with origin at z = 5.0 + 1e-4, hit distance is 1e-4 > 1e-6 -> accepted
-    res_valid = intersect_ray_triangle((0.5, 0.5, 5.0 + 1e-4), direction, v0, v1, v2, eps_origin=1e-6)
+    res_valid = intersect_ray_triangle(
+        (0.5, 0.5, 5.0 + 1e-4), direction, v0, v1, v2, eps_origin=1e-6
+    )
     assert res_valid is not None
 
 
@@ -172,11 +174,13 @@ def test_intersect_rays_scene_multiple_meshes():
     mesh1 = create_box_mesh("b1", 10.0, 20.0, 10.0, 20.0, 0.0, 10.0)
     mesh2 = create_box_mesh("b2", 30.0, 40.0, 10.0, 20.0, 0.0, 10.0)
 
-    origins = np.array([
-        [15.0, 15.0, 25.0],  # over mesh1
-        [35.0, 15.0, 25.0],  # over mesh2
-        [25.0, 15.0, 25.0],  # in between (gap)
-    ])
+    origins = np.array(
+        [
+            [15.0, 15.0, 25.0],  # over mesh1
+            [35.0, 15.0, 25.0],  # over mesh2
+            [25.0, 15.0, 25.0],  # in between (gap)
+        ]
+    )
     direction = (0.0, 0.0, -1.0)
 
     hits, t_hits = intersect_rays_scene_meshes(origins, direction, [mesh1, mesh2])

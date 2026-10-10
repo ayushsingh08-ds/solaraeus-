@@ -20,6 +20,7 @@ try:
     from sklearn.ensemble import ExtraTreesRegressor, RandomForestClassifier, RandomForestRegressor
     from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     from sklearn.preprocessing import StandardScaler
+
     SKLEARN_AVAILABLE = True
 except ImportError:
     SKLEARN_AVAILABLE = False
@@ -28,9 +29,26 @@ from urban_comfort.optimization.two_panel_ledger import TwoPanelCandidateRecord
 from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
 
 TWO_PANEL_FEATURE_NAMES: Tuple[str, ...] = (
-    "x1", "y1", "length1", "width1", "height1", "heading_deg1", "albedo1", "area1_m2",
-    "x2", "y2", "length2", "width2", "height2", "heading_deg2", "albedo2", "area2_m2",
-    "total_area_m2", "center_distance_m", "separation_distance_m", "delta_height_m",
+    "x1",
+    "y1",
+    "length1",
+    "width1",
+    "height1",
+    "heading_deg1",
+    "albedo1",
+    "area1_m2",
+    "x2",
+    "y2",
+    "length2",
+    "width2",
+    "height2",
+    "heading_deg2",
+    "albedo2",
+    "area2_m2",
+    "total_area_m2",
+    "center_distance_m",
+    "separation_distance_m",
+    "delta_height_m",
 )
 
 TWO_PANEL_DEFAULT_TARGETS: Tuple[str, ...] = (
@@ -47,7 +65,8 @@ TWO_PANEL_DEFAULT_TARGETS: Tuple[str, ...] = (
 @dataclass
 class TwoPanelSurrogateConfig:
     """Hyperparameters and configuration for two-panel surrogate model training."""
-    model_type: str = "random_forest"         # "random_forest", "extra_trees"
+
+    model_type: str = "random_forest"  # "random_forest", "extra_trees"
     n_estimators: int = 100
     max_depth: Optional[int] = 12
     min_samples_split: int = 2
@@ -74,6 +93,7 @@ class TwoPanelSurrogateConfig:
 @dataclass
 class TwoPanelSurrogatePrediction:
     """Pointwise prediction containing target means, uncertainties, and feasibility probability."""
+
     means: Dict[str, float]
     stds: Dict[str, float]
     feasibility_probability: float = 1.0
@@ -96,8 +116,9 @@ class TwoPanelSurrogatePrediction:
         }
 
 
-def extract_two_panel_features(params: TwoPanelParams | Dict[str, Any],
-                               feature_names: Sequence[str] = TWO_PANEL_FEATURE_NAMES) -> np.ndarray:
+def extract_two_panel_features(
+    params: TwoPanelParams | Dict[str, Any], feature_names: Sequence[str] = TWO_PANEL_FEATURE_NAMES
+) -> np.ndarray:
     """
     Extracts permutation-invariant numeric feature vector for a two-panel configuration.
     Canonicalizes so x1 <= x2 before feature extraction.
@@ -115,10 +136,22 @@ def extract_two_panel_features(params: TwoPanelParams | Dict[str, Any],
     delta_h = abs(p.height1 - p.height2)
 
     feat_map = {
-        "x1": p.x1, "y1": p.y1, "length1": p.length1, "width1": p.width1,
-        "height1": p.height1, "heading_deg1": p.heading_deg1, "albedo1": p.albedo1, "area1_m2": area1,
-        "x2": p.x2, "y2": p.y2, "length2": p.length2, "width2": p.width2,
-        "height2": p.height2, "heading_deg2": p.heading_deg2, "albedo2": p.albedo2, "area2_m2": area2,
+        "x1": p.x1,
+        "y1": p.y1,
+        "length1": p.length1,
+        "width1": p.width1,
+        "height1": p.height1,
+        "heading_deg1": p.heading_deg1,
+        "albedo1": p.albedo1,
+        "area1_m2": area1,
+        "x2": p.x2,
+        "y2": p.y2,
+        "length2": p.length2,
+        "width2": p.width2,
+        "height2": p.height2,
+        "heading_deg2": p.heading_deg2,
+        "albedo2": p.albedo2,
+        "area2_m2": area2,
         "total_area_m2": total_area,
         "center_distance_m": center_dist,
         "separation_distance_m": sep_dist,
@@ -128,7 +161,9 @@ def extract_two_panel_features(params: TwoPanelParams | Dict[str, Any],
     return np.array([float(feat_map.get(f, 0.0)) for f in feature_names], dtype=np.float64)
 
 
-def extract_two_panel_targets(record: TwoPanelCandidateRecord, target_names: Sequence[str]) -> np.ndarray:
+def extract_two_panel_targets(
+    record: TwoPanelCandidateRecord, target_names: Sequence[str]
+) -> np.ndarray:
     """Extracts ground-truth physics targets from a two-panel record."""
     vals = []
     m = record.metrics or {}
@@ -194,7 +229,10 @@ class TwoPanelSurrogateModel:
         if not records:
             raise ValueError("Cannot fit surrogate model on empty candidate ledger.")
 
-        data_rep = json.dumps([{"id": r.candidate_id, "params": r.params, "feas": r.is_feasible} for r in records], sort_keys=True)
+        data_rep = json.dumps(
+            [{"id": r.candidate_id, "params": r.params, "feas": r.is_feasible} for r in records],
+            sort_keys=True,
+        )
         self.training_dataset_hash = hashlib.sha256(data_rep.encode("utf-8")).hexdigest()
 
         # 1. Feasibility Classifier (all proposed candidates)
@@ -221,7 +259,8 @@ class TwoPanelSurrogateModel:
 
         # 2. Physics Regression Models (FEASIBLE, physically evaluated records only)
         trainable_records = [
-            r for r in records
+            r
+            for r in records
             if r.is_feasible
             and r.metrics is not None
             and math.isfinite(r.objective_value)
@@ -273,7 +312,11 @@ class TwoPanelSurrogateModel:
             y_pred = reg.predict(X_scaled)
             mse = float(mean_squared_error(y_target, y_pred))
             mae = float(mean_absolute_error(y_target, y_pred))
-            r2 = float(r2_score(y_target, y_pred)) if len(y_target) > 1 and np.var(y_target) > 1e-9 else 1.0
+            r2 = (
+                float(r2_score(y_target, y_pred))
+                if len(y_target) > 1 and np.var(y_target) > 1e-9
+                else 1.0
+            )
 
             self.training_metrics["targets"][t_name] = {
                 "mse": round(mse, 6),
@@ -298,7 +341,9 @@ class TwoPanelSurrogateModel:
 
         for t_name, reg in self.regressors.items():
             # Tree-ensemble predictions
-            tree_preds = np.array([tree.predict(x_scaled)[0] for tree in reg.estimators_], dtype=np.float64)
+            tree_preds = np.array(
+                [tree.predict(x_scaled)[0] for tree in reg.estimators_], dtype=np.float64
+            )
             mu = float(np.mean(tree_preds))
             sigma = float(np.std(tree_preds))
             means[t_name] = mu
@@ -324,12 +369,17 @@ class TwoPanelSurrogateModel:
             feasibility_risk=risk,
         )
 
-    def predict_batch(self, params_list: Sequence[TwoPanelParams | Dict[str, Any]]) -> List[TwoPanelSurrogatePrediction]:
+    def predict_batch(
+        self, params_list: Sequence[TwoPanelParams | Dict[str, Any]]
+    ) -> List[TwoPanelSurrogatePrediction]:
         """Batch surrogate prediction for candidate screening."""
         if not self.is_fitted or not params_list:
             return []
 
-        X_vecs = np.array([extract_two_panel_features(p, self.config.feature_names) for p in params_list], dtype=np.float64)
+        X_vecs = np.array(
+            [extract_two_panel_features(p, self.config.feature_names) for p in params_list],
+            dtype=np.float64,
+        )
         X_scaled = self.scaler.transform(X_vecs) if self.scaler is not None else X_vecs
 
         n = len(params_list)
@@ -338,7 +388,9 @@ class TwoPanelSurrogateModel:
 
         for t_name, reg in self.regressors.items():
             # Estimator matrix [n_estimators, n_samples]
-            tree_preds = np.array([tree.predict(X_scaled) for tree in reg.estimators_], dtype=np.float64)
+            tree_preds = np.array(
+                [tree.predict(X_scaled) for tree in reg.estimators_], dtype=np.float64
+            )
             means_dict[t_name] = np.mean(tree_preds, axis=0)
             stds_dict[t_name] = np.std(tree_preds, axis=0)
 
@@ -357,9 +409,11 @@ class TwoPanelSurrogateModel:
             m = {t_name: float(means_dict[t_name][i]) for t_name in self.config.target_names}
             s = {t_name: float(stds_dict[t_name][i]) for t_name in self.config.target_names}
             p_f = float(p_feas_arr[i])
-            results.append(TwoPanelSurrogatePrediction(
-                means=m, stds=s, feasibility_probability=p_f, feasibility_risk=1.0 - p_f
-            ))
+            results.append(
+                TwoPanelSurrogatePrediction(
+                    means=m, stds=s, feasibility_probability=p_f, feasibility_risk=1.0 - p_f
+                )
+            )
         return results
 
     def get_feature_importances(self) -> Dict[str, Dict[str, float]]:

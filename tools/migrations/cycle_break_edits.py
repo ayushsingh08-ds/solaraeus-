@@ -133,8 +133,7 @@ SOURCE_MODULES = {UPDATE_MODULE, FULL_MODULE}
 PAREN_RE = re.compile(
     r"^(?P<indent>[ \t]*)from (?P<mod>%s) import \(\r?\n"
     r"(?P<body>(?:[ \t]+[^\n]*\r?\n)*?)"
-    r"[ \t]*\)[ \t]*(?P<eol>\r?\n)"
-    % "|".join(re.escape(m) for m in sorted(SOURCE_MODULES)),
+    r"[ \t]*\)[ \t]*(?P<eol>\r?\n)" % "|".join(re.escape(m) for m in sorted(SOURCE_MODULES)),
     re.MULTILINE,
 )
 
@@ -292,7 +291,10 @@ def main() -> int:
 
     changed = 0
     for path in sorted(REPO_ROOT.glob("**/*.py")):
-        if any(part in {".git", "archive", "node_modules", "upstream", "dataset_prep"} for part in path.parts):
+        if any(
+            part in {".git", "archive", "node_modules", "upstream", "dataset_prep"}
+            for part in path.parts
+        ):
             continue
         if path in {EDITS, RESULT}:
             continue

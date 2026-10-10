@@ -210,10 +210,19 @@ $ make lint
 python -m ruff check src tests tools
 All checks passed!
 
+$ make format-check
+python -m ruff format --check src tests tools
+192 files already formatted
+
 $ make types
 python -m mypy
 Success: no issues found in 98 source files
 ```
+
+`ruff format --check` is part of CI, so the tree is formatted too: the last
+commit reformatted 139 files (whitespace only, 139 files / +5,580 / -2,824)
+and the suite and golden master were re-run afterwards to prove it changed no
+behaviour. `make ci` runs exactly what the workflow runs.
 
 ### 6.2 Test suite
 

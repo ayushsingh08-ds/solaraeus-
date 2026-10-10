@@ -34,6 +34,7 @@ from urban_comfort.optimization.two_panel_parameters import TwoPanelParams
 
 class TwoPanelRejectionReason(str, Enum):
     """Machine-readable rejection categories for two-panel configurations."""
+
     VALID = "VALID"
     INVALID_COORDINATES = "INVALID_COORDINATES"
     OUT_OF_BOUNDS = "OUT_OF_BOUNDS"
@@ -52,6 +53,7 @@ class TwoPanelRejectionReason(str, Enum):
 @dataclass
 class TwoPanelFeasibilityResult:
     """Outcome of geographic and geometric validation for a two-panel candidate."""
+
     is_valid: bool
     rejection_reason: TwoPanelRejectionReason
     message: str
@@ -69,6 +71,7 @@ class TwoPanelFeasibilityResult:
 @dataclass
 class TwoPanelConstraints:
     """Configurable constraints for two-panel optimization."""
+
     single_constraints: FeasibilityConstraints = field(default_factory=FeasibilityConstraints)
     min_panel_separation_m: float = 2.0
     max_individual_area_m2: float = 40.0
@@ -76,12 +79,14 @@ class TwoPanelConstraints:
     max_total_area_m2: float = 60.0
 
     @classmethod
-    def from_single_constraints(cls,
-                                single: FeasibilityConstraints,
-                                min_panel_separation_m: float = 2.0,
-                                max_individual_area_m2: float = 40.0,
-                                min_total_area_m2: float = 10.0,
-                                max_total_area_m2: float = 60.0) -> TwoPanelConstraints:
+    def from_single_constraints(
+        cls,
+        single: FeasibilityConstraints,
+        min_panel_separation_m: float = 2.0,
+        max_individual_area_m2: float = 40.0,
+        min_total_area_m2: float = 10.0,
+        max_total_area_m2: float = 60.0,
+    ) -> TwoPanelConstraints:
         """Wraps single panel constraints with two-panel separation and aggregate area rules."""
         return cls(
             single_constraints=single,
@@ -92,8 +97,9 @@ class TwoPanelConstraints:
         )
 
 
-def check_two_panel_feasibility(params: TwoPanelParams,
-                                constraints: TwoPanelConstraints) -> TwoPanelFeasibilityResult:
+def check_two_panel_feasibility(
+    params: TwoPanelParams, constraints: TwoPanelConstraints
+) -> TwoPanelFeasibilityResult:
     """
     Evaluates two-panel parameters against geographic, pairwise, and regulatory rules.
 
@@ -106,7 +112,7 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             is_valid=False,
             rejection_reason=TwoPanelRejectionReason.INVALID_COORDINATES,
             message="Two-panel parameters contain non-finite (NaN or Inf) values.",
-            details={"params": params.to_dict()}
+            details={"params": params.to_dict()},
         )
 
     # 2. Total Area Limits
@@ -116,24 +122,37 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             is_valid=False,
             rejection_reason=TwoPanelRejectionReason.EXCEEDS_TOTAL_AREA,
             message=f"Combined shade area ({total_area:.2f} m2) exceeds maximum allowable limit ({constraints.max_total_area_m2:.2f} m2).",
-            details={"total_area_m2": total_area, "max_total_area_m2": constraints.max_total_area_m2}
+            details={
+                "total_area_m2": total_area,
+                "max_total_area_m2": constraints.max_total_area_m2,
+            },
         )
     if total_area < constraints.min_total_area_m2:
         return TwoPanelFeasibilityResult(
             is_valid=False,
             rejection_reason=TwoPanelRejectionReason.BELOW_MIN_TOTAL_AREA,
             message=f"Combined shade area ({total_area:.2f} m2) is below minimum allowable limit ({constraints.min_total_area_m2:.2f} m2).",
-            details={"total_area_m2": total_area, "min_total_area_m2": constraints.min_total_area_m2}
+            details={
+                "total_area_m2": total_area,
+                "min_total_area_m2": constraints.min_total_area_m2,
+            },
         )
 
     # 3. Individual Panel Maximum Area Limits
-    if params.area1 > constraints.max_individual_area_m2 or params.area2 > constraints.max_individual_area_m2:
+    if (
+        params.area1 > constraints.max_individual_area_m2
+        or params.area2 > constraints.max_individual_area_m2
+    ):
         max_seen = max(params.area1, params.area2)
         return TwoPanelFeasibilityResult(
             is_valid=False,
             rejection_reason=TwoPanelRejectionReason.EXCEEDS_MAX_DIMENSIONS,
             message=f"Individual panel area ({max_seen:.2f} m2) exceeds individual limit ({constraints.max_individual_area_m2:.2f} m2).",
-            details={"area1_m2": params.area1, "area2_m2": params.area2, "max_individual_m2": constraints.max_individual_area_m2}
+            details={
+                "area1_m2": params.area1,
+                "area2_m2": params.area2,
+                "max_individual_m2": constraints.max_individual_area_m2,
+            },
         )
 
     # 4. Individual Feasibility Checks for Panel 1
@@ -150,12 +169,14 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             SingleRejectionReason.PROHIBITED_ZONE_OBSTRUCTION: TwoPanelRejectionReason.PROHIBITED_ZONE_OBSTRUCTION,
             SingleRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION: TwoPanelRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION,
         }
-        mapped_reason = reason_map.get(res1.rejection_reason, TwoPanelRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION)
+        mapped_reason = reason_map.get(
+            res1.rejection_reason, TwoPanelRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION
+        )
         return TwoPanelFeasibilityResult(
             is_valid=False,
             rejection_reason=mapped_reason,
             message=f"Panel 1 failed feasibility: {res1.message}",
-            details={"failed_panel": 1, "panel1_result": res1.to_dict()}
+            details={"failed_panel": 1, "panel1_result": res1.to_dict()},
         )
 
     # 5. Individual Feasibility Checks for Panel 2
@@ -171,12 +192,14 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             SingleRejectionReason.PROHIBITED_ZONE_OBSTRUCTION: TwoPanelRejectionReason.PROHIBITED_ZONE_OBSTRUCTION,
             SingleRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION: TwoPanelRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION,
         }
-        mapped_reason = reason_map.get(res2.rejection_reason, TwoPanelRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION)
+        mapped_reason = reason_map.get(
+            res2.rejection_reason, TwoPanelRejectionReason.CONSTRUCTION_CONSTRAINT_VIOLATION
+        )
         return TwoPanelFeasibilityResult(
             is_valid=False,
             rejection_reason=mapped_reason,
             message=f"Panel 2 failed feasibility: {res2.message}",
-            details={"failed_panel": 2, "panel2_result": res2.to_dict()}
+            details={"failed_panel": 2, "panel2_result": res2.to_dict()},
         )
 
     # 6. Panel-to-Panel Geometric Collision and Separation Checks
@@ -190,7 +213,7 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             is_valid=False,
             rejection_reason=TwoPanelRejectionReason.PANEL_COLLISION,
             message=f"Panels collide and overlap geometrically with {inter_area:.3f} m2 intersection.",
-            details={"intersection_area_m2": inter_area}
+            details={"intersection_area_m2": inter_area},
         )
 
     # Minimum separation distance
@@ -203,7 +226,7 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             details={
                 "separation_distance_m": separation_dist,
                 "min_separation_m": constraints.min_panel_separation_m,
-            }
+            },
         )
 
     # Valid candidate
@@ -216,5 +239,5 @@ def check_two_panel_feasibility(params: TwoPanelParams,
             "area2_m2": params.area2,
             "total_area_m2": total_area,
             "separation_distance_m": separation_dist,
-        }
+        },
     )

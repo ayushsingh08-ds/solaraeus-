@@ -39,6 +39,7 @@ from urban_comfort.reference.result import SimulationResult
 @dataclass
 class WeatherScenario:
     """Weather perturbation scenario."""
+
     name: str
     description: str
     weather: Weather
@@ -58,6 +59,7 @@ class WeatherScenario:
 @dataclass
 class SolarTimestampScenario:
     """Solar timestamp scenario for cross-solar-path evaluation."""
+
     name: str
     description: str
     local_time: str
@@ -75,6 +77,7 @@ class SolarTimestampScenario:
 @dataclass
 class ObjectiveWeightScenario:
     """Alternative objective weighting scenario."""
+
     name: str
     description: str
     config: TwoPanelComfortObjectiveConfig
@@ -99,6 +102,7 @@ class ObjectiveWeightScenario:
 @dataclass
 class ConstraintSensitivityScenario:
     """Perturbed constraint specification to evaluate design volume change."""
+
     name: str
     description: str
     min_panel_separation_m: float
@@ -120,6 +124,7 @@ class ConstraintSensitivityScenario:
 @dataclass
 class RobustnessStudyConfig:
     """Global configuration for the two-panel robustness and sensitivity study."""
+
     seeds: List[int] = field(default_factory=lambda: [7, 42, 12345])
     budgets: List[int] = field(default_factory=lambda: [25, 50, 100])
     nominal_seed: int = 42
@@ -215,10 +220,20 @@ def get_standard_weather_scenarios(nominal_weather: Weather) -> Dict[str, Weathe
 def get_standard_solar_timestamps() -> List[SolarTimestampScenario]:
     """Returns standardized solar timestamps for diurnal path sensitivity."""
     return [
-        SolarTimestampScenario(name="09:00", description="Morning oblique sun (Nominal optimization timestamp)", local_time="09:00:00"),
-        SolarTimestampScenario(name="11:00", description="Late morning high sun", local_time="11:00:00"),
-        SolarTimestampScenario(name="13:00", description="Near solar noon peak zenith", local_time="13:00:00"),
-        SolarTimestampScenario(name="15:00", description="Mid afternoon western sun", local_time="15:00:00"),
+        SolarTimestampScenario(
+            name="09:00",
+            description="Morning oblique sun (Nominal optimization timestamp)",
+            local_time="09:00:00",
+        ),
+        SolarTimestampScenario(
+            name="11:00", description="Late morning high sun", local_time="11:00:00"
+        ),
+        SolarTimestampScenario(
+            name="13:00", description="Near solar noon peak zenith", local_time="13:00:00"
+        ),
+        SolarTimestampScenario(
+            name="15:00", description="Mid afternoon western sun", local_time="15:00:00"
+        ),
     ]
 
 
@@ -408,8 +423,20 @@ def evaluate_candidate_at_condition(
     (m1, _), (m2, _) = params_canon.build_geometries(id_prefix="EVAL")
     m1.material_id = "PANEL_MAT_1"
     m2.material_id = "PANEL_MAT_2"
-    mat1 = Material(id="PANEL_MAT_1", albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature=weather.air_temperature, is_opaque=True)
-    mat2 = Material(id="PANEL_MAT_2", albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature=weather.air_temperature, is_opaque=True)
+    mat1 = Material(
+        id="PANEL_MAT_1",
+        albedo=float(params_canon.albedo1),
+        emissivity=0.90,
+        surface_temperature=weather.air_temperature,
+        is_opaque=True,
+    )
+    mat2 = Material(
+        id="PANEL_MAT_2",
+        albedo=float(params_canon.albedo2),
+        emissivity=0.90,
+        surface_temperature=weather.air_temperature,
+        is_opaque=True,
+    )
 
     edit = AddMultiMeshEdit([m1, m2])
     up_scene, _ = edit.apply(scene)
@@ -442,10 +469,15 @@ def evaluate_candidate_at_condition(
         "wall_time_s": wall_s,
         "recomputed_cells": up_res.recomputed_cells,
         "total_cells": up_res.total_cells,
-        "reused_fraction_pct": ((up_res.total_cells - up_res.recomputed_cells) / max(1, up_res.total_cells)) * 100.0,
+        "reused_fraction_pct": (
+            (up_res.total_cells - up_res.recomputed_cells) / max(1, up_res.total_cells)
+        )
+        * 100.0,
         "cert_status": cert.status,
         "cert_violations": getattr(cert, "n_violations", 0),
-        "max_predicted_bound_k": float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0,
+        "max_predicted_bound_k": float(np.max(cert.predicted_error_bound))
+        if hasattr(cert, "predicted_error_bound")
+        else 0.0,
     }
 
     return up_res.result, metrics, telemetry

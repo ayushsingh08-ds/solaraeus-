@@ -54,21 +54,27 @@ class CoordinateTransformer:
         lon, lat = self.utm_to_geo_trans.transform(utm_x, utm_y)
         return float(lon), float(lat)
 
-    def utm_to_local(self, utm_x: float, utm_y: float, utm_z: float = 0.0) -> Tuple[float, float, float]:
+    def utm_to_local(
+        self, utm_x: float, utm_y: float, utm_z: float = 0.0
+    ) -> Tuple[float, float, float]:
         """Convert UTM 43N meters to local Church Street Cartesian meters."""
         loc_x = utm_x - self.def_.local_origin_x
         loc_y = utm_y - self.def_.local_origin_y
         loc_z = utm_z - self.def_.local_origin_z
         return float(loc_x), float(loc_y), float(loc_z)
 
-    def local_to_utm(self, loc_x: float, loc_y: float, loc_z: float = 0.0) -> Tuple[float, float, float]:
+    def local_to_utm(
+        self, loc_x: float, loc_y: float, loc_z: float = 0.0
+    ) -> Tuple[float, float, float]:
         """Convert local Church Street Cartesian meters to UTM 43N meters."""
         utm_x = loc_x + self.def_.local_origin_x
         utm_y = loc_y + self.def_.local_origin_y
         utm_z = loc_z + self.def_.local_origin_z
         return float(utm_x), float(utm_y), float(utm_z)
 
-    def geo_to_local(self, lon: float, lat: float, elevation: float = 0.0) -> Tuple[float, float, float]:
+    def geo_to_local(
+        self, lon: float, lat: float, elevation: float = 0.0
+    ) -> Tuple[float, float, float]:
         """Direct transformation from WGS84 to local Church Street coordinates."""
         utm_x, utm_y = self.geo_to_utm(lon, lat)
         return self.utm_to_local(utm_x, utm_y, elevation)
@@ -78,14 +84,18 @@ class CoordinateTransformer:
         utm_x, utm_y, _ = self.local_to_utm(loc_x, loc_y)
         return self.utm_to_geo(utm_x, utm_y)
 
-    def local_to_threejs(self, loc_x: float, loc_y: float, loc_z: float = 0.0) -> Tuple[float, float, float]:
+    def local_to_threejs(
+        self, loc_x: float, loc_y: float, loc_z: float = 0.0
+    ) -> Tuple[float, float, float]:
         """
         Convert Local Cartesian [X: East, Y: North, Z: Up]
         to Three.js WebGL space [X: East, Y: Up, Z: -North (South is +Z)].
         """
         return float(loc_x), float(loc_z), float(-loc_y)
 
-    def threejs_to_local(self, three_x: float, three_y: float, three_z: float) -> Tuple[float, float, float]:
+    def threejs_to_local(
+        self, three_x: float, three_y: float, three_z: float
+    ) -> Tuple[float, float, float]:
         """
         Convert Three.js WebGL space [X: East, Y: Up, Z: -North]
         to Local Cartesian [X: East, Y: North, Z: Up].

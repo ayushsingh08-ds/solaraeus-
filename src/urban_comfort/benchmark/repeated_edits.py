@@ -60,15 +60,18 @@ class RepeatedEditRecord:
         return asdict(self)
 
 
-def run_repeated_edit_sequence(weather: Weather,
-                               config: SimulationConfig) -> List[RepeatedEditRecord]:
+def run_repeated_edit_sequence(
+    weather: Weather, config: SimulationConfig
+) -> List[RepeatedEditRecord]:
     """
     Executes the canonical 5-step sequential editing sequence and tracks error accumulation.
     """
     records: List[RepeatedEditRecord] = []
 
     # Domain: 80m x 80m
-    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(
+        extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1
+    )
     total_cells = int(grid_cfg.extent_x * grid_cfg.extent_y)
 
     # Step 0: Baseline Scene
@@ -80,23 +83,25 @@ def run_repeated_edit_sequence(weather: Weather,
     res0_full = full_recompute(scene0, weather, config)
     t0_time = time.perf_counter() - t0
 
-    records.append(RepeatedEditRecord(
-        step_number=0,
-        step_name="baseline",
-        edit_description="Initial central building (16x16x18m)",
-        full_runtime_sec=t0_time,
-        incremental_runtime_sec=t0_time,
-        speedup=1.0,
-        reused_cells=0,
-        recomputed_cells=total_cells,
-        reused_fraction=0.0,
-        max_actual_error_k=0.0,
-        mean_actual_error_k=0.0,
-        max_predicted_bound_k=0.0,
-        baseline_reversion_error_k=0.0,
-        certificate_violations=0,
-        is_sound=True
-    ))
+    records.append(
+        RepeatedEditRecord(
+            step_number=0,
+            step_name="baseline",
+            edit_description="Initial central building (16x16x18m)",
+            full_runtime_sec=t0_time,
+            incremental_runtime_sec=t0_time,
+            speedup=1.0,
+            reused_cells=0,
+            recomputed_cells=total_cells,
+            reused_fraction=0.0,
+            max_actual_error_k=0.0,
+            mean_actual_error_k=0.0,
+            max_predicted_bound_k=0.0,
+            baseline_reversion_error_k=0.0,
+            certificate_violations=0,
+            is_sound=True,
+        )
+    )
 
     current_scene = scene0
     current_inc_res = res0_full
@@ -104,11 +109,38 @@ def run_repeated_edit_sequence(weather: Weather,
     # Define the 5 sequential steps:
     # (step_num, step_name, edit_obj, description)
     edits = [
-        (1, "height_increase", ChangeHeightEdit("bldg_target", 24.0), "Height increase: 18m -> 24m (+6m)"),
-        (2, "building_move", MoveBuildingEdit("bldg_target", 10.0, 5.0), "Translation: +10m East, +5m North"),
-        (3, "height_decrease", ChangeHeightEdit("bldg_target", 18.0), "Height decrease: 24m -> 18m (-6m)"),
-        (4, "building_removal", RemoveBuildingEdit("bldg_target"), "Removal: Remove building completely"),
-        (5, "return_to_baseline", AddBuildingEdit(Building("bldg_target", BoundingBox2D(32.0, 48.0, 32.0, 48.0), height=18.0)), "Return: Re-add initial building at original position")
+        (
+            1,
+            "height_increase",
+            ChangeHeightEdit("bldg_target", 24.0),
+            "Height increase: 18m -> 24m (+6m)",
+        ),
+        (
+            2,
+            "building_move",
+            MoveBuildingEdit("bldg_target", 10.0, 5.0),
+            "Translation: +10m East, +5m North",
+        ),
+        (
+            3,
+            "height_decrease",
+            ChangeHeightEdit("bldg_target", 18.0),
+            "Height decrease: 24m -> 18m (-6m)",
+        ),
+        (
+            4,
+            "building_removal",
+            RemoveBuildingEdit("bldg_target"),
+            "Removal: Remove building completely",
+        ),
+        (
+            5,
+            "return_to_baseline",
+            AddBuildingEdit(
+                Building("bldg_target", BoundingBox2D(32.0, 48.0, 32.0, 48.0), height=18.0)
+            ),
+            "Return: Re-add initial building at original position",
+        ),
     ]
 
     for step_num, step_name, edit, desc in edits:
@@ -150,7 +182,7 @@ def run_repeated_edit_sequence(weather: Weather,
             max_predicted_bound_k=float(cert.max_predicted_bound),
             baseline_reversion_error_k=reversion_err,
             certificate_violations=verif.num_violations,
-            is_sound=verif.is_valid
+            is_sound=verif.is_valid,
         )
         records.append(rec)
 

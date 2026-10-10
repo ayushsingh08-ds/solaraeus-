@@ -18,7 +18,7 @@ import numpy as np
 class TriangleMesh:
     """
     Controlled 3D triangular surface mesh representation.
-    
+
     Attributes:
         id: Unique object identifier.
         vertices: Shape (N, 3) float64 array of vertex coordinates in meters.
@@ -27,6 +27,7 @@ class TriangleMesh:
         enabled: Toggle for active simulation inclusion.
         metadata: Custom descriptive metadata dictionary.
     """
+
     id: str
     vertices: np.ndarray
     triangles: np.ndarray
@@ -54,9 +55,7 @@ class TriangleMesh:
                 f"Vertices array must have shape (N, 3), got shape {self.vertices.shape}."
             )
         if self.vertices.shape[0] < 3:
-            raise ValueError(
-                f"Mesh must have at least 3 vertices, got {self.vertices.shape[0]}."
-            )
+            raise ValueError(f"Mesh must have at least 3 vertices, got {self.vertices.shape[0]}.")
 
         if self.triangles.ndim != 2 or self.triangles.shape[1] != 3:
             raise ValueError(
@@ -83,9 +82,9 @@ class TriangleMesh:
 
         # 4. Check for duplicate indices within any triangle
         has_duplicate_indices = (
-            (self.triangles[:, 0] == self.triangles[:, 1]) |
-            (self.triangles[:, 1] == self.triangles[:, 2]) |
-            (self.triangles[:, 0] == self.triangles[:, 2])
+            (self.triangles[:, 0] == self.triangles[:, 1])
+            | (self.triangles[:, 1] == self.triangles[:, 2])
+            | (self.triangles[:, 0] == self.triangles[:, 2])
         )
         if np.any(has_duplicate_indices):
             bad_idx = np.where(has_duplicate_indices)[0][0]
@@ -195,7 +194,7 @@ class TriangleMesh:
             triangles=np.array(data["triangles"], dtype=np.int64),
             material_id=data.get("material_id", "default_wall"),
             enabled=data.get("enabled", True),
-            metadata=data.get("metadata", {})
+            metadata=data.get("metadata", {}),
         )
 
 
@@ -203,11 +202,17 @@ class TriangleMesh:
 # Synthetic Mesh Constructors
 # =============================================================================
 
-def create_box_mesh(box_id: str,
-                    xmin: float, xmax: float,
-                    ymin: float, ymax: float,
-                    zmin: float, zmax: float,
-                    material_id: str = "default_wall") -> TriangleMesh:
+
+def create_box_mesh(
+    box_id: str,
+    xmin: float,
+    xmax: float,
+    ymin: float,
+    ymax: float,
+    zmin: float,
+    zmax: float,
+    material_id: str = "default_wall",
+) -> TriangleMesh:
     """
     Constructs an axis-aligned box represented as a 12-triangle watertight mesh.
     Vertices (8):
@@ -220,49 +225,65 @@ def create_box_mesh(box_id: str,
         6: (xmax, ymax, zmax)
         7: (xmin, ymax, zmax)
     """
-    vertices = np.array([
-        [xmin, ymin, zmin],
-        [xmax, ymin, zmin],
-        [xmax, ymax, zmin],
-        [xmin, ymax, zmin],
-        [xmin, ymin, zmax],
-        [xmax, ymin, zmax],
-        [xmax, ymax, zmax],
-        [xmin, ymax, zmax],
-    ], dtype=np.float64)
+    vertices = np.array(
+        [
+            [xmin, ymin, zmin],
+            [xmax, ymin, zmin],
+            [xmax, ymax, zmin],
+            [xmin, ymax, zmin],
+            [xmin, ymin, zmax],
+            [xmax, ymin, zmax],
+            [xmax, ymax, zmax],
+            [xmin, ymax, zmax],
+        ],
+        dtype=np.float64,
+    )
 
     # 12 triangles with outward-pointing normals
-    triangles = np.array([
-        # Bottom (-Z)
-        [0, 2, 1], [0, 3, 2],
-        # Top (+Z)
-        [4, 5, 6], [4, 6, 7],
-        # South (-Y)
-        [0, 1, 5], [0, 5, 4],
-        # East (+X)
-        [1, 2, 6], [1, 6, 5],
-        # North (+Y)
-        [2, 3, 7], [2, 7, 6],
-        # West (-X)
-        [3, 0, 4], [3, 4, 7],
-    ], dtype=np.int64)
+    triangles = np.array(
+        [
+            # Bottom (-Z)
+            [0, 2, 1],
+            [0, 3, 2],
+            # Top (+Z)
+            [4, 5, 6],
+            [4, 6, 7],
+            # South (-Y)
+            [0, 1, 5],
+            [0, 5, 4],
+            # East (+X)
+            [1, 2, 6],
+            [1, 6, 5],
+            # North (+Y)
+            [2, 3, 7],
+            [2, 7, 6],
+            # West (-X)
+            [3, 0, 4],
+            [3, 4, 7],
+        ],
+        dtype=np.int64,
+    )
 
     return TriangleMesh(
         id=box_id,
         vertices=vertices,
         triangles=triangles,
         material_id=material_id,
-        metadata={"generator": "create_box_mesh", "type": "axis_aligned_box"}
+        metadata={"generator": "create_box_mesh", "type": "axis_aligned_box"},
     )
 
 
-def create_rotated_box_mesh(box_id: str,
-                            center_x: float, center_y: float,
-                            width_x: float, width_y: float,
-                            height: float,
-                            angle_deg: float,
-                            zmin: float = 0.0,
-                            material_id: str = "default_wall") -> TriangleMesh:
+def create_rotated_box_mesh(
+    box_id: str,
+    center_x: float,
+    center_y: float,
+    width_x: float,
+    width_y: float,
+    height: float,
+    angle_deg: float,
+    zmin: float = 0.0,
+    material_id: str = "default_wall",
+) -> TriangleMesh:
     """
     Constructs a rectangular prism rotated about the vertical Z-axis by angle_deg.
     """
@@ -271,12 +292,15 @@ def create_rotated_box_mesh(box_id: str,
     zmax = zmin + height
 
     # Unrotated local coordinates centered at origin
-    local_corners = np.array([
-        [-hx, -hy],
-        [ hx, -hy],
-        [ hx,  hy],
-        [-hx,  hy],
-    ], dtype=np.float64)
+    local_corners = np.array(
+        [
+            [-hx, -hy],
+            [hx, -hy],
+            [hx, hy],
+            [-hx, hy],
+        ],
+        dtype=np.float64,
+    )
 
     # Rotate in 2D
     rad = math.radians(angle_deg)
@@ -289,20 +313,29 @@ def create_rotated_box_mesh(box_id: str,
     top = np.column_stack([rot_corners + [center_x, center_y], np.full(4, zmax)])
     vertices = np.vstack([bottom, top])
 
-    triangles = np.array([
-        # Bottom (-Z)
-        [0, 2, 1], [0, 3, 2],
-        # Top (+Z)
-        [4, 5, 6], [4, 6, 7],
-        # Side 0-1
-        [0, 1, 5], [0, 5, 4],
-        # Side 1-2
-        [1, 2, 6], [1, 6, 5],
-        # Side 2-3
-        [2, 3, 7], [2, 7, 6],
-        # Side 3-0
-        [3, 0, 4], [3, 4, 7],
-    ], dtype=np.int64)
+    triangles = np.array(
+        [
+            # Bottom (-Z)
+            [0, 2, 1],
+            [0, 3, 2],
+            # Top (+Z)
+            [4, 5, 6],
+            [4, 6, 7],
+            # Side 0-1
+            [0, 1, 5],
+            [0, 5, 4],
+            # Side 1-2
+            [1, 2, 6],
+            [1, 6, 5],
+            # Side 2-3
+            [2, 3, 7],
+            [2, 7, 6],
+            # Side 3-0
+            [3, 0, 4],
+            [3, 4, 7],
+        ],
+        dtype=np.int64,
+    )
 
     return TriangleMesh(
         id=box_id,
@@ -312,22 +345,26 @@ def create_rotated_box_mesh(box_id: str,
         metadata={
             "generator": "create_rotated_box_mesh",
             "angle_deg": angle_deg,
-            "center": (center_x, center_y)
-        }
+            "center": (center_x, center_y),
+        },
     )
 
 
-def create_pitched_roof_mesh(building_id: str,
-                             xmin: float, xmax: float,
-                             ymin: float, ymax: float,
-                             eave_height: float,
-                             ridge_height: float,
-                             ridge_orientation: str = "x",
-                             zmin: float = 0.0,
-                             material_id: str = "default_wall") -> TriangleMesh:
+def create_pitched_roof_mesh(
+    building_id: str,
+    xmin: float,
+    xmax: float,
+    ymin: float,
+    ymax: float,
+    eave_height: float,
+    ridge_height: float,
+    ridge_orientation: str = "x",
+    zmin: float = 0.0,
+    material_id: str = "default_wall",
+) -> TriangleMesh:
     """
     Constructs a building with vertical walls and a dual-pitch gable roof.
-    
+
     If ridge_orientation == "x":
         Ridge runs parallel to X-axis at y_mid = (ymin + ymax) / 2.
     If ridge_orientation == "y":
@@ -343,61 +380,103 @@ def create_pitched_roof_mesh(building_id: str,
     # 2 ridge vertices (8-9)
     if ridge_orientation == "x":
         ymid = (ymin + ymax) / 2.0
-        vertices = np.array([
-            # Ground (0..3)
-            [xmin, ymin, zmin], [xmax, ymin, zmin], [xmax, ymax, zmin], [xmin, ymax, zmin],
-            # Eaves (4..7)
-            [xmin, ymin, eave_height], [xmax, ymin, eave_height],
-            [xmax, ymax, eave_height], [xmin, ymax, eave_height],
-            # Ridge (8..9)
-            [xmin, ymid, ridge_height], [xmax, ymid, ridge_height]
-        ], dtype=np.float64)
+        vertices = np.array(
+            [
+                # Ground (0..3)
+                [xmin, ymin, zmin],
+                [xmax, ymin, zmin],
+                [xmax, ymax, zmin],
+                [xmin, ymax, zmin],
+                # Eaves (4..7)
+                [xmin, ymin, eave_height],
+                [xmax, ymin, eave_height],
+                [xmax, ymax, eave_height],
+                [xmin, ymax, eave_height],
+                # Ridge (8..9)
+                [xmin, ymid, ridge_height],
+                [xmax, ymid, ridge_height],
+            ],
+            dtype=np.float64,
+        )
 
-        triangles = np.array([
-            # Bottom
-            [0, 2, 1], [0, 3, 2],
-            # South wall (ymin)
-            [0, 1, 5], [0, 5, 4],
-            # North wall (ymax)
-            [2, 3, 7], [2, 7, 6],
-            # West gable wall (xmin): 1 quad + 1 triangular peak
-            [3, 0, 4], [3, 4, 7], [7, 4, 8],
-            # East gable wall (xmax): 1 quad + 1 triangular peak
-            [1, 2, 6], [1, 6, 5], [5, 6, 9],
-            # South roof pitch (between eaves 4,5 and ridge 8,9)
-            [4, 5, 9], [4, 9, 8],
-            # North roof pitch (between eaves 6,7 and ridge 9,8)
-            [9, 6, 7], [9, 7, 8],
-        ], dtype=np.int64)
+        triangles = np.array(
+            [
+                # Bottom
+                [0, 2, 1],
+                [0, 3, 2],
+                # South wall (ymin)
+                [0, 1, 5],
+                [0, 5, 4],
+                # North wall (ymax)
+                [2, 3, 7],
+                [2, 7, 6],
+                # West gable wall (xmin): 1 quad + 1 triangular peak
+                [3, 0, 4],
+                [3, 4, 7],
+                [7, 4, 8],
+                # East gable wall (xmax): 1 quad + 1 triangular peak
+                [1, 2, 6],
+                [1, 6, 5],
+                [5, 6, 9],
+                # South roof pitch (between eaves 4,5 and ridge 8,9)
+                [4, 5, 9],
+                [4, 9, 8],
+                # North roof pitch (between eaves 6,7 and ridge 9,8)
+                [9, 6, 7],
+                [9, 7, 8],
+            ],
+            dtype=np.int64,
+        )
 
     elif ridge_orientation == "y":
         xmid = (xmin + xmax) / 2.0
-        vertices = np.array([
-            # Ground (0..3)
-            [xmin, ymin, zmin], [xmax, ymin, zmin], [xmax, ymax, zmin], [xmin, ymax, zmin],
-            # Eaves (4..7)
-            [xmin, ymin, eave_height], [xmax, ymin, eave_height],
-            [xmax, ymax, eave_height], [xmin, ymax, eave_height],
-            # Ridge (8..9)
-            [xmid, ymin, ridge_height], [xmid, ymax, ridge_height]
-        ], dtype=np.float64)
+        vertices = np.array(
+            [
+                # Ground (0..3)
+                [xmin, ymin, zmin],
+                [xmax, ymin, zmin],
+                [xmax, ymax, zmin],
+                [xmin, ymax, zmin],
+                # Eaves (4..7)
+                [xmin, ymin, eave_height],
+                [xmax, ymin, eave_height],
+                [xmax, ymax, eave_height],
+                [xmin, ymax, eave_height],
+                # Ridge (8..9)
+                [xmid, ymin, ridge_height],
+                [xmid, ymax, ridge_height],
+            ],
+            dtype=np.float64,
+        )
 
-        triangles = np.array([
-            # Bottom
-            [0, 2, 1], [0, 3, 2],
-            # West wall (xmin)
-            [3, 0, 4], [3, 4, 7],
-            # East wall (xmax)
-            [1, 2, 6], [1, 6, 5],
-            # South gable (ymin)
-            [0, 1, 5], [0, 5, 4], [4, 5, 8],
-            # North gable (ymax)
-            [2, 3, 7], [2, 7, 6], [7, 6, 9],
-            # West roof pitch (between eaves 7,4 and ridge 9,8)
-            [7, 4, 8], [7, 8, 9],
-            # East roof pitch (between eaves 5,6 and ridge 8,9)
-            [5, 6, 9], [5, 9, 8],
-        ], dtype=np.int64)
+        triangles = np.array(
+            [
+                # Bottom
+                [0, 2, 1],
+                [0, 3, 2],
+                # West wall (xmin)
+                [3, 0, 4],
+                [3, 4, 7],
+                # East wall (xmax)
+                [1, 2, 6],
+                [1, 6, 5],
+                # South gable (ymin)
+                [0, 1, 5],
+                [0, 5, 4],
+                [4, 5, 8],
+                # North gable (ymax)
+                [2, 3, 7],
+                [2, 7, 6],
+                [7, 6, 9],
+                # West roof pitch (between eaves 7,4 and ridge 9,8)
+                [7, 4, 8],
+                [7, 8, 9],
+                # East roof pitch (between eaves 5,6 and ridge 8,9)
+                [5, 6, 9],
+                [5, 9, 8],
+            ],
+            dtype=np.int64,
+        )
     else:
         raise ValueError(f"ridge_orientation must be 'x' or 'y', got '{ridge_orientation}'.")
 
@@ -406,19 +485,23 @@ def create_pitched_roof_mesh(building_id: str,
         vertices=vertices,
         triangles=triangles,
         material_id=material_id,
-        metadata={"generator": "create_pitched_roof_mesh", "ridge_orientation": ridge_orientation}
+        metadata={"generator": "create_pitched_roof_mesh", "ridge_orientation": ridge_orientation},
     )
 
 
-def create_overhang_mesh(building_id: str,
-                         xmin: float, xmax: float,
-                         ymin: float, ymax: float,
-                         base_height: float,
-                         overhang_depth: float,
-                         overhang_direction: str = "north",
-                         overhang_thickness: float = 3.0,
-                         zmin: float = 0.0,
-                         material_id: str = "default_wall") -> TriangleMesh:
+def create_overhang_mesh(
+    building_id: str,
+    xmin: float,
+    xmax: float,
+    ymin: float,
+    ymax: float,
+    base_height: float,
+    overhang_depth: float,
+    overhang_direction: str = "north",
+    overhang_thickness: float = 3.0,
+    zmin: float = 0.0,
+    material_id: str = "default_wall",
+) -> TriangleMesh:
     """
     Constructs a building with a cantilevered upper-level overhang extending beyond
     its ground footprint, creating shaded open ground beneath the projection.
@@ -449,7 +532,9 @@ def create_overhang_mesh(building_id: str,
 
     # Combine main building box and overhang slab box into a unified multi-box mesh
     box1 = create_box_mesh("temp_base", xmin, xmax, ymin, ymax, zmin, z_top, material_id)
-    box2 = create_box_mesh("temp_oh", oh_xmin, oh_xmax, oh_ymin, oh_ymax, z_overhang_bottom, z_top, material_id)
+    box2 = create_box_mesh(
+        "temp_oh", oh_xmin, oh_xmax, oh_ymin, oh_ymax, z_overhang_bottom, z_top, material_id
+    )
 
     combined_vertices = np.vstack([box1.vertices, box2.vertices])
     combined_triangles = np.vstack([box1.triangles, box2.triangles + len(box1.vertices)])
@@ -462,18 +547,20 @@ def create_overhang_mesh(building_id: str,
         metadata={
             "generator": "create_overhang_mesh",
             "overhang_direction": overhang_direction,
-            "overhang_depth": overhang_depth
-        }
+            "overhang_depth": overhang_depth,
+        },
     )
 
 
-def create_wall_mesh(wall_id: str,
-                     start_pt: Tuple[float, float],
-                     end_pt: Tuple[float, float],
-                     thickness: float,
-                     height: float,
-                     zmin: float = 0.0,
-                     material_id: str = "default_wall") -> TriangleMesh:
+def create_wall_mesh(
+    wall_id: str,
+    start_pt: Tuple[float, float],
+    end_pt: Tuple[float, float],
+    thickness: float,
+    height: float,
+    zmin: float = 0.0,
+    material_id: str = "default_wall",
+) -> TriangleMesh:
     """
     Constructs a thin, vertical wall oriented along an arbitrary 2D line segment.
     """
@@ -503,37 +590,51 @@ def create_wall_mesh(wall_id: str,
     top = np.column_stack([np.vstack([c0, c1, c2, c3]), np.full(4, zmax)])
     vertices = np.vstack([bottom, top])
 
-    triangles = np.array([
-        # Bottom
-        [0, 2, 1], [0, 3, 2],
-        # Top
-        [4, 5, 6], [4, 6, 7],
-        # Face 0-1
-        [0, 1, 5], [0, 5, 4],
-        # Face 1-2
-        [1, 2, 6], [1, 6, 5],
-        # Face 2-3
-        [2, 3, 7], [2, 7, 6],
-        # Face 3-0
-        [3, 0, 4], [3, 4, 7],
-    ], dtype=np.int64)
+    triangles = np.array(
+        [
+            # Bottom
+            [0, 2, 1],
+            [0, 3, 2],
+            # Top
+            [4, 5, 6],
+            [4, 6, 7],
+            # Face 0-1
+            [0, 1, 5],
+            [0, 5, 4],
+            # Face 1-2
+            [1, 2, 6],
+            [1, 6, 5],
+            # Face 2-3
+            [2, 3, 7],
+            [2, 7, 6],
+            # Face 3-0
+            [3, 0, 4],
+            [3, 4, 7],
+        ],
+        dtype=np.int64,
+    )
 
     return TriangleMesh(
         id=wall_id,
         vertices=vertices,
         triangles=triangles,
         material_id=material_id,
-        metadata={"generator": "create_wall_mesh", "length": length, "thickness": thickness}
+        metadata={"generator": "create_wall_mesh", "length": length, "thickness": thickness},
     )
 
 
-def create_l_shaped_mesh(building_id: str,
-                         xmin: float, ymin: float,
-                         total_width: float, total_length: float,
-                         wing_width: float, wing_length: float,
-                         height: float,
-                         zmin: float = 0.0,
-                         material_id: str = "default_wall") -> TriangleMesh:
+def create_l_shaped_mesh(
+    building_id: str,
+    xmin: float,
+    ymin: float,
+    total_width: float,
+    total_length: float,
+    wing_width: float,
+    wing_length: float,
+    height: float,
+    zmin: float = 0.0,
+    material_id: str = "default_wall",
+) -> TriangleMesh:
     """
     Constructs a concave L-shaped building composed of two orthogonal intersecting blocks:
     - Base wing along X: [xmin, xmin + total_width] x [ymin, ymin + wing_length]
@@ -553,14 +654,17 @@ def create_l_shaped_mesh(building_id: str,
     # 3: (xmin + wing_width, ymin + wing_length)  <- inner concave corner
     # 4: (xmin + wing_width, ymin + total_length)
     # 5: (xmin, ymin + total_length)
-    poly_2d = np.array([
-        [xmin, ymin],
-        [xmin + total_width, ymin],
-        [xmin + total_width, ymin + wing_length],
-        [xmin + wing_width, ymin + wing_length],
-        [xmin + wing_width, ymin + total_length],
-        [xmin, ymin + total_length],
-    ], dtype=np.float64)
+    poly_2d = np.array(
+        [
+            [xmin, ymin],
+            [xmin + total_width, ymin],
+            [xmin + total_width, ymin + wing_length],
+            [xmin + wing_width, ymin + wing_length],
+            [xmin + wing_width, ymin + total_length],
+            [xmin, ymin + total_length],
+        ],
+        dtype=np.float64,
+    )
 
     bottom = np.column_stack([poly_2d, np.full(6, zmin)])
     top = np.column_stack([poly_2d, np.full(6, zmax)])
@@ -581,19 +685,27 @@ def create_l_shaped_mesh(building_id: str,
         side_triangles.append([b0, b1, t1])
         side_triangles.append([b0, t1, t0])
 
-    triangles = np.array([
-        # Bottom (-Z)
-        [0, 2, 1], [0, 3, 2],
-        [0, 4, 3], [0, 5, 4],
-        # Top (+Z)
-        [6, 7, 8], [6, 8, 9],
-        [6, 9, 10], [6, 10, 11],
-    ] + side_triangles, dtype=np.int64)
+    triangles = np.array(
+        [
+            # Bottom (-Z)
+            [0, 2, 1],
+            [0, 3, 2],
+            [0, 4, 3],
+            [0, 5, 4],
+            # Top (+Z)
+            [6, 7, 8],
+            [6, 8, 9],
+            [6, 9, 10],
+            [6, 10, 11],
+        ]
+        + side_triangles,
+        dtype=np.int64,
+    )
 
     return TriangleMesh(
         id=building_id,
         vertices=vertices,
         triangles=triangles,
         material_id=material_id,
-        metadata={"generator": "create_l_shaped_mesh", "type": "concave_l_shape"}
+        metadata={"generator": "create_l_shaped_mesh", "type": "concave_l_shape"},
     )

@@ -71,7 +71,9 @@ def test_create_mesh_scaling_scene_triangle_counts():
 def test_single_scaling_trial_execution(scaling_weather, fast_scaling_config):
     """Verify that run_scaling_trial executes and returns valid metrics."""
     scene = create_mesh_scaling_scene(4, extent_m=60.0, resolution_m=2.0)
-    rec = run_scaling_trial(scene, fast_scaling_config, scaling_weather, "triangle_scaling", "T2_48_tri")
+    rec = run_scaling_trial(
+        scene, fast_scaling_config, scaling_weather, "triangle_scaling", "T2_48_tri"
+    )
 
     assert rec["config_type"] == "triangle_scaling"
     assert rec["tier_id"] == "T2_48_tri"

@@ -27,7 +27,7 @@ def baseline_setup():
         wind_speed=2.0,
         wind_direction=180.0,
         direct_normal_irradiance=800.0,
-        diffuse_horizontal_irradiance=160.0
+        diffuse_horizontal_irradiance=160.0,
     )
     config = SimulationConfig(
         latitude=40.7128,
@@ -37,7 +37,7 @@ def baseline_setup():
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance=0.5,
     )
     return weather, config
 
@@ -46,11 +46,13 @@ def baseline_setup():
 def test_certificate_soundness_add_building(baseline_setup, tol):
     weather, config = baseline_setup
     config = SimulationConfig(
-        latitude=config.latitude, longitude=config.longitude,
-        date=config.date, local_time=config.local_time,
+        latitude=config.latitude,
+        longitude=config.longitude,
+        date=config.date,
+        local_time=config.local_time,
         sky_patch_configuration=config.sky_patch_configuration,
         max_svf_search_dist_m=config.max_svf_search_dist_m,
-        tmrt_tolerance=tol
+        tmrt_tolerance=tol,
     )
 
     scene_before = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=60.0, extent_y=60.0))
@@ -61,14 +63,18 @@ def test_certificate_soundness_add_building(baseline_setup, tol):
     scene_after, _ = edit.apply(scene_before)
 
     # 1. Certified incremental update
-    inc_res, cert = incremental_update_certified(scene_before, scene_after, res_before, edit, weather, config)
+    inc_res, cert = incremental_update_certified(
+        scene_before, scene_after, res_before, edit, weather, config
+    )
     # 2. Ground truth full recomputation
     full_res = full_recompute(scene_after, weather, config)
 
     # 3. Verify mathematical soundness
     verif = verify_certificate(cert, inc_res.result.tmrt, full_res.tmrt)
 
-    assert verif.is_valid, f"Certificate violated! {verif.num_violations} violations with max {verif.max_violation} K"
+    assert verif.is_valid, (
+        f"Certificate violated! {verif.num_violations} violations with max {verif.max_violation} K"
+    )
     assert verif.num_violations == 0
     assert verif.is_within_tolerance, "Reused cells exceeded user tolerance threshold!"
 
@@ -81,7 +87,9 @@ def test_certificate_soundness_remove_building(baseline_setup):
     edit = RemoveBuildingEdit("bldg_center")
     scene_after, _ = edit.apply(scene_before)
 
-    inc_res, cert = incremental_update_certified(scene_before, scene_after, res_before, edit, weather, config)
+    inc_res, cert = incremental_update_certified(
+        scene_before, scene_after, res_before, edit, weather, config
+    )
     full_res = full_recompute(scene_after, weather, config)
 
     verif = verify_certificate(cert, inc_res.result.tmrt, full_res.tmrt)
@@ -98,7 +106,9 @@ def test_certificate_soundness_height_change(baseline_setup):
     edit = ChangeHeightEdit("bldg_center", new_height=26.0)
     scene_after, _ = edit.apply(scene_before)
 
-    inc_res, cert = incremental_update_certified(scene_before, scene_after, res_before, edit, weather, config)
+    inc_res, cert = incremental_update_certified(
+        scene_before, scene_after, res_before, edit, weather, config
+    )
     full_res = full_recompute(scene_after, weather, config)
 
     verif = verify_certificate(cert, inc_res.result.tmrt, full_res.tmrt)
@@ -115,7 +125,9 @@ def test_certificate_soundness_move_building(baseline_setup):
     edit = MoveBuildingEdit("bldg_center", shift_x=12.0, shift_y=12.0)
     scene_after, _ = edit.apply(scene_before)
 
-    inc_res, cert = incremental_update_certified(scene_before, scene_after, res_before, edit, weather, config)
+    inc_res, cert = incremental_update_certified(
+        scene_before, scene_after, res_before, edit, weather, config
+    )
     full_res = full_recompute(scene_after, weather, config)
 
     verif = verify_certificate(cert, inc_res.result.tmrt, full_res.tmrt)
@@ -132,7 +144,9 @@ def test_artificial_violation_detection(baseline_setup):
     edit = ChangeHeightEdit("bldg_center", 20.0)
     scene_after, _ = edit.apply(scene_before)
 
-    inc_res, cert = incremental_update_certified(scene_before, scene_after, res_before, edit, weather, config)
+    inc_res, cert = incremental_update_certified(
+        scene_before, scene_after, res_before, edit, weather, config
+    )
     full_res = full_recompute(scene_after, weather, config)
 
     # Intentionally corrupt incremental result with a massive +50K error spike

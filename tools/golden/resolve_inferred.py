@@ -77,7 +77,7 @@ def i5_results_mapping() -> None:
 
     print("\nscripts with NO results directory:")
     for s in scripts:
-        slug = s[len("run_"):-len(".py")]
+        slug = s[len("run_") : -len(".py")]
         if not any(re.sub(r"_\d{8}_\d{6}$", "", d) == slug for d in dirs):
             print(f"    {s}")
 
@@ -94,11 +94,25 @@ def i6_orphan_reachability() -> None:
         for path in sorted((REPO / tdir).glob("*.py")):
             rel = path.relative_to(REPO).as_posix()
             stem = path.stem
-            quoted = subprocess.run(
-                ["git", "grep", "-n", "-l", "-e", f"urban_comfort.terrain.{stem}",
-                 "-e", f"urban_comfort.vegetation.{stem}"],
-                cwd=REPO, capture_output=True, text=True,
-            ).stdout.strip().splitlines()
+            quoted = (
+                subprocess.run(
+                    [
+                        "git",
+                        "grep",
+                        "-n",
+                        "-l",
+                        "-e",
+                        f"urban_comfort.terrain.{stem}",
+                        "-e",
+                        f"urban_comfort.vegetation.{stem}",
+                    ],
+                    cwd=REPO,
+                    capture_output=True,
+                    text=True,
+                )
+                .stdout.strip()
+                .splitlines()
+            )
             quoted = [q for q in quoted if not q.startswith(rel)]
             print(f"  {rel}")
             for q in quoted:

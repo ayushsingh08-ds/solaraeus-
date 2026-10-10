@@ -24,17 +24,18 @@ from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 @pytest.fixture
 def base_setup():
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(
+        PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    )
     alt_rad = math.radians(40.0)
     az_rad = math.radians(160.0)
     sun_vec = (
         math.cos(alt_rad) * math.sin(az_rad),
         math.cos(alt_rad) * math.cos(az_rad),
-        math.sin(alt_rad)
+        math.sin(alt_rad),
     )
     solar_pos = SolarPosition(
-        altitude_deg=40.0, azimuth_deg=160.0, zenith_deg=50.0,
-        sun_vector=sun_vec, is_daylight=True
+        altitude_deg=40.0, azimuth_deg=160.0, zenith_deg=50.0, sun_vector=sun_vec, is_daylight=True
     )
     return grid, solar_pos
 
@@ -49,7 +50,7 @@ def test_candidate_affected_region_add_building_containment(base_setup):
     # Actual ground shadow difference
     shadow_before = compute_direct_shadow_mask(scene_before, grid, solar_pos)
     shadow_after = compute_direct_shadow_mask(scene_after, grid, solar_pos)
-    actual_diff = (shadow_before != shadow_after)
+    actual_diff = shadow_before != shadow_after
 
     # Candidate region
     cand_res = compute_candidate_affected_region(scene_before, scene_after, edit, solar_pos, grid)
@@ -57,7 +58,9 @@ def test_candidate_affected_region_add_building_containment(base_setup):
     assert not cand_res.is_fallback
     assert np.any(actual_diff), "Adding building must produce shadow differences!"
     # 100% containment check: every single altered cell must fall inside candidate mask
-    assert np.all(cand_res.candidate_mask[actual_diff]), "Shadow change escaped candidate affected region!"
+    assert np.all(cand_res.candidate_mask[actual_diff]), (
+        "Shadow change escaped candidate affected region!"
+    )
 
 
 def test_candidate_affected_region_remove_building_containment(base_setup):
@@ -68,7 +71,7 @@ def test_candidate_affected_region_remove_building_containment(base_setup):
 
     shadow_before = compute_direct_shadow_mask(scene_before, grid, solar_pos)
     shadow_after = compute_direct_shadow_mask(scene_after, grid, solar_pos)
-    actual_diff = (shadow_before != shadow_after)
+    actual_diff = shadow_before != shadow_after
 
     cand_res = compute_candidate_affected_region(scene_before, scene_after, edit, solar_pos, grid)
 
@@ -84,7 +87,7 @@ def test_candidate_affected_region_height_change_containment(base_setup):
 
     shadow_before = compute_direct_shadow_mask(scene_before, grid, solar_pos)
     shadow_after = compute_direct_shadow_mask(scene_after, grid, solar_pos)
-    actual_diff = (shadow_before != shadow_after)
+    actual_diff = shadow_before != shadow_after
 
     cand_res = compute_candidate_affected_region(scene_before, scene_after, edit, solar_pos, grid)
 
@@ -100,7 +103,7 @@ def test_candidate_affected_region_move_building_containment(base_setup):
 
     shadow_before = compute_direct_shadow_mask(scene_before, grid, solar_pos)
     shadow_after = compute_direct_shadow_mask(scene_after, grid, solar_pos)
-    actual_diff = (shadow_before != shadow_after)
+    actual_diff = shadow_before != shadow_after
 
     cand_res = compute_candidate_affected_region(scene_before, scene_after, edit, solar_pos, grid)
 
@@ -116,8 +119,11 @@ def test_low_sun_angle_fallback(base_setup):
 
     # Very low solar altitude (3.0 deg < 5.0 deg threshold)
     low_sun = SolarPosition(
-        altitude_deg=3.0, azimuth_deg=180.0, zenith_deg=87.0,
-        sun_vector=(0.0, -0.998, 0.052), is_daylight=True
+        altitude_deg=3.0,
+        azimuth_deg=180.0,
+        zenith_deg=87.0,
+        sun_vector=(0.0, -0.998, 0.052),
+        is_daylight=True,
     )
 
     cand_res = compute_candidate_affected_region(

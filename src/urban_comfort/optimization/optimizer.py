@@ -34,6 +34,7 @@ from urban_comfort.reference.result import SimulationResult
 @dataclass
 class OptimizerConfig:
     """Configuration for intervention optimization search."""
+
     seed: int = 42
     budget_random: int = 25
     budget_lhs: int = 10
@@ -42,7 +43,9 @@ class OptimizerConfig:
     mutation_factor: float = 0.5
     crossover_prob: float = 0.7
     max_total_evaluations: int = 75
-    bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_church_street_bounds)
+    bounds: ParameterBounds = field(
+        default_factory=ParameterBounds.get_canonical_church_street_bounds
+    )
     objective_config: ComfortObjectiveConfig = field(default_factory=ComfortObjectiveConfig)
     fallback_to_cpu: bool = False
 
@@ -74,7 +77,9 @@ class OptimizationEngine:
         self.config = config or OptimizerConfig()
         self.ledger = CandidateLedger()
 
-        self.gpu_engine = gpu_engine or GPUIncrementalEngine(fallback_to_cpu=self.config.fallback_to_cpu)
+        self.gpu_engine = gpu_engine or GPUIncrementalEngine(
+            fallback_to_cpu=self.config.fallback_to_cpu
+        )
         self.grid = PedestrianGrid(baseline_scene.pedestrian_grid)
         self._is_preloaded: bool = False
         self.rng = np.random.default_rng(self.config.seed)
@@ -85,7 +90,9 @@ class OptimizationEngine:
             return 0.0
         t0 = time.perf_counter()
         if self.gpu_engine.is_available:
-            self.gpu_engine.preload_resident_baseline(self.baseline_scene, self.grid, self.baseline_result)
+            self.gpu_engine.preload_resident_baseline(
+                self.baseline_scene, self.grid, self.baseline_result
+            )
         self._is_preloaded = True
         return time.perf_counter() - t0
 
@@ -210,10 +217,16 @@ class OptimizationEngine:
         num_rays_per_cell = 1 + self.sim_config.sky_patch_configuration
         recomputed_rays = recomputed_cells * num_rays_per_cell
         reused_rays = reused_cells * num_rays_per_cell
-        ray_reduction_pct = (reused_rays / (total_cells * num_rays_per_cell) * 100.0) if total_cells > 0 else 0.0
+        ray_reduction_pct = (
+            (reused_rays / (total_cells * num_rays_per_cell) * 100.0) if total_cells > 0 else 0.0
+        )
 
         last_m = self.gpu_engine.last_metrics
-        kernel_ms = last_m.gpu_kernel_time_ms if last_m else (update_res.time_selective_recompute_sec * 1000.0)
+        kernel_ms = (
+            last_m.gpu_kernel_time_ms
+            if last_m
+            else (update_res.time_selective_recompute_sec * 1000.0)
+        )
         h2d_ms = getattr(last_m, "host_to_device_time_ms", 0.0) if last_m else 0.0
         d2h_ms = getattr(last_m, "device_to_host_time_ms", 0.0) if last_m else 0.0
 
@@ -329,10 +342,17 @@ class OptimizationEngine:
                     # Fallback to Gaussian perturbation of best
                     best_vec = population[0][0]
                     donor_vec = best_vec + self.rng.normal(0, 0.05, size=n_dim) * (
-                        np.array([bounds.x_max - bounds.x_min, bounds.y_max - bounds.y_min,
-                                  bounds.length_max - bounds.length_min, bounds.width_max - bounds.width_min,
-                                  bounds.height_max - bounds.height_min, bounds.heading_max - bounds.heading_min,
-                                  bounds.albedo_max - bounds.albedo_min])
+                        np.array(
+                            [
+                                bounds.x_max - bounds.x_min,
+                                bounds.y_max - bounds.y_min,
+                                bounds.length_max - bounds.length_min,
+                                bounds.width_max - bounds.width_min,
+                                bounds.height_max - bounds.height_min,
+                                bounds.heading_max - bounds.heading_min,
+                                bounds.albedo_max - bounds.albedo_min,
+                            ]
+                        )
                     )
                 else:
                     r1, r2, r3 = self.rng.choice(idxs, size=3, replace=False)
@@ -379,7 +399,11 @@ class OptimizationEngine:
         """
         b_rand = budget_random if budget_random is not None else self.config.budget_random
         b_lhs = budget_lhs if budget_lhs is not None else self.config.budget_lhs
-        b_evo = budget_evolutionary if budget_evolutionary is not None else self.config.budget_evolutionary
+        b_evo = (
+            budget_evolutionary
+            if budget_evolutionary is not None
+            else self.config.budget_evolutionary
+        )
 
         # Phase 1: Baseline
         self.run_deterministic_baseline()
@@ -395,6 +419,8 @@ class OptimizationEngine:
         # Phase 4: Evolutionary
         if b_evo > 0:
             generations = max(1, b_evo // self.config.population_size)
-            self.run_evolutionary_search(generations=generations, pop_size=self.config.population_size)
+            self.run_evolutionary_search(
+                generations=generations, pop_size=self.config.population_size
+            )
 
         return self.ledger

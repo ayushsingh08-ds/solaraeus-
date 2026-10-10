@@ -18,6 +18,7 @@ from urban_comfort.incremental.edits import GeometricEdit
 @dataclass
 class AddMeshEdit(GeometricEdit):
     """Incremental edit adding a new TriangleMesh to the scene."""
+
     mesh: TriangleMesh
 
     def __init__(self, mesh: TriangleMesh):
@@ -33,6 +34,7 @@ class AddMeshEdit(GeometricEdit):
 @dataclass
 class AddMultiMeshEdit(GeometricEdit):
     """Incremental edit adding multiple TriangleMeshes simultaneously to the scene."""
+
     meshes: list[TriangleMesh]
 
     def __init__(self, meshes: list[TriangleMesh]):
@@ -59,6 +61,7 @@ class AddMultiMeshEdit(GeometricEdit):
 @dataclass
 class RemoveMeshEdit(GeometricEdit):
     """Incremental edit removing an existing TriangleMesh from the scene."""
+
     mesh_id: str
 
     def __init__(self, mesh_id: str):
@@ -74,6 +77,7 @@ class RemoveMeshEdit(GeometricEdit):
 @dataclass
 class ReplaceMeshEdit(GeometricEdit):
     """Incremental edit replacing an existing TriangleMesh with a new TriangleMesh."""
+
     mesh_id: str
     new_mesh: TriangleMesh
 
@@ -91,9 +95,12 @@ class ReplaceMeshEdit(GeometricEdit):
         new_scene.meshes[self.mesh_id] = self.new_mesh
 
         union_bounds = (
-            min(old_b[0], new_b[0]), max(old_b[1], new_b[1]),
-            min(old_b[2], new_b[2]), max(old_b[3], new_b[3]),
-            min(old_b[4], new_b[4]), max(old_b[5], new_b[5]),
+            min(old_b[0], new_b[0]),
+            max(old_b[1], new_b[1]),
+            min(old_b[2], new_b[2]),
+            max(old_b[3], new_b[3]),
+            min(old_b[4], new_b[4]),
+            max(old_b[5], new_b[5]),
         )
         return new_scene, union_bounds
 
@@ -101,6 +108,7 @@ class ReplaceMeshEdit(GeometricEdit):
 @dataclass
 class MoveMeshEdit(GeometricEdit):
     """Incremental edit translating all vertices of a TriangleMesh in 3D."""
+
     mesh_id: str
     shift_x: float
     shift_y: float
@@ -130,15 +138,18 @@ class MoveMeshEdit(GeometricEdit):
             triangles=old_mesh.triangles.copy(),
             material_id=old_mesh.material_id,
             enabled=old_mesh.enabled,
-            metadata=dict(old_mesh.metadata)
+            metadata=dict(old_mesh.metadata),
         )
         new_scene.meshes[self.mesh_id] = moved_mesh
         new_b = moved_mesh.bounds_3d
 
         union_bounds = (
-            min(old_b[0], new_b[0]), max(old_b[1], new_b[1]),
-            min(old_b[2], new_b[2]), max(old_b[3], new_b[3]),
-            min(old_b[4], new_b[4]), max(old_b[5], new_b[5]),
+            min(old_b[0], new_b[0]),
+            max(old_b[1], new_b[1]),
+            min(old_b[2], new_b[2]),
+            max(old_b[3], new_b[3]),
+            min(old_b[4], new_b[4]),
+            max(old_b[5], new_b[5]),
         )
         return new_scene, union_bounds
 
@@ -146,6 +157,7 @@ class MoveMeshEdit(GeometricEdit):
 @dataclass
 class ChangeMeshHeightEdit(GeometricEdit):
     """Incremental edit scaling the vertical height of a TriangleMesh."""
+
     mesh_id: str
     new_height: float
 
@@ -172,14 +184,17 @@ class ChangeMeshHeightEdit(GeometricEdit):
             triangles=old_mesh.triangles.copy(),
             material_id=old_mesh.material_id,
             enabled=old_mesh.enabled,
-            metadata=dict(old_mesh.metadata)
+            metadata=dict(old_mesh.metadata),
         )
         new_scene.meshes[self.mesh_id] = scaled_mesh
         new_b = scaled_mesh.bounds_3d
 
         diff_bounds = (
-            min(old_b[0], new_b[0]), max(old_b[1], new_b[1]),
-            min(old_b[2], new_b[2]), max(old_b[3], new_b[3]),
-            min(old_b[4], new_b[4]), max(old_b[5], new_b[5]),
+            min(old_b[0], new_b[0]),
+            max(old_b[1], new_b[1]),
+            min(old_b[2], new_b[2]),
+            max(old_b[3], new_b[3]),
+            min(old_b[4], new_b[4]),
+            max(old_b[5], new_b[5]),
         )
         return new_scene, diff_bounds

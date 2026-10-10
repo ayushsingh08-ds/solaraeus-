@@ -26,11 +26,15 @@ def test_stage_14_test_suite_status():
     assert report["total_tests"] == 9
     assert report["tests_passed"] == 9
     assert report["tests_failed"] == 0
-    assert report["success_token"] == "STAGE_14_BASELINE_SEARCH_AND_CONSTRAINED_AI_OPTIMIZER_COMPLETE"
+    assert (
+        report["success_token"] == "STAGE_14_BASELINE_SEARCH_AND_CONSTRAINED_AI_OPTIMIZER_COMPLETE"
+    )
 
 
 def test_stage_14_certificate_soundness():
-    cert_summary = json.loads((RESULTS_DIR / "optimizer_certificate_summary.json").read_text(encoding="utf-8"))
+    cert_summary = json.loads(
+        (RESULTS_DIR / "optimizer_certificate_summary.json").read_text(encoding="utf-8")
+    )
     assert cert_summary["feasible_simulations_count"] > 0
     assert cert_summary["all_certified"] is True
     assert cert_summary["violation_count"] == 0
@@ -38,7 +42,12 @@ def test_stage_14_certificate_soundness():
 
 
 def test_stage_14_constraint_enforcement():
-    constraint_report = json.loads((RESULTS_DIR / "optimizer_constraint_report.json").read_text(encoding="utf-8"))
+    constraint_report = json.loads(
+        (RESULTS_DIR / "optimizer_constraint_report.json").read_text(encoding="utf-8")
+    )
     assert constraint_report["feasible_count"] > 0
     assert constraint_report["infeasible_count"] > 0
-    assert "OUT_OF_BOUNDS" in constraint_report["rejection_reasons_breakdown"] or "BUILDING_COLLISION" in constraint_report["rejection_reasons_breakdown"]
+    assert (
+        "OUT_OF_BOUNDS" in constraint_report["rejection_reasons_breakdown"]
+        or "BUILDING_COLLISION" in constraint_report["rejection_reasons_breakdown"]
+    )

@@ -61,14 +61,19 @@ from urban_comfort.solar.solar_position import calculate_solar_position
 @dataclass
 class TwoPanelOptimizerConfig:
     """Configuration for two-panel surrogate-assisted optimization search."""
+
     seed: int = 42
-    num_iterations: int = 3              # Number of surrogate propose-eval-retrain iterations
-    batch_size: int = 5                  # Number of candidates proposed per iteration
-    seed_budget: int = 10                # Number of initial physical seed candidates
-    bounds: TwoPanelBounds = field(default_factory=TwoPanelBounds.get_canonical_church_street_bounds)
+    num_iterations: int = 3  # Number of surrogate propose-eval-retrain iterations
+    batch_size: int = 5  # Number of candidates proposed per iteration
+    seed_budget: int = 10  # Number of initial physical seed candidates
+    bounds: TwoPanelBounds = field(
+        default_factory=TwoPanelBounds.get_canonical_church_street_bounds
+    )
     surrogate_config: TwoPanelSurrogateConfig = field(default_factory=TwoPanelSurrogateConfig)
     acquisition_config: TwoPanelAcquisitionConfig = field(default_factory=TwoPanelAcquisitionConfig)
-    objective_config: TwoPanelComfortObjectiveConfig = field(default_factory=TwoPanelComfortObjectiveConfig)
+    objective_config: TwoPanelComfortObjectiveConfig = field(
+        default_factory=TwoPanelComfortObjectiveConfig
+    )
     fallback_to_cpu: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
@@ -136,7 +141,9 @@ class TwoPanelOptimizationEngine:
         # Solar position calculation for exact shadow masks
         dt_str = f"{self.sim_config.date} {self.sim_config.local_time}"
         dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-        self.solar_pos = calculate_solar_position(self.sim_config.latitude, self.sim_config.longitude, dt_utc)
+        self.solar_pos = calculate_solar_position(
+            self.sim_config.latitude, self.sim_config.longitude, dt_utc
+        )
 
         # GPU Incremental solver
         if gpu_engine is not None:
@@ -198,7 +205,9 @@ class TwoPanelOptimizationEngine:
                 rejection_details=feas_res.details,
                 objective_value=float("inf"),
                 metrics=None,
-                surrogate_predicted_objective=surrogate_pred.objective_mean if surrogate_pred else None,
+                surrogate_predicted_objective=surrogate_pred.objective_mean
+                if surrogate_pred
+                else None,
                 surrogate_uncertainty=surrogate_pred.objective_std if surrogate_pred else None,
                 acquisition_strategy=acquisition_strategy,
                 wall_time_s=0.0,
@@ -219,8 +228,20 @@ class TwoPanelOptimizationEngine:
         m1.material_id = mat1_id
         m2.material_id = mat2_id
 
-        mat1 = Material(id=mat1_id, albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-        mat2 = Material(id=mat2_id, albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+        mat1 = Material(
+            id=mat1_id,
+            albedo=float(params_canon.albedo1),
+            emissivity=0.90,
+            surface_temperature=308.15,
+            is_opaque=True,
+        )
+        mat2 = Material(
+            id=mat2_id,
+            albedo=float(params_canon.albedo2),
+            emissivity=0.90,
+            surface_temperature=308.15,
+            is_opaque=True,
+        )
 
         edit = AddMultiMeshEdit([m1, m2])
         updated_scene, edit_bounds = edit.apply(self.baseline_scene)
@@ -232,12 +253,22 @@ class TwoPanelOptimizationEngine:
         updated_scene.materials = updated_materials
 
         # 3. Calculate Exact Union and Overlap of Shadow Footprints
-        b1_3d = (float(np.min(m1.vertices[:, 0])), float(np.max(m1.vertices[:, 0])),
-                 float(np.min(m1.vertices[:, 1])), float(np.max(m1.vertices[:, 1])),
-                 float(np.min(m1.vertices[:, 2])), float(np.max(m1.vertices[:, 2])))
-        b2_3d = (float(np.min(m2.vertices[:, 0])), float(np.max(m2.vertices[:, 0])),
-                 float(np.min(m2.vertices[:, 1])), float(np.max(m2.vertices[:, 1])),
-                 float(np.min(m2.vertices[:, 2])), float(np.max(m2.vertices[:, 2])))
+        b1_3d = (
+            float(np.min(m1.vertices[:, 0])),
+            float(np.max(m1.vertices[:, 0])),
+            float(np.min(m1.vertices[:, 1])),
+            float(np.max(m1.vertices[:, 1])),
+            float(np.min(m1.vertices[:, 2])),
+            float(np.max(m1.vertices[:, 2])),
+        )
+        b2_3d = (
+            float(np.min(m2.vertices[:, 0])),
+            float(np.max(m2.vertices[:, 0])),
+            float(np.min(m2.vertices[:, 1])),
+            float(np.max(m2.vertices[:, 1])),
+            float(np.min(m2.vertices[:, 2])),
+            float(np.max(m2.vertices[:, 2])),
+        )
 
         mask1 = compute_exact_dirty_shadow_mask(self.grid, b1_3d, self.solar_pos)
         mask2 = compute_exact_dirty_shadow_mask(self.grid, b2_3d, self.solar_pos)
@@ -286,7 +317,11 @@ class TwoPanelOptimizationEngine:
         affected_rays = union_cells * rays_per_cell
 
         # Certificate status
-        max_bound = float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0
+        max_bound = (
+            float(np.max(cert.predicted_error_bound))
+            if hasattr(cert, "predicted_error_bound")
+            else 0.0
+        )
         n_violations = getattr(cert, "n_violations", 0)
 
         record = TwoPanelCandidateRecord(
@@ -372,7 +407,9 @@ class TwoPanelOptimizationEngine:
         # Phase 2: Iterative Surrogate Propose - Evaluate - Retrain Loop
         for it in range(self.config.num_iterations):
             # Retrain surrogate on all physically evaluated two-panel records
-            feasible_evaluated = [r for r in self.ledger.records if r.is_feasible and r.metrics is not None]
+            feasible_evaluated = [
+                r for r in self.ledger.records if r.is_feasible and r.metrics is not None
+            ]
             if len(feasible_evaluated) >= 3 and SKLEARN_AVAILABLE:
                 try:
                     self.surrogate.fit(self.ledger.records)
@@ -405,7 +442,9 @@ class TwoPanelOptimizationEngine:
                     self.ledger.add(r_rec)
             else:
                 # Fallback if surrogate not yet fitted
-                random_cands = self.config.bounds.sample_uniform(self.rng, n_samples=self.config.batch_size)
+                random_cands = self.config.bounds.sample_uniform(
+                    self.rng, n_samples=self.config.batch_size
+                )
                 batch = [(c, "random_exploration", None) for c in random_cands]
 
             # Evaluate each batch proposal via GPU incremental engine

@@ -11,6 +11,7 @@ from typing import Tuple
 @dataclass(frozen=True)
 class BoundingBox2D:
     """Axis-aligned 2D footprint bounding box in world space (meters)."""
+
     xmin: float
     xmax: float
     ymin: float
@@ -39,10 +40,10 @@ class BoundingBox2D:
 
     def intersects(self, other: BoundingBox2D) -> bool:
         return not (
-            self.xmax < other.xmin or
-            self.xmin > other.xmax or
-            self.ymax < other.ymin or
-            self.ymin > other.ymax
+            self.xmax < other.xmin
+            or self.xmin > other.xmax
+            or self.ymax < other.ymin
+            or self.ymin > other.ymax
         )
 
 
@@ -51,6 +52,7 @@ class Building:
     """
     Opaque 3D building represented as an extruded axis-aligned prism.
     """
+
     id: str
     footprint: BoundingBox2D
     height: float

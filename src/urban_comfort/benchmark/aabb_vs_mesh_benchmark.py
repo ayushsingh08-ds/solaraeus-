@@ -45,44 +45,62 @@ def get_canonical_benchmark_scenes() -> List[BenchmarkSceneDef]:
     scenes: List[BenchmarkSceneDef] = []
 
     # Scene 1: Isolated Building
-    scenes.append(BenchmarkSceneDef(
-        scene_id="isolated_building",
-        display_name="Isolated Building",
-        description="Single central high-rise block (20m x 20m, height 25m)",
-        domain_x_m=60.0,
-        domain_y_m=60.0,
-        buildings=[
-            Building(id="b_iso", footprint=BoundingBox2D(20.0, 40.0, 20.0, 40.0), height=25.0)
-        ]
-    ))
+    scenes.append(
+        BenchmarkSceneDef(
+            scene_id="isolated_building",
+            display_name="Isolated Building",
+            description="Single central high-rise block (20m x 20m, height 25m)",
+            domain_x_m=60.0,
+            domain_y_m=60.0,
+            buildings=[
+                Building(id="b_iso", footprint=BoundingBox2D(20.0, 40.0, 20.0, 40.0), height=25.0)
+            ],
+        )
+    )
 
     # Scene 2: Urban Canyon
-    scenes.append(BenchmarkSceneDef(
-        scene_id="urban_canyon",
-        display_name="Urban Canyon",
-        description="Two parallel slabs (40m x 15m, height 20m) separated by 20m street canyon",
-        domain_x_m=80.0,
-        domain_y_m=80.0,
-        buildings=[
-            Building(id="b_canyon_w", footprint=BoundingBox2D(15.0, 30.0, 15.0, 65.0), height=20.0),
-            Building(id="b_canyon_e", footprint=BoundingBox2D(50.0, 65.0, 15.0, 65.0), height=20.0),
-        ]
-    ))
+    scenes.append(
+        BenchmarkSceneDef(
+            scene_id="urban_canyon",
+            display_name="Urban Canyon",
+            description="Two parallel slabs (40m x 15m, height 20m) separated by 20m street canyon",
+            domain_x_m=80.0,
+            domain_y_m=80.0,
+            buildings=[
+                Building(
+                    id="b_canyon_w", footprint=BoundingBox2D(15.0, 30.0, 15.0, 65.0), height=20.0
+                ),
+                Building(
+                    id="b_canyon_e", footprint=BoundingBox2D(50.0, 65.0, 15.0, 65.0), height=20.0
+                ),
+            ],
+        )
+    )
 
     # Scene 3: Enclosed Courtyard
-    scenes.append(BenchmarkSceneDef(
-        scene_id="enclosed_courtyard",
-        display_name="Enclosed Courtyard",
-        description="Four perimeter blocks (height 18m) enclosing a 20m x 20m courtyard",
-        domain_x_m=80.0,
-        domain_y_m=80.0,
-        buildings=[
-            Building(id="b_court_s", footprint=BoundingBox2D(15.0, 65.0, 15.0, 30.0), height=18.0),
-            Building(id="b_court_n", footprint=BoundingBox2D(15.0, 65.0, 50.0, 65.0), height=18.0),
-            Building(id="b_court_w", footprint=BoundingBox2D(15.0, 30.0, 30.0, 50.0), height=18.0),
-            Building(id="b_court_e", footprint=BoundingBox2D(50.0, 65.0, 30.0, 50.0), height=18.0),
-        ]
-    ))
+    scenes.append(
+        BenchmarkSceneDef(
+            scene_id="enclosed_courtyard",
+            display_name="Enclosed Courtyard",
+            description="Four perimeter blocks (height 18m) enclosing a 20m x 20m courtyard",
+            domain_x_m=80.0,
+            domain_y_m=80.0,
+            buildings=[
+                Building(
+                    id="b_court_s", footprint=BoundingBox2D(15.0, 65.0, 15.0, 30.0), height=18.0
+                ),
+                Building(
+                    id="b_court_n", footprint=BoundingBox2D(15.0, 65.0, 50.0, 65.0), height=18.0
+                ),
+                Building(
+                    id="b_court_w", footprint=BoundingBox2D(15.0, 30.0, 30.0, 50.0), height=18.0
+                ),
+                Building(
+                    id="b_court_e", footprint=BoundingBox2D(50.0, 65.0, 30.0, 50.0), height=18.0
+                ),
+            ],
+        )
+    )
 
     # Scene 4: Dense 3x3 Grid
     b_grid: List[Building] = []
@@ -93,23 +111,27 @@ def get_canonical_benchmark_scenes() -> List[BenchmarkSceneDef]:
             y1 = 8.0 + iy * 24.0
             y2 = y1 + 16.0
             h = 15.0 + ((ix + 2 * iy) % 4) * 3.0
-            b_grid.append(Building(id=f"b_{ix}_{iy}", footprint=BoundingBox2D(x1, x2, y1, y2), height=h))
+            b_grid.append(
+                Building(id=f"b_{ix}_{iy}", footprint=BoundingBox2D(x1, x2, y1, y2), height=h)
+            )
 
-    scenes.append(BenchmarkSceneDef(
-        scene_id="dense_3x3_grid",
-        display_name="Dense 3x3 Grid",
-        description="Nine urban blocks (16m x 16m, height 15-24m) in a 3x3 regular grid",
-        domain_x_m=80.0,
-        domain_y_m=80.0,
-        buildings=b_grid
-    ))
+    scenes.append(
+        BenchmarkSceneDef(
+            scene_id="dense_3x3_grid",
+            display_name="Dense 3x3 Grid",
+            description="Nine urban blocks (16m x 16m, height 15-24m) in a 3x3 regular grid",
+            domain_x_m=80.0,
+            domain_y_m=80.0,
+            buildings=b_grid,
+        )
+    )
 
     return scenes
 
 
-def build_scene_pair(scene_def: BenchmarkSceneDef,
-                     resolution_m: float = 1.0,
-                     pedestrian_height_m: float = 1.1) -> Tuple[Scene, Scene]:
+def build_scene_pair(
+    scene_def: BenchmarkSceneDef, resolution_m: float = 1.0, pedestrian_height_m: float = 1.1
+) -> Tuple[Scene, Scene]:
     """
     Constructs an AABB scene and an equivalent pure-mesh scene from the benchmark scene definition.
     """
@@ -117,7 +139,7 @@ def build_scene_pair(scene_def: BenchmarkSceneDef,
         extent_x=scene_def.domain_x_m,
         extent_y=scene_def.domain_y_m,
         resolution=resolution_m,
-        pedestrian_height=pedestrian_height_m
+        pedestrian_height=pedestrian_height_m,
     )
 
     scene_aabb = Scene(pedestrian_grid=grid_cfg)
@@ -133,21 +155,23 @@ def build_scene_pair(scene_def: BenchmarkSceneDef,
             ymax=b.footprint.ymax,
             zmin=0.0,
             zmax=b.height,
-            material_id=b.material_id
+            material_id=b.material_id,
         )
         scene_mesh.add_mesh(mesh_b)
 
     return scene_aabb, scene_mesh
 
 
-def run_single_comparison(scene_def: BenchmarkSceneDef,
-                          weather: Weather,
-                          config: SimulationConfig) -> Dict[str, Any]:
+def run_single_comparison(
+    scene_def: BenchmarkSceneDef, weather: Weather, config: SimulationConfig
+) -> Dict[str, Any]:
     """
     Executes full recomputation for both AABB and mesh representations of a scene,
     and returns comprehensive comparative metrics.
     """
-    scene_aabb, scene_mesh = build_scene_pair(scene_def, config.grid_resolution, config.pedestrian_height)
+    scene_aabb, scene_mesh = build_scene_pair(
+        scene_def, config.grid_resolution, config.pedestrian_height
+    )
 
     # 1. Full recompute AABB
     t0 = time.perf_counter()
@@ -214,10 +238,15 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
     if output_dir is None:
         # Default to latest mesh validation directory or create one
         base_results = "results"
-        mesh_dirs = [
-            os.path.join(base_results, d) for d in os.listdir(base_results)
-            if d.startswith("mesh_validation_") and os.path.isdir(os.path.join(base_results, d))
-        ] if os.path.exists(base_results) else []
+        mesh_dirs = (
+            [
+                os.path.join(base_results, d)
+                for d in os.listdir(base_results)
+                if d.startswith("mesh_validation_") and os.path.isdir(os.path.join(base_results, d))
+            ]
+            if os.path.exists(base_results)
+            else []
+        )
 
         if mesh_dirs:
             output_dir = sorted(mesh_dirs)[-1]
@@ -237,7 +266,7 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
         tmrt_tolerance=0.5,
         numerical_tolerance=0.05,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=100.0
+        max_svf_search_dist_m=100.0,
     )
 
     weather = Weather(
@@ -246,7 +275,7 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
         wind_speed=1.5,
         wind_direction=180.0,
         direct_normal_irradiance=850.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
 
     scenes = get_canonical_benchmark_scenes()
@@ -278,10 +307,14 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
         "max_svf_mae": float(np.max([r["svf_mae"] for r in comparison_rows])),
         "mean_tmrt_mae_k": float(np.mean([r["tmrt_mae_k"] for r in comparison_rows])),
         "max_tmrt_mae_k": float(np.max([r["tmrt_mae_k"] for r in comparison_rows])),
-        "mean_utci_agreement": float(np.mean([r["utci_category_agreement"] for r in comparison_rows])),
-        "min_utci_agreement": float(np.min([r["utci_category_agreement"] for r in comparison_rows])),
+        "mean_utci_agreement": float(
+            np.mean([r["utci_category_agreement"] for r in comparison_rows])
+        ),
+        "min_utci_agreement": float(
+            np.min([r["utci_category_agreement"] for r in comparison_rows])
+        ),
         "mean_overhead_ratio": float(np.mean([r["overhead_ratio"] for r in comparison_rows])),
-        "results": comparison_rows
+        "results": comparison_rows,
     }
 
     json_path = os.path.join(output_dir, "aabb_vs_mesh_summary.json")
@@ -295,6 +328,8 @@ if __name__ == "__main__":
     summary = run_aabb_vs_mesh_benchmark()
     print(f"Benchmark completed successfully! Results written to: {summary['output_directory']}")
     for r in summary["results"]:
-        print(f"  {r['display_name']}: IoU={r['shadow_iou']:.6f}, SVF MAE={r['svf_mae']:.6f}, "
-              f"Tmrt MAE={r['tmrt_mae_k']:.6f}K, UTCI={r['utci_category_agreement']*100:.2f}%, "
-              f"Overhead={r['overhead_ratio']:.2f}x")
+        print(
+            f"  {r['display_name']}: IoU={r['shadow_iou']:.6f}, SVF MAE={r['svf_mae']:.6f}, "
+            f"Tmrt MAE={r['tmrt_mae_k']:.6f}K, UTCI={r['utci_category_agreement'] * 100:.2f}%, "
+            f"Overhead={r['overhead_ratio']:.2f}x"
+        )

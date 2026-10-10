@@ -22,18 +22,19 @@ class TerrainGrid:
       - Y corresponds to Northing (metres)
       - Z corresponds to Elevation above datum (metres)
     """
-    elevation: np.ndarray                      # 2D array [ny, nx] in float64
-    bounds: BoundingBox2D                      # Spatial extents [xmin, xmax, ymin, ymax]
-    crs: str = "EPSG:32643"                    # Coordinate Reference System
-    vertical_datum: str = "MSL"                # Vertical datum (Orthometric)
-    nodata_value: float = -9999.0              # Explicit NoData sentinel
-    nodata_mask: Optional[np.ndarray] = None   # Boolean mask [ny, nx] where True = NoData / Invalid
+
+    elevation: np.ndarray  # 2D array [ny, nx] in float64
+    bounds: BoundingBox2D  # Spatial extents [xmin, xmax, ymin, ymax]
+    crs: str = "EPSG:32643"  # Coordinate Reference System
+    vertical_datum: str = "MSL"  # Vertical datum (Orthometric)
+    nodata_value: float = -9999.0  # Explicit NoData sentinel
+    nodata_mask: Optional[np.ndarray] = None  # Boolean mask [ny, nx] where True = NoData / Invalid
 
     def __post_init__(self):
         self.elevation = np.asarray(self.elevation, dtype=np.float64)
         if self.elevation.ndim != 2:
             raise ValueError(f"Elevation array must be 2D, got shape {self.elevation.shape}")
-        
+
         # Build nodata mask
         is_nodata_val = np.isclose(self.elevation, self.nodata_value)
         is_nan = np.isnan(self.elevation)
@@ -48,16 +49,29 @@ class TerrainGrid:
         self.dy = (self.bounds.ymax - self.bounds.ymin) / max(1, self.ny - 1)
 
     @classmethod
-    def create_flat(cls, bounds: BoundingBox2D, elevation_val: float = 0.0,
-                    nx: int = 100, ny: int = 100, crs: str = "EPSG:32643") -> "TerrainGrid":
+    def create_flat(
+        cls,
+        bounds: BoundingBox2D,
+        elevation_val: float = 0.0,
+        nx: int = 100,
+        ny: int = 100,
+        crs: str = "EPSG:32643",
+    ) -> "TerrainGrid":
         """Creates a perfectly flat planar terrain."""
         elev = np.full((ny, nx), elevation_val, dtype=np.float64)
         return cls(elevation=elev, bounds=bounds, crs=crs)
 
     @classmethod
-    def create_inclined(cls, bounds: BoundingBox2D, base_elevation: float = 0.0,
-                        slope_x: float = 0.03, slope_y: float = 0.0,
-                        nx: int = 100, ny: int = 100, crs: str = "EPSG:32643") -> "TerrainGrid":
+    def create_inclined(
+        cls,
+        bounds: BoundingBox2D,
+        base_elevation: float = 0.0,
+        slope_x: float = 0.03,
+        slope_y: float = 0.0,
+        nx: int = 100,
+        ny: int = 100,
+        crs: str = "EPSG:32643",
+    ) -> "TerrainGrid":
         """Creates a planar inclined slope: z(x, y) = base_elev + slope_x*(x - xmin) + slope_y*(y - ymin)."""
         x = np.linspace(bounds.xmin, bounds.xmax, nx)
         y = np.linspace(bounds.ymin, bounds.ymax, ny)
@@ -66,8 +80,15 @@ class TerrainGrid:
         return cls(elevation=elev, bounds=bounds, crs=crs)
 
     @classmethod
-    def create_stepped(cls, bounds: BoundingBox2D, step_x: float, step_height_m: float = 0.15,
-                       nx: int = 100, ny: int = 100, crs: str = "EPSG:32643") -> "TerrainGrid":
+    def create_stepped(
+        cls,
+        bounds: BoundingBox2D,
+        step_x: float,
+        step_height_m: float = 0.15,
+        nx: int = 100,
+        ny: int = 100,
+        crs: str = "EPSG:32643",
+    ) -> "TerrainGrid":
         """Creates a stepped terrace representing a curb or plinth."""
         x = np.linspace(bounds.xmin, bounds.xmax, nx)
         y = np.linspace(bounds.ymin, bounds.ymax, ny)
@@ -76,14 +97,25 @@ class TerrainGrid:
         return cls(elevation=elev, bounds=bounds, crs=crs)
 
     @classmethod
-    def create_with_nodata(cls, bounds: BoundingBox2D, hole_bounds: BoundingBox2D,
-                           nx: int = 100, ny: int = 100, crs: str = "EPSG:32643") -> "TerrainGrid":
+    def create_with_nodata(
+        cls,
+        bounds: BoundingBox2D,
+        hole_bounds: BoundingBox2D,
+        nx: int = 100,
+        ny: int = 100,
+        crs: str = "EPSG:32643",
+    ) -> "TerrainGrid":
         """Creates a flat terrain with an internal NoData hole for robust boundary testing."""
         grid = cls.create_flat(bounds, elevation_val=10.0, nx=nx, ny=ny, crs=crs)
         x = np.linspace(bounds.xmin, bounds.xmax, nx)
         y = np.linspace(bounds.ymin, bounds.ymax, ny)
         X, Y = np.meshgrid(x, y)
-        in_hole = (X >= hole_bounds.xmin) & (X <= hole_bounds.xmax) & (Y >= hole_bounds.ymin) & (Y <= hole_bounds.ymax)
+        in_hole = (
+            (X >= hole_bounds.xmin)
+            & (X <= hole_bounds.xmax)
+            & (Y >= hole_bounds.ymin)
+            & (Y <= hole_bounds.ymax)
+        )
         grid.elevation[in_hole] = grid.nodata_value
         grid.nodata_mask[in_hole] = True
         return grid
@@ -99,8 +131,10 @@ class TerrainGrid:
         y_arr = np.asarray(y, dtype=np.float64)
 
         in_bounds = (
-            (x_arr >= self.bounds.xmin) & (x_arr <= self.bounds.xmax) &
-            (y_arr >= self.bounds.ymin) & (y_arr <= self.bounds.ymax)
+            (x_arr >= self.bounds.xmin)
+            & (x_arr <= self.bounds.xmax)
+            & (y_arr >= self.bounds.ymin)
+            & (y_arr <= self.bounds.ymax)
         )
 
         # Normalized coordinates [0, nx-1] and [0, ny-1]
@@ -127,10 +161,10 @@ class TerrainGrid:
         any_nodata = m00 | m10 | m01 | m11
 
         z_interp = (
-            (1.0 - wx) * (1.0 - wy) * z00 +
-            wx * (1.0 - wy) * z10 +
-            (1.0 - wx) * wy * z01 +
-            wx * wy * z11
+            (1.0 - wx) * (1.0 - wy) * z00
+            + wx * (1.0 - wy) * z10
+            + (1.0 - wx) * wy * z01
+            + wx * wy * z11
         )
 
         valid_mask = in_bounds & (~any_nodata)
@@ -143,7 +177,7 @@ class TerrainGrid:
         """
         dz_dx = np.gradient(self.elevation, self.dx, axis=1)
         dz_dy = np.gradient(self.elevation, self.dy, axis=0)
-        
+
         # Upward surface normal (-dz/dx, -dz/dy, 1.0) normalized
         nx = -dz_dx
         ny = -dz_dy

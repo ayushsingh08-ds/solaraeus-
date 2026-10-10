@@ -12,8 +12,12 @@ SCENE_DIR = ROOT / "results/final_3d_integrated_simulation/scene"
 
 def test_scene_glb_exports_exist():
     expected_glbs = [
-        "buildings.glb", "terrain.glb", "trees_provisional.glb",
-        "interventions.glb", "map_context.glb", "solaraeus_integrated_scene.glb"
+        "buildings.glb",
+        "terrain.glb",
+        "trees_provisional.glb",
+        "interventions.glb",
+        "map_context.glb",
+        "solaraeus_integrated_scene.glb",
     ]
     for name in expected_glbs:
         p = SCENE_DIR / name

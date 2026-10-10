@@ -34,12 +34,12 @@ from urban_comfort.reference.full_recompute import full_recompute
 @pytest.fixture
 def base_weather() -> Weather:
     return Weather(
-        air_temperature=301.15,          # 28 C
+        air_temperature=301.15,  # 28 C
         relative_humidity=50.0,
         wind_speed=2.0,
         wind_direction=180.0,
         direct_normal_irradiance=800.0,
-        diffuse_horizontal_irradiance=160.0
+        diffuse_horizontal_irradiance=160.0,
     )
 
 
@@ -53,7 +53,7 @@ def default_config() -> SimulationConfig:
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance=0.5,
     )
 
 
@@ -193,7 +193,7 @@ def test_adversarial_case5_low_sun_angle(base_weather):
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance=0.5,
     )
 
     scene_before = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=70.0, extent_y=70.0))
@@ -233,11 +233,13 @@ def test_adversarial_case6_diffuse_perturbation_outside_shadow(base_weather, def
 
     # Use tolerance = 1.0 K so subtle diffuse changes far away are safely certified
     config = SimulationConfig(
-        latitude=default_config.latitude, longitude=default_config.longitude,
-        date=default_config.date, local_time=default_config.local_time,
+        latitude=default_config.latitude,
+        longitude=default_config.longitude,
+        date=default_config.date,
+        local_time=default_config.local_time,
         sky_patch_configuration=default_config.sky_patch_configuration,
         max_svf_search_dist_m=default_config.max_svf_search_dist_m,
-        tmrt_tolerance=1.0
+        tmrt_tolerance=1.0,
     )
 
     inc_res, cert = incremental_update_certified(
@@ -251,7 +253,7 @@ def test_adversarial_case6_diffuse_perturbation_outside_shadow(base_weather, def
 
     # Specifically check cells that are reused (outside dirty region):
     # Error must be non-negative, bounded by B_T(x) and <= tolerance
-    reused_mask = (cert.predicted_error_bound <= cert.tolerance)
+    reused_mask = cert.predicted_error_bound <= cert.tolerance
     actual_err = np.abs(inc_res.result.tmrt[reused_mask] - full_res.tmrt[reused_mask])
     bounds = cert.predicted_error_bound[reused_mask]
 

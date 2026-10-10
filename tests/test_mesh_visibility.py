@@ -78,8 +78,14 @@ def test_pitched_roof_vs_flat_svf(svf_grid):
     eave_h = 10.0
     ridge_h = 20.0
     pitched_mesh = create_pitched_roof_mesh(
-        "pitched", 20.0, 40.0, 20.0, 40.0,
-        eave_height=eave_h, ridge_height=ridge_h, ridge_orientation="x"
+        "pitched",
+        20.0,
+        40.0,
+        20.0,
+        40.0,
+        eave_height=eave_h,
+        ridge_height=ridge_h,
+        ridge_orientation="x",
     )
     scene_pitch = Scene(pedestrian_grid=grid.config)
     scene_pitch.add_mesh(pitched_mesh)
@@ -115,9 +121,13 @@ def test_rotated_box_svf_symmetry(svf_grid):
 
     # Square building 16x16 at center (30, 30), rotated 45 degrees
     mesh = create_rotated_box_mesh(
-        "rot_box", center_x=30.0, center_y=30.0,
-        width_x=16.0, width_y=16.0, height=20.0,
-        angle_deg=45.0
+        "rot_box",
+        center_x=30.0,
+        center_y=30.0,
+        width_x=16.0,
+        width_y=16.0,
+        height=20.0,
+        angle_deg=45.0,
     )
     scene = Scene(pedestrian_grid=grid.config)
     scene.add_mesh(mesh)
@@ -142,11 +152,15 @@ def test_overhang_building_svf(svf_grid):
 
     # Main core [25, 35] x [20, 30] with overhang extending to y=40m
     mesh = create_overhang_mesh(
-        "overhang", xmin=25.0, xmax=35.0,
-        ymin=20.0, ymax=30.0,
-        base_height=16.0, overhang_depth=10.0,
+        "overhang",
+        xmin=25.0,
+        xmax=35.0,
+        ymin=20.0,
+        ymax=30.0,
+        base_height=16.0,
+        overhang_depth=10.0,
         overhang_direction="north",
-        overhang_thickness=4.0
+        overhang_thickness=4.0,
     )
     scene = Scene(pedestrian_grid=grid.config)
     scene.add_mesh(mesh)
@@ -172,7 +186,9 @@ def test_mesh_svf_selective_roi(svf_grid):
     roi = np.zeros(grid.shape, dtype=bool)
     roi[15:25, 15:25] = True
 
-    roi_svf = compute_sky_view_factor(scene, grid, num_azimuths=16, max_search_dist_m=30.0, roi_mask=roi)
+    roi_svf = compute_sky_view_factor(
+        scene, grid, num_azimuths=16, max_search_dist_m=30.0, roi_mask=roi
+    )
 
     # Inside ROI, roi_svf must identically match full_svf
     assert np.array_equal(roi_svf[roi], full_svf[roi])

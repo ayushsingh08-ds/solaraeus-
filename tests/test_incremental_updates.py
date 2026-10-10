@@ -28,7 +28,7 @@ def test_env():
         wind_speed=2.0,
         wind_direction=180.0,
         direct_normal_irradiance=800.0,
-        diffuse_horizontal_irradiance=160.0
+        diffuse_horizontal_irradiance=160.0,
     )
     config = SimulationConfig(
         latitude=40.7128,
@@ -37,7 +37,7 @@ def test_env():
         local_time="12:00:00",
         grid_resolution=1.0,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=20.0
+        max_svf_search_dist_m=20.0,
     )
     return weather, config
 
@@ -55,15 +55,16 @@ def test_exact_incremental_add_building(test_env):
 
     # 1. Incremental update
     inc_res = incremental_update_exact(
-        scene_before, scene_after, res_before, edit, weather, config,
-        max_svf_search_dist_m=20.0
+        scene_before, scene_after, res_before, edit, weather, config, max_svf_search_dist_m=20.0
     )
 
     # 2. Full recomputation
     full_res = full_recompute(scene_after, weather, config)
 
     # Check exact numerical equivalence (error <= 1e-10)
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(
+        inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10
+    )
 
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
@@ -85,12 +86,13 @@ def test_exact_incremental_remove_building(test_env):
 
     # Incremental update
     inc_res = incremental_update_exact(
-        scene_before, scene_after, res_before, edit, weather, config,
-        max_svf_search_dist_m=20.0
+        scene_before, scene_after, res_before, edit, weather, config, max_svf_search_dist_m=20.0
     )
     full_res = full_recompute(scene_after, weather, config)
 
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(
+        inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10
+    )
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
             f"RemoveBuilding exact incremental update failed on '{field_name}'! "
@@ -107,12 +109,13 @@ def test_exact_incremental_change_height(test_env):
     scene_after, _ = edit.apply(scene_before)
 
     inc_res = incremental_update_exact(
-        scene_before, scene_after, res_before, edit, weather, config,
-        max_svf_search_dist_m=20.0
+        scene_before, scene_after, res_before, edit, weather, config, max_svf_search_dist_m=20.0
     )
     full_res = full_recompute(scene_after, weather, config)
 
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(
+        inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10
+    )
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
             f"ChangeHeight exact incremental update failed on '{field_name}'! "
@@ -129,12 +132,13 @@ def test_exact_incremental_move_building(test_env):
     scene_after, _ = edit.apply(scene_before)
 
     inc_res = incremental_update_exact(
-        scene_before, scene_after, res_before, edit, weather, config,
-        max_svf_search_dist_m=20.0
+        scene_before, scene_after, res_before, edit, weather, config, max_svf_search_dist_m=20.0
     )
     full_res = full_recompute(scene_after, weather, config)
 
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(
+        inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10
+    )
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
             f"MoveBuilding exact incremental update failed on '{field_name}'! "

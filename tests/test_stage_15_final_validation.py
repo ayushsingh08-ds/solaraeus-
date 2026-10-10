@@ -30,7 +30,9 @@ def test_stage_15_test_suite_status():
 
 
 def test_stage_15_multi_path_parity():
-    parities = json.loads((RESULTS_DIR / "final_candidate_parity_report.json").read_text(encoding="utf-8"))
+    parities = json.loads(
+        (RESULTS_DIR / "final_candidate_parity_report.json").read_text(encoding="utf-8")
+    )
     assert len(parities) >= 3
     for p in parities:
         assert p["cpu_full_vs_gpu_full"]["pass"] is True
@@ -41,13 +43,17 @@ def test_stage_15_multi_path_parity():
 
 
 def test_stage_15_certificates_and_constraints():
-    certs = json.loads((RESULTS_DIR / "final_candidate_certificates.json").read_text(encoding="utf-8"))
+    certs = json.loads(
+        (RESULTS_DIR / "final_candidate_certificates.json").read_text(encoding="utf-8")
+    )
     for c in certs:
         assert c["is_certified"] is True
         assert c["violations_count"] == 0
         assert c["bound_valid"] is True
 
-    constraints = json.loads((RESULTS_DIR / "final_candidate_constraint_report.json").read_text(encoding="utf-8"))
+    constraints = json.loads(
+        (RESULTS_DIR / "final_candidate_constraint_report.json").read_text(encoding="utf-8")
+    )
     for c in constraints:
         assert c["is_feasible"] is True
         assert c["minimum_constraint_margin"] >= 0.0

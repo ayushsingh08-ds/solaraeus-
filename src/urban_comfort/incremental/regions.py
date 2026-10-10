@@ -21,11 +21,14 @@ import numpy as np
 @dataclass
 class AffectedRegionResult:
     """Candidate affected region output with fallback diagnostics."""
-    candidate_mask: np.ndarray             # (ny, nx) boolean mask: True where candidate region applies
-    candidate_bbox: Tuple[float, float, float, float] # (xmin, xmax, ymin, ymax) in world coordinates
-    is_fallback: bool                      # True if numerical instability forces full recomputation
-    fallback_reason: Optional[str]         # Descriptive reason when is_fallback is True
-    shadow_length_m: float                 # Estimated maximum shadow plume length (m)
-    safety_margin_m: float                 # Applied safety margin padding (m)
+
+    candidate_mask: np.ndarray  # (ny, nx) boolean mask: True where candidate region applies
+    candidate_bbox: Tuple[
+        float, float, float, float
+    ]  # (xmin, xmax, ymin, ymax) in world coordinates
+    is_fallback: bool  # True if numerical instability forces full recomputation
+    fallback_reason: Optional[str]  # Descriptive reason when is_fallback is True
+    shadow_length_m: float  # Estimated maximum shadow plume length (m)
+    safety_margin_m: float  # Applied safety margin padding (m)
     old_projection_bbox: Tuple[float, float, float, float]
     new_projection_bbox: Tuple[float, float, float, float]

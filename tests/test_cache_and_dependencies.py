@@ -29,7 +29,9 @@ from urban_comfort.reference.full_recompute import full_recompute
 def test_hash_determinism_and_sensitivity():
     scene1 = create_single_box_scene(extent_m=60.0, box_size=15.0, box_height=18.0)
     scene2 = create_single_box_scene(extent_m=60.0, box_size=15.0, box_height=18.0)
-    scene3 = create_single_box_scene(extent_m=60.0, box_size=15.0, box_height=22.0)  # Different height
+    scene3 = create_single_box_scene(
+        extent_m=60.0, box_size=15.0, box_height=22.0
+    )  # Different height
 
     hash1 = compute_scene_hash(scene1)
     hash2 = compute_scene_hash(scene2)

@@ -50,8 +50,15 @@ class MeshAuditScenario:
 def _scenario_01_rotated_box() -> Tuple[Scene, AddMeshEdit, PedestrianGridConfig]:
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
-    mesh = create_rotated_box_mesh("rot_box", center_x=45.0, center_y=50.0,
-                                   width_x=16.0, width_y=16.0, height=18.0, angle_deg=45.0)
+    mesh = create_rotated_box_mesh(
+        "rot_box",
+        center_x=45.0,
+        center_y=50.0,
+        width_x=16.0,
+        width_y=16.0,
+        height=18.0,
+        angle_deg=45.0,
+    )
     edit = AddMeshEdit(mesh)
     return scene, edit, grid_cfg
 
@@ -63,8 +70,16 @@ def _scenario_02_pitched_roof() -> Tuple[Scene, AddMeshEdit, PedestrianGridConfi
     b1 = create_box_mesh("b1", 20.0, 35.0, 20.0, 35.0, 0.0, 14.0)
     scene.add_mesh(b1)
     # Add pitched roof building
-    mesh = create_pitched_roof_mesh("pitched_bldg", xmin=60.0, xmax=80.0, ymin=40.0, ymax=60.0,
-                                    eave_height=10.0, ridge_height=20.0, ridge_orientation="x")
+    mesh = create_pitched_roof_mesh(
+        "pitched_bldg",
+        xmin=60.0,
+        xmax=80.0,
+        ymin=40.0,
+        ymax=60.0,
+        eave_height=10.0,
+        ridge_height=20.0,
+        ridge_orientation="x",
+    )
     edit = AddMeshEdit(mesh)
     return scene, edit, grid_cfg
 
@@ -72,19 +87,37 @@ def _scenario_02_pitched_roof() -> Tuple[Scene, AddMeshEdit, PedestrianGridConfi
 def _scenario_03_overhang_canopy() -> Tuple[Scene, AddMeshEdit, PedestrianGridConfig]:
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
-    mesh = create_overhang_mesh("oh_canopy", xmin=35.0, xmax=55.0, ymin=30.0, ymax=45.0,
-                                base_height=16.0, overhang_depth=12.0, overhang_direction="north")
+    mesh = create_overhang_mesh(
+        "oh_canopy",
+        xmin=35.0,
+        xmax=55.0,
+        ymin=30.0,
+        ymax=45.0,
+        base_height=16.0,
+        overhang_depth=12.0,
+        overhang_direction="north",
+    )
     edit = AddMeshEdit(mesh)
     return scene, edit, grid_cfg
 
 
-def _scenario_04_flat_to_pitched_replacement() -> Tuple[Scene, ReplaceMeshEdit, PedestrianGridConfig]:
+def _scenario_04_flat_to_pitched_replacement() -> Tuple[
+    Scene, ReplaceMeshEdit, PedestrianGridConfig
+]:
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
     flat_mesh = create_box_mesh("b_replace", 40.0, 60.0, 40.0, 60.0, 0.0, 12.0)
     scene.add_mesh(flat_mesh)
-    pitched_mesh = create_pitched_roof_mesh("b_replace", 40.0, 60.0, 40.0, 60.0,
-                                            eave_height=12.0, ridge_height=22.0, ridge_orientation="y")
+    pitched_mesh = create_pitched_roof_mesh(
+        "b_replace",
+        40.0,
+        60.0,
+        40.0,
+        60.0,
+        eave_height=12.0,
+        ridge_height=22.0,
+        ridge_orientation="y",
+    )
     edit = ReplaceMeshEdit("b_replace", pitched_mesh)
     return scene, edit, grid_cfg
 
@@ -92,18 +125,35 @@ def _scenario_04_flat_to_pitched_replacement() -> Tuple[Scene, ReplaceMeshEdit, 
 def _scenario_05_rotated_prism_translation() -> Tuple[Scene, MoveMeshEdit, PedestrianGridConfig]:
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
-    rot_mesh = create_rotated_box_mesh("rot_move", center_x=30.0, center_y=30.0,
-                                       width_x=12.0, width_y=12.0, height=14.0, angle_deg=30.0)
+    rot_mesh = create_rotated_box_mesh(
+        "rot_move",
+        center_x=30.0,
+        center_y=30.0,
+        width_x=12.0,
+        width_y=12.0,
+        height=14.0,
+        angle_deg=30.0,
+    )
     scene.add_mesh(rot_mesh)
     edit = MoveMeshEdit("rot_move", shift_x=20.0, shift_y=15.0)
     return scene, edit, grid_cfg
 
 
-def _scenario_06_pitched_roof_height_scaling() -> Tuple[Scene, ChangeMeshHeightEdit, PedestrianGridConfig]:
+def _scenario_06_pitched_roof_height_scaling() -> Tuple[
+    Scene, ChangeMeshHeightEdit, PedestrianGridConfig
+]:
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
-    mesh = create_pitched_roof_mesh("pitch_scale", xmin=40.0, xmax=60.0, ymin=40.0, ymax=60.0,
-                                    eave_height=8.0, ridge_height=15.0, ridge_orientation="x")
+    mesh = create_pitched_roof_mesh(
+        "pitch_scale",
+        xmin=40.0,
+        xmax=60.0,
+        ymin=40.0,
+        ymax=60.0,
+        eave_height=8.0,
+        ridge_height=15.0,
+        ridge_orientation="x",
+    )
     scene.add_mesh(mesh)
     edit = ChangeMeshHeightEdit("pitch_scale", new_height=25.0)
     return scene, edit, grid_cfg
@@ -112,10 +162,16 @@ def _scenario_06_pitched_roof_height_scaling() -> Tuple[Scene, ChangeMeshHeightE
 def _scenario_07_l_shaped_mesh() -> Tuple[Scene, AddMeshEdit, PedestrianGridConfig]:
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
-    l_mesh = create_l_shaped_mesh("l_mesh", xmin=30.0, ymin=30.0,
-                                  total_width=30.0, total_length=30.0,
-                                  wing_width=15.0, wing_length=15.0,
-                                  height=18.0)
+    l_mesh = create_l_shaped_mesh(
+        "l_mesh",
+        xmin=30.0,
+        ymin=30.0,
+        total_width=30.0,
+        total_length=30.0,
+        wing_width=15.0,
+        wing_length=15.0,
+        height=18.0,
+    )
     edit = AddMeshEdit(l_mesh)
     return scene, edit, grid_cfg
 
@@ -124,7 +180,9 @@ def _scenario_08_mesh_removal() -> Tuple[Scene, RemoveMeshEdit, PedestrianGridCo
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     scene = Scene(pedestrian_grid=grid_cfg)
     m1 = create_box_mesh("m1", 20.0, 35.0, 20.0, 35.0, 0.0, 15.0)
-    m2 = create_pitched_roof_mesh("m_remove", 60.0, 75.0, 60.0, 75.0, eave_height=10.0, ridge_height=18.0)
+    m2 = create_pitched_roof_mesh(
+        "m_remove", 60.0, 75.0, 60.0, 75.0, eave_height=10.0, ridge_height=18.0
+    )
     scene.add_mesh(m1)
     scene.add_mesh(m2)
     edit = RemoveMeshEdit("m_remove")
@@ -132,22 +190,57 @@ def _scenario_08_mesh_removal() -> Tuple[Scene, RemoveMeshEdit, PedestrianGridCo
 
 
 SCENARIO_DEFINITIONS = [
-    MeshAuditScenario("SCEN_01", "Rotated Box", "Add 45-deg rotated diamond box mesh", _scenario_01_rotated_box),
-    MeshAuditScenario("SCEN_02", "Pitched Roof", "Add dual-pitch gable roof building", _scenario_02_pitched_roof),
-    MeshAuditScenario("SCEN_03", "Overhang", "Add building with 12m cantilever canopy", _scenario_03_overhang_canopy),
-    MeshAuditScenario("SCEN_04", "Replacement", "Replace flat roof with taller pitched roof", _scenario_04_flat_to_pitched_replacement),
-    MeshAuditScenario("SCEN_05", "Translation", "Translate rotated prism across domain", _scenario_05_rotated_prism_translation),
-    MeshAuditScenario("SCEN_06", "Height Scaling", "Scale pitched roof ridge from 15m to 25m", _scenario_06_pitched_roof_height_scaling),
-    MeshAuditScenario("SCEN_07", "L-Shaped", "Add re-entrant corner L-shaped building mesh", _scenario_07_l_shaped_mesh),
-    MeshAuditScenario("SCEN_08", "Removal", "Remove pitched roof building from multi-building scene", _scenario_08_mesh_removal),
+    MeshAuditScenario(
+        "SCEN_01", "Rotated Box", "Add 45-deg rotated diamond box mesh", _scenario_01_rotated_box
+    ),
+    MeshAuditScenario(
+        "SCEN_02", "Pitched Roof", "Add dual-pitch gable roof building", _scenario_02_pitched_roof
+    ),
+    MeshAuditScenario(
+        "SCEN_03",
+        "Overhang",
+        "Add building with 12m cantilever canopy",
+        _scenario_03_overhang_canopy,
+    ),
+    MeshAuditScenario(
+        "SCEN_04",
+        "Replacement",
+        "Replace flat roof with taller pitched roof",
+        _scenario_04_flat_to_pitched_replacement,
+    ),
+    MeshAuditScenario(
+        "SCEN_05",
+        "Translation",
+        "Translate rotated prism across domain",
+        _scenario_05_rotated_prism_translation,
+    ),
+    MeshAuditScenario(
+        "SCEN_06",
+        "Height Scaling",
+        "Scale pitched roof ridge from 15m to 25m",
+        _scenario_06_pitched_roof_height_scaling,
+    ),
+    MeshAuditScenario(
+        "SCEN_07",
+        "L-Shaped",
+        "Add re-entrant corner L-shaped building mesh",
+        _scenario_07_l_shaped_mesh,
+    ),
+    MeshAuditScenario(
+        "SCEN_08",
+        "Removal",
+        "Remove pitched roof building from multi-building scene",
+        _scenario_08_mesh_removal,
+    ),
 ]
 
 
-def run_mesh_certificate_audit(output_dir: Optional[str] = None,
-                               tolerances: Optional[List[float]] = None) -> Dict[str, Any]:
+def run_mesh_certificate_audit(
+    output_dir: Optional[str] = None, tolerances: Optional[List[float]] = None
+) -> Dict[str, Any]:
     """
     Runs the full mesh certificate audit suite across all scenarios and tolerances.
-    
+
     Generates:
         <output_dir>/mesh_dependency_audit.csv
         <output_dir>/mesh_audit_summary.json
@@ -169,7 +262,7 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
         wind_speed=1.5,
         wind_direction=180.0,
         direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
 
     audit_rows: List[Dict[str, Any]] = []
@@ -180,11 +273,13 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
         for tol in tolerances:
             scene_base, edit, grid_cfg = sc_def.setup_fn()
             config = SimulationConfig(
-                latitude=40.7128, longitude=-74.0060,
-                date="2026-06-21", local_time="12:00:00",
+                latitude=40.7128,
+                longitude=-74.0060,
+                date="2026-06-21",
+                local_time="12:00:00",
                 tmrt_tolerance=tol,
                 sky_patch_configuration=16,
-                max_svf_search_dist_m=30.0
+                max_svf_search_dist_m=30.0,
             )
 
             # 1. Baseline Full Recompute
@@ -198,7 +293,9 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
 
             # 3. Certified Incremental Update
             t0_inc = time.perf_counter()
-            inc_res, cert = incremental_update_certified(scene_base, scene_after, res_base, edit, weather, config)
+            inc_res, cert = incremental_update_certified(
+                scene_base, scene_after, res_base, edit, weather, config
+            )
             t_inc = time.perf_counter() - t0_inc
 
             # 4. Decoupled Independent Audit
@@ -207,7 +304,7 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
                 incremental_tmrt=inc_res.result.tmrt,
                 predicted_bound=cert.predicted_error_bound,
                 reused_mask=inc_res.reused_mask,
-                tolerance=tol
+                tolerance=tol,
             )
 
             is_sound = audit_metrics["is_sound"]
@@ -237,7 +334,7 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
                 "time_incremental_s": round(t_inc, 4),
                 "time_selective_recomp_s": round(inc_res.time_selective_recompute_sec, 4),
                 "time_full_s": round(t_full, 4),
-                "speedup_ratio": round(speedup, 2)
+                "speedup_ratio": round(speedup, 2),
             }
             audit_rows.append(row)
 

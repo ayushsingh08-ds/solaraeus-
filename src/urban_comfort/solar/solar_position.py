@@ -14,11 +14,12 @@ from typing import Tuple
 @dataclass(frozen=True)
 class SolarPosition:
     """Exact solar angles and directional unit vectors."""
-    altitude_deg: float          # Solar elevation angle above horizon in degrees [-90, +90]
-    azimuth_deg: float           # Solar azimuth in degrees [0, 360) clockwise from True North
-    zenith_deg: float            # Solar zenith angle in degrees [0, 180]
+
+    altitude_deg: float  # Solar elevation angle above horizon in degrees [-90, +90]
+    azimuth_deg: float  # Solar azimuth in degrees [0, 360) clockwise from True North
+    zenith_deg: float  # Solar zenith angle in degrees [0, 180]
     sun_vector: Tuple[float, float, float]  # Unit vector pointing TOWARDS sun (East, North, Up)
-    is_daylight: bool            # True if altitude > 0.0
+    is_daylight: bool  # True if altitude > 0.0
 
     @property
     def altitude_rad(self) -> float:
@@ -45,8 +46,9 @@ def calculate_julian_day(dt_utc: datetime) -> float:
     return jd
 
 
-def calculate_solar_position(latitude_deg: float, longitude_deg: float,
-                             dt_utc: datetime) -> SolarPosition:
+def calculate_solar_position(
+    latitude_deg: float, longitude_deg: float, dt_utc: datetime
+) -> SolarPosition:
     """
     Computes solar position for given geographical coordinates and UTC datetime
     using the NOAA solar position algorithm.
@@ -65,9 +67,11 @@ def calculate_solar_position(latitude_deg: float, longitude_deg: float,
     e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t)
 
     # Sun Equation of the Center (deg)
-    c = (math.sin(m_rad) * (1.914602 - t * (0.004817 + 0.000014 * t)) +
-         math.sin(2.0 * m_rad) * (0.019993 - 0.000101 * t) +
-         math.sin(3.0 * m_rad) * 0.000289)
+    c = (
+        math.sin(m_rad) * (1.914602 - t * (0.004817 + 0.000014 * t))
+        + math.sin(2.0 * m_rad) * (0.019993 - 0.000101 * t)
+        + math.sin(3.0 * m_rad) * 0.000289
+    )
 
     # Sun True Longitude and Anomaly (deg)
     sun_true_lon = l0 + c
@@ -90,11 +94,11 @@ def calculate_solar_position(latitude_deg: float, longitude_deg: float,
     y = math.tan(eps_rad / 2.0) ** 2
     l0_rad = math.radians(l0)
     eq_time = 4.0 * math.degrees(
-        y * math.sin(2.0 * l0_rad) -
-        2.0 * e * math.sin(m_rad) +
-        4.0 * e * y * math.sin(m_rad) * math.cos(2.0 * l0_rad) -
-        0.5 * (y ** 2) * math.sin(4.0 * l0_rad) -
-        1.25 * (e ** 2) * math.sin(2.0 * m_rad)
+        y * math.sin(2.0 * l0_rad)
+        - 2.0 * e * math.sin(m_rad)
+        + 4.0 * e * y * math.sin(m_rad) * math.cos(2.0 * l0_rad)
+        - 0.5 * (y**2) * math.sin(4.0 * l0_rad)
+        - 1.25 * (e**2) * math.sin(2.0 * m_rad)
     )
 
     # True Solar Time (minutes)
@@ -110,8 +114,9 @@ def calculate_solar_position(latitude_deg: float, longitude_deg: float,
 
     # Solar Zenith and Altitude (deg)
     lat_rad = math.radians(latitude_deg)
-    cos_zenith = (math.sin(lat_rad) * math.sin(delta_rad) +
-                  math.cos(lat_rad) * math.cos(delta_rad) * math.cos(hour_angle_rad))
+    cos_zenith = math.sin(lat_rad) * math.sin(delta_rad) + math.cos(lat_rad) * math.cos(
+        delta_rad
+    ) * math.cos(hour_angle_rad)
     cos_zenith = max(-1.0, min(1.0, cos_zenith))
     zenith_rad = math.acos(cos_zenith)
     altitude_deg = 90.0 - math.degrees(zenith_rad)
@@ -119,8 +124,9 @@ def calculate_solar_position(latitude_deg: float, longitude_deg: float,
     # Solar Azimuth Angle (clockwise from North, 0 to 360 deg)
     sin_zenith = math.sin(zenith_rad)
     if sin_zenith > 1e-6:
-        cos_azimuth = ((math.sin(delta_rad) - math.sin(lat_rad) * math.cos(zenith_rad)) /
-                       (math.cos(lat_rad) * sin_zenith))
+        cos_azimuth = (math.sin(delta_rad) - math.sin(lat_rad) * math.cos(zenith_rad)) / (
+            math.cos(lat_rad) * sin_zenith
+        )
         cos_azimuth = max(-1.0, min(1.0, cos_azimuth))
         azimuth_deg = math.degrees(math.acos(cos_azimuth))
         if hour_angle_deg > 0:
@@ -135,7 +141,7 @@ def calculate_solar_position(latitude_deg: float, longitude_deg: float,
     cos_alt = math.cos(alt_rad)
     s_x = cos_alt * math.sin(az_rad)  # East component
     s_y = cos_alt * math.cos(az_rad)  # North component
-    s_z = math.sin(alt_rad)          # Up component
+    s_z = math.sin(alt_rad)  # Up component
 
     norm = math.hypot(s_x, s_y, s_z)
     sun_vec = (s_x / norm, s_y / norm, s_z / norm)
@@ -145,5 +151,5 @@ def calculate_solar_position(latitude_deg: float, longitude_deg: float,
         azimuth_deg=azimuth_deg,
         zenith_deg=math.degrees(zenith_rad),
         sun_vector=sun_vec,
-        is_daylight=(altitude_deg > 0.0)
+        is_daylight=(altitude_deg > 0.0),
     )

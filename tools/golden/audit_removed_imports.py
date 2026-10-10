@@ -143,8 +143,7 @@ def main() -> int:
             code_hits = [
                 n
                 for n in hits
-                if not is_docstring_or_comment(current, n)
-                and not is_import_line(current, n)
+                if not is_docstring_or_comment(current, n) and not is_import_line(current, n)
             ]
             if code_hits:
                 findings.append((rel, name, code_hits))

@@ -18,9 +18,11 @@ def test_empty_scene_shadows():
     grid = PedestrianGrid(PedestrianGridConfig(extent_x=40.0, extent_y=40.0, resolution=1.0))
     scene = Scene(pedestrian_grid=grid.config)
     solar_pos = SolarPosition(
-        altitude_deg=45.0, azimuth_deg=180.0, zenith_deg=45.0,
+        altitude_deg=45.0,
+        azimuth_deg=180.0,
+        zenith_deg=45.0,
         sun_vector=(0.0, -math.cos(math.radians(45)), math.sin(math.radians(45))),
-        is_daylight=True
+        is_daylight=True,
     )
 
     shadow_mask = compute_direct_shadow_mask(scene, grid, solar_pos)
@@ -31,9 +33,11 @@ def test_nighttime_zero_shadow():
     grid = PedestrianGrid(PedestrianGridConfig(extent_x=40.0, extent_y=40.0))
     scene = Scene(pedestrian_grid=grid.config)
     solar_pos = SolarPosition(
-        altitude_deg=-10.0, azimuth_deg=180.0, zenith_deg=100.0,
+        altitude_deg=-10.0,
+        azimuth_deg=180.0,
+        zenith_deg=100.0,
         sun_vector=(0.0, 0.0, -1.0),
-        is_daylight=False
+        is_daylight=False,
     )
 
     shadow_mask = compute_direct_shadow_mask(scene, grid, solar_pos)
@@ -48,12 +52,14 @@ def test_analytical_shadow_length_and_direction():
     # Rays from ground point point South (towards sun).
     # Ground points NORTH of building (Y > 45) looking South will have their ray intersect the building!
     # Expected shadowed Y range: Y in [45, 45 + 20] = [45, 65].
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(
+        PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    )
     scene = Scene(pedestrian_grid=grid.config)
     bldg = Building(
         id="test_bldg",
         footprint=BoundingBox2D(xmin=35.0, xmax=45.0, ymin=35.0, ymax=45.0),
-        height=21.1
+        height=21.1,
     )
     scene.add_building(bldg)
 
@@ -64,11 +70,10 @@ def test_analytical_shadow_length_and_direction():
     sun_vec = (
         math.cos(alt_rad) * math.sin(az_rad),
         math.cos(alt_rad) * math.cos(az_rad),
-        math.sin(alt_rad)
+        math.sin(alt_rad),
     )
     solar_pos = SolarPosition(
-        altitude_deg=45.0, azimuth_deg=180.0, zenith_deg=45.0,
-        sun_vector=sun_vec, is_daylight=True
+        altitude_deg=45.0, azimuth_deg=180.0, zenith_deg=45.0, sun_vector=sun_vec, is_daylight=True
     )
 
     shadow_mask = compute_direct_shadow_mask(scene, grid, solar_pos)
@@ -94,8 +99,11 @@ def test_selective_masked_shadow_evaluation():
     scene.add_building(Building("b1", BoundingBox2D(20, 30, 20, 30), height=15))
 
     solar_pos = SolarPosition(
-        altitude_deg=50.0, azimuth_deg=220.0, zenith_deg=40.0,
-        sun_vector=(-0.41, -0.49, 0.77), is_daylight=True
+        altitude_deg=50.0,
+        azimuth_deg=220.0,
+        zenith_deg=40.0,
+        sun_vector=(-0.41, -0.49, 0.77),
+        is_daylight=True,
     )
 
     full_shadow = compute_direct_shadow_mask(scene, grid, solar_pos)

@@ -25,7 +25,7 @@ def test_stage_11_required_files_exist(stage_11_dir):
         "gpu_incremental_full_comparison.json",
         "gpu_incremental_certificate.json",
         "stage_11_test_results.json",
-        "gpu_incremental_arrays.npz"
+        "gpu_incremental_arrays.npz",
     ]
     for fname in required:
         fpath = stage_11_dir / fname
@@ -45,14 +45,18 @@ def test_stage_11_test_suite_all_pass(stage_11_dir):
 
 
 def test_stage_11_certificate_valid(stage_11_dir):
-    cert = json.loads((stage_11_dir / "gpu_incremental_certificate.json").read_text(encoding="utf-8"))
+    cert = json.loads(
+        (stage_11_dir / "gpu_incremental_certificate.json").read_text(encoding="utf-8")
+    )
     assert cert["is_valid"] is True
     assert cert["num_violations"] == 0
     assert cert["max_actual_error_on_reused_k"] <= cert["epsilon_target_k"]
 
 
 def test_stage_11_reuse_metrics(stage_11_dir):
-    reuse = json.loads((stage_11_dir / "gpu_incremental_reuse_metrics.json").read_text(encoding="utf-8"))
+    reuse = json.loads(
+        (stage_11_dir / "gpu_incremental_reuse_metrics.json").read_text(encoding="utf-8")
+    )
     assert reuse["cells"]["reused"] == 28048
     assert reuse["cells"]["recomputed"] == 72
     assert reuse["cells"]["total"] == 28120
@@ -60,7 +64,11 @@ def test_stage_11_reuse_metrics(stage_11_dir):
 
 
 def test_stage_11_three_way_parity(stage_11_dir):
-    cpu_comp = json.loads((stage_11_dir / "gpu_incremental_cpu_comparison.json").read_text(encoding="utf-8"))
+    cpu_comp = json.loads(
+        (stage_11_dir / "gpu_incremental_cpu_comparison.json").read_text(encoding="utf-8")
+    )
     assert cpu_comp["all_tolerances_satisfied"] is True
-    full_comp = json.loads((stage_11_dir / "gpu_incremental_full_comparison.json").read_text(encoding="utf-8"))
+    full_comp = json.loads(
+        (stage_11_dir / "gpu_incremental_full_comparison.json").read_text(encoding="utf-8")
+    )
     assert full_comp["all_tolerances_satisfied"] is True

@@ -12,18 +12,21 @@ import numpy as np
 # Try importing pythermalcomfort for certified multi-variate polynomial
 try:
     from pythermalcomfort.models import utci as _pythermal_utci
+
     _HAS_PYTHERMAL = True
 except ImportError:
     _HAS_PYTHERMAL = False
 
 
-def compute_utci(air_temp_c: Union[float, np.ndarray],
-                 tmrt_c: Union[float, np.ndarray],
-                 wind_speed_ms: float,
-                 relative_humidity: float) -> np.ndarray:
+def compute_utci(
+    air_temp_c: Union[float, np.ndarray],
+    tmrt_c: Union[float, np.ndarray],
+    wind_speed_ms: float,
+    relative_humidity: float,
+) -> np.ndarray:
     """
     Computes Universal Thermal Climate Index (UTCI) in Celsius.
-    
+
     Operational range:
         - Air temperature: -50 to +50 C
         - (T_mrt - T_air): -30 to +70 K
@@ -49,9 +52,9 @@ def compute_utci(air_temp_c: Union[float, np.ndarray],
 
     # Simplified UTCI approximation based on multi-variate regression
     utci_approx = ta + (
-        0.6075 * delta_t * (v10 ** (-0.2)) +
-        (0.0009 * (ta ** 2) - 0.002 * ta + 0.05) * pa -
-        (0.25 * (v10 - 1.0) * np.maximum(0.0, 30.0 - ta) / 10.0)
+        0.6075 * delta_t * (v10 ** (-0.2))
+        + (0.0009 * (ta**2) - 0.002 * ta + 0.05) * pa
+        - (0.25 * (v10 - 1.0) * np.maximum(0.0, 30.0 - ta) / 10.0)
     )
     return utci_approx
 

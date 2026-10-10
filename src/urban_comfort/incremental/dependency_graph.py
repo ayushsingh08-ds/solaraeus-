@@ -108,7 +108,9 @@ class DependencyGraph:
         """
         changed_inputs = EDIT_TRIGGER_MAP.get(edit_type, [])
         if not changed_inputs:
-            raise ValueError(f"Unknown edit type '{edit_type}'. Supported: {list(EDIT_TRIGGER_MAP.keys())}")
+            raise ValueError(
+                f"Unknown edit type '{edit_type}'. Supported: {list(EDIT_TRIGGER_MAP.keys())}"
+            )
         return self.get_invalidated_fields(changed_inputs)
 
     def get_upstream_dependencies(self, field_name: str) -> Set[str]:

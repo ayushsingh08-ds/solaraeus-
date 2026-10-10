@@ -44,7 +44,7 @@ def standard_weather():
         wind_speed=1.5,
         wind_direction=90.0,
         direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=180.0
+        diffuse_horizontal_irradiance=180.0,
     )
 
 
@@ -58,7 +58,7 @@ def standard_config():
         pedestrian_height=1.1,
         grid_resolution=1.0,
         sky_patch_configuration=32,
-        max_svf_search_dist_m=60.0
+        max_svf_search_dist_m=60.0,
     )
 
 
@@ -87,7 +87,7 @@ def test_flattened_scene_geometry_conversion():
         id="b1",
         footprint=BoundingBox2D(xmin=10.0, xmax=20.0, ymin=10.0, ymax=20.0),
         height=15.0,
-        material_id="default_wall"
+        material_id="default_wall",
     )
     scene.add_building(bldg)
 
@@ -111,19 +111,21 @@ def test_flattened_scene_geometry_conversion():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_single_building_shadow_parity():
     """Validates exact bit parity of direct shadow between CPU and GPU for a single AABB building."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(
+        PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1)
+    )
     scene = Scene(pedestrian_grid=grid.config)
     bldg = Building(
-        id="box",
-        footprint=BoundingBox2D(xmin=20.0, xmax=35.0, ymin=20.0, ymax=35.0),
-        height=16.1
+        id="box", footprint=BoundingBox2D(xmin=20.0, xmax=35.0, ymin=20.0, ymax=35.0), height=16.1
     )
     scene.add_building(bldg)
 
     solar_pos = SolarPosition(
-        altitude_deg=45.0, azimuth_deg=180.0, zenith_deg=45.0,
+        altitude_deg=45.0,
+        azimuth_deg=180.0,
+        zenith_deg=45.0,
         sun_vector=(0.0, -math.cos(math.radians(45.0)), math.sin(math.radians(45.0))),
-        is_daylight=True
+        is_daylight=True,
     )
 
     cpu_b = CPUBackend()
@@ -134,13 +136,17 @@ def test_synthetic_single_building_shadow_parity():
 
     assert cpu_mask.shape == gpu_mask.shape
     diff_count = np.sum(cpu_mask != gpu_mask)
-    assert diff_count == 0, f"Discrepancy in single building shadow mask: {diff_count} differing cells"
+    assert diff_count == 0, (
+        f"Discrepancy in single building shadow mask: {diff_count} differing cells"
+    )
 
 
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_canyon_shadow_and_svf_parity():
     """Validates CPU vs GPU parity on a two-building urban street canyon."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(
+        PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1)
+    )
     scene = Scene(pedestrian_grid=grid.config)
 
     # East building and West building forming a North-South canyon between X=20 and X=40
@@ -148,13 +154,15 @@ def test_synthetic_canyon_shadow_and_svf_parity():
     scene.add_building(Building("west_bldg", BoundingBox2D(40.0, 55.0, 5.0, 55.0), height=20.0))
 
     solar_pos = SolarPosition(
-        altitude_deg=60.0, azimuth_deg=135.0, zenith_deg=30.0,
+        altitude_deg=60.0,
+        azimuth_deg=135.0,
+        zenith_deg=30.0,
         sun_vector=(
             math.sin(math.radians(135.0)) * math.cos(math.radians(60.0)),
             math.cos(math.radians(135.0)) * math.cos(math.radians(60.0)),
-            math.sin(math.radians(60.0))
+            math.sin(math.radians(60.0)),
         ),
-        is_daylight=True
+        is_daylight=True,
     )
 
     cpu_b = CPUBackend()
@@ -180,7 +188,9 @@ def test_synthetic_canyon_shadow_and_svf_parity():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_triangle_mesh_shadow_and_svf_parity():
     """Validates CPU vs GPU parity on 3D triangular mesh objects."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=50.0, extent_y=50.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(
+        PedestrianGridConfig(extent_x=50.0, extent_y=50.0, resolution=1.0, pedestrian_height=1.1)
+    )
     scene = Scene(pedestrian_grid=grid.config)
 
     # 12-triangle box mesh
@@ -190,13 +200,15 @@ def test_synthetic_triangle_mesh_shadow_and_svf_parity():
     scene.add_mesh(mesh2)
 
     solar_pos = SolarPosition(
-        altitude_deg=50.0, azimuth_deg=220.0, zenith_deg=40.0,
+        altitude_deg=50.0,
+        azimuth_deg=220.0,
+        zenith_deg=40.0,
         sun_vector=(
             math.sin(math.radians(220.0)) * math.cos(math.radians(50.0)),
             math.cos(math.radians(220.0)) * math.cos(math.radians(50.0)),
-            math.sin(math.radians(50.0))
+            math.sin(math.radians(50.0)),
         ),
-        is_daylight=True
+        is_daylight=True,
     )
 
     cpu_b = CPUBackend()
@@ -205,7 +217,9 @@ def test_synthetic_triangle_mesh_shadow_and_svf_parity():
     # Shadow check
     cpu_shadow = cpu_b.compute_direct_shadow(scene, grid, solar_pos)
     gpu_shadow = gpu_b.compute_direct_shadow(scene, grid, solar_pos)
-    assert np.array_equal(cpu_shadow, gpu_shadow), "Mesh shadow mask discrepancy between CPU and GPU"
+    assert np.array_equal(cpu_shadow, gpu_shadow), (
+        "Mesh shadow mask discrepancy between CPU and GPU"
+    )
 
     # SVF check
     cpu_svf = cpu_b.compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=50.0)
@@ -218,7 +232,9 @@ def test_synthetic_triangle_mesh_shadow_and_svf_parity():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_mixed_scene_parity():
     """Validates parity on mixed scenes with both AABB buildings and TriangleMeshes."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(
+        PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1)
+    )
     scene = Scene(pedestrian_grid=grid.config)
 
     # 1 AABB Building
@@ -228,13 +244,15 @@ def test_synthetic_mixed_scene_parity():
     scene.add_mesh(create_box_mesh("mesh_box", 35.0, 50.0, 30.0, 45.0, 0.0, 16.0))
 
     solar_pos = SolarPosition(
-        altitude_deg=40.0, azimuth_deg=160.0, zenith_deg=50.0,
+        altitude_deg=40.0,
+        azimuth_deg=160.0,
+        zenith_deg=50.0,
         sun_vector=(
             math.sin(math.radians(160.0)) * math.cos(math.radians(40.0)),
             math.cos(math.radians(160.0)) * math.cos(math.radians(40.0)),
-            math.sin(math.radians(40.0))
+            math.sin(math.radians(40.0)),
         ),
-        is_daylight=True
+        is_daylight=True,
     )
 
     cpu_b = CPUBackend()
@@ -257,9 +275,11 @@ def test_roi_mask_selective_evaluation_parity():
     scene.add_building(Building("b1", BoundingBox2D(15.0, 25.0, 15.0, 25.0), height=12.0))
 
     solar_pos = SolarPosition(
-        altitude_deg=45.0, azimuth_deg=180.0, zenith_deg=45.0,
+        altitude_deg=45.0,
+        azimuth_deg=180.0,
+        zenith_deg=45.0,
         sun_vector=(0.0, -math.cos(math.radians(45.0)), math.sin(math.radians(45.0))),
-        is_daylight=True
+        is_daylight=True,
     )
 
     # ROI mask covering only the Northern half (Y >= 20)
@@ -343,10 +363,15 @@ def test_church_street_gpu_parity_against_frozen_reference():
     """
     import json
     from pathlib import Path
+
     root_dir = Path(__file__).resolve().parent.parent
     frozen_dir = root_dir / "results" / "church_street_shade_full_20261007_001600"
     prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
-    handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
+    handoff_dir = (
+        root_dir
+        / "bengaluru_church_street_manual_handoff_v2"
+        / "bengaluru_church_street_manual_handoff_v2"
+    )
 
     if not frozen_dir.exists() or not prep_dir.exists():
         pytest.skip("Church Street reference directories not found")
@@ -356,12 +381,24 @@ def test_church_street_gpu_parity_against_frozen_reference():
     cpu_tmrt = np.load(frozen_dir / "intervention_tmrt.npz")["tmrt"]
     cpu_utci = np.load(frozen_dir / "intervention_utci.npz")["utci"]
 
-    panel_def = json.loads((handoff_dir / "data" / "processed" / "intervention_definition.json").read_text(encoding="utf-8"))
-    context_mesh_json = json.loads((prep_dir / "shadow_context_mesh.json").read_text(encoding="utf-8"))
+    panel_def = json.loads(
+        (handoff_dir / "data" / "processed" / "intervention_definition.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    context_mesh_json = json.loads(
+        (prep_dir / "shadow_context_mesh.json").read_text(encoding="utf-8")
+    )
 
     local_poly = panel_def["modified_geometry_local"]["geometry"]["coordinates"][0]
-    pts_2d = np.array(local_poly[:-1] if np.allclose(local_poly[0], local_poly[-1]) else local_poly, dtype=np.float64)
-    signed_area = 0.5 * sum(pts_2d[i, 0] * pts_2d[(i+1)%4, 1] - pts_2d[(i+1)%4, 0] * pts_2d[i, 1] for i in range(4))
+    pts_2d = np.array(
+        local_poly[:-1] if np.allclose(local_poly[0], local_poly[-1]) else local_poly,
+        dtype=np.float64,
+    )
+    signed_area = 0.5 * sum(
+        pts_2d[i, 0] * pts_2d[(i + 1) % 4, 1] - pts_2d[(i + 1) % 4, 0] * pts_2d[i, 1]
+        for i in range(4)
+    )
     ccw_pts = pts_2d[::-1] if signed_area < 0 else pts_2d
 
     v_base = np.column_stack([ccw_pts, np.full(4, 3.5, dtype=np.float64)])
@@ -384,14 +421,28 @@ def test_church_street_gpu_parity_against_frozen_reference():
         vertices=vertices_3d,
         triangles=triangles_3d,
         material_id="SHADE_PANEL_ASSUMED_001",
-        enabled=True
+        enabled=True,
     )
 
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(
+        id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True
+    )
+    mat_roof = Material(
+        id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True
+    )
+    mat_ground = Material(
+        id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True
+    )
+    mat_pavement = Material(
+        id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True
+    )
+    mat_panel = Material(
+        id="SHADE_PANEL_ASSUMED_001",
+        albedo=0.60,
+        emissivity=0.90,
+        surface_temperature=308.15,
+        is_opaque=True,
+    )
 
     materials = {
         "default_wall": mat_wall,
@@ -425,7 +476,7 @@ def test_church_street_gpu_parity_against_frozen_reference():
         tmrt_tolerance=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
-        backend="gpu"
+        backend="gpu",
     )
 
     gpu_backend = GPUBackend()
@@ -446,4 +497,3 @@ def test_church_street_gpu_parity_against_frozen_reference():
     valid = np.isfinite(cpu_utci) & np.isfinite(gpu_res.utci)
     utci_diff = np.abs(cpu_utci[valid] - gpu_res.utci[valid])
     assert np.max(utci_diff) < 0.05
-

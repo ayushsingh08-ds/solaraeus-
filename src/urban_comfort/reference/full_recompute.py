@@ -26,27 +26,29 @@ from urban_comfort.visibility.directional_visibility import compute_sky_view_fac
 from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 
 
-def full_recompute(scene: Scene, weather: Weather,
-                   config: SimulationConfig,
-                   backend: Optional[str] = None) -> SimulationResult:
+def full_recompute(
+    scene: Scene, weather: Weather, config: SimulationConfig, backend: Optional[str] = None
+) -> SimulationResult:
     """
     Executes a deterministic full recomputation of all microclimatic fields from scratch.
-    
+
     Parameters:
         scene: Scene container with buildings, ground, and grid specs.
         weather: Weather boundary conditions.
         config: Simulation control and geographic parameters.
         backend: Optional backend override ('cpu', 'gpu', or 'auto').
-        
+
     Returns:
         SimulationResult containing all evaluated spatial fields.
     """
     selected_backend = (backend or getattr(config, "backend", "cpu")).lower()
     if selected_backend == "gpu":
         from urban_comfort.backend.gpu_backend import GPUBackend
+
         return GPUBackend().full_simulate(scene, weather, config)
     elif selected_backend == "auto":
         from urban_comfort.backend import get_backend
+
         return get_backend("auto").full_simulate(scene, weather, config)
 
     t_start = time.perf_counter()
@@ -68,9 +70,10 @@ def full_recompute(scene: Scene, weather: Weather,
     # 4. Directional Visibility & Sky View Factor
     t0_svf = time.perf_counter()
     svf = compute_sky_view_factor(
-        scene, grid,
+        scene,
+        grid,
         num_azimuths=config.sky_patch_configuration,
-        max_search_dist_m=config.max_svf_search_dist_m
+        max_search_dist_m=config.max_svf_search_dist_m,
     )
     t_svf = time.perf_counter() - t0_svf
 
@@ -79,12 +82,8 @@ def full_recompute(scene: Scene, weather: Weather,
     wall_mat = scene.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
     ground_mat = scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
 
-    sw_fluxes = compute_shortwave_fluxes(
-        weather, solar_pos, shadow_mask, svf, ground_mat, wall_mat
-    )
-    lw_fluxes = compute_longwave_fluxes(
-        weather, svf, ground_mat, wall_mat
-    )
+    sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, shadow_mask, svf, ground_mat, wall_mat)
+    lw_fluxes = compute_longwave_fluxes(weather, svf, ground_mat, wall_mat)
     radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
     t_rad = time.perf_counter() - t0_rad
 
@@ -95,7 +94,7 @@ def full_recompute(scene: Scene, weather: Weather,
         air_temp_c=air_temp_c,
         tmrt_c=radiant_state.tmrt_c,
         wind_speed_ms=weather.wind_speed,
-        relative_humidity=weather.relative_humidity
+        relative_humidity=weather.relative_humidity,
     )
     t_utci = time.perf_counter() - t0_utci
 
@@ -114,7 +113,7 @@ def full_recompute(scene: Scene, weather: Weather,
         "timing_total_sec": t_total,
         "num_buildings": len(scene.get_active_buildings()),
         "total_cells": grid.total_cells,
-        "air_temperature_c": air_temp_c
+        "air_temperature_c": air_temp_c,
     }
 
     return SimulationResult(
@@ -125,5 +124,5 @@ def full_recompute(scene: Scene, weather: Weather,
         longwave_flux=lw_fluxes.l_total,
         tmrt=radiant_state.tmrt_c,
         utci=utci,
-        metadata=metadata
+        metadata=metadata,
     )

@@ -25,7 +25,9 @@ from urban_comfort.reference.full_recompute import full_recompute
 
 @pytest.fixture
 def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
-    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(
+        extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1
+    )
     scene = Scene(pedestrian_grid=grid_cfg)
     scene.add_mesh(create_box_mesh("mesh_bldg", 25.0, 45.0, 25.0, 45.0, 0.0, 15.0))
 
@@ -39,7 +41,7 @@ def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
         tmrt_tolerance=0.5,
         numerical_tolerance=0.05,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=80.0
+        max_svf_search_dist_m=80.0,
     )
 
     weather = Weather(
@@ -48,7 +50,7 @@ def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
         wind_speed=1.5,
         wind_direction=180.0,
         direct_normal_irradiance=850.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
 
     # Edit: increase height 15m -> 28m (+13m)
@@ -73,7 +75,7 @@ def test_clean_mesh_audit_is_sound_with_zero_violations(mesh_audit_scene):
         incremental_tmrt=inc_res.result.tmrt,
         predicted_bound=cert.predicted_error_bound,
         reused_mask=inc_res.reused_mask,
-        tolerance=cfg.tmrt_tolerance
+        tolerance=cfg.tmrt_tolerance,
     )
 
     assert audit["is_sound"] is True
@@ -104,7 +106,7 @@ def test_mutation_zero_predicted_error_bound(mesh_audit_scene):
         incremental_tmrt=inc_res.result.tmrt,
         predicted_bound=mutated_bound,
         reused_mask=inc_res.reused_mask,
-        tolerance=cfg.tmrt_tolerance
+        tolerance=cfg.tmrt_tolerance,
     )
 
     # Must flag violations because actual error on reused cells > 0
@@ -147,7 +149,7 @@ def test_mutation_unsafe_recompute_truncation(mesh_audit_scene):
         incremental_tmrt=mutated_tmrt,
         predicted_bound=mutated_bound,
         reused_mask=mutated_reused_mask,
-        tolerance=cfg.tmrt_tolerance
+        tolerance=cfg.tmrt_tolerance,
     )
 
     # Significant violations must be detected

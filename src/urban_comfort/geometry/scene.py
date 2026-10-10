@@ -16,6 +16,7 @@ from urban_comfort.geometry.primitives import BoundingBox2D, Building
 @dataclass
 class GroundPlane:
     """Flat horizontal ground surface at z = 0.0."""
+
     z_elevation: float = 0.0
     material_id: str = "default_ground"
 
@@ -23,12 +24,13 @@ class GroundPlane:
 @dataclass
 class PedestrianGridConfig:
     """2D domain extent and sampling resolution for the pedestrian calculation plane."""
-    extent_x: float = 80.0       # Domain width in meters
-    extent_y: float = 80.0       # Domain length in meters
-    origin_x: float = 0.0        # Southwest corner X coordinate
-    origin_y: float = 0.0        # Southwest corner Y coordinate
-    resolution: float = 1.0      # Cell spacing dx (m)
-    pedestrian_height: float = 1.1 # z height above terrain (m)
+
+    extent_x: float = 80.0  # Domain width in meters
+    extent_y: float = 80.0  # Domain length in meters
+    origin_x: float = 0.0  # Southwest corner X coordinate
+    origin_y: float = 0.0  # Southwest corner Y coordinate
+    resolution: float = 1.0  # Cell spacing dx (m)
+    pedestrian_height: float = 1.1  # z height above terrain (m)
 
     @property
     def nx(self) -> int:
@@ -46,6 +48,7 @@ class PedestrianGridConfig:
 @dataclass
 class Scene:
     """Complete urban scene representation."""
+
     buildings: Dict[str, Building] = field(default_factory=dict)
     meshes: Dict[str, TriangleMesh] = field(default_factory=dict)
     ground: GroundPlane = field(default_factory=GroundPlane)
@@ -94,7 +97,7 @@ class Scene:
             "metadata": self.metadata,
             "ground": {
                 "z_elevation": self.ground.z_elevation,
-                "material_id": self.ground.material_id
+                "material_id": self.ground.material_id,
             },
             "pedestrian_grid": {
                 "extent_x": self.pedestrian_grid.extent_x,
@@ -102,7 +105,7 @@ class Scene:
                 "origin_x": self.pedestrian_grid.origin_x,
                 "origin_y": self.pedestrian_grid.origin_y,
                 "resolution": self.pedestrian_grid.resolution,
-                "pedestrian_height": self.pedestrian_grid.pedestrian_height
+                "pedestrian_height": self.pedestrian_grid.pedestrian_height,
             },
             "materials": {
                 m_id: {
@@ -110,7 +113,7 @@ class Scene:
                     "albedo": m.albedo,
                     "emissivity": m.emissivity,
                     "surface_temperature": m.surface_temperature,
-                    "is_opaque": m.is_opaque
+                    "is_opaque": m.is_opaque,
                 }
                 for m_id, m in self.materials.items()
             },
@@ -121,19 +124,16 @@ class Scene:
                         "xmin": b.footprint.xmin,
                         "xmax": b.footprint.xmax,
                         "ymin": b.footprint.ymin,
-                        "ymax": b.footprint.ymax
+                        "ymax": b.footprint.ymax,
                     },
                     "height": b.height,
                     "position": list(b.position),
                     "material_id": b.material_id,
-                    "enabled": b.enabled
+                    "enabled": b.enabled,
                 }
                 for b in self.buildings.values()
             ],
-            "meshes": [
-                m.to_dict()
-                for m in self.meshes.values()
-            ]
+            "meshes": [m.to_dict() for m in self.meshes.values()],
         }
 
     @classmethod
@@ -145,7 +145,7 @@ class Scene:
                 albedo=m_data["albedo"],
                 emissivity=m_data["emissivity"],
                 surface_temperature=m_data["surface_temperature"],
-                is_opaque=m_data.get("is_opaque", True)
+                is_opaque=m_data.get("is_opaque", True),
             )
             for m_id, m_data in data.get("materials", {}).items()
         }
@@ -153,7 +153,7 @@ class Scene:
         ground_data = data.get("ground", {})
         ground = GroundPlane(
             z_elevation=ground_data.get("z_elevation", 0.0),
-            material_id=ground_data.get("material_id", "default_ground")
+            material_id=ground_data.get("material_id", "default_ground"),
         )
 
         grid_data = data.get("pedestrian_grid", {})
@@ -163,7 +163,7 @@ class Scene:
             origin_x=grid_data.get("origin_x", 0.0),
             origin_y=grid_data.get("origin_y", 0.0),
             resolution=grid_data.get("resolution", 1.0),
-            pedestrian_height=grid_data.get("pedestrian_height", 1.1)
+            pedestrian_height=grid_data.get("pedestrian_height", 1.1),
         )
 
         buildings = {}
@@ -173,7 +173,7 @@ class Scene:
                 xmin=fp_data["xmin"],
                 xmax=fp_data["xmax"],
                 ymin=fp_data["ymin"],
-                ymax=fp_data["ymax"]
+                ymax=fp_data["ymax"],
             )
             b = Building(
                 id=b_data["id"],
@@ -181,7 +181,7 @@ class Scene:
                 height=b_data["height"],
                 position=tuple(b_data.get("position", (0.0, 0.0, 0.0))),
                 material_id=b_data.get("material_id", "default_wall"),
-                enabled=b_data.get("enabled", True)
+                enabled=b_data.get("enabled", True),
             )
             buildings[b.id] = b
 
@@ -197,7 +197,7 @@ class Scene:
             pedestrian_grid=ped_grid,
             materials=materials,
             coordinate_system=data.get("coordinate_system", "EPSG:32633_LOCAL"),
-            metadata=data.get("metadata", {})
+            metadata=data.get("metadata", {}),
         )
 
     def save_json(self, file_path: str):
@@ -212,8 +212,9 @@ class Scene:
 
 
 # Canonical Synthetic Scene Generators
-def create_single_box_scene(extent_m: float = 80.0, box_size: float = 16.0,
-                            box_height: float = 18.0) -> Scene:
+def create_single_box_scene(
+    extent_m: float = 80.0, box_size: float = 16.0, box_height: float = 18.0
+) -> Scene:
     """Creates a canonical flat scene with one centered rectangular building."""
     center = extent_m / 2.0
     half_size = box_size / 2.0
@@ -221,7 +222,7 @@ def create_single_box_scene(extent_m: float = 80.0, box_size: float = 16.0,
         xmin=center - half_size,
         xmax=center + half_size,
         ymin=center - half_size,
-        ymax=center + half_size
+        ymax=center + half_size,
     )
     building = Building(id="bldg_center", footprint=footprint, height=box_height)
     scene = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=extent_m, extent_y=extent_m))
@@ -230,8 +231,9 @@ def create_single_box_scene(extent_m: float = 80.0, box_size: float = 16.0,
     return scene
 
 
-def create_canyon_scene(extent_m: float = 80.0, canyon_width: float = 16.0,
-                        building_height: float = 20.0) -> Scene:
+def create_canyon_scene(
+    extent_m: float = 80.0, canyon_width: float = 16.0, building_height: float = 20.0
+) -> Scene:
     """Creates an urban canyon with two parallel rows of buildings along East-West."""
     center_y = extent_m / 2.0
     half_canyon = canyon_width / 2.0
@@ -239,16 +241,24 @@ def create_canyon_scene(extent_m: float = 80.0, canyon_width: float = 16.0,
     # North building row
     bldg_north = Building(
         id="bldg_north_row",
-        footprint=BoundingBox2D(xmin=10.0, xmax=extent_m - 10.0,
-                                ymin=center_y + half_canyon, ymax=center_y + half_canyon + 15.0),
-        height=building_height
+        footprint=BoundingBox2D(
+            xmin=10.0,
+            xmax=extent_m - 10.0,
+            ymin=center_y + half_canyon,
+            ymax=center_y + half_canyon + 15.0,
+        ),
+        height=building_height,
     )
     # South building row
     bldg_south = Building(
         id="bldg_south_row",
-        footprint=BoundingBox2D(xmin=10.0, xmax=extent_m - 10.0,
-                                ymin=center_y - half_canyon - 15.0, ymax=center_y - half_canyon),
-        height=building_height
+        footprint=BoundingBox2D(
+            xmin=10.0,
+            xmax=extent_m - 10.0,
+            ymin=center_y - half_canyon - 15.0,
+            ymax=center_y - half_canyon,
+        ),
+        height=building_height,
     )
 
     scene = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=extent_m, extent_y=extent_m))
@@ -268,13 +278,13 @@ def create_occlusion_scene(extent_m: float = 80.0) -> Scene:
     bldg_rear = Building(
         id="bldg_rear_tall",
         footprint=BoundingBox2D(xmin=center_x - 8.0, xmax=center_x + 8.0, ymin=45.0, ymax=55.0),
-        height=26.0
+        height=26.0,
     )
     # Shorter foreground building (South, height 12m)
     bldg_front = Building(
         id="bldg_front_short",
         footprint=BoundingBox2D(xmin=center_x - 8.0, xmax=center_x + 8.0, ymin=25.0, ymax=35.0),
-        height=12.0
+        height=12.0,
     )
 
     scene = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=extent_m, extent_y=extent_m))

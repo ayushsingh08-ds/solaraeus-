@@ -23,6 +23,7 @@ from urban_comfort.geometry.scene import Scene
 @dataclass
 class GeometricEdit:
     """Base class for geometric building edits."""
+
     edit_type: str
 
     def apply(self, scene: Scene) -> Tuple[Scene, Tuple[float, float, float, float, float, float]]:
@@ -117,5 +118,3 @@ class MoveBuildingEdit(GeometricEdit):
             max(old_bounds[5], new_bounds[5]),
         )
         return new_scene, union_bounds
-
-

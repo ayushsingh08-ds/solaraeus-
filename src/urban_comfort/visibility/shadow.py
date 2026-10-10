@@ -14,19 +14,22 @@ from urban_comfort.solar.solar_position import SolarPosition
 from urban_comfort.visibility.ray_intersection import intersect_rays_aabb_batch
 
 
-def compute_direct_shadow_mask(scene: Scene, grid: PedestrianGrid,
-                               solar_pos: SolarPosition,
-                               roi_mask: Optional[np.ndarray] = None) -> np.ndarray:
+def compute_direct_shadow_mask(
+    scene: Scene,
+    grid: PedestrianGrid,
+    solar_pos: SolarPosition,
+    roi_mask: Optional[np.ndarray] = None,
+) -> np.ndarray:
     """
     Computes a 2D binary shadow mask across the pedestrian grid.
-    
+
     Parameters:
         scene: Scene object containing active buildings.
         grid: PedestrianGrid defining receptor coordinates.
         solar_pos: SolarPosition containing the unit sun vector.
         roi_mask: Optional (ny, nx) boolean mask. If provided, only cells
                   where roi_mask is True are recomputed; other cells default to 1.0.
-                  
+
     Returns:
         shadow_mask: (ny, nx) float64 array, 1.0 = illuminated, 0.0 = shaded.
     """
@@ -69,15 +72,18 @@ def compute_direct_shadow_mask(scene: Scene, grid: PedestrianGrid,
 
         # Also check if pedestrian point falls directly within building footprint
         inside_footprint = (
-            (origins[:, 0] >= bounds[0]) & (origins[:, 0] <= bounds[1]) &
-            (origins[:, 1] >= bounds[2]) & (origins[:, 1] <= bounds[3]) &
-            (origins[:, 2] <= bounds[5])
+            (origins[:, 0] >= bounds[0])
+            & (origins[:, 0] <= bounds[1])
+            & (origins[:, 1] >= bounds[2])
+            & (origins[:, 1] <= bounds[3])
+            & (origins[:, 2] <= bounds[5])
         )
         is_occluded |= inside_footprint
 
     # Test occlusion against triangular meshes
     if active_meshes:
         from urban_comfort.visibility.mesh_ray_intersection import intersect_rays_scene_meshes
+
         mesh_hits, _ = intersect_rays_scene_meshes(origins, sun_dir, active_meshes, early_exit=True)
         is_occluded |= mesh_hits
 

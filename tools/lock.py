@@ -30,9 +30,23 @@ LOCKFILE = REPO_ROOT / "requirements.lock"
 # Direct dependencies declared in pyproject.toml (distribution names).  Keep in
 # sync with [project.dependencies] and [project.optional-dependencies].
 DIRECT = [
-    "numpy", "scipy", "matplotlib", "shapely", "trimesh", "mapbox_earcut",
-    "pyproj", "pandas", "scikit-learn", "pythermalcomfort", "psutil",
-    "rasterio", "pillow", "pytest", "ruff", "mypy", "cupy-cuda12x",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "shapely",
+    "trimesh",
+    "mapbox_earcut",
+    "pyproj",
+    "pandas",
+    "scikit-learn",
+    "pythermalcomfort",
+    "psutil",
+    "rasterio",
+    "pillow",
+    "pytest",
+    "ruff",
+    "mypy",
+    "cupy-cuda12x",
 ]
 
 HEADER = [
@@ -151,8 +165,10 @@ def main() -> int:
                 for n in set(recorded) | set(current)
                 if recorded.get(n) != current.get(n)
             )
-            print(f"{LOCKFILE.name} is stale ({len(drift)} pin(s) drifted); run `make lock`",
-                  file=sys.stderr)
+            print(
+                f"{LOCKFILE.name} is stale ({len(drift)} pin(s) drifted); run `make lock`",
+                file=sys.stderr,
+            )
             for item in drift[:20]:
                 print(f"  {item}", file=sys.stderr)
             return 1

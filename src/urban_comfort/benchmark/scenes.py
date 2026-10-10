@@ -12,22 +12,19 @@ from urban_comfort.geometry.primitives import BoundingBox2D, Building
 from urban_comfort.geometry.scene import PedestrianGridConfig, Scene
 
 
-def create_scaling_scene(extent_m: float,
-                         density: str = "medium",
-                         grid_resolution: float = 1.0) -> Scene:
+def create_scaling_scene(
+    extent_m: float, density: str = "medium", grid_resolution: float = 1.0
+) -> Scene:
     """
     Constructs a reproducible synthetic urban scene with specified extent and density.
-    
+
     Parameters:
         extent_m: Side length of the square domain in meters (e.g. 80, 160, 320).
         density: "low", "medium", or "high".
         grid_resolution: Grid resolution in meters (default 1.0m).
     """
     grid_cfg = PedestrianGridConfig(
-        extent_x=extent_m,
-        extent_y=extent_m,
-        resolution=grid_resolution,
-        pedestrian_height=1.1
+        extent_x=extent_m, extent_y=extent_m, resolution=grid_resolution, pedestrian_height=1.1
     )
     scene = Scene(pedestrian_grid=grid_cfg)
 
@@ -67,9 +64,7 @@ def create_scaling_scene(extent_m: float,
             height = base_height + h_mod
 
             bldg = Building(
-                id=f"bldg_{iy}_{ix}",
-                footprint=BoundingBox2D(x1, x2, y1, y2),
-                height=height
+                id=f"bldg_{iy}_{ix}", footprint=BoundingBox2D(x1, x2, y1, y2), height=height
             )
             scene.add_building(bldg)
             bldg_idx += 1

@@ -31,21 +31,23 @@ import numpy as np
 
 def setup_style():
     """Sets clean publication styling."""
-    plt.rcParams.update({
-        "font.family": "sans-serif",
-        "font.size": 10,
-        "axes.titlesize": 12,
-        "axes.labelsize": 11,
-        "xtick.labelsize": 9,
-        "ytick.labelsize": 9,
-        "legend.fontsize": 9,
-        "figure.titlesize": 13,
-        "figure.dpi": 300,
-        "savefig.dpi": 300,
-        "axes.grid": True,
-        "grid.alpha": 0.3,
-        "grid.linestyle": "--",
-    })
+    plt.rcParams.update(
+        {
+            "font.family": "sans-serif",
+            "font.size": 10,
+            "axes.titlesize": 12,
+            "axes.labelsize": 11,
+            "xtick.labelsize": 9,
+            "ytick.labelsize": 9,
+            "legend.fontsize": 9,
+            "figure.titlesize": 13,
+            "figure.dpi": 300,
+            "savefig.dpi": 300,
+            "axes.grid": True,
+            "grid.alpha": 0.3,
+            "grid.linestyle": "--",
+        }
+    )
 
 
 def plot_best_objective_vs_random_seed(
@@ -61,8 +63,10 @@ def plot_best_objective_vs_random_seed(
     labels = [f"Seed {s}" for s in seeds]
     areas = [seed_results[s].get("best_area", 0.0) for s in seeds]
 
-    colors = ["#2b5c8f", "#d95f02", "#7570b3", "#1b9e77"][:len(seeds)]
-    bars = ax.bar(labels, scores, color=colors, width=0.45, edgecolor="black", linewidth=1.2, zorder=3)
+    colors = ["#2b5c8f", "#d95f02", "#7570b3", "#1b9e77"][: len(seeds)]
+    bars = ax.bar(
+        labels, scores, color=colors, width=0.45, edgecolor="black", linewidth=1.2, zorder=3
+    )
 
     min_val = min(scores)
     max_val = max(scores)
@@ -74,12 +78,21 @@ def plot_best_objective_vs_random_seed(
             bar.get_x() + bar.get_width() / 2,
             bar.get_height() + 0.01 * margin,
             f"{score:.4f}\n({area:.1f} m²)",
-            ha="center", va="bottom", fontsize=9, fontweight="bold"
+            ha="center",
+            va="bottom",
+            fontsize=9,
+            fontweight="bold",
         )
 
     mean_score = float(np.mean(scores))
     std_score = float(np.std(scores))
-    ax.axhline(mean_score, color="crimson", linestyle="--", linewidth=1.5, label=f"Mean: {mean_score:.4f} ± {std_score:.4f}")
+    ax.axhline(
+        mean_score,
+        color="crimson",
+        linestyle="--",
+        linewidth=1.5,
+        label=f"Mean: {mean_score:.4f} ± {std_score:.4f}",
+    )
 
     ax.set_title("Robustness: Best Composite Objective Across Random Seeds")
     ax.set_xlabel("Random Seed")
@@ -102,14 +115,27 @@ def plot_best_objective_vs_evaluation_budget(
     scores = [budget_results[b]["best_objective"] for b in budgets]
     deltas = [budget_results[b].get("peak_tmrt_drop", 0.0) for b in budgets]
 
-    ax.plot(budgets, scores, marker="o", color="#2b5c8f", linewidth=2.2, markersize=8, label="Best Objective Score", zorder=4)
+    ax.plot(
+        budgets,
+        scores,
+        marker="o",
+        color="#2b5c8f",
+        linewidth=2.2,
+        markersize=8,
+        label="Best Objective Score",
+        zorder=4,
+    )
 
     for b, s, d in zip(budgets, scores, deltas):
         ax.annotate(
             f"{s:.4f}\n(Peak ΔTmrt: {d:.2f} K)",
-            (b, s), textcoords="offset points", xytext=(0, 10),
-            ha="center", fontsize=9, fontweight="bold",
-            bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#2b5c8f", alpha=0.9)
+            (b, s),
+            textcoords="offset points",
+            xytext=(0, 10),
+            ha="center",
+            fontsize=9,
+            fontweight="bold",
+            bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="#2b5c8f", alpha=0.9),
         )
 
     ax.set_title("Budget Sensitivity: Best Objective vs Evaluation Budget")
@@ -177,9 +203,15 @@ def plot_candidate_ranking_across_solar_timestamps(
     x = np.arange(len(times))
     w = 0.25
 
-    rects1 = ax1.bar(x - w, utci_drops, w, label="Δ Corridor Mean UTCI (°C)", color="#2ca25f", edgecolor="black")
-    rects2 = ax1.bar(x, tmrt_drops, w, label="Δ Corridor Mean Tmrt (K)", color="#3182bd", edgecolor="black")
-    rects3 = ax1.bar(x + w, peak_tmrt, w, label="Peak Local Tmrt Relief (K)", color="#fd8d3c", edgecolor="black")
+    rects1 = ax1.bar(
+        x - w, utci_drops, w, label="Δ Corridor Mean UTCI (°C)", color="#2ca25f", edgecolor="black"
+    )
+    rects2 = ax1.bar(
+        x, tmrt_drops, w, label="Δ Corridor Mean Tmrt (K)", color="#3182bd", edgecolor="black"
+    )
+    rects3 = ax1.bar(
+        x + w, peak_tmrt, w, label="Peak Local Tmrt Relief (K)", color="#fd8d3c", edgecolor="black"
+    )
 
     ax1.set_xticks(x)
     ax1.set_xticklabels(times)
@@ -192,7 +224,14 @@ def plot_candidate_ranking_across_solar_timestamps(
         for r in rects:
             h = r.get_height()
             if h > 0:
-                ax1.text(r.get_x() + r.get_width() / 2, h + 0.1, f"{h:.2f}", ha="center", va="bottom", fontsize=7)
+                ax1.text(
+                    r.get_x() + r.get_width() / 2,
+                    h + 0.1,
+                    f"{h:.2f}",
+                    ha="center",
+                    va="bottom",
+                    fontsize=7,
+                )
 
     plt.tight_layout()
     plt.savefig(output_path)
@@ -260,7 +299,9 @@ def plot_panel_separation_sensitivity(
     ax1.set_xlabel("Minimum Panel Separation (m)")
     ax1.set_ylabel("Feasible Proposal Rate (%)")
     for s, p in zip(seps, feas_pct):
-        ax1.annotate(f"{p:.1f}%", (s, p), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=8)
+        ax1.annotate(
+            f"{p:.1f}%", (s, p), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=8
+        )
 
     ax2.bar([str(s) + " m" for s in seps], rej_sep, color="#e31a1c", width=0.45, edgecolor="black")
     ax2.set_title("Separation Constraint Rejection Count")
@@ -291,9 +332,17 @@ def plot_building_setback_sensitivity(
     ax1.set_xlabel("Minimum Building Setback (m)")
     ax1.set_ylabel("Feasible Proposal Rate (%)")
     for s, p in zip(setbacks, feas_pct):
-        ax1.annotate(f"{p:.1f}%", (s, p), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=8)
+        ax1.annotate(
+            f"{p:.1f}%", (s, p), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=8
+        )
 
-    ax2.bar([str(s) + " m" for s in setbacks], rej_setback, color="#ff7f00", width=0.45, edgecolor="black")
+    ax2.bar(
+        [str(s) + " m" for s in setbacks],
+        rej_setback,
+        color="#ff7f00",
+        width=0.45,
+        edgecolor="black",
+    )
     ax2.set_title("Setback Constraint Rejection Count")
     ax2.set_xlabel("Building Setback Constraint")
     ax2.set_ylabel("Rejections (out of 500 proposals)")
@@ -318,13 +367,22 @@ def plot_comfort_improvement_vs_total_area(
     utci_drop = [c["delta_mean_utci_c"] * 10.0 for c in candidates_data]  # scaled for visibility
     labels = [c["candidate_id"] for c in candidates_data]
 
-    scatter = ax.scatter(areas, peak_tmrt, s=80, c=utci_drop, cmap="plasma", edgecolor="black", zorder=3)
+    scatter = ax.scatter(
+        areas, peak_tmrt, s=80, c=utci_drop, cmap="plasma", edgecolor="black", zorder=3
+    )
     cbar = plt.colorbar(scatter, ax=ax)
     cbar.set_label("10 × Δ Corridor Mean UTCI (Scaled °C)")
 
     for a, p, cid in zip(areas, peak_tmrt, labels):
         if "BEST" in cid or "SURR" in cid or "STAGE" in cid:
-            ax.annotate(cid, (a, p), textcoords="offset points", xytext=(5, 5), fontsize=8, fontweight="bold")
+            ax.annotate(
+                cid,
+                (a, p),
+                textcoords="offset points",
+                xytext=(5, 5),
+                fontsize=8,
+                fontweight="bold",
+            )
 
     ax.set_title("Intervention Scaling: Comfort Relief vs Canopy Area")
     ax.set_xlabel("Total Canopy Area (m²)")
@@ -350,7 +408,13 @@ def plot_comfort_improvement_vs_estimated_cost(
 
     for cost, p, cid in zip(costs, peak_tmrt, labels):
         if "BEST" in cid or "SURR" in cid or "STAGE" in cid:
-            ax.annotate(f"{cid}\n(${cost:,.0f})", (cost, p), textcoords="offset points", xytext=(5, -10), fontsize=8)
+            ax.annotate(
+                f"{cid}\n(${cost:,.0f})",
+                (cost, p),
+                textcoords="offset points",
+                xytext=(5, -10),
+                fontsize=8,
+            )
 
     ax.set_title("Cost Efficiency: Peak Tmrt Cooling vs Capital Cost")
     ax.set_xlabel("Estimated Construction Cost (USD)")
@@ -370,7 +434,7 @@ def plot_improved_cell_coverage_comparison(
 
     labels = [c["name"] for c in candidates_data]
     coverages = [c["pct_cells_improved"] for c in candidates_data]
-    colors = ["#999999", "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c"][:len(labels)]
+    colors = ["#999999", "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c"][: len(labels)]
 
     bars = ax.barh(labels, coverages, color=colors, edgecolor="black", height=0.55, zorder=3)
     ax.set_xlim(0, max(coverages) * 1.25 if coverages else 50)
@@ -378,7 +442,14 @@ def plot_improved_cell_coverage_comparison(
     ax.set_xlabel("Percentage of Corridor Receptors Improved (%)")
 
     for bar, cov in zip(bars, coverages):
-        ax.text(bar.get_width() + 0.8, bar.get_y() + bar.get_height() / 2, f"{cov:.2f}%", va="center", fontsize=9, fontweight="bold")
+        ax.text(
+            bar.get_width() + 0.8,
+            bar.get_y() + bar.get_height() / 2,
+            f"{cov:.2f}%",
+            va="center",
+            fontsize=9,
+            fontweight="bold",
+        )
 
     plt.tight_layout()
     plt.savefig(output_path)
@@ -398,7 +469,14 @@ def plot_cpu_gpu_incremental_parity_errors(
     gpu_full_vs_inc_tmrt = [r["gpu_full_vs_gpu_inc"]["max_tmrt_diff_k"] for r in parity_reports]
 
     x = np.arange(len(cids))
-    ax1.bar(x, cpu_vs_gpu_tmrt, color="#2b5c8f", width=0.5, edgecolor="black", label="Max |CPU Full - GPU Full|")
+    ax1.bar(
+        x,
+        cpu_vs_gpu_tmrt,
+        color="#2b5c8f",
+        width=0.5,
+        edgecolor="black",
+        label="Max |CPU Full - GPU Full|",
+    )
     ax1.axhline(0.05, color="red", linestyle="--", label="Tolerance (0.05 K)")
     ax1.set_xticks(x)
     ax1.set_xticklabels(cids, rotation=45, ha="right", fontsize=8)
@@ -407,7 +485,14 @@ def plot_cpu_gpu_incremental_parity_errors(
     ax1.set_ylim(0, 0.06)
     ax1.legend(loc="upper right")
 
-    ax2.bar(x, gpu_full_vs_inc_tmrt, color="#41b6c4", width=0.5, edgecolor="black", label="Max |GPU Full - GPU Inc|")
+    ax2.bar(
+        x,
+        gpu_full_vs_inc_tmrt,
+        color="#41b6c4",
+        width=0.5,
+        edgecolor="black",
+        label="Max |GPU Full - GPU Inc|",
+    )
     ax2.axhline(0.05, color="red", linestyle="--", label="Tolerance (0.05 K)")
     ax2.set_xticks(x)
     ax2.set_xticklabels(cids, rotation=45, ha="right", fontsize=8)
@@ -434,8 +519,21 @@ def plot_reused_vs_recomputed_cells(
     recomputed = [r["recomputed_cells_count"] for r in eval_records]
     pct_reuse = [r["reused_fraction_pct"] for r in eval_records]
 
-    ax.plot(indices, pct_reuse, marker="o", color="#238b45", linewidth=2.0, markersize=5, label="Cell Reuse Percentage")
-    ax.axhline(float(np.mean(pct_reuse)), color="crimson", linestyle="--", label=f"Mean Reuse: {np.mean(pct_reuse):.2f}%")
+    ax.plot(
+        indices,
+        pct_reuse,
+        marker="o",
+        color="#238b45",
+        linewidth=2.0,
+        markersize=5,
+        label="Cell Reuse Percentage",
+    )
+    ax.axhline(
+        float(np.mean(pct_reuse)),
+        color="crimson",
+        linestyle="--",
+        label=f"Mean Reuse: {np.mean(pct_reuse):.2f}%",
+    )
 
     ax.set_title("GPU Incremental Solver: Pedestrian Grid Cell Reuse Ratio")
     ax.set_xlabel("Evaluation Index")
@@ -455,7 +553,12 @@ def plot_pareto_fronts_across_scenarios(
     setup_style()
     fig, ax = plt.subplots(figsize=(8, 5))
 
-    colors = {"nominal": "#1f78b4", "seed_7": "#33a02c", "seed_12345": "#e31a1c", "budget_50": "#ff7f00"}
+    colors = {
+        "nominal": "#1f78b4",
+        "seed_7": "#33a02c",
+        "seed_12345": "#e31a1c",
+        "budget_50": "#ff7f00",
+    }
     for sc_name, cands in pareto_scenarios.items():
         if not cands:
             continue
@@ -465,7 +568,15 @@ def plot_pareto_fronts_across_scenarios(
         # Sort for connected line
         sorted_pairs = sorted(zip(costs, drops))
         c_sorted, d_sorted = zip(*sorted_pairs)
-        ax.plot(c_sorted, d_sorted, marker="o", label=f"Pareto: {sc_name.title()}", color=color, linewidth=1.8, markersize=6)
+        ax.plot(
+            c_sorted,
+            d_sorted,
+            marker="o",
+            label=f"Pareto: {sc_name.title()}",
+            color=color,
+            linewidth=1.8,
+            markersize=6,
+        )
 
     ax.set_title("Multi-Objective Pareto Frontiers Across Scenarios")
     ax.set_xlabel("Estimated Construction Cost (USD)")

@@ -31,29 +31,100 @@ from urban_comfort.reference.result import SimulationResult
 
 # Documented Project Physical Tolerances
 TOLERANCES_INCREMENTAL = {
-    "shadow_mask": {"name": "Direct Shadow Mask", "tol": 0.0, "unit": "-", "desc": "Binary obstacle projection"},
-    "svf": {"name": "Sky View Factor (SVF)", "tol": 0.05, "unit": "-", "desc": "Certified SVF bound (B_T <= 0.50 K)"},
-    "direct_irradiance": {"name": "Direct Shortwave Irradiance", "tol": 1e-4, "unit": "W/m2", "desc": "Direct beam flux"},
-    "shortwave_flux": {"name": "Total Shortwave Flux", "tol": 2.00, "unit": "W/m2", "desc": "Absorbed shortwave flux (B_T <= 0.50 K)"},
-    "longwave_flux": {"name": "Total Longwave Flux", "tol": 2.00, "unit": "W/m2", "desc": "Absorbed longwave flux (B_T <= 0.50 K)"},
-    "tmrt": {"name": "Mean Radiant Temperature (Tmrt)", "tol": 0.50, "unit": "K", "desc": "Certified Tmrt tolerance"},
-    "utci": {"name": "Thermal Comfort (UTCI)", "tol": 0.50, "unit": "degC", "desc": "Certified UTCI tolerance"},
+    "shadow_mask": {
+        "name": "Direct Shadow Mask",
+        "tol": 0.0,
+        "unit": "-",
+        "desc": "Binary obstacle projection",
+    },
+    "svf": {
+        "name": "Sky View Factor (SVF)",
+        "tol": 0.05,
+        "unit": "-",
+        "desc": "Certified SVF bound (B_T <= 0.50 K)",
+    },
+    "direct_irradiance": {
+        "name": "Direct Shortwave Irradiance",
+        "tol": 1e-4,
+        "unit": "W/m2",
+        "desc": "Direct beam flux",
+    },
+    "shortwave_flux": {
+        "name": "Total Shortwave Flux",
+        "tol": 2.00,
+        "unit": "W/m2",
+        "desc": "Absorbed shortwave flux (B_T <= 0.50 K)",
+    },
+    "longwave_flux": {
+        "name": "Total Longwave Flux",
+        "tol": 2.00,
+        "unit": "W/m2",
+        "desc": "Absorbed longwave flux (B_T <= 0.50 K)",
+    },
+    "tmrt": {
+        "name": "Mean Radiant Temperature (Tmrt)",
+        "tol": 0.50,
+        "unit": "K",
+        "desc": "Certified Tmrt tolerance",
+    },
+    "utci": {
+        "name": "Thermal Comfort (UTCI)",
+        "tol": 0.50,
+        "unit": "degC",
+        "desc": "Certified UTCI tolerance",
+    },
 }
 
 TOLERANCES_SOLVER_EQUIVALENCE = {
-    "shadow_mask": {"name": "Direct Shadow Mask", "tol": 0.0, "unit": "-", "desc": "Exact bit match"},
-    "svf": {"name": "Sky View Factor (SVF)", "tol": 1e-12, "unit": "-", "desc": "Double precision machine epsilon"},
-    "direct_irradiance": {"name": "Direct Shortwave Irradiance", "tol": 1e-12, "unit": "W/m2", "desc": "Machine precision"},
-    "shortwave_flux": {"name": "Total Shortwave Flux", "tol": 1e-10, "unit": "W/m2", "desc": "Machine precision"},
-    "longwave_flux": {"name": "Total Longwave Flux", "tol": 1e-10, "unit": "W/m2", "desc": "Machine precision"},
-    "tmrt": {"name": "Mean Radiant Temperature (Tmrt)", "tol": 1e-10, "unit": "K", "desc": "Machine precision"},
-    "utci": {"name": "Thermal Comfort (UTCI)", "tol": 0.0, "unit": "degC", "desc": "Exact bit match"},
+    "shadow_mask": {
+        "name": "Direct Shadow Mask",
+        "tol": 0.0,
+        "unit": "-",
+        "desc": "Exact bit match",
+    },
+    "svf": {
+        "name": "Sky View Factor (SVF)",
+        "tol": 1e-12,
+        "unit": "-",
+        "desc": "Double precision machine epsilon",
+    },
+    "direct_irradiance": {
+        "name": "Direct Shortwave Irradiance",
+        "tol": 1e-12,
+        "unit": "W/m2",
+        "desc": "Machine precision",
+    },
+    "shortwave_flux": {
+        "name": "Total Shortwave Flux",
+        "tol": 1e-10,
+        "unit": "W/m2",
+        "desc": "Machine precision",
+    },
+    "longwave_flux": {
+        "name": "Total Longwave Flux",
+        "tol": 1e-10,
+        "unit": "W/m2",
+        "desc": "Machine precision",
+    },
+    "tmrt": {
+        "name": "Mean Radiant Temperature (Tmrt)",
+        "tol": 1e-10,
+        "unit": "K",
+        "desc": "Machine precision",
+    },
+    "utci": {
+        "name": "Thermal Comfort (UTCI)",
+        "tol": 0.0,
+        "unit": "degC",
+        "desc": "Exact bit match",
+    },
 }
 
 
 @dataclass
 class PathComparisonMetrics:
     """Pairwise field-by-field audit between two solver results."""
+
     path_a: str
     path_b: str
     comparison_type: str
@@ -93,6 +164,7 @@ class PathComparisonMetrics:
 @dataclass
 class CandidateValidationReport:
     """Multi-path audit report for a specific intervention candidate."""
+
     candidate_id: str
     role: str
     params: Dict[str, float]
@@ -138,6 +210,7 @@ class CandidateValidationReport:
 @dataclass
 class MultiPathValidationSummary:
     """Comprehensive summary of multi-path audits across all selected candidates."""
+
     reports: List[CandidateValidationReport]
     total_validated: int
     total_passed: int
@@ -152,12 +225,14 @@ class MultiPathValidationSummary:
         }
 
 
-def _compare_results(res_a: SimulationResult,
-                     res_b: SimulationResult,
-                     path_a_name: str,
-                     path_b_name: str,
-                     tolerances: Dict[str, Dict[str, Any]],
-                     comparison_type: str) -> PathComparisonMetrics:
+def _compare_results(
+    res_a: SimulationResult,
+    res_b: SimulationResult,
+    path_a_name: str,
+    path_b_name: str,
+    tolerances: Dict[str, Dict[str, Any]],
+    comparison_type: str,
+) -> PathComparisonMetrics:
     """Computes field differences and compares against strict tolerances."""
     field_pairs = {
         "shadow_mask": (res_a.shadow_mask, res_b.shadow_mask),
@@ -182,7 +257,7 @@ def _compare_results(res_a: SimulationResult,
         max_val = float(np.max(abs_diff)) if len(abs_diff) > 0 else 0.0
         mean_val = float(np.mean(abs_diff)) if len(abs_diff) > 0 else 0.0
         discrepancies = int(np.sum(abs_diff > (tol + 1e-14)))
-        passed = (discrepancies == 0)
+        passed = discrepancies == 0
 
         if not passed:
             passed_all = False
@@ -305,34 +380,48 @@ def validate_candidate_multi_path(
     ray_reduction_pct = (reused_cells / total_cells * 100.0) if total_cells > 0 else 0.0
 
     last_m = engine.last_metrics
-    kernel_ms = last_m.gpu_kernel_time_ms if last_m else (inc_update_res.time_selective_recompute_sec * 1000.0)
+    kernel_ms = (
+        last_m.gpu_kernel_time_ms
+        if last_m
+        else (inc_update_res.time_selective_recompute_sec * 1000.0)
+    )
 
     # 5. Parity Audits
     # CPU Full vs GPU Full (Full solver equivalence)
     cmp_cpu_gpu_full = _compare_results(
-        cpu_full_res, gpu_full_res,
-        path_a_name="CPU Full", path_b_name="GPU Full",
+        cpu_full_res,
+        gpu_full_res,
+        path_a_name="CPU Full",
+        path_b_name="GPU Full",
         tolerances=TOLERANCES_SOLVER_EQUIVALENCE,
-        comparison_type="full_solver_equivalence"
+        comparison_type="full_solver_equivalence",
     )
 
     # CPU Full vs GPU Incremental (Incremental certified bounds)
     cmp_cpu_gpu_inc = _compare_results(
-        cpu_full_res, gpu_inc_res,
-        path_a_name="CPU Full", path_b_name="GPU Incremental",
+        cpu_full_res,
+        gpu_inc_res,
+        path_a_name="CPU Full",
+        path_b_name="GPU Incremental",
         tolerances=TOLERANCES_INCREMENTAL,
-        comparison_type="incremental_vs_cpu_full"
+        comparison_type="incremental_vs_cpu_full",
     )
 
     # GPU Full vs GPU Incremental (Incremental certified bounds)
     cmp_gpu_full_gpu_inc = _compare_results(
-        gpu_full_res, gpu_inc_res,
-        path_a_name="GPU Full", path_b_name="GPU Incremental",
+        gpu_full_res,
+        gpu_inc_res,
+        path_a_name="GPU Full",
+        path_b_name="GPU Incremental",
         tolerances=TOLERANCES_INCREMENTAL,
-        comparison_type="incremental_vs_gpu_full"
+        comparison_type="incremental_vs_gpu_full",
     )
 
-    all_passed = cmp_cpu_gpu_full.passed_all and cmp_cpu_gpu_inc.passed_all and cmp_gpu_full_gpu_inc.passed_all
+    all_passed = (
+        cmp_cpu_gpu_full.passed_all
+        and cmp_cpu_gpu_inc.passed_all
+        and cmp_gpu_full_gpu_inc.passed_all
+    )
 
     return CandidateValidationReport(
         candidate_id=candidate_id,
@@ -347,7 +436,9 @@ def validate_candidate_multi_path(
         reused_fraction_pct=reused_pct,
         ray_reduction_pct=ray_reduction_pct,
         certificate_status=cert.status,
-        certificate_violations=0 if cert.is_certified else int(getattr(cert, "violations_count", 1)),
+        certificate_violations=0
+        if cert.is_certified
+        else int(getattr(cert, "violations_count", 1)),
         max_predicted_bound_k=float(np.max(cert.predicted_error_bound)),
         cpu_full_vs_gpu_full=cmp_cpu_gpu_full,
         cpu_full_vs_gpu_inc=cmp_cpu_gpu_inc,
@@ -375,7 +466,9 @@ def run_multi_path_validation_suite(
     """
     feasible = ledger.get_feasible()
     if not feasible:
-        return MultiPathValidationSummary(reports=[], total_validated=0, total_passed=0, all_passed=False)
+        return MultiPathValidationSummary(
+            reports=[], total_validated=0, total_passed=0, all_passed=False
+        )
 
     generator = rng or np.random.default_rng(42)
     selected_targets: List[Tuple[CandidateRecord, str]] = []
@@ -398,10 +491,7 @@ def run_multi_path_validation_suite(
         selected_targets.append((feasible[-1], "random_feasible_candidate"))
 
     # 3. One candidate near a feasibility boundary (e.g. closest to height limit 2.5m or boundary)
-    boundary_candidates = sorted(
-        feasible,
-        key=lambda c: abs(c.params.get("height", 3.0) - 2.50)
-    )
+    boundary_candidates = sorted(feasible, key=lambda c: abs(c.params.get("height", 3.0) - 2.50))
     boundary_cand = boundary_candidates[0]
     for bc in boundary_candidates:
         if bc.candidate_id not in seen_ids:
@@ -428,7 +518,7 @@ def run_multi_path_validation_suite(
 
     total_validated = len(reports)
     total_passed = sum(1 for r in reports if r.all_passed)
-    all_passed = (total_passed == total_validated)
+    all_passed = total_passed == total_validated
 
     return MultiPathValidationSummary(
         reports=reports,

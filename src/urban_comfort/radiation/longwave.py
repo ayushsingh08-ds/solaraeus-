@@ -14,6 +14,7 @@ from urban_comfort.config import SIGMA, Material, Weather
 @dataclass
 class LongwaveFluxes:
     """Longwave radiant flux densities incident on a standing human (W / m^2)."""
+
     l_sky: float
     l_wall: float
     l_ground: float
@@ -38,30 +39,30 @@ def compute_air_emissivity(air_temp_k: float, relative_humidity: float) -> float
     return float(np.clip(eps_air, 0.70, 0.95))
 
 
-def compute_longwave_fluxes(weather: Weather, svf: np.ndarray,
-                            ground_material: Material,
-                            wall_material: Material,
-                            f_up: float = 0.06, f_down: float = 0.06,
-                            f_side: float = 0.22) -> LongwaveFluxes:
+def compute_longwave_fluxes(
+    weather: Weather,
+    svf: np.ndarray,
+    ground_material: Material,
+    wall_material: Material,
+    f_up: float = 0.06,
+    f_down: float = 0.06,
+    f_side: float = 0.22,
+) -> LongwaveFluxes:
     """
     Computes 6-directional longwave fluxes on a standing human model.
     """
     eps_air = compute_air_emissivity(weather.air_temperature, weather.relative_humidity)
 
-    l_sky = eps_air * SIGMA * (weather.air_temperature ** 4)
-    l_wall = wall_material.emissivity * SIGMA * (wall_material.surface_temperature ** 4)
-    l_ground = ground_material.emissivity * SIGMA * (ground_material.surface_temperature ** 4)
+    l_sky = eps_air * SIGMA * (weather.air_temperature**4)
+    l_wall = wall_material.emissivity * SIGMA * (wall_material.surface_temperature**4)
+    l_ground = ground_material.emissivity * SIGMA * (ground_material.surface_temperature**4)
 
     # Directional fluxes
     l_up = svf * l_sky + (1.0 - svf) * l_wall
     l_down = np.full_like(svf, l_ground)
     l_side = 0.5 * svf * l_sky + (1.0 - 0.5 * svf) * l_wall
 
-    l_total = (
-        f_up * l_up +
-        f_down * l_down +
-        f_side * 4.0 * l_side
-    )
+    l_total = f_up * l_up + f_down * l_down + f_side * 4.0 * l_side
 
     return LongwaveFluxes(
         l_sky=l_sky,
@@ -70,5 +71,5 @@ def compute_longwave_fluxes(weather: Weather, svf: np.ndarray,
         l_up=l_up,
         l_down=l_down,
         l_side=l_side,
-        l_total=l_total
+        l_total=l_total,
     )

@@ -35,7 +35,9 @@ HAS_GPU = is_cupy_available()
 
 @pytest.fixture
 def test_env():
-    grid_cfg = PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(
+        extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1
+    )
     config = SimulationConfig(
         latitude=12.9716,
         longitude=77.5946,
@@ -45,7 +47,7 @@ def test_env():
         grid_resolution=1.0,
         tmrt_tolerance=0.5,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=40.0
+        max_svf_search_dist_m=40.0,
     )
     weather = Weather(
         air_temperature=305.15,
@@ -53,7 +55,7 @@ def test_env():
         wind_speed=1.5,
         wind_direction=90.0,
         direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=180.0
+        diffuse_horizontal_irradiance=180.0,
     )
     return grid_cfg, config, weather
 
@@ -168,7 +170,6 @@ def test_cpu_full_gpu_full_gpu_incremental_three_way_parity(test_env):
     assert np.max(np.abs(gpu_inc_res.result.tmrt - cpu_full_res.tmrt)) <= config.tmrt_tolerance
 
 
-
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_localized_panel_affects_subset_of_cells(test_env):
     """Test 4: Localized panel affects only a subset of cells, keeping distant cells untouched."""
@@ -279,7 +280,10 @@ def test_gpu_incremental_fallback_when_unavailable(test_env):
         scene_base, scene_interv, base_res, edit, weather, config
     )
 
-    assert inc_res.result.tmrt.shape == (grid_cfg.extent_y // grid_cfg.resolution, grid_cfg.extent_x // grid_cfg.resolution)
+    assert inc_res.result.tmrt.shape == (
+        grid_cfg.extent_y // grid_cfg.resolution,
+        grid_cfg.extent_x // grid_cfg.resolution,
+    )
     assert inc_res.recomputed_cells > 0
 
 

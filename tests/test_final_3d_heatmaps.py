@@ -22,7 +22,12 @@ def test_heatmap_manifest():
 def test_heatmap_rendered_views():
     view_dir = HM_DIR / "heatmap_rendered_views"
     assert view_dir.exists()
-    expected_imgs = ["tmrt_baseline.png", "tmrt_intervention.png", "cooling_delta.png", "utci_baseline.png"]
+    expected_imgs = [
+        "tmrt_baseline.png",
+        "tmrt_intervention.png",
+        "cooling_delta.png",
+        "utci_baseline.png",
+    ]
     for img in expected_imgs:
         p = view_dir / img
         assert p.exists()

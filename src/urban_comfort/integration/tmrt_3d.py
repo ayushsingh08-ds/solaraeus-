@@ -30,13 +30,13 @@ from urban_comfort.solar.solar_position import SolarPosition
 @dataclass
 class Tmrt3DResult:
     tmrt_c: np.ndarray  # Shape: (ny, nx)
-    s_str: np.ndarray   # Total absorbed radiation W/m²
-    k_dir: np.ndarray   # Direct shortwave component
+    s_str: np.ndarray  # Total absorbed radiation W/m²
+    k_dir: np.ndarray  # Direct shortwave component
     k_diff: np.ndarray  # Diffuse shortwave component
-    k_ref: np.ndarray   # Reflected shortwave component
+    k_ref: np.ndarray  # Reflected shortwave component
     l_down: np.ndarray  # Downward longwave component
-    l_up: np.ndarray    # Upward longwave component
-    l_walls: np.ndarray # Lateral wall longwave component
+    l_up: np.ndarray  # Upward longwave component
+    l_walls: np.ndarray  # Lateral wall longwave component
     mean_tmrt_c: float
     min_tmrt_c: float
     max_tmrt_c: float
@@ -107,7 +107,12 @@ class Tmrt3DEngine:
 
         # 3. Tree Interventions (T08 to T13):
         tree_shadow = np.zeros((self.ny, self.nx), dtype=np.float32)
-        has_trees = scenario in ["trees", "combined", "terrain_and_trees", "terrain_trees_and_panels"]
+        has_trees = scenario in [
+            "trees",
+            "combined",
+            "terrain_and_trees",
+            "terrain_trees_and_panels",
+        ]
         if has_trees and sun_pos.is_daylight:
             # Tree multiplier based on uncertainty state
             r_scale = 1.25 if tree_state == "large" else (0.82 if tree_state == "small" else 1.0)
@@ -134,7 +139,13 @@ class Tmrt3DEngine:
 
         # 4. Shade Panel Interventions (BLR_SHADE_001 / CAND_0028_EVOL):
         panel_shadow = np.zeros((self.ny, self.nx), dtype=np.float32)
-        has_panels = scenario in ["panels", "combined", "terrain_and_panels", "terrain_trees_and_panels", "optimized"]
+        has_panels = scenario in [
+            "panels",
+            "combined",
+            "terrain_and_panels",
+            "terrain_trees_and_panels",
+            "optimized",
+        ]
         if has_panels and sun_pos.is_daylight:
             panel_x, panel_y, panel_h = 105.0, 70.0, 4.5
             p_len, p_wid = 12.0, 6.0
@@ -161,7 +172,7 @@ class Tmrt3DEngine:
 
         # 7. Human projected area factor f_p(altitude):
         alt_deg = max(0.0, sun_pos.altitude_deg)
-        f_p = max(0.05, 0.308 * math.cos(math.radians(alt_deg)) * (1.0 - 0.00006 * (alt_deg ** 2)))
+        f_p = max(0.05, 0.308 * math.cos(math.radians(alt_deg)) * (1.0 - 0.00006 * (alt_deg**2)))
 
         # 8. Directional Shortwave Fluxes:
         # K_dir on human:
@@ -173,7 +184,11 @@ class Tmrt3DEngine:
         # Reflected shortwave from ground & walls:
         albedo_ground = 0.18
         albedo_wall = 0.25
-        k_ref = (direct_flux * math.sin(sun_pos.altitude_rad) + c_rad["dhi"]) * albedo_ground * (1.0 - svf)
+        k_ref = (
+            (direct_flux * math.sin(sun_pos.altitude_rad) + c_rad["dhi"])
+            * albedo_ground
+            * (1.0 - svf)
+        )
 
         k_total = k_dir + k_diff + k_ref
 
@@ -186,10 +201,10 @@ class Tmrt3DEngine:
         effective_t_g_k = np.where(is_shaded, t_g_k - 4.5, t_g_k)
 
         l_down = svf * c_rad["l_sky"]
-        l_up = SIGMA * (effective_t_g_k ** 4) * 0.95
-        l_walls = (1.0 - svf) * SIGMA * (t_w_k ** 4) * 0.90
+        l_up = SIGMA * (effective_t_g_k**4) * 0.95
+        l_walls = (1.0 - svf) * SIGMA * (t_w_k**4) * 0.90
 
-        l_total = (l_down * self.w_v + l_up * self.w_v + l_walls * (4 * self.w_h))
+        l_total = l_down * self.w_v + l_up * self.w_v + l_walls * (4 * self.w_h)
 
         # 10. Compute Tmrt via Stefan-Boltzmann inversion:
         s_str = self.a_k * k_total + self.a_l * l_total

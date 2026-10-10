@@ -21,6 +21,7 @@ class TerrainAwareScene:
     Extends Scene with an optional TerrainGrid.
     Preserves all building, ground, and grid definitions from the base Scene.
     """
+
     base_scene: Scene
     terrain: Optional[TerrainGrid] = None
     terrain_version: str = "2.1.0-cpu-terrain"
@@ -43,8 +44,9 @@ class TerrainAwareScene:
     def has_terrain(self) -> bool:
         return self.terrain is not None
 
-    def get_receptor_elevations(self, x: np.ndarray, y: np.ndarray,
-                               pedestrian_height_m: float = 1.1) -> Tuple[np.ndarray, np.ndarray]:
+    def get_receptor_elevations(
+        self, x: np.ndarray, y: np.ndarray, pedestrian_height_m: float = 1.1
+    ) -> Tuple[np.ndarray, np.ndarray]:
         """
         Computes 3D receptor elevations Z_rec(x, y) = Z_terrain(x, y) + pedestrian_height_m.
         If terrain is None, returns pedestrian_height_m (flat ground).
@@ -61,7 +63,9 @@ class TerrainAwareScene:
         z_rec = np.where(valid_mask, z_ground + pedestrian_height_m, np.nan)
         return z_rec, valid_mask
 
-    def validate_panel_clearance(self, panel_building: Building, min_clearance_m: float = 2.5) -> bool:
+    def validate_panel_clearance(
+        self, panel_building: Building, min_clearance_m: float = 2.5
+    ) -> bool:
         """
         Validates panel underside clearance above local terrain.
         """
@@ -69,8 +73,12 @@ class TerrainAwareScene:
             return panel_building.zmin >= min_clearance_m
 
         # Sample terrain under panel footprint corners
-        xs = np.array([panel_building.xmin, panel_building.xmax, panel_building.xmin, panel_building.xmax])
-        ys = np.array([panel_building.ymin, panel_building.ymin, panel_building.ymax, panel_building.ymax])
+        xs = np.array(
+            [panel_building.xmin, panel_building.xmax, panel_building.xmin, panel_building.xmax]
+        )
+        ys = np.array(
+            [panel_building.ymin, panel_building.ymin, panel_building.ymax, panel_building.ymax]
+        )
         z_ground, valid = self.terrain.sample_elevation(xs, ys)
         if not np.all(valid):
             return False

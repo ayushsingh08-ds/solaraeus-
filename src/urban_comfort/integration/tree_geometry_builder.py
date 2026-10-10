@@ -49,16 +49,12 @@ class TreeGeometryBuilder:
         crown_r_z = max(0.5, (height - crown_base_h) / 2.0)
 
         # 1. Sample terrain elevation at tree base
-        base_z = terrain_loader.sample_elevation(
-            tree.local_x, tree.local_y, terrain_profile
-        )
+        base_z = terrain_loader.sample_elevation(tree.local_x, tree.local_y, terrain_profile)
 
         # 2. Build Trunk (Cylinder)
         trunk_height = crown_base_h
         trunk_center_z = base_z + trunk_height / 2.0
-        trunk_mesh = trimesh.creation.cylinder(
-            radius=trunk_r, height=trunk_height, sections=16
-        )
+        trunk_mesh = trimesh.creation.cylinder(radius=trunk_r, height=trunk_height, sections=16)
         trunk_mesh.apply_translation([tree.local_x, tree.local_y, trunk_center_z])
 
         # 3. Build Crown (Ellipsoid)

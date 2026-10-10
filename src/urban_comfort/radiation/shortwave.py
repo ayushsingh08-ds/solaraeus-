@@ -17,18 +17,24 @@ from urban_comfort.solar.solar_position import SolarPosition
 @dataclass
 class ShortwaveFluxes:
     """Shortwave radiant flux densities incident on a standing human (W / m^2)."""
-    k_dir: np.ndarray             # Weighted direct solar flux
-    k_diff: np.ndarray            # Weighted diffuse sky + reflected flux
-    k_total: np.ndarray           # k_dir + k_diff
-    direct_horizontal: np.ndarray # I_dir * sin(alt) * shadow_mask
+
+    k_dir: np.ndarray  # Weighted direct solar flux
+    k_diff: np.ndarray  # Weighted diffuse sky + reflected flux
+    k_total: np.ndarray  # k_dir + k_diff
+    direct_horizontal: np.ndarray  # I_dir * sin(alt) * shadow_mask
 
 
-def compute_shortwave_fluxes(weather: Weather, solar_pos: SolarPosition,
-                             shadow_mask: np.ndarray, svf: np.ndarray,
-                             ground_material: Material,
-                             wall_material: Material,
-                             f_up: float = 0.06, f_down: float = 0.06,
-                             f_side: float = 0.22) -> ShortwaveFluxes:
+def compute_shortwave_fluxes(
+    weather: Weather,
+    solar_pos: SolarPosition,
+    shadow_mask: np.ndarray,
+    svf: np.ndarray,
+    ground_material: Material,
+    wall_material: Material,
+    f_up: float = 0.06,
+    f_down: float = 0.06,
+    f_side: float = 0.22,
+) -> ShortwaveFluxes:
     """
     Computes 6-directional shortwave fluxes on a standing human model.
     """
@@ -58,9 +64,7 @@ def compute_shortwave_fluxes(weather: Weather, solar_pos: SolarPosition,
     k_dir_s = i_dir * cos_south * shadow_mask
 
     k_dir_weighted = (
-        f_up * k_dir_up +
-        f_down * k_dir_down +
-        f_side * (k_dir_e + k_dir_w + k_dir_n + k_dir_s)
+        f_up * k_dir_up + f_down * k_dir_down + f_side * (k_dir_e + k_dir_w + k_dir_n + k_dir_s)
     )
 
     # 2. Diffuse sky radiation
@@ -77,9 +81,7 @@ def compute_shortwave_fluxes(weather: Weather, solar_pos: SolarPosition,
     k_refl_wall = wall_material.albedo * (1.0 - svf) * g_wall
 
     k_diff_weighted = (
-        f_up * k_diff_up +
-        f_down * k_refl_ground +
-        f_side * 4.0 * (k_diff_side + k_refl_wall)
+        f_up * k_diff_up + f_down * k_refl_ground + f_side * 4.0 * (k_diff_side + k_refl_wall)
     )
 
     k_total = k_dir_weighted + k_diff_weighted
@@ -88,5 +90,5 @@ def compute_shortwave_fluxes(weather: Weather, solar_pos: SolarPosition,
         k_dir=k_dir_weighted,
         k_diff=k_diff_weighted,
         k_total=k_total,
-        direct_horizontal=direct_horiz
+        direct_horizontal=direct_horiz,
     )

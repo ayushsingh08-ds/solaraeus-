@@ -18,9 +18,10 @@ from typing import Any, Dict, List, Optional
 @dataclass
 class CandidateRecord:
     """Comprehensive ledger entry for an intervention proposal."""
+
     candidate_id: str
     iteration: int
-    method: str                              # "deterministic_baseline", "random", "lhs", "evolutionary"
+    method: str  # "deterministic_baseline", "random", "lhs", "evolutionary"
     params: Dict[str, float]
     is_feasible: bool
     rejection_reason: Optional[str] = None
@@ -42,7 +43,9 @@ class CandidateRecord:
             "is_feasible": self.is_feasible,
             "rejection_reason": self.rejection_reason,
             "rejection_message": self.rejection_message,
-            "objective_value": float(self.objective_value) if math_isfinite(self.objective_value) else None,
+            "objective_value": float(self.objective_value)
+            if math_isfinite(self.objective_value)
+            else None,
             "metrics": self.metrics,
             "gpu_metrics": self.gpu_metrics,
             "certificate_status": self.certificate_status,
@@ -54,6 +57,7 @@ class CandidateRecord:
 
 def math_isfinite(val: float) -> bool:
     import math
+
     return math.isfinite(val)
 
 
@@ -106,32 +110,38 @@ class CandidateLedger:
             p = r.params
             m = r.metrics or {}
             gm = r.gpu_metrics or {}
-            rows.append({
-                "candidate_id": r.candidate_id,
-                "iteration": r.iteration,
-                "method": r.method,
-                "is_feasible": r.is_feasible,
-                "rejection_reason": r.rejection_reason or "",
-                "objective_value": r.objective_value if math_isfinite(r.objective_value) else "",
-                "x": p.get("x", ""),
-                "y": p.get("y", ""),
-                "length": p.get("length", ""),
-                "width": p.get("width", ""),
-                "height": p.get("height", ""),
-                "heading_deg": p.get("heading_deg", ""),
-                "albedo": p.get("albedo", ""),
-                "area_m2": p.get("area_m2", ""),
-                "mean_utci_c": m.get("mean_utci_c", ""),
-                "p90_utci_c": m.get("p90_utci_c", ""),
-                "pct_improved_cells": m.get("pct_improved_cells", ""),
-                "delta_mean_utci_c": m.get("delta_mean_utci_c", ""),
-                "recomputed_cells": gm.get("recomputed_cells", ""),
-                "reused_cells": gm.get("reused_cells", ""),
-                "ray_work_reduction_pct": gm.get("ray_work_reduction_pct", ""),
-                "gpu_kernel_time_ms": gm.get("gpu_kernel_time_ms", ""),
-                "certificate_violations": r.certificate_violations if r.certificate_violations is not None else "",
-                "wall_time_s": r.wall_time_s,
-            })
+            rows.append(
+                {
+                    "candidate_id": r.candidate_id,
+                    "iteration": r.iteration,
+                    "method": r.method,
+                    "is_feasible": r.is_feasible,
+                    "rejection_reason": r.rejection_reason or "",
+                    "objective_value": r.objective_value
+                    if math_isfinite(r.objective_value)
+                    else "",
+                    "x": p.get("x", ""),
+                    "y": p.get("y", ""),
+                    "length": p.get("length", ""),
+                    "width": p.get("width", ""),
+                    "height": p.get("height", ""),
+                    "heading_deg": p.get("heading_deg", ""),
+                    "albedo": p.get("albedo", ""),
+                    "area_m2": p.get("area_m2", ""),
+                    "mean_utci_c": m.get("mean_utci_c", ""),
+                    "p90_utci_c": m.get("p90_utci_c", ""),
+                    "pct_improved_cells": m.get("pct_improved_cells", ""),
+                    "delta_mean_utci_c": m.get("delta_mean_utci_c", ""),
+                    "recomputed_cells": gm.get("recomputed_cells", ""),
+                    "reused_cells": gm.get("reused_cells", ""),
+                    "ray_work_reduction_pct": gm.get("ray_work_reduction_pct", ""),
+                    "gpu_kernel_time_ms": gm.get("gpu_kernel_time_ms", ""),
+                    "certificate_violations": r.certificate_violations
+                    if r.certificate_violations is not None
+                    else "",
+                    "wall_time_s": r.wall_time_s,
+                }
+            )
 
         fieldnames = list(rows[0].keys())
         with open(path, "w", newline="", encoding="utf-8") as f:

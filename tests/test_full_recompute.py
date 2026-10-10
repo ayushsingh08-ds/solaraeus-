@@ -15,12 +15,12 @@ from urban_comfort.reference.result import SimulationResult
 @pytest.fixture
 def baseline_weather():
     return Weather(
-        air_temperature=301.15,          # 28 C
+        air_temperature=301.15,  # 28 C
         relative_humidity=50.0,
-        wind_speed=2.0,                  # 2 m/s
+        wind_speed=2.0,  # 2 m/s
         wind_direction=180.0,
         direct_normal_irradiance=800.0,  # 800 W/m^2
-        diffuse_horizontal_irradiance=160.0
+        diffuse_horizontal_irradiance=160.0,
     )
 
 
@@ -33,7 +33,7 @@ def baseline_config():
         local_time="12:00:00",
         pedestrian_height=1.1,
         grid_resolution=1.0,
-        sky_patch_configuration=16
+        sky_patch_configuration=16,
     )
 
 
@@ -68,8 +68,8 @@ def test_physical_contrast_sun_vs_shade(baseline_weather, baseline_config):
 
     # Building bounds: [23, 37] x [23, 37]
     # Identify pedestrian ground cells that are shaded (outside building) vs fully illuminated
-    shaded_cells = (result.shadow_mask == 0.0)
-    sunlit_cells = (result.shadow_mask == 1.0)
+    shaded_cells = result.shadow_mask == 0.0
+    sunlit_cells = result.shadow_mask == 1.0
 
     assert np.any(shaded_cells), "There must be shaded cells cast by the building!"
     assert np.any(sunlit_cells), "There must be sunlit cells on open ground!"
@@ -103,7 +103,7 @@ def test_nighttime_recompute(baseline_weather):
         longitude=-74.0060,
         date="2024-07-15",
         local_time="04:00:00",
-        sky_patch_configuration=16
+        sky_patch_configuration=16,
     )
 
     result = full_recompute(scene, baseline_weather, night_config)

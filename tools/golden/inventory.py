@@ -53,8 +53,11 @@ def write_snapshot() -> None:
         json.dump(
             {
                 "git_head": subprocess.run(
-                    ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT,
-                    capture_output=True, text=True, check=True,
+                    ["git", "rev-parse", "HEAD"],
+                    cwd=REPO_ROOT,
+                    capture_output=True,
+                    text=True,
+                    check=True,
                 ).stdout.strip(),
                 "file_count": len(inventory),
                 "files": inventory,
@@ -74,9 +77,7 @@ def diff_snapshot() -> int:
 
     added = sorted(set(current) - set(baseline))
     removed = sorted(set(baseline) - set(current))
-    changed = sorted(
-        rel for rel in set(current) & set(baseline) if current[rel] != baseline[rel]
-    )
+    changed = sorted(rel for rel in set(current) & set(baseline) if current[rel] != baseline[rel])
     identical = len(set(current) & set(baseline)) - len(changed)
 
     print(f"identical-content : {identical}")

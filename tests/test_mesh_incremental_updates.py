@@ -32,11 +32,13 @@ from urban_comfort.reference.full_recompute import full_recompute
 def sim_environment():
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
-        date="2026-06-21", local_time="12:00:00",
+        latitude=40.7128,
+        longitude=-74.0060,
+        date="2026-06-21",
+        local_time="12:00:00",
         tmrt_tolerance=2.0,
         sky_patch_configuration=16,
-        max_svf_search_dist_m=30.0
+        max_svf_search_dist_m=30.0,
     )
     weather = Weather(
         air_temperature=300.15,
@@ -44,7 +46,7 @@ def sim_environment():
         wind_speed=1.5,
         wind_direction=180.0,
         direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        diffuse_horizontal_irradiance=150.0,
     )
     return grid_cfg, config, weather
 
@@ -104,7 +106,9 @@ def test_exact_incremental_replace_mesh(sim_environment):
     res_base = full_recompute(scene_base, weather, config)
 
     # Replace with pitched roof
-    m_pitch = create_pitched_roof_mesh("b_replace", 40.0, 60.0, 40.0, 60.0, eave_height=12.0, ridge_height=22.0)
+    m_pitch = create_pitched_roof_mesh(
+        "b_replace", 40.0, 60.0, 40.0, 60.0, eave_height=12.0, ridge_height=22.0
+    )
     edit = ReplaceMeshEdit("b_replace", m_pitch)
     scene_new, _ = edit.apply(scene_base)
 
@@ -172,13 +176,17 @@ def test_certified_incremental_update_mesh_soundness(sim_environment):
     res_full = full_recompute(scene_new, weather, config)
 
     # Certified update with tolerance 2.0 K
-    res_inc, cert = incremental_update_certified(scene_base, scene_new, res_base, edit, weather, config)
+    res_inc, cert = incremental_update_certified(
+        scene_base, scene_new, res_base, edit, weather, config
+    )
 
     # Verify certificate soundness against ground-truth full recompute
     verif = verify_certificate(cert, res_inc.result.tmrt, res_full.tmrt)
 
     assert cert.status == "certified"
-    assert verif.is_valid, f"Certificate invalid! {verif.num_violations} violations with max {verif.max_violation} K"
+    assert verif.is_valid, (
+        f"Certificate invalid! {verif.num_violations} violations with max {verif.max_violation} K"
+    )
     assert verif.num_violations == 0
     assert verif.is_within_tolerance
     assert verif.reused_max_error <= config.tmrt_tolerance, (
@@ -208,7 +216,9 @@ def test_mesh_selective_recompute_speedup(sim_environment):
 
     # Time certified incremental update
     t0_inc = time.perf_counter()
-    res_inc, cert = incremental_update_certified(scene_base, scene_new, res_base, edit, weather, config)
+    res_inc, cert = incremental_update_certified(
+        scene_base, scene_new, res_base, edit, weather, config
+    )
     t_inc = time.perf_counter() - t0_inc
 
     # Both recomputations produce compliant results

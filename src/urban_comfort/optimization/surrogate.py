@@ -20,6 +20,7 @@ try:
     from sklearn.ensemble import ExtraTreesRegressor, RandomForestClassifier, RandomForestRegressor
     from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     from sklearn.preprocessing import StandardScaler
+
     SKLEARN_AVAILABLE = True
 except ImportError:
     SKLEARN_AVAILABLE = False
@@ -29,7 +30,14 @@ from urban_comfort.optimization.ledger import CandidateRecord
 from urban_comfort.optimization.parameters import ShadePanelParams
 
 FEATURE_NAMES: Tuple[str, ...] = (
-    "x", "y", "length", "width", "height", "heading_deg", "albedo", "area_m2"
+    "x",
+    "y",
+    "length",
+    "width",
+    "height",
+    "heading_deg",
+    "albedo",
+    "area_m2",
 )
 
 DEFAULT_TARGETS: Tuple[str, ...] = (
@@ -45,7 +53,8 @@ DEFAULT_TARGETS: Tuple[str, ...] = (
 @dataclass
 class SurrogateConfig:
     """Hyperparameters and configuration for surrogate model training."""
-    model_type: str = "random_forest"         # "random_forest", "extra_trees"
+
+    model_type: str = "random_forest"  # "random_forest", "extra_trees"
     n_estimators: int = 100
     max_depth: Optional[int] = 12
     min_samples_split: int = 2
@@ -72,6 +81,7 @@ class SurrogateConfig:
 @dataclass
 class SurrogatePrediction:
     """Pointwise prediction containing target means, uncertainties, and feasibility probability."""
+
     means: Dict[str, float]
     stds: Dict[str, float]
     feasibility_probability: float = 1.0
@@ -94,7 +104,9 @@ class SurrogatePrediction:
         }
 
 
-def extract_features(params: ShadePanelParams | Dict[str, Any], feature_names: Sequence[str] = FEATURE_NAMES) -> np.ndarray:
+def extract_features(
+    params: ShadePanelParams | Dict[str, Any], feature_names: Sequence[str] = FEATURE_NAMES
+) -> np.ndarray:
     """Extracts numeric feature vector from ShadePanelParams or param dict."""
     if isinstance(params, ShadePanelParams):
         p_dict = params.to_dict()
@@ -107,9 +119,15 @@ def extract_features(params: ShadePanelParams | Dict[str, Any], feature_names: S
     return np.array(vec, dtype=np.float64)
 
 
-def extract_targets(record: CandidateRecord, target_names: Sequence[str] = DEFAULT_TARGETS) -> Optional[np.ndarray]:
+def extract_targets(
+    record: CandidateRecord, target_names: Sequence[str] = DEFAULT_TARGETS
+) -> Optional[np.ndarray]:
     """Extracts target values from a feasible candidate record."""
-    if not record.is_feasible or record.metrics is None or not math.isfinite(record.objective_value):
+    if (
+        not record.is_feasible
+        or record.metrics is None
+        or not math.isfinite(record.objective_value)
+    ):
         return None
 
     m = record.metrics
@@ -131,7 +149,7 @@ def extract_targets(record: CandidateRecord, target_names: Sequence[str] = DEFAU
 class SurrogateModel:
     """
     Ensemble surrogate model predicting thermal comfort objectives and uncertainty.
-    
+
     Uses scikit-learn tree ensembles (Random Forest / Extra-Trees) to output:
       mu(x): Ensemble mean prediction
       sigma(x): Ensemble standard deviation (empirical tree variance)
@@ -179,10 +197,10 @@ class SurrogateModel:
     def fit(self, records: List[CandidateRecord]) -> Dict[str, Any]:
         """
         Fits multi-target regressors on valid physical records and classifier on all records.
-        
+
         Args:
             records: Candidate records from ledger.
-            
+
         Returns:
             Dictionary of training summary metrics.
         """
@@ -190,7 +208,10 @@ class SurrogateModel:
             raise ValueError("Cannot fit surrogate model on empty candidate ledger.")
 
         # Compute dataset hash over record IDs and parameter values for provenance
-        data_rep = json.dumps([{"id": r.candidate_id, "params": r.params, "feas": r.is_feasible} for r in records], sort_keys=True)
+        data_rep = json.dumps(
+            [{"id": r.candidate_id, "params": r.params, "feas": r.is_feasible} for r in records],
+            sort_keys=True,
+        )
         self.training_dataset_hash = hashlib.sha256(data_rep.encode("utf-8")).hexdigest()
 
         # 1. Feasibility Classifier (all proposed candidates)
@@ -217,7 +238,8 @@ class SurrogateModel:
 
         # 2. Physics Regression Models (FEASIBLE, VALID CERTIFICATE records only)
         trainable_records = [
-            r for r in records
+            r
+            for r in records
             if r.is_feasible
             and r.metrics is not None
             and math.isfinite(r.objective_value)
@@ -269,7 +291,10 @@ class SurrogateModel:
             r2 = float(r2_score(y_target, y_pred)) if len(y_target) > 1 else 1.0
 
             # Feature importances
-            fi = {fn: float(imp) for fn, imp in zip(self.config.feature_names, reg.feature_importances_)}
+            fi = {
+                fn: float(imp)
+                for fn, imp in zip(self.config.feature_names, reg.feature_importances_)
+            }
 
             reg_metrics[target_name] = {
                 "rmse": round(rmse, 6),
@@ -292,10 +317,12 @@ class SurrogateModel:
         preds = self.predict_batch([params])
         return preds[0]
 
-    def predict_batch(self, params_list: List[ShadePanelParams | Dict[str, Any]]) -> List[SurrogatePrediction]:
+    def predict_batch(
+        self, params_list: List[ShadePanelParams | Dict[str, Any]]
+    ) -> List[SurrogatePrediction]:
         """
         Batch prediction over multiple candidates.
-        
+
         Computes exact empirical tree variance across estimators:
           sigma^2(x) = (1 / B) * sum_{b=1}^B (f_b(x) - mu(x))^2
         """
@@ -306,7 +333,9 @@ class SurrogateModel:
         if n == 0:
             return []
 
-        X_raw = np.array([extract_features(p, self.config.feature_names) for p in params_list], dtype=np.float64)
+        X_raw = np.array(
+            [extract_features(p, self.config.feature_names) for p in params_list], dtype=np.float64
+        )
         if self.scaler is not None:
             X = self.scaler.transform(X_raw)
         else:
@@ -332,7 +361,7 @@ class SurrogateModel:
         for target_name in self.config.target_names:
             reg = self.regressors[target_name]
             # Accumulate predictions from each individual decision tree
-            tree_preds = np.stack([tree.predict(X) for tree in reg.estimators_], axis=0) # (B, n)
+            tree_preds = np.stack([tree.predict(X) for tree in reg.estimators_], axis=0)  # (B, n)
             mu = np.mean(tree_preds, axis=0)
             if reg.n_estimators > 1:
                 var = np.var(tree_preds, axis=0, ddof=1)
@@ -350,12 +379,14 @@ class SurrogateModel:
             p_feas = float(np.clip(feas_probs[i], 0.0, 1.0))
             risk = float(1.0 - p_feas)
 
-            results.append(SurrogatePrediction(
-                means=means_i,
-                stds=stds_i,
-                feasibility_probability=p_feas,
-                feasibility_risk=risk,
-            ))
+            results.append(
+                SurrogatePrediction(
+                    means=means_i,
+                    stds=stds_i,
+                    feasibility_probability=p_feas,
+                    feasibility_risk=risk,
+                )
+            )
 
         return results
 
@@ -375,18 +406,26 @@ class FallbackSurrogateModel:
         self.training_dataset_hash: str = ""
 
     def fit(self, records: List[CandidateRecord]) -> Dict[str, Any]:
-        data_rep = json.dumps([{"id": r.candidate_id, "params": r.params} for r in records], sort_keys=True)
+        data_rep = json.dumps(
+            [{"id": r.candidate_id, "params": r.params} for r in records], sort_keys=True
+        )
         self.training_dataset_hash = hashlib.sha256(data_rep.encode("utf-8")).hexdigest()
 
         trainable = [
-            r for r in records
+            r
+            for r in records
             if r.is_feasible and r.metrics is not None and math.isfinite(r.objective_value)
         ]
         if len(trainable) < 1:
             raise ValueError("Fallback surrogate requires at least 1 feasible candidate.")
 
-        self.train_X = np.array([extract_features(r.params, self.config.feature_names) for r in trainable], dtype=np.float64)
-        self.train_Y = np.array([extract_targets(r, self.config.target_names) for r in trainable], dtype=np.float64)
+        self.train_X = np.array(
+            [extract_features(r.params, self.config.feature_names) for r in trainable],
+            dtype=np.float64,
+        )
+        self.train_Y = np.array(
+            [extract_targets(r, self.config.target_names) for r in trainable], dtype=np.float64
+        )
         self.n_train_samples = len(trainable)
         self.is_fitted = True
         return {"n_train_samples": self.n_train_samples, "model_type": "fallback_empirical"}
@@ -395,13 +434,17 @@ class FallbackSurrogateModel:
         preds = self.predict_batch([params])
         return preds[0]
 
-    def predict_batch(self, params_list: List[ShadePanelParams | Dict[str, Any]]) -> List[SurrogatePrediction]:
+    def predict_batch(
+        self, params_list: List[ShadePanelParams | Dict[str, Any]]
+    ) -> List[SurrogatePrediction]:
         if not self.is_fitted:
             raise RuntimeError("FallbackSurrogateModel must be fitted before predict.")
 
         results: List[SurrogatePrediction] = []
         mean_y = np.mean(self.train_Y, axis=0)
-        std_y = np.std(self.train_Y, axis=0) if len(self.train_Y) > 1 else np.ones_like(mean_y) * 0.1
+        std_y = (
+            np.std(self.train_Y, axis=0) if len(self.train_Y) > 1 else np.ones_like(mean_y) * 0.1
+        )
 
         for p in params_list:
             x_vec = extract_features(p, self.config.feature_names)
@@ -412,12 +455,17 @@ class FallbackSurrogateModel:
             # Scale uncertainty with distance
             uncertainty_scale = min(3.0, 1.0 + min_dist * 0.1)
             means_dict = {tn: float(mean_y[i]) for i, tn in enumerate(self.config.target_names)}
-            stds_dict = {tn: float(std_y[i] * uncertainty_scale) for i, tn in enumerate(self.config.target_names)}
+            stds_dict = {
+                tn: float(std_y[i] * uncertainty_scale)
+                for i, tn in enumerate(self.config.target_names)
+            }
 
-            results.append(SurrogatePrediction(
-                means=means_dict,
-                stds=stds_dict,
-                feasibility_probability=1.0,
-                feasibility_risk=0.0,
-            ))
+            results.append(
+                SurrogatePrediction(
+                    means=means_dict,
+                    stds=stds_dict,
+                    feasibility_probability=1.0,
+                    feasibility_risk=0.0,
+                )
+            )
         return results

@@ -20,14 +20,15 @@ import numpy as np
 @dataclass
 class SimulationResult:
     """Complete simulation output across all computed physical fields."""
-    shadow_mask: np.ndarray                     # Binary direct beam visibility (1.0 lit, 0.0 shadow)
-    direct_irradiance: np.ndarray               # Direct horizontal shortwave irradiance (W / m^2)
-    visibility_fields: Dict[str, np.ndarray]    # {"svf": np.ndarray}
-    shortwave_flux: np.ndarray                  # Total absorbed shortwave flux density (W / m^2)
-    longwave_flux: np.ndarray                   # Total absorbed longwave flux density (W / m^2)
-    tmrt: np.ndarray                            # Mean Radiant Temperature in Celsius (deg C)
-    utci: np.ndarray                            # Universal Thermal Climate Index in Celsius (deg C)
-    metadata: Dict[str, Any]                    # Timestamps, runtimes, solar parameters, diagnostics
+
+    shadow_mask: np.ndarray  # Binary direct beam visibility (1.0 lit, 0.0 shadow)
+    direct_irradiance: np.ndarray  # Direct horizontal shortwave irradiance (W / m^2)
+    visibility_fields: Dict[str, np.ndarray]  # {"svf": np.ndarray}
+    shortwave_flux: np.ndarray  # Total absorbed shortwave flux density (W / m^2)
+    longwave_flux: np.ndarray  # Total absorbed longwave flux density (W / m^2)
+    tmrt: np.ndarray  # Mean Radiant Temperature in Celsius (deg C)
+    utci: np.ndarray  # Universal Thermal Climate Index in Celsius (deg C)
+    metadata: Dict[str, Any]  # Timestamps, runtimes, solar parameters, diagnostics
 
     @property
     def svf(self) -> np.ndarray:

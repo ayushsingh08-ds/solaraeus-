@@ -41,14 +41,14 @@ def analytical_wall_shadow_length(wall_height_m: float, solar_altitude_deg: floa
     return wall_height_m / math.tan(alt_rad)
 
 
-def analytical_view_factor_horizontal_to_vertical_wall(distance_d: float,
-                                                      wall_width_w: float,
-                                                      wall_height_h: float) -> float:
+def analytical_view_factor_horizontal_to_vertical_wall(
+    distance_d: float, wall_width_w: float, wall_height_h: float
+) -> float:
     """
     Exact analytical view factor from an infinitesimal horizontal surface element dA1
     at distance D on the ground to a vertical rectangular wall A2 of width W and height H,
     aligned symmetrically in front of the receptor (Siegel & Howell formulation).
-    
+
     Formula for symmetrical rectangle of half-width X = (W/2)/D and Y = H/D:
     F_{dA1 -> A2} = (1 / pi) * [ (X / sqrt(1 + X^2)) * arctan(Y / sqrt(1 + X^2)) ] * 2
     """
@@ -73,16 +73,18 @@ def run_analytical_reference_suite() -> List[AnalyticalBenchmarkResult]:
     exact_shadow_len = analytical_wall_shadow_length(h_wall, alt_deg)
     expected_len = 20.0  # tan(45 deg) = 1.0 -> 20 / 1.0 = 20.0m
     err1 = abs(exact_shadow_len - expected_len)
-    results.append(AnalyticalBenchmarkResult(
-        test_name="analytical_wall_shadow_length",
-        analytical_value=expected_len,
-        numerical_value=exact_shadow_len,
-        absolute_error=err1,
-        relative_error=err1 / expected_len,
-        tolerance=1e-9,
-        passed=(err1 <= 1e-9),
-        details={"wall_height_m": h_wall, "solar_altitude_deg": alt_deg}
-    ))
+    results.append(
+        AnalyticalBenchmarkResult(
+            test_name="analytical_wall_shadow_length",
+            analytical_value=expected_len,
+            numerical_value=exact_shadow_len,
+            absolute_error=err1,
+            relative_error=err1 / expected_len,
+            tolerance=1e-9,
+            passed=(err1 <= 1e-9),
+            details={"wall_height_m": h_wall, "solar_altitude_deg": alt_deg},
+        )
+    )
 
     # Case 2: Analytical View Factor to Finite Wall
     # Wall 20m wide, 15m high, receptor at distance 10m
@@ -98,31 +100,35 @@ def run_analytical_reference_suite() -> List[AnalyticalBenchmarkResult]:
     # f = (2 / pi) * 0.70710678 * 0.8149867 = 0.366874
     ref_vf = (2.0 / math.pi) * (1.0 / math.sqrt(2.0)) * math.atan(1.5 / math.sqrt(2.0))
     err2 = abs(exact_vf - ref_vf)
-    results.append(AnalyticalBenchmarkResult(
-        test_name="analytical_view_factor_finite_wall",
-        analytical_value=ref_vf,
-        numerical_value=exact_vf,
-        absolute_error=err2,
-        relative_error=err2 / ref_vf,
-        tolerance=1e-7,
-        passed=(err2 <= 1e-7),
-        details={"distance_m": d_m, "wall_width_m": w_m, "wall_height_m": h_m}
-    ))
+    results.append(
+        AnalyticalBenchmarkResult(
+            test_name="analytical_view_factor_finite_wall",
+            analytical_value=ref_vf,
+            numerical_value=exact_vf,
+            absolute_error=err2,
+            relative_error=err2 / ref_vf,
+            tolerance=1e-7,
+            passed=(err2 <= 1e-7),
+            details={"distance_m": d_m, "wall_width_m": w_m, "wall_height_m": h_m},
+        )
+    )
 
     # Case 3: View Factor to Unobstructed Ground & Sky
     # Unobstructed sky SVF must equal exactly 1.0
     exact_sky_vf = 1.0
     sim_sky_vf = 1.0  # Zero obstacles in scene
-    results.append(AnalyticalBenchmarkResult(
-        test_name="unobstructed_sky_view_factor",
-        analytical_value=exact_sky_vf,
-        numerical_value=sim_sky_vf,
-        absolute_error=0.0,
-        relative_error=0.0,
-        tolerance=1e-12,
-        passed=True,
-        details={"condition": "flat_open_terrain"}
-    ))
+    results.append(
+        AnalyticalBenchmarkResult(
+            test_name="unobstructed_sky_view_factor",
+            analytical_value=exact_sky_vf,
+            numerical_value=sim_sky_vf,
+            absolute_error=0.0,
+            relative_error=0.0,
+            tolerance=1e-12,
+            passed=True,
+            details={"condition": "flat_open_terrain"},
+        )
+    )
 
     # Case 4: Stefan-Boltzmann Inversion with Known Flux
     s_known = 500.0  # W / m^2
@@ -131,16 +137,18 @@ def run_analytical_reference_suite() -> List[AnalyticalBenchmarkResult]:
     res_state = compute_tmrt(np.array([s_known / 0.70]), np.array([0.0]))
     sim_tmrt_c = float(res_state.tmrt_c[0])
     err4 = abs(sim_tmrt_c - exact_tmrt_c)
-    results.append(AnalyticalBenchmarkResult(
-        test_name="stefan_boltzmann_exact_inversion",
-        analytical_value=exact_tmrt_c,
-        numerical_value=sim_tmrt_c,
-        absolute_error=err4,
-        relative_error=err4 / abs(exact_tmrt_c),
-        tolerance=1e-9,
-        passed=(err4 <= 1e-9),
-        details={"input_flux_w_m2": s_known, "expected_k": exact_tmrt_k}
-    ))
+    results.append(
+        AnalyticalBenchmarkResult(
+            test_name="stefan_boltzmann_exact_inversion",
+            analytical_value=exact_tmrt_c,
+            numerical_value=sim_tmrt_c,
+            absolute_error=err4,
+            relative_error=err4 / abs(exact_tmrt_c),
+            tolerance=1e-9,
+            passed=(err4 <= 1e-9),
+            details={"input_flux_w_m2": s_known, "expected_k": exact_tmrt_k},
+        )
+    )
 
     return results
 
@@ -156,7 +164,7 @@ def run_independent_reference_tests() -> List[Dict[str, Any]]:
             "absolute_error": r.absolute_error,
             "relative_error": r.relative_error,
             "tolerance": r.tolerance,
-            "passed": r.passed
+            "passed": r.passed,
         }
         for r in results
     ]
@@ -170,28 +178,28 @@ EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT = {
         "spatial_input_format": {
             "our_format": "Discrete Vector 3D Primitives / Axis-Aligned Bounding Boxes rasterized onto 2D Grid",
             "umep_format": "2D GeoTIFF raster Digital Surface Model (DSM) and Canopy Digital Elevation Model (CDEM)",
-            "status": "Mismatch: Requires rasterization adapter from vector buildings to GeoTIFF DSM."
+            "status": "Mismatch: Requires rasterization adapter from vector buildings to GeoTIFF DSM.",
         },
         "coordinate_conventions": {
             "our_format": "Local Cartesian (u, v) in meters, flat terrain z=0",
             "umep_format": "Projected CRS (e.g. UTM / EPSG:32633) with georeferenced raster headers",
-            "status": "Mismatch: Requires EPSG coordinate projection metadata in raster headers."
+            "status": "Mismatch: Requires EPSG coordinate projection metadata in raster headers.",
         },
         "sky_discretization": {
             "our_format": "Multi-azimuth horizon elevation angle search (16, 32, 64 rays)",
             "umep_format": "153-patch Tregenza sky discretization / Shadow casting algorithm (Lindberg et al., 2008)",
-            "status": "Conceptual match: Both use angular horizon elevation tracing."
+            "status": "Conceptual match: Both use angular horizon elevation tracing.",
         },
         "meteorological_forcing": {
             "our_format": "Single-timestep static Weather dataclass (Ta, RH, DNI, DHI, Wind)",
             "umep_format": "Continuous tabular CSV (hourly/minutely) with global solar radiation and diurnal cycles",
-            "status": "Compatible: Can be evaluated at a single row matching our Weather parameters."
+            "status": "Compatible: Can be evaluated at a single row matching our Weather parameters.",
         },
         "human_body_weighting": {
             "our_format": "Standing rotationally symmetric cylinder (f_up=0.06, f_down=0.06, f_side=0.22)",
             "umep_format": "Standing cylinder (f_up=0.06, f_down=0.06, f_side=0.22) (Höppe 1992)",
-            "status": "Identical Hoppe (1992) formulation: angular cylinder weighting factors and absorptivities."
+            "status": "Identical Hoppe (1992) formulation: angular cylinder weighting factors and absorptivities.",
         },
-        "integration_status": "External executable integration is not currently possible without installing QGIS and UMEP plugin dependencies in this lightweight Python environment. Analytical reference cases serve as independent ground truth."
-    }
+        "integration_status": "External executable integration is not currently possible without installing QGIS and UMEP plugin dependencies in this lightweight Python environment. Analytical reference cases serve as independent ground truth.",
+    },
 }

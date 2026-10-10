@@ -39,6 +39,7 @@ from urban_comfort.visibility.shadow import compute_direct_shadow_mask
 @dataclass
 class IncrementalUpdateResult:
     """Telemetry and outcome of an exact incremental update."""
+
     result: SimulationResult
     recomputed_mask: np.ndarray
     reused_mask: np.ndarray
@@ -50,9 +51,11 @@ class IncrementalUpdateResult:
     time_selective_recompute_sec: float
 
 
-def compute_exact_dirty_shadow_mask(grid: PedestrianGrid,
-                                    edit_bounds_3d: Tuple[float, float, float, float, float, float],
-                                    solar_pos: SolarPosition) -> np.ndarray:
+def compute_exact_dirty_shadow_mask(
+    grid: PedestrianGrid,
+    edit_bounds_3d: Tuple[float, float, float, float, float, float],
+    solar_pos: SolarPosition,
+) -> np.ndarray:
     """
     Computes candidate ground region where direct shadow could possibly change.
     Any cell outside this region is provably unchanged.
@@ -78,8 +81,8 @@ def compute_exact_dirty_shadow_mask(grid: PedestrianGrid,
     sx, sy, sz = solar_pos.sun_vector
     norm_horiz = math.hypot(sx, sy)
     if norm_horiz > 1e-6:
-        shadow_dx = - (sx / norm_horiz) * max_shadow_len
-        shadow_dy = - (sy / norm_horiz) * max_shadow_len
+        shadow_dx = -(sx / norm_horiz) * max_shadow_len
+        shadow_dy = -(sy / norm_horiz) * max_shadow_len
     else:
         shadow_dx = 0.0
         shadow_dy = 0.0
@@ -96,9 +99,11 @@ def compute_exact_dirty_shadow_mask(grid: PedestrianGrid,
     return mask
 
 
-def compute_exact_dirty_svf_mask(grid: PedestrianGrid,
-                                 edit_bounds_3d: Tuple[float, float, float, float, float, float],
-                                 max_search_dist_m: float) -> np.ndarray:
+def compute_exact_dirty_svf_mask(
+    grid: PedestrianGrid,
+    edit_bounds_3d: Tuple[float, float, float, float, float, float],
+    max_search_dist_m: float,
+) -> np.ndarray:
     """
     Computes region where Sky View Factor could possibly change.
     Beyond max_search_dist_m from the edit bounding box, SVF is identically unchanged.
@@ -118,26 +123,31 @@ def compute_exact_dirty_svf_mask(grid: PedestrianGrid,
     return mask
 
 
-def incremental_update_exact(previous_scene: Scene,
-                             updated_scene: Scene,
-                             previous_result: SimulationResult,
-                             edit: GeometricEdit,
-                             weather: Weather,
-                             config: SimulationConfig,
-                             max_svf_search_dist_m: Optional[float] = None,
-                             backend: str = "cpu") -> IncrementalUpdateResult:
+def incremental_update_exact(
+    previous_scene: Scene,
+    updated_scene: Scene,
+    previous_result: SimulationResult,
+    edit: GeometricEdit,
+    weather: Weather,
+    config: SimulationConfig,
+    max_svf_search_dist_m: Optional[float] = None,
+    backend: str = "cpu",
+) -> IncrementalUpdateResult:
     """
     Executes an exact incremental update, recomputing only cells within provably affected regions.
     """
     if backend.lower() == "gpu":
         from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+
         engine = GPUIncrementalEngine()
         return engine.execute_exact_update(
             previous_scene, updated_scene, previous_result, edit, weather, config
         )
 
     t_start = time.perf_counter()
-    svf_search_dist = max_svf_search_dist_m if max_svf_search_dist_m is not None else config.max_svf_search_dist_m
+    svf_search_dist = (
+        max_svf_search_dist_m if max_svf_search_dist_m is not None else config.max_svf_search_dist_m
+    )
 
     # Apply edit to get modified volume bounding box
     _, edit_bounds_3d = edit.apply(previous_scene)
@@ -170,10 +180,11 @@ def incremental_update_exact(previous_scene: Scene,
     new_svf = previous_result.svf.copy()
     if np.any(svf_dirty_mask):
         recomputed_svf = compute_sky_view_factor(
-            updated_scene, grid,
+            updated_scene,
+            grid,
             num_azimuths=config.sky_patch_configuration,
             max_search_dist_m=svf_search_dist,
-            roi_mask=svf_dirty_mask
+            roi_mask=svf_dirty_mask,
         )
         new_svf[svf_dirty_mask] = recomputed_svf[svf_dirty_mask]
 
@@ -182,7 +193,9 @@ def incremental_update_exact(previous_scene: Scene,
     ground_mat = updated_scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
 
     # Compute shortwave and longwave on full fields (vectorized operations take < 1 ms)
-    sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
+    sw_fluxes = compute_shortwave_fluxes(
+        weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat
+    )
     lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
     radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
 
@@ -191,7 +204,7 @@ def incremental_update_exact(previous_scene: Scene,
         air_temp_c=air_temp_c,
         tmrt_c=radiant_state.tmrt_c,
         wind_speed_ms=weather.wind_speed,
-        relative_humidity=weather.relative_humidity
+        relative_humidity=weather.relative_humidity,
     )
     t_recomp = time.perf_counter() - t0_recomp
     t_total = time.perf_counter() - t_start
@@ -204,7 +217,7 @@ def incremental_update_exact(previous_scene: Scene,
         "timing_total_sec": t_total,
         "recomputed_cells": int(np.sum(combined_dirty_mask)),
         "total_cells": grid.total_cells,
-        "reused_fraction": 1.0 - (float(np.sum(combined_dirty_mask)) / float(grid.total_cells))
+        "reused_fraction": 1.0 - (float(np.sum(combined_dirty_mask)) / float(grid.total_cells)),
     }
 
     result = SimulationResult(
@@ -215,7 +228,7 @@ def incremental_update_exact(previous_scene: Scene,
         longwave_flux=lw_fluxes.l_total,
         tmrt=radiant_state.tmrt_c,
         utci=utci,
-        metadata=metadata
+        metadata=metadata,
     )
 
     recomputed_count = int(np.sum(combined_dirty_mask))
@@ -230,17 +243,19 @@ def incremental_update_exact(previous_scene: Scene,
         reused_fraction=1.0 - (recomputed_count / float(grid.total_cells)),
         time_incremental_sec=t_total,
         time_candidate_region_sec=t_cand,
-        time_selective_recompute_sec=t_recomp
+        time_selective_recompute_sec=t_recomp,
     )
 
 
-def incremental_update_certified(previous_scene: Scene,
-                                 updated_scene: Scene,
-                                 previous_result: SimulationResult,
-                                 edit: GeometricEdit,
-                                 weather: Weather,
-                                 config: SimulationConfig,
-                                 backend: str = "cpu") -> Tuple[IncrementalUpdateResult, Any]:
+def incremental_update_certified(
+    previous_scene: Scene,
+    updated_scene: Scene,
+    previous_result: SimulationResult,
+    edit: GeometricEdit,
+    weather: Weather,
+    config: SimulationConfig,
+    backend: str = "cpu",
+) -> Tuple[IncrementalUpdateResult, Any]:
     """
     Executes a certified incremental update with bounded approximation:
     - Generates error certificate B_T(x).
@@ -250,6 +265,7 @@ def incremental_update_certified(previous_scene: Scene,
     """
     if backend.lower() == "gpu":
         from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+
         engine = GPUIncrementalEngine()
         return engine.execute_certified_update(
             previous_scene, updated_scene, previous_result, edit, weather, config
@@ -264,8 +280,7 @@ def incremental_update_certified(previous_scene: Scene,
     # 1. Certificate Construction
     t0_cert = time.perf_counter()
     cert = generate_error_certificate(
-        previous_scene, updated_scene, edit, previous_result,
-        solar_pos, grid, weather, config
+        previous_scene, updated_scene, edit, previous_result, solar_pos, grid, weather, config
     )
     t_cert = time.perf_counter() - t0_cert
 
@@ -282,7 +297,7 @@ def incremental_update_certified(previous_scene: Scene,
             reused_fraction=0.0,
             time_incremental_sec=time.perf_counter() - t_start,
             time_candidate_region_sec=t_cert,
-            time_selective_recompute_sec=time.perf_counter() - t_start - t_cert
+            time_selective_recompute_sec=time.perf_counter() - t_start - t_cert,
         )
         return update_res, cert
 
@@ -304,17 +319,20 @@ def incremental_update_certified(previous_scene: Scene,
     new_svf = previous_result.svf.copy()
     if np.any(dirty_mask):
         recomputed_svf = compute_sky_view_factor(
-            updated_scene, grid,
+            updated_scene,
+            grid,
             num_azimuths=config.sky_patch_configuration,
             max_search_dist_m=config.max_svf_search_dist_m,
-            roi_mask=dirty_mask
+            roi_mask=dirty_mask,
         )
         new_svf[dirty_mask] = recomputed_svf[dirty_mask]
 
     wall_mat = updated_scene.materials.get("default_wall", DEFAULT_WALL_MATERIAL)
     ground_mat = updated_scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
 
-    sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
+    sw_fluxes = compute_shortwave_fluxes(
+        weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat
+    )
     lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
     radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
 
@@ -323,7 +341,7 @@ def incremental_update_certified(previous_scene: Scene,
         air_temp_c=air_temp_c,
         tmrt_c=radiant_state.tmrt_c,
         wind_speed_ms=weather.wind_speed,
-        relative_humidity=weather.relative_humidity
+        relative_humidity=weather.relative_humidity,
     )
     t_recomp = time.perf_counter() - t0_recomp
 
@@ -347,7 +365,7 @@ def incremental_update_certified(previous_scene: Scene,
         "total_cells": grid.total_cells,
         "reused_fraction": reused_count / float(grid.total_cells),
         "tmrt_tolerance": config.tmrt_tolerance,
-        "max_predicted_bound": cert.max_predicted_bound
+        "max_predicted_bound": cert.max_predicted_bound,
     }
 
     result = SimulationResult(
@@ -358,7 +376,7 @@ def incremental_update_certified(previous_scene: Scene,
         longwave_flux=lw_fluxes.l_total,
         tmrt=radiant_state.tmrt_c,
         utci=utci,
-        metadata=metadata
+        metadata=metadata,
     )
 
     t_assembly = time.perf_counter() - t0_assembly
@@ -375,8 +393,7 @@ def incremental_update_certified(previous_scene: Scene,
         reused_fraction=reused_count / float(grid.total_cells),
         time_incremental_sec=t_total,
         time_candidate_region_sec=t_cand,
-        time_selective_recompute_sec=t_recomp
+        time_selective_recompute_sec=t_recomp,
     )
 
     return update_res, cert
-

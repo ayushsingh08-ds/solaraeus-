@@ -23,7 +23,7 @@ def test_stage_12_required_files_exist(stage_12_dir):
         "gpu_work_summary.json",
         "gpu_cpu_speedup_report.md",
         "gpu_profiling_environment.json",
-        "stage_12_test_results.json"
+        "stage_12_test_results.json",
     ]
     for fname in required:
         fpath = stage_12_dir / fname

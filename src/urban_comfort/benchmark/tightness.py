@@ -20,6 +20,7 @@ from urban_comfort.incremental.certificate import ErrorCertificate
 @dataclass
 class CertificateTightnessMetrics:
     """Detailed distributional metrics for certificate evaluation."""
+
     scenario_id: str
     total_cells: int
     reused_cells: int
@@ -45,11 +46,13 @@ class CertificateTightnessMetrics:
         return asdict(self)
 
 
-def evaluate_certificate_tightness(cert: ErrorCertificate,
-                                   incremental_tmrt: np.ndarray,
-                                   full_tmrt: np.ndarray,
-                                   scenario_id: str = "default",
-                                   numerical_precision_k: float = 1e-6) -> CertificateTightnessMetrics:
+def evaluate_certificate_tightness(
+    cert: ErrorCertificate,
+    incremental_tmrt: np.ndarray,
+    full_tmrt: np.ndarray,
+    scenario_id: str = "default",
+    numerical_precision_k: float = 1e-6,
+) -> CertificateTightnessMetrics:
     """
     Computes exact cell-by-cell slack, ratios, and percentile distributions across the domain.
     """
@@ -103,5 +106,5 @@ def evaluate_certificate_tightness(cert: ErrorCertificate,
         max_actual_error_k=max_actual_err,
         mean_actual_error_k=mean_actual_err,
         max_predicted_bound_k=max_bound,
-        tolerance_k=float(cert.tolerance)
+        tolerance_k=float(cert.tolerance),
     )

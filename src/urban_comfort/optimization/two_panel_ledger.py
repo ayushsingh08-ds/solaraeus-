@@ -20,10 +20,11 @@ import pandas as pd
 @dataclass
 class TwoPanelCandidateRecord:
     """Comprehensive ledger entry for a two-panel intervention proposal."""
+
     candidate_id: str
     iteration: int
-    method: str                              # "seed_best_offset", "seed_lhs", "surrogate_lcb", "random", etc.
-    params: Dict[str, Any]                   # Dictionary containing panel1, panel2, total_area, etc.
+    method: str  # "seed_best_offset", "seed_lhs", "surrogate_lcb", "random", etc.
+    params: Dict[str, Any]  # Dictionary containing panel1, panel2, total_area, etc.
     is_feasible: bool
     total_panel_area: float = 0.0
     rejection_reason: Optional[str] = None
@@ -70,6 +71,7 @@ class TwoPanelCandidateRecord:
     def from_dict(cls, d: Dict[str, Any]) -> TwoPanelCandidateRecord:
         """Constructs record from serialized dictionary, ignoring unknown extra keys."""
         import dataclasses
+
         valid_fields = {f.name for f in dataclasses.fields(cls)}
         filtered = {k: v for k, v in d.items() if k in valid_fields}
         if "total_panel_area_m2" in d and "total_panel_area" not in filtered:
@@ -87,7 +89,9 @@ class TwoPanelCandidateRecord:
             "rejection_reason": self.rejection_reason,
             "rejection_message": self.rejection_message,
             "rejection_details": self.rejection_details,
-            "objective_value": float(self.objective_value) if (self.objective_value is not None and math.isfinite(self.objective_value)) else None,
+            "objective_value": float(self.objective_value)
+            if (self.objective_value is not None and math.isfinite(self.objective_value))
+            else None,
             "metrics": self.metrics,
             "affected_cells_count": self.affected_cells_count,
             "recomputed_cells_count": self.recomputed_cells_count,
@@ -204,21 +208,35 @@ class TwoPanelCandidateLedger:
                 "pct_comfortable_cells": m.get("pct_comfortable_cells", ""),
                 "estimated_construction_cost_usd": m.get("estimated_construction_cost_usd", ""),
                 # Spatial reuse
-                "affected_cells": r.affected_cells_count if r.affected_cells_count is not None else "",
-                "recomputed_cells": r.recomputed_cells_count if r.recomputed_cells_count is not None else "",
+                "affected_cells": r.affected_cells_count
+                if r.affected_cells_count is not None
+                else "",
+                "recomputed_cells": r.recomputed_cells_count
+                if r.recomputed_cells_count is not None
+                else "",
                 "reused_cells": r.reused_cells_count if r.reused_cells_count is not None else "",
                 "overlap_cells": r.overlap_cells_count if r.overlap_cells_count is not None else "",
                 "union_cells": r.union_cells_count if r.union_cells_count is not None else "",
                 # Performance
-                "gpu_kernel_time_ms": r.gpu_kernel_time_ms if r.gpu_kernel_time_ms is not None else "",
+                "gpu_kernel_time_ms": r.gpu_kernel_time_ms
+                if r.gpu_kernel_time_ms is not None
+                else "",
                 "total_runtime_s": r.total_runtime_s,
                 # Certification
                 "certificate_status": r.certificate_status or "",
-                "certificate_violations": r.certificate_violations if r.certificate_violations is not None else "",
-                "max_certificate_bound_k": r.max_certificate_bound_k if r.max_certificate_bound_k is not None else "",
+                "certificate_violations": r.certificate_violations
+                if r.certificate_violations is not None
+                else "",
+                "max_certificate_bound_k": r.max_certificate_bound_k
+                if r.max_certificate_bound_k is not None
+                else "",
                 # Surrogate
-                "surrogate_pred_obj": r.surrogate_predicted_objective if r.surrogate_predicted_objective is not None else "",
-                "surrogate_uncertainty": r.surrogate_uncertainty if r.surrogate_uncertainty is not None else "",
+                "surrogate_pred_obj": r.surrogate_predicted_objective
+                if r.surrogate_predicted_objective is not None
+                else "",
+                "surrogate_uncertainty": r.surrogate_uncertainty
+                if r.surrogate_uncertainty is not None
+                else "",
                 "acquisition_strategy": r.acquisition_strategy or "",
             }
             rows.append(row)

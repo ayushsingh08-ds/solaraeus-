@@ -40,10 +40,13 @@ from urban_comfort.reference.result import SimulationResult
 @dataclass
 class SurrogateOptimizerConfig:
     """Configuration for surrogate-assisted optimization search."""
+
     seed: int = 42
-    num_iterations: int = 4              # Number of surrogate propose-eval-retrain iterations
-    batch_size: int = 5                  # Number of candidates proposed per iteration (total budget = num_iterations * batch_size)
-    bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_church_street_bounds)
+    num_iterations: int = 4  # Number of surrogate propose-eval-retrain iterations
+    batch_size: int = 5  # Number of candidates proposed per iteration (total budget = num_iterations * batch_size)
+    bounds: ParameterBounds = field(
+        default_factory=ParameterBounds.get_canonical_church_street_bounds
+    )
     surrogate_config: SurrogateConfig = field(default_factory=SurrogateConfig)
     acquisition_config: AcquisitionConfig = field(default_factory=AcquisitionConfig)
     objective_config: ComfortObjectiveConfig = field(default_factory=ComfortObjectiveConfig)
@@ -77,7 +80,7 @@ class SurrogateOptimizerConfig:
 class SurrogateOptimizationEngine:
     """
     Surrogate-assisted optimization engine with physics-in-the-loop GPU incremental evaluation.
-    
+
     The surrogate is an acceleration mechanism that proposes candidates only.
     The certified GPU incremental solver remains the sole physics authority.
     """
@@ -144,7 +147,9 @@ class SurrogateOptimizationEngine:
         """Preloads resident baseline to GPU."""
         return self.opt_engine.preload()
 
-    def load_initial_dataset(self, ledger_or_path: CandidateLedger | Path | str | List[CandidateRecord]):
+    def load_initial_dataset(
+        self, ledger_or_path: CandidateLedger | Path | str | List[CandidateRecord]
+    ):
         """
         Loads pre-existing candidate ledger (e.g. Stage 1 results) as initial training dataset.
         """
@@ -163,7 +168,9 @@ class SurrogateOptimizationEngine:
                     is_feasible=item["is_feasible"],
                     rejection_reason=item.get("rejection_reason"),
                     rejection_message=item.get("rejection_message"),
-                    objective_value=float(item["objective_value"]) if item.get("objective_value") is not None else float("inf"),
+                    objective_value=float(item["objective_value"])
+                    if item.get("objective_value") is not None
+                    else float("inf"),
                     metrics=item.get("metrics"),
                     gpu_metrics=item.get("gpu_metrics"),
                     certificate_status=item.get("certificate_status"),
@@ -179,7 +186,9 @@ class SurrogateOptimizationEngine:
             self.opt_engine.ledger.add(rec)
 
         self.initial_dataset_size = len(records)
-        data_rep = json.dumps([{"id": r.candidate_id, "obj": r.objective_value} for r in records], sort_keys=True)
+        data_rep = json.dumps(
+            [{"id": r.candidate_id, "obj": r.objective_value} for r in records], sort_keys=True
+        )
         self.initial_dataset_hash = hashlib.sha256(data_rep.encode("utf-8")).hexdigest()
 
     def run(self) -> Dict[str, Any]:
@@ -230,17 +239,19 @@ class SurrogateOptimizationEngine:
             acq_time_s = time.perf_counter() - t0_acq
 
             # Log retraining event
-            self.retraining_history.append({
-                "iteration": iter_idx,
-                "train_samples_feasible": train_metrics["n_train_samples"],
-                "total_ledger_records": len(self.opt_engine.ledger),
-                "train_time_s": round(train_time_s, 4),
-                "acq_time_s": round(acq_time_s, 4),
-                "dataset_hash": self.surrogate.training_dataset_hash,
-                "target_metrics": train_metrics.get("target_metrics", {}),
-                "pool_feasible_fraction_pct": pool_diag["feasible_fraction_pct"],
-                "current_best_objective": round(current_best_obj, 4),
-            })
+            self.retraining_history.append(
+                {
+                    "iteration": iter_idx,
+                    "train_samples_feasible": train_metrics["n_train_samples"],
+                    "total_ledger_records": len(self.opt_engine.ledger),
+                    "train_time_s": round(train_time_s, 4),
+                    "acq_time_s": round(acq_time_s, 4),
+                    "dataset_hash": self.surrogate.training_dataset_hash,
+                    "target_metrics": train_metrics.get("target_metrics", {}),
+                    "pool_feasible_fraction_pct": pool_diag["feasible_fraction_pct"],
+                    "current_best_objective": round(current_best_obj, 4),
+                }
+            )
 
             # 3. Physical Evaluation of Proposed Batch
             for cand_info in proposed_batch:
@@ -258,18 +269,20 @@ class SurrogateOptimizationEngine:
                     rec = self.opt_engine.evaluate_candidate(
                         params, method=f"{role}", iteration=global_iter
                     )
-                    self.surrogate_predictions_log.append({
-                        "candidate_id": rec.candidate_id,
-                        "iteration": global_iter,
-                        "role": role,
-                        "params": params.to_dict(),
-                        "is_feasible": False,
-                        "rejection_reason": rec.rejection_reason,
-                        "predicted_objective": prediction.objective_mean,
-                        "predicted_std": prediction.objective_std,
-                        "observed_objective": None,
-                        "error": None,
-                    })
+                    self.surrogate_predictions_log.append(
+                        {
+                            "candidate_id": rec.candidate_id,
+                            "iteration": global_iter,
+                            "role": role,
+                            "params": params.to_dict(),
+                            "is_feasible": False,
+                            "rejection_reason": rec.rejection_reason,
+                            "predicted_objective": prediction.objective_mean,
+                            "predicted_std": prediction.objective_std,
+                            "observed_objective": None,
+                            "error": None,
+                        }
+                    )
                     continue
 
                 # Feasible candidate: evaluate with certified GPU incremental solver
@@ -284,37 +297,51 @@ class SurrogateOptimizationEngine:
                 pred_std = prediction.objective_std
                 err_obj = obs_obj - pred_obj if math.isfinite(obs_obj) else None
 
-                self.surrogate_predictions_log.append({
-                    "candidate_id": rec.candidate_id,
-                    "iteration": global_iter,
-                    "role": role,
-                    "params": params.to_dict(),
-                    "is_feasible": rec.is_feasible,
-                    "rejection_reason": rec.rejection_reason,
-                    "predicted_objective": pred_obj,
-                    "predicted_std": pred_std,
-                    "predicted_means": prediction.means,
-                    "predicted_stds": prediction.stds,
-                    "observed_objective": obs_obj if math.isfinite(obs_obj) else None,
-                    "observed_mean_utci": rec.metrics.get("mean_utci_c") if rec.metrics else None,
-                    "observed_mean_tmrt": rec.metrics.get("mean_tmrt_c") if rec.metrics else None,
-                    "error_objective": err_obj,
-                    "z_score": (err_obj / pred_std) if (err_obj is not None and pred_std > 1e-6) else 0.0,
-                    "acquisition_scores": scores,
-                    "gpu_kernel_time_ms": rec.gpu_metrics.get("gpu_kernel_time_ms") if rec.gpu_metrics else None,
-                    "reused_fraction_pct": rec.gpu_metrics.get("reused_fraction_pct") if rec.gpu_metrics else None,
-                    "certificate_violations": rec.certificate_violations,
-                })
+                self.surrogate_predictions_log.append(
+                    {
+                        "candidate_id": rec.candidate_id,
+                        "iteration": global_iter,
+                        "role": role,
+                        "params": params.to_dict(),
+                        "is_feasible": rec.is_feasible,
+                        "rejection_reason": rec.rejection_reason,
+                        "predicted_objective": pred_obj,
+                        "predicted_std": pred_std,
+                        "predicted_means": prediction.means,
+                        "predicted_stds": prediction.stds,
+                        "observed_objective": obs_obj if math.isfinite(obs_obj) else None,
+                        "observed_mean_utci": rec.metrics.get("mean_utci_c")
+                        if rec.metrics
+                        else None,
+                        "observed_mean_tmrt": rec.metrics.get("mean_tmrt_c")
+                        if rec.metrics
+                        else None,
+                        "error_objective": err_obj,
+                        "z_score": (err_obj / pred_std)
+                        if (err_obj is not None and pred_std > 1e-6)
+                        else 0.0,
+                        "acquisition_scores": scores,
+                        "gpu_kernel_time_ms": rec.gpu_metrics.get("gpu_kernel_time_ms")
+                        if rec.gpu_metrics
+                        else None,
+                        "reused_fraction_pct": rec.gpu_metrics.get("reused_fraction_pct")
+                        if rec.gpu_metrics
+                        else None,
+                        "certificate_violations": rec.certificate_violations,
+                    }
+                )
 
-                self.acquisition_history.append({
-                    "surrogate_iteration": iter_idx,
-                    "candidate_id": rec.candidate_id,
-                    "role": role,
-                    "objective_value": obs_obj,
-                    "predicted_objective": pred_obj,
-                    "predicted_std": pred_std,
-                    "scores": scores,
-                })
+                self.acquisition_history.append(
+                    {
+                        "surrogate_iteration": iter_idx,
+                        "candidate_id": rec.candidate_id,
+                        "role": role,
+                        "objective_value": obs_obj,
+                        "predicted_objective": pred_obj,
+                        "predicted_std": pred_std,
+                        "scores": scores,
+                    }
+                )
 
         total_wall_s = time.perf_counter() - t0_total
 
@@ -324,7 +351,9 @@ class SurrogateOptimizationEngine:
             "candidates_proposed": len(self.surrogate_predictions_log),
             "candidates_evaluated_physics": len(self.surrogate_evaluated_records),
             "total_ledger_records": len(self.opt_engine.ledger),
-            "best_candidate": self.opt_engine.ledger.get_best().to_dict() if self.opt_engine.ledger.get_best() else None,
+            "best_candidate": self.opt_engine.ledger.get_best().to_dict()
+            if self.opt_engine.ledger.get_best()
+            else None,
             "retraining_history": self.retraining_history,
             "predictions_log": self.surrogate_predictions_log,
         }

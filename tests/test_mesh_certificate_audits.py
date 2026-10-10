@@ -32,7 +32,9 @@ def test_mesh_audit_execution_and_soundness(tmp_path):
     assert len(rows) == len(SCENARIO_DEFINITIONS)
     for r in rows:
         assert r["is_sound"] == "True", f"Scenario {r['scenario_id']} was not sound!"
-        assert r["is_within_tolerance"] == "True", f"Scenario {r['scenario_id']} violated tolerance!"
+        assert r["is_within_tolerance"] == "True", (
+            f"Scenario {r['scenario_id']} violated tolerance!"
+        )
         assert int(r["num_violations"]) == 0
         assert float(r["reused_fraction"]) > 0.0
         assert float(r["min_slack_k"]) >= -1e-6

@@ -45,7 +45,7 @@ def solar_and_grid():
         azimuth_deg=az_deg,
         zenith_deg=45.0,
         sun_vector=(sx, sy, sz),
-        is_daylight=True
+        is_daylight=True,
     )
     return solar_pos, grid
 
@@ -72,8 +72,15 @@ def test_mesh_shadow_containment_rotated_box(solar_and_grid):
     shadow_before = compute_direct_shadow_mask(scene_before, grid, solar_pos)
 
     # Add 45-degree rotated box at center
-    mesh = create_rotated_box_mesh("rot_box", center_x=40.0, center_y=40.0,
-                                   width_x=16.0, width_y=16.0, height=20.0, angle_deg=45.0)
+    mesh = create_rotated_box_mesh(
+        "rot_box",
+        center_x=40.0,
+        center_y=40.0,
+        width_x=16.0,
+        width_y=16.0,
+        height=20.0,
+        angle_deg=45.0,
+    )
     edit = AddMeshEdit(mesh)
     scene_after, _ = edit.apply(scene_before)
     shadow_after = compute_direct_shadow_mask(scene_after, grid, solar_pos)
@@ -90,7 +97,9 @@ def test_mesh_shadow_containment_rotated_box(solar_and_grid):
     # Soundness verification: candidate mask must cover 100% of shadow change cells
     uncovered_changes = shadow_diff & (~cand_res.candidate_mask)
     num_uncovered = int(np.sum(uncovered_changes))
-    assert num_uncovered == 0, f"Soundness violation! {num_uncovered} altered cells were outside candidate mask"
+    assert num_uncovered == 0, (
+        f"Soundness violation! {num_uncovered} altered cells were outside candidate mask"
+    )
 
     # Efficiency: candidate region must be reasonably selective (< 35% of total grid)
     affected_fraction = float(np.mean(cand_res.candidate_mask))
@@ -105,8 +114,14 @@ def test_mesh_shadow_containment_pitched_roof(solar_and_grid):
 
     # Pitched roof building
     mesh = create_pitched_roof_mesh(
-        "pitch_bldg", xmin=30.0, xmax=50.0, ymin=25.0, ymax=45.0,
-        eave_height=12.0, ridge_height=22.0, ridge_orientation="x"
+        "pitch_bldg",
+        xmin=30.0,
+        xmax=50.0,
+        ymin=25.0,
+        ymax=45.0,
+        eave_height=12.0,
+        ridge_height=22.0,
+        ridge_orientation="x",
     )
     edit = AddMeshEdit(mesh)
     scene_after, _ = edit.apply(scene_before)
@@ -130,8 +145,14 @@ def test_mesh_replacement_containment(solar_and_grid):
 
     # Replace with pitched roof building of ridge height 24m
     pitched_mesh = create_pitched_roof_mesh(
-        "roof_edit", 30.0, 50.0, 20.0, 40.0,
-        eave_height=12.0, ridge_height=24.0, ridge_orientation="x"
+        "roof_edit",
+        30.0,
+        50.0,
+        20.0,
+        40.0,
+        eave_height=12.0,
+        ridge_height=24.0,
+        ridge_orientation="x",
     )
     edit = ReplaceMeshEdit("roof_edit", pitched_mesh)
     scene_after, _ = edit.apply(scene_before)
@@ -163,7 +184,9 @@ def test_mesh_move_containment(solar_and_grid):
     cand_res = compute_candidate_affected_region(scene_before, scene_after, edit, solar_pos, grid)
 
     uncovered = shadow_diff & (~cand_res.candidate_mask)
-    assert np.sum(uncovered) == 0, "Candidate mask must cover both vacated and newly occupied shadows"
+    assert np.sum(uncovered) == 0, (
+        "Candidate mask must cover both vacated and newly occupied shadows"
+    )
 
 
 def test_low_solar_altitude_fallback(solar_and_grid):
@@ -173,7 +196,7 @@ def test_low_solar_altitude_fallback(solar_and_grid):
         azimuth_deg=180.0,
         zenith_deg=87.0,
         sun_vector=(0.0, -0.998, 0.052),
-        is_daylight=True
+        is_daylight=True,
     )
     mesh = create_box_mesh("m_low", 30.0, 50.0, 30.0, 50.0, 0.0, 20.0)
     edit = AddMeshEdit(mesh)
@@ -191,7 +214,7 @@ def test_nighttime_zero_affected_region(solar_and_grid):
         azimuth_deg=0.0,
         zenith_deg=100.0,
         sun_vector=(0.0, 0.0, -1.0),
-        is_daylight=False
+        is_daylight=False,
     )
     mesh = create_box_mesh("m_night", 30.0, 50.0, 30.0, 50.0, 0.0, 20.0)
     edit = AddMeshEdit(mesh)
