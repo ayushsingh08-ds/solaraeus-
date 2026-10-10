@@ -26,8 +26,8 @@ def heading(text: str) -> None:
 
 def i3_bibliography() -> None:
     """Are reference PDFs the bibliography cited by the .tex?"""
-    heading("I3  researchpaper/*.pdf  ==  bibliography of solaraeus.tex ?")
-    tex = (REPO / "research_paper_sol" / "solaraeus.tex").read_text(encoding="utf-8")
+    heading("I3  references/pdfs/*.pdf  ==  bibliography of solaraeus.tex ?")
+    tex = (REPO / "paper" / "solaraeus.tex").read_text(encoding="utf-8")
     cite_keys: set[str] = set()
     for group in re.findall(r"\\cite\{([^}]*)\}", tex):
         cite_keys.update(k.strip() for k in group.split(","))
@@ -37,8 +37,8 @@ def i3_bibliography() -> None:
     bibs = glob.glob(str(REPO / "**" / "*.bib"), recursive=True)
     print(f"any .bib file in repo                 : {bibs or 'NONE'}")
 
-    pdfs = sorted(glob.glob(str(REPO / "researchpaper" / "*.pdf")))
-    print(f"PDFs in researchpaper/                : {len(pdfs)}")
+    pdfs = sorted(glob.glob(str(REPO / "references" / "pdfs" / "*.pdf")))
+    print(f"PDFs in references/pdfs/              : {len(pdfs)}")
     for p in pdfs:
         print(f"    {os.path.basename(p)}")
     # crude author-token overlap between cite keys and PDF filenames

@@ -181,3 +181,12 @@ viewer/node_modules/
 viewer/dist/
 # Local agent/IDE scratch directories.
 .freebuff/
+
+# Junk created when a script writes to a literal, unexpanded "~" path.
+# (Seen in this repo as a directory literally named `~` holding `.cupy/`.)
+/\~/
+
+# Heavy raw city datasets: kept on the machine that downloaded them, never in
+# git.  `cities/<slug>/README.md` records how to fetch them again.
+cities/*/raw/raw_sources*/
+cities/*/raw/bbmp_tree_census*/

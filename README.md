@@ -118,7 +118,7 @@ solaraeus/
 │   ├── single_building.py           # Full reference simulation demonstration
 │   ├── compare_full_incremental.py  # End-to-end comparative benchmark script
 │   └── run_publication_validation.py# Complete audit and publication evaluation runner
-├── research_paper_sol/              # IEEE-style research conference publication package
+├── paper/                           # IEEE-style research conference publication package
 │   ├── solaraeus.tex                # Complete IEEE 2-column conference manuscript
 │   ├── fig1_architecture.png       # Publication-grade System Architecture diagram (300 DPI)
 │   ├── fig1_architecture.tex       # Standalone TikZ vector source for Architecture diagram

@@ -100,6 +100,15 @@ filterwarnings = [
 line-length = 100
 target-version = "py310"
 src = ["src", "tests", "tools"]
+# Frozen code is not linted:
+#   tools/upstream/     third-party sources, vendored for provenance; editing
+#                       them to satisfy our style rules would corrupt the audit
+#                       trail (see tools/upstream/README.md).
+#   tools/dataset_prep/ one-shot historical ingest scripts that ran on the
+#                       machine that built the Church Street handoff and depend
+#                       on that machine's paths and environment. They are kept
+#                       as provenance, not maintained.
+extend-exclude = ["tools/upstream", "tools/dataset_prep"]
 
 # Enforced set: statement/import errors (E4/E7/E9), pyflakes defects (F), import
 # order (I) and bugbear's bug patterns (B).  These are green on the entire tree,

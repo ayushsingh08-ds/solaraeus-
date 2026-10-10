@@ -9,7 +9,7 @@ CITY   ?= church_street_bengaluru
 PIPELINE ?= static
 
 .DEFAULT_GOAL := help
-.PHONY: help install install-dev lock lint lint-debt format types types-report test test-fast test-slow golden golden-capture doctor city viewer viewer-install viewer-test docker ci clean
+.PHONY: help install install-dev lock lint lint-debt lint-all format types types-report test test-fast test-slow golden golden-capture doctor city viewer viewer-install viewer-test docker ci clean
 
 help: ## list available targets
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -33,6 +33,12 @@ lint: ## run the enforced ruff checks (passes on the whole tree)
 lint-debt: ## list the deferred modernisation findings (non-blocking)
 	$(PYTHON) -m ruff check src tests tools \
 		--select UP,PTH,SIM,RET,C4,ARG,W --statistics --exit-zero
+
+lint-all: ## lint the whole tree, including the legacy scripts/ and examples/ (non-blocking)
+	@echo 'scripts/ and examples/ are the pre-overhaul generation 1: they are'
+	@echo 'linted here for visibility but are not gated yet.  Run this to see the'
+	@echo 'backlog that the pipelines/ restructure is meant to retire.'
+	-$(PYTHON) -m ruff check src tests tools scripts examples --statistics --exit-zero
 
 format: ## auto-format with ruff
 	$(PYTHON) -m ruff format src tests tools

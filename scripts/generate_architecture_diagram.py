@@ -269,7 +269,7 @@ draw_arrow(ax, 87.0, 41.5, 87.0, 38.8, color='#7E22CE')
 
 plt.tight_layout()
 
-out_path = Path("research_paper_sol/solaraeus_workflow.png")
+out_path = Path("paper/solaraeus_workflow.png")
 out_path.parent.mkdir(parents=True, exist_ok=True)
 plt.savefig(out_path, dpi=300, bbox_inches='tight', pad_inches=0.08)
 plt.close()

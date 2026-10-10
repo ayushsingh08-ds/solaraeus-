@@ -17,7 +17,7 @@ plt.rcParams['font.family'] = 'sans-serif'
 plt.rcParams['font.sans-serif'] = ['Arial', 'DejaVu Sans', 'Helvetica']
 plt.rcParams['font.size'] = 8.5
 
-out_dir = Path("research_paper_sol")
+out_dir = Path("paper")
 out_dir.mkdir(parents=True, exist_ok=True)
 
 # Helper: Draw Process Rectangle
