@@ -43,21 +43,21 @@ from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
     incremental_update_certified
 )
-from solaraeus.benchmark.harness import (
+from solaraeus.validation.harness import (
     BenchmarkRecord, ReproducibilityRecord, TimingBreakdownRecord,
     run_repeated_benchmark_trials
 )
-from solaraeus.benchmark.scenes import create_scaling_scene
-from solaraeus.benchmark.tightness import (
+from solaraeus.validation.scenes import create_scaling_scene
+from solaraeus.validation.tightness import (
     CertificateTightnessMetrics, evaluate_certificate_tightness
 )
-from solaraeus.benchmark.repeated_edits import (
+from solaraeus.validation.repeated_edits import (
     RepeatedEditRecord, run_repeated_edit_sequence
 )
-from solaraeus.benchmark.baseline_comparison import (
+from solaraeus.validation.baseline_comparison import (
     BaselineComparisonRecord, compare_all_baselines
 )
-from solaraeus.benchmark.independent_reference import run_independent_reference_tests
+from solaraeus.validation.independent_reference import run_independent_reference_tests
 
 
 def save_csv(records: List[Any], filepath: str) -> None:

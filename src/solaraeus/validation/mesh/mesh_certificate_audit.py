@@ -33,7 +33,7 @@ from solaraeus.incremental.mesh_update import (
     AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
 )
 from solaraeus.incremental.update import incremental_update_certified
-from solaraeus.benchmark.independent_audit import audit_certificate_independently
+from solaraeus.validation.independent_audit import audit_certificate_independently
 
 
 @dataclass

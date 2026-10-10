@@ -41,7 +41,7 @@ from solaraeus.incremental.update import (
     incremental_update_exact, incremental_update_certified
 )
 from solaraeus.incremental.certificate import verify_certificate
-from solaraeus.benchmark.independent_audit import audit_certificate_independently
+from solaraeus.validation.independent_audit import audit_certificate_independently
 
 
 @pytest.fixture

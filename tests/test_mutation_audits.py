@@ -11,8 +11,8 @@ import pytest
 import numpy as np
 
 from solaraeus.core.config import Weather, SimulationConfig
-from solaraeus.benchmark.scenes import create_scaling_scene
-from solaraeus.benchmark.independent_audit import run_mutation_tests
+from solaraeus.validation.scenes import create_scaling_scene
+from solaraeus.validation.independent_audit import run_mutation_tests
 
 
 @pytest.fixture

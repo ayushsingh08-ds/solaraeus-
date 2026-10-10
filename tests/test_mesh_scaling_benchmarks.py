@@ -12,7 +12,7 @@ import os
 import tempfile
 import pytest
 
-from solaraeus.benchmark.mesh_scaling_benchmark import (
+from solaraeus.validation.mesh.mesh_scaling_benchmark import (
     create_mesh_scaling_scene,
     run_scaling_trial,
     run_mesh_scaling_benchmark,

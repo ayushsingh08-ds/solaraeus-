@@ -40,9 +40,9 @@ from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
     incremental_update_certified
 )
-from solaraeus.benchmark.harness import run_benchmark_trial, BenchmarkRecord
-from solaraeus.benchmark.scenes import create_scaling_scene
-from solaraeus.benchmark.independent_reference import (
+from solaraeus.validation.harness import run_benchmark_trial, BenchmarkRecord
+from solaraeus.validation.scenes import create_scaling_scene
+from solaraeus.validation.independent_reference import (
     run_analytical_reference_suite, EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT
 )
 

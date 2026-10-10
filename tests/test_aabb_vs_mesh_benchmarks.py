@@ -13,7 +13,7 @@ import tempfile
 import numpy as np
 import pytest
 
-from solaraeus.benchmark.aabb_vs_mesh_benchmark import (
+from solaraeus.validation.mesh.aabb_vs_mesh_benchmark import (
     get_canonical_benchmark_scenes,
     build_scene_pair,
     run_single_comparison,

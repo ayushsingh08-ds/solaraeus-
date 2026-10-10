@@ -36,8 +36,8 @@ from solaraeus.incremental.update import (
     ChangeHeightEdit, AddBuildingEdit, RemoveBuildingEdit, MoveBuildingEdit,
     incremental_update_certified
 )
-from solaraeus.benchmark.scenes import create_scaling_scene
-from solaraeus.benchmark.independent_audit import (
+from solaraeus.validation.scenes import create_scaling_scene
+from solaraeus.validation.independent_audit import (
     audit_certificate_independently,
     build_dependency_coverage_audit,
     run_mutation_tests,
@@ -47,7 +47,7 @@ from solaraeus.benchmark.independent_audit import (
     build_timing_reconciliation_table,
     build_analytical_verification_table
 )
-from solaraeus.benchmark.repeated_edits import run_repeated_edit_sequence
+from solaraeus.validation.repeated_edits import run_repeated_edit_sequence
 
 
 def main():

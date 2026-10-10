@@ -21,7 +21,7 @@ from solaraeus.reference.full_recompute import full_recompute
 from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.incremental.mesh_update import ChangeMeshHeightEdit
 from solaraeus.incremental.update import incremental_update_certified
-from solaraeus.benchmark.independent_audit import audit_certificate_independently
+from solaraeus.validation.independent_audit import audit_certificate_independently
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
 from solaraeus.physics.mean_radiant_temperature import compute_tmrt
