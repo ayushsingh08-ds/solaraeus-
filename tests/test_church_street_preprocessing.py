@@ -12,7 +12,7 @@ from shapely.geometry import Polygon
 
 from solaraeus.core.geometry.mesh import TriangleMesh
 from solaraeus.core.geometry.scene import Scene
-from solaraeus.preprocessing.church_street_adapter import (
+from solaraeus.sites.church_street.scene_builder import (
     ChurchStreetAdapter,
     PreprocessingConfig,
     PreprocessedSceneResult,

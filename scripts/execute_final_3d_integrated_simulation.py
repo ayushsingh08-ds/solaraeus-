@@ -43,7 +43,7 @@ import numpy as np
 import pandas as pd
 import trimesh
 
-from solaraeus.integration.coordinates import transformer, CoordinateSystemDefinition
+from solaraeus.sites.church_street.coordinates import transformer, CoordinateSystemDefinition
 from solaraeus.integration.terrain_loader import terrain_loader
 from solaraeus.integration.tree_loader import tree_loader
 from solaraeus.integration.tree_geometry_builder import tree_geometry_builder
@@ -52,7 +52,7 @@ from solaraeus.physics.cloud_model import cloud_model, CloudState
 from solaraeus.integration.time_shadowing import time_shadowing_engine
 from solaraeus.integration.tmrt_3d import tmrt_3d_engine
 from solaraeus.integration.utci_3d import utci_3d_engine
-from solaraeus.preprocessing.church_street_adapter import ChurchStreetAdapter
+from solaraeus.sites.church_street.scene_builder import ChurchStreetAdapter
 
 
 ROOT = Path(__file__).resolve().parent.parent
