@@ -7,16 +7,16 @@ import math
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.incremental.update import (
+from solaraeus.config import Weather, SimulationConfig
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import SolarPosition
+from solaraeus.visibility.shadow import compute_direct_shadow_mask
+from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit
 )
-from urban_comfort.incremental.affected_region import (
+from solaraeus.incremental.affected_region import (
     compute_candidate_affected_region, project_box_shadow
 )
 

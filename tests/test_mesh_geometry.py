@@ -7,7 +7,7 @@ import math
 import pytest
 import numpy as np
 
-from urban_comfort.geometry.mesh import (
+from solaraeus.geometry.mesh import (
     TriangleMesh,
     create_box_mesh,
     create_rotated_box_mesh,
@@ -16,8 +16,8 @@ from urban_comfort.geometry.mesh import (
     create_wall_mesh,
     create_l_shaped_mesh
 )
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.geometry.primitives import Building, BoundingBox2D
 
 
 def test_triangle_mesh_valid_construction():

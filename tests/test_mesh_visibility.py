@@ -7,18 +7,18 @@ import math
 import pytest
 import numpy as np
 
-from urban_comfort.geometry.mesh import (
+from solaraeus.geometry.mesh import (
     create_box_mesh,
     create_rotated_box_mesh,
     create_pitched_roof_mesh,
     create_overhang_mesh,
     create_l_shaped_mesh
 )
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
-from urban_comfort.visibility.mesh_visibility import (
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.visibility.directional_visibility import compute_sky_view_factor
+from solaraeus.visibility.mesh_visibility import (
     compute_mesh_sky_view_factor,
     rasterize_mesh_to_height_grid,
     rasterize_scene_meshes_to_height_grid

@@ -59,7 +59,7 @@ def _max_abs_diff(a: dict, b: dict) -> float:
 
 def _gpu_available() -> bool:
     try:
-        from urban_comfort.backend import is_gpu_available
+        from solaraeus.backend import is_gpu_available
         return bool(is_gpu_available())
     except Exception:
         return False

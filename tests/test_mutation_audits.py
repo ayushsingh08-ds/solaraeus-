@@ -10,9 +10,9 @@ from __future__ import annotations
 import pytest
 import numpy as np
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.benchmark.scenes import create_scaling_scene
-from urban_comfort.benchmark.independent_audit import run_mutation_tests
+from solaraeus.config import Weather, SimulationConfig
+from solaraeus.benchmark.scenes import create_scaling_scene
+from solaraeus.benchmark.independent_audit import run_mutation_tests
 
 
 @pytest.fixture

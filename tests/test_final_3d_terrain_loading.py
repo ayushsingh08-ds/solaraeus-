@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import numpy as np
 import pytest
-from urban_comfort.integration.terrain_loader import terrain_loader
+from solaraeus.integration.terrain_loader import terrain_loader
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "results/final_3d_integrated_simulation"

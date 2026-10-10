@@ -6,12 +6,12 @@ import math
 import numpy as np
 import pytest
 
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import SolarPosition
+from solaraeus.visibility.shadow import compute_direct_shadow_mask
+from solaraeus.visibility.directional_visibility import compute_sky_view_factor
 
 
 def test_empty_scene_shadows():

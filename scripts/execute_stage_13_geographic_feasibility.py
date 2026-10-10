@@ -33,10 +33,10 @@ import matplotlib.pyplot as plt
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
-from urban_comfort.optimization.feasibility import (
+from solaraeus.geometry.scene import Scene
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.optimization.parameters import ShadePanelParams, ParameterBounds, build_panel_geometry
+from solaraeus.optimization.feasibility import (
     RejectionReason, FeasibilityResult, FeasibilityConstraints, check_feasibility
 )
 

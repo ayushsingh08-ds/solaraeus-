@@ -43,16 +43,16 @@ import numpy as np
 import pandas as pd
 import trimesh
 
-from urban_comfort.integration.coordinates import transformer, CoordinateSystemDefinition
-from urban_comfort.integration.terrain_loader import terrain_loader
-from urban_comfort.integration.tree_loader import tree_loader
-from urban_comfort.integration.tree_geometry_builder import tree_geometry_builder
-from urban_comfort.solar.sun_model import sun_model, IST
-from urban_comfort.solar.cloud_model import cloud_model, CloudState
-from urban_comfort.integration.time_shadowing import time_shadowing_engine
-from urban_comfort.integration.tmrt_3d import tmrt_3d_engine
-from urban_comfort.integration.utci_3d import utci_3d_engine
-from urban_comfort.preprocessing.church_street_adapter import ChurchStreetAdapter
+from solaraeus.integration.coordinates import transformer, CoordinateSystemDefinition
+from solaraeus.integration.terrain_loader import terrain_loader
+from solaraeus.integration.tree_loader import tree_loader
+from solaraeus.integration.tree_geometry_builder import tree_geometry_builder
+from solaraeus.solar.sun_model import sun_model, IST
+from solaraeus.solar.cloud_model import cloud_model, CloudState
+from solaraeus.integration.time_shadowing import time_shadowing_engine
+from solaraeus.integration.tmrt_3d import tmrt_3d_engine
+from solaraeus.integration.utci_3d import utci_3d_engine
+from solaraeus.preprocessing.church_street_adapter import ChurchStreetAdapter
 
 
 ROOT = Path(__file__).resolve().parent.parent

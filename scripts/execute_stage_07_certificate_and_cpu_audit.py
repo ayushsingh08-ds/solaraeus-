@@ -27,15 +27,15 @@ import numpy as np
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact
-from urban_comfort.incremental.certificate import verify_certificate, ErrorCertificate
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.geometry.scene import Scene
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import full_recompute, SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.update import incremental_update_certified, incremental_update_exact
+from solaraeus.incremental.certificate import verify_certificate, ErrorCertificate
 
 
 def sha256_file(path: Path) -> str:

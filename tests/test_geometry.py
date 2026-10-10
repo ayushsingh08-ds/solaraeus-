@@ -6,12 +6,12 @@ import os
 import json
 import pytest
 
-from urban_comfort.config import (
+from solaraeus.config import (
     Material, Weather, SimulationConfig,
     DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from urban_comfort.geometry.primitives import BoundingBox2D, Building
-from urban_comfort.geometry.scene import (
+from solaraeus.geometry.primitives import BoundingBox2D, Building
+from solaraeus.geometry.scene import (
     Scene, GroundPlane, PedestrianGridConfig,
     create_single_box_scene, create_canyon_scene, create_occlusion_scene
 )

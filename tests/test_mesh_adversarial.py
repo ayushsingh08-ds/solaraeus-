@@ -17,31 +17,31 @@ import math
 import pytest
 import numpy as np
 
-from urban_comfort.config import SimulationConfig, Weather
-from urban_comfort.geometry.mesh import (
+from solaraeus.config import SimulationConfig, Weather
+from solaraeus.geometry.mesh import (
     TriangleMesh,
     create_box_mesh,
     create_rotated_box_mesh,
     create_pitched_roof_mesh,
     create_l_shaped_mesh
 )
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.mesh_ray_intersection import (
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import SolarPosition
+from solaraeus.visibility.mesh_ray_intersection import (
     intersect_ray_mesh, intersect_rays_mesh_batch
 )
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.mesh_update import (
+from solaraeus.visibility.shadow import compute_direct_shadow_mask
+from solaraeus.visibility.directional_visibility import compute_sky_view_factor
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.mesh_update import (
     AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit
 )
-from urban_comfort.incremental.update import (
+from solaraeus.incremental.update import (
     incremental_update_exact, incremental_update_certified
 )
-from urban_comfort.incremental.certificate import verify_certificate
-from urban_comfort.benchmark.independent_audit import audit_certificate_independently
+from solaraeus.incremental.certificate import verify_certificate
+from solaraeus.benchmark.independent_audit import audit_certificate_independently
 
 
 @pytest.fixture
@@ -109,7 +109,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
         max_svf_search_dist_m=30.0
     )
     # Check that solar altitude is indeed low (> 5.0 deg and < 10.0 deg)
-    from urban_comfort.solar.solar_position import calculate_solar_position
+    from solaraeus.solar.solar_position import calculate_solar_position
     from datetime import datetime, timezone
     dt_utc = datetime.strptime(f"{config.date} {config.local_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
     solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)

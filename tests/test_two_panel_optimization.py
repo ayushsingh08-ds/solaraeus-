@@ -32,45 +32,45 @@ import pytest
 import numpy as np
 from shapely.geometry import Polygon, MultiPolygon
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
-from urban_comfort.incremental.affected_region import compute_candidate_affected_region
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.mesh_update import AddMultiMeshEdit
+from solaraeus.incremental.affected_region import compute_candidate_affected_region
+from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.optimization.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.optimization.feasibility import (
     FeasibilityConstraints, check_feasibility as check_single_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.optimization.objective import (
     ComfortObjectiveConfig, compute_objective as compute_single_objective
 )
-from urban_comfort.optimization.two_panel_parameters import (
+from solaraeus.optimization.two_panel_parameters import (
     TwoPanelParams, TwoPanelBounds
 )
-from urban_comfort.optimization.two_panel_feasibility import (
+from solaraeus.optimization.two_panel_feasibility import (
     TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
 )
-from urban_comfort.optimization.two_panel_objective import (
+from solaraeus.optimization.two_panel_objective import (
     TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
 )
-from urban_comfort.optimization.two_panel_ledger import (
+from solaraeus.optimization.two_panel_ledger import (
     TwoPanelCandidateRecord, TwoPanelCandidateLedger
 )
-from urban_comfort.optimization.two_panel_surrogate import (
+from solaraeus.optimization.two_panel_surrogate import (
     TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
 )
-from urban_comfort.optimization.two_panel_acquisition import (
+from solaraeus.optimization.two_panel_acquisition import (
     TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
     compute_normalized_two_panel_distance
 )
-from urban_comfort.optimization.two_panel_validation import (
+from solaraeus.optimization.two_panel_validation import (
     validate_two_panel_multi_path
 )
 
@@ -334,7 +334,7 @@ def test_cpu_full_gpu_full_gpu_incremental_parity():
 
 # 12. Certificate validation
 def test_certificate_validation():
-    from urban_comfort.incremental.certificate import verify_certificate
+    from solaraeus.incremental.certificate import verify_certificate
     scene, config, weather = create_synthetic_two_panel_scene()
     gpu_engine = GPUIncrementalEngine(fallback_to_cpu=True)
     baseline_res = full_recompute(scene, weather, config, backend="cpu")

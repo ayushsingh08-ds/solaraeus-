@@ -6,9 +6,9 @@ from datetime import date
 from pathlib import Path
 import numpy as np
 import pytest
-from urban_comfort.integration.tmrt_3d import tmrt_3d_engine
-from urban_comfort.solar.sun_model import sun_model
-from urban_comfort.solar.cloud_model import cloud_model
+from solaraeus.integration.tmrt_3d import tmrt_3d_engine
+from solaraeus.solar.sun_model import sun_model
+from solaraeus.solar.cloud_model import cloud_model
 
 ROOT = Path(__file__).resolve().parent.parent
 

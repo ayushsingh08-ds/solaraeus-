@@ -42,16 +42,16 @@ import sys
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
-from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.scene import Scene
+from solaraeus.geometry.mesh import TriangleMesh, create_box_mesh
+from solaraeus.grid.pedestrian_grid import PedestrianGrid, PedestrianGridConfig
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.update import incremental_update_certified
+from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.optimization.parameters import ShadePanelParams, build_panel_geometry
+from solaraeus.optimization.objective import ComfortObjectiveConfig, compute_objective
 
 
 def sha256_file(path: Path) -> str:

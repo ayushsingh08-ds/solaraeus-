@@ -7,13 +7,13 @@ import math
 import pytest
 import numpy as np
 
-from urban_comfort.visibility.mesh_ray_intersection import (
+from solaraeus.visibility.mesh_ray_intersection import (
     intersect_ray_triangle,
     intersect_ray_mesh,
     intersect_rays_mesh_batch,
     intersect_rays_scene_meshes
 )
-from urban_comfort.geometry.mesh import create_box_mesh, TriangleMesh
+from solaraeus.geometry.mesh import create_box_mesh, TriangleMesh
 
 
 @pytest.fixture

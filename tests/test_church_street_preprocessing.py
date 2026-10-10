@@ -10,9 +10,9 @@ import numpy as np
 import pytest
 from shapely.geometry import Polygon
 
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.preprocessing.church_street_adapter import (
+from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.geometry.scene import Scene
+from solaraeus.preprocessing.church_street_adapter import (
     ChurchStreetAdapter,
     PreprocessingConfig,
     PreprocessedSceneResult,

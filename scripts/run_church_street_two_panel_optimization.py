@@ -51,48 +51,48 @@ from shapely.affinity import translate
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.incremental.mesh_update import AddMultiMeshEdit
+from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.optimization.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.optimization.feasibility import (
     FeasibilityConstraints, check_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.optimization.objective import (
     ComfortObjectiveConfig, compute_objective
 )
-from urban_comfort.optimization.two_panel_parameters import (
+from solaraeus.optimization.two_panel_parameters import (
     TwoPanelParams, TwoPanelBounds
 )
-from urban_comfort.optimization.two_panel_feasibility import (
+from solaraeus.optimization.two_panel_feasibility import (
     TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
 )
-from urban_comfort.optimization.two_panel_objective import (
+from solaraeus.optimization.two_panel_objective import (
     TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
 )
-from urban_comfort.optimization.two_panel_ledger import (
+from solaraeus.optimization.two_panel_ledger import (
     TwoPanelCandidateRecord, TwoPanelCandidateLedger
 )
-from urban_comfort.optimization.two_panel_surrogate import (
+from solaraeus.optimization.two_panel_surrogate import (
     TwoPanelSurrogateConfig, TwoPanelSurrogateModel, extract_two_panel_features
 )
-from urban_comfort.optimization.two_panel_acquisition import (
+from solaraeus.optimization.two_panel_acquisition import (
     TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds,
     compute_normalized_two_panel_distance
 )
-from urban_comfort.optimization.two_panel_optimizer import (
+from solaraeus.optimization.two_panel_optimizer import (
     TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
 )
-from urban_comfort.optimization.two_panel_validation import (
+from solaraeus.optimization.two_panel_validation import (
     validate_two_panel_multi_path, TwoPanelValidationReport
 )
-from urban_comfort.optimization.validation import (
+from solaraeus.optimization.validation import (
     validate_candidate_multi_path
 )
 
@@ -277,7 +277,7 @@ def main():
     pts = [Point(x, y) for x, y in zip(X.ravel(), Y.ravel())]
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
 
-    from urban_comfort.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
     ped_corridor_unbuilt_mask = ped_corridor_mask & unbuilt_mask

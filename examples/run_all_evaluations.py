@@ -32,17 +32,17 @@ import matplotlib.patches as patches
 # Ensure src is on path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
-from urban_comfort.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL, SIGMA
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
+from solaraeus.config import Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL, SIGMA
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
     incremental_update_certified
 )
-from urban_comfort.benchmark.harness import run_benchmark_trial, BenchmarkRecord
-from urban_comfort.benchmark.scenes import create_scaling_scene
-from urban_comfort.benchmark.independent_reference import (
+from solaraeus.benchmark.harness import run_benchmark_trial, BenchmarkRecord
+from solaraeus.benchmark.scenes import create_scaling_scene
+from solaraeus.benchmark.independent_reference import (
     run_analytical_reference_suite, EXTERNAL_SOLWEIG_COMPATIBILITY_AUDIT
 )
 

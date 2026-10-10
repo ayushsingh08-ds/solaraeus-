@@ -8,23 +8,23 @@ import time
 import pytest
 import numpy as np
 
-from urban_comfort.geometry.mesh import (
+from solaraeus.geometry.mesh import (
     create_box_mesh,
     create_rotated_box_mesh,
     create_pitched_roof_mesh,
     create_overhang_mesh
 )
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.config import SimulationConfig, Weather
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.mesh_update import (
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.config import SimulationConfig, Weather
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.mesh_update import (
     AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, MoveMeshEdit, ChangeMeshHeightEdit
 )
-from urban_comfort.incremental.update import (
+from solaraeus.incremental.update import (
     incremental_update_exact, incremental_update_certified
 )
-from urban_comfort.incremental.certificate import verify_certificate
+from solaraeus.incremental.certificate import verify_certificate
 
 
 @pytest.fixture

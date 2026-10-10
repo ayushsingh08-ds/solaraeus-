@@ -26,18 +26,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
+from solaraeus.config import Weather, SimulationConfig
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.update import (
     ChangeHeightEdit, AddBuildingEdit, RemoveBuildingEdit, MoveBuildingEdit,
     incremental_update_certified
 )
-from urban_comfort.benchmark.scenes import create_scaling_scene
-from urban_comfort.benchmark.independent_audit import (
+from solaraeus.benchmark.scenes import create_scaling_scene
+from solaraeus.benchmark.independent_audit import (
     audit_certificate_independently,
     build_dependency_coverage_audit,
     run_mutation_tests,
@@ -47,7 +47,7 @@ from urban_comfort.benchmark.independent_audit import (
     build_timing_reconciliation_table,
     build_analytical_verification_table
 )
-from urban_comfort.benchmark.repeated_edits import run_repeated_edit_sequence
+from solaraeus.benchmark.repeated_edits import run_repeated_edit_sequence
 
 
 def main():

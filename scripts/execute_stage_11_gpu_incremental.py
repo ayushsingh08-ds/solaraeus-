@@ -27,16 +27,16 @@ sys.path.insert(0, str(root_dir / "src"))
 
 import cupy as cp
 
-from urban_comfort.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.certificate import generate_error_certificate, verify_certificate
-from urban_comfort.backend import GPUBackend, is_gpu_available
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
+from solaraeus.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.geometry.scene import Scene
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.certificate import generate_error_certificate, verify_certificate
+from solaraeus.backend import GPUBackend, is_gpu_available
+from solaraeus.backend.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
 
 
 def sha256_file(path: Path) -> str:

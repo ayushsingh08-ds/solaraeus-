@@ -27,17 +27,17 @@ import numpy as np
 # Add src to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
-from urban_comfort.config import (
+from solaraeus.config import (
     Weather, SimulationConfig, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.terrain.dtm import TerrainGrid
-from urban_comfort.terrain.terrain_scene import TerrainAwareScene
-from urban_comfort.terrain.terrain_solver import TerrainAwareCPUSolver
-from urban_comfort.vegetation.tree import Tree, get_core_trees
-from urban_comfort.vegetation.tree_scene import TreeAwareScene
-from urban_comfort.vegetation.tree_solver import TreeAwareCPUSolver
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.terrain.dtm import TerrainGrid
+from solaraeus.terrain.terrain_scene import TerrainAwareScene
+from solaraeus.terrain.terrain_solver import TerrainAwareCPUSolver
+from solaraeus.vegetation.tree import Tree, get_core_trees
+from solaraeus.vegetation.tree_scene import TreeAwareScene
+from solaraeus.vegetation.tree_solver import TreeAwareCPUSolver
 
 
 def create_base_scene():

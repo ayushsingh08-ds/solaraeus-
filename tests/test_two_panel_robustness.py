@@ -30,39 +30,39 @@ import pytest
 import numpy as np
 from shapely.geometry import Polygon, Point
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
-from urban_comfort.optimization.parameters import ShadePanelParams, build_panel_geometry
-from urban_comfort.optimization.feasibility import FeasibilityConstraints, check_feasibility
-from urban_comfort.optimization.objective import ComfortObjectiveConfig, compute_objective
-from urban_comfort.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
-from urban_comfort.optimization.two_panel_feasibility import (
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.incremental.mesh_update import AddMultiMeshEdit
+from solaraeus.optimization.parameters import ShadePanelParams, build_panel_geometry
+from solaraeus.optimization.feasibility import FeasibilityConstraints, check_feasibility
+from solaraeus.optimization.objective import ComfortObjectiveConfig, compute_objective
+from solaraeus.optimization.two_panel_parameters import TwoPanelParams, TwoPanelBounds
+from solaraeus.optimization.two_panel_feasibility import (
     TwoPanelConstraints,
     check_two_panel_feasibility,
     TwoPanelRejectionReason,
 )
-from urban_comfort.optimization.two_panel_objective import (
+from solaraeus.optimization.two_panel_objective import (
     TwoPanelComfortObjectiveConfig,
     compute_two_panel_objective,
     compute_pareto_front,
 )
-from urban_comfort.optimization.two_panel_ledger import (
+from solaraeus.optimization.two_panel_ledger import (
     TwoPanelCandidateRecord,
     TwoPanelCandidateLedger,
 )
-from urban_comfort.optimization.two_panel_optimizer import (
+from solaraeus.optimization.two_panel_optimizer import (
     TwoPanelOptimizerConfig,
     TwoPanelOptimizationEngine,
 )
-from urban_comfort.optimization.two_panel_validation import (
+from solaraeus.optimization.two_panel_validation import (
     validate_two_panel_multi_path,
 )
-from urban_comfort.optimization.robustness import (
+from solaraeus.optimization.robustness import (
     WeatherScenario,
     SolarTimestampScenario,
     ObjectiveWeightScenario,

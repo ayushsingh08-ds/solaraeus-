@@ -33,16 +33,16 @@ sys.path.insert(0, str(root_dir / "src"))
 
 import cupy as cp
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.update import incremental_update_certified
-from urban_comfort.backend import CPUBackend, GPUBackend, is_gpu_available
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.geometry.scene import Scene
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.solar.solar_position import calculate_solar_position
+from solaraeus.reference.full_recompute import full_recompute, SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.update import incremental_update_certified
+from solaraeus.backend import CPUBackend, GPUBackend, is_gpu_available
+from solaraeus.backend.gpu_incremental import GPUIncrementalEngine
 
 
 def main():

@@ -8,15 +8,15 @@ import math
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
+from solaraeus.config import Weather, SimulationConfig
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig, create_single_box_scene
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
     incremental_update_exact
 )
-from urban_comfort.validation.comparisons import compare_results
+from solaraeus.validation.comparisons import compare_results
 
 
 @pytest.fixture

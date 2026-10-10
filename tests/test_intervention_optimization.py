@@ -26,28 +26,28 @@ import numpy as np
 import pytest
 from shapely.geometry import Polygon, box
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.optimization.parameters import (
+from solaraeus.config import Weather, SimulationConfig, Material
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.geometry.mesh import TriangleMesh
+from solaraeus.grid.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.optimization.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.optimization.feasibility import (
     RejectionReason, FeasibilityConstraints, check_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.optimization.objective import (
     ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 )
-from urban_comfort.optimization.ledger import (
+from solaraeus.optimization.ledger import (
     CandidateRecord, CandidateLedger
 )
-from urban_comfort.optimization.optimizer import (
+from solaraeus.optimization.optimizer import (
     OptimizerConfig, OptimizationEngine
 )
-from urban_comfort.optimization.validation import (
+from solaraeus.optimization.validation import (
     validate_candidate_multi_path, run_multi_path_validation_suite
 )
 

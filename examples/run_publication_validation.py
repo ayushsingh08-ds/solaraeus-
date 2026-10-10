@@ -35,29 +35,29 @@ import matplotlib.patches as patches
 # Ensure src is discoverable
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
+from solaraeus.config import Weather, SimulationConfig
+from solaraeus.geometry.primitives import Building, BoundingBox2D
+from solaraeus.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.update import (
     AddBuildingEdit, RemoveBuildingEdit, ChangeHeightEdit, MoveBuildingEdit,
     incremental_update_certified
 )
-from urban_comfort.benchmark.harness import (
+from solaraeus.benchmark.harness import (
     BenchmarkRecord, ReproducibilityRecord, TimingBreakdownRecord,
     run_repeated_benchmark_trials
 )
-from urban_comfort.benchmark.scenes import create_scaling_scene
-from urban_comfort.benchmark.tightness import (
+from solaraeus.benchmark.scenes import create_scaling_scene
+from solaraeus.benchmark.tightness import (
     CertificateTightnessMetrics, evaluate_certificate_tightness
 )
-from urban_comfort.benchmark.repeated_edits import (
+from solaraeus.benchmark.repeated_edits import (
     RepeatedEditRecord, run_repeated_edit_sequence
 )
-from urban_comfort.benchmark.baseline_comparison import (
+from solaraeus.benchmark.baseline_comparison import (
     BaselineComparisonRecord, compare_all_baselines
 )
-from urban_comfort.benchmark.independent_reference import run_independent_reference_tests
+from solaraeus.benchmark.independent_reference import run_independent_reference_tests
 
 
 def save_csv(records: List[Any], filepath: str) -> None:
