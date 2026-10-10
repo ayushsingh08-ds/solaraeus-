@@ -23,7 +23,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import numpy as np
 
 from solaraeus.core.config import SIGMA
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.cloud_model import CloudState, cloud_model
 from solaraeus.physics.solar_position import SolarPosition
 

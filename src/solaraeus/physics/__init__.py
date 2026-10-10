@@ -12,7 +12,7 @@ from solaraeus.physics.shortwave import ShortwaveFluxes, compute_shortwave_fluxe
 from solaraeus.physics.longwave import (
     LongwaveFluxes, compute_longwave_fluxes, compute_air_emissivity
 )
-from solaraeus.physics.mean_radiant_temperature import RadiantState, compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import RadiantState, mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci, get_thermal_stress_category
 from solaraeus.physics.ray_intersection import (
     intersect_ray_aabb, intersect_rays_aabb_batch
@@ -39,7 +39,7 @@ __all__ = [
     "compute_longwave_fluxes",
     "compute_air_emissivity",
     "RadiantState",
-    "compute_tmrt",
+    "mean_radiant_temperature",
     "compute_utci",
     "get_thermal_stress_category",
     "intersect_ray_aabb",

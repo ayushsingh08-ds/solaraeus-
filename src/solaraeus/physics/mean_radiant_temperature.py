@@ -17,8 +17,8 @@ class RadiantState:
     tmrt_k: np.ndarray      # Mean Radiant Temperature in Kelvin (K)
 
 
-def compute_tmrt(k_total: np.ndarray, l_total: np.ndarray,
-                 a_k: float = 0.70, a_l: float = 0.97) -> RadiantState:
+def mean_radiant_temperature(k_total: np.ndarray, l_total: np.ndarray,
+                             a_k: float = 0.70, a_l: float = 0.97) -> RadiantState:
     """
     Computes total absorbed flux S_str and Mean Radiant Temperature (T_mrt).
     

@@ -26,7 +26,7 @@ from solaraeus.physics.shadow import compute_direct_shadow_mask
 from solaraeus.physics.sky_view_factor import compute_sky_view_factor
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 from solaraeus.incremental.update import (
     GeometricEdit, incremental_update_exact, incremental_update_certified
@@ -111,7 +111,7 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
 
     sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
     lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
-    radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
+    radiant_state = mean_radiant_temperature(sw_fluxes.k_total, lw_fluxes.l_total)
 
     air_temp_c = weather.air_temperature - 273.15
     utci = compute_utci(

@@ -39,7 +39,7 @@ from solaraeus.physics.shadow import compute_direct_shadow_mask
 from solaraeus.physics.sky_view_factor import compute_sky_view_factor
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes, compute_air_emissivity
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 
 
@@ -330,7 +330,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     ground_mat = new_scene.materials.get("default_ground", DEFAULT_GROUND_MATERIAL)
     m1_sw = compute_shortwave_fluxes(weather, solar_pos, m1_shadow, m1_svf, ground_mat, wall_mat)
     m1_lw = compute_longwave_fluxes(weather, m1_svf, ground_mat, wall_mat)
-    m1_tmrt = compute_tmrt(m1_sw.k_total, m1_lw.l_total).tmrt_c
+    m1_tmrt = mean_radiant_temperature(m1_sw.k_total, m1_lw.l_total).tmrt_c
     
     # Bound claims clean cells outside truncated box have bound 0.1K
     m1_bound = np.where(m1_dirty_mask, 60.0, 0.1)
@@ -371,7 +371,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     
     m2_sw = compute_shortwave_fluxes(weather, solar_pos, m2_shadow, m2_svf, ground_mat, wall_mat)
     m2_lw = compute_longwave_fluxes(weather, m2_svf, ground_mat, wall_mat)
-    m2_tmrt = compute_tmrt(m2_sw.k_total, m2_lw.l_total).tmrt_c
+    m2_tmrt = mean_radiant_temperature(m2_sw.k_total, m2_lw.l_total).tmrt_c
     
     # Bound claims diffuse perturbation is virtually 0 (0.0001 K) outside footprint
     m2_bound = np.where(m2_dirty_mask, 60.0, 0.0001)
@@ -437,7 +437,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     
     m4_sw = compute_shortwave_fluxes(weather, solar_pos, m4_shadow, m4_svf, ground_mat, wall_mat)
     m4_lw = compute_longwave_fluxes(weather, m4_svf, ground_mat, wall_mat)
-    m4_tmrt = compute_tmrt(m4_sw.k_total, m4_lw.l_total).tmrt_c
+    m4_tmrt = mean_radiant_temperature(m4_sw.k_total, m4_lw.l_total).tmrt_c
     
     # Bound claims 60K within 5m, but 0.0 K beyond 5m (erroneous cutoff)
     m4_bound = np.where(m4_close_mask, 60.0, 0.0)

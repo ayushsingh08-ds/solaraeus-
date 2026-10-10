@@ -20,7 +20,7 @@ from solaraeus.physics.shadow import compute_direct_shadow_mask
 from solaraeus.physics.sky_view_factor import compute_sky_view_factor
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult, full_recompute
 from solaraeus.extensions.terrain.scene import TerrainAwareScene
@@ -164,7 +164,7 @@ class TerrainAwareCPUSolver:
         lw_fluxes = compute_longwave_fluxes(
             weather, clean_svf, ground_mat, wall_mat
         )
-        radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
+        radiant_state = mean_radiant_temperature(sw_fluxes.k_total, lw_fluxes.l_total)
         
         # Mask invalid cells to NaN
         tmrt_c = np.where(valid_mask, radiant_state.tmrt_c, np.nan)

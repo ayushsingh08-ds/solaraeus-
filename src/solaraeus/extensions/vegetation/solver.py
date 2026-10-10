@@ -19,7 +19,7 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.physics.solar_position import calculate_solar_position
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult
 from solaraeus.extensions.terrain.solver import TerrainAwareCPUSolver
@@ -133,7 +133,7 @@ class TreeAwareCPUSolver:
         lw_fluxes = compute_longwave_fluxes(
             weather, clean_svf, ground_mat, wall_mat
         )
-        radiant_state = compute_tmrt(k_total, lw_fluxes.l_total)
+        radiant_state = mean_radiant_temperature(k_total, lw_fluxes.l_total)
         tmrt_c = np.where(valid_mask, radiant_state.tmrt_c, np.nan)
         t_rad = time.perf_counter() - t0_rad
 

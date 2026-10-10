@@ -31,7 +31,7 @@ from solaraeus.backends.base import FlattenedSceneGeometry, BackendProfileMetric
 from solaraeus.backends.gpu import GPUBackend, is_cupy_available
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 
 
@@ -355,7 +355,7 @@ class GPUIncrementalEngine:
 
         sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
         lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
-        radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
+        radiant_state = mean_radiant_temperature(sw_fluxes.k_total, lw_fluxes.l_total)
 
         air_temp_c = weather.air_temperature - 273.15
         utci = compute_utci(
@@ -586,7 +586,7 @@ class GPUIncrementalEngine:
 
         sw_fluxes = compute_shortwave_fluxes(weather, solar_pos, new_shadow, new_svf, ground_mat, wall_mat)
         lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
-        radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
+        radiant_state = mean_radiant_temperature(sw_fluxes.k_total, lw_fluxes.l_total)
 
         air_temp_c = weather.air_temperature - 273.15
         utci = compute_utci(

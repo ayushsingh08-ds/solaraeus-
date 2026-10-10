@@ -24,7 +24,7 @@ from solaraeus.incremental.update import incremental_update_certified
 from solaraeus.validation.independent_audit import audit_certificate_independently
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 
 

@@ -23,7 +23,7 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
 from solaraeus.physics.shortwave import compute_shortwave_fluxes
 from solaraeus.physics.longwave import compute_longwave_fluxes
-from solaraeus.physics.mean_radiant_temperature import compute_tmrt
+from solaraeus.physics.mean_radiant_temperature import mean_radiant_temperature
 from solaraeus.physics.utci import compute_utci
 from solaraeus.reference.full_recompute import SimulationResult
 
@@ -677,7 +677,7 @@ class GPUBackend(SimulationBackend):
         lw_fluxes = compute_longwave_fluxes(
             weather, svf, ground_mat, wall_mat
         )
-        radiant_state = compute_tmrt(sw_fluxes.k_total, lw_fluxes.l_total)
+        radiant_state = mean_radiant_temperature(sw_fluxes.k_total, lw_fluxes.l_total)
         t_rad = time.perf_counter() - t0_rad
 
         # 6. Thermal Comfort (UTCI)
