@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main, overhaul]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONUNBUFFERED: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  lint:
+    name: lint (ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e ".[dev]"
+      - name: ruff check
+        run: python -m ruff check src tests tools
+      - name: ruff format --check
+        run: python -m ruff format --check src tests tools
+
+  types:
+    name: types (mypy)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e ".[dev]"
+      - run: python -m mypy
+
+  test:
+    name: tests (python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: pip install -e ".[dev]"
+      - name: full test suite
+        run: python -m pytest
+      # Golden comparison runs on the newest interpreter only: the frozen
+      # baseline was captured on 3.12 and cross-version float drift in the
+      # BLAS/scipy stack is not a behavioural regression.
+      - name: golden master
+        if: matrix.python-version == '3.12'
+        run: make golden
+
+  docker:
+    name: docker (CPU image)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: build (smoke-tests the engine at build time)
+        run: docker build -t solaraeus:cpu -f Dockerfile .
+      - name: doctor
+        run: docker run --rm solaraeus:cpu solaraeus doctor
+
+# GPU paths are intentionally absent here: hosted runners have no CUDA device.
+# The golden harness records GPU cases as UNVERIFIED-GPU in that case, and the
+# project's own GPU validation is documented in docs/gpu_backend_architecture.md.

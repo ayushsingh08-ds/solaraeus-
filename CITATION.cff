@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "SOLARAEUS: Certified Incremental SOLWEIG-Compatible Urban Thermal-Comfort Simulation"
+abstract: >-
+  A CPU/GPU research prototype that reuses cached pedestrian-level mean radiant
+  temperature fields after local 3D building edits, while guaranteeing a
+  computable, model-specific error bound B_T(x) on every reused grid cell.
+version: 0.2.0
+date-released: "2026-10-10"
+license: MIT
+type: software
+keywords:
+  - urban microclimate
+  - mean radiant temperature
+  - SOLWEIG
+  - UTCI
+  - certified incremental computation
+  - error bounds
+  - GPU ray tracing
+authors:
+  - family-names: "SOLARAEUS contributors"
+repository-code: "https://github.com/ayushsingh08-ds/solaraeus"

@@ -168,3 +168,16 @@ $RECYCLE.BIN/
 scratch/
 tmp/
 temp/
+
+# ==============================================================================
+# PROJECT-GENERATED ARTIFACTS (SOLARAEUS)
+# ==============================================================================
+# Generated pipeline runs (run_manifest.json + outputs). Rebuilt, never committed.
+artifacts/
+# Golden-master scratch: comparison candidates are regenerated on every run.
+tools/golden/candidate/
+# Viewer dependencies and build output (see viewer/).
+viewer/node_modules/
+viewer/dist/
+# Local agent/IDE scratch directories.
+.freebuff/

@@ -1,0 +1,34 @@
+# Reporting-only mypy configuration.
+#
+# `pyproject.toml` is the *gate*: it enforces strictness on the small allowlist of
+# numerically critical contract modules and sets `ignore_errors = true` for the
+# rest of the package, so `make types` is green while adoption is gradual.
+#
+# This file is the *report*: the same settings with that escape hatch removed, so
+# `make types-report` prints every outstanding error -- the backlog the allowlist
+# is meant to absorb, one module at a time.
+#
+# Keep the two files in sync except for `ignore_errors`.
+
+# No `files` key: paths in a config file resolve relative to that file, and this
+# file lives in tools/.  The Makefile passes the target explicitly (`mypy ... src`).
+[mypy]
+python_version = "3.10"
+warn_unused_configs = true
+warn_redundant_casts = true
+no_implicit_optional = true
+show_error_codes = true
+ignore_missing_imports = true
+
+[[mypy.overrides]]
+module = ["urban_comfort.config"]
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+warn_return_any = true
+
+[[mypy.overrides]]
+module = ["urban_comfort.*"]
+disallow_untyped_defs = false
+# No `ignore_errors` here on purpose: this config exists to print the backlog.
+# The legacy `solaraeus` package is also left unreported-free so its errors stay
+# visible until Phase 2 archives it.
