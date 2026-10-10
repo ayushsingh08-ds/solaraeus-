@@ -342,6 +342,17 @@ was done. The target tree in the brief (`core/`, `physics/`, `sites/`,
 
 ### P5 City-agnostic code
 
+Measured work remaining (Phase 10 item 7, run now so the next pass has a
+number): **31 hard-coded city references in `src/urban_comfort/`**, and
+**0 absolute paths**. The references are:
+
+* `integration/tree_loader.py` - 6 core tree lat/lon pairs written as literals;
+* `integration/coordinates.py` - `12.9749 / 77.6054` plus `"Bengaluru, India"`;
+* `optimization/parameters.py` - `get_canonical_church_street_bounds()` /
+  `get_canonical_church_street_baseline_params()`, called as a `default_factory`
+  from `optimizer.py`, `surrogate_optimizer.py`, `two_panel_optimizer.py`;
+* `geometry/scene.py` - the `EPSG:32633_LOCAL` default (see §7 item 1).
+
 Blocked on two findings, not on effort:
 
 * `bengaluru_church_street_raw_sources_2026-10-07/` and the BBMP tree census
@@ -373,6 +384,27 @@ The current app also omits context trees, which must be fixed in the new one.
 Test reorg (`unit/integration/contracts/golden`), the 40 artifact-contract tests
 relabelled and paired with behavioural tests, README/architecture/reproducibility
 docs, and the final fresh-clone verification.
+
+### P10 items already measured (so they are not re-measured later)
+
+| Phase 10 check | Result now |
+|---|---|
+| 1. install / lint / types | pass (`make install`, `make lint`, `make format-check`, `make types`) |
+| 2. full suite, behaviour coverage >= baseline | 442 pass; 457 IDs accounted for (15 archived, still pass) |
+| 3. golden vs Phase 0 | 13/13 MATCH, 0 mismatches, GPU included |
+| 4. regenerate Church Street via CLI and diff | **not done** - the CLI has no `run --city` yet (P5) |
+| 5. second city with zero `src/` edits | **not done** - blocked by §7 P5 |
+| 6. viewer build + Playwright | **not done** - blocked on the missing exporter (I1) |
+| 7. cycles / orphans / `sys.path` / absolute paths / city constants | cycles 0 top-level; `sys.path` 0; absolute paths in `src/` 0; **city constants 31 (P5)** |
+
+### Environment facts for the next pass
+
+`docker`, `git-lfs` and `npm` are all present on this machine, so the CPU
+Dockerfile build, the Git-LFS option for the reference PDFs (§9 item 1) and the
+P7 viewer are all runnable here - none of them is blocked by tooling. What has
+**not** been run is: the Docker image build, and any install from a clean
+virtualenv (both need network and are long-running). The verification in §6 was
+performed in this working environment, not in a fresh clone.
 
 ---
 
