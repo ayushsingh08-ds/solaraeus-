@@ -39,6 +39,7 @@ from shapely.affinity import translate
 
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
+sys.path.insert(0, str(root_dir))  # repo root — for tools.* reporting helpers
 
 from solaraeus.core.config import Weather, SimulationConfig, Material
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
@@ -87,7 +88,7 @@ from solaraeus.placement.robustness import (
     get_standard_objective_scenarios, get_standard_constraint_scenarios,
     recompute_score_under_scenario, evaluate_candidate_at_condition,
 )
-from solaraeus.placement.robustness_plots import (
+from tools.robustness_plots import (
     plot_best_objective_vs_random_seed,
     plot_best_objective_vs_evaluation_budget,
     plot_candidate_ranking_across_weather_scenarios,
