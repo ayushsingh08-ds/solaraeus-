@@ -64,7 +64,7 @@ def execute_stage_34(workspace_root: Path) -> dict:
     )
 
     grid_cfg = PedestrianGridConfig(
-        origin_x=0.0, origin_y=0.0, extent_x=50.0, extent_y=50.0, resolution=1.0, pedestrian_height=1.1
+        origin_x=0.0, origin_y=0.0, extent_x=50.0, extent_y=50.0, resolution=1.0, pedestrian_height_m=1.1
     )
     b1 = Building("bld_1", BoundingBox2D(10.0, 30.0, 10.0, 30.0), 15.0, (10.0, 10.0, 0.0))
     base_scene = Scene(buildings={"bld_1": b1}, pedestrian_grid=grid_cfg)

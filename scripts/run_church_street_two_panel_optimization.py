@@ -124,7 +124,7 @@ def compute_field_stats(arr: np.ndarray, mask: np.ndarray) -> Dict[str, float]:
 def run_preflight_synthetic_test():
     """Runs quick synthetic test verifying two-panel solver before production run."""
     print("  Running preflight synthetic two-panel test...")
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, resolution=1.0, pedestrian_height=1.5)
+    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, resolution=1.0, pedestrian_height_m=1.5)
     scene = Scene(pedestrian_grid=grid_cfg)
     bldg = Building(id="B1", footprint=BoundingBox2D(xmin=2.0, xmax=6.0, ymin=2.0, ymax=6.0), height=10.0, material_id="default_wall")
     scene.add_building(bldg)
@@ -230,7 +230,7 @@ def main():
         longitude=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,

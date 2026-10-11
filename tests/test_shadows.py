@@ -48,7 +48,7 @@ def test_analytical_shadow_length_and_direction():
     # Rays from ground point point South (towards sun).
     # Ground points NORTH of building (Y > 45) looking South will have their ray intersect the building!
     # Expected shadowed Y range: Y in [45, 45 + 20] = [45, 65].
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height_m=1.1))
     scene = Scene(pedestrian_grid=grid.config)
     bldg = Building(
         id="test_bldg",

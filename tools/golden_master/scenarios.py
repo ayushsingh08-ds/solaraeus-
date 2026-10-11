@@ -90,7 +90,7 @@ def _incremental(backend: str):
         local_time="12:00:00", grid_resolution_m=1.0, sky_patch_configuration=16,
         max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5,
     )
-    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height_m=1.1)
     scene_base = Scene(pedestrian_grid=grid_cfg)
     scene_base.add_building(Building("bldg_center", BoundingBox2D(32.0, 48.0, 32.0, 48.0), height=18.0))
 

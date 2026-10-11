@@ -43,7 +43,7 @@ def compute_config_hash(config: SimulationConfig) -> str:
         config.longitude,
         config.date,
         config.local_time,
-        config.pedestrian_height,
+        config.pedestrian_height_m,
         config.grid_resolution_m,
         config.sky_patch_configuration
     )

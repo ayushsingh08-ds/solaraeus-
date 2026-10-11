@@ -125,7 +125,7 @@ def main():
         longitude=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,

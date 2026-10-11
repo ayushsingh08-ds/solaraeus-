@@ -30,7 +30,7 @@ class PedestrianGridConfig:
     origin_x: float = 0.0        # Southwest corner X coordinate
     origin_y: float = 0.0        # Southwest corner Y coordinate
     resolution: float = 1.0      # Cell spacing dx (m)
-    pedestrian_height: float = 1.1 # z height above terrain (m)
+    pedestrian_height_m: float = 1.1 # z height above terrain (m)
 
     @property
     def nx(self) -> int:
@@ -104,7 +104,7 @@ class Scene:
                 "origin_x": self.pedestrian_grid.origin_x,
                 "origin_y": self.pedestrian_grid.origin_y,
                 "resolution": self.pedestrian_grid.resolution,
-                "pedestrian_height": self.pedestrian_grid.pedestrian_height
+                "pedestrian_height_m": self.pedestrian_grid.pedestrian_height_m
             },
             "materials": {
                 m_id: {
@@ -165,7 +165,7 @@ class Scene:
             origin_x=grid_data.get("origin_x", 0.0),
             origin_y=grid_data.get("origin_y", 0.0),
             resolution=grid_data.get("resolution", 1.0),
-            pedestrian_height=grid_data.get("pedestrian_height", 1.1)
+            pedestrian_height_m=get_aliased(grid_data, "pedestrian_height_m", 1.1)
         )
 
         buildings = {}

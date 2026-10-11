@@ -116,7 +116,7 @@ def build_scene_pair(scene_def: BenchmarkSceneDef,
         extent_x=scene_def.domain_x_m,
         extent_y=scene_def.domain_y_m,
         resolution=resolution_m,
-        pedestrian_height=pedestrian_height_m
+        pedestrian_height_m=pedestrian_height_m
     )
 
     scene_aabb = Scene(pedestrian_grid=grid_cfg)
@@ -146,7 +146,7 @@ def run_single_comparison(scene_def: BenchmarkSceneDef,
     Executes full recomputation for both AABB and mesh representations of a scene,
     and returns comprehensive comparative metrics.
     """
-    scene_aabb, scene_mesh = build_scene_pair(scene_def, config.grid_resolution_m, config.pedestrian_height)
+    scene_aabb, scene_mesh = build_scene_pair(scene_def, config.grid_resolution_m, config.pedestrian_height_m)
 
     # 1. Full recompute AABB
     t0 = time.perf_counter()
@@ -231,7 +231,7 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
         longitude=2.3522,
         date="2026-07-15",
         local_time="14:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=1.0,
         tmrt_tolerance_k=0.5,
         numerical_tolerance=0.05,

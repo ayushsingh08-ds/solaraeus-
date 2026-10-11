@@ -30,7 +30,7 @@ from solaraeus.physics.utci import compute_utci
 
 @pytest.fixture
 def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
-    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height_m=1.1)
     scene = Scene(pedestrian_grid=grid_cfg)
     scene.add_mesh(create_box_mesh("mesh_bldg", 25.0, 45.0, 25.0, 45.0, 0.0, 15.0))
 
@@ -39,7 +39,7 @@ def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
         longitude=2.3522,
         date="2026-07-15",
         local_time="14:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=1.0,
         tmrt_tolerance_k=0.5,
         numerical_tolerance=0.05,

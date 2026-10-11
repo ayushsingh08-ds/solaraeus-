@@ -39,7 +39,7 @@ def fast_scaling_config() -> SimulationConfig:
         longitude=2.3522,
         date="2026-07-15",
         local_time="14:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         numerical_tolerance=0.05,

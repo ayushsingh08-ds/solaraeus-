@@ -226,7 +226,7 @@ def _make_synthetic_scene_and_results():
         extent_x=20.0, extent_y=20.0,
         origin_x=0.0, origin_y=0.0,
         resolution=2.0,
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
     )
     bldgs = {
         "B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)
@@ -253,7 +253,7 @@ def _make_synthetic_scene_and_results():
         longitude=77.60,
         date="2024-04-15",
         local_time="10:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.50,
         sky_patch_configuration=32,

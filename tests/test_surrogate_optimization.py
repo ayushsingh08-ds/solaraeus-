@@ -270,7 +270,7 @@ def test_feasibility_filtering_before_simulation():
 # ---------------------------------------------------------------------------
 def test_invalid_candidate_handling():
     # Synthetic scene for testing exception isolation
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height_m=1.1)
     scene = Scene(buildings={}, pedestrian_grid=grid_cfg)
     grid = PedestrianGrid(grid_cfg)
     zeros = np.zeros(grid.shape, dtype=np.float64)
@@ -350,7 +350,7 @@ def test_ledger_append_and_provenance():
 # Test 9: Surrogate-assisted optimizer integration
 # ---------------------------------------------------------------------------
 def test_surrogate_assisted_optimizer_integration():
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height_m=1.1)
     scene = Scene(buildings={}, pedestrian_grid=grid_cfg)
     grid = PedestrianGrid(grid_cfg)
     zeros = np.zeros(grid.shape, dtype=np.float64)
@@ -433,7 +433,7 @@ def test_final_multi_path_validation():
     best_params = ShadePanelParams.from_dict(cand_dict["params"])
 
     # Synthetic validation scene
-    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(extent_x=20.0, extent_y=20.0, origin_x=0.0, origin_y=0.0, resolution=2.0, pedestrian_height_m=1.1)
     scene = Scene(
         buildings={"B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)},
         pedestrian_grid=grid_cfg,
@@ -448,7 +448,7 @@ def test_final_multi_path_validation():
     )
     sim_cfg = SimulationConfig(
         latitude=12.97, longitude=77.60, date="2024-04-15", local_time="10:00:00",
-        pedestrian_height=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.50,
+        pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.50,
         sky_patch_configuration=32, max_svf_search_dist_m=30.0, backend="auto"
     )
     base_res = full_recompute(scene, weather, sim_cfg, backend="auto")

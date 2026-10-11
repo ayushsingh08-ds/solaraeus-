@@ -77,7 +77,7 @@ from solaraeus.placement.dual_panel_candidate_validation import (
 
 def create_synthetic_dual_panel_scene() -> Tuple[Scene, SimulationConfig, Weather]:
     """Helper creating a fast 30x30 synthetic scene with one building."""
-    grid_cfg = PedestrianGridConfig(extent_x=30.0, extent_y=30.0, resolution=1.0, pedestrian_height=1.5)
+    grid_cfg = PedestrianGridConfig(extent_x=30.0, extent_y=30.0, resolution=1.0, pedestrian_height_m=1.5)
     scene = Scene(pedestrian_grid=grid_cfg)
     bldg = Building(
         id="BLDG_SYNTH",

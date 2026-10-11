@@ -21,7 +21,7 @@ class PedestrianGrid:
         self.nx = config.nx
         self.ny = config.ny
         self.dx = config.resolution
-        self.z_ped = config.pedestrian_height
+        self.z_ped = config.pedestrian_height_m
         self.origin_x = config.origin_x
         self.origin_y = config.origin_y
 

@@ -30,7 +30,7 @@ def create_scaling_scene(extent_m: float,
         extent_x=extent_m,
         extent_y=extent_m,
         resolution=grid_resolution_m,
-        pedestrian_height=1.1
+        pedestrian_height_m=1.1
     )
     scene = Scene(pedestrian_grid=grid_cfg)
 

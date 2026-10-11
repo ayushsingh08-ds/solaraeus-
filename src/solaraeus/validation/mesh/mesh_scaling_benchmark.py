@@ -50,7 +50,7 @@ def create_mesh_scaling_scene(num_buildings: int,
         extent_x=extent_m,
         extent_y=extent_m,
         resolution=resolution_m,
-        pedestrian_height=pedestrian_height_m
+        pedestrian_height_m=pedestrian_height_m
     )
     scene = Scene(pedestrian_grid=grid_cfg)
 
@@ -214,7 +214,7 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
             longitude=2.3522,
             date="2026-07-15",
             local_time="14:00:00",
-            pedestrian_height=1.1,
+            pedestrian_height_m=1.1,
             grid_resolution_m=1.0,
             tmrt_tolerance_k=0.5,
             numerical_tolerance=0.05,
@@ -241,7 +241,7 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
             longitude=2.3522,
             date="2026-07-15",
             local_time="14:00:00",
-            pedestrian_height=1.1,
+            pedestrian_height_m=1.1,
             grid_resolution_m=res,
             tmrt_tolerance_k=0.5,
             numerical_tolerance=0.05,

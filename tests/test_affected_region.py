@@ -23,7 +23,7 @@ from solaraeus.incremental.affected_region import (
 
 @pytest.fixture
 def base_setup():
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height_m=1.1))
     alt_rad = math.radians(40.0)
     az_rad = math.radians(160.0)
     sun_vec = (

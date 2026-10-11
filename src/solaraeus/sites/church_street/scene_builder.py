@@ -556,7 +556,7 @@ class ChurchStreetAdapter:
             origin_x=-10.0,
             origin_y=-5.0,
             resolution=1.0,
-            pedestrian_height=1.1,
+            pedestrian_height_m=1.1,
         )
 
         main_scene = Scene(
@@ -584,7 +584,7 @@ class ChurchStreetAdapter:
             origin_x=-85.0,
             origin_y=-80.0,
             resolution=2.0,
-            pedestrian_height=1.1,
+            pedestrian_height_m=1.1,
         )
 
         shadow_context_scene = Scene(

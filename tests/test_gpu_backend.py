@@ -51,7 +51,7 @@ def standard_config():
         longitude=77.5946,
         date="2024-04-15",
         local_time="09:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=1.0,
         sky_patch_configuration=32,
         max_svf_search_dist_m=60.0
@@ -107,7 +107,7 @@ def test_flattened_scene_geometry_conversion():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_single_building_shadow_parity():
     """Validates exact bit parity of direct shadow between CPU and GPU for a single AABB building."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height_m=1.1))
     scene = Scene(pedestrian_grid=grid.config)
     bldg = Building(
         id="box",
@@ -136,7 +136,7 @@ def test_synthetic_single_building_shadow_parity():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_canyon_shadow_and_svf_parity():
     """Validates CPU vs GPU parity on a two-building urban street canyon."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height_m=1.1))
     scene = Scene(pedestrian_grid=grid.config)
 
     # East building and West building forming a North-South canyon between X=20 and X=40
@@ -176,7 +176,7 @@ def test_synthetic_canyon_shadow_and_svf_parity():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_triangle_mesh_shadow_and_svf_parity():
     """Validates CPU vs GPU parity on 3D triangular mesh objects."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=50.0, extent_y=50.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(PedestrianGridConfig(extent_x=50.0, extent_y=50.0, resolution=1.0, pedestrian_height_m=1.1))
     scene = Scene(pedestrian_grid=grid.config)
 
     # 12-triangle box mesh
@@ -214,7 +214,7 @@ def test_synthetic_triangle_mesh_shadow_and_svf_parity():
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")
 def test_synthetic_mixed_scene_parity():
     """Validates parity on mixed scenes with both AABB buildings and TriangleMeshes."""
-    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height=1.1))
+    grid = PedestrianGrid(PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height_m=1.1))
     scene = Scene(pedestrian_grid=grid.config)
 
     # 1 AABB Building
@@ -416,7 +416,7 @@ def test_church_street_gpu_parity_against_frozen_reference():
         longitude=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,

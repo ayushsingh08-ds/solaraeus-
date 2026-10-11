@@ -179,7 +179,7 @@ def main():
 
     # Simulate Area 1: AREA_BRIGADE_ROAD_EXT
     print("\n[Phase 2] Executing workflow on Area 1 (Brigade Road Corridor)...")
-    grid_cfg_b = PedestrianGridConfig(extent_x=100.0, extent_y=50.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg_b = PedestrianGridConfig(extent_x=100.0, extent_y=50.0, resolution=2.0, pedestrian_height_m=1.1)
     scene_brigade = Scene(pedestrian_grid=grid_cfg_b)
     scene_brigade.materials = materials_base.copy()
     grid_b = PedestrianGrid(grid_cfg_b)
@@ -192,12 +192,12 @@ def main():
 
     sim_cfg_b_cpu = SimulationConfig(
         latitude=12.972, longitude=77.608, date="2024-04-15", local_time="09:00:00",
-        pedestrian_height=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
+        pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="cpu"
     )
     sim_cfg_b_gpu = SimulationConfig(
         latitude=12.972, longitude=77.608, date="2024-04-15", local_time="09:00:00",
-        pedestrian_height=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
+        pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="gpu"
     )
 
@@ -274,7 +274,7 @@ def main():
 
     # Simulate Area 2: AREA_MG_ROAD_PLAZA
     print("\n[Phase 3] Executing workflow on Area 2 (MG Road Plaza)...")
-    grid_cfg_m = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=2.0, pedestrian_height=1.1)
+    grid_cfg_m = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=2.0, pedestrian_height_m=1.1)
     scene_mg = Scene(pedestrian_grid=grid_cfg_m)
     scene_mg.materials = materials_base.copy()
     grid_m = PedestrianGrid(grid_cfg_m)
@@ -286,12 +286,12 @@ def main():
 
     sim_cfg_m_cpu = SimulationConfig(
         latitude=12.976, longitude=77.606, date="2024-04-15", local_time="09:00:00",
-        pedestrian_height=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
+        pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="cpu"
     )
     sim_cfg_m_gpu = SimulationConfig(
         latitude=12.976, longitude=77.606, date="2024-04-15", local_time="09:00:00",
-        pedestrian_height=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
+        pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="gpu"
     )
 

@@ -63,7 +63,7 @@ def run_repeated_edit_sequence(weather: Weather,
     records: List[RepeatedEditRecord] = []
 
     # Domain: 80m x 80m
-    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
+    grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height_m=1.1)
     total_cells = int(grid_cfg.extent_x * grid_cfg.extent_y)
 
     # Step 0: Baseline Scene

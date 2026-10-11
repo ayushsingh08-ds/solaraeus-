@@ -45,7 +45,7 @@ def create_test_scene():
         extent_x=50.0,
         extent_y=50.0,
         resolution=1.0,
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
     )
     base_scene = Scene(
         buildings={"bld_1": b1},

@@ -60,7 +60,7 @@ class SimulationConfig:
     longitude: float = -74.0060          # Degrees East (-180 to +180)
     date: str = "2024-07-15"             # YYYY-MM-DD
     local_time: str = "12:00:00"         # HH:MM:SS
-    pedestrian_height: float = 1.1       # Ground-relative height z (m)
+    pedestrian_height_m: float = 1.1       # Ground-relative height z (m)
     grid_resolution_m: float = 1.0         # Spatial cell size dx (m)
     tmrt_tolerance_k: float = 0.5          # User tolerance epsilon_T (K)
     numerical_tolerance: float = 1e-6    # Numerical floating point slack
@@ -73,8 +73,8 @@ class SimulationConfig:
             raise ValueError(f"Latitude must be in [-90, 90], got {self.latitude}")
         if not (-180.0 <= self.longitude <= 180.0):
             raise ValueError(f"Longitude must be in [-180, 180], got {self.longitude}")
-        if self.pedestrian_height < 0.0:
-            raise ValueError(f"Pedestrian height must be >= 0, got {self.pedestrian_height}")
+        if self.pedestrian_height_m < 0.0:
+            raise ValueError(f"Pedestrian height must be >= 0, got {self.pedestrian_height_m}")
         if self.grid_resolution_m <= 0.0:
             raise ValueError(f"Grid resolution must be > 0, got {self.grid_resolution_m}")
         if self.tmrt_tolerance_k <= 0.0:

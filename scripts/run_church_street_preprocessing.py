@@ -424,7 +424,7 @@ def main():
                 "resolution": result.main_scene.pedestrian_grid.resolution,
                 "nx": result.main_scene.pedestrian_grid.nx,
                 "ny": result.main_scene.pedestrian_grid.ny,
-                "pedestrian_height": result.main_scene.pedestrian_grid.pedestrian_height,
+                "pedestrian_height_m": result.main_scene.pedestrian_grid.pedestrian_height_m,
                 "total_cells": result.main_scene.pedestrian_grid.total_cells,
                 "dimensions_note": "230.0m x 145.0m at 1.0m resolution = 230 * 145 = 33,350 cells.",
                 "bounds_local_m": {"xmin": -10.0, "xmax": 220.0, "ymin": -5.0, "ymax": 140.0},
@@ -437,7 +437,7 @@ def main():
                 "resolution": result.shadow_context_scene.pedestrian_grid.resolution,
                 "nx": result.shadow_context_scene.pedestrian_grid.nx,
                 "ny": result.shadow_context_scene.pedestrian_grid.ny,
-                "pedestrian_height": result.shadow_context_scene.pedestrian_grid.pedestrian_height,
+                "pedestrian_height_m": result.shadow_context_scene.pedestrian_grid.pedestrian_height_m,
                 "total_cells": result.shadow_context_scene.pedestrian_grid.total_cells,
                 "dimensions_note": (
                     "Exact discrete calculation: 380.0m x 296.0m at 2.0m resolution: "

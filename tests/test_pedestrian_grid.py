@@ -10,7 +10,7 @@ from solaraeus.core.pedestrian_grid import PedestrianGrid
 
 
 def test_pedestrian_grid_initialization():
-    cfg = PedestrianGridConfig(extent_x=50.0, extent_y=30.0, resolution=2.0, pedestrian_height=1.1)
+    cfg = PedestrianGridConfig(extent_x=50.0, extent_y=30.0, resolution=2.0, pedestrian_height_m=1.1)
     grid = PedestrianGrid(cfg)
 
     assert grid.nx == 25

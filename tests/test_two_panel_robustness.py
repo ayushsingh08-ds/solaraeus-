@@ -80,7 +80,7 @@ from solaraeus.placement.robustness import (
 @pytest.fixture
 def synthetic_scene_and_baseline():
     """Builds a small, fast synthetic scene for two-panel testing."""
-    grid_cfg = PedestrianGridConfig(extent_x=24.0, extent_y=24.0, resolution=1.0, pedestrian_height=1.5)
+    grid_cfg = PedestrianGridConfig(extent_x=24.0, extent_y=24.0, resolution=1.0, pedestrian_height_m=1.5)
     scene = Scene(pedestrian_grid=grid_cfg)
     bldg = Building(id="B1", footprint=BoundingBox2D(xmin=2.0, xmax=6.0, ymin=2.0, ymax=6.0), height=10.0, material_id="default_wall")
     scene.add_building(bldg)

@@ -30,7 +30,7 @@ def baseline_config():
         longitude=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
-        pedestrian_height=1.1,
+        pedestrian_height_m=1.1,
         grid_resolution_m=1.0,
         sky_patch_configuration=16
     )
