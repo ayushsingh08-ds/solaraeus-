@@ -38,38 +38,38 @@ import sys
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     RejectionReason, FeasibilityConstraints, check_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 )
-from urban_comfort.optimization.ledger import (
+from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
+from solaraeus.placement.placement_solver import (
+    PlacementSolverConfig, PlacementSolverEngine
 )
-from urban_comfort.optimization.surrogate import (
+from solaraeus.placement.surrogate_model import (
     SurrogateConfig, SurrogatePrediction, SurrogateModel, extract_features
 )
-from urban_comfort.optimization.acquisition import (
+from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine
 )
-from urban_comfort.optimization.surrogate_optimizer import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+from solaraeus.placement.surrogate_placement_solver import (
+    SurrogatePlacementSolverConfig, SurrogatePlacementSolverEngine
 )
-from urban_comfort.optimization.validation import (
+from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, run_multi_path_validation_suite,
     MultiPathValidationSummary, CandidateValidationReport,
     TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
@@ -234,7 +234,7 @@ def main():
     pts = [Point(x, y) for x, y in zip(X.ravel(), Y.ravel())]
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
 
-    from urban_comfort.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
     ped_corridor_unbuilt_mask = ped_corridor_mask & unbuilt_mask
@@ -277,7 +277,7 @@ def main():
         seed=42,
         min_diversity_dist=0.03,
     )
-    surr_opt_config = SurrogateOptimizerConfig(
+    surr_opt_config = SurrogatePlacementSolverConfig(
         seed=42,
         num_iterations=4,
         batch_size=5,             # 4 iterations x 5 candidates = 20 proposed candidates
@@ -291,7 +291,7 @@ def main():
     gpu_engine = GPUIncrementalEngine()
     assert gpu_engine.is_available, "GPU backend must be available for intervention optimization!"
 
-    surr_engine = SurrogateOptimizationEngine(
+    surr_engine = SurrogatePlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,
@@ -332,14 +332,14 @@ def main():
     rand_rng = np.random.default_rng(12345)
     rand_proposed = opt_bounds.sample_uniform(rand_rng, 20)
     
-    rand_opt_engine = OptimizationEngine(
+    rand_opt_engine = PlacementSolverEngine(
         baseline_scene=baseline_scene,
         baseline_result=baseline_result,
         weather=weather,
         sim_config=sim_config,
         feasibility_constraints=constraints,
         eval_mask=ped_corridor_unbuilt_mask,
-        config=OptimizerConfig(seed=12345, bounds=opt_bounds, objective_config=obj_cfg),
+        config=PlacementSolverConfig(seed=12345, bounds=opt_bounds, objective_config=obj_cfg),
         gpu_engine=gpu_engine,
     )
     

@@ -1,0 +1,22 @@
+{
+  "base__air_temperature_c": 28.0,
+  "base__is_daylight": true,
+  "base__num_buildings": 1,
+  "base__solar_altitude_deg": 24.482031232271652,
+  "base__solar_azimuth_deg": 82.12663604246802,
+  "base__solar_zenith_deg": 65.51796876772835,
+  "base__total_cells": 6400,
+  "cert_affected_cells": 4636,
+  "cert_max_predicted_bound": 63.78690198658455,
+  "cert_reused_cells": 1764,
+  "cert_reused_fraction": 0.275625,
+  "cert_status": "certified",
+  "cert_tolerance": 0.5,
+  "cert_total_cells": 6400,
+  "verify_is_valid": true,
+  "verify_is_within_tolerance": true,
+  "verify_max_violation": 0.0,
+  "verify_min_slack": 0.0,
+  "verify_num_violations": 0,
+  "verify_reused_max_error": 0.0
+}

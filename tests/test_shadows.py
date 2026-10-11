@@ -6,12 +6,12 @@ import math
 import numpy as np
 import pytest
 
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import SolarPosition
-from urban_comfort.visibility.shadow import compute_direct_shadow_mask
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import SolarPosition
+from solaraeus.physics.shadow import compute_direct_shadow_mask
+from solaraeus.physics.sky_view_factor import compute_sky_view_factor
 
 
 def test_empty_scene_shadows():
@@ -115,14 +115,14 @@ def test_sky_view_factor():
     scene = Scene(pedestrian_grid=grid.config)
 
     # Empty scene: SVF = 1.0 everywhere
-    svf_empty = compute_sky_view_factor(scene, grid, num_azimuths=16)
+    svf_empty = compute_sky_view_factor(scene, grid, azimuth_count=16)
     assert np.allclose(svf_empty, 1.0)
 
     # Add single building at center
     bldg = Building("b_svf", BoundingBox2D(25, 35, 25, 35), height=20.0)
     scene.add_building(bldg)
 
-    svf = compute_sky_view_factor(scene, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf = compute_sky_view_factor(scene, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Near building wall (row 24, col 30), SVF must be noticeably reduced
     assert svf[24, 30] < 0.8

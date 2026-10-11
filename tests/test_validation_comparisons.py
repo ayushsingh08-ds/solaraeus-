@@ -6,13 +6,13 @@ import math
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.scene import create_single_box_scene
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.validation.comparisons import (
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.scene import create_single_box_scene
+from solaraeus.reference.full_recompute import full_recompute, SimulationResult
+from solaraeus.validation.comparisons import (
     compare_arrays, compare_results, format_comparison_summary, ComparisonMetrics
 )
-from urban_comfort.validation.metrics import (
+from solaraeus.validation.metrics import (
     compute_shadow_iou, compute_utci_category_agreement, compute_error_percentiles
 )
 

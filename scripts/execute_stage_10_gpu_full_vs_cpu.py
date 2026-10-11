@@ -27,14 +27,14 @@ sys.path.insert(0, str(root_dir / "src"))
 
 import cupy as cp
 
-from urban_comfort.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.backend import CPUBackend, GPUBackend, is_gpu_available, get_backend
+from solaraeus.core.config import Weather, SimulationConfig, Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
+from solaraeus.core.geometry.mesh import TriangleMesh, create_box_mesh
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import full_recompute, SimulationResult
+from solaraeus.backends import CPUBackend, GPUBackend, is_gpu_available, get_backend
 
 
 def sha256_file(path: Path) -> str:

@@ -1,5 +1,5 @@
 """
-Solaraeus: Certified Incremental SOLWEIG for Error-Bounded Urban Thermal Comfort.
+Urban Comfort: Certified Incremental SOLWEIG-Compatible Urban Thermal-Comfort Engine.
 """
 
 __version__ = "0.1.0"

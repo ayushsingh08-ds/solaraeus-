@@ -24,17 +24,17 @@ import numpy as np
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.cache import SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash
-from urban_comfort.incremental.dependency_graph import DependencyGraph
-from urban_comfort.incremental.update import incremental_update_certified, IncrementalUpdateResult
-from urban_comfort.incremental.certificate import verify_certificate, ErrorCertificate
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.cache import SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash
+from solaraeus.incremental.dependency_graph import DependencyGraph
+from solaraeus.incremental.update import incremental_update_certified, IncrementalUpdateResult
+from solaraeus.incremental.certificate import verify_certificate, ErrorCertificate
 
 
 def sha256_file(path: Path) -> str:

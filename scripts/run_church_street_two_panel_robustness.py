@@ -40,54 +40,54 @@ from shapely.affinity import translate
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.incremental.mesh_update import AddMultiMeshEdit
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.incremental.mesh_update import AddMultiMeshEdit
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     FeasibilityConstraints, check_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, compute_objective
 )
-from urban_comfort.optimization.two_panel_parameters import (
-    TwoPanelParams, TwoPanelBounds
+from solaraeus.placement.dual_panel_parameters import (
+    DualPanelParams, DualPanelBounds
 )
-from urban_comfort.optimization.two_panel_feasibility import (
-    TwoPanelConstraints, check_two_panel_feasibility, TwoPanelRejectionReason
+from solaraeus.placement.dual_panel_feasibility import (
+    DualPanelConstraints, check_dual_panel_feasibility, DualPanelRejectionReason
 )
-from urban_comfort.optimization.two_panel_objective import (
-    TwoPanelComfortObjectiveConfig, compute_two_panel_objective, compute_pareto_front
+from solaraeus.placement.dual_panel_objective import (
+    DualPanelComfortObjectiveConfig, compute_dual_panel_objective, compute_pareto_front
 )
-from urban_comfort.optimization.two_panel_ledger import (
-    TwoPanelCandidateRecord, TwoPanelCandidateLedger
+from solaraeus.placement.dual_panel_evaluation_ledger import (
+    DualPanelCandidateRecord, DualPanelCandidateLedger
 )
-from urban_comfort.optimization.two_panel_surrogate import (
-    TwoPanelSurrogateConfig, TwoPanelSurrogateModel
+from solaraeus.placement.dual_panel_surrogate_model import (
+    DualPanelSurrogateConfig, DualPanelSurrogateModel
 )
-from urban_comfort.optimization.two_panel_acquisition import (
-    TwoPanelAcquisitionConfig, TwoPanelAcquisitionEngine, generate_two_panel_seeds
+from solaraeus.placement.dual_panel_acquisition import (
+    DualPanelAcquisitionConfig, DualPanelAcquisitionEngine, generate_dual_panel_seeds
 )
-from urban_comfort.optimization.two_panel_optimizer import (
-    TwoPanelOptimizerConfig, TwoPanelOptimizationEngine
+from solaraeus.placement.dual_panel_placement_solver import (
+    DualPanelPlacementSolverConfig, DualPanelPlacementSolverEngine
 )
-from urban_comfort.optimization.two_panel_validation import (
-    validate_two_panel_multi_path, TwoPanelValidationReport
+from solaraeus.placement.dual_panel_candidate_validation import (
+    validate_dual_panel_multi_path, DualPanelValidationReport
 )
-from urban_comfort.optimization.robustness import (
+from solaraeus.placement.robustness import (
     WeatherScenario, SolarTimestampScenario, ObjectiveWeightScenario,
     ConstraintSensitivityScenario, RobustnessStudyConfig,
     get_standard_weather_scenarios, get_standard_solar_timestamps,
     get_standard_objective_scenarios, get_standard_constraint_scenarios,
     recompute_score_under_scenario, evaluate_candidate_at_condition,
 )
-from urban_comfort.optimization.robustness_plots import (
+from solaraeus.placement.robustness_plots import (
     plot_best_objective_vs_random_seed,
     plot_best_objective_vs_evaluation_budget,
     plot_candidate_ranking_across_weather_scenarios,
@@ -224,7 +224,7 @@ def main():
     pts = [Point(x, y) for x, y in zip(X.ravel(), Y.ravel())]
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
 
-    from urban_comfort.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
     ped_corridor_unbuilt_mask = ped_corridor_mask & unbuilt_mask
@@ -233,12 +233,12 @@ def main():
     single_constraints = FeasibilityConstraints.from_scene(
         scene=baseline_scene, allowed_area=ped_local, min_underside_height_m=2.50, min_building_setback_m=0.50,
     )
-    two_panel_constraints = TwoPanelConstraints.from_single_constraints(
+    dual_panel_constraints = DualPanelConstraints.from_single_constraints(
         single=single_constraints, min_panel_separation_m=2.0, max_individual_area_m2=40.0,
         min_total_area_m2=10.0, max_total_area_m2=60.0,
     )
-    two_panel_bounds = TwoPanelBounds.get_canonical_church_street_bounds()
-    obj_config = TwoPanelComfortObjectiveConfig(
+    dual_panel_bounds = DualPanelBounds.get_canonical_church_street_bounds()
+    obj_config = DualPanelComfortObjectiveConfig(
         weight_mean_utci=1.00, weight_p90_utci=0.50, weight_max_utci=0.00, weight_mean_tmrt=0.00,
         weight_area_penalty=0.005, weight_construction_cost=0.0001, base_cost_per_panel=5000.0, cost_per_m2=250.0,
     )
@@ -247,9 +247,9 @@ def main():
 
     # Load frozen Stage 3 candidate ledger
     stage3_ledger_data = json.loads((frozen_stage3_dir / "candidate_ledger.json").read_text(encoding="utf-8"))
-    stage3_ledger = TwoPanelCandidateLedger()
+    stage3_ledger = DualPanelCandidateLedger()
     for item in stage3_ledger_data:
-        stage3_ledger.add(TwoPanelCandidateRecord.from_dict(item))
+        stage3_ledger.add(DualPanelCandidateRecord.from_dict(item))
 
     # =========================================================================
     # STUDY DIMENSION 1: RANDOM-SEED ROBUSTNESS (Seeds 7, 42, 12345)
@@ -274,15 +274,15 @@ def main():
     }
     stage3_ledger.save_json(ledgers_dir / "seed_42_ledger.json")
 
-    def load_or_run_ledger(filename: str, run_fn) -> TwoPanelCandidateLedger:
+    def load_or_run_ledger(filename: str, run_fn) -> DualPanelCandidateLedger:
         # Check if already computed in any prior run directory
         prev_matches = sorted(list(root_dir.glob(f"results/church_street_two_panel_robustness_*/candidate_ledgers/{filename}")))
         if prev_matches and prev_matches[-1].exists() and prev_matches[-1].stat().st_size > 1000:
             print(f"  Restoring pre-computed ledger {filename} from {prev_matches[-1].parent.parent.name}...")
             raw = json.loads(prev_matches[-1].read_text(encoding="utf-8"))
-            l = TwoPanelCandidateLedger()
+            l = DualPanelCandidateLedger()
             for item in raw:
-                l.add(TwoPanelCandidateRecord.from_dict(item))
+                l.add(DualPanelCandidateRecord.from_dict(item))
             l.save_json(ledgers_dir / filename)
             return l
         else:
@@ -294,14 +294,14 @@ def main():
     for s in [7, 12345]:
         def _run_seed(seed_val=s):
             print(f"  Executing optimizer with Seed {seed_val} (Budget: 25 evaluations)...")
-            opt_cfg_s = TwoPanelOptimizerConfig(
+            opt_cfg_s = DualPanelPlacementSolverConfig(
                 seed=seed_val, num_iterations=3, batch_size=5, seed_budget=10,
-                bounds=two_panel_bounds, objective_config=obj_config,
+                bounds=dual_panel_bounds, objective_config=obj_config,
             )
-            engine_s = TwoPanelOptimizationEngine(
+            engine_s = DualPanelPlacementSolverEngine(
                 baseline_scene=baseline_scene, baseline_result=baseline_result,
                 weather=weather, sim_config=sim_config,
-                feasibility_constraints=two_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
+                feasibility_constraints=dual_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
                 config=opt_cfg_s, gpu_engine=gpu_engine,
             )
             engine_s.preload()
@@ -343,14 +343,14 @@ def main():
     # Medium budget: 50 evaluations (seed_budget=10 + 8 iterations of batch_size=5 = 50)
     def _run_budget_50():
         print("  Executing medium budget (50 physical evaluations)...")
-        opt_cfg_50 = TwoPanelOptimizerConfig(
+        opt_cfg_50 = DualPanelPlacementSolverConfig(
             seed=42, num_iterations=8, batch_size=5, seed_budget=10,
-            bounds=two_panel_bounds, objective_config=obj_config,
+            bounds=dual_panel_bounds, objective_config=obj_config,
         )
-        engine_50 = TwoPanelOptimizationEngine(
+        engine_50 = DualPanelPlacementSolverEngine(
             baseline_scene=baseline_scene, baseline_result=baseline_result,
             weather=weather, sim_config=sim_config,
-            feasibility_constraints=two_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
+            feasibility_constraints=dual_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
             config=opt_cfg_50, gpu_engine=gpu_engine,
         )
         engine_50.preload()
@@ -373,14 +373,14 @@ def main():
     # Extended budget: 100 evaluations (seed_budget=10 + 18 iterations of batch_size=5 = 100)
     def _run_budget_100():
         print("  Executing extended budget (100 physical evaluations)...")
-        opt_cfg_100 = TwoPanelOptimizerConfig(
+        opt_cfg_100 = DualPanelPlacementSolverConfig(
             seed=42, num_iterations=18, batch_size=5, seed_budget=10,
-            bounds=two_panel_bounds, objective_config=obj_config,
+            bounds=dual_panel_bounds, objective_config=obj_config,
         )
-        engine_100 = TwoPanelOptimizationEngine(
+        engine_100 = DualPanelPlacementSolverEngine(
             baseline_scene=baseline_scene, baseline_result=baseline_result,
             weather=weather, sim_config=sim_config,
-            feasibility_constraints=two_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
+            feasibility_constraints=dual_panel_constraints, eval_mask=ped_corridor_unbuilt_mask,
             config=opt_cfg_100, gpu_engine=gpu_engine,
         )
         engine_100.preload()
@@ -407,7 +407,7 @@ def main():
     weather_scenarios = get_standard_weather_scenarios(weather)
     weather_results: Dict[str, Dict[str, float]] = {}
 
-    nominal_best_params = TwoPanelParams.from_dict(stage3_best.params)
+    nominal_best_params = DualPanelParams.from_dict(stage3_best.params)
 
     for sc_name, sc_obj in weather_scenarios.items():
         print(f"  Testing Weather Scenario: {sc_name}...")
@@ -499,7 +499,7 @@ def main():
 
     # Sample a fixed pool of 500 proposed candidates
     pool_rng = np.random.default_rng(777)
-    test_pool = [two_panel_bounds.sample_uniform(pool_rng) for _ in range(500)]
+    test_pool = [dual_panel_bounds.sample_uniform(pool_rng) for _ in range(500)]
 
     for c_name, c_spec in constraint_scenarios.items():
         s_constraints = FeasibilityConstraints.from_scene(
@@ -507,7 +507,7 @@ def main():
             min_underside_height_m=c_spec.min_underside_height_m,
             min_building_setback_m=c_spec.min_building_setback_m,
         )
-        tp_constraints = TwoPanelConstraints.from_single_constraints(
+        tp_constraints = DualPanelConstraints.from_single_constraints(
             single=s_constraints,
             min_panel_separation_m=c_spec.min_panel_separation_m,
             max_individual_area_m2=40.0,
@@ -518,7 +518,7 @@ def main():
         n_feas = 0
         rejections: Dict[str, int] = {}
         for cand in test_pool:
-            res = check_two_panel_feasibility(cand, tp_constraints)
+            res = check_dual_panel_feasibility(cand, tp_constraints)
             if res.is_valid:
                 n_feas += 1
             else:
@@ -536,12 +536,12 @@ def main():
 
     # Extract clean separation sensitivity curve
     for sep_val in [1.0, 2.0, 3.0, 4.0]:
-        sc_temp = TwoPanelConstraints.from_single_constraints(
+        sc_temp = DualPanelConstraints.from_single_constraints(
             single=single_constraints, min_panel_separation_m=sep_val,
             max_individual_area_m2=40.0, min_total_area_m2=10.0, max_total_area_m2=60.0,
         )
-        n_ok = sum(1 for c in test_pool if check_two_panel_feasibility(c, sc_temp).is_valid)
-        n_rej = sum(1 for c in test_pool if check_two_panel_feasibility(c, sc_temp).rejection_reason == TwoPanelRejectionReason.INSUFFICIENT_PANEL_SEPARATION)
+        n_ok = sum(1 for c in test_pool if check_dual_panel_feasibility(c, sc_temp).is_valid)
+        n_rej = sum(1 for c in test_pool if check_dual_panel_feasibility(c, sc_temp).rejection_reason == DualPanelRejectionReason.INSUFFICIENT_PANEL_SEPARATION)
         sep_data[sep_val] = {
             "feasible_pct": (n_ok / len(test_pool)) * 100.0,
             "separation_rejections": n_rej,
@@ -552,12 +552,12 @@ def main():
         s_c = FeasibilityConstraints.from_scene(
             scene=baseline_scene, allowed_area=ped_local, min_underside_height_m=2.50, min_building_setback_m=sb_val,
         )
-        sc_temp = TwoPanelConstraints.from_single_constraints(
+        sc_temp = DualPanelConstraints.from_single_constraints(
             single=s_c, min_panel_separation_m=2.0,
             max_individual_area_m2=40.0, min_total_area_m2=10.0, max_total_area_m2=60.0,
         )
-        n_ok = sum(1 for c in test_pool if check_two_panel_feasibility(c, sc_temp).is_valid)
-        n_rej = sum(1 for c in test_pool if check_two_panel_feasibility(c, sc_temp).rejection_reason == TwoPanelRejectionReason.BUILDING_COLLISION)
+        n_ok = sum(1 for c in test_pool if check_dual_panel_feasibility(c, sc_temp).is_valid)
+        n_rej = sum(1 for c in test_pool if check_dual_panel_feasibility(c, sc_temp).rejection_reason == DualPanelRejectionReason.BUILDING_COLLISION)
         setback_data[sb_val] = {
             "feasible_pct": (n_ok / len(test_pool)) * 100.0,
             "setback_rejections": n_rej,
@@ -672,18 +672,18 @@ def main():
         (best_100, "100-Budget Best Candidate"),
     ]
 
-    parity_reports: List[TwoPanelValidationReport] = []
+    parity_reports: List[DualPanelValidationReport] = []
     for item in val_targets:
         if len(item) == 2:
             cand_rec, role = item
-            p_obj = TwoPanelParams.from_dict(cand_rec.params)
+            p_obj = DualPanelParams.from_dict(cand_rec.params)
             cid = cand_rec.candidate_id
         else:
             cid, role, p_dict = item
-            p_obj = TwoPanelParams.from_dict(p_dict)
+            p_obj = DualPanelParams.from_dict(p_dict)
 
         print(f"  Auditing: {cid} ({role})...")
-        rep = validate_two_panel_multi_path(
+        rep = validate_dual_panel_multi_path(
             candidate_id=cid, params=p_obj, role=role,
             baseline_scene=baseline_scene, baseline_result=baseline_result,
             weather=weather, config=sim_config, gpu_engine=gpu_engine,

@@ -41,17 +41,17 @@ from shapely.geometry import shape, Point
 from shapely.ops import transform
 from pyproj import Transformer
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.cache import SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash
-from urban_comfort.incremental.dependency_graph import DependencyGraph
-from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact, IncrementalUpdateResult
-from urban_comfort.incremental.certificate import generate_error_certificate, verify_certificate, ErrorCertificate, CertificateVerification
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.cache import SimulationCache, compute_scene_hash, compute_weather_hash, compute_config_hash
+from solaraeus.incremental.dependency_graph import DependencyGraph
+from solaraeus.incremental.update import incremental_update_certified, incremental_update_exact, IncrementalUpdateResult
+from solaraeus.incremental.certificate import generate_error_certificate, verify_certificate, ErrorCertificate, CertificateVerification
 
 
 def sha256_file(path: Path) -> str:
@@ -474,7 +474,7 @@ def main():
     site_boundary_mask = np.array([sb_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
     
-    from urban_comfort.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
     

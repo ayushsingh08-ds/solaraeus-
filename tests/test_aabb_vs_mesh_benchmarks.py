@@ -13,13 +13,13 @@ import tempfile
 import numpy as np
 import pytest
 
-from urban_comfort.benchmark.aabb_vs_mesh_benchmark import (
+from solaraeus.validation.mesh.aabb_vs_mesh_benchmark import (
     get_canonical_benchmark_scenes,
     build_scene_pair,
     run_single_comparison,
     run_aabb_vs_mesh_benchmark,
 )
-from urban_comfort.config import Weather, SimulationConfig
+from solaraeus.core.config import Weather, SimulationConfig
 
 
 @pytest.fixture

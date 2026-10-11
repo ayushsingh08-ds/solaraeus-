@@ -18,17 +18,17 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import create_box_mesh, create_overhang_mesh, TriangleMesh
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.certificate import verify_certificate
-from urban_comfort.backend.gpu_backend import GPUBackend, is_cupy_available
-from urban_comfort.backend.gpu_incremental import (
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import create_box_mesh, create_overhang_mesh, TriangleMesh
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import calculate_solar_position
+from solaraeus.reference.full_recompute import full_recompute, SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.certificate import verify_certificate
+from solaraeus.backends.gpu import GPUBackend, is_cupy_available
+from solaraeus.backends.gpu_incremental import (
     GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
 )
 

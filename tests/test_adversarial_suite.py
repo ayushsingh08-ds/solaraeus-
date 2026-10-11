@@ -9,8 +9,8 @@ Ensures zero certificate violations under adversarial edge conditions:
 """
 
 import pytest
-from solaraeus.benchmark.adversarial import create_adversarial_suite
-from solaraeus.benchmark.runner import run_experiment
+from legacy_solweig.benchmark.adversarial import create_adversarial_suite
+from legacy_solweig.benchmark.runner import run_experiment
 
 
 @pytest.fixture(scope="module")

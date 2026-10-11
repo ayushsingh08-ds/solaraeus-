@@ -36,7 +36,7 @@ from shapely.geometry import shape, Polygon
 workspace_root = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(workspace_root / "src"))
 
-from urban_comfort.preprocessing.church_street_adapter import (
+from solaraeus.sites.church_street.scene_builder import (
     ChurchStreetAdapter,
     PreprocessingConfig,
     PreprocessedSceneResult,

@@ -7,18 +7,18 @@ import math
 import pytest
 import numpy as np
 
-from urban_comfort.geometry.mesh import (
+from solaraeus.core.geometry.mesh import (
     create_box_mesh,
     create_rotated_box_mesh,
     create_pitched_roof_mesh,
     create_overhang_mesh,
     create_l_shaped_mesh
 )
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.visibility.directional_visibility import compute_sky_view_factor
-from urban_comfort.visibility.mesh_visibility import (
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.sky_view_factor import compute_sky_view_factor
+from solaraeus.physics.mesh_sky_view_factor import (
     compute_mesh_sky_view_factor,
     rasterize_mesh_to_height_grid,
     rasterize_scene_meshes_to_height_grid
@@ -36,14 +36,14 @@ def test_open_scene_mesh_svf(svf_grid):
     scene = Scene(pedestrian_grid=grid.config)
 
     # 1. No meshes
-    svf_empty = compute_sky_view_factor(scene, grid, num_azimuths=16)
+    svf_empty = compute_sky_view_factor(scene, grid, azimuth_count=16)
     assert np.allclose(svf_empty, 1.0)
 
     # 2. Disabled mesh
     mesh = create_box_mesh("m_disabled", 20.0, 40.0, 20.0, 40.0, 0.0, 20.0)
     mesh.enabled = False
     scene.add_mesh(mesh)
-    svf_disabled = compute_sky_view_factor(scene, grid, num_azimuths=16)
+    svf_disabled = compute_sky_view_factor(scene, grid, azimuth_count=16)
     assert np.allclose(svf_disabled, 1.0)
 
 
@@ -54,13 +54,13 @@ def test_mesh_box_vs_aabb_svf_parity(svf_grid):
     bldg = Building("b_aabb", BoundingBox2D(25.0, 35.0, 25.0, 35.0), height=20.0)
     scene_aabb = Scene(pedestrian_grid=grid.config)
     scene_aabb.add_building(bldg)
-    svf_aabb = compute_sky_view_factor(scene_aabb, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf_aabb = compute_sky_view_factor(scene_aabb, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # 2. Triangulated Box Mesh with identical geometry
     mesh_box = create_box_mesh("b_mesh", 25.0, 35.0, 25.0, 35.0, 0.0, 20.0)
     scene_mesh = Scene(pedestrian_grid=grid.config)
     scene_mesh.add_mesh(mesh_box)
-    svf_mesh = compute_sky_view_factor(scene_mesh, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf_mesh = compute_sky_view_factor(scene_mesh, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     diff = np.abs(svf_aabb - svf_mesh)
     mae = float(np.mean(diff))
@@ -89,19 +89,19 @@ def test_pitched_roof_vs_flat_svf(svf_grid):
     )
     scene_pitch = Scene(pedestrian_grid=grid.config)
     scene_pitch.add_mesh(pitched_mesh)
-    svf_pitch = compute_sky_view_factor(scene_pitch, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf_pitch = compute_sky_view_factor(scene_pitch, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Flat roof at ridge height 20m
     flat_ridge = create_box_mesh("flat_ridge", 20.0, 40.0, 20.0, 40.0, 0.0, ridge_h)
     scene_ridge = Scene(pedestrian_grid=grid.config)
     scene_ridge.add_mesh(flat_ridge)
-    svf_ridge = compute_sky_view_factor(scene_ridge, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf_ridge = compute_sky_view_factor(scene_ridge, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Flat roof at eave height 10m
     flat_eave = create_box_mesh("flat_eave", 20.0, 40.0, 20.0, 40.0, 0.0, eave_h)
     scene_eave = Scene(pedestrian_grid=grid.config)
     scene_eave.add_mesh(flat_eave)
-    svf_eave = compute_sky_view_factor(scene_eave, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf_eave = compute_sky_view_factor(scene_eave, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Outside the building footprint:
     outside = (grid.X < 20.0) | (grid.X > 40.0) | (grid.Y < 20.0) | (grid.Y > 40.0)
@@ -127,7 +127,7 @@ def test_rotated_box_svf_symmetry(svf_grid):
     )
     scene = Scene(pedestrian_grid=grid.config)
     scene.add_mesh(mesh)
-    svf = compute_sky_view_factor(scene, grid, num_azimuths=32, max_search_dist_m=30.0)
+    svf = compute_sky_view_factor(scene, grid, azimuth_count=32, max_search_dist_m=30.0)
 
     # Inside diamond footprint, SVF = 0.0
     assert svf[30, 30] == 0.0
@@ -156,7 +156,7 @@ def test_overhang_building_svf(svf_grid):
     )
     scene = Scene(pedestrian_grid=grid.config)
     scene.add_mesh(mesh)
-    svf = compute_sky_view_factor(scene, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf = compute_sky_view_factor(scene, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Under overhang: x=30, y=35
     assert svf[35, 30] == 0.0, "Receptor under overhang canopy must have SVF = 0.0"
@@ -172,13 +172,13 @@ def test_mesh_svf_selective_roi(svf_grid):
     scene.add_mesh(mesh)
 
     # Full SVF
-    full_svf = compute_sky_view_factor(scene, grid, num_azimuths=16, max_search_dist_m=30.0)
+    full_svf = compute_sky_view_factor(scene, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Selective ROI mask
     roi = np.zeros(grid.shape, dtype=bool)
     roi[15:25, 15:25] = True
 
-    roi_svf = compute_sky_view_factor(scene, grid, num_azimuths=16, max_search_dist_m=30.0, roi_mask=roi)
+    roi_svf = compute_sky_view_factor(scene, grid, azimuth_count=16, max_search_dist_m=30.0, roi_mask=roi)
 
     # Inside ROI, roi_svf must identically match full_svf
     assert np.array_equal(roi_svf[roi], full_svf[roi])
@@ -197,7 +197,7 @@ def test_hybrid_scene_aabb_and_mesh_svf(svf_grid):
     scene.add_building(bldg)
     scene.add_mesh(mesh)
 
-    svf = compute_sky_view_factor(scene, grid, num_azimuths=16, max_search_dist_m=30.0)
+    svf = compute_sky_view_factor(scene, grid, azimuth_count=16, max_search_dist_m=30.0)
 
     # Inside west building: SVF = 0.0
     assert svf[30, 15] == 0.0

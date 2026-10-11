@@ -45,16 +45,16 @@ from shapely.ops import transform
 from pyproj import Transformer
 from shapely.affinity import translate
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.geometry.scene import Scene
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit
-from urban_comfort.incremental.certificate import generate_error_certificate, verify_certificate
-from urban_comfort.backend.gpu_backend import GPUBackend, is_cupy_available
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.geometry.scene import Scene
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit
+from solaraeus.incremental.certificate import generate_error_certificate, verify_certificate
+from solaraeus.backends.gpu import GPUBackend, is_cupy_available
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine, GPUResidentState, GPUIncrementalProfileMetrics
 
 
 def sha256_file(path: Path) -> str:
@@ -382,7 +382,7 @@ def main():
     site_boundary_mask = np.array([sb_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
     ped_corridor_mask = np.array([ped_local.contains(p) for p in pts], dtype=bool).reshape((ny, nx))
 
-    from urban_comfort.visibility.mesh_visibility import rasterize_scene_meshes_to_height_grid
+    from solaraeus.physics.mesh_sky_view_factor import rasterize_scene_meshes_to_height_grid
     h_top_buildings = rasterize_scene_meshes_to_height_grid(baseline_scene, grid)
     unbuilt_mask = (h_top_buildings <= grid.z_ped)
 

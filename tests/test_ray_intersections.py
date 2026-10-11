@@ -6,7 +6,7 @@ import math
 import numpy as np
 import pytest
 
-from urban_comfort.visibility.ray_intersection import (
+from solaraeus.physics.ray_intersection import (
     intersect_ray_aabb, intersect_rays_aabb_batch
 )
 

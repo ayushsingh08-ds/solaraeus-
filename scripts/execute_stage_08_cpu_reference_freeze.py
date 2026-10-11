@@ -26,19 +26,19 @@ import numpy as np
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.mesh import TriangleMesh, create_box_mesh
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.solar.solar_position import calculate_solar_position, SolarPosition
-from urban_comfort.reference.full_recompute import full_recompute, SimulationResult
-from urban_comfort.incremental.mesh_update import AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, GeometricEdit
-from urban_comfort.incremental.cache import SimulationCache
-from urban_comfort.incremental.dependency_graph import DependencyGraph
-from urban_comfort.incremental.update import incremental_update_certified, incremental_update_exact, IncrementalUpdateResult
-from urban_comfort.incremental.certificate import generate_error_certificate, verify_certificate, ErrorCertificate
-from urban_comfort.backend import CPUBackend, get_backend, is_gpu_available
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.mesh import TriangleMesh, create_box_mesh
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.physics.solar_position import calculate_solar_position, SolarPosition
+from solaraeus.reference.full_recompute import full_recompute, SimulationResult
+from solaraeus.incremental.mesh_update import AddMeshEdit, RemoveMeshEdit, ReplaceMeshEdit, GeometricEdit
+from solaraeus.incremental.cache import SimulationCache
+from solaraeus.incremental.dependency_graph import DependencyGraph
+from solaraeus.incremental.update import incremental_update_certified, incremental_update_exact, IncrementalUpdateResult
+from solaraeus.incremental.certificate import generate_error_certificate, verify_certificate, ErrorCertificate
+from solaraeus.backends import CPUBackend, get_backend, is_gpu_available
 
 
 def sha256_file(path: Path) -> str:

@@ -27,39 +27,39 @@ import numpy as np
 import pytest
 from shapely.geometry import Polygon, box
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.backend.gpu_incremental import GPUIncrementalEngine
-from urban_comfort.optimization.parameters import (
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.backends.gpu_incremental import GPUIncrementalEngine
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     RejectionReason, FeasibilityConstraints, check_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 )
-from urban_comfort.optimization.ledger import (
+from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
+from solaraeus.placement.placement_solver import (
+    PlacementSolverConfig, PlacementSolverEngine
 )
-from urban_comfort.optimization.validation import (
+from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, TOLERANCES_INCREMENTAL, TOLERANCES_SOLVER_EQUIVALENCE
 )
-from urban_comfort.optimization.surrogate import (
+from solaraeus.placement.surrogate_model import (
     SurrogateConfig, SurrogatePrediction, SurrogateModel, FallbackSurrogateModel
 )
-from urban_comfort.optimization.acquisition import (
+from solaraeus.placement.acquisition import (
     AcquisitionConfig, CandidateAcquisitionEngine, compute_lcb_score, compute_ei_score
 )
-from urban_comfort.optimization.surrogate_optimizer import (
-    SurrogateOptimizerConfig, SurrogateOptimizationEngine
+from solaraeus.placement.surrogate_placement_solver import (
+    SurrogatePlacementSolverConfig, SurrogatePlacementSolverEngine
 )
 
 
@@ -289,7 +289,7 @@ def test_invalid_candidate_handling():
         allowed_area=box(0, 0, 20, 20),
         min_underside_height_m=2.5,
     )
-    engine = OptimizationEngine(
+    engine = PlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
         weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,
@@ -297,7 +297,7 @@ def test_invalid_candidate_handling():
         sim_config=SimulationConfig(backend="cpu"),
         feasibility_constraints=constraints,
         eval_mask=np.ones(grid.shape, dtype=bool),
-        config=OptimizerConfig(fallback_to_cpu=True),
+        config=PlacementSolverConfig(fallback_to_cpu=True),
     )
 
     # Infeasible candidate (height < 2.5m)
@@ -375,7 +375,7 @@ def test_surrogate_assisted_optimizer_integration():
         albedo_min=0.3, albedo_max=0.8
     )
 
-    opt_cfg = SurrogateOptimizerConfig(
+    opt_cfg = SurrogatePlacementSolverConfig(
         seed=42,
         num_iterations=2,
         batch_size=2,
@@ -385,7 +385,7 @@ def test_surrogate_assisted_optimizer_integration():
         acquisition_config=AcquisitionConfig(pool_size=100, seed=42),
     )
 
-    engine = SurrogateOptimizationEngine(
+    engine = SurrogatePlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
         weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,

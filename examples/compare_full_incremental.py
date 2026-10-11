@@ -35,14 +35,14 @@ import matplotlib.patches as patches
 # Ensure src is on path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
-from urban_comfort.config import Weather, SimulationConfig
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.reference.full_recompute import full_recompute
-from urban_comfort.incremental.update import (
+from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.reference.full_recompute import full_recompute
+from solaraeus.incremental.update import (
     AddBuildingEdit, incremental_update_certified
 )
-from urban_comfort.incremental.certificate import verify_certificate
+from solaraeus.incremental.certificate import verify_certificate
 
 
 def run_comparative_experiment():

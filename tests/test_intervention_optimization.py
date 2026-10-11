@@ -26,28 +26,28 @@ import numpy as np
 import pytest
 from shapely.geometry import Polygon, box
 
-from urban_comfort.config import Weather, SimulationConfig, Material
-from urban_comfort.geometry.primitives import Building, BoundingBox2D
-from urban_comfort.geometry.scene import Scene, PedestrianGridConfig
-from urban_comfort.geometry.mesh import TriangleMesh
-from urban_comfort.grid.pedestrian_grid import PedestrianGrid
-from urban_comfort.reference.full_recompute import SimulationResult, full_recompute
-from urban_comfort.optimization.parameters import (
+from solaraeus.core.config import Weather, SimulationConfig, Material
+from solaraeus.core.geometry.primitives import Building, BoundingBox2D
+from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
+from solaraeus.core.geometry.mesh import TriangleMesh
+from solaraeus.core.pedestrian_grid import PedestrianGrid
+from solaraeus.reference.full_recompute import SimulationResult, full_recompute
+from solaraeus.placement.parameters import (
     ShadePanelParams, ParameterBounds, build_panel_geometry
 )
-from urban_comfort.optimization.feasibility import (
+from solaraeus.placement.feasibility import (
     RejectionReason, FeasibilityConstraints, check_feasibility
 )
-from urban_comfort.optimization.objective import (
+from solaraeus.placement.objective import (
     ComfortObjectiveConfig, EvaluationMetrics, compute_objective
 )
-from urban_comfort.optimization.ledger import (
+from solaraeus.placement.evaluation_ledger import (
     CandidateRecord, CandidateLedger
 )
-from urban_comfort.optimization.optimizer import (
-    OptimizerConfig, OptimizationEngine
+from solaraeus.placement.placement_solver import (
+    PlacementSolverConfig, PlacementSolverEngine
 )
-from urban_comfort.optimization.validation import (
+from solaraeus.placement.candidate_validation import (
     validate_candidate_multi_path, run_multi_path_validation_suite
 )
 
@@ -290,7 +290,7 @@ def test_optimizer_to_solver_integration():
         heading_min=0.0, heading_max=90.0,
         albedo_min=0.3, albedo_max=0.8,
     )
-    opt_cfg = OptimizerConfig(
+    opt_cfg = PlacementSolverConfig(
         seed=42,
         budget_random=3,
         budget_lhs=0,
@@ -299,7 +299,7 @@ def test_optimizer_to_solver_integration():
         max_total_evaluations=10,
         fallback_to_cpu=True,
     )
-    engine = OptimizationEngine(
+    engine = PlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
         weather=weather,
@@ -335,8 +335,8 @@ def test_certificate_failure_handling():
         def execute_certified_update(self, *args, **kwargs):
             raise RuntimeError("Mock GPU CUDA kernel out of memory error!")
 
-    opt_cfg = OptimizerConfig(seed=42, fallback_to_cpu=True)
-    engine = OptimizationEngine(
+    opt_cfg = PlacementSolverConfig(seed=42, fallback_to_cpu=True)
+    engine = PlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
         weather=weather,

@@ -5,9 +5,9 @@ Verifies that actual_error(x) <= predicted_bound(x) across 100% of domain cells.
 
 import numpy as np
 import pytest
-from solaraeus.core.geometry import UrbanGrid, AddBuilding, RemoveBuilding, ChangeHeight, MoveBuilding
-from solaraeus.core.solweig import WeatherParameters, SOLWEIGConfig
-from solaraeus.benchmark.runner import run_experiment
+from legacy_solweig.core.geometry import UrbanGrid, AddBuilding, RemoveBuilding, ChangeHeight, MoveBuilding
+from legacy_solweig.core.solweig import WeatherParameters, SOLWEIGConfig
+from legacy_solweig.benchmark.runner import run_experiment
 
 
 @pytest.mark.parametrize("tol", [0.1, 0.5, 1.0, 2.0])

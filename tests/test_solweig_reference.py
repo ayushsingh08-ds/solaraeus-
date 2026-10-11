@@ -4,8 +4,8 @@ Unit tests for the reference deterministic SOLWEIG solver.
 
 import numpy as np
 import pytest
-from solaraeus.core.geometry import UrbanGrid, AddBuilding
-from solaraeus.core.solweig import (
+from legacy_solweig.core.geometry import UrbanGrid, AddBuilding
+from legacy_solweig.core.solweig import (
     ReferenceSOLWEIGSolver, WeatherParameters, SOLWEIGConfig, compute_shadow_mask, compute_sky_view_factor
 )
 

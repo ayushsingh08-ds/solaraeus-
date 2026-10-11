@@ -7,7 +7,7 @@ import os
 import csv
 import pytest
 
-from urban_comfort.benchmark.mesh_certificate_audit import (
+from solaraeus.validation.mesh.mesh_certificate_audit import (
     run_mesh_certificate_audit, SCENARIO_DEFINITIONS
 )
 
