@@ -55,12 +55,12 @@ def base_env():
         max_svf_search_dist_m=30.0
     )
     weather = Weather(
-        air_temperature=300.15,
+        air_temperature_k=300.15,
         relative_humidity=50.0,
-        wind_speed=1.5,
-        wind_direction=180.0,
-        direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        wind_speed_ms=1.5,
+        wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=750.0,
+        diffuse_horizontal_irradiance_w_m2=150.0
     )
     return grid_cfg, config, weather
 

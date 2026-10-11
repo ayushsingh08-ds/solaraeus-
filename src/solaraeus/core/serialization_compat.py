@@ -26,6 +26,7 @@ FIELD_ALIASES: dict[str, tuple[str, ...]] = {
     "predicted_error_bound_k": ("predicted_error_bound",),
     "max_predicted_bound_k": ("max_predicted_bound",),
     "predicted_bound_k": ("predicted_bound",),
+    "surface_temperature_k": ("surface_temperature",),
 }
 
 

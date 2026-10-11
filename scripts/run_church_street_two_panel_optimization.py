@@ -128,9 +128,9 @@ def run_preflight_synthetic_test():
     scene = Scene(pedestrian_grid=grid_cfg)
     bldg = Building(id="B1", footprint=BoundingBox2D(xmin=2.0, xmax=6.0, ymin=2.0, ymax=6.0), height=10.0, material_id="default_wall")
     scene.add_building(bldg)
-    scene.materials["default_wall"] = Material(id="default_wall", albedo=0.3, emissivity=0.9, surface_temperature=305.15)
+    scene.materials["default_wall"] = Material(id="default_wall", albedo=0.3, emissivity=0.9, surface_temperature_k=305.15)
     config = SimulationConfig(latitude=12.97, longitude=77.59, date="2026-10-07", local_time="12:00:00", sky_patch_configuration=8, tmrt_tolerance_k=0.5)
-    weather = Weather(air_temperature=303.15, relative_humidity=50.0, wind_speed=1.5, wind_direction=180.0, direct_normal_irradiance=800.0, diffuse_horizontal_irradiance=200.0)
+    weather = Weather(air_temperature_k=303.15, relative_humidity=50.0, wind_speed_ms=1.5, wind_direction_deg=180.0, direct_normal_irradiance_w_m2=800.0, diffuse_horizontal_irradiance_w_m2=200.0)
 
     engine = GPUIncrementalEngine(fallback_to_cpu=True)
     base_res = full_recompute(scene, weather, config, backend="cpu")
@@ -203,10 +203,10 @@ def main():
     print("\n[Phase 1] Restoring baseline scene and loading baseline fields...")
     context_mesh_json = json.loads((prep_dir / "shadow_context_mesh.json").read_text(encoding="utf-8"))
 
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
 
     materials_base = {
         "default_wall": mat_wall, "default_ground": mat_ground,
@@ -218,12 +218,12 @@ def main():
     baseline_scene.materials = materials_base.copy()
 
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
         latitude=12.974900,
@@ -696,8 +696,8 @@ def main():
     (bm1, _), (bm2, _) = best_p_obj.build_geometries()
     edit_best = AddMultiMeshEdit([bm1, bm2])
     up_scene, _ = edit_best.apply(baseline_scene)
-    up_scene.materials["SHADE_PANEL_1"] = Material(id="SHADE_PANEL_1", albedo=best_p_obj.albedo1, emissivity=0.9, surface_temperature=308.15)
-    up_scene.materials["SHADE_PANEL_2"] = Material(id="SHADE_PANEL_2", albedo=best_p_obj.albedo2, emissivity=0.9, surface_temperature=308.15)
+    up_scene.materials["SHADE_PANEL_1"] = Material(id="SHADE_PANEL_1", albedo=best_p_obj.albedo1, emissivity=0.9, surface_temperature_k=308.15)
+    up_scene.materials["SHADE_PANEL_2"] = Material(id="SHADE_PANEL_2", albedo=best_p_obj.albedo2, emissivity=0.9, surface_temperature_k=308.15)
     best_sim_res, _ = gpu_engine.execute_certified_update(baseline_scene, up_scene, baseline_result, edit_best, weather, sim_config)
 
     # Plot 11: UTCI Comparison

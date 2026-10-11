@@ -238,7 +238,7 @@ def validate_candidate_multi_path(
         id="SHADE_PANEL_ASSUMED_001",
         albedo=float(params.albedo),
         emissivity=0.90,
-        surface_temperature=308.15,
+        surface_temperature_k=308.15,
         is_opaque=True,
     )
     materials = dict(baseline_scene.materials)

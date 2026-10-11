@@ -303,7 +303,7 @@ def main():
                 "certificate_violations": 0,
                 "monte_carlo_runs_per_candidate": 50,
                 "ranking_stability_status": "NON_DEFINITIVE_OVERLAPPING_CI",
-                "sensitivity_parameters_audited": ["solar_altitude", "solar_azimuth", "dni", "dhi", "wind_speed", "air_temp"]
+                "sensitivity_parameters_audited": ["solar_altitude", "solar_azimuth", "dni", "dhi", "wind_speed_ms", "air_temp"]
             }
         },
         {

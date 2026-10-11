@@ -44,11 +44,11 @@ def compute_longwave_fluxes(weather: Weather, svf: np.ndarray,
     """
     Computes 6-directional longwave fluxes on a standing human model.
     """
-    eps_air = compute_air_emissivity(weather.air_temperature, weather.relative_humidity)
+    eps_air = compute_air_emissivity(weather.air_temperature_k, weather.relative_humidity)
 
-    l_sky = eps_air * SIGMA * (weather.air_temperature ** 4)
-    l_wall = wall_material.emissivity * SIGMA * (wall_material.surface_temperature ** 4)
-    l_ground = ground_material.emissivity * SIGMA * (ground_material.surface_temperature ** 4)
+    l_sky = eps_air * SIGMA * (weather.air_temperature_k ** 4)
+    l_wall = wall_material.emissivity * SIGMA * (wall_material.surface_temperature_k ** 4)
+    l_ground = ground_material.emissivity * SIGMA * (ground_material.surface_temperature_k ** 4)
 
     # Directional fluxes
     l_up = svf * l_sky + (1.0 - svf) * l_wall

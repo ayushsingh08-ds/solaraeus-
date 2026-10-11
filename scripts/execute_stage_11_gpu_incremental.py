@@ -108,12 +108,12 @@ def main():
     
     # 1. Setup Weather, Config, and Scene
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18
     )
     
     sim_config = SimulationConfig(
@@ -164,11 +164,11 @@ def main():
     tris = np.array([(0, 1, 5), (0, 5, 4), (1, 2, 6), (1, 6, 5), (2, 3, 7), (2, 7, 6), (3, 0, 4), (3, 4, 7), (4, 5, 6), (4, 6, 7), (0, 2, 1), (0, 3, 2)], dtype=np.int64)
     panel_mesh = TriangleMesh(id="BLR_SHADE_001", vertices=verts, triangles=tris, material_id="SHADE_PANEL_ASSUMED_001", enabled=True)
     
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
 
     materials_base = {
         "default_wall": mat_wall,

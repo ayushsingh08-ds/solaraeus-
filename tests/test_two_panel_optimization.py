@@ -87,7 +87,7 @@ def create_synthetic_dual_panel_scene() -> Tuple[Scene, SimulationConfig, Weathe
     )
     scene.add_building(bldg)
     scene.materials["MAT_BRICK"] = Material(
-        id="MAT_BRICK", albedo=0.30, emissivity=0.90, surface_temperature=305.15, is_opaque=True
+        id="MAT_BRICK", albedo=0.30, emissivity=0.90, surface_temperature_k=305.15, is_opaque=True
     )
     config = SimulationConfig(
         latitude=12.9716, longitude=77.5946,
@@ -95,10 +95,10 @@ def create_synthetic_dual_panel_scene() -> Tuple[Scene, SimulationConfig, Weathe
         sky_patch_configuration=8, tmrt_tolerance_k=0.50,
     )
     weather = Weather(
-        air_temperature=303.15, relative_humidity=50.0,
-        wind_speed=1.5, wind_direction=180.0,
-        direct_normal_irradiance=800.0,
-        diffuse_horizontal_irradiance=200.0,
+        air_temperature_k=303.15, relative_humidity=50.0,
+        wind_speed_ms=1.5, wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=800.0,
+        diffuse_horizontal_irradiance_w_m2=200.0,
     )
     return scene, config, weather
 

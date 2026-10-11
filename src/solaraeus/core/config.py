@@ -16,7 +16,7 @@ class Material:
     id: str
     albedo: float
     emissivity: float
-    surface_temperature: float  # Kelvin
+    surface_temperature_k: float  # Kelvin
     is_opaque: bool = True
 
     def __post_init__(self):
@@ -24,33 +24,33 @@ class Material:
             raise ValueError(f"Albedo must be in [0, 1], got {self.albedo}")
         if not (0.0 <= self.emissivity <= 1.0):
             raise ValueError(f"Emissivity must be in [0, 1], got {self.emissivity}")
-        if self.surface_temperature < 0.0:
-            raise ValueError(f"Surface temperature must be >= 0 K, got {self.surface_temperature}")
+        if self.surface_temperature_k < 0.0:
+            raise ValueError(f"Surface temperature must be >= 0 K, got {self.surface_temperature_k}")
 
 
 @dataclass(frozen=True)
 class Weather:
     """Atmospheric and meteorological conditions for a single timestep."""
-    air_temperature: float               # Kelvin
+    air_temperature_k: float               # Kelvin
     relative_humidity: float             # Percentage [0, 100]
-    wind_speed: float                    # m/s
-    wind_direction: float                # Degrees [0, 360) clockwise from North
-    direct_normal_irradiance: float      # W / m^2
-    diffuse_horizontal_irradiance: float # W / m^2
+    wind_speed_ms: float                    # m/s
+    wind_direction_deg: float                # Degrees [0, 360) clockwise from North
+    direct_normal_irradiance_w_m2: float      # W / m^2
+    diffuse_horizontal_irradiance_w_m2: float # W / m^2
 
     def __post_init__(self):
-        if self.air_temperature < 0.0:
-            raise ValueError(f"Air temperature must be >= 0 K, got {self.air_temperature}")
+        if self.air_temperature_k < 0.0:
+            raise ValueError(f"Air temperature must be >= 0 K, got {self.air_temperature_k}")
         if not (0.0 <= self.relative_humidity <= 100.0):
             raise ValueError(f"Relative humidity must be in [0, 100], got {self.relative_humidity}")
-        if self.wind_speed < 0.0:
-            raise ValueError(f"Wind speed must be >= 0 m/s, got {self.wind_speed}")
-        if not (0.0 <= self.wind_direction <= 360.0):
-            raise ValueError(f"Wind direction must be in [0, 360] degrees, got {self.wind_direction}")
-        if self.direct_normal_irradiance < 0.0:
-            raise ValueError(f"DNI must be >= 0 W/m^2, got {self.direct_normal_irradiance}")
-        if self.diffuse_horizontal_irradiance < 0.0:
-            raise ValueError(f"DHI must be >= 0 W/m^2, got {self.diffuse_horizontal_irradiance}")
+        if self.wind_speed_ms < 0.0:
+            raise ValueError(f"Wind speed must be >= 0 m/s, got {self.wind_speed_ms}")
+        if not (0.0 <= self.wind_direction_deg <= 360.0):
+            raise ValueError(f"Wind direction must be in [0, 360] degrees, got {self.wind_direction_deg}")
+        if self.direct_normal_irradiance_w_m2 < 0.0:
+            raise ValueError(f"DNI must be >= 0 W/m^2, got {self.direct_normal_irradiance_w_m2}")
+        if self.diffuse_horizontal_irradiance_w_m2 < 0.0:
+            raise ValueError(f"DHI must be >= 0 W/m^2, got {self.diffuse_horizontal_irradiance_w_m2}")
 
 
 @dataclass(frozen=True)
@@ -90,7 +90,7 @@ DEFAULT_WALL_MATERIAL = Material(
     id="default_wall",
     albedo=0.20,
     emissivity=0.90,
-    surface_temperature=305.15,  # 32 C
+    surface_temperature_k=305.15,  # 32 C
     is_opaque=True
 )
 
@@ -98,6 +98,6 @@ DEFAULT_GROUND_MATERIAL = Material(
     id="default_ground",
     albedo=0.15,
     emissivity=0.95,
-    surface_temperature=308.15,  # 35 C
+    surface_temperature_k=308.15,  # 35 C
     is_opaque=True
 )

@@ -45,7 +45,7 @@ def compute_shortwave_fluxes(weather: Weather, solar_pos: SolarPosition,
     cos_south = max(0.0, -sy)
 
     # 1. Direct shortwave fluxes
-    i_dir = weather.direct_normal_irradiance
+    i_dir = weather.direct_normal_irradiance_w_m2
     direct_horiz = i_dir * sin_alt * shadow_mask
 
     k_dir_up = direct_horiz
@@ -62,7 +62,7 @@ def compute_shortwave_fluxes(weather: Weather, solar_pos: SolarPosition,
     )
 
     # 2. Diffuse sky radiation
-    d_diff = weather.diffuse_horizontal_irradiance
+    d_diff = weather.diffuse_horizontal_irradiance_w_m2
     k_diff_up = d_diff * svf
     k_diff_side = 0.5 * d_diff * svf
 

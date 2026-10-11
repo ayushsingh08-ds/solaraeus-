@@ -98,14 +98,14 @@ class ChurchStreetAdapter:
             id="building_wall",
             albedo=self.config.wall_albedo,
             emissivity=self.config.wall_emissivity,
-            surface_temperature=self.config.wall_temp_k,
+            surface_temperature_k=self.config.wall_temp_k,
             is_opaque=True,
         )
         self.roof_material = Material(
             id="building_roof",
             albedo=self.config.roof_albedo,
             emissivity=self.config.roof_emissivity,
-            surface_temperature=self.config.roof_temp_k,
+            surface_temperature_k=self.config.roof_temp_k,
             is_opaque=True,
         )
 

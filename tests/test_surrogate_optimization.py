@@ -292,8 +292,8 @@ def test_invalid_candidate_handling():
     engine = PlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
-        weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,
-                        direct_normal_irradiance=600.0, diffuse_horizontal_irradiance=100.0),
+        weather=Weather(air_temperature_k=300.0, relative_humidity=50.0, wind_speed_ms=1.0, wind_direction_deg=0.0,
+                        direct_normal_irradiance_w_m2=600.0, diffuse_horizontal_irradiance_w_m2=100.0),
         sim_config=SimulationConfig(backend="cpu"),
         feasibility_constraints=constraints,
         eval_mask=np.ones(grid.shape, dtype=bool),
@@ -388,8 +388,8 @@ def test_surrogate_assisted_optimizer_integration():
     engine = SurrogatePlacementSolverEngine(
         baseline_scene=scene,
         baseline_result=base_res,
-        weather=Weather(air_temperature=300.0, relative_humidity=50.0, wind_speed=1.0, wind_direction=0.0,
-                        direct_normal_irradiance=600.0, diffuse_horizontal_irradiance=100.0),
+        weather=Weather(air_temperature_k=300.0, relative_humidity=50.0, wind_speed_ms=1.0, wind_direction_deg=0.0,
+                        direct_normal_irradiance_w_m2=600.0, diffuse_horizontal_irradiance_w_m2=100.0),
         sim_config=SimulationConfig(backend="cpu"),
         feasibility_constraints=constraints,
         eval_mask=np.ones(grid.shape, dtype=bool),
@@ -438,13 +438,13 @@ def test_final_multi_path_validation():
         buildings={"B1": Building(id="B1", footprint=BoundingBox2D(0.0, 4.0, 0.0, 4.0), height=8.0)},
         pedestrian_grid=grid_cfg,
         materials={
-            "default_wall": Material(id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature=305.15),
-            "default_ground": Material(id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature=308.15),
+            "default_wall": Material(id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature_k=305.15),
+            "default_ground": Material(id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature_k=308.15),
         }
     )
     weather = Weather(
-        air_temperature=305.15, relative_humidity=40.0, wind_speed=1.5, wind_direction=90.0,
-        direct_normal_irradiance=700.0, diffuse_horizontal_irradiance=150.0
+        air_temperature_k=305.15, relative_humidity=40.0, wind_speed_ms=1.5, wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=700.0, diffuse_horizontal_irradiance_w_m2=150.0
     )
     sim_cfg = SimulationConfig(
         latitude=12.97, longitude=77.60, date="2024-04-15", local_time="10:00:00",

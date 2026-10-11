@@ -186,7 +186,7 @@ def build_dependency_coverage_audit() -> List[Dict[str, str]]:
             "handling": "Fixed by assumption",
             "certificate_included": "Evaluated at constant boundary temperature contrast |L_sky - L_wall|",
             "assumption": "The certificate is conditional on this fixed input: static boundary inputs T_wall=32C, T_ground=35C; transient thermal storage not modeled",
-            "evidence": "Material.surface_temperature in config.py; physics_audit.json Item 11",
+            "evidence": "Material.surface_temperature_k in config.py; physics_audit.json Item 11",
             "status": "Simplified single-timestep formulation; transient conductive heat storage excluded."
         },
         {

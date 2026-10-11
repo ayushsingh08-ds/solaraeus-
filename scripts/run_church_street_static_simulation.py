@@ -204,28 +204,28 @@ def main():
         id="building_wall",
         albedo=0.30,
         emissivity=0.90,
-        surface_temperature=308.15,
+        surface_temperature_k=308.15,
         is_opaque=True
     )
     mat_roof = Material(
         id="building_roof",
         albedo=0.20,
         emissivity=0.90,
-        surface_temperature=308.15,
+        surface_temperature_k=308.15,
         is_opaque=True
     )
     mat_ground = Material(
         id="ground",
         albedo=0.20,
         emissivity=0.95,
-        surface_temperature=308.15,
+        surface_temperature_k=308.15,
         is_opaque=True
     )
     mat_pavement = Material(
         id="pavement",
         albedo=0.30,
         emissivity=0.95,
-        surface_temperature=308.15,
+        surface_temperature_k=308.15,
         is_opaque=True
     )
     
@@ -247,12 +247,12 @@ def main():
     # Bengaluru City station: Tair = 35.0 C (308.15 K), Tdew = 8.5 C, RH = 19.729%, wind = 1.5 m/s at 90 deg
     # NASA POWER: GHI = 755.97 W/m2, DNI = 728.31 W/m2, DHI = 172.18 W/m2 (09:00-10:00 UTC hourly interval)
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18,
     )
     
     sim_config = SimulationConfig(
@@ -273,8 +273,8 @@ def main():
     grid_azimuth_deg = (solar_pos.azimuth_deg - grid_convergence_deg) % 360.0
     
     zenith_rad = math.radians(solar_pos.zenith_deg)
-    dni_cos_z = weather.direct_normal_irradiance * math.cos(zenith_rad)
-    calc_ghi_inst = dni_cos_z + weather.diffuse_horizontal_irradiance
+    dni_cos_z = weather.direct_normal_irradiance_w_m2 * math.cos(zenith_rad)
+    calc_ghi_inst = dni_cos_z + weather.diffuse_horizontal_irradiance_w_m2
     ghi_reported = 755.97
     delta_inst = calc_ghi_inst - ghi_reported
     pct_inst = (delta_inst / ghi_reported) * 100.0
@@ -282,8 +282,8 @@ def main():
     # Midpoint 09:30 UTC comparison
     dt_mid = datetime(2024, 4, 15, 9, 30, 0, tzinfo=timezone.utc)
     solar_pos_mid = calculate_solar_position(sim_config.latitude, sim_config.longitude, dt_mid)
-    dni_cos_z_mid = weather.direct_normal_irradiance * math.cos(math.radians(solar_pos_mid.zenith_deg))
-    calc_ghi_mid = dni_cos_z_mid + weather.diffuse_horizontal_irradiance
+    dni_cos_z_mid = weather.direct_normal_irradiance_w_m2 * math.cos(math.radians(solar_pos_mid.zenith_deg))
+    calc_ghi_mid = dni_cos_z_mid + weather.diffuse_horizontal_irradiance_w_m2
     delta_mid = calc_ghi_mid - ghi_reported
     pct_mid = (delta_mid / ghi_reported) * 100.0
     
@@ -606,8 +606,8 @@ def main():
         },
         "irradiance_components_w_m2": {
             "ghi": ghi_reported,
-            "dni": weather.direct_normal_irradiance,
-            "dhi": weather.diffuse_horizontal_irradiance
+            "dni": weather.direct_normal_irradiance_w_m2,
+            "dhi": weather.diffuse_horizontal_irradiance_w_m2
         },
         "solar_angles_at_0900_utc": {
             "altitude_deg": solar_pos.altitude_deg,
@@ -648,29 +648,29 @@ def main():
             "building_wall": {
                 "albedo": mat_wall.albedo,
                 "emissivity": mat_wall.emissivity,
-                "initial_temperature_c": mat_wall.surface_temperature - 273.15,
-                "initial_temperature_k": mat_wall.surface_temperature,
+                "initial_temperature_c": mat_wall.surface_temperature_k - 273.15,
+                "initial_temperature_k": mat_wall.surface_temperature_k,
                 "status": "assumed"
             },
             "building_roof": {
                 "albedo": mat_roof.albedo,
                 "emissivity": mat_roof.emissivity,
-                "initial_temperature_c": mat_roof.surface_temperature - 273.15,
-                "initial_temperature_k": mat_roof.surface_temperature,
+                "initial_temperature_c": mat_roof.surface_temperature_k - 273.15,
+                "initial_temperature_k": mat_roof.surface_temperature_k,
                 "status": "assumed"
             },
             "ground": {
                 "albedo": mat_ground.albedo,
                 "emissivity": mat_ground.emissivity,
-                "initial_temperature_c": mat_ground.surface_temperature - 273.15,
-                "initial_temperature_k": mat_ground.surface_temperature,
+                "initial_temperature_c": mat_ground.surface_temperature_k - 273.15,
+                "initial_temperature_k": mat_ground.surface_temperature_k,
                 "status": "assumed"
             },
             "pavement": {
                 "albedo": mat_pavement.albedo,
                 "emissivity": mat_pavement.emissivity,
-                "initial_temperature_c": mat_pavement.surface_temperature - 273.15,
-                "initial_temperature_k": mat_pavement.surface_temperature,
+                "initial_temperature_c": mat_pavement.surface_temperature_k - 273.15,
+                "initial_temperature_k": mat_pavement.surface_temperature_k,
                 "status": "assumed"
             }
         },

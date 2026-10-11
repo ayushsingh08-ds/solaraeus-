@@ -100,10 +100,10 @@ def main():
     print("\n[Phase 1] Restoring baseline scene and loading simulation fields...")
     context_mesh_json = json.loads((prep_dir / "shadow_context_mesh.json").read_text(encoding="utf-8"))
 
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
 
     materials_base = {
         "default_wall": mat_wall,
@@ -118,12 +118,12 @@ def main():
     baseline_scene.materials = materials_base.copy()
 
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
         latitude=12.974900,
@@ -301,7 +301,7 @@ def main():
             id="SHADE_PANEL_ASSUMED_001",
             albedo=p.albedo,
             emissivity=p.emissivity,
-            surface_temperature=weather.air_temperature,
+            surface_temperature_k=weather.air_temperature_k,
             is_opaque=True
         )
         materials_updated = dict(baseline_scene.materials)
@@ -480,7 +480,7 @@ def main():
         p_mesh, _ = build_panel_geometry(pert_p, thickness_m=0.1, mesh_id="SHADE_PANEL_ASSUMED_001")
         p_edit = AddMeshEdit(p_mesh)
         p_scene, _ = p_edit.apply(baseline_scene)
-        mat_p = Material(id="SHADE_PANEL_ASSUMED_001", albedo=pert_p.albedo, emissivity=pert_p.emissivity, surface_temperature=weather.air_temperature, is_opaque=True)
+        mat_p = Material(id="SHADE_PANEL_ASSUMED_001", albedo=pert_p.albedo, emissivity=pert_p.emissivity, surface_temperature_k=weather.air_temperature_k, is_opaque=True)
         p_scene.materials["SHADE_PANEL_ASSUMED_001"] = mat_p
 
         p_update, _ = gpu_engine.execute_certified_update(
@@ -544,18 +544,18 @@ def main():
                 albedo=cp.albedo
             )
             sample_weather = Weather(
-                air_temperature=weather.air_temperature + d_temp,
+                air_temperature_k=weather.air_temperature_k + d_temp,
                 relative_humidity=weather.relative_humidity,
-                wind_speed=weather.wind_speed,
-                wind_direction=weather.wind_direction,
-                direct_normal_irradiance=weather.direct_normal_irradiance * d_dni,
-                diffuse_horizontal_irradiance=weather.diffuse_horizontal_irradiance
+                wind_speed_ms=weather.wind_speed_ms,
+                wind_direction_deg=weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=weather.direct_normal_irradiance_w_m2 * d_dni,
+                diffuse_horizontal_irradiance_w_m2=weather.diffuse_horizontal_irradiance_w_m2
             )
 
             s_mesh, _ = build_panel_geometry(sample_p, thickness_m=0.1, mesh_id="SHADE_PANEL_ASSUMED_001")
             s_edit = AddMeshEdit(s_mesh)
             s_scene, _ = s_edit.apply(baseline_scene)
-            s_scene.materials["SHADE_PANEL_ASSUMED_001"] = Material("SHADE_PANEL_ASSUMED_001", sample_p.albedo, sample_p.emissivity, sample_weather.air_temperature, True)
+            s_scene.materials["SHADE_PANEL_ASSUMED_001"] = Material("SHADE_PANEL_ASSUMED_001", sample_p.albedo, sample_p.emissivity, sample_weather.air_temperature_k, True)
 
             s_update, _ = gpu_engine.execute_certified_update(
                 previous_scene=baseline_scene, updated_scene=s_scene, previous_result=baseline_result,

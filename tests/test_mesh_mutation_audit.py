@@ -48,12 +48,12 @@ def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
     )
 
     weather = Weather(
-        air_temperature=30.0,
+        air_temperature_k=30.0,
         relative_humidity=45.0,
-        wind_speed=1.5,
-        wind_direction=180.0,
-        direct_normal_irradiance=850.0,
-        diffuse_horizontal_irradiance=150.0
+        wind_speed_ms=1.5,
+        wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=850.0,
+        diffuse_horizontal_irradiance_w_m2=150.0
     )
 
     # Edit: increase height 15m -> 28m (+13m)

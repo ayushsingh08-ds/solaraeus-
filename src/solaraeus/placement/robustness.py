@@ -67,11 +67,11 @@ class WeatherScenario:
         return {
             "name": self.name,
             "description": self.description,
-            "air_temperature_k": self.weather.air_temperature,
+            "air_temperature_k": self.weather.air_temperature_k,
             "relative_humidity_pct": self.weather.relative_humidity,
-            "wind_speed_m_s": self.weather.wind_speed,
-            "direct_normal_irradiance_w_m2": self.weather.direct_normal_irradiance,
-            "diffuse_horizontal_irradiance_w_m2": self.weather.diffuse_horizontal_irradiance,
+            "wind_speed_m_s": self.weather.wind_speed_ms,
+            "direct_normal_irradiance_w_m2": self.weather.direct_normal_irradiance_w_m2,
+            "diffuse_horizontal_irradiance_w_m2": self.weather.diffuse_horizontal_irradiance_w_m2,
         }
 
 
@@ -161,72 +161,72 @@ def get_standard_weather_scenarios(nominal_weather: Weather) -> Dict[str, Weathe
             name="nominal",
             description="Nominal Church Street summer conditions (35°C, 19.7% RH, 1.5 m/s wind, 728.3 W/m² DNI)",
             weather=Weather(
-                air_temperature=nominal_weather.air_temperature,
+                air_temperature_k=nominal_weather.air_temperature_k,
                 relative_humidity=nominal_weather.relative_humidity,
-                wind_speed=nominal_weather.wind_speed,
-                wind_direction=nominal_weather.wind_direction,
-                direct_normal_irradiance=nominal_weather.direct_normal_irradiance,
-                diffuse_horizontal_irradiance=nominal_weather.diffuse_horizontal_irradiance,
+                wind_speed_ms=nominal_weather.wind_speed_ms,
+                wind_direction_deg=nominal_weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=nominal_weather.direct_normal_irradiance_w_m2,
+                diffuse_horizontal_irradiance_w_m2=nominal_weather.diffuse_horizontal_irradiance_w_m2,
             ),
         ),
         "hotter_air": WeatherScenario(
             name="hotter_air",
             description="Extreme heatwave scenario: Air temperature elevated by +4.0 K (39.0°C / 312.15 K)",
             weather=Weather(
-                air_temperature=nominal_weather.air_temperature + 4.0,
+                air_temperature_k=nominal_weather.air_temperature_k + 4.0,
                 relative_humidity=nominal_weather.relative_humidity,
-                wind_speed=nominal_weather.wind_speed,
-                wind_direction=nominal_weather.wind_direction,
-                direct_normal_irradiance=nominal_weather.direct_normal_irradiance,
-                diffuse_horizontal_irradiance=nominal_weather.diffuse_horizontal_irradiance,
+                wind_speed_ms=nominal_weather.wind_speed_ms,
+                wind_direction_deg=nominal_weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=nominal_weather.direct_normal_irradiance_w_m2,
+                diffuse_horizontal_irradiance_w_m2=nominal_weather.diffuse_horizontal_irradiance_w_m2,
             ),
         ),
         "higher_humidity": WeatherScenario(
             name="higher_humidity",
             description="Monsoon/pre-monsoon humidity spike: Relative humidity increased to 55.0%",
             weather=Weather(
-                air_temperature=nominal_weather.air_temperature,
+                air_temperature_k=nominal_weather.air_temperature_k,
                 relative_humidity=55.0,
-                wind_speed=nominal_weather.wind_speed,
-                wind_direction=nominal_weather.wind_direction,
-                direct_normal_irradiance=nominal_weather.direct_normal_irradiance,
-                diffuse_horizontal_irradiance=nominal_weather.diffuse_horizontal_irradiance,
+                wind_speed_ms=nominal_weather.wind_speed_ms,
+                wind_direction_deg=nominal_weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=nominal_weather.direct_normal_irradiance_w_m2,
+                diffuse_horizontal_irradiance_w_m2=nominal_weather.diffuse_horizontal_irradiance_w_m2,
             ),
         ),
         "lower_wind": WeatherScenario(
             name="lower_wind",
             description="Stagnant urban canyon air: Wind speed decreased to 0.5 m/s",
             weather=Weather(
-                air_temperature=nominal_weather.air_temperature,
+                air_temperature_k=nominal_weather.air_temperature_k,
                 relative_humidity=nominal_weather.relative_humidity,
-                wind_speed=0.5,
-                wind_direction=nominal_weather.wind_direction,
-                direct_normal_irradiance=nominal_weather.direct_normal_irradiance,
-                diffuse_horizontal_irradiance=nominal_weather.diffuse_horizontal_irradiance,
+                wind_speed_ms=0.5,
+                wind_direction_deg=nominal_weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=nominal_weather.direct_normal_irradiance_w_m2,
+                diffuse_horizontal_irradiance_w_m2=nominal_weather.diffuse_horizontal_irradiance_w_m2,
             ),
         ),
         "lower_direct": WeatherScenario(
             name="lower_direct",
             description="Hazy/overcast skies: Direct normal irradiance reduced to 500.0 W/m²",
             weather=Weather(
-                air_temperature=nominal_weather.air_temperature,
+                air_temperature_k=nominal_weather.air_temperature_k,
                 relative_humidity=nominal_weather.relative_humidity,
-                wind_speed=nominal_weather.wind_speed,
-                wind_direction=nominal_weather.wind_direction,
-                direct_normal_irradiance=500.0,
-                diffuse_horizontal_irradiance=nominal_weather.diffuse_horizontal_irradiance,
+                wind_speed_ms=nominal_weather.wind_speed_ms,
+                wind_direction_deg=nominal_weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=500.0,
+                diffuse_horizontal_irradiance_w_m2=nominal_weather.diffuse_horizontal_irradiance_w_m2,
             ),
         ),
         "higher_diffuse": WeatherScenario(
             name="higher_diffuse",
             description="Atmospheric aerosol scattering: Diffuse horizontal irradiance elevated to 300.0 W/m²",
             weather=Weather(
-                air_temperature=nominal_weather.air_temperature,
+                air_temperature_k=nominal_weather.air_temperature_k,
                 relative_humidity=nominal_weather.relative_humidity,
-                wind_speed=nominal_weather.wind_speed,
-                wind_direction=nominal_weather.wind_direction,
-                direct_normal_irradiance=nominal_weather.direct_normal_irradiance,
-                diffuse_horizontal_irradiance=300.0,
+                wind_speed_ms=nominal_weather.wind_speed_ms,
+                wind_direction_deg=nominal_weather.wind_direction_deg,
+                direct_normal_irradiance_w_m2=nominal_weather.direct_normal_irradiance_w_m2,
+                diffuse_horizontal_irradiance_w_m2=300.0,
             ),
         ),
     }
@@ -428,8 +428,8 @@ def evaluate_candidate_at_condition(
     (m1, _), (m2, _) = params_canon.build_geometries(id_prefix="EVAL")
     m1.material_id = "PANEL_MAT_1"
     m2.material_id = "PANEL_MAT_2"
-    mat1 = Material(id="PANEL_MAT_1", albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature=weather.air_temperature, is_opaque=True)
-    mat2 = Material(id="PANEL_MAT_2", albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature=weather.air_temperature, is_opaque=True)
+    mat1 = Material(id="PANEL_MAT_1", albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature_k=weather.air_temperature_k, is_opaque=True)
+    mat2 = Material(id="PANEL_MAT_2", albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature_k=weather.air_temperature_k, is_opaque=True)
 
     edit = AddMultiMeshEdit([m1, m2])
     up_scene, _ = edit.apply(scene)

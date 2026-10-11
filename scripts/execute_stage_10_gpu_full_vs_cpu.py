@@ -127,12 +127,12 @@ def main():
     
     # Standard Church Street Weather and Config matching benchmark forcing
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18
     )
     
     sim_config = SimulationConfig(
@@ -159,11 +159,11 @@ def main():
     tris = np.array([(0, 1, 5), (0, 5, 4), (1, 2, 6), (1, 6, 5), (2, 3, 7), (2, 7, 6), (3, 0, 4), (3, 4, 7), (4, 5, 6), (4, 6, 7), (0, 2, 1), (0, 3, 2)], dtype=np.int64)
     panel_mesh = TriangleMesh(id="BLR_SHADE_001", vertices=verts, triangles=tris, material_id="SHADE_PANEL_ASSUMED_001", enabled=True)
     
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
 
     materials_base = {
         "default_wall": mat_wall,
@@ -294,7 +294,7 @@ def main():
     edge_scene = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=50.0, extent_y=50.0, resolution=1.0))
     edge_scene.add_building(Building("tall_tower", BoundingBox2D(20.0, 30.0, 20.0, 30.0), 80.0))
     # Extreme solar zenith: altitude 88 degrees (near zenith)
-    edge_weather = Weather(air_temperature=315.15, relative_humidity=20.0, wind_speed=0.2, wind_direction=180.0, direct_normal_irradiance=1000.0, diffuse_horizontal_irradiance=200.0)
+    edge_weather = Weather(air_temperature_k=315.15, relative_humidity=20.0, wind_speed_ms=0.2, wind_direction_deg=180.0, direct_normal_irradiance_w_m2=1000.0, diffuse_horizontal_irradiance_w_m2=200.0)
     edge_config = SimulationConfig(date="2024-06-21", local_time="12:00:00", latitude=12.9716, longitude=77.5946, sky_patch_configuration=32, max_svf_search_dist_m=50.0)
     
     edge_cpu_res = cpu_backend.full_simulate(edge_scene, edge_weather, edge_config)

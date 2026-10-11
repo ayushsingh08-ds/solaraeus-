@@ -26,12 +26,12 @@ def compute_scene_hash(scene: Scene) -> str:
 def compute_weather_hash(weather: Weather) -> str:
     """Computes a deterministic SHA-256 hash of weather boundary conditions."""
     data = (
-        weather.air_temperature,
+        weather.air_temperature_k,
         weather.relative_humidity,
-        weather.wind_speed,
-        weather.wind_direction,
-        weather.direct_normal_irradiance,
-        weather.diffuse_horizontal_irradiance
+        weather.wind_speed_ms,
+        weather.wind_direction_deg,
+        weather.direct_normal_irradiance_w_m2,
+        weather.diffuse_horizontal_irradiance_w_m2
     )
     return hashlib.sha256(str(data).encode("utf-8")).hexdigest()
 

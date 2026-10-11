@@ -236,17 +236,17 @@ def _make_synthetic_scene_and_results():
         meshes={},
         pedestrian_grid=ped_grid,
         materials={
-            "default_wall": Material(id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature=305.15),
-            "default_ground": Material(id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature=308.15),
+            "default_wall": Material(id="default_wall", albedo=0.20, emissivity=0.90, surface_temperature_k=305.15),
+            "default_ground": Material(id="default_ground", albedo=0.15, emissivity=0.95, surface_temperature_k=308.15),
         }
     )
     weather = Weather(
-        air_temperature=305.15,
+        air_temperature_k=305.15,
         relative_humidity=40.0,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=700.0,
-        diffuse_horizontal_irradiance=150.0,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=700.0,
+        diffuse_horizontal_irradiance_w_m2=150.0,
     )
     sim_cfg = SimulationConfig(
         latitude=12.97,

@@ -37,12 +37,12 @@ def main():
 
     # Weather and config
     weather = Weather(
-        air_temperature=303.15,
+        air_temperature_k=303.15,
         relative_humidity=50.0,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=850.0,
-        diffuse_horizontal_irradiance=150.0
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=850.0,
+        diffuse_horizontal_irradiance_w_m2=150.0
     )
     config = SimulationConfig(
         latitude=12.9716,

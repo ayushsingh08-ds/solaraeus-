@@ -223,8 +223,8 @@ class DualPanelPlacementSolverEngine:
         m1.material_id = mat1_id
         m2.material_id = mat2_id
 
-        mat1 = Material(id=mat1_id, albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-        mat2 = Material(id=mat2_id, albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+        mat1 = Material(id=mat1_id, albedo=float(params_canon.albedo1), emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+        mat2 = Material(id=mat2_id, albedo=float(params_canon.albedo2), emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
 
         edit = AddMultiMeshEdit([m1, m2])
         updated_scene, edit_bounds = edit.apply(self.baseline_scene)

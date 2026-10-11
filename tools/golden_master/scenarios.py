@@ -35,9 +35,9 @@ _CONFIG_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."
 
 # --- shared deterministic boundary conditions (mirror examples/) -------------
 _WEATHER = dict(
-    air_temperature=301.15, relative_humidity=50.0, wind_speed=2.0,
-    wind_direction=180.0, direct_normal_irradiance=800.0,
-    diffuse_horizontal_irradiance=160.0,
+    air_temperature_k=301.15, relative_humidity=50.0, wind_speed_ms=2.0,
+    wind_direction_deg=180.0, direct_normal_irradiance_w_m2=800.0,
+    diffuse_horizontal_irradiance_w_m2=160.0,
 )
 
 

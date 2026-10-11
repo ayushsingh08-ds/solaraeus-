@@ -81,12 +81,12 @@ def main():
 
     # Helper fixtures
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
         latitude=12.974900,
@@ -102,10 +102,10 @@ def main():
 
     context_mesh_json = json.loads((prep_dir / "shadow_context_mesh.json").read_text(encoding="utf-8"))
     baseline_scene = Scene.from_dict(context_mesh_json)
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
     baseline_scene.materials = {
         "building_wall": mat_wall,
         "building_roof": mat_roof,
@@ -430,14 +430,14 @@ def main():
             "Weather": {
                 "type": "object",
                 "properties": {
-                    "air_temperature": {"type": "number", "minimum": 200.0, "maximum": 350.0},
+                    "air_temperature_k": {"type": "number", "minimum": 200.0, "maximum": 350.0},
                     "relative_humidity": {"type": "number", "minimum": 0.0, "maximum": 100.0},
-                    "wind_speed": {"type": "number", "minimum": 0.0},
-                    "wind_direction": {"type": "number", "minimum": 0.0, "maximum": 360.0},
-                    "direct_normal_irradiance": {"type": "number", "minimum": 0.0},
-                    "diffuse_horizontal_irradiance": {"type": "number", "minimum": 0.0},
+                    "wind_speed_ms": {"type": "number", "minimum": 0.0},
+                    "wind_direction_deg": {"type": "number", "minimum": 0.0, "maximum": 360.0},
+                    "direct_normal_irradiance_w_m2": {"type": "number", "minimum": 0.0},
+                    "diffuse_horizontal_irradiance_w_m2": {"type": "number", "minimum": 0.0},
                 },
-                "required": ["air_temperature", "relative_humidity", "wind_speed", "direct_normal_irradiance", "diffuse_horizontal_irradiance"]
+                "required": ["air_temperature_k", "relative_humidity", "wind_speed_ms", "direct_normal_irradiance_w_m2", "diffuse_horizontal_irradiance_w_m2"]
             },
             "TriangleMesh": {
                 "type": "object",

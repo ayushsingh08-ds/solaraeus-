@@ -84,16 +84,16 @@ def synthetic_scene_and_baseline():
     scene = Scene(pedestrian_grid=grid_cfg)
     bldg = Building(id="B1", footprint=BoundingBox2D(xmin=2.0, xmax=6.0, ymin=2.0, ymax=6.0), height=10.0, material_id="default_wall")
     scene.add_building(bldg)
-    scene.materials["default_wall"] = Material(id="default_wall", albedo=0.3, emissivity=0.9, surface_temperature=305.15)
-    scene.materials["default_ground"] = Material(id="default_ground", albedo=0.2, emissivity=0.95, surface_temperature=305.15)
+    scene.materials["default_wall"] = Material(id="default_wall", albedo=0.3, emissivity=0.9, surface_temperature_k=305.15)
+    scene.materials["default_ground"] = Material(id="default_ground", albedo=0.2, emissivity=0.95, surface_temperature_k=305.15)
 
     config = SimulationConfig(
         latitude=12.97, longitude=77.59, date="2024-04-15", local_time="09:00:00",
         sky_patch_configuration=8, tmrt_tolerance_k=0.5
     )
     weather = Weather(
-        air_temperature=303.15, relative_humidity=50.0, wind_speed=1.5,
-        wind_direction=180.0, direct_normal_irradiance=800.0, diffuse_horizontal_irradiance=200.0
+        air_temperature_k=303.15, relative_humidity=50.0, wind_speed_ms=1.5,
+        wind_direction_deg=180.0, direct_normal_irradiance_w_m2=800.0, diffuse_horizontal_irradiance_w_m2=200.0
     )
 
     base_res = full_recompute(scene, weather, config, backend="cpu")
@@ -159,7 +159,7 @@ def test_evaluation_budget_configuration():
 # Test 4: Weather-scenario configuration
 def test_weather_scenario_configuration():
     """Verifies all standard weather perturbation scenarios are well-defined."""
-    base_w = Weather(air_temperature=308.15, relative_humidity=20.0, wind_speed=1.5, wind_direction=90.0, direct_normal_irradiance=728.0, diffuse_horizontal_irradiance=172.0)
+    base_w = Weather(air_temperature_k=308.15, relative_humidity=20.0, wind_speed_ms=1.5, wind_direction_deg=90.0, direct_normal_irradiance_w_m2=728.0, diffuse_horizontal_irradiance_w_m2=172.0)
     scenarios = get_standard_weather_scenarios(base_w)
 
     assert len(scenarios) == 6
@@ -170,10 +170,10 @@ def test_weather_scenario_configuration():
     assert "lower_direct" in scenarios
     assert "higher_diffuse" in scenarios
 
-    assert scenarios["hotter_air"].weather.air_temperature == pytest.approx(312.15)
+    assert scenarios["hotter_air"].weather.air_temperature_k == pytest.approx(312.15)
     assert scenarios["higher_humidity"].weather.relative_humidity == 55.0
-    assert scenarios["lower_wind"].weather.wind_speed == 0.5
-    assert scenarios["lower_direct"].weather.direct_normal_irradiance == 500.0
+    assert scenarios["lower_wind"].weather.wind_speed_ms == 0.5
+    assert scenarios["lower_direct"].weather.direct_normal_irradiance_w_m2 == 500.0
 
 
 # Test 5: Solar-timestep configuration

@@ -14,12 +14,12 @@ from solaraeus.reference.full_recompute import full_recompute, SimulationResult
 @pytest.fixture
 def baseline_weather():
     return Weather(
-        air_temperature=301.15,          # 28 C
+        air_temperature_k=301.15,          # 28 C
         relative_humidity=50.0,
-        wind_speed=2.0,                  # 2 m/s
-        wind_direction=180.0,
-        direct_normal_irradiance=800.0,  # 800 W/m^2
-        diffuse_horizontal_irradiance=160.0
+        wind_speed_ms=2.0,                  # 2 m/s
+        wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=800.0,  # 800 W/m^2
+        diffuse_horizontal_irradiance_w_m2=160.0
     )
 
 

@@ -139,12 +139,12 @@ class TreeAwareCPUSolver:
 
         # 7. Thermal Comfort (UTCI)
         t0_utci = time.perf_counter()
-        air_temp_c = weather.air_temperature - 273.15
+        air_temp_c = weather.air_temperature_k - 273.15
         clean_tmrt = np.nan_to_num(tmrt_c, nan=air_temp_c)
         utci = compute_utci(
             air_temp_c=air_temp_c,
             tmrt_c=clean_tmrt,
-            wind_speed_ms=weather.wind_speed,
+            wind_speed_ms=weather.wind_speed_ms,
             relative_humidity=weather.relative_humidity,
         )
         utci = np.where(valid_mask, utci, np.nan)

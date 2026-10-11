@@ -162,7 +162,7 @@ def generate_error_certificate(scene_before: Scene,
 
     # Human standing cylinder sums direct beam across exposed vertical cardinal faces: |sx| + |sy|
     side_direct_factor = abs(sx) + abs(sy)
-    k_dir_max_step = weather.direct_normal_irradiance * (
+    k_dir_max_step = weather.direct_normal_irradiance_w_m2 * (
         f_up * sin_alt +
         f_side * side_direct_factor +
         f_down * albedo_ground * sin_alt
@@ -175,16 +175,16 @@ def generate_error_certificate(scene_before: Scene,
 
     # 4. Diffuse and Longwave sensitivity
     c_diff = (
-        f_up * weather.diffuse_horizontal_irradiance +
-        f_side * 4.0 * (0.5 * weather.diffuse_horizontal_irradiance +
-                        0.5 * albedo_wall * (weather.direct_normal_irradiance + weather.diffuse_horizontal_irradiance)) +
-        f_down * albedo_ground * weather.diffuse_horizontal_irradiance
+        f_up * weather.diffuse_horizontal_irradiance_w_m2 +
+        f_side * 4.0 * (0.5 * weather.diffuse_horizontal_irradiance_w_m2 +
+                        0.5 * albedo_wall * (weather.direct_normal_irradiance_w_m2 + weather.diffuse_horizontal_irradiance_w_m2)) +
+        f_down * albedo_ground * weather.diffuse_horizontal_irradiance_w_m2
     )
     delta_s_diff = a_k * c_diff * delta_svf_max
 
-    eps_air = compute_air_emissivity(weather.air_temperature, weather.relative_humidity)
-    l_sky = eps_air * SIGMA * (weather.air_temperature ** 4)
-    l_wall = wall_mat.emissivity * SIGMA * (wall_mat.surface_temperature ** 4)
+    eps_air = compute_air_emissivity(weather.air_temperature_k, weather.relative_humidity)
+    l_sky = eps_air * SIGMA * (weather.air_temperature_k ** 4)
+    l_wall = wall_mat.emissivity * SIGMA * (wall_mat.surface_temperature_k ** 4)
     l_contrast = abs(l_sky - l_wall)
 
     c_long = (f_up + 2.0 * f_side) * l_contrast

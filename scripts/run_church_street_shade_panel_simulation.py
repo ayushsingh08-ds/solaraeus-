@@ -290,11 +290,11 @@ def main():
     context_mesh_json = json.loads((prep_dir / "shadow_context_mesh.json").read_text(encoding="utf-8"))
     
     # Materials
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
-    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_panel = Material(id="SHADE_PANEL_ASSUMED_001", albedo=0.60, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
     
     materials_base = {
         "default_wall": mat_wall,
@@ -335,12 +335,12 @@ def main():
     # -------------------------------------------------------------------------
     print("\n[Step 4] Configuring weather and simulation parameters...")
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
         latitude=12.974900,

@@ -58,36 +58,36 @@ def test_building_primitive():
 
 
 def test_material_validation():
-    m = Material(id="brick", albedo=0.3, emissivity=0.9, surface_temperature=300.0)
+    m = Material(id="brick", albedo=0.3, emissivity=0.9, surface_temperature_k=300.0)
     assert m.is_opaque is True
 
     # Out of range albedo
     with pytest.raises(ValueError):
-        Material(id="bad_albedo", albedo=1.5, emissivity=0.9, surface_temperature=300.0)
+        Material(id="bad_albedo", albedo=1.5, emissivity=0.9, surface_temperature_k=300.0)
 
     # Out of range emissivity
     with pytest.raises(ValueError):
-        Material(id="bad_emiss", albedo=0.5, emissivity=-0.1, surface_temperature=300.0)
+        Material(id="bad_emiss", albedo=0.5, emissivity=-0.1, surface_temperature_k=300.0)
 
     # Negative Kelvin
     with pytest.raises(ValueError):
-        Material(id="bad_temp", albedo=0.5, emissivity=0.9, surface_temperature=-10.0)
+        Material(id="bad_temp", albedo=0.5, emissivity=0.9, surface_temperature_k=-10.0)
 
 
 def test_weather_and_config_validation():
     w = Weather(
-        air_temperature=298.15,
+        air_temperature_k=298.15,
         relative_humidity=50.0,
-        wind_speed=2.5,
-        wind_direction=180.0,
-        direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        wind_speed_ms=2.5,
+        wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=750.0,
+        diffuse_horizontal_irradiance_w_m2=150.0
     )
-    assert w.air_temperature == 298.15
+    assert w.air_temperature_k == 298.15
 
     with pytest.raises(ValueError):
-        Weather(air_temperature=-5.0, relative_humidity=50.0, wind_speed=2.0,
-                wind_direction=0.0, direct_normal_irradiance=0.0, diffuse_horizontal_irradiance=0.0)
+        Weather(air_temperature_k=-5.0, relative_humidity=50.0, wind_speed_ms=2.0,
+                wind_direction_deg=0.0, direct_normal_irradiance_w_m2=0.0, diffuse_horizontal_irradiance_w_m2=0.0)
 
     cfg = SimulationConfig(latitude=40.7128, longitude=-74.0060, grid_resolution=1.0)
     assert cfg.pedestrian_height == 1.1

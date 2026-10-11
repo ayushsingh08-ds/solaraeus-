@@ -113,11 +113,11 @@ def run_non_certified_dirty_region_update(previous_scene: Scene,
     lw_fluxes = compute_longwave_fluxes(weather, new_svf, ground_mat, wall_mat)
     radiant_state = mean_radiant_temperature(sw_fluxes.k_total, lw_fluxes.l_total)
 
-    air_temp_c = weather.air_temperature - 273.15
+    air_temp_c = weather.air_temperature_k - 273.15
     utci = compute_utci(
         air_temp_c=air_temp_c,
         tmrt_c=radiant_state.tmrt_c,
-        wind_speed_ms=weather.wind_speed,
+        wind_speed_ms=weather.wind_speed_ms,
         relative_humidity=weather.relative_humidity
     )
 

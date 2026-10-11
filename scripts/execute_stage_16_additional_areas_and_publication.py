@@ -84,16 +84,16 @@ def main():
 
     # Shared atmospheric forcing (Bangalore tropical benchmark)
     weather = Weather(
-        air_temperature=308.15,
+        air_temperature_k=308.15,
         relative_humidity=19.729,
-        wind_speed=1.5,
-        wind_direction=90.0,
-        direct_normal_irradiance=728.31,
-        diffuse_horizontal_irradiance=172.18,
+        wind_speed_ms=1.5,
+        wind_direction_deg=90.0,
+        direct_normal_irradiance_w_m2=728.31,
+        diffuse_horizontal_irradiance_w_m2=172.18,
     )
 
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
     materials_base = {
         "default_wall": mat_wall,
         "default_ground": mat_ground,
@@ -210,7 +210,7 @@ def main():
     mesh_b_canopy, _ = build_panel_geometry(p_brigade, thickness_m=0.1, mesh_id="SHADE_PANEL_ASSUMED_001")
     edit_b = AddMeshEdit(mesh_b_canopy)
     scene_b_interv, _ = edit_b.apply(scene_brigade)
-    scene_b_interv.materials["SHADE_PANEL_ASSUMED_001"] = Material("SHADE_PANEL_ASSUMED_001", p_brigade.albedo, p_brigade.emissivity, weather.air_temperature, True)
+    scene_b_interv.materials["SHADE_PANEL_ASSUMED_001"] = Material("SHADE_PANEL_ASSUMED_001", p_brigade.albedo, p_brigade.emissivity, weather.air_temperature_k, True)
 
     gpu_engine_b = GPUIncrementalEngine(fallback_to_cpu=False)
     gpu_engine_b.preload_resident_baseline(scene_brigade, grid_b, res_b_base_cpu)
@@ -302,7 +302,7 @@ def main():
     mesh_m_canopy, _ = build_panel_geometry(p_mg, thickness_m=0.1, mesh_id="SHADE_PANEL_ASSUMED_001")
     edit_m = AddMeshEdit(mesh_m_canopy)
     scene_m_interv, _ = edit_m.apply(scene_mg)
-    scene_m_interv.materials["SHADE_PANEL_ASSUMED_001"] = Material("SHADE_PANEL_ASSUMED_001", p_mg.albedo, p_mg.emissivity, weather.air_temperature, True)
+    scene_m_interv.materials["SHADE_PANEL_ASSUMED_001"] = Material("SHADE_PANEL_ASSUMED_001", p_mg.albedo, p_mg.emissivity, weather.air_temperature_k, True)
 
     gpu_engine_m = GPUIncrementalEngine(fallback_to_cpu=False)
     gpu_engine_m.preload_resident_baseline(scene_mg, grid_m, res_m_base_cpu)

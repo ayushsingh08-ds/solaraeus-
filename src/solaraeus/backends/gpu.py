@@ -682,11 +682,11 @@ class GPUBackend(SimulationBackend):
 
         # 6. Thermal Comfort (UTCI)
         t0_utci = time.perf_counter()
-        air_temp_c = weather.air_temperature - 273.15
+        air_temp_c = weather.air_temperature_k - 273.15
         utci = compute_utci(
             air_temp_c=air_temp_c,
             tmrt_c=radiant_state.tmrt_c,
-            wind_speed_ms=weather.wind_speed,
+            wind_speed_ms=weather.wind_speed_ms,
             relative_humidity=weather.relative_humidity
         )
         t_utci = time.perf_counter() - t0_utci

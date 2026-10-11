@@ -161,12 +161,12 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
     os.makedirs(output_dir, exist_ok=True)
 
     weather = Weather(
-        air_temperature=300.15,
+        air_temperature_k=300.15,
         relative_humidity=50.0,
-        wind_speed=1.5,
-        wind_direction=180.0,
-        direct_normal_irradiance=750.0,
-        diffuse_horizontal_irradiance=150.0
+        wind_speed_ms=1.5,
+        wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=750.0,
+        diffuse_horizontal_irradiance_w_m2=150.0
     )
 
     audit_rows: List[Dict[str, Any]] = []

@@ -138,7 +138,7 @@ class PlacementSolverEngine:
             id="SHADE_PANEL_ASSUMED_001",
             albedo=float(params.albedo),
             emissivity=0.90,
-            surface_temperature=308.15,
+            surface_temperature_k=308.15,
             is_opaque=True,
         )
         materials_updated = dict(self.baseline_scene.materials)

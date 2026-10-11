@@ -46,8 +46,8 @@ def test_compare_arrays_known_perturbation():
 def test_compare_results_full_pipeline():
     scene = create_single_box_scene(extent_m=40.0)
     weather = Weather(
-        air_temperature=300.15, relative_humidity=50.0, wind_speed=2.0,
-        wind_direction=180.0, direct_normal_irradiance=700.0, diffuse_horizontal_irradiance=150.0
+        air_temperature_k=300.15, relative_humidity=50.0, wind_speed_ms=2.0,
+        wind_direction_deg=180.0, direct_normal_irradiance_w_m2=700.0, diffuse_horizontal_irradiance_w_m2=150.0
     )
     config = SimulationConfig(
         latitude=40.7128, longitude=-74.0060, date="2024-07-15", local_time="12:00:00",
@@ -70,8 +70,8 @@ def test_compare_results_full_pipeline():
 def test_compare_results_perturbed_tmrt_detection():
     scene = create_single_box_scene(extent_m=30.0)
     weather = Weather(
-        air_temperature=300.15, relative_humidity=50.0, wind_speed=2.0,
-        wind_direction=180.0, direct_normal_irradiance=700.0, diffuse_horizontal_irradiance=150.0
+        air_temperature_k=300.15, relative_humidity=50.0, wind_speed_ms=2.0,
+        wind_direction_deg=180.0, direct_normal_irradiance_w_m2=700.0, diffuse_horizontal_irradiance_w_m2=150.0
     )
     config = SimulationConfig(sky_patch_configuration=16)
 

@@ -10,6 +10,7 @@ import json
 from solaraeus.core.config import (
     Material, DEFAULT_WALL_MATERIAL, DEFAULT_GROUND_MATERIAL
 )
+from solaraeus.core.serialization_compat import get_aliased
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.mesh import TriangleMesh
 
@@ -110,7 +111,7 @@ class Scene:
                     "id": m.id,
                     "albedo": m.albedo,
                     "emissivity": m.emissivity,
-                    "surface_temperature": m.surface_temperature,
+                    "surface_temperature_k": m.surface_temperature_k,
                     "is_opaque": m.is_opaque
                 }
                 for m_id, m in self.materials.items()
@@ -145,7 +146,7 @@ class Scene:
                 id=m_data["id"],
                 albedo=m_data["albedo"],
                 emissivity=m_data["emissivity"],
-                surface_temperature=m_data["surface_temperature"],
+                surface_temperature_k=get_aliased(m_data, "surface_temperature_k"),
                 is_opaque=m_data.get("is_opaque", True)
             )
             for m_id, m_data in data.get("materials", {}).items()

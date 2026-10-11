@@ -76,12 +76,12 @@ def main():
     print(f"  - Git Commit: {provenance['git']['commit']}")
     
     weather = Weather(
-        air_temperature=301.15,
+        air_temperature_k=301.15,
         relative_humidity=50.0,
-        wind_speed=1.5,
-        wind_direction=180.0,
-        direct_normal_irradiance=800.0,
-        diffuse_horizontal_irradiance=160.0
+        wind_speed_ms=1.5,
+        wind_direction_deg=180.0,
+        direct_normal_irradiance_w_m2=800.0,
+        diffuse_horizontal_irradiance_w_m2=160.0
     )
     
     # -------------------------------------------------------------

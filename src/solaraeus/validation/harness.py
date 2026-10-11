@@ -164,7 +164,7 @@ def run_benchmark_trial(scene_before: Scene,
     solar_az = float(res_full.metadata.get("solar_azimuth_deg", 0.0))
     cfg_hash = compute_combined_hash(scene_before, edit, weather, config)
 
-    weather_desc = f"Tair={weather.air_temperature-273.15:.1f}C_DNI={weather.direct_normal_irradiance:.0f}_DHI={weather.diffuse_horizontal_irradiance:.0f}"
+    weather_desc = f"Tair={weather.air_temperature_k-273.15:.1f}C_DNI={weather.direct_normal_irradiance_w_m2:.0f}_DHI={weather.diffuse_horizontal_irradiance_w_m2:.0f}"
 
     rec = BenchmarkRecord(
         scene_id=scene_id,
