@@ -119,8 +119,8 @@ def main():
     sim_config = SimulationConfig(
         date="2024-04-15",
         local_time="09:00:00",
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,

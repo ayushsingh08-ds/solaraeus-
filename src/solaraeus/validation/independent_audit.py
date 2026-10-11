@@ -270,7 +270,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     dt_str = f"{config.date} {config.local_time}"
     from datetime import datetime, timezone
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
     grid = PedestrianGrid(scene.pedestrian_grid)
     
     # -------------------------------------------------------------

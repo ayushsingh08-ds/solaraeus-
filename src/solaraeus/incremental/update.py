@@ -232,7 +232,7 @@ def incremental_update_exact(previous_scene: Scene,
     from datetime import datetime, timezone
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
 
     grid = PedestrianGrid(updated_scene.pedestrian_grid)
 
@@ -349,7 +349,7 @@ def incremental_update_certified(previous_scene: Scene,
     t_start = time.perf_counter()
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
     grid = PedestrianGrid(updated_scene.pedestrian_grid)
 
     # 1. Certificate Construction

@@ -107,7 +107,7 @@ def run_scaling_trial(scene: Scene,
     from datetime import datetime, timezone
     dt_str = f"{config.date} {config.local_time}"
     dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
 
     # Shadow timing
     t0_shadow = time.perf_counter()
@@ -210,8 +210,8 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
 
     for n_bldgs, tier_id in triangle_tiers:
         cfg = SimulationConfig(
-            latitude=48.8566,
-            longitude=2.3522,
+            latitude_deg=48.8566,
+            longitude_deg=2.3522,
             date="2026-07-15",
             local_time="14:00:00",
             pedestrian_height_m=1.1,
@@ -237,8 +237,8 @@ def run_mesh_scaling_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
 
     for res, tier_id in resolution_tiers:
         cfg = SimulationConfig(
-            latitude=48.8566,
-            longitude=2.3522,
+            latitude_deg=48.8566,
+            longitude_deg=2.3522,
             date="2026-07-15",
             local_time="14:00:00",
             pedestrian_height_m=1.1,

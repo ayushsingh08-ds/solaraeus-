@@ -125,8 +125,8 @@ def main():
     )
 
     base_config = SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
         grid_resolution_m=1.0,
@@ -255,7 +255,7 @@ def main():
 
         for tol in tolerances:
             cfg = SimulationConfig(
-                latitude=base_config.latitude, longitude=base_config.longitude,
+                latitude_deg=base_config.latitude_deg, longitude_deg=base_config.longitude_deg,
                 date=base_config.date, local_time=base_config.local_time,
                 grid_resolution_m=1.0, sky_patch_configuration=16,
                 max_svf_search_dist_m=30.0, tmrt_tolerance_k=tol

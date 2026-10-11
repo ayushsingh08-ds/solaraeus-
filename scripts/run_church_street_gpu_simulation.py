@@ -142,8 +142,8 @@ def main():
         diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height_m=1.1,

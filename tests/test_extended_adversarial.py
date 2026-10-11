@@ -47,8 +47,8 @@ def weather():
 @pytest.fixture
 def config():
     return SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
         grid_resolution_m=1.0,
@@ -127,7 +127,7 @@ def test_adv_04_occlusion_reveal(weather, config):
 # 5. Low-sun long-shadow case
 def test_adv_05_low_sun_long_shadow(weather):
     config_low = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
+        latitude_deg=40.7128, longitude_deg=-74.0060,
         date="2024-07-15", local_time="18:55:00",  # ~15 deg altitude
         grid_resolution_m=1.0, sky_patch_configuration=16,
         max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5
@@ -189,7 +189,7 @@ def test_adv_08_ground_shadow_diffuse_outside(weather, config):
 
     # Higher tolerance to inspect certified reuse outside direct plume
     cfg = SimulationConfig(
-        latitude=config.latitude, longitude=config.longitude,
+        latitude_deg=config.latitude_deg, longitude_deg=config.longitude_deg,
         date=config.date, local_time=config.local_time,
         sky_patch_configuration=config.sky_patch_configuration,
         max_svf_search_dist_m=config.max_svf_search_dist_m,

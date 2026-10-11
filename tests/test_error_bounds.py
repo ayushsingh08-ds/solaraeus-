@@ -31,8 +31,8 @@ def baseline_setup():
         diffuse_horizontal_irradiance_w_m2=160.0
     )
     config = SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
         grid_resolution_m=1.0,
@@ -47,7 +47,7 @@ def baseline_setup():
 def test_certificate_soundness_add_building(baseline_setup, tol):
     weather, config = baseline_setup
     config = SimulationConfig(
-        latitude=config.latitude, longitude=config.longitude,
+        latitude_deg=config.latitude_deg, longitude_deg=config.longitude_deg,
         date=config.date, local_time=config.local_time,
         sky_patch_configuration=config.sky_patch_configuration,
         max_svf_search_dist_m=config.max_svf_search_dist_m,

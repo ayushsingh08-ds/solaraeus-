@@ -27,8 +27,8 @@ def standard_setup():
         diffuse_horizontal_irradiance_w_m2=160.0
     )
     config = SimulationConfig(
-        latitude=31.2304,
-        longitude=121.4737,
+        latitude_deg=31.2304,
+        longitude_deg=121.4737,
         date="2026-06-21",
         local_time="08:00:00",
         tmrt_tolerance_k=0.5,

@@ -76,7 +76,7 @@ def _single_building(backend: str):
     scene = Scene.load_json(os.path.join(_CONFIG_DIR, "baseline_scene.json"))
     weather = Weather(**_WEATHER)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060, date="2024-07-15",
+        latitude_deg=40.7128, longitude_deg=-74.0060, date="2024-07-15",
         local_time="12:00:00", grid_resolution_m=1.0, sky_patch_configuration=32,
     )
     res = full_recompute(scene, weather, config, backend=backend)
@@ -86,7 +86,7 @@ def _single_building(backend: str):
 def _incremental(backend: str):
     weather = Weather(**_WEATHER)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060, date="2024-07-15",
+        latitude_deg=40.7128, longitude_deg=-74.0060, date="2024-07-15",
         local_time="12:00:00", grid_resolution_m=1.0, sky_patch_configuration=16,
         max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5,
     )

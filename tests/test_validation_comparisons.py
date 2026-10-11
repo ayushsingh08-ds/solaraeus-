@@ -50,7 +50,7 @@ def test_compare_results_full_pipeline():
         wind_direction_deg=180.0, direct_normal_irradiance_w_m2=700.0, diffuse_horizontal_irradiance_w_m2=150.0
     )
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060, date="2024-07-15", local_time="12:00:00",
+        latitude_deg=40.7128, longitude_deg=-74.0060, date="2024-07-15", local_time="12:00:00",
         sky_patch_configuration=16
     )
 

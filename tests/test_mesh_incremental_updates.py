@@ -31,7 +31,7 @@ from solaraeus.incremental.certificate import verify_certificate
 def sim_environment():
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
+        latitude_deg=40.7128, longitude_deg=-74.0060,
         date="2026-06-21", local_time="12:00:00",
         tmrt_tolerance_k=2.0,
         sky_patch_configuration=16,

@@ -256,8 +256,8 @@ def main():
     )
     
     sim_config = SimulationConfig(
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         date="2024-04-15",
         local_time="09:00:00",  # UTC
         pedestrian_height_m=1.1,
@@ -269,7 +269,7 @@ def main():
     
     # Verify Solar Position and Radiation Consistency
     dt_utc = datetime(2024, 4, 15, 9, 0, 0, tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(sim_config.latitude, sim_config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(sim_config.latitude_deg, sim_config.longitude_deg, dt_utc)
     grid_azimuth_deg = (solar_pos.azimuth_deg - grid_convergence_deg) % 360.0
     
     zenith_rad = math.radians(solar_pos.zenith_deg)
@@ -281,7 +281,7 @@ def main():
     
     # Midpoint 09:30 UTC comparison
     dt_mid = datetime(2024, 4, 15, 9, 30, 0, tzinfo=timezone.utc)
-    solar_pos_mid = calculate_solar_position(sim_config.latitude, sim_config.longitude, dt_mid)
+    solar_pos_mid = calculate_solar_position(sim_config.latitude_deg, sim_config.longitude_deg, dt_mid)
     dni_cos_z_mid = weather.direct_normal_irradiance_w_m2 * math.cos(math.radians(solar_pos_mid.zenith_deg))
     calc_ghi_mid = dni_cos_z_mid + weather.diffuse_horizontal_irradiance_w_m2
     delta_mid = calc_ghi_mid - ghi_reported

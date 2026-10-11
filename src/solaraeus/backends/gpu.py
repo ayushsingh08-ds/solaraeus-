@@ -647,7 +647,7 @@ class GPUBackend(SimulationBackend):
         from datetime import datetime, timezone
         dt_naive = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
         dt_utc = dt_naive.replace(tzinfo=timezone.utc)
-        solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+        solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
 
         # 2. Pedestrian Grid
         grid = PedestrianGrid(scene.pedestrian_grid)

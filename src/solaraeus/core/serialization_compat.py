@@ -29,6 +29,8 @@ FIELD_ALIASES: dict[str, tuple[str, ...]] = {
     "surface_temperature_k": ("surface_temperature",),
     "grid_resolution_m": ("grid_resolution",),
     "pedestrian_height_m": ("pedestrian_height",),
+    "latitude_deg": ("latitude",),
+    "longitude_deg": ("longitude",),
 }
 
 

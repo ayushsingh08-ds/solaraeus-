@@ -249,8 +249,8 @@ def _make_synthetic_scene_and_results():
         diffuse_horizontal_irradiance_w_m2=150.0,
     )
     sim_cfg = SimulationConfig(
-        latitude=12.97,
-        longitude=77.60,
+        latitude_deg=12.97,
+        longitude_deg=77.60,
         date="2024-04-15",
         local_time="10:00:00",
         pedestrian_height_m=1.1,

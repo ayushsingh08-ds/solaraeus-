@@ -88,7 +88,7 @@ def synthetic_scene_and_baseline():
     scene.materials["default_ground"] = Material(id="default_ground", albedo=0.2, emissivity=0.95, surface_temperature_k=305.15)
 
     config = SimulationConfig(
-        latitude=12.97, longitude=77.59, date="2024-04-15", local_time="09:00:00",
+        latitude_deg=12.97, longitude_deg=77.59, date="2024-04-15", local_time="09:00:00",
         sky_patch_configuration=8, tmrt_tolerance_k=0.5
     )
     weather = Weather(

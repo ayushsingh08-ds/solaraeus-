@@ -247,8 +247,8 @@ def validate_candidate_multi_path(
 
     # 2. Path 1: CPU Full Recompute (Reference)
     cfg_cpu = SimulationConfig(
-        latitude=config.latitude,
-        longitude=config.longitude,
+        latitude_deg=config.latitude_deg,
+        longitude_deg=config.longitude_deg,
         date=config.date,
         local_time=config.local_time,
         pedestrian_height_m=config.pedestrian_height_m,
@@ -264,8 +264,8 @@ def validate_candidate_multi_path(
 
     # 3. Path 2: GPU Full Recompute
     cfg_gpu = SimulationConfig(
-        latitude=config.latitude,
-        longitude=config.longitude,
+        latitude_deg=config.latitude_deg,
+        longitude_deg=config.longitude_deg,
         date=config.date,
         local_time=config.local_time,
         pedestrian_height_m=config.pedestrian_height_m,

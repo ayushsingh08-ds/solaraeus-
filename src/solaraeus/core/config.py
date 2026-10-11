@@ -56,8 +56,8 @@ class Weather:
 @dataclass(frozen=True)
 class SimulationConfig:
     """Simulation control parameters, spatial resolution, and numerical tolerances."""
-    latitude: float = 40.7128            # Degrees North (-90 to +90)
-    longitude: float = -74.0060          # Degrees East (-180 to +180)
+    latitude_deg: float = 40.7128        # Degrees North (-90 to +90)
+    longitude_deg: float = -74.0060      # Degrees East (-180 to +180)
     date: str = "2024-07-15"             # YYYY-MM-DD
     local_time: str = "12:00:00"         # HH:MM:SS
     pedestrian_height_m: float = 1.1       # Ground-relative height z (m)
@@ -69,10 +69,10 @@ class SimulationConfig:
     backend: str = "cpu"                 # Backend engine: 'cpu', 'gpu', or 'auto'
 
     def __post_init__(self):
-        if not (-90.0 <= self.latitude <= 90.0):
-            raise ValueError(f"Latitude must be in [-90, 90], got {self.latitude}")
-        if not (-180.0 <= self.longitude <= 180.0):
-            raise ValueError(f"Longitude must be in [-180, 180], got {self.longitude}")
+        if not (-90.0 <= self.latitude_deg <= 90.0):
+            raise ValueError(f"Latitude must be in [-90, 90], got {self.latitude_deg}")
+        if not (-180.0 <= self.longitude_deg <= 180.0):
+            raise ValueError(f"Longitude must be in [-180, 180], got {self.longitude_deg}")
         if self.pedestrian_height_m < 0.0:
             raise ValueError(f"Pedestrian height must be >= 0, got {self.pedestrian_height_m}")
         if self.grid_resolution_m <= 0.0:

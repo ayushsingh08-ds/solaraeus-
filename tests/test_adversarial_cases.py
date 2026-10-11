@@ -44,8 +44,8 @@ def base_weather() -> Weather:
 @pytest.fixture
 def default_config() -> SimulationConfig:
     return SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
         grid_resolution_m=1.0,
@@ -184,8 +184,8 @@ def test_adversarial_case5_low_sun_angle(base_weather):
     """
     # 18:55:00 on 2024-07-15 gives solar altitude ~15.02 deg
     config_low_sun = SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="18:55:00",
         grid_resolution_m=1.0,
@@ -231,7 +231,7 @@ def test_adversarial_case6_diffuse_perturbation_outside_shadow(base_weather, def
 
     # Use tolerance = 1.0 K so subtle diffuse changes far away are safely certified
     config = SimulationConfig(
-        latitude=default_config.latitude, longitude=default_config.longitude,
+        latitude_deg=default_config.latitude_deg, longitude_deg=default_config.longitude_deg,
         date=default_config.date, local_time=default_config.local_time,
         sky_patch_configuration=default_config.sky_patch_configuration,
         max_svf_search_dist_m=default_config.max_svf_search_dist_m,

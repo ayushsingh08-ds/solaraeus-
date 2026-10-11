@@ -110,8 +110,8 @@ def main():
     
     for sc in audit_scenarios:
         config = SimulationConfig(
-            latitude=31.2304,
-            longitude=121.4737,
+            latitude_deg=31.2304,
+            longitude_deg=121.4737,
             date="2026-06-21",
             local_time="08:00:00",
             tmrt_tolerance_k=sc["tol"],
@@ -199,7 +199,7 @@ def main():
     print("\n[4/8] Executing Intentional Mutation Checks...")
     scene_80m = create_scaling_scene(80.0, "medium")
     config_std = SimulationConfig(
-        latitude=31.2304, longitude=121.4737, date="2026-06-21", local_time="08:00:00",
+        latitude_deg=31.2304, longitude_deg=121.4737, date="2026-06-21", local_time="08:00:00",
         tmrt_tolerance_k=0.5, max_svf_search_dist_m=30.0
     )
     mutation_records = run_mutation_tests(scene_80m, weather, config_std)

@@ -34,15 +34,15 @@ def run_single_building_example():
     )
 
     config = SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
         grid_resolution_m=1.0,
         sky_patch_configuration=32
     )
 
-    print(f"Simulating location: ({config.latitude} N, {config.longitude} E) at {config.date} {config.local_time} UTC")
+    print(f"Simulating location: ({config.latitude_deg} N, {config.longitude_deg} E) at {config.date} {config.local_time} UTC")
     result = full_recompute(scene, weather, config)
 
     meta = result.metadata

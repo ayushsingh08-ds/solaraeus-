@@ -126,8 +126,8 @@ def main():
         diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height_m=1.1,
@@ -323,7 +323,7 @@ def main():
 
         # Path 2: CPU Incremental
         sim_config_cpu = SimulationConfig(
-            latitude=sim_config.latitude, longitude=sim_config.longitude, date=sim_config.date,
+            latitude_deg=sim_config.latitude_deg, longitude_deg=sim_config.longitude_deg, date=sim_config.date,
             local_time=sim_config.local_time, pedestrian_height_m=sim_config.pedestrian_height_m,
             grid_resolution_m=sim_config.grid_resolution_m, tmrt_tolerance_k=sim_config.tmrt_tolerance_k,
             sky_patch_configuration=sim_config.sky_patch_configuration,

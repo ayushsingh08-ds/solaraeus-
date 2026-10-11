@@ -140,7 +140,7 @@ class DualPanelPlacementSolverEngine:
         # Solar position calculation for exact shadow masks
         dt_str = f"{self.sim_config.date} {self.sim_config.local_time}"
         dt_utc = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-        self.solar_pos = calculate_solar_position(self.sim_config.latitude, self.sim_config.longitude, dt_utc)
+        self.solar_pos = calculate_solar_position(self.sim_config.latitude_deg, self.sim_config.longitude_deg, dt_utc)
 
         # GPU Incremental solver
         if gpu_engine is not None:

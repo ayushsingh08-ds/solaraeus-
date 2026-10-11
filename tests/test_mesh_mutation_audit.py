@@ -35,8 +35,8 @@ def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
     scene.add_mesh(create_box_mesh("mesh_bldg", 25.0, 45.0, 25.0, 45.0, 0.0, 15.0))
 
     cfg = SimulationConfig(
-        latitude=48.8566,
-        longitude=2.3522,
+        latitude_deg=48.8566,
+        longitude_deg=2.3522,
         date="2026-07-15",
         local_time="14:00:00",
         pedestrian_height_m=1.1,

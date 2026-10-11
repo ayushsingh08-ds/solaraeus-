@@ -35,8 +35,8 @@ def scaling_weather() -> Weather:
 @pytest.fixture
 def fast_scaling_config() -> SimulationConfig:
     return SimulationConfig(
-        latitude=48.8566,
-        longitude=2.3522,
+        latitude_deg=48.8566,
+        longitude_deg=2.3522,
         date="2026-07-15",
         local_time="14:00:00",
         pedestrian_height_m=1.1,

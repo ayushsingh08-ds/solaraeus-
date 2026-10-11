@@ -45,8 +45,8 @@ def main():
         diffuse_horizontal_irradiance_w_m2=150.0
     )
     config = SimulationConfig(
-        latitude=12.9716,
-        longitude=77.5946,
+        latitude_deg=12.9716,
+        longitude_deg=77.5946,
         date="2024-04-15",
         local_time="09:00:00",
         sky_patch_configuration=16,

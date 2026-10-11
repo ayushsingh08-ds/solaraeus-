@@ -90,7 +90,7 @@ def create_synthetic_dual_panel_scene() -> Tuple[Scene, SimulationConfig, Weathe
         id="MAT_BRICK", albedo=0.30, emissivity=0.90, surface_temperature_k=305.15, is_opaque=True
     )
     config = SimulationConfig(
-        latitude=12.9716, longitude=77.5946,
+        latitude_deg=12.9716, longitude_deg=77.5946,
         date="2026-10-07", local_time="12:00:00",
         sky_patch_configuration=8, tmrt_tolerance_k=0.50,
     )
@@ -233,7 +233,7 @@ def test_union_of_affected_cells_without_duplicates():
     scene, config, weather = create_synthetic_dual_panel_scene()
     grid = PedestrianGrid(scene.pedestrian_grid)
     dt_utc = datetime(2026, 10, 7, 12, 0, 0, tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
 
     p = DualPanelParams(
         x1=12.0, y1=15.0, length1=4.0, width1=2.0, height1=3.0, heading_deg1=90.0, albedo1=0.6,

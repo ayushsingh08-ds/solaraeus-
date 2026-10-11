@@ -39,8 +39,8 @@ def compute_weather_hash(weather: Weather) -> str:
 def compute_config_hash(config: SimulationConfig) -> str:
     """Computes a deterministic SHA-256 hash of simulation control parameters."""
     data = (
-        config.latitude,
-        config.longitude,
+        config.latitude_deg,
+        config.longitude_deg,
         config.date,
         config.local_time,
         config.pedestrian_height_m,

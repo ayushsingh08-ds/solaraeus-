@@ -48,7 +48,7 @@ from solaraeus.validation.independent_audit import audit_certificate_independent
 def base_env():
     grid_cfg = PedestrianGridConfig(extent_x=100.0, extent_y=100.0, resolution=1.0)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
+        latitude_deg=40.7128, longitude_deg=-74.0060,
         date="2026-06-21", local_time="12:00:00",
         tmrt_tolerance_k=2.0,
         sky_patch_configuration=16,
@@ -102,7 +102,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
     grid_cfg, _, weather = base_env
     # Grazing sun at ~6.6 deg (10:10 UTC in June for NYC)
     config = SimulationConfig(
-        latitude=40.7128, longitude=-74.0060,
+        latitude_deg=40.7128, longitude_deg=-74.0060,
         date="2026-06-21", local_time="10:10:00",
         tmrt_tolerance_k=2.5,
         sky_patch_configuration=16,
@@ -112,7 +112,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
     from solaraeus.physics.solar_position import calculate_solar_position
     from datetime import datetime, timezone
     dt_utc = datetime.strptime(f"{config.date} {config.local_time}", "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
-    solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+    solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
     assert 4.0 <= solar_pos.altitude_deg <= 15.0, f"Solar altitude is {solar_pos.altitude_deg}"
 
     scene_base = Scene(pedestrian_grid=grid_cfg)

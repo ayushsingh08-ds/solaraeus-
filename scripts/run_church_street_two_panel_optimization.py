@@ -129,7 +129,7 @@ def run_preflight_synthetic_test():
     bldg = Building(id="B1", footprint=BoundingBox2D(xmin=2.0, xmax=6.0, ymin=2.0, ymax=6.0), height=10.0, material_id="default_wall")
     scene.add_building(bldg)
     scene.materials["default_wall"] = Material(id="default_wall", albedo=0.3, emissivity=0.9, surface_temperature_k=305.15)
-    config = SimulationConfig(latitude=12.97, longitude=77.59, date="2026-10-07", local_time="12:00:00", sky_patch_configuration=8, tmrt_tolerance_k=0.5)
+    config = SimulationConfig(latitude_deg=12.97, longitude_deg=77.59, date="2026-10-07", local_time="12:00:00", sky_patch_configuration=8, tmrt_tolerance_k=0.5)
     weather = Weather(air_temperature_k=303.15, relative_humidity=50.0, wind_speed_ms=1.5, wind_direction_deg=180.0, direct_normal_irradiance_w_m2=800.0, diffuse_horizontal_irradiance_w_m2=200.0)
 
     engine = GPUIncrementalEngine(fallback_to_cpu=True)
@@ -226,8 +226,8 @@ def main():
         diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height_m=1.1,

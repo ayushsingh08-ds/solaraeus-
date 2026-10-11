@@ -227,8 +227,8 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
     os.makedirs(output_dir, exist_ok=True)
 
     config = SimulationConfig(
-        latitude=48.8566,
-        longitude=2.3522,
+        latitude_deg=48.8566,
+        longitude_deg=2.3522,
         date="2026-07-15",
         local_time="14:00:00",
         pedestrian_height_m=1.1,

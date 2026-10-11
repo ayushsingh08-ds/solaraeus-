@@ -185,7 +185,7 @@ def main():
         wind_direction_deg=90.0, direct_normal_irradiance_w_m2=728.31, diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
-        latitude=12.974900, longitude=77.605400, date="2024-04-15", local_time="09:00:00",
+        latitude_deg=12.974900, longitude_deg=77.605400, date="2024-04-15", local_time="09:00:00",
         pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5,
         sky_patch_configuration=32, max_svf_search_dist_m=120.0, backend="gpu",
     )
@@ -442,7 +442,7 @@ def main():
     for ts in solar_timestamps:
         print(f"  Testing Solar Timestep: {ts.local_time}...")
         ts_cfg = SimulationConfig(
-            latitude=sim_config.latitude, longitude=sim_config.longitude,
+            latitude_deg=sim_config.latitude_deg, longitude_deg=sim_config.longitude_deg,
             date=ts.date, local_time=ts.local_time,
             pedestrian_height_m=sim_config.pedestrian_height_m,
             grid_resolution_m=sim_config.grid_resolution_m,

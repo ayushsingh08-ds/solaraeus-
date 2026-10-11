@@ -39,8 +39,8 @@ HAS_GPU = is_cupy_available()
 def test_env():
     grid_cfg = PedestrianGridConfig(extent_x=60.0, extent_y=60.0, resolution=1.0, pedestrian_height_m=1.1)
     config = SimulationConfig(
-        latitude=12.9716,
-        longitude=77.5946,
+        latitude_deg=12.9716,
+        longitude_deg=77.5946,
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height_m=1.1,

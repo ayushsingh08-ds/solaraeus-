@@ -47,8 +47,8 @@ def standard_weather():
 @pytest.fixture
 def standard_config():
     return SimulationConfig(
-        latitude=12.9716,
-        longitude=77.5946,
+        latitude_deg=12.9716,
+        longitude_deg=77.5946,
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height_m=1.1,
@@ -412,8 +412,8 @@ def test_church_street_gpu_parity_against_frozen_reference():
         diffuse_horizontal_irradiance_w_m2=172.18,
     )
     sim_config = SimulationConfig(
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height_m=1.1,

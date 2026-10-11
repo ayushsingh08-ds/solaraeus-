@@ -138,8 +138,8 @@ def main():
     sim_config = SimulationConfig(
         date="2024-04-15",
         local_time="09:00:00",
-        latitude=12.974900,
-        longitude=77.605400,
+        latitude_deg=12.974900,
+        longitude_deg=77.605400,
         pedestrian_height_m=1.1,
         grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
@@ -295,7 +295,7 @@ def main():
     edge_scene.add_building(Building("tall_tower", BoundingBox2D(20.0, 30.0, 20.0, 30.0), 80.0))
     # Extreme solar zenith: altitude 88 degrees (near zenith)
     edge_weather = Weather(air_temperature_k=315.15, relative_humidity=20.0, wind_speed_ms=0.2, wind_direction_deg=180.0, direct_normal_irradiance_w_m2=1000.0, diffuse_horizontal_irradiance_w_m2=200.0)
-    edge_config = SimulationConfig(date="2024-06-21", local_time="12:00:00", latitude=12.9716, longitude=77.5946, sky_patch_configuration=32, max_svf_search_dist_m=50.0)
+    edge_config = SimulationConfig(date="2024-06-21", local_time="12:00:00", latitude_deg=12.9716, longitude_deg=77.5946, sky_patch_configuration=32, max_svf_search_dist_m=50.0)
     
     edge_cpu_res = cpu_backend.full_simulate(edge_scene, edge_weather, edge_config)
     edge_gpu_res = gpu_backend.full_simulate(edge_scene, edge_weather, edge_config)

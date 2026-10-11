@@ -191,12 +191,12 @@ def main():
     scene_brigade.add_mesh(create_box_mesh("bldg_b4", 55.0, 90.0, 2.0, 18.0, 0.0, 20.0, "building_wall"))
 
     sim_cfg_b_cpu = SimulationConfig(
-        latitude=12.972, longitude=77.608, date="2024-04-15", local_time="09:00:00",
+        latitude_deg=12.972, longitude_deg=77.608, date="2024-04-15", local_time="09:00:00",
         pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="cpu"
     )
     sim_cfg_b_gpu = SimulationConfig(
-        latitude=12.972, longitude=77.608, date="2024-04-15", local_time="09:00:00",
+        latitude_deg=12.972, longitude_deg=77.608, date="2024-04-15", local_time="09:00:00",
         pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="gpu"
     )
@@ -285,12 +285,12 @@ def main():
     scene_mg.add_mesh(create_box_mesh("bldg_m3", 25.0, 55.0, 65.0, 75.0, 0.0, 18.0, "building_wall"))
 
     sim_cfg_m_cpu = SimulationConfig(
-        latitude=12.976, longitude=77.606, date="2024-04-15", local_time="09:00:00",
+        latitude_deg=12.976, longitude_deg=77.606, date="2024-04-15", local_time="09:00:00",
         pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="cpu"
     )
     sim_cfg_m_gpu = SimulationConfig(
-        latitude=12.976, longitude=77.606, date="2024-04-15", local_time="09:00:00",
+        latitude_deg=12.976, longitude_deg=77.606, date="2024-04-15", local_time="09:00:00",
         pedestrian_height_m=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.5, sky_patch_configuration=32,
         max_svf_search_dist_m=80.0, backend="gpu"
     )

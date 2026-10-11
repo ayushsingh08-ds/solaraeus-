@@ -62,7 +62,7 @@ class TreeAwareCPUSolver:
         dt_str = f"{config.date} {config.local_time}"
         dt_naive = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
         dt_utc = dt_naive.replace(tzinfo=timezone.utc)
-        solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+        solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
 
         # 4. Pedestrian Grid & Receptor Elevations
         grid = PedestrianGrid(scene.pedestrian_grid)
@@ -193,7 +193,7 @@ class TreeAwareCPUSolver:
         dt_str = f"{config.date} {config.local_time}"
         dt_naive = datetime.strptime(dt_str, "%Y-%m-%d %H:%M:%S")
         dt_utc = dt_naive.replace(tzinfo=timezone.utc)
-        solar_pos = calculate_solar_position(config.latitude, config.longitude, dt_utc)
+        solar_pos = calculate_solar_position(config.latitude_deg, config.longitude_deg, dt_utc)
 
         alt_rad = math.radians(solar_pos.altitude_deg)
         az_rad = math.radians(solar_pos.azimuth_deg)

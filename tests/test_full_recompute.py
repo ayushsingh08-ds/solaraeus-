@@ -26,8 +26,8 @@ def baseline_weather():
 @pytest.fixture
 def baseline_config():
     return SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
         pedestrian_height_m=1.1,
@@ -98,8 +98,8 @@ def test_nighttime_recompute(baseline_weather):
     scene = create_single_box_scene(extent_m=40.0)
     # 04:00 UTC = 00:00 EDT (true midnight in NYC in July)
     night_config = SimulationConfig(
-        latitude=40.7128,
-        longitude=-74.0060,
+        latitude_deg=40.7128,
+        longitude_deg=-74.0060,
         date="2024-07-15",
         local_time="04:00:00",
         sky_patch_configuration=16
