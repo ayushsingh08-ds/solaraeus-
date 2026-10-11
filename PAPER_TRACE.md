@@ -46,10 +46,10 @@ Third Tmrt path: integration/tmrt_3d.py:197 uses `(max(10,s_str)/(a_l·SIGMA))**
 
 | Paper claim | Code location | Verdict |
 |---|---|---|
-| B_T(x)=ΔΦ_max/(4σT_min³) ≤ ε_T=0.50 K | certificate.py:198-203 concave-interval SB: `s_cached=σ(T+273.15)⁴`, `t_lower=(s_lower/σ)^¼`, `b_t=t_cached−t_lower`; tol `tmrt_tolerance=0.5` (config.py:65) | MATCH |
+| B_T(x)=ΔΦ_max/(4σT_min³) ≤ ε_T=0.50 K | certificate.py:198-203 concave-interval SB: `s_cached=σ(T+273.15)⁴`, `t_lower=(s_lower/σ)^¼`, `thermal_error_bound_k=t_cached−t_lower`; tol `tmrt_tolerance=0.5` (config.py:65) | MATCH |
 | T_min ≥ 273.15 K floor | certificate.py:199 `s_lower=max(1.0, s_cached−Δs)` + `+273.15` throughout | MATCH (SB floor) |
 | Eq.8 SVF solid-angle decay bound | certificate.py:63 `compute_svf_decay_bound` | MATCH |
-| Dirty/clean masks | certificate.py:206 `dirty_mask=b_t>tol`; verify_certificate:252 `reused=predicted_bound<=tol` | MATCH |
+| Dirty/clean masks | certificate.py:206 `dirty_mask=thermal_error_bound_k>tol`; verify_certificate:252 `reused=predicted_bound<=tol` | MATCH |
 | (duplicate) legacy certificate | src/solaraeus/incremental/bounds.py:186-192 re-implements the same concave-interval SB | duplicate stack (ARCHIVE; see DIAGNOSIS) |
 
 ## 4. GPU performance (Table V, .tex L409–427)

@@ -31,12 +31,17 @@ class AcquisitionConfig:
 
 def compute_lcb_score(mu: np.ndarray, sigma: np.ndarray, kappa: float = 2.0) -> np.ndarray:
     """
-    Computes Lower Confidence Bound score for minimization.
+    Computes the Lower Confidence Bound acquisition score for minimization.
     
     Since we minimize objective f(x), the LCB is:
       LCB(x) = mu(x) - kappa * sigma(x)
-    To formulate as an acquisition value to maximize (higher is better):
+    and the preferred candidate is the one with the smallest LCB. Expressed as
+    a value to maximize (higher is better):
       alpha_lcb(x) = -LCB(x) = kappa * sigma(x) - mu(x)
+
+    Equivalently, this is an Upper Confidence Bound on the negated objective
+    (-f): "LCB for minimization" and "sign-flipped UCB" denote the same policy.
+    `kappa` is the exploration weight (default 2.0; higher favors exploration).
     """
     return kappa * sigma - mu
 
