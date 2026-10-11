@@ -178,20 +178,11 @@ class TimeShadowingEngine:
 
         df_timeseries = pd.DataFrame(records)
 
-        # Visual-physical parity metric (agreement >= 98%)
-        parity_metric = {
-            "mean_agreement_pct": 99.4,
-            "max_discrepancy_pct": 0.6,
-            "status": "VISUAL_PHYSICAL_PARITY_PASSED",
-            "threshold_pct": 95.0,
-        }
-
         return {
             "timeseries_df": df_timeseries,
             "sunlit_duration_map": sunlit_duration_hours,
             "shadow_duration_map": shadow_duration_hours,
             "cumulative_irradiation_wh_m2": cumulative_irradiation_wh_m2,
-            "parity_metric": parity_metric,
             "nx": self.nx,
             "ny": self.ny,
             "bounds_x": self.bounds_x,

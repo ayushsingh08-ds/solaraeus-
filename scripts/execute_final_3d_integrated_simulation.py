@@ -508,14 +508,11 @@ def main():
         "mean_corridor_sunlit_hours": float(np.mean(shadow_sim["sunlit_duration_map"])),
         "mean_corridor_shadow_hours": float(np.mean(shadow_sim["shadow_duration_map"])),
         "mean_cumulative_irradiation_wh_m2": float(np.mean(shadow_sim["cumulative_irradiation_wh_m2"])),
-        "visual_physical_parity": shadow_sim["parity_metric"],
     }
     with open(OUT / "time_shadowing_manifest.json", "w", encoding="utf-8") as f:
         json.dump(time_shadow_manifest, f, indent=2)
     with open(OUT / "time_shadowing/time_shadowing_manifest.json", "w", encoding="utf-8") as f:
         json.dump(time_shadow_manifest, f, indent=2)
-    with open(OUT / "time_shadowing/visual_physical_shadow_parity.json", "w", encoding="utf-8") as f:
-        json.dump(shadow_sim["parity_metric"], f, indent=2)
     with open(OUT / "time_shadowing/shadow_length_analytic_validation.json", "w", encoding="utf-8") as f:
         json.dump({"analytic_formula": "L = H / tan(alt)", "verified_tolerance_m": 0.01}, f, indent=2)
     with open(OUT / "time_shadowing/time_shadowing_validation.json", "w", encoding="utf-8") as f:
