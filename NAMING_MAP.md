@@ -139,3 +139,37 @@ Behaviour-preserving renames only. **Nothing moved/edited yet.** Pairs the TARGE
 2. **`validation/` collision** — three things called "validation": golden/parity `validation/`, placement `candidate_validation`, and `extensions` parity. Proposed split above; confirm.
 3. **`mean_radiant_temperature` vs `tmrt`** — public module named long-form, but the paper/artifacts/JSON keys use `tmrt`; keep `tmrt` in all serialized keys (KEEP VERBATIM) and as the local alias.
 4. **`dual_panel` vs multi-panel** — scripts also say "multi_intervention"/"multi_panel"; confirm `dual_panel` is the intended canonical (code is 14-param = 2 panels).
+
+## 6. STEP-3 / Track-1 decisions — LOCKED (2026-10-11)
+
+Final rulings for the §3 table and the §5 NHDs. "DONE" = landed on `main`
+(commit in parens); "KEEP" = deliberately not renamed; "DEFERRED→T2" = moved
+to Track-2 `integrity-fixes` because it changes serialized output. Every DONE
+item was golden-GREEN after its commit.
+
+**§3 renames — DONE (behaviour-preserving):**
+- `num_azimuths → azimuth_count` (8b580b5).
+- `compute_tmrt → mean_radiant_temperature` public API (29cb1f8); `tmrt` kept as local/alias.
+- sky view factor public API `→ sky_view_factor` (26884fb).
+- `Optim*` placement classes `→ PlacementSolver*` (9a7cd36).
+- `two_panel_* → dual_panel_*` (57d0bab).
+- local `b_t → thermal_error_bound_k` (c801d41).
+- `robustness_plots.py` relocated `placement/ → tools/` (99ae2ad) — reporting helper, not an identifier rename.
+
+**KEEP — abbreviation / serialized name retained (do NOT rename in Track-1):**
+- `svf` as a local var and in serialized keys `svf_runtime_s`, `svf_ray_count` (public API is `sky_view_factor`).
+- `tmrt` in every serialized/artifact JSON key and as a local alias (resolves §5.3).
+- `directional_visibility` where it appears in FROZEN audit strings/comments.
+- `predicted_bound` as the `ErrorCertificate` serialized key (field `predicted_error_bound`); only the local was renamed.
+- `dirty_mask` / `clean_mask` (unchanged by design).
+
+**DEFERRED → Track-2 `integrity-fixes` (changes serialized output / needs shims):**
+- `tmrt_tolerance → tmrt_tolerance_k` (§3 L119) — config attr + asdict key; needs a read/write shim.
+- Unit suffixes `_m _k _c _deg _s _ms _w_m2` on serialized fields/args (§3 L129).
+- `ErrorCertificate.predicted_error_bound` field-side suffix (pairs with the kept `predicted_bound` key).
+
+**§5 NHDs — resolved:**
+1. acquisition — KEEP the truthful name `compute_lcb_score` (code is LCB+EI, not UCB). The paper's "UCB κ=1.96" vs code κ=2.0/1.5 is a *paper* discrepancy logged in PAPER_TRACE, left for PAPER_CORRECTIONS (Track-2); the name claims no method the code lacks. Docstring now states LCB ≡ sign-flipped-UCB (ca3a1a4).
+2. `validation/` collision — LOCKED split: golden/parity `validation/`, placement `candidate_validation`, extensions parity kept distinct.
+3. `mean_radiant_temperature` vs `tmrt` — LOCKED: long-form public API, `tmrt` kept in all serialized keys + local alias.
+4. `dual_panel` — LOCKED canonical (14-param = 2 panels); done in 57d0bab.
