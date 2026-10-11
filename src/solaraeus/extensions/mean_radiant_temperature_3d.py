@@ -192,10 +192,14 @@ class Tmrt3DEngine:
 
         l_total = (l_down * self.w_v + l_up * self.w_v + l_walls * (4 * self.w_h))
 
-        # 10. Compute Tmrt via Stefan-Boltzmann inversion:
-        s_str = self.a_k * k_total + self.a_l * l_total
-        tmrt_k = np.power(np.maximum(10.0, s_str) / (self.a_l * SIGMA), 0.25)
-        tmrt_c = tmrt_k - 273.15
+        # 10. Compute Tmrt via the canonical Stefan-Boltzmann inversion.
+        # Delegates to solaraeus.physics.mean_radiant_temperature so this 3D
+        # extension and the core engine share a single inversion,
+        # (S_str / sigma)^0.25. This path previously divided by (a_l * sigma),
+        # diverging from the canonical form and inflating Tmrt by (1/a_l)^0.25.
+        radiant = mean_radiant_temperature(k_total, l_total, a_k=self.a_k, a_l=self.a_l)
+        s_str = radiant.s_str
+        tmrt_c = radiant.tmrt_c
 
         # Baseline reference comparison
         base_tmrt_mean = 48.72
