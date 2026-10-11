@@ -501,8 +501,8 @@ def main():
         "recomputed_cells": n_recomputed,
         "total_cells": total_cells,
         "reused_fraction": float(n_reused / total_cells),
-        "max_predicted_bound_k": float(cert_1.max_predicted_bound),
-        "slack_non_negative_everywhere": bool(np.all(cert_1.predicted_error_bound[reused_mask] >= err_tmrt[reused_mask] - 1e-10)),
+        "max_predicted_bound_k": float(cert_1.max_predicted_bound_k),
+        "slack_non_negative_everywhere": bool(np.all(cert_1.predicted_error_bound_k[reused_mask] >= err_tmrt[reused_mask] - 1e-10)),
         "determinism_verified": True,
         "acceptance_token": "STAGE_6_SHADE_PANEL_INCREMENTAL_RECOMPUTATION_COMPLETE"
     }

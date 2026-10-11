@@ -465,7 +465,7 @@ def evaluate_candidate_at_condition(
         "reused_fraction_pct": ((up_res.total_cells - up_res.recomputed_cells) / max(1, up_res.total_cells)) * 100.0,
         "cert_status": cert.status,
         "cert_violations": getattr(cert, "n_violations", 0),
-        "max_predicted_bound_k": float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0,
+        "max_predicted_bound_k": float(np.max(cert.predicted_error_bound_k)) if hasattr(cert, "predicted_error_bound_k") else 0.0,
     }
 
     return up_res.result, metrics, telemetry

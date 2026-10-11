@@ -106,9 +106,9 @@ def _incremental(backend: str):
     for name, res in (("base", base_res), ("full", full_res), ("inc", inc)):
         for k, v in _result_arrays(res).items():
             arrays[f"{name}__{k}"] = v
-    arrays["cert_bound"] = _to_numpy(cert.predicted_error_bound)
-    arrays["reused_mask"] = _to_numpy(cert.predicted_error_bound) <= cert.tolerance
-    arrays["dirty_mask"] = _to_numpy(cert.predicted_error_bound) > cert.tolerance
+    arrays["cert_bound"] = _to_numpy(cert.predicted_error_bound_k)
+    arrays["reused_mask"] = _to_numpy(cert.predicted_error_bound_k) <= cert.tolerance
+    arrays["dirty_mask"] = _to_numpy(cert.predicted_error_bound_k) > cert.tolerance
 
     scalars = {
         "cert_status": cert.status,
@@ -117,7 +117,7 @@ def _incremental(backend: str):
         "cert_reused_cells": int(cert.reused_cells),
         "cert_affected_cells": int(cert.affected_cells),
         "cert_reused_fraction": float(cert.reused_fraction),
-        "cert_max_predicted_bound": float(cert.max_predicted_bound),
+        "cert_max_predicted_bound": float(cert.max_predicted_bound_k),
         "verify_is_valid": bool(verif.is_valid),
         "verify_num_violations": int(verif.num_violations),
         "verify_reused_max_error": float(verif.reused_max_error),

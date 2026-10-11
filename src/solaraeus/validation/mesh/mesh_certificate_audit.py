@@ -202,7 +202,7 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
             audit_metrics = audit_certificate_independently(
                 full_tmrt=res_full.tmrt,
                 incremental_tmrt=inc_res.result.tmrt,
-                predicted_bound=cert.predicted_error_bound,
+                predicted_bound=cert.predicted_error_bound_k,
                 reused_mask=inc_res.reused_mask,
                 tolerance=tol
             )
@@ -224,7 +224,7 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
                 "recomputed_cells": audit_metrics["recomputed_cells"],
                 "reused_cells": audit_metrics["certified_reused_cells"],
                 "reused_fraction": round(audit_metrics["reused_fraction"], 4),
-                "max_predicted_bound_k": round(audit_metrics["max_predicted_bound"], 4),
+                "max_predicted_bound_k": round(audit_metrics["max_predicted_bound_k"], 4),
                 "max_actual_error_k": round(audit_metrics["max_actual_error"], 4),
                 "reused_max_actual_error_k": round(audit_metrics["reused_max_actual_error"], 4),
                 "min_slack_k": round(audit_metrics["min_slack"], 6),

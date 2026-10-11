@@ -142,7 +142,7 @@ def main():
         
         # Execute independent audit calculation
         audit = audit_certificate_independently(
-            full_res.tmrt, inc_res.result.tmrt, cert.predicted_error_bound,
+            full_res.tmrt, inc_res.result.tmrt, cert.predicted_error_bound_k,
             inc_res.reused_mask, config.tmrt_tolerance_k
         )
         
@@ -158,7 +158,7 @@ def main():
             "reused_fraction": round(audit["reused_fraction"], 4),
             "max_actual_error_k": round(audit["max_actual_error"], 6),
             "reused_max_actual_error_k": round(audit["reused_max_actual_error"], 6),
-            "max_predicted_bound_k": round(audit["max_predicted_bound"], 6),
+            "max_predicted_bound_k": round(audit["max_predicted_bound_k"], 6),
             "min_slack_k": round(audit["min_slack"], 6),
             "median_slack_k": round(audit["median_slack"], 6),
             "num_negative_slacks": audit["num_negative_slacks"],
@@ -171,7 +171,7 @@ def main():
         print(f"  - {sc['name']:<25}: Reused {audit['reused_fraction']*100:.1f}%, MaxErr {audit['max_actual_error']:.4f}K, MinSlack {audit['min_slack']:.4f}K, Violations={audit['num_certificate_violations']}")
         
         all_actual_errors.extend(audit["actual_error_map"].flatten()[:1000])
-        all_predicted_bounds.extend(cert.predicted_error_bound.flatten()[:1000])
+        all_predicted_bounds.extend(cert.predicted_error_bound_k.flatten()[:1000])
         all_slacks.extend(audit["slack_map"].flatten()[:1000])
 
     cert_audit_csv = os.path.join(out_dir, "independent_certificate_audit.csv")

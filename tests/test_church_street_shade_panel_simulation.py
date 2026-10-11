@@ -304,7 +304,7 @@ def test_incremental_error_certificate_soundness(shade_inc_run_dir):
     fields_npz = shade_inc_run_dir / "certificate_fields.npz"
     assert fields_npz.exists()
     with np.load(fields_npz) as cdata:
-        bound = cdata["predicted_error_bound"]
+        bound = cdata["predicted_error_bound_k"]
         actual_err = cdata["actual_error_tmrt"]
         slack = cdata["slack_map"]
         reused_mask = cdata["reused_mask"]

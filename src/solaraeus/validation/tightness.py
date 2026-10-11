@@ -52,7 +52,7 @@ def evaluate_certificate_tightness(cert: ErrorCertificate,
     Computes exact cell-by-cell slack, ratios, and percentile distributions across the domain.
     """
     actual_error = np.abs(incremental_tmrt - full_tmrt)
-    predicted_bound = cert.predicted_error_bound
+    predicted_bound = cert.predicted_error_bound_k
     slack = predicted_bound - actual_error
 
     # Avoid division by zero: clamp denominator to 1e-12
@@ -79,7 +79,7 @@ def evaluate_certificate_tightness(cert: ErrorCertificate,
 
     max_actual_err = float(np.max(actual_error))
     mean_actual_err = float(np.mean(actual_error))
-    max_bound = float(cert.max_predicted_bound)
+    max_bound = float(cert.max_predicted_bound_k)
 
     return CertificateTightnessMetrics(
         scenario_id=scenario_id,

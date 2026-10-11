@@ -142,7 +142,7 @@ def run_repeated_edit_sequence(weather: Weather,
             reused_fraction=cert.reused_fraction,
             max_actual_error_k=float(np.max(err_step)),
             mean_actual_error_k=float(np.mean(err_step)),
-            max_predicted_bound_k=float(cert.max_predicted_bound),
+            max_predicted_bound_k=float(cert.max_predicted_bound_k),
             baseline_reversion_error_k=reversion_err,
             certificate_violations=verif.num_violations,
             is_sound=verif.is_valid

@@ -76,7 +76,7 @@ def test_clean_mesh_audit_is_sound_with_zero_violations(mesh_audit_scene):
     audit = audit_certificate_independently(
         full_tmrt=full_res.tmrt,
         incremental_tmrt=inc_res.result.tmrt,
-        predicted_bound=cert.predicted_error_bound,
+        predicted_bound=cert.predicted_error_bound_k,
         reused_mask=inc_res.reused_mask,
         tolerance=cfg.tmrt_tolerance_k
     )
@@ -102,7 +102,7 @@ def test_mutation_zero_predicted_error_bound(mesh_audit_scene):
     inc_res, cert = incremental_update_certified(scene, new_scene, prev_res, edit, weather, cfg)
 
     # Mutate: Zero out predicted error bound
-    mutated_bound = np.zeros_like(cert.predicted_error_bound)
+    mutated_bound = np.zeros_like(cert.predicted_error_bound_k)
 
     audit = audit_certificate_independently(
         full_tmrt=full_res.tmrt,

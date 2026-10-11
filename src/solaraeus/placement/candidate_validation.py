@@ -347,7 +347,7 @@ def validate_candidate_multi_path(
         ray_reduction_pct=ray_reduction_pct,
         certificate_status=cert.status,
         certificate_violations=0 if cert.is_certified else int(getattr(cert, "violations_count", 1)),
-        max_predicted_bound_k=float(np.max(cert.predicted_error_bound)),
+        max_predicted_bound_k=float(np.max(cert.predicted_error_bound_k)),
         cpu_full_vs_gpu_full=cmp_cpu_gpu_full,
         cpu_full_vs_gpu_inc=cmp_cpu_gpu_inc,
         gpu_full_vs_gpu_inc=cmp_gpu_full_gpu_inc,

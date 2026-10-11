@@ -166,7 +166,7 @@ def validate_dual_panel_multi_path(
     reused_pct = (reused / total_cells) * 100.0 if total_cells > 0 else 0.0
     ray_reduction_pct = reused_pct
 
-    max_bound = float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0
+    max_bound = float(np.max(cert.predicted_error_bound_k)) if hasattr(cert, "predicted_error_bound_k") else 0.0
     n_violations = getattr(cert, "n_violations", 0)
 
     # 5. Pairwise Cross-Path Comparisons

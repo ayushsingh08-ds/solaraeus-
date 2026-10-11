@@ -290,7 +290,7 @@ class DualPanelPlacementSolverEngine:
         affected_rays = union_cells * rays_per_cell
 
         # Certificate status
-        max_bound = float(np.max(cert.predicted_error_bound)) if hasattr(cert, "predicted_error_bound") else 0.0
+        max_bound = float(np.max(cert.predicted_error_bound_k)) if hasattr(cert, "predicted_error_bound_k") else 0.0
         n_violations = getattr(cert, "n_violations", 0)
 
         record = DualPanelCandidateRecord(

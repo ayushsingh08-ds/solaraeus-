@@ -227,7 +227,7 @@ def compare_all_baselines(scene_before: Scene,
         reused_fraction=cert.reused_fraction,
         max_actual_error_k=float(np.max(err_cert)),
         mean_actual_error_k=float(np.mean(err_cert)),
-        max_predicted_bound_k=float(cert.max_predicted_bound),
+        max_predicted_bound_k=float(cert.max_predicted_bound_k),
         has_certificate=True,
         is_sound=verif.is_valid,
         violations_count=verif.num_violations

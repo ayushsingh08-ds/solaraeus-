@@ -45,7 +45,7 @@ def test_mutation_suite_execution_and_schema(standard_setup):
     required_keys = [
         "mutation_id", "description", "dependency_affected", "scene_id",
         "full_result_changed", "incremental_result_changed", "actual_error",
-        "predicted_bound", "minimum_slack", "certificate_violations",
+        "predicted_bound_k", "minimum_slack", "certificate_violations",
         "tolerance_violations", "status"
     ]
     for m in mutations:

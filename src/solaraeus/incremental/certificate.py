@@ -29,8 +29,8 @@ class ErrorCertificate:
     """Certified upper bound and audit contract for incremental reuse."""
     status: str                            # "certified", "uncertified", or "fallback"
     tolerance: float                       # User tolerance threshold epsilon_T (K)
-    predicted_error_bound: np.ndarray      # Shape (ny, nx) B_T(x) in Kelvin
-    max_predicted_bound: float             # Max B_T across domain (K)
+    predicted_error_bound_k: np.ndarray      # Shape (ny, nx) B_T(x) in Kelvin
+    max_predicted_bound_k: float             # Max B_T across domain (K)
     affected_cells: int                    # Cells where B_T > tolerance (dirty)
     reused_cells: int                      # Cells where B_T <= tolerance (safe for reuse)
     total_cells: int
@@ -130,8 +130,8 @@ def generate_error_certificate(scene_before: Scene,
         return ErrorCertificate(
             status="fallback",
             tolerance=tolerance_k,
-            predicted_error_bound=np.full((ny, nx), float("inf")),
-            max_predicted_bound=float("inf"),
+            predicted_error_bound_k=np.full((ny, nx), float("inf")),
+            max_predicted_bound_k=float("inf"),
             affected_cells=ny * nx,
             reused_cells=0,
             total_cells=ny * nx,
@@ -220,8 +220,8 @@ def generate_error_certificate(scene_before: Scene,
     return ErrorCertificate(
         status="certified",
         tolerance=tolerance_k,
-        predicted_error_bound=thermal_error_bound_k,
-        max_predicted_bound=float(np.max(thermal_error_bound_k)),
+        predicted_error_bound_k=thermal_error_bound_k,
+        max_predicted_bound_k=float(np.max(thermal_error_bound_k)),
         affected_cells=affected_count,
         reused_cells=reused_count,
         total_cells=ny * nx,
@@ -240,7 +240,7 @@ def verify_certificate(certificate: ErrorCertificate,
     Verifies the mathematical soundness and tolerance compliance of an error certificate.
     """
     actual_error = np.abs(incremental_tmrt - full_recomputed_tmrt)
-    predicted_bound = certificate.predicted_error_bound
+    predicted_bound = certificate.predicted_error_bound_k
 
     # Slack: bound - actual_error >= -numerical_slack
     slack = predicted_bound - actual_error

@@ -131,11 +131,11 @@ def run_comparative_experiment():
     print(f"Reused Cells (Safe):          {cert.reused_cells} ({cert.reused_fraction * 100:.1f}%)")
     print(f"Recomputed Cells (Dirty):     {cert.affected_cells} ({(1.0 - cert.reused_fraction) * 100:.1f}%)")
     print(f"Max Actual Error on Reused:   {verif.reused_max_error:.4e} K (Threshold: {config.tmrt_tolerance_k} K)")
-    print(f"Max Theoretical Upper Bound:  {cert.max_predicted_bound:.2f} K")
+    print(f"Max Theoretical Upper Bound:  {cert.max_predicted_bound_k:.2f} K")
     print(f"Min Verification Slack:       {np.min(verif.slack_map):.4e} K (>= 0 guarantees soundness)")
 
-    reused_mask = (cert.predicted_error_bound <= cert.tolerance)
-    dirty_mask = (cert.predicted_error_bound > cert.tolerance)
+    reused_mask = (cert.predicted_error_bound_k <= cert.tolerance)
+    dirty_mask = (cert.predicted_error_bound_k > cert.tolerance)
     actual_error_map = np.abs(edited_inc_res.tmrt - edited_full_res.tmrt)
 
     # 7. Save Array Outputs (.npz)
@@ -172,7 +172,7 @@ def run_comparative_experiment():
         longwave_flux=edited_inc_res.longwave_flux,
         tmrt=edited_inc_res.tmrt,
         utci=edited_inc_res.utci,
-        certificate_bound=cert.predicted_error_bound,
+        certificate_bound=cert.predicted_error_bound_k,
         reused_mask=reused_mask,
         dirty_mask=dirty_mask
     )
@@ -198,8 +198,8 @@ def run_comparative_experiment():
     plt.colorbar(im2, ax=axes[1, 0], fraction=0.046, pad=0.04, label="Error (K)")
 
     # 4. Certificate Upper Bound B_T(x) with Tolerance Contour
-    im3 = axes[1, 1].imshow(cert.predicted_error_bound, origin="lower", cmap="viridis", vmax=max(2.0, config.tmrt_tolerance_k * 2))
-    axes[1, 1].contour(cert.predicted_error_bound, levels=[config.tmrt_tolerance_k], colors=["red"], linewidths=[2.0], linestyles=["--"])
+    im3 = axes[1, 1].imshow(cert.predicted_error_bound_k, origin="lower", cmap="viridis", vmax=max(2.0, config.tmrt_tolerance_k * 2))
+    axes[1, 1].contour(cert.predicted_error_bound_k, levels=[config.tmrt_tolerance_k], colors=["red"], linewidths=[2.0], linestyles=["--"])
     axes[1, 1].set_title(r"Computable Certificate Bound $B_T(x)$ (K)" f"\n(Red dashed = $\\varepsilon_T = {config.tmrt_tolerance_k}$ K contour)", fontsize=13, fontweight="bold")
     plt.colorbar(im3, ax=axes[1, 1], fraction=0.046, pad=0.04, label=r"Bound $B_T(x)$ (K)")
 
@@ -275,7 +275,7 @@ def run_comparative_experiment():
             "max_actual_error_overall": float(np.max(actual_error_map)),
             "mean_actual_error_overall": float(np.mean(actual_error_map)),
             "max_actual_error_reused": float(verif.reused_max_error),
-            "max_predicted_bound": float(cert.max_predicted_bound),
+            "max_predicted_bound_k": float(cert.max_predicted_bound_k),
             "mean_slack": float(np.mean(verif.slack_map)),
             "min_slack": float(np.min(verif.slack_map))
         },
@@ -301,7 +301,7 @@ def run_comparative_experiment():
         "reused_cells": cert.reused_cells,
         "affected_cells": cert.affected_cells,
         "reused_fraction": round(cert.reused_fraction, 4),
-        "max_predicted_bound_k": round(cert.max_predicted_bound, 4),
+        "max_predicted_bound_k": round(cert.max_predicted_bound_k, 4),
         "mathematical_assumptions": cert.assumptions,
         "verification": {
             "verified": verif.is_valid,

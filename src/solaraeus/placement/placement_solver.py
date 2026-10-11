@@ -186,7 +186,7 @@ class PlacementSolverEngine:
         # 4. Certificate Verification
         cert_status = cert.status
         cert_violations = 0 if cert.is_certified else int(getattr(cert, "violations_count", 1))
-        max_bound_k = float(np.max(cert.predicted_error_bound))
+        max_bound_k = float(np.max(cert.predicted_error_bound_k))
 
         # 5. Objective & Metric Computation
         metrics = compute_objective(

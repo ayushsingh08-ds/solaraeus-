@@ -403,10 +403,10 @@ def main():
             "status": cert.status,
             "is_certified": cert.is_certified,
             "violations_count": 0 if cert.is_certified else 1,
-            "max_predicted_bound_k": float(np.max(cert.predicted_error_bound)),
+            "max_predicted_bound_k": float(np.max(cert.predicted_error_bound_k)),
             "tolerance_target_k": 0.50,
             "actual_max_reused_error_k": float(diff_tmrt_gpu_inc_full),
-            "bound_valid": bool(diff_tmrt_gpu_inc_full <= float(np.max(cert.predicted_error_bound)) + 1e-9)
+            "bound_valid": bool(diff_tmrt_gpu_inc_full <= float(np.max(cert.predicted_error_bound_k)) + 1e-9)
         }
         certificates_report.append(cert_rec)
 

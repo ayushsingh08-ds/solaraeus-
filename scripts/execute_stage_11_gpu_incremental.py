@@ -308,7 +308,7 @@ def main():
         full_recomputed_tmrt=cpu_full_tmrt
     )
     max_reused_actual_err = float(np.max(np.abs(gpu_inc_result.tmrt[reused_mask] - cpu_full_tmrt[reused_mask])))
-    max_reused_bound = float(np.max(certificate.predicted_error_bound[reused_mask]))
+    max_reused_bound = float(np.max(certificate.predicted_error_bound_k[reused_mask]))
     print(f"  Certificate Verification Violations: {cert_verification.num_violations}")
     print(f"  Max Actual Error on Reused:          {max_reused_actual_err:.6f} K (bound: {max_reused_bound:.6f} K)")
     print(f"  Certificate Soundness Valid:         {cert_verification.is_valid}")
@@ -462,7 +462,7 @@ def main():
         "token": "STAGE_11_GPU_INCREMENTAL_RECOMPUTATION_COMPLETE",
         "is_valid": cert_verification.is_valid,
         "num_violations": cert_verification.num_violations,
-        "max_predicted_bound_k": float(certificate.max_predicted_bound),
+        "max_predicted_bound_k": float(certificate.max_predicted_bound_k),
         "max_actual_error_on_reused_k": float(cert_verification.reused_max_error),
         "epsilon_target_k": float(certificate.tolerance),
         "recomputed_cells": n_recomputed,

@@ -367,7 +367,7 @@ def main():
     
     print(f"  Certificate Status:        {certificate.status}")
     print(f"  Tolerance threshold:       {certificate.tolerance} K")
-    print(f"  Max predicted bound:       {certificate.max_predicted_bound:.4f} K")
+    print(f"  Max predicted bound:       {certificate.max_predicted_bound_k:.4f} K")
     print(f"  Recomputed dirty cells:    {n_recomputed} / {total_cells} ({(n_recomputed/total_cells)*100:.2f}%)")
     print(f"  Reused certified cells:    {n_reused} / {total_cells} ({reused_pct:.2f}%)")
     print(f"  Candidate region time:     {certificate.timing_candidate_region_sec:.4f} s")
@@ -573,7 +573,7 @@ def main():
     
     np.savez_compressed(
         out_dir / "certificate_fields.npz",
-        predicted_error_bound=certificate.predicted_error_bound,
+        predicted_error_bound_k=certificate.predicted_error_bound_k,
         recomputed_mask=recomputed_mask,
         reused_mask=reused_mask,
         actual_error_tmrt=cert_verification.actual_error_map,
@@ -610,7 +610,7 @@ def main():
         "status": certificate.status,
         "is_valid": cert_verification.is_valid,
         "tolerance_k": certificate.tolerance,
-        "max_predicted_bound_k": float(certificate.max_predicted_bound),
+        "max_predicted_bound_k": float(certificate.max_predicted_bound_k),
         "num_violations": int(cert_verification.num_violations),
         "max_violation_k": float(cert_verification.max_violation),
         "reused_max_error_k": float(cert_verification.reused_max_error),
@@ -776,7 +776,7 @@ def main():
         "certificate_status": {
             "status": certificate.status,
             "tolerance_k": certificate.tolerance,
-            "max_predicted_bound_k": round(float(certificate.max_predicted_bound), 4),
+            "max_predicted_bound_k": round(float(certificate.max_predicted_bound_k), 4),
             "violations_count": cert_verification.num_violations,
             "is_valid": cert_verification.is_valid,
         },
@@ -839,7 +839,7 @@ def main():
     
     # FIG 02: Error Certificate Bound Map
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5.5), constrained_layout=True)
-    im1 = ax1.imshow(certificate.predicted_error_bound, origin="lower", extent=extent, cmap="magma", vmin=0, vmax=2.0)
+    im1 = ax1.imshow(certificate.predicted_error_bound_k, origin="lower", extent=extent, cmap="magma", vmin=0, vmax=2.0)
     ax1.set_title("Computable Upper Bound $B_T(x)$ (K)\n[Threshold $\\tau = 0.5$ K]", fontsize=11, fontweight="bold")
     add_annotations(ax1)
     fig.colorbar(im1, ax=ax1, fraction=0.046, pad=0.04, label="K")
@@ -968,7 +968,7 @@ def main():
     ax2.legend(loc="upper right")
     
     # Bound vs actual scatter on dirty cells
-    b_dirty = certificate.predicted_error_bound[recomputed_mask]
+    b_dirty = certificate.predicted_error_bound_k[recomputed_mask]
     e_dirty = cert_verification.actual_error_map[recomputed_mask]
     ax3.scatter(b_dirty, e_dirty, color="purple", alpha=0.7, edgecolors="none")
     ax3.plot([0, max(b_dirty)], [0, max(b_dirty)], color="gray", linestyle="--", label="1:1 Bound Line")

@@ -249,9 +249,9 @@ def test_adversarial_case6_diffuse_perturbation_outside_shadow(base_weather, def
 
     # Specifically check cells that are reused (outside dirty region):
     # Error must be non-negative, bounded by B_T(x) and <= tolerance
-    reused_mask = (cert.predicted_error_bound <= cert.tolerance)
+    reused_mask = (cert.predicted_error_bound_k <= cert.tolerance)
     actual_err = np.abs(inc_res.result.tmrt[reused_mask] - full_res.tmrt[reused_mask])
-    bounds = cert.predicted_error_bound[reused_mask]
+    bounds = cert.predicted_error_bound_k[reused_mask]
 
     assert np.all(actual_err <= bounds + 1e-9)
     assert np.all(actual_err <= config.tmrt_tolerance_k + 1e-9)

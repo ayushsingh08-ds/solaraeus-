@@ -356,7 +356,7 @@ def main():
 
     print(f"  -> Certificate is SOUND and VALID: violations = {cert_verification.num_violations}")
     print(f"  -> Reused max error: {cert_verification.reused_max_error:.6f} K (<= tolerance {certificate.tolerance} K)")
-    print(f"  -> Max predicted bound: {certificate.max_predicted_bound:.4f} K")
+    print(f"  -> Max predicted bound: {certificate.max_predicted_bound_k:.4f} K")
 
     # 7. Spatial Analysis Masks Setup
     print("\n[Phase 6] Setting up spatial analysis domains...")
@@ -535,7 +535,7 @@ def main():
 
     np.savez_compressed(
         out_dir / "certificate_fields.npz",
-        predicted_error_bound=certificate.predicted_error_bound,
+        predicted_error_bound_k=certificate.predicted_error_bound_k,
         recomputed_mask=recomputed_mask,
         reused_mask=reused_mask,
         actual_error_tmrt=cert_verification.actual_error_map,
@@ -708,7 +708,7 @@ def main():
         "status": certificate.status,
         "is_valid": cert_verification.is_valid,
         "tolerance_k": certificate.tolerance,
-        "max_predicted_bound_k": float(certificate.max_predicted_bound),
+        "max_predicted_bound_k": float(certificate.max_predicted_bound_k),
         "num_violations": int(cert_verification.num_violations),
         "reused_max_error_k": float(cert_verification.reused_max_error),
         "is_within_tolerance": bool(cert_verification.is_within_tolerance),
@@ -790,8 +790,8 @@ def main():
 
     # Plot 2: Predicted Error Bound Map
     fig, ax = plt.subplots(figsize=(10, 8), dpi=300)
-    im = ax.imshow(certificate.predicted_error_bound, origin="lower", extent=extent, cmap="plasma", interpolation="nearest")
-    ax.set_title(f"Computable Error Certificate Bound B_T(x) [Max: {certificate.max_predicted_bound:.4f} K]", fontsize=14, fontweight="bold")
+    im = ax.imshow(certificate.predicted_error_bound_k, origin="lower", extent=extent, cmap="plasma", interpolation="nearest")
+    ax.set_title(f"Computable Error Certificate Bound B_T(x) [Max: {certificate.max_predicted_bound_k:.4f} K]", fontsize=14, fontweight="bold")
     ax.set_xlabel("Local X (m)")
     ax.set_ylabel("Local Y (m)")
     cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)

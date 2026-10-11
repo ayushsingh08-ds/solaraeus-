@@ -82,7 +82,7 @@ def audit_certificate_independently(
     num_tolerance_violations = int(np.sum(tolerance_violations_mask))
     
     max_actual_error = float(np.max(actual_error))
-    max_predicted_bound = float(np.max(predicted_bound)) if np.all(np.isfinite(predicted_bound)) else float("inf")
+    max_predicted_bound_k = float(np.max(predicted_bound)) if np.all(np.isfinite(predicted_bound)) else float("inf")
     min_slack = float(np.min(slack))
     median_slack = float(np.median(slack))
     
@@ -108,7 +108,7 @@ def audit_certificate_independently(
         "reused_fraction": reused_cells / float(total_cells) if total_cells > 0 else 0.0,
         "max_actual_error": max_actual_error,
         "reused_max_actual_error": reused_max_error,
-        "max_predicted_bound": max_predicted_bound,
+        "max_predicted_bound_k": max_predicted_bound_k,
         "min_slack": min_slack,
         "median_slack": median_slack,
         "num_negative_slacks": num_negative_slacks,
@@ -278,7 +278,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     # -------------------------------------------------------------
     control_inc, control_cert = incremental_update_certified(scene, new_scene, prev_res, edit, weather, config)
     control_audit = audit_certificate_independently(
-        full_res.tmrt, control_inc.result.tmrt, control_cert.predicted_error_bound,
+        full_res.tmrt, control_inc.result.tmrt, control_cert.predicted_error_bound_k,
         control_inc.reused_mask, config.tmrt_tolerance_k
     )
     results.append({
@@ -289,7 +289,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
         "full_result_changed": not np.allclose(full_res.tmrt, prev_res.tmrt),
         "incremental_result_changed": not np.allclose(control_inc.result.tmrt, prev_res.tmrt),
         "actual_error": control_audit["max_actual_error"],
-        "predicted_bound": control_audit["max_predicted_bound"],
+        "predicted_bound_k": control_audit["max_predicted_bound_k"],
         "minimum_slack": control_audit["min_slack"],
         "certificate_violations": control_audit["num_certificate_violations"],
         "tolerance_violations": control_audit["num_tolerance_violations"],
@@ -346,7 +346,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
         "full_result_changed": not np.allclose(full_res.tmrt, prev_res.tmrt),
         "incremental_result_changed": not np.allclose(m1_tmrt, prev_res.tmrt),
         "actual_error": m1_audit["max_actual_error"],
-        "predicted_bound": m1_audit["max_predicted_bound"],
+        "predicted_bound_k": m1_audit["max_predicted_bound_k"],
         "minimum_slack": m1_audit["min_slack"],
         "certificate_violations": m1_audit["num_certificate_violations"],
         "tolerance_violations": m1_audit["num_tolerance_violations"],
@@ -387,7 +387,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
         "full_result_changed": not np.allclose(full_res.tmrt, prev_res.tmrt),
         "incremental_result_changed": not np.allclose(m2_tmrt, prev_res.tmrt),
         "actual_error": m2_audit["max_actual_error"],
-        "predicted_bound": m2_audit["max_predicted_bound"],
+        "predicted_bound_k": m2_audit["max_predicted_bound_k"],
         "minimum_slack": m2_audit["min_slack"],
         "certificate_violations": m2_audit["num_certificate_violations"],
         "tolerance_violations": m2_audit["num_tolerance_violations"],
@@ -412,7 +412,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
         "full_result_changed": not np.allclose(full_res.tmrt, prev_res.tmrt),
         "incremental_result_changed": False,
         "actual_error": m3_audit["max_actual_error"],
-        "predicted_bound": m3_audit["max_predicted_bound"],
+        "predicted_bound_k": m3_audit["max_predicted_bound_k"],
         "minimum_slack": m3_audit["min_slack"],
         "certificate_violations": m3_audit["num_certificate_violations"],
         "tolerance_violations": m3_audit["num_tolerance_violations"],
@@ -453,7 +453,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
         "full_result_changed": not np.allclose(full_res.tmrt, prev_res.tmrt),
         "incremental_result_changed": not np.allclose(m4_tmrt, prev_res.tmrt),
         "actual_error": m4_audit["max_actual_error"],
-        "predicted_bound": m4_audit["max_predicted_bound"],
+        "predicted_bound_k": m4_audit["max_predicted_bound_k"],
         "minimum_slack": m4_audit["min_slack"],
         "certificate_violations": m4_audit["num_certificate_violations"],
         "tolerance_violations": m4_audit["num_tolerance_violations"],

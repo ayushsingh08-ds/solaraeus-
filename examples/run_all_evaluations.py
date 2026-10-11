@@ -250,7 +250,7 @@ def main():
     print("\n--- Work Package 6: Certificate Soundness & Tightness Analysis ---")
     cert_rows = []
     actual_err_map = np.abs(last_inc_res.tmrt - last_full_res.tmrt)
-    predicted_bound_map = last_cert.predicted_error_bound
+    predicted_bound_map = last_cert.predicted_error_bound_k
     slack_map = predicted_bound_map - actual_err_map
     reused_mask = (predicted_bound_map <= last_cert.tolerance)
 

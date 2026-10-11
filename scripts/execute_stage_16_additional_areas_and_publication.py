@@ -267,9 +267,9 @@ def main():
         "area_id": "AREA_BRIGADE_ROAD_EXT",
         "certificate_status": cert_b.status,
         "is_certified": cert_b.is_certified,
-        "max_predicted_bound_k": float(np.max(cert_b.predicted_error_bound)),
+        "max_predicted_bound_k": float(np.max(cert_b.predicted_error_bound_k)),
         "actual_reused_error_k": diff_b_tmrt_inc,
-        "bound_valid": bool(diff_b_tmrt_inc <= float(np.max(cert_b.predicted_error_bound)) + 1e-9)
+        "bound_valid": bool(diff_b_tmrt_inc <= float(np.max(cert_b.predicted_error_bound_k)) + 1e-9)
     }, indent=2), encoding="utf-8")
 
     # Simulate Area 2: AREA_MG_ROAD_PLAZA
@@ -349,9 +349,9 @@ def main():
         "area_id": "AREA_MG_ROAD_PLAZA",
         "certificate_status": cert_m.status,
         "is_certified": cert_m.is_certified,
-        "max_predicted_bound_k": float(np.max(cert_m.predicted_error_bound)),
+        "max_predicted_bound_k": float(np.max(cert_m.predicted_error_bound_k)),
         "actual_reused_error_k": diff_m_tmrt_inc,
-        "bound_valid": bool(diff_m_tmrt_inc <= float(np.max(cert_m.predicted_error_bound)) + 1e-9)
+        "bound_valid": bool(diff_m_tmrt_inc <= float(np.max(cert_m.predicted_error_bound_k)) + 1e-9)
     }, indent=2), encoding="utf-8")
 
     # Uncertainty Reports for Additional Areas

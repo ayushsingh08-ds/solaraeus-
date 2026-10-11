@@ -129,7 +129,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
     audit = audit_certificate_independently(
         full_tmrt=res_full.tmrt,
         incremental_tmrt=res_inc.result.tmrt,
-        predicted_bound=cert.predicted_error_bound,
+        predicted_bound=cert.predicted_error_bound_k,
         reused_mask=res_inc.reused_mask,
         tolerance=config.tmrt_tolerance_k
     )

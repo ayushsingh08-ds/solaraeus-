@@ -23,6 +23,9 @@ from typing import Any, Iterable, Mapping
 # Grows one entry per Track-2 rename commit.
 FIELD_ALIASES: dict[str, tuple[str, ...]] = {
     "tmrt_tolerance_k": ("tmrt_tolerance",),
+    "predicted_error_bound_k": ("predicted_error_bound",),
+    "max_predicted_bound_k": ("max_predicted_bound",),
+    "predicted_bound_k": ("predicted_bound",),
 }
 
 
