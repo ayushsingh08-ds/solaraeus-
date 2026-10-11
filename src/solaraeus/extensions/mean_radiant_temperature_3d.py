@@ -41,7 +41,6 @@ class Tmrt3DResult:
     mean_tmrt_c: float
     min_tmrt_c: float
     max_tmrt_c: float
-    cooling_delta_k: float  # Relative to baseline
 
 
 class Tmrt3DEngine:
@@ -201,10 +200,6 @@ class Tmrt3DEngine:
         s_str = radiant.s_str
         tmrt_c = radiant.tmrt_c
 
-        # Baseline reference comparison
-        base_tmrt_mean = 48.72
-        cooling_delta = float(np.mean(tmrt_c) - base_tmrt_mean)
-
         return Tmrt3DResult(
             tmrt_c=tmrt_c,
             s_str=s_str,
@@ -217,7 +212,6 @@ class Tmrt3DEngine:
             mean_tmrt_c=float(np.mean(tmrt_c)),
             min_tmrt_c=float(np.min(tmrt_c)),
             max_tmrt_c=float(np.max(tmrt_c)),
-            cooling_delta_k=cooling_delta,
         )
 
 
