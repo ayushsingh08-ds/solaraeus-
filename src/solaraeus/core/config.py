@@ -62,7 +62,7 @@ class SimulationConfig:
     local_time: str = "12:00:00"         # HH:MM:SS
     pedestrian_height: float = 1.1       # Ground-relative height z (m)
     grid_resolution: float = 1.0         # Spatial cell size dx (m)
-    tmrt_tolerance: float = 0.5          # User tolerance epsilon_T (K)
+    tmrt_tolerance_k: float = 0.5          # User tolerance epsilon_T (K)
     numerical_tolerance: float = 1e-6    # Numerical floating point slack
     sky_patch_configuration: int = 32    # Number of horizon search azimuths
     max_svf_search_dist_m: float = 60.0  # Maximum horizon search distance for SVF (m)
@@ -77,8 +77,8 @@ class SimulationConfig:
             raise ValueError(f"Pedestrian height must be >= 0, got {self.pedestrian_height}")
         if self.grid_resolution <= 0.0:
             raise ValueError(f"Grid resolution must be > 0, got {self.grid_resolution}")
-        if self.tmrt_tolerance <= 0.0:
-            raise ValueError(f"T_mrt tolerance must be > 0, got {self.tmrt_tolerance}")
+        if self.tmrt_tolerance_k <= 0.0:
+            raise ValueError(f"T_mrt tolerance must be > 0, got {self.tmrt_tolerance_k}")
         if self.sky_patch_configuration < 4:
             raise ValueError(f"Sky patch configuration must be >= 4, got {self.sky_patch_configuration}")
         if self.backend.lower() not in ("cpu", "gpu", "auto"):

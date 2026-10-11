@@ -88,7 +88,7 @@ def _incremental(backend: str):
     config = SimulationConfig(
         latitude=40.7128, longitude=-74.0060, date="2024-07-15",
         local_time="12:00:00", grid_resolution=1.0, sky_patch_configuration=16,
-        max_svf_search_dist_m=30.0, tmrt_tolerance=0.5,
+        max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5,
     )
     grid_cfg = PedestrianGridConfig(extent_x=80.0, extent_y=80.0, resolution=1.0, pedestrian_height=1.1)
     scene_base = Scene(pedestrian_grid=grid_cfg)

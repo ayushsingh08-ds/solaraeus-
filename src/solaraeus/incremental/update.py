@@ -382,7 +382,7 @@ def incremental_update_certified(previous_scene: Scene,
     t_cert_eval = cert.timing_certificate_eval_sec
 
     # 2. Identify Dirty Cells (where B_T(x) > tolerance)
-    dirty_mask = cert.predicted_error_bound > config.tmrt_tolerance
+    dirty_mask = cert.predicted_error_bound > config.tmrt_tolerance_k
 
     # 3. Selective Recomputation
     t0_recomp = time.perf_counter()
@@ -438,7 +438,7 @@ def incremental_update_certified(previous_scene: Scene,
         "reused_cells": reused_count,
         "total_cells": grid.total_cells,
         "reused_fraction": reused_count / float(grid.total_cells),
-        "tmrt_tolerance": config.tmrt_tolerance,
+        "tmrt_tolerance_k": config.tmrt_tolerance_k,
         "max_predicted_bound": cert.max_predicted_bound
     }
 

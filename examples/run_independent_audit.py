@@ -114,7 +114,7 @@ def main():
             longitude=121.4737,
             date="2026-06-21",
             local_time="08:00:00",
-            tmrt_tolerance=sc["tol"],
+            tmrt_tolerance_k=sc["tol"],
             max_svf_search_dist_m=30.0
         )
         base_scene = create_scaling_scene(sc["size"], sc["density"])
@@ -143,7 +143,7 @@ def main():
         # Execute independent audit calculation
         audit = audit_certificate_independently(
             full_res.tmrt, inc_res.result.tmrt, cert.predicted_error_bound,
-            inc_res.reused_mask, config.tmrt_tolerance
+            inc_res.reused_mask, config.tmrt_tolerance_k
         )
         
         rec = {
@@ -200,7 +200,7 @@ def main():
     scene_80m = create_scaling_scene(80.0, "medium")
     config_std = SimulationConfig(
         latitude=31.2304, longitude=121.4737, date="2026-06-21", local_time="08:00:00",
-        tmrt_tolerance=0.5, max_svf_search_dist_m=30.0
+        tmrt_tolerance_k=0.5, max_svf_search_dist_m=30.0
     )
     mutation_records = run_mutation_tests(scene_80m, weather, config_std)
     

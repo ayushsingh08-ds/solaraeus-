@@ -62,7 +62,7 @@ def test_exact_incremental_add_building(test_env):
     full_res = full_recompute(scene_after, weather, config)
 
     # Check exact numerical equivalence (error <= 1e-10)
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(inc_res.result, full_res, tmrt_tolerance_k=1e-10, numerical_tolerance=1e-10)
 
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
@@ -89,7 +89,7 @@ def test_exact_incremental_remove_building(test_env):
     )
     full_res = full_recompute(scene_after, weather, config)
 
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(inc_res.result, full_res, tmrt_tolerance_k=1e-10, numerical_tolerance=1e-10)
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
             f"RemoveBuilding exact incremental update failed on '{field_name}'! "
@@ -111,7 +111,7 @@ def test_exact_incremental_change_height(test_env):
     )
     full_res = full_recompute(scene_after, weather, config)
 
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(inc_res.result, full_res, tmrt_tolerance_k=1e-10, numerical_tolerance=1e-10)
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
             f"ChangeHeight exact incremental update failed on '{field_name}'! "
@@ -133,7 +133,7 @@ def test_exact_incremental_move_building(test_env):
     )
     full_res = full_recompute(scene_after, weather, config)
 
-    comps = compare_results(inc_res.result, full_res, tmrt_tolerance=1e-10, numerical_tolerance=1e-10)
+    comps = compare_results(inc_res.result, full_res, tmrt_tolerance_k=1e-10, numerical_tolerance=1e-10)
     for field_name, m in comps.items():
         assert m.is_within_tolerance, (
             f"MoveBuilding exact incremental update failed on '{field_name}'! "

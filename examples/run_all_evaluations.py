@@ -89,7 +89,7 @@ def main():
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance_k=0.5
     )
 
     # =========================================================================
@@ -206,7 +206,7 @@ def main():
             latitude=base_config.latitude, longitude=base_config.longitude,
             date=d_str, local_time=t_str,
             grid_resolution=1.0, sky_patch_configuration=16,
-            max_svf_search_dist_m=30.0, tmrt_tolerance=0.5
+            max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5
         )
         e_sun = AddBuildingEdit(Building("b_sun", BoundingBox2D(35.0, 45.0, 35.0, 45.0), height=16.0))
         rec_sun, _, _, _ = run_benchmark_trial(base_scene_80, e_sun, base_weather, s_cfg, scene_id=case_id, edit_magnitude=16.0)
@@ -232,7 +232,7 @@ def main():
             latitude=base_config.latitude, longitude=base_config.longitude,
             date=base_config.date, local_time=base_config.local_time,
             grid_resolution=1.0, sky_patch_configuration=16,
-            max_svf_search_dist_m=30.0, tmrt_tolerance=tol
+            max_svf_search_dist_m=30.0, tmrt_tolerance_k=tol
         )
         e_tol = AddBuildingEdit(Building("b_tol", BoundingBox2D(25.0, 37.0, 25.0, 37.0), height=16.0))
         rec_tol, last_full_res, last_inc_res, last_cert = run_benchmark_trial(
@@ -501,7 +501,7 @@ def main():
 
     # 2. Speedup vs Tolerance
     fig, ax = plt.subplots(figsize=(8, 5), dpi=150)
-    tols = [r.tmrt_tolerance for r in tolerance_records]
+    tols = [r.tmrt_tolerance_k for r in tolerance_records]
     spds = [r.speedup for r in tolerance_records]
     ax.plot(tols, spds, marker="s", color="darkgreen", linewidth=2.2)
     ax.set_xlabel(r"User $T_{\mathrm{mrt}}$ Tolerance $\varepsilon_T$ (K)", fontsize=12)
@@ -578,9 +578,9 @@ def main():
 
     # 6. Certificate Bound Map
     fig, ax = plt.subplots(figsize=(7, 6), dpi=150)
-    im_b = ax.imshow(predicted_bound_map, origin="lower", cmap="viridis", vmax=max(3.0, base_config.tmrt_tolerance * 3))
-    ax.contour(predicted_bound_map, levels=[base_config.tmrt_tolerance], colors=["red"], linewidths=[2.0], linestyles=["--"])
-    ax.set_title(r"Spatial Map: Certificate Upper Bound $B_T(x)$" f"\n(Red dashed = $\\varepsilon_T = {base_config.tmrt_tolerance}$ K)", fontsize=12, fontweight="bold")
+    im_b = ax.imshow(predicted_bound_map, origin="lower", cmap="viridis", vmax=max(3.0, base_config.tmrt_tolerance_k * 3))
+    ax.contour(predicted_bound_map, levels=[base_config.tmrt_tolerance_k], colors=["red"], linewidths=[2.0], linestyles=["--"])
+    ax.set_title(r"Spatial Map: Certificate Upper Bound $B_T(x)$" f"\n(Red dashed = $\\varepsilon_T = {base_config.tmrt_tolerance_k}$ K)", fontsize=12, fontweight="bold")
     ax.set_xlabel("X (m)", fontsize=11)
     ax.set_ylabel("Y (m)", fontsize=11)
     plt.colorbar(im_b, ax=ax, fraction=0.046, pad=0.04, label="Bound (K)")

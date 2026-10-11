@@ -47,7 +47,7 @@ class BenchmarkRecord:
     solar_altitude: float
     solar_azimuth: float
     weather_configuration: str
-    tmrt_tolerance: float
+    tmrt_tolerance_k: float
     full_recompute_time: float
     incremental_total_time: float
     certificate_time: float
@@ -179,7 +179,7 @@ def run_benchmark_trial(scene_before: Scene,
         solar_altitude=solar_alt,
         solar_azimuth=solar_az,
         weather_configuration=weather_desc,
-        tmrt_tolerance=config.tmrt_tolerance,
+        tmrt_tolerance_k=config.tmrt_tolerance_k,
         full_recompute_time=full_recompute_time,
         incremental_total_time=incremental_total_time,
         certificate_time=t_cert,

@@ -239,7 +239,7 @@ class GPUIncrementalEngine:
             return update_res, cert
 
         # 2. Identify Dirty Cells where B_T(x) > tolerance
-        dirty_mask = cert.predicted_error_bound > config.tmrt_tolerance
+        dirty_mask = cert.predicted_error_bound > config.tmrt_tolerance_k
         n_recomputed = int(np.sum(dirty_mask))
         n_reused = total_cells - n_recomputed
         reused_mask = ~dirty_mask
@@ -419,7 +419,7 @@ class GPUIncrementalEngine:
             "timing_radiation_sec": t_rad,
             "timing_total_sec": t_total,
             "peak_gpu_memory_mb": metrics.peak_gpu_memory_mb,
-            "tmrt_tolerance": config.tmrt_tolerance,
+            "tmrt_tolerance_k": config.tmrt_tolerance_k,
             "max_predicted_bound": cert.max_predicted_bound,
             "gpu_profile": metrics.__dict__
         }

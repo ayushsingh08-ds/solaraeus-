@@ -64,7 +64,7 @@ def compare_arrays(actual: np.ndarray, expected: np.ndarray,
 
 
 def compare_results(result_test: SimulationResult, result_ref: SimulationResult,
-                    tmrt_tolerance: float = 0.5,
+                    tmrt_tolerance_k: float = 0.5,
                     numerical_tolerance: float = 1e-6) -> Dict[str, ComparisonMetrics]:
     """
     Compares all microclimatic fields of two SimulationResult objects.
@@ -93,11 +93,11 @@ def compare_results(result_test: SimulationResult, result_ref: SimulationResult,
     )
     comparisons["tmrt"] = compare_arrays(
         result_test.tmrt, result_ref.tmrt,
-        field_name="tmrt", tolerance=tmrt_tolerance
+        field_name="tmrt", tolerance=tmrt_tolerance_k
     )
     comparisons["utci"] = compare_arrays(
         result_test.utci, result_ref.utci,
-        field_name="utci", tolerance=tmrt_tolerance
+        field_name="utci", tolerance=tmrt_tolerance_k
     )
 
     return comparisons

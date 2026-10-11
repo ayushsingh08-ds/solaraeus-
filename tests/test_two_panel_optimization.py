@@ -92,7 +92,7 @@ def create_synthetic_dual_panel_scene() -> Tuple[Scene, SimulationConfig, Weathe
     config = SimulationConfig(
         latitude=12.9716, longitude=77.5946,
         date="2026-10-07", local_time="12:00:00",
-        sky_patch_configuration=8, tmrt_tolerance=0.50,
+        sky_patch_configuration=8, tmrt_tolerance_k=0.50,
     )
     weather = Weather(
         air_temperature=303.15, relative_humidity=50.0,

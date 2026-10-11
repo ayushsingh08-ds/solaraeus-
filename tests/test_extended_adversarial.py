@@ -54,7 +54,7 @@ def config():
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance_k=0.5
     )
 
 
@@ -130,7 +130,7 @@ def test_adv_05_low_sun_long_shadow(weather):
         latitude=40.7128, longitude=-74.0060,
         date="2024-07-15", local_time="18:55:00",  # ~15 deg altitude
         grid_resolution=1.0, sky_patch_configuration=16,
-        max_svf_search_dist_m=30.0, tmrt_tolerance=0.5
+        max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5
     )
     scene_before = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=70.0, extent_y=70.0))
     res_before = full_recompute(scene_before, weather, config_low)
@@ -193,7 +193,7 @@ def test_adv_08_ground_shadow_diffuse_outside(weather, config):
         date=config.date, local_time=config.local_time,
         sky_patch_configuration=config.sky_patch_configuration,
         max_svf_search_dist_m=config.max_svf_search_dist_m,
-        tmrt_tolerance=1.5
+        tmrt_tolerance_k=1.5
     )
     inc_res, cert = incremental_update_certified(scene_before, scene_after, res_before, edit, weather, cfg)
     full_res = full_recompute(scene_after, weather, cfg)

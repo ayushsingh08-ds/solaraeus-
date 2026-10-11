@@ -283,7 +283,7 @@ def main():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
     )
@@ -680,8 +680,8 @@ def main():
             "mean_abs_error_tmrt_k": float(error_summary_dict["all_grid_cells"]["tmrt"]["mean"]),
             "max_abs_error_svf": float(error_summary_dict["all_grid_cells"]["svf"]["max"]),
             "max_abs_error_shadow": float(error_summary_dict["all_grid_cells"]["shadow_mask"]["max"]),
-            "tolerance_k": sim_config.tmrt_tolerance,
-            "within_tolerance": bool(error_summary_dict["all_grid_cells"]["tmrt"]["max"] <= sim_config.tmrt_tolerance),
+            "tolerance_k": sim_config.tmrt_tolerance_k,
+            "within_tolerance": bool(error_summary_dict["all_grid_cells"]["tmrt"]["max"] <= sim_config.tmrt_tolerance_k),
         },
         "certificate_status": certificate.status,
         "certificate_violations": int(cert_verification.num_violations),
@@ -714,7 +714,7 @@ def main():
                 np.all(recomputed_mask[recomputed_mask])
             ),
             "maximum_error_within_tolerance": bool(
-                error_summary_dict["all_grid_cells"]["tmrt"]["max"] <= sim_config.tmrt_tolerance
+                error_summary_dict["all_grid_cells"]["tmrt"]["max"] <= sim_config.tmrt_tolerance_k
             ),
             "certificate_violations_zero": bool(cert_verification.num_violations == 0),
             "slack_map_non_negative": bool(np.min(cert_verification.slack_map) >= -1e-10),
@@ -951,7 +951,7 @@ def main():
     # Tmrt error histogram (log scale)
     tmrt_errs = np.abs(diff_tmrt.ravel())
     ax1.hist(tmrt_errs[tmrt_errs > 1e-6], bins=50, color="crimson", edgecolor="black", log=True)
-    ax1.axvline(sim_config.tmrt_tolerance, color="black", linestyle="--", linewidth=1.5, label=f"Tolerance $\\tau={sim_config.tmrt_tolerance}$ K")
+    ax1.axvline(sim_config.tmrt_tolerance_k, color="black", linestyle="--", linewidth=1.5, label=f"Tolerance $\\tau={sim_config.tmrt_tolerance_k}$ K")
     ax1.axvline(np.max(tmrt_errs), color="blue", linestyle=":", linewidth=1.5, label=f"Max Error: {np.max(tmrt_errs):.4f} K")
     ax1.set_title("$T_{mrt}$ Pointwise Error Distribution (Changed Cells)", fontsize=11, fontweight="bold")
     ax1.set_xlabel("Absolute Error (K)")
@@ -982,7 +982,7 @@ def main():
     sorted_errs = np.sort(reused_errs)
     cdf = np.arange(1, len(sorted_errs) + 1) / len(sorted_errs)
     ax4.plot(sorted_errs, cdf, color="green", linewidth=2.0)
-    ax4.axvline(sim_config.tmrt_tolerance, color="black", linestyle="--", label=f"Tolerance $\\tau={sim_config.tmrt_tolerance}$ K")
+    ax4.axvline(sim_config.tmrt_tolerance_k, color="black", linestyle="--", label=f"Tolerance $\\tau={sim_config.tmrt_tolerance_k}$ K")
     ax4.set_title(f"Cumulative Error Distribution on Reused Cells ({n_reused:,} cells)", fontsize=11, fontweight="bold")
     ax4.set_xlabel("Actual Error (K)")
     ax4.set_ylabel("Cumulative Fraction")

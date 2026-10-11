@@ -179,7 +179,7 @@ def run_mesh_certificate_audit(output_dir: Optional[str] = None,
             config = SimulationConfig(
                 latitude=40.7128, longitude=-74.0060,
                 date="2026-06-21", local_time="12:00:00",
-                tmrt_tolerance=tol,
+                tmrt_tolerance_k=tol,
                 sky_patch_configuration=16,
                 max_svf_search_dist_m=30.0
             )

@@ -185,7 +185,7 @@ def main():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
         backend="gpu"
@@ -867,7 +867,7 @@ All key candidates were audited across all three physical execution paths:
 ### Parity Audit Verification:
 - **Direct Shadow Mask Mismatches:** 0 across all evaluated candidates.
 - **Sky View Factor (SVF) Equivalence:** Max diff <= 1.11e-16 (machine epsilon).
-- **Certified Incremental Tmrt Difference:** <= {sim_config.tmrt_tolerance:.2f} K (strict certified bound satisfied).
+- **Certified Incremental Tmrt Difference:** <= {sim_config.tmrt_tolerance_k:.2f} K (strict certified bound satisfied).
 - **Certificate Violations:** 0 across all runs.
 
 ---

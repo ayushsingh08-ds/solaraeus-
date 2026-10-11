@@ -255,7 +255,7 @@ def _make_synthetic_scene_and_results():
         local_time="10:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.50,
+        tmrt_tolerance_k=0.50,
         sky_patch_configuration=32,
         max_svf_search_dist_m=30.0,
         backend="auto",
@@ -489,4 +489,4 @@ def test_final_cpu_gpu_incremental_validation():
     assert report.gpu_full_vs_gpu_inc.passed_all
     assert report.certificate_violations == 0
     assert report.max_predicted_bound_k > 0.0
-    assert report.cpu_full_vs_gpu_inc.max_tmrt_diff_k <= sim_cfg.tmrt_tolerance
+    assert report.cpu_full_vs_gpu_inc.max_tmrt_diff_k <= sim_cfg.tmrt_tolerance_k

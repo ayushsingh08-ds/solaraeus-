@@ -89,7 +89,7 @@ def synthetic_scene_and_baseline():
 
     config = SimulationConfig(
         latitude=12.97, longitude=77.59, date="2024-04-15", local_time="09:00:00",
-        sky_patch_configuration=8, tmrt_tolerance=0.5
+        sky_patch_configuration=8, tmrt_tolerance_k=0.5
     )
     weather = Weather(
         air_temperature=303.15, relative_humidity=50.0, wind_speed=1.5,
@@ -291,7 +291,7 @@ def test_cpu_gpu_incremental_parity(synthetic_scene_and_baseline):
     )
     assert report.all_passed
     assert report.certificate_violations == 0
-    assert report.gpu_full_vs_gpu_inc.max_tmrt_diff_k <= config.tmrt_tolerance
+    assert report.gpu_full_vs_gpu_inc.max_tmrt_diff_k <= config.tmrt_tolerance_k
 
 
 # Test 12: Frozen-directory protection

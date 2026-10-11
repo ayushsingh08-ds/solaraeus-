@@ -38,7 +38,7 @@ def baseline_setup():
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance_k=0.5
     )
     return weather, config
 
@@ -51,7 +51,7 @@ def test_certificate_soundness_add_building(baseline_setup, tol):
         date=config.date, local_time=config.local_time,
         sky_patch_configuration=config.sky_patch_configuration,
         max_svf_search_dist_m=config.max_svf_search_dist_m,
-        tmrt_tolerance=tol
+        tmrt_tolerance_k=tol
     )
 
     scene_before = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=60.0, extent_y=60.0))

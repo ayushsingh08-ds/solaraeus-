@@ -41,7 +41,7 @@ def mesh_audit_scene() -> Tuple[Scene, Scene, SimulationConfig, Weather]:
         local_time="14:00:00",
         pedestrian_height=1.1,
         grid_resolution=1.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         numerical_tolerance=0.05,
         sky_patch_configuration=16,
         max_svf_search_dist_m=80.0
@@ -78,14 +78,14 @@ def test_clean_mesh_audit_is_sound_with_zero_violations(mesh_audit_scene):
         incremental_tmrt=inc_res.result.tmrt,
         predicted_bound=cert.predicted_error_bound,
         reused_mask=inc_res.reused_mask,
-        tolerance=cfg.tmrt_tolerance
+        tolerance=cfg.tmrt_tolerance_k
     )
 
     assert audit["is_sound"] is True
     assert audit["num_certificate_violations"] == 0
     assert audit["num_tolerance_violations"] == 0
     assert audit["min_slack"] >= -1e-6
-    assert audit["reused_max_actual_error"] <= cfg.tmrt_tolerance + 1e-6
+    assert audit["reused_max_actual_error"] <= cfg.tmrt_tolerance_k + 1e-6
 
 
 def test_mutation_zero_predicted_error_bound(mesh_audit_scene):
@@ -109,7 +109,7 @@ def test_mutation_zero_predicted_error_bound(mesh_audit_scene):
         incremental_tmrt=inc_res.result.tmrt,
         predicted_bound=mutated_bound,
         reused_mask=inc_res.reused_mask,
-        tolerance=cfg.tmrt_tolerance
+        tolerance=cfg.tmrt_tolerance_k
     )
 
     # Must flag violations because actual error on reused cells > 0
@@ -152,7 +152,7 @@ def test_mutation_unsafe_recompute_truncation(mesh_audit_scene):
         incremental_tmrt=mutated_tmrt,
         predicted_bound=mutated_bound,
         reused_mask=mutated_reused_mask,
-        tolerance=cfg.tmrt_tolerance
+        tolerance=cfg.tmrt_tolerance_k
     )
 
     # Significant violations must be detected

@@ -50,7 +50,7 @@ def base_env():
     config = SimulationConfig(
         latitude=40.7128, longitude=-74.0060,
         date="2026-06-21", local_time="12:00:00",
-        tmrt_tolerance=2.0,
+        tmrt_tolerance_k=2.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0
     )
@@ -104,7 +104,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
     config = SimulationConfig(
         latitude=40.7128, longitude=-74.0060,
         date="2026-06-21", local_time="10:10:00",
-        tmrt_tolerance=2.5,
+        tmrt_tolerance_k=2.5,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0
     )
@@ -131,7 +131,7 @@ def test_adv_mesh_02_grazing_solar_altitude(base_env):
         incremental_tmrt=res_inc.result.tmrt,
         predicted_bound=cert.predicted_error_bound,
         reused_mask=res_inc.reused_mask,
-        tolerance=config.tmrt_tolerance
+        tolerance=config.tmrt_tolerance_k
     )
     assert audit["is_sound"] is True, f"Found {audit['num_certificate_violations']} violations under grazing sun!"
     assert audit["num_certificate_violations"] == 0

@@ -95,7 +95,7 @@ def main():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
     )
@@ -421,7 +421,7 @@ def main():
                     "local_time": {"type": "string", "pattern": "^\\d{2}:\\d{2}:\\d{2}$"},
                     "pedestrian_height": {"type": "number", "minimum": 0.0, "default": 1.1},
                     "grid_resolution": {"type": "number", "exclusiveMinimum": 0.0, "default": 2.0},
-                    "tmrt_tolerance": {"type": "number", "minimum": 0.0, "default": 0.5},
+                    "tmrt_tolerance_k": {"type": "number", "minimum": 0.0, "default": 0.5},
                     "sky_patch_configuration": {"type": "integer", "enum": [16, 32, 64, 145], "default": 32},
                     "max_svf_search_dist_m": {"type": "number", "minimum": 10.0, "default": 120.0},
                 },
@@ -503,7 +503,7 @@ Performs a pure full evaluation from scratch across all grid cells.
 - **Returns**: `SimulationResult` containing 2D spatial numpy arrays (`shadow_mask`, `direct_irradiance`, `svf`, `shortwave_flux`, `longwave_flux`, `tmrt`, `utci`).
 
 ### `incremental_update_certified(previous_scene, updated_scene, previous_result, edit, weather, config) -> Tuple[IncrementalUpdateResult, ErrorCertificate]`
-Executes certified incremental update reusing unaffected static fields and recomputing only cells where predicted error exceeds `config.tmrt_tolerance`.
+Executes certified incremental update reusing unaffected static fields and recomputing only cells where predicted error exceeds `config.tmrt_tolerance_k`.
 - Guarantees: $|T_{{mrt}}^{{inc}} - T_{{mrt}}^{{full}}| \le B_T(x) \le \text{{tolerance}}$ on all reused cells.
 """
     with open(out_dir / "cpu_reference_api.md", "w", encoding="utf-8") as f:

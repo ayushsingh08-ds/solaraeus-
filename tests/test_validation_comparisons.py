@@ -58,7 +58,7 @@ def test_compare_results_full_pipeline():
     res_test = full_recompute(scene, weather, config)
 
     # Identical executions must pass all field checks
-    comparisons = compare_results(res_test, res_ref, tmrt_tolerance=0.5)
+    comparisons = compare_results(res_test, res_ref, tmrt_tolerance_k=0.5)
     for field_name, m in comparisons.items():
         assert m.is_within_tolerance, f"Field '{field_name}' unexpectedly failed identity comparison!"
 
@@ -90,7 +90,7 @@ def test_compare_results_perturbed_tmrt_detection():
         metadata=res_ref.metadata.copy()
     )
 
-    comparisons = compare_results(res_perturbed, res_ref, tmrt_tolerance=0.5)
+    comparisons = compare_results(res_perturbed, res_ref, tmrt_tolerance_k=0.5)
     assert comparisons["tmrt"].is_within_tolerance is False
     assert comparisons["tmrt"].exceedance_fraction == 1.0
 

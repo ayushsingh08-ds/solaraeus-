@@ -153,7 +153,7 @@ def main():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
     )

@@ -33,7 +33,7 @@ def sim_environment():
     config = SimulationConfig(
         latitude=40.7128, longitude=-74.0060,
         date="2026-06-21", local_time="12:00:00",
-        tmrt_tolerance=2.0,
+        tmrt_tolerance_k=2.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0
     )
@@ -180,8 +180,8 @@ def test_certified_incremental_update_mesh_soundness(sim_environment):
     assert verif.is_valid, f"Certificate invalid! {verif.num_violations} violations with max {verif.max_violation} K"
     assert verif.num_violations == 0
     assert verif.is_within_tolerance
-    assert verif.reused_max_error <= config.tmrt_tolerance, (
-        f"Reused max error ({verif.reused_max_error:.4f} K) exceeded tolerance ({config.tmrt_tolerance} K)"
+    assert verif.reused_max_error <= config.tmrt_tolerance_k, (
+        f"Reused max error ({verif.reused_max_error:.4f} K) exceeded tolerance ({config.tmrt_tolerance_k} K)"
     )
     assert cert.reused_cells > 0.70 * cert.total_cells, (
         f"Expected > 70% reuse, got {cert.reused_cells / cert.total_cells:.1%}"

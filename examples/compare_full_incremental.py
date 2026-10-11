@@ -71,7 +71,7 @@ def run_comparative_experiment():
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5               # 0.5 K tolerance contract
+        tmrt_tolerance_k=0.5               # 0.5 K tolerance contract
     )
 
     # 2. Build Baseline Urban Scene
@@ -83,7 +83,7 @@ def run_comparative_experiment():
     scene_baseline.add_building(bldg_center)
 
     print(f"Domain Extent: {grid_cfg.extent_x:.0f}m x {grid_cfg.extent_y:.0f}m ({int(grid_cfg.extent_x * grid_cfg.extent_y)} cells)")
-    print(f"Tolerance Threshold: epsilon_T = {config.tmrt_tolerance:.2f} K")
+    print(f"Tolerance Threshold: epsilon_T = {config.tmrt_tolerance_k:.2f} K")
     print("Running Baseline Full Recomputation...")
 
     t0 = time.perf_counter()
@@ -130,7 +130,7 @@ def run_comparative_experiment():
     print(f"Total Grid Cells:             {cert.total_cells}")
     print(f"Reused Cells (Safe):          {cert.reused_cells} ({cert.reused_fraction * 100:.1f}%)")
     print(f"Recomputed Cells (Dirty):     {cert.affected_cells} ({(1.0 - cert.reused_fraction) * 100:.1f}%)")
-    print(f"Max Actual Error on Reused:   {verif.reused_max_error:.4e} K (Threshold: {config.tmrt_tolerance} K)")
+    print(f"Max Actual Error on Reused:   {verif.reused_max_error:.4e} K (Threshold: {config.tmrt_tolerance_k} K)")
     print(f"Max Theoretical Upper Bound:  {cert.max_predicted_bound:.2f} K")
     print(f"Min Verification Slack:       {np.min(verif.slack_map):.4e} K (>= 0 guarantees soundness)")
 
@@ -198,9 +198,9 @@ def run_comparative_experiment():
     plt.colorbar(im2, ax=axes[1, 0], fraction=0.046, pad=0.04, label="Error (K)")
 
     # 4. Certificate Upper Bound B_T(x) with Tolerance Contour
-    im3 = axes[1, 1].imshow(cert.predicted_error_bound, origin="lower", cmap="viridis", vmax=max(2.0, config.tmrt_tolerance * 2))
-    axes[1, 1].contour(cert.predicted_error_bound, levels=[config.tmrt_tolerance], colors=["red"], linewidths=[2.0], linestyles=["--"])
-    axes[1, 1].set_title(r"Computable Certificate Bound $B_T(x)$ (K)" f"\n(Red dashed = $\\varepsilon_T = {config.tmrt_tolerance}$ K contour)", fontsize=13, fontweight="bold")
+    im3 = axes[1, 1].imshow(cert.predicted_error_bound, origin="lower", cmap="viridis", vmax=max(2.0, config.tmrt_tolerance_k * 2))
+    axes[1, 1].contour(cert.predicted_error_bound, levels=[config.tmrt_tolerance_k], colors=["red"], linewidths=[2.0], linestyles=["--"])
+    axes[1, 1].set_title(r"Computable Certificate Bound $B_T(x)$ (K)" f"\n(Red dashed = $\\varepsilon_T = {config.tmrt_tolerance_k}$ K contour)", fontsize=13, fontweight="bold")
     plt.colorbar(im3, ax=axes[1, 1], fraction=0.046, pad=0.04, label=r"Bound $B_T(x)$ (K)")
 
     for ax in axes.flat:
@@ -257,7 +257,7 @@ def run_comparative_experiment():
             "domain_extent_y_m": grid_cfg.extent_y,
             "grid_resolution_m": grid_cfg.resolution,
             "total_cells": cert.total_cells,
-            "tolerance_k": config.tmrt_tolerance
+            "tolerance_k": config.tmrt_tolerance_k
         },
         "timings_sec": {
             "baseline_full_recompute": time_baseline_sec,

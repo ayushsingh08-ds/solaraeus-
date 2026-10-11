@@ -43,7 +43,7 @@ def standard_config() -> SimulationConfig:
         local_time="14:00:00",
         pedestrian_height=1.1,
         grid_resolution=1.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         numerical_tolerance=0.05,
         sky_patch_configuration=16,
         max_svf_search_dist_m=100.0,

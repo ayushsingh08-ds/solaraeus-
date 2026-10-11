@@ -132,7 +132,7 @@ def main():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
         backend="gpu"
@@ -325,7 +325,7 @@ def main():
         sim_config_cpu = SimulationConfig(
             latitude=sim_config.latitude, longitude=sim_config.longitude, date=sim_config.date,
             local_time=sim_config.local_time, pedestrian_height=sim_config.pedestrian_height,
-            grid_resolution=sim_config.grid_resolution, tmrt_tolerance=sim_config.tmrt_tolerance,
+            grid_resolution=sim_config.grid_resolution, tmrt_tolerance_k=sim_config.tmrt_tolerance_k,
             sky_patch_configuration=sim_config.sky_patch_configuration,
             max_svf_search_dist_m=sim_config.max_svf_search_dist_m, backend="cpu"
         )

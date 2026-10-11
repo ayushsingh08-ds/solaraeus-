@@ -279,7 +279,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     control_inc, control_cert = incremental_update_certified(scene, new_scene, prev_res, edit, weather, config)
     control_audit = audit_certificate_independently(
         full_res.tmrt, control_inc.result.tmrt, control_cert.predicted_error_bound,
-        control_inc.reused_mask, config.tmrt_tolerance
+        control_inc.reused_mask, config.tmrt_tolerance_k
     )
     results.append({
         "mutation_id": "control_unmutated",
@@ -336,7 +336,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m1_bound = np.where(m1_dirty_mask, 60.0, 0.1)
     m1_reused = ~m1_dirty_mask
     m1_audit = audit_certificate_independently(
-        full_res.tmrt, m1_tmrt, m1_bound, m1_reused, config.tmrt_tolerance
+        full_res.tmrt, m1_tmrt, m1_bound, m1_reused, config.tmrt_tolerance_k
     )
     results.append({
         "mutation_id": "mutation_truncated_shadow_plume",
@@ -377,7 +377,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m2_bound = np.where(m2_dirty_mask, 60.0, 0.0001)
     m2_reused = ~m2_dirty_mask
     m2_audit = audit_certificate_independently(
-        full_res.tmrt, m2_tmrt, m2_bound, m2_reused, config.tmrt_tolerance
+        full_res.tmrt, m2_tmrt, m2_bound, m2_reused, config.tmrt_tolerance_k
     )
     results.append({
         "mutation_id": "mutation_zero_diffuse_bound",
@@ -402,7 +402,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m3_reused = np.ones(grid.shape, dtype=bool)
     
     m3_audit = audit_certificate_independently(
-        full_res.tmrt, m3_inc_tmrt, m3_bound, m3_reused, config.tmrt_tolerance
+        full_res.tmrt, m3_inc_tmrt, m3_bound, m3_reused, config.tmrt_tolerance_k
     )
     results.append({
         "mutation_id": "mutation_forced_stale_reuse",
@@ -443,7 +443,7 @@ def run_mutation_tests(scene: Scene, weather: Weather, config: SimulationConfig)
     m4_bound = np.where(m4_close_mask, 60.0, 0.0)
     m4_reused = ~m4_close_mask
     m4_audit = audit_certificate_independently(
-        full_res.tmrt, m4_tmrt, m4_bound, m4_reused, config.tmrt_tolerance
+        full_res.tmrt, m4_tmrt, m4_bound, m4_reused, config.tmrt_tolerance_k
     )
     results.append({
         "mutation_id": "mutation_truncated_svf_cutoff",

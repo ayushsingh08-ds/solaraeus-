@@ -51,7 +51,7 @@ def default_config() -> SimulationConfig:
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance_k=0.5
     )
 
 
@@ -191,7 +191,7 @@ def test_adversarial_case5_low_sun_angle(base_weather):
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance_k=0.5
     )
 
     scene_before = Scene(pedestrian_grid=PedestrianGridConfig(extent_x=70.0, extent_y=70.0))
@@ -235,7 +235,7 @@ def test_adversarial_case6_diffuse_perturbation_outside_shadow(base_weather, def
         date=default_config.date, local_time=default_config.local_time,
         sky_patch_configuration=default_config.sky_patch_configuration,
         max_svf_search_dist_m=default_config.max_svf_search_dist_m,
-        tmrt_tolerance=1.0
+        tmrt_tolerance_k=1.0
     )
 
     inc_res, cert = incremental_update_certified(
@@ -254,7 +254,7 @@ def test_adversarial_case6_diffuse_perturbation_outside_shadow(base_weather, def
     bounds = cert.predicted_error_bound[reused_mask]
 
     assert np.all(actual_err <= bounds + 1e-9)
-    assert np.all(actual_err <= config.tmrt_tolerance + 1e-9)
+    assert np.all(actual_err <= config.tmrt_tolerance_k + 1e-9)
 
 
 # ---------------------------------------------------------------------------

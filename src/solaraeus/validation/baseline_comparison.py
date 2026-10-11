@@ -186,7 +186,7 @@ def compare_all_baselines(scene_before: Scene,
         max_predicted_bound_k=float("nan"),
         has_certificate=False,
         is_sound=False,  # Unsound: large uncertified errors outside bounding box
-        violations_count=int(np.sum(err_naive > config.tmrt_tolerance))
+        violations_count=int(np.sum(err_naive > config.tmrt_tolerance_k))
     )
 
     # 3. Exact Incremental Update

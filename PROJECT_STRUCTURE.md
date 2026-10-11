@@ -768,7 +768,7 @@ flowchart TD
 | `local_time` | `"12:00:00"` | same | — |
 | `pedestrian_height` | 1.1 m | `grid/pedestrian_grid.py:19` | `config.py:77` |
 | `grid_resolution` | 1.0 m | `PedestrianGridConfig` | `config.py:79` |
-| `tmrt_tolerance` (ε_T) | 0.5 K | `certificate.py:113` → dirty mask `:218` | `config.py:81` |
+| `tmrt_tolerance_k` (ε_T) | 0.5 K | `certificate.py:113` → dirty mask `:218` | `config.py:81` |
 | `numerical_tolerance` | 1e-6 | comparisons/verification | — |
 | `sky_patch_configuration` | 32 azimuths | `full_recompute.py:88` | `config.py:85` |
 | `max_svf_search_dist_m` | 60.0 m | `compute_sky_view_factor`, `compute_svf_decay_bound` | — |

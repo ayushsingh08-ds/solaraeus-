@@ -247,7 +247,7 @@ def main():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=2.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
         backend="gpu"
@@ -446,8 +446,8 @@ def main():
         "Direct Shortwave Irradiance": {"tol": 1e-4, "unit": "W/m2", "desc": "Direct beam horizontal flux"},
         "Total Shortwave Flux": {"tol": 0.50, "unit": "W/m2", "desc": "Absorbed shortwave (B_T <= 0.5 K)"},
         "Total Longwave Flux": {"tol": 0.50, "unit": "W/m2", "desc": "Absorbed longwave (B_T <= 0.5 K)"},
-        "Mean Radiant Temperature (Tmrt)": {"tol": sim_config.tmrt_tolerance, "unit": "K", "desc": "Certified Tmrt tolerance"},
-        "Thermal Comfort (UTCI)": {"tol": sim_config.tmrt_tolerance, "unit": "degC", "desc": "Certified UTCI tolerance"},
+        "Mean Radiant Temperature (Tmrt)": {"tol": sim_config.tmrt_tolerance_k, "unit": "K", "desc": "Certified Tmrt tolerance"},
+        "Thermal Comfort (UTCI)": {"tol": sim_config.tmrt_tolerance_k, "unit": "degC", "desc": "Certified UTCI tolerance"},
     }
 
     tolerances_solver_equivalence = {
@@ -696,7 +696,7 @@ def main():
         "parity_accuracy": {
             "max_abs_error_vs_gpu_full_tmrt_k": float(np.max(np.abs(diff_gpu_tmrt))),
             "max_abs_error_vs_cpu_full_tmrt_k": float(np.max(np.abs(diff_cpu_tmrt))),
-            "tolerance_k": sim_config.tmrt_tolerance,
+            "tolerance_k": sim_config.tmrt_tolerance_k,
             "certificate_violations": int(cert_verification.num_violations),
             "is_valid": cert_verification.is_valid,
         }
@@ -742,7 +742,7 @@ def main():
             ),
             "recomputed_cells_match_affected_logic": bool(n_recomputed == 72),
             "reused_cells_count_exact": bool(n_reused == 28048),
-            "maximum_error_within_tolerance": bool(float(np.max(np.abs(diff_cpu_tmrt))) <= sim_config.tmrt_tolerance),
+            "maximum_error_within_tolerance": bool(float(np.max(np.abs(diff_cpu_tmrt))) <= sim_config.tmrt_tolerance_k),
             "certificate_violations_zero": bool(cert_verification.num_violations == 0),
             "slack_map_non_negative": bool(np.min(cert_verification.slack_map) >= -1e-10),
             "solver_equivalence_passed": bool(np.max(np.abs(diff_inc_tmrt)) < 1e-10),
@@ -852,8 +852,8 @@ By keeping static building geometry and baseline fields resident in GPU VRAM, th
 - **Affected Rays Recomputed**: {profile.affected_rays:,} ({(profile.affected_rays/profile.total_rays)*100:.2f}%)
 - **Ray-Work Reduction**: **{profile.ray_work_reduction_pct:.2f}%**
 - **Certificate Status**: **VALID** (`is_valid = True`, **0 violations**)
-- **Max Error vs GPU Full**: **{float(np.max(np.abs(diff_gpu_tmrt))):.6f} K** (Tolerance: {sim_config.tmrt_tolerance} K)
-- **Max Error vs CPU Full**: **{float(np.max(np.abs(diff_cpu_tmrt))):.6f} K** (Tolerance: {sim_config.tmrt_tolerance} K)
+- **Max Error vs GPU Full**: **{float(np.max(np.abs(diff_gpu_tmrt))):.6f} K** (Tolerance: {sim_config.tmrt_tolerance_k} K)
+- **Max Error vs CPU Full**: **{float(np.max(np.abs(diff_cpu_tmrt))):.6f} K** (Tolerance: {sim_config.tmrt_tolerance_k} K)
 - **Direct Shadow Mismatch**: **0 cells** (bit-for-bit exact)
 
 ---

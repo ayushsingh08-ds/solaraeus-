@@ -36,6 +36,7 @@ import matplotlib.patches as patches
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 
 from solaraeus.core.config import Weather, SimulationConfig
+from solaraeus.core.serialization_compat import get_aliased
 from solaraeus.core.geometry.primitives import Building, BoundingBox2D
 from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 from solaraeus.reference.full_recompute import full_recompute
@@ -131,7 +132,7 @@ def main():
         grid_resolution=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
-        tmrt_tolerance=0.5
+        tmrt_tolerance_k=0.5
     )
 
     # =========================================================================
@@ -257,7 +258,7 @@ def main():
                 latitude=base_config.latitude, longitude=base_config.longitude,
                 date=base_config.date, local_time=base_config.local_time,
                 grid_resolution=1.0, sky_patch_configuration=16,
-                max_svf_search_dist_m=30.0, tmrt_tolerance=tol
+                max_svf_search_dist_m=30.0, tmrt_tolerance_k=tol
             )
             scene_id = f"tol_{tol:.2f}K"
             print(f"Evaluating tolerance epsilon_T = {tol:.2f} K...")
@@ -625,7 +626,7 @@ def main():
 
     # 4. speedup_vs_tolerance.png
     fig, ax = plt.subplots(figsize=(8, 5), dpi=300)
-    tols = [float(get_val(r, "tmrt_tolerance")) for r in tolerance_records]
+    tols = [float(get_aliased(r, "tmrt_tolerance_k", 0.0)) for r in tolerance_records]
     spds = [float(get_val(r, "full_recompute_time")) / float(get_val(r, "incremental_total_time")) for r in tolerance_records]
     ax.plot(tols, spds, "-o", color="#3b82f6", linewidth=2, markersize=8)
     ax.set_xlabel(r"Error Tolerance $\varepsilon_T$ (Kelvin)")

@@ -45,7 +45,7 @@ def test_env():
         local_time="09:00:00",
         pedestrian_height=1.1,
         grid_resolution=1.0,
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         sky_patch_configuration=16,
         max_svf_search_dist_m=40.0
     )
@@ -122,7 +122,7 @@ def test_gpu_incremental_vs_gpu_full_parity(test_env):
 
     # Certified parity checks
     assert np.array_equal(inc_res.result.shadow_mask, gpu_full_res.shadow_mask)
-    assert np.max(np.abs(inc_res.result.tmrt - gpu_full_res.tmrt)) <= config.tmrt_tolerance
+    assert np.max(np.abs(inc_res.result.tmrt - gpu_full_res.tmrt)) <= config.tmrt_tolerance_k
 
     # Exact parity checks
     assert np.array_equal(exact_res.result.shadow_mask, gpu_full_res.shadow_mask)
@@ -167,7 +167,7 @@ def test_cpu_full_gpu_full_gpu_incremental_three_way_parity(test_env):
     # 3. Tmrt tolerance
     assert np.max(np.abs(gpu_full_res.tmrt - cpu_full_res.tmrt)) < 0.05
     assert np.max(np.abs(gpu_exact_res.result.tmrt - cpu_full_res.tmrt)) < 0.05
-    assert np.max(np.abs(gpu_inc_res.result.tmrt - cpu_full_res.tmrt)) <= config.tmrt_tolerance
+    assert np.max(np.abs(gpu_inc_res.result.tmrt - cpu_full_res.tmrt)) <= config.tmrt_tolerance_k
 
 
 
@@ -225,7 +225,7 @@ def test_zero_certificate_violations(test_env):
     assert verif.is_valid is True
     assert verif.num_violations == 0
     assert verif.is_within_tolerance is True
-    assert verif.reused_max_error <= config.tmrt_tolerance
+    assert verif.reused_max_error <= config.tmrt_tolerance_k
 
 
 @pytest.mark.skipif(not HAS_GPU, reason="CUDA GPU not available")

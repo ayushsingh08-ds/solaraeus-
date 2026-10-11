@@ -31,7 +31,7 @@ def standard_setup():
         longitude=121.4737,
         date="2026-06-21",
         local_time="08:00:00",
-        tmrt_tolerance=0.5,
+        tmrt_tolerance_k=0.5,
         max_svf_search_dist_m=30.0
     )
     return scene, weather, config

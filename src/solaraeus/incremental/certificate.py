@@ -119,7 +119,7 @@ def generate_error_certificate(scene_before: Scene,
     import time
     t_start_cert_gen = time.perf_counter()
     ny, nx = grid.shape
-    tolerance_k = config.tmrt_tolerance
+    tolerance_k = config.tmrt_tolerance_k
 
     # 1. Candidate affected region for direct shadows
     t0_cand = time.perf_counter()
