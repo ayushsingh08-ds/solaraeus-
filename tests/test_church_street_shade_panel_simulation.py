@@ -304,7 +304,9 @@ def test_incremental_error_certificate_soundness(shade_inc_run_dir):
     fields_npz = shade_inc_run_dir / "certificate_fields.npz"
     assert fields_npz.exists()
     with np.load(fields_npz) as cdata:
-        bound = cdata["predicted_error_bound_k"]
+        # Frozen artifact predates the predicted_error_bound -> _k rename; the
+        # committed .npz carries the legacy key verbatim (never regenerated).
+        bound = cdata["predicted_error_bound"]
         actual_err = cdata["actual_error_tmrt"]
         slack = cdata["slack_map"]
         reused_mask = cdata["reused_mask"]
