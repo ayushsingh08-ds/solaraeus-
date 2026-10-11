@@ -23,9 +23,9 @@ from solaraeus.core.geometry.mesh import TriangleMesh
 @pytest.fixture(scope="module")
 def shade_run_dir() -> Path:
     results_dir = Path(__file__).resolve().parent.parent / "results"
-    shade_dirs = sorted(results_dir.glob("church_street_shade_full_*"))
-    assert len(shade_dirs) > 0, "No church_street_shade_full_* directory found in results/"
-    return shade_dirs[-1]
+    p = results_dir / "church_street/shade_full"
+    assert p.exists(), f"No church_street/shade_full directory found in results/: {p}"
+    return p
 
 
 def test_panel_mesh_validation_artifact(shade_run_dir):
@@ -188,9 +188,9 @@ def test_readiness_decision_and_mandatory_qualification(shade_run_dir):
 @pytest.fixture(scope="module")
 def shade_inc_run_dir() -> Path:
     results_dir = Path(__file__).resolve().parent.parent / "results"
-    inc_dirs = sorted(results_dir.glob("church_street_shade_incremental_*"))
-    assert len(inc_dirs) > 0, "No church_street_shade_incremental_* directory found in results/"
-    return inc_dirs[-1]
+    p = results_dir / "church_street/shade_incremental"
+    assert p.exists(), f"No church_street/shade_incremental directory found in results/: {p}"
+    return p
 
 
 def test_incremental_provenance_and_metadata(shade_inc_run_dir):

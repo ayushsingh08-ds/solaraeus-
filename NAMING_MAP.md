@@ -132,7 +132,7 @@ Behaviour-preserving renames only. **Nothing moved/edited yet.** Pairs the TARGE
 - **Status tokens** — every `STAGE_n_*`, `READY_FOR_*`, `ACCEPTED_FOR_RESEARCH`, `*_COMPLETE`, `*_PENDING`, `*_BLOCKED`, `SYNTHETIC_TERRAIN_ONLY`, `SOLARAEUS_PROJECT_COMPLETE_WITH_DOCUMENTED_LIMITATIONS`, `PUBLICATION_READY` (DIAGNOSIS §I).
 - **Committed-artifact JSON keys** — `total_cells`, `max_abs_error_tmrt_k`, `reused_vs_recomputed`, `peak_gpu_vram_mb`, `effective_speedup`, etc.
 - **IDs** — `BLR_SHADE_001`, `CAND_4196_SURR`, `CAND_0063_SURR`, tree IDs `T08`–`T13`.
-- **Frozen dirs / inputs** — `church_street_preprocessing_20261006_224238`, `church_street_static_20261006_232110`, `..._handoff_v2`, `bengaluru_church_street_raw_sources_2026-10-07.zip` (dates exempt from the ban).
+- **Frozen dirs / inputs** — `church_street/preprocessing`, `church_street/static_baseline`, `..._handoff_v2`, `bengaluru_church_street_raw_sources_2026-10-07.zip` (dates exempt from the ban).
 
 ## 5. NHD naming decisions (need the user before STEP 3)
 1. **`ucb_acquisition`** — code is LCB+EI portfolio (κ=2.0/1.5), paper says UCB (κ=1.96). Target name asserts UCB. → rename to `lcb_ei_acquisition` (truthful to code) OR keep `ucb_acquisition` and reconcile code/paper separately. **Do not let the name claim a method the code lacks.**

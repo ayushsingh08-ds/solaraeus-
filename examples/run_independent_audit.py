@@ -2,8 +2,8 @@
 Master Driver for Independent Audit, Reproducibility Verification, and Claim Defensibility.
 
 Outputs are written strictly to: results/audit_cleanup_<timestamp_utc>/
-Preserves all historical artifacts (results/publication_validation_20261004_224305 and
-results/independent_audit_20261006_033239).
+Preserves all historical artifacts (results/publication_validation and
+results/independent_audit).
 """
 
 from __future__ import annotations

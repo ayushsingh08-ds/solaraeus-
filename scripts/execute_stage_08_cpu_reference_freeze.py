@@ -67,7 +67,7 @@ def main():
 
     stage_05_dir = root_dir / "results" / "stage_05_shade_panel_full"
     stage_06_dir = root_dir / "results" / "stage_06_shade_panel_incremental"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
 
     assert stage_05_dir.exists()
@@ -133,7 +133,7 @@ def main():
     # 1. Baseline Regression Test
     print("  [1/10] Baseline Regression Test...")
     res_base = full_recompute(baseline_scene, weather, sim_config, backend="cpu")
-    base_shadow_ref = np.load(root_dir / "results" / "church_street_static_20261006_232110" / "shadow_results.npz")["shadow_mask"]
+    base_shadow_ref = np.load(root_dir / "results" / "church_street/static_baseline" / "shadow_results.npz")["shadow_mask"]
     t1_pass = np.array_equal(res_base.shadow_mask, base_shadow_ref)
     regression_results.append({
         "test_name": "Baseline Regression",

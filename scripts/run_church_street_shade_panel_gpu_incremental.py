@@ -12,10 +12,10 @@ simulation and the trusted CPU full reference solver.
 
 Strict rules:
 - Does NOT overwrite any frozen directory:
-    * results/church_street_shade_full_20261007_001600/
-    * results/church_street_shade_incremental_20261007_081114/
-    * results/church_street_gpu_full_20261007_091111/
-- Reuses the frozen baseline: results/church_street_static_20261006_232110/
+    * results/church_street/shade_full/
+    * results/church_street/shade_incremental/
+    * results/church_street/gpu_full/
+- Reuses the frozen baseline: results/church_street/static_baseline/
 - Uses certified bounded error and selective CUDA ray-recomputation.
 """
 
@@ -112,12 +112,12 @@ def main():
     root_dir = Path(__file__).resolve().parent.parent
 
     # 0. Setup and Directory Identification
-    baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    baseline_dir = root_dir / "results" / "church_street/static_baseline"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
-    frozen_cpu_full_dir = root_dir / "results" / "church_street_shade_full_20261007_001600"
-    frozen_cpu_inc_dir = root_dir / "results" / "church_street_shade_incremental_20261007_081114"
-    frozen_gpu_full_dir = root_dir / "results" / "church_street_gpu_full_20261007_091111"
+    frozen_cpu_full_dir = root_dir / "results" / "church_street/shade_full"
+    frozen_cpu_inc_dir = root_dir / "results" / "church_street/shade_incremental"
+    frozen_gpu_full_dir = root_dir / "results" / "church_street/gpu_full"
 
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     out_dir = root_dir / "results" / f"church_street_shade_gpu_incremental_{timestamp_utc}"
@@ -880,7 +880,7 @@ By keeping static building geometry and baseline fields resident in GPU VRAM, th
 ---
 
 ## 3. Numerical Parity Audit vs Frozen References
-### A. Parity vs Frozen GPU Full Simulation (`church_street_gpu_full_20261007_091111`)
+### A. Parity vs Frozen GPU Full Simulation (`church_street/gpu_full`)
 | Physical Field | Max Absolute Error | Mean Absolute Error | Documented Tolerance | Discrepancies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Direct Shadow Mask | {audit_vs_gpu_full[0]['max_absolute_error']:.6e} | {audit_vs_gpu_full[0]['mean_absolute_error']:.6e} | 0.0 | 0 | PASS |
@@ -891,7 +891,7 @@ By keeping static building geometry and baseline fields resident in GPU VRAM, th
 | Mean Radiant Temp ($T_{{mrt}}$) | {audit_vs_gpu_full[5]['max_absolute_error']:.6e} K | {audit_vs_gpu_full[5]['mean_absolute_error']:.6e} K | 0.50 K | 0 | PASS |
 | Thermal Comfort (UTCI) | {audit_vs_gpu_full[6]['max_absolute_error']:.6e} °C | {audit_vs_gpu_full[6]['mean_absolute_error']:.6e} °C | 0.50 °C | 0 | PASS |
 
-### B. Parity vs Trusted Frozen CPU Full Solver (`church_street_shade_full_20261007_001600`)
+### B. Parity vs Trusted Frozen CPU Full Solver (`church_street/shade_full`)
 | Physical Field | Max Absolute Error | Mean Absolute Error | Documented Tolerance | Discrepancies | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | Direct Shadow Mask | {audit_vs_cpu_full[0]['max_absolute_error']:.6e} | {audit_vs_cpu_full[0]['mean_absolute_error']:.6e} | 0.0 | 0 | PASS |
@@ -902,7 +902,7 @@ By keeping static building geometry and baseline fields resident in GPU VRAM, th
 | Mean Radiant Temp ($T_{{mrt}}$) | {audit_vs_cpu_full[5]['max_absolute_error']:.6e} K | {audit_vs_cpu_full[5]['mean_absolute_error']:.6e} K | 0.50 K | 0 | PASS |
 | Thermal Comfort (UTCI) | {audit_vs_cpu_full[6]['max_absolute_error']:.6e} °C | {audit_vs_cpu_full[6]['mean_absolute_error']:.6e} °C | 0.50 °C | 0 | PASS |
 
-### C. Mathematical Equivalence vs Frozen CPU Incremental Solver (`church_street_shade_incremental_20261007_081114`)
+### C. Mathematical Equivalence vs Frozen CPU Incremental Solver (`church_street/shade_incremental`)
 | Physical Field | Max Absolute Difference | Mean Absolute Difference | Equivalence Standard | Status |
 | :--- | :--- | :--- | :--- | :--- |
 | Direct Shadow Mask | {audit_vs_cpu_inc[0]['max_absolute_error']:.6e} | {audit_vs_cpu_inc[0]['mean_absolute_error']:.6e} | Exact bit match (0.0) | PASS |

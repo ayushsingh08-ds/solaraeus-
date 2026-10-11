@@ -47,8 +47,8 @@ def sha256_file(path: Path) -> str:
 
 def main():
     root_dir = Path(__file__).resolve().parent.parent
-    frozen_cpu_dir = root_dir / "results" / "church_street_shade_full_20261007_001600"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    frozen_cpu_dir = root_dir / "results" / "church_street/shade_full"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
 
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
@@ -325,7 +325,7 @@ def main():
 ## Executive Summary
 This report documents the validation and performance audit of the GPU simulation backend implemented for the Church Street microclimate pipeline.
 The GPU backend utilizes custom CUDA C++ Möller-Trumbore ray-triangle intersection and multi-azimuth horizon elevation scan kernels compiled via CuPy.
-All evaluated physical fields were compared directly against the frozen CPU full recomputation reference (`results/church_street_shade_full_20261007_001600/`).
+All evaluated physical fields were compared directly against the frozen CPU full recomputation reference (`results/church_street/shade_full/`).
 
 - **Numerical Parity Status**: **ALL CHECKS PASSED**
 - **Discrepancy Count**: **0 across all 28,120 grid cells**

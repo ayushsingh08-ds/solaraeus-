@@ -16,7 +16,7 @@ This report establishes the formal scientific review, uncertainty bounds, and si
 
 In strict adherence to scientific integrity and research protocol:
 - **Physics Solvers & Optimization Codes Unmodified**: The CPU full reference solver, CPU incremental solver, GPU full solver, GPU incremental solver, and surrogate optimization routines remain completely untouched and unmodified.
-- **Frozen Benchmark Directories Byte-Identical**: All 11 historical benchmark result directories (including the validated two-panel Pareto optimization run `church_street_multi_intervention_optimization_20261007_114326`) remain cryptographically verified.
+- **Frozen Benchmark Directories Byte-Identical**: All 11 historical benchmark result directories (including the validated two-panel Pareto optimization run `church_street/opt_dual_panel`) remain cryptographically verified.
 - **Raw Supplements Unmodified**: All 202 raw supplement files across the BBMP tree census, raw source packages, and handoff v2 baseline remain identical against SHA-256 digests.
 - **Interim Assets Protected**: All 26 interim assets generated in the prior data-preparation stage remain byte-identical.
 - **Provisional Data Blocked From Physics Solver**: No tree geometry, canopy transmissivity, or coarse terrain elevations have been ingested into solver inputs or ray-tracing meshes.

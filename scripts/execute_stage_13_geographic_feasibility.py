@@ -51,7 +51,7 @@ def main():
     out_dir.mkdir(parents=True, exist_ok=True)
     plots_dir.mkdir(parents=True, exist_ok=True)
 
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
 
     # 1. Load Baseline Scene and Geometry

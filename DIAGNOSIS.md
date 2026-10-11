@@ -208,7 +208,7 @@ Pipeline distribution (59): build-scene 3 · simulate 5 · evaluate-edit 8 · be
 - **Res. A (Stage 25 dup, no file collision):** `…available_terrain_validation` (CURRENT, "Final Post-Roadmap") vs `…real_dtm_validation` (SUPERSEDED, "Post-Stage-23"); different out-dirs, identical token. → keep available, ARCHIVE real_dtm.
 - **Res. B (Stage 26 TRUE collision):** both write `results/stage_26_field_tree_validation/stage_26_test_results.json`; `…field_validation_deferral` (CURRENT, 59 loc) OVERWRITES `…field_tree_validation` (:50). Last-run-wins → DEFERRED. **NHD: which is authoritative-of-record.**
 - **Res. C (NEW CRITICAL — stages 29-38 collision):** the 10 individual `execute_stage_29..38` scripts (emit `*_COMPLETE`) and `execute_stages_27_to_38_blocked_gates` (emits `*_BLOCKED`, no runtime checks, `prerequisite_met=False` literal) write to IDENTICAL result dirs → **contradictory last-run-wins verdicts**. Also stages 27/28: individual→`*_available_terrain_*`, monolith→`*_real_terrain_*` (naming split, no collision). **NHD: one lineage; ARCHIVE blocked_gates.**
-- **Res. D (frozen-dir hardcoders):** `prep/`=church_street_preprocessing_20261006_224238, `baseline/`=church_street_static_20261006_232110 hardcoded across stages 05/06/07/11/12/13/14/15/16/18 + SHA-256 contracts over `baseline/shadow_results.npz` (stage_14:92/711, 08, 15/16, generate_stages_*). **HARD RULE: never regenerate these two; pin via `reference_artifacts/inputs.lock`.**
+- **Res. D (frozen-dir hardcoders):** `prep/`=church_street/preprocessing, `baseline/`=church_street/static_baseline hardcoded across stages 05/06/07/11/12/13/14/15/16/18 + SHA-256 contracts over `baseline/shadow_results.npz` (stage_14:92/711, 08, 15/16, generate_stages_*). **HARD RULE: never regenerate these two; pin via `reference_artifacts/inputs.lock`.**
 ## J. `tests/` (86 files → tests/{unit,contracts,golden}) — per tests-agent inventory
 
 Split: **~42 UNIT** (physics/geometry/incremental/backend/optimization behavior) · **~43 CONTRACT** (status-token / file-existence assertions mirroring stages) · **0 GOLDEN** (nearest = `test_gpu_backend.py` frozen-reference subtest). STEP 2 populates `tests/golden/` from the golden-master baseline.
@@ -240,8 +240,8 @@ Split: **~42 UNIT** (physics/geometry/incremental/backend/optimization behavior)
 
 | Keep bucket | Paths (evidence) |
 |---|---|
-| Pinned baselines (frozen) | `church_street_preprocessing_20261006_224238/`, `church_street_static_20261006_232110/` — pin in `reference_artifacts/inputs.lock` (path+SHA-256) |
-| Paper Table II (results) | `church_street_shade_full_20261007_001600/shade_panel_full_recomputation_report.md` (0.6569 / 45.81 / 36.49) + `scene_summary.json`,`quality_checks.json` (28,120 cells; 123 bldg) |
+| Pinned baselines (frozen) | `church_street/preprocessing/`, `church_street/static_baseline/` — pin in `reference_artifacts/inputs.lock` (path+SHA-256) |
+| Paper Table II (results) | `church_street/shade_full/shade_panel_full_recomputation_report.md` (0.6569 / 45.81 / 36.49) + `scene_summary.json`,`quality_checks.json` (28,120 cells; 123 bldg) |
 | Paper Table V (GPU) | `gpu_runtime_summary.json`, `gpu_benchmark_trials.csv`, `stage_12_gpu_profiling/`, `stages_10_to_16` roll-up (5.71/0.42/0.133/0.0114; 500.87×/36.84×; 1089.45 MB; parity 0.028902; 72/28,048/925,584) |
 | Paper Tables IV/VI (placement) | optimization `REPORT.md`, `validation_report.json` (CAND_0063_SURR J=54.93; CAND_4196_SURR J=56.57) |
 | Provenance | `provenance.json` (solar α_s/φ_grid) |

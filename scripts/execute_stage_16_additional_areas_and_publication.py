@@ -79,7 +79,7 @@ def main():
     (out_areas_dir / "area_certificate_reports").mkdir(exist_ok=True)
     (out_areas_dir / "area_uncertainty_reports").mkdir(exist_ok=True)
 
-    baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
+    baseline_dir = root_dir / "results" / "church_street/static_baseline"
     frozen_hash_baseline = sha256_file(baseline_dir / "shadow_results.npz")
 
     # Shared atmospheric forcing (Bangalore tropical benchmark)

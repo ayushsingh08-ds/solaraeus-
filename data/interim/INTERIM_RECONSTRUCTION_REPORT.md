@@ -13,7 +13,7 @@
 
 This report documents the completion of the interim terrain and vegetation reconstruction stage for Project **SOLARAEUS**. In strict accordance with scientific integrity guidelines:
 - **Zero Physics Solvers or Optimization Code Were Modified**: The CPU full reference solver, CPU incremental solver, GPU full solver, GPU incremental solver, and surrogate optimization routines remain completely untouched and unmodified.
-- **Zero Frozen Benchmarks Were Modified**: All 11 historical benchmark result directories (including `church_street_multi_intervention_optimization_20261007_114326`) remain cryptographically identical.
+- **Zero Frozen Benchmarks Were Modified**: All 11 historical benchmark result directories (including `church_street/opt_dual_panel`) remain cryptographically identical.
 - **Zero Raw Supplement Files Were Modified**: All 197 raw files across the two delivered supplement packages and the handoff v2 baseline were cryptographically validated against SHA-256 digests.
 - **Zero Unverified Geometry Ingested into Solver**: No synthetic curb heights, fake upsampled micro-DTMs, or uncalibrated tree canopies were created or ingested into the physics simulation pipeline.
 

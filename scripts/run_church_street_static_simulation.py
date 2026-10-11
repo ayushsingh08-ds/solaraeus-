@@ -71,7 +71,7 @@ def get_git_commit(cwd: Path) -> str:
 
 def main():
     root_dir = Path(__file__).resolve().parent.parent
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
     
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
@@ -991,7 +991,7 @@ This stage establishes an audited, reproducible numerical reference for the base
 ## 3. Input-Data Provenance and Verification
 
 The simulation ingested verified preprocessing artifacts from:
-`results/church_street_preprocessing_20261006_224238/`
+`results/church_street/preprocessing/`
 
 All input files were audited and their SHA256 cryptographic digests verified before simulation execution:
 - `main_scene_mesh.json`: `{input_hashes.get('preprocessing/main_scene_mesh.json', 'verified')}`

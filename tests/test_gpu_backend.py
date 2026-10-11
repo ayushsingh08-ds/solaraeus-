@@ -340,8 +340,8 @@ def test_church_street_gpu_parity_against_frozen_reference():
     import json
     from pathlib import Path
     root_dir = Path(__file__).resolve().parent.parent
-    frozen_dir = root_dir / "results" / "church_street_shade_full_20261007_001600"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    frozen_dir = root_dir / "results" / "church_street/shade_full"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
 
     if not frozen_dir.exists() or not prep_dir.exists():

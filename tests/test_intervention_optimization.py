@@ -412,11 +412,11 @@ def test_candidate_ledger_completeness(tmp_path: Path):
 def test_frozen_directory_protection():
     root_dir = Path(__file__).resolve().parent.parent
     frozen_dirs = [
-        root_dir / "results" / "church_street_static_20261006_232110",
-        root_dir / "results" / "church_street_shade_full_20261007_001600",
-        root_dir / "results" / "church_street_shade_incremental_20261007_081114",
-        root_dir / "results" / "church_street_gpu_full_20261007_091111",
-        root_dir / "results" / "church_street_shade_gpu_incremental_20261007_093905",
+        root_dir / "results" / "church_street/static_baseline",
+        root_dir / "results" / "church_street/shade_full",
+        root_dir / "results" / "church_street/shade_incremental",
+        root_dir / "results" / "church_street/gpu_full",
+        root_dir / "results" / "church_street/gpu_incremental",
     ]
     for d in frozen_dirs:
         assert d.exists(), f"Frozen reference directory must exist: {d}"

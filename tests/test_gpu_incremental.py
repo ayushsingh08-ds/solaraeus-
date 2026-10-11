@@ -291,9 +291,9 @@ def test_frozen_directory_protection():
     results_dir = root_dir / "results"
 
     frozen_dirs = [
-        results_dir / "church_street_shade_full_20261007_001600",
-        results_dir / "church_street_shade_incremental_20261007_081114",
-        results_dir / "church_street_gpu_full_20261007_091111",
+        results_dir / "church_street/shade_full",
+        results_dir / "church_street/shade_incremental",
+        results_dir / "church_street/gpu_full",
     ]
 
     for d in frozen_dirs:

@@ -101,7 +101,7 @@ def main():
     out_dir = root_dir / "results" / "stage_10_gpu_full_cpu_validation"
     out_dir.mkdir(parents=True, exist_ok=True)
     
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
     
     assert is_gpu_available(), "CUDA GPU is not available in current environment!"

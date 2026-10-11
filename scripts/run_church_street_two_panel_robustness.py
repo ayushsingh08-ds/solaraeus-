@@ -118,12 +118,12 @@ def main():
     root_dir = Path(__file__).resolve().parent.parent
 
     # Directory Paths & Frozen References
-    baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    baseline_dir = root_dir / "results" / "church_street/static_baseline"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
-    frozen_stage1_dir = root_dir / "results" / "church_street_intervention_optimization_20261007_102725"
-    frozen_stage2_dir = root_dir / "results" / "church_street_surrogate_optimization_20261007_110633"
-    frozen_stage3_dir = root_dir / "results" / "church_street_multi_intervention_optimization_20261007_114326"
+    frozen_stage1_dir = root_dir / "results" / "church_street/opt_evolutionary"
+    frozen_stage2_dir = root_dir / "results" / "church_street/opt_surrogate"
+    frozen_stage3_dir = root_dir / "results" / "church_street/opt_dual_panel"
 
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     out_dir = root_dir / "results" / f"church_street_two_panel_robustness_{timestamp_utc}"
@@ -146,10 +146,10 @@ def main():
     print("\n[Phase 0] Verifying frozen artifacts integrity...")
     frozen_dirs = [
         baseline_dir,
-        root_dir / "results" / "church_street_shade_full_20261007_001600",
-        root_dir / "results" / "church_street_shade_incremental_20261007_081114",
-        root_dir / "results" / "church_street_gpu_full_20261007_091111",
-        root_dir / "results" / "church_street_shade_gpu_incremental_20261007_093905",
+        root_dir / "results" / "church_street/shade_full",
+        root_dir / "results" / "church_street/shade_incremental",
+        root_dir / "results" / "church_street/gpu_full",
+        root_dir / "results" / "church_street/gpu_incremental",
         frozen_stage1_dir,
         frozen_stage2_dir,
         frozen_stage3_dir,

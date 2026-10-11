@@ -265,7 +265,7 @@ The incremental pipeline records isolated wall-clock overhead across all phases:
 3. **Flat Terrain & Axis-Aligned Prisms**: Ground elevation is currently modeled at $z = 0.0\,\text{m}$, and building footprints are axis-aligned rectangular bounding boxes.
 4. **Low-Sun Fallback**: At solar altitudes $\alpha < 5.0^\circ$, shadow lengths grow towards infinity ($h / \tan\alpha$), triggering an automatic, sound fallback to full-domain recomputation.
 5. **Physical Exclusions**: The model currently excludes computational fluid dynamics (CFD) wind fields, dynamic facade thermal mass, evapotranspiration, and vegetative canopies.
-6. **Artifact Provenance**: The historical artifact `results/independent_audit_20261006_033239/` was generated under Indian Standard Time (UTC+05:30), where local time crossed midnight into October 6, 2026, while UTC was October 5, 2026. It is preserved untouched, and the official cleaned audit is established under `results/audit_cleanup_<timestamp_utc>/` with full UTC and Git provenance.
+6. **Artifact Provenance**: The historical artifact `results/independent_audit/` was generated under Indian Standard Time (UTC+05:30), where local time crossed midnight into October 6, 2026, while UTC was October 5, 2026. It is preserved untouched, and the official cleaned audit is established under `results/audit_cleanup_<timestamp_utc>/` with full UTC and Git provenance.
 
 ---
 

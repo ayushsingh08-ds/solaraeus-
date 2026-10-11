@@ -588,7 +588,7 @@ def build_provenance_record(command_used: str, output_dir: str) -> Dict[str, Any
         "timestamp_source": "datetime.now(timezone.utc)",
         "output_directory": output_dir,
         "historical_timestamp_inconsistency_note": (
-            "The historical artifact 'results/independent_audit_20261006_033239/' was generated using "
+            "The historical artifact 'results/independent_audit/' was generated using "
             "datetime.now() in Indian Standard Time (UTC+05:30), where the local calendar day had crossed "
             "midnight into October 6, 2026, while the UTC calendar day was October 5, 2026. The historical "
             "artifact is preserved untouched, and this cleanup audit establishes explicit UTC provenance."
@@ -647,7 +647,7 @@ def build_canonical_benchmark_table() -> List[Dict[str, Any]]:
         },
         {
             "experiment_id": "exp_80m_central_infill",
-            "source_directory": "results/publication_validation_20261004_224305",
+            "source_directory": "results/publication_validation",
             "scene_id": "scale_80m_medium",
             "domain_size": "80m x 80m",
             "grid_cells": 6400,
@@ -669,7 +669,7 @@ def build_canonical_benchmark_table() -> List[Dict[str, Any]]:
         },
         {
             "experiment_id": "exp_80m_height_delta",
-            "source_directory": "results/independent_audit_20261006_033239",
+            "source_directory": "results/independent_audit",
             "scene_id": "scale_80m_medium",
             "domain_size": "80m x 80m",
             "grid_cells": 6400,
@@ -691,7 +691,7 @@ def build_canonical_benchmark_table() -> List[Dict[str, Any]]:
         },
         {
             "experiment_id": "exp_160m_central_infill",
-            "source_directory": "results/publication_validation_20261004_224305",
+            "source_directory": "results/publication_validation",
             "scene_id": "scale_160m_medium",
             "domain_size": "160m x 160m",
             "grid_cells": 25600,
@@ -713,7 +713,7 @@ def build_canonical_benchmark_table() -> List[Dict[str, Any]]:
         },
         {
             "experiment_id": "exp_160m_height_delta",
-            "source_directory": "results/independent_audit_20261006_033239",
+            "source_directory": "results/independent_audit",
             "scene_id": "scale_160m_medium",
             "domain_size": "160m x 160m",
             "grid_cells": 25600,
@@ -735,7 +735,7 @@ def build_canonical_benchmark_table() -> List[Dict[str, Any]]:
         },
         {
             "experiment_id": "exp_320m_central_infill",
-            "source_directory": "results/publication_validation_20261004_224305",
+            "source_directory": "results/publication_validation",
             "scene_id": "scale_320m_medium",
             "domain_size": "320m x 320m",
             "grid_cells": 102400,
@@ -757,7 +757,7 @@ def build_canonical_benchmark_table() -> List[Dict[str, Any]]:
         },
         {
             "experiment_id": "exp_320m_height_delta",
-            "source_directory": "results/independent_audit_20261006_033239",
+            "source_directory": "results/independent_audit",
             "scene_id": "scale_320m_medium",
             "domain_size": "320m x 320m",
             "grid_cells": 102400,
@@ -796,7 +796,7 @@ def build_timing_reconciliation_table() -> List[Dict[str, Any]]:
             "physical_cause_of_difference": "Corner placement directs shadow plume toward domain boundary, leaving 27.6% of cells unoccluded."
         },
         {
-            "benchmark_campaign": "Publication Validation Suite (publication_validation_20261004_224305)",
+            "benchmark_campaign": "Publication Validation Suite (publication_validation)",
             "domain_sizes_evaluated": "80m, 160m, 320m (Low, Medium, High density)",
             "edit_configuration": "AddBuildingEdit (central infill 18m height)",
             "measured_speedup_range": "0.88x - 1.09x (80m), 3.50x - 3.53x (160m), 14.54x - 15.77x (320m)",
@@ -805,7 +805,7 @@ def build_timing_reconciliation_table() -> List[Dict[str, Any]]:
             "physical_cause_of_difference": "Central building shadow plume (39.5m) and SVF radius (30m) covers 96.9% of 80m domain. As domain scales quadratically, unperturbed clean fraction rises to 92.7%."
         },
         {
-            "benchmark_campaign": "Independent Audit Multi-Trial Timing (independent_audit_20261006_033239)",
+            "benchmark_campaign": "Independent Audit Multi-Trial Timing (independent_audit)",
             "domain_sizes_evaluated": "80m, 160m, 320m (Medium density)",
             "edit_configuration": "ChangeHeightEdit (building 0 height delta 20m -> 26m)",
             "measured_speedup_range": "1.53x (80m), 6.39x (160m), 23.14x (320m)",

@@ -128,8 +128,8 @@ python scripts/execute_stage_16_additional_areas_and_publication.py
     failure_log = []
 
     # Item 1: Static Baseline
-    static_provenance = root_dir / "results" / "church_street_static_20261006_232110" / "provenance.json"
-    static_shadow_npz = root_dir / "results" / "church_street_static_20261006_232110" / "shadow_results.npz"
+    static_provenance = root_dir / "results" / "church_street/static_baseline" / "provenance.json"
+    static_shadow_npz = root_dir / "results" / "church_street/static_baseline" / "shadow_results.npz"
     if static_shadow_npz.exists():
         data = np.load(static_shadow_npz)
         shadow_mask = data["shadow_mask"]
@@ -142,7 +142,7 @@ python scripts/execute_stage_16_additional_areas_and_publication.py
         })
         checksum_items.append({
             "target": "Static Baseline Shadow Array",
-            "file": "results/church_street_static_20261006_232110/shadow_results.npz",
+            "file": "results/church_street/static_baseline/shadow_results.npz",
             "sha256": sha256_file(static_shadow_npz),
             "matches_reference": True
         })

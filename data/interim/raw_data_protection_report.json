@@ -28,43 +28,43 @@
       "status": "INTACT",
       "file_count": 12
     },
-    "results/church_street_preprocessing_20261006_224238": {
+    "results/church_street/preprocessing": {
       "status": "INTACT",
       "file_count": 15
     },
-    "results/church_street_static_20261006_232110": {
+    "results/church_street/static_baseline": {
       "status": "INTACT",
       "file_count": 23
     },
-    "results/church_street_shade_full_20261007_001600": {
+    "results/church_street/shade_full": {
       "status": "INTACT",
       "file_count": 37
     },
-    "results/church_street_shade_incremental_20261007_081114": {
+    "results/church_street/shade_incremental": {
       "status": "INTACT",
       "file_count": 27
     },
-    "results/church_street_gpu_full_20261007_091111": {
+    "results/church_street/gpu_full": {
       "status": "INTACT",
       "file_count": 11
     },
-    "results/church_street_shade_gpu_incremental_20261007_093905": {
+    "results/church_street/gpu_incremental": {
       "status": "INTACT",
       "file_count": 25
     },
-    "results/church_street_intervention_optimization_20261007_102725": {
+    "results/church_street/opt_evolutionary": {
       "status": "INTACT",
       "file_count": 23
     },
-    "results/church_street_surrogate_optimization_20261007_110633": {
+    "results/church_street/opt_surrogate": {
       "status": "INTACT",
       "file_count": 28
     },
-    "results/church_street_multi_intervention_optimization_20261007_114326": {
+    "results/church_street/opt_dual_panel": {
       "status": "INTACT",
       "file_count": 26
     },
-    "results/church_street_two_panel_robustness_20261007_122543": {
+    "results/church_street/robustness": {
       "status": "INTACT",
       "file_count": 30
     }

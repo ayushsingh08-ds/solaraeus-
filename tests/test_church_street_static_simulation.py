@@ -33,18 +33,16 @@ def repo_root():
 
 @pytest.fixture(scope="module")
 def prep_dir(repo_root):
-    p = repo_root / "results" / "church_street_preprocessing_20261006_224238"
+    p = repo_root / "results" / "church_street/preprocessing"
     assert p.exists(), f"Preprocessing directory not found: {p}"
     return p
 
 
 @pytest.fixture(scope="module")
 def static_run_dir(repo_root):
-    # Locate latest static run directory
-    results_dir = repo_root / "results"
-    static_dirs = sorted([d for d in results_dir.glob("church_street_static_*") if d.is_dir()])
-    assert len(static_dirs) > 0, "No church_street_static_* run directory found"
-    return static_dirs[-1]
+    p = repo_root / "results" / "church_street/static_baseline"
+    assert p.exists(), f"Static baseline directory not found: {p}"
+    return p
 
 
 def test_serialized_mesh_loading(prep_dir):

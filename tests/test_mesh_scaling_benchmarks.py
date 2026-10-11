@@ -112,7 +112,7 @@ def test_full_mesh_scaling_benchmark_and_artifacts():
 def test_memory_boundedness_and_subquadratic_scaling():
     """Verify that peak heap memory remains tightly bounded and runtime scaling is subquadratic."""
     # Check that artifact exists in target results directory
-    results_dir = "results/mesh_validation_20261006_092428"
+    results_dir = "results/mesh_validation"
     summary_path = os.path.join(results_dir, "mesh_scaling_summary.json")
 
     if os.path.exists(summary_path):

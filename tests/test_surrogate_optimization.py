@@ -64,7 +64,7 @@ from solaraeus.placement.surrogate_placement_solver import (
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-FROZEN_STAGE1_DIR = REPO_ROOT / "results" / "church_street_intervention_optimization_20261007_102725"
+FROZEN_STAGE1_DIR = REPO_ROOT / "results" / "church_street/opt_evolutionary"
 STAGE1_LEDGER_PATH = FROZEN_STAGE1_DIR / "candidate_ledger.json"
 
 
@@ -476,12 +476,12 @@ def test_final_multi_path_validation():
 # ---------------------------------------------------------------------------
 def test_frozen_directory_protection():
     frozen_dirs = [
-        REPO_ROOT / "results" / "church_street_static_20261006_232110",
-        REPO_ROOT / "results" / "church_street_shade_full_20261007_001600",
-        REPO_ROOT / "results" / "church_street_shade_incremental_20261007_081114",
-        REPO_ROOT / "results" / "church_street_gpu_full_20261007_091111",
-        REPO_ROOT / "results" / "church_street_shade_gpu_incremental_20261007_093905",
-        REPO_ROOT / "results" / "church_street_intervention_optimization_20261007_102725",
+        REPO_ROOT / "results" / "church_street/static_baseline",
+        REPO_ROOT / "results" / "church_street/shade_full",
+        REPO_ROOT / "results" / "church_street/shade_incremental",
+        REPO_ROOT / "results" / "church_street/gpu_full",
+        REPO_ROOT / "results" / "church_street/gpu_incremental",
+        REPO_ROOT / "results" / "church_street/opt_evolutionary",
     ]
 
     for fd in frozen_dirs:

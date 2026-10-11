@@ -7,8 +7,8 @@ reusing the frozen baseline cache, evaluating computable error certificates, com
 against the frozen full-recomputation reference, and validating mathematical soundness.
 
 Strictly adheres to:
-- Non-destructive reuse of frozen baseline (church_street_static_20261006_232110).
-- Read-only comparison against frozen full intervention (church_street_shade_full_20261007_001600).
+- Non-destructive reuse of frozen baseline (church_street/static_baseline).
+- Read-only comparison against frozen full intervention (church_street/shade_full).
 - Mandatory scientific qualification and terminology.
 - Explicit dependency tracking and caching.
 - Mathematical certificate verification (violations = 0).
@@ -111,10 +111,10 @@ def main():
     # -------------------------------------------------------------------------
     # 0. Setup and Directory Identification
     # -------------------------------------------------------------------------
-    baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    baseline_dir = root_dir / "results" / "church_street/static_baseline"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
-    frozen_full_dir = root_dir / "results" / "church_street_shade_full_20261007_001600"
+    frozen_full_dir = root_dir / "results" / "church_street/shade_full"
     
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     out_dir = root_dir / "results" / f"church_street_shade_incremental_{timestamp_utc}"
@@ -1103,8 +1103,8 @@ This qualification applies throughout all microclimatic interpretations, thermal
 
 This stage completes the certified incremental recomputation benchmark for the Bengaluru Church Street pedestrian study block under overhead shade-panel intervention `BLR_SHADE_001`:
 
-1. **Non-Destructive Cache Reuse**: Reused the frozen static baseline (`church_street_static_20261006_232110`) without recomputing baseline fields from scratch and without modifying any existing frozen directory.
-2. **Read-Only Parity Audit**: Loaded frozen full-recomputation artifacts (`church_street_shade_full_20261007_001600`) in strict read-only mode, validating input hashes and numerical equivalence across all physical fields.
+1. **Non-Destructive Cache Reuse**: Reused the frozen static baseline (`church_street/static_baseline`) without recomputing baseline fields from scratch and without modifying any existing frozen directory.
+2. **Read-Only Parity Audit**: Loaded frozen full-recomputation artifacts (`church_street/shade_full`) in strict read-only mode, validating input hashes and numerical equivalence across all physical fields.
 3. **Certified Incremental Update**: Applied `AddMeshEdit(panel_mesh)` to the scene, evaluated dependency graphs, generated computable upper error bound certificates $B_T(x)$, selectively recomputed only dirty cells where $B_T(x) > \\tau$ (0.5 K), and safely reused all cells where $B_T(x) \\le \\tau$.
 4. **Mathematical Soundness Verification**: Evaluated the pointwise slack contract $B_T(x) - e(x) \\ge 0$. Verified **zero certificate violations** across the entire domain.
 5. **Exact Incremental Companion**: Evaluated the exact incremental engine as an unapproximated reference, achieving exactly **0.000000 K** error across all 28,120 grid cells.
@@ -1156,7 +1156,7 @@ The overhead canopy was added to Church Street as a triangular mesh edit:
 
 ## 6. Numerical Parity Audit vs Frozen Full Recomputation
 
-The incremental simulation outputs were compared pointwise against the frozen full-recomputation run (`results/church_street_shade_full_20261007_001600`):
+The incremental simulation outputs were compared pointwise against the frozen full-recomputation run (`results/church_street/shade_full`):
 
 ### 6.1 Pointwise Error Summary Across All Grid Cells (28,120 cells)
 

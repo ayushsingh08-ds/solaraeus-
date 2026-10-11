@@ -67,7 +67,7 @@ Third Tmrt path: integration/tmrt_3d.py:197 uses `(max(10,s_str)/(a_l·SIGMA))**
 
 | Paper claim | Code / artifact | Verdict |
 |---|---|---|
-| Baseline SVF 0.6569±0.1206; Tmrt 45.81±2.18°C; UTCI 36.49°C | church_street_shade_full_20261007_001600/shade_panel_full_recomputation_report.md | MATCH (values) |
+| Baseline SVF 0.6569±0.1206; Tmrt 45.81±2.18°C; UTCI 36.49°C | church_street/shade_full/shade_panel_full_recomputation_report.md | MATCH (values) |
 | Baseline UTCI std ±0.44 | artifact std = 0.53 | MISMATCH (0.44 vs 0.53) |
 | Baseline over corridor N=668 (L327) | report aggregates total_cells=28,120 (quality_checks.json) | NEEDS-VERIFY (values trace to grid-wide 28,120; corridor-668 domain label unconfirmed) |
 | Parity Tmrt max err 0.028902 (tol 0.50) | stages_10_to_16 max_abs_error_tmrt_k 0.028902 | MATCH |

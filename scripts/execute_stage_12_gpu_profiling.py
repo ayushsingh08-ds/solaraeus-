@@ -53,8 +53,8 @@ def main():
     out_dir = root_dir / "results" / "stage_12_gpu_profiling"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    baseline_dir = root_dir / "results" / "church_street/static_baseline"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
 
     assert is_gpu_available(), "CUDA GPU is not available in current environment!"

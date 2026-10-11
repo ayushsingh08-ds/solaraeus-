@@ -100,8 +100,8 @@ def main():
     # -------------------------------------------------------------------------
     # 0. Setup and Directory Identification
     # -------------------------------------------------------------------------
-    baseline_dir = root_dir / "results" / "church_street_static_20261006_232110"
-    prep_dir = root_dir / "results" / "church_street_preprocessing_20261006_224238"
+    baseline_dir = root_dir / "results" / "church_street/static_baseline"
+    prep_dir = root_dir / "results" / "church_street/preprocessing"
     handoff_dir = root_dir / "bengaluru_church_street_manual_handoff_v2" / "bengaluru_church_street_manual_handoff_v2"
     
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
