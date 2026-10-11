@@ -44,7 +44,7 @@ def test_env():
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height=1.1,
-        grid_resolution=1.0,
+        grid_resolution_m=1.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=16,
         max_svf_search_dist_m=40.0

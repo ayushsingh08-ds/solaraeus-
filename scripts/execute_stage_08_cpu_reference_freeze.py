@@ -94,7 +94,7 @@ def main():
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height=1.1,
-        grid_resolution=2.0,
+        grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
@@ -221,7 +221,7 @@ def main():
     t7_pass = True
     try:
         # Invalid negative resolution
-        bad_cfg = SimulationConfig(grid_resolution=-2.0)
+        bad_cfg = SimulationConfig(grid_resolution_m=-2.0)
         t7_pass = False
     except Exception:
         pass
@@ -420,7 +420,7 @@ def main():
                     "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
                     "local_time": {"type": "string", "pattern": "^\\d{2}:\\d{2}:\\d{2}$"},
                     "pedestrian_height": {"type": "number", "minimum": 0.0, "default": 1.1},
-                    "grid_resolution": {"type": "number", "exclusiveMinimum": 0.0, "default": 2.0},
+                    "grid_resolution_m": {"type": "number", "exclusiveMinimum": 0.0, "default": 2.0},
                     "tmrt_tolerance_k": {"type": "number", "minimum": 0.0, "default": 0.5},
                     "sky_patch_configuration": {"type": "integer", "enum": [16, 32, 64, 145], "default": 32},
                     "max_svf_search_dist_m": {"type": "number", "minimum": 10.0, "default": 120.0},

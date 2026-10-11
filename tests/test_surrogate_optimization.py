@@ -448,7 +448,7 @@ def test_final_multi_path_validation():
     )
     sim_cfg = SimulationConfig(
         latitude=12.97, longitude=77.60, date="2024-04-15", local_time="10:00:00",
-        pedestrian_height=1.1, grid_resolution=2.0, tmrt_tolerance_k=0.50,
+        pedestrian_height=1.1, grid_resolution_m=2.0, tmrt_tolerance_k=0.50,
         sky_patch_configuration=32, max_svf_search_dist_m=30.0, backend="auto"
     )
     base_res = full_recompute(scene, weather, sim_cfg, backend="auto")

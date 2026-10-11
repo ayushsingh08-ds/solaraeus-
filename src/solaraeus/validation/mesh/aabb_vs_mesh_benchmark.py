@@ -146,7 +146,7 @@ def run_single_comparison(scene_def: BenchmarkSceneDef,
     Executes full recomputation for both AABB and mesh representations of a scene,
     and returns comprehensive comparative metrics.
     """
-    scene_aabb, scene_mesh = build_scene_pair(scene_def, config.grid_resolution, config.pedestrian_height)
+    scene_aabb, scene_mesh = build_scene_pair(scene_def, config.grid_resolution_m, config.pedestrian_height)
 
     # 1. Full recompute AABB
     t0 = time.perf_counter()
@@ -187,7 +187,7 @@ def run_single_comparison(scene_def: BenchmarkSceneDef,
         "display_name": scene_def.display_name,
         "description": scene_def.description,
         "domain_size_m": f"{scene_def.domain_x_m:.0f}x{scene_def.domain_y_m:.0f}",
-        "grid_resolution_m": config.grid_resolution,
+        "grid_resolution_m": config.grid_resolution_m,
         "aabb_building_count": bldg_count,
         "mesh_triangle_count": tri_count,
         "shadow_iou": round(iou, 6),
@@ -232,7 +232,7 @@ def run_aabb_vs_mesh_benchmark(output_dir: Optional[str] = None) -> Dict[str, An
         date="2026-07-15",
         local_time="14:00:00",
         pedestrian_height=1.1,
-        grid_resolution=1.0,
+        grid_resolution_m=1.0,
         tmrt_tolerance_k=0.5,
         numerical_tolerance=0.05,
         sky_patch_configuration=16,

@@ -44,7 +44,7 @@ def compute_config_hash(config: SimulationConfig) -> str:
         config.date,
         config.local_time,
         config.pedestrian_height,
-        config.grid_resolution,
+        config.grid_resolution_m,
         config.sky_patch_configuration
     )
     return hashlib.sha256(str(data).encode("utf-8")).hexdigest()

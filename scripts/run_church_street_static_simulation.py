@@ -261,7 +261,7 @@ def main():
         date="2024-04-15",
         local_time="09:00:00",  # UTC
         pedestrian_height=1.1,
-        grid_resolution=2.0,
+        grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
@@ -712,7 +712,7 @@ def main():
         "solar_interval": "2024-04-15 09:00-10:00 UTC",
         "coordinate_reference_system": "EPSG:32643",
         "local_origin": coord_val["local_origin"],
-        "grid_resolution": grid.dx,
+        "grid_resolution_m": grid.dx,
         "grid_cell_count": grid.total_cells,
         "material_assumption_version": "v2_approved_assumptions",
         "terrain_policy": "flat_ground_z0_retained_for_metadata_only",

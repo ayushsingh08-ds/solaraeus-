@@ -59,11 +59,11 @@ class CloudModel:
         self,
         domain_bounds_x: Tuple[float, float] = (-50.0, 300.0),
         domain_bounds_y: Tuple[float, float] = (-60.0, 200.0),
-        grid_resolution: float = 4.0,
+        grid_resolution_m: float = 4.0,
     ):
         self.bounds_x = domain_bounds_x
         self.bounds_y = domain_bounds_y
-        self.res = grid_resolution
+        self.res = grid_resolution_m
         self.nx = int(math.ceil((self.bounds_x[1] - self.bounds_x[0]) / self.res))
         self.ny = int(math.ceil((self.bounds_y[1] - self.bounds_y[0]) / self.res))
 

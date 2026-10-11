@@ -129,7 +129,7 @@ def main():
         longitude=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
-        grid_resolution=1.0,
+        grid_resolution_m=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
         tmrt_tolerance_k=0.5
@@ -165,7 +165,7 @@ def main():
                 scene_id = f"scale_{int(extent)}m_{density}"
                 n_reps = 5
                 print(f"Evaluating {scene_id} ({int(extent)}x{int(extent)}m, {int(extent*extent)} cells) over {n_reps} trials...")
-                scene = create_scaling_scene(extent, density=density, grid_resolution=1.0)
+                scene = create_scaling_scene(extent, density=density, grid_resolution_m=1.0)
 
                 # Infill edit
                 edit_x1 = extent * 0.4
@@ -208,7 +208,7 @@ def main():
         edit_records = load_csv(edit_path)
     else:
         print("\n--- 2. Running Edit-Type Sensitivity Suite (N=5 Repetitions) ---")
-        scene_edit_base = create_scaling_scene(80.0, density="medium", grid_resolution=1.0)
+        scene_edit_base = create_scaling_scene(80.0, density="medium", grid_resolution_m=1.0)
         target_bldg_id = "bldg_0_0"
 
         canonical_edits = [
@@ -249,7 +249,7 @@ def main():
     else:
         print("\n--- 3. Running Tolerance Parameter Sweep (N=5 Repetitions) ---")
         tolerances = [0.10, 0.25, 0.50, 1.00, 2.00]
-        scene_tol = create_scaling_scene(80.0, density="medium", grid_resolution=1.0)
+        scene_tol = create_scaling_scene(80.0, density="medium", grid_resolution_m=1.0)
         infill_tol = Building("tol_bldg", BoundingBox2D(35.0, 49.0, 35.0, 49.0), height=18.0)
         edit_tol = AddBuildingEdit(infill_tol)
 
@@ -257,7 +257,7 @@ def main():
             cfg = SimulationConfig(
                 latitude=base_config.latitude, longitude=base_config.longitude,
                 date=base_config.date, local_time=base_config.local_time,
-                grid_resolution=1.0, sky_patch_configuration=16,
+                grid_resolution_m=1.0, sky_patch_configuration=16,
                 max_svf_search_dist_m=30.0, tmrt_tolerance_k=tol
             )
             scene_id = f"tol_{tol:.2f}K"
@@ -290,7 +290,7 @@ def main():
     # EXPERIMENT 7: Non-Certified Dirty-Region Baseline Comparison
     # =========================================================================
     print("\n--- 5. Running Non-Certified Baseline Comparison ---")
-    scene_base_comp = create_scaling_scene(80.0, density="low", grid_resolution=1.0)
+    scene_base_comp = create_scaling_scene(80.0, density="low", grid_resolution_m=1.0)
     infill_comp = Building("comp_bldg", BoundingBox2D(32.0, 46.0, 32.0, 46.0), height=18.0)
     edit_comp = AddBuildingEdit(infill_comp)
     scene_after_comp, _ = edit_comp.apply(scene_base_comp)

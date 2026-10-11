@@ -38,7 +38,7 @@ class BenchmarkRecord:
     scene_id: str
     domain_width: float
     domain_height: float
-    grid_resolution: float
+    grid_resolution_m: float
     grid_cell_count: int
     building_count: int
     geometry_count: int
@@ -170,7 +170,7 @@ def run_benchmark_trial(scene_before: Scene,
         scene_id=scene_id,
         domain_width=scene_before.pedestrian_grid.extent_x,
         domain_height=scene_before.pedestrian_grid.extent_y,
-        grid_resolution=scene_before.pedestrian_grid.resolution,
+        grid_resolution_m=scene_before.pedestrian_grid.resolution,
         grid_cell_count=total_cells,
         building_count=len(scene_after.get_active_buildings()),
         geometry_count=len(scene_after.buildings),

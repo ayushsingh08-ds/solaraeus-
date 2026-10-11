@@ -17,19 +17,19 @@ from solaraeus.core.geometry.scene import Scene, PedestrianGridConfig
 
 def create_scaling_scene(extent_m: float,
                          density: str = "medium",
-                         grid_resolution: float = 1.0) -> Scene:
+                         grid_resolution_m: float = 1.0) -> Scene:
     """
     Constructs a reproducible synthetic urban scene with specified extent and density.
     
     Parameters:
         extent_m: Side length of the square domain in meters (e.g. 80, 160, 320).
         density: "low", "medium", or "high".
-        grid_resolution: Grid resolution in meters (default 1.0m).
+        grid_resolution_m: Grid resolution in meters (default 1.0m).
     """
     grid_cfg = PedestrianGridConfig(
         extent_x=extent_m,
         extent_y=extent_m,
-        resolution=grid_resolution,
+        resolution=grid_resolution_m,
         pedestrian_height=1.1
     )
     scene = Scene(pedestrian_grid=grid_cfg)

@@ -86,7 +86,7 @@ def main():
         longitude=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
-        grid_resolution=1.0,
+        grid_resolution_m=1.0,
         sky_patch_configuration=16,
         max_svf_search_dist_m=30.0,
         tmrt_tolerance_k=0.5
@@ -105,7 +105,7 @@ def main():
         for density in densities:
             scene_id = f"scale_{int(extent)}m_{density}"
             print(f"Evaluating {scene_id} ({int(extent)}x{int(extent)}m, {int(extent*extent)} cells)...")
-            scene = create_scaling_scene(extent, density=density, grid_resolution=1.0)
+            scene = create_scaling_scene(extent, density=density, grid_resolution_m=1.0)
             
             # Edit: Add a building in an open quadrant
             edit_x1 = extent * 0.4
@@ -205,7 +205,7 @@ def main():
         s_cfg = SimulationConfig(
             latitude=base_config.latitude, longitude=base_config.longitude,
             date=d_str, local_time=t_str,
-            grid_resolution=1.0, sky_patch_configuration=16,
+            grid_resolution_m=1.0, sky_patch_configuration=16,
             max_svf_search_dist_m=30.0, tmrt_tolerance_k=0.5
         )
         e_sun = AddBuildingEdit(Building("b_sun", BoundingBox2D(35.0, 45.0, 35.0, 45.0), height=16.0))
@@ -231,7 +231,7 @@ def main():
         tol_cfg = SimulationConfig(
             latitude=base_config.latitude, longitude=base_config.longitude,
             date=base_config.date, local_time=base_config.local_time,
-            grid_resolution=1.0, sky_patch_configuration=16,
+            grid_resolution_m=1.0, sky_patch_configuration=16,
             max_svf_search_dist_m=30.0, tmrt_tolerance_k=tol
         )
         e_tol = AddBuildingEdit(Building("b_tol", BoundingBox2D(25.0, 37.0, 25.0, 37.0), height=16.0))

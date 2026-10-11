@@ -38,7 +38,7 @@ def run_single_building_example():
         longitude=-74.0060,
         date="2024-07-15",
         local_time="12:00:00",
-        grid_resolution=1.0,
+        grid_resolution_m=1.0,
         sky_patch_configuration=32
     )
 

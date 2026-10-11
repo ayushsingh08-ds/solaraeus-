@@ -147,7 +147,7 @@ def main():
         date="2024-04-15",
         local_time="09:00:00",
         pedestrian_height=1.1,
-        grid_resolution=2.0,
+        grid_resolution_m=2.0,
         tmrt_tolerance_k=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
@@ -286,7 +286,7 @@ def main():
     cfg_parity = {
         "status": "exact_parity_verified",
         "grid_shape": [ny, nx],
-        "grid_resolution_m": sim_config.grid_resolution,
+        "grid_resolution_m": sim_config.grid_resolution_m,
         "receptor_height_m": sim_config.pedestrian_height,
         "solar_altitude_deg": gpu_res.metadata["solar_altitude_deg"],
         "solar_azimuth_deg": gpu_res.metadata["solar_azimuth_deg"],

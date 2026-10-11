@@ -89,7 +89,7 @@ def test_weather_and_config_validation():
         Weather(air_temperature_k=-5.0, relative_humidity=50.0, wind_speed_ms=2.0,
                 wind_direction_deg=0.0, direct_normal_irradiance_w_m2=0.0, diffuse_horizontal_irradiance_w_m2=0.0)
 
-    cfg = SimulationConfig(latitude=40.7128, longitude=-74.0060, grid_resolution=1.0)
+    cfg = SimulationConfig(latitude=40.7128, longitude=-74.0060, grid_resolution_m=1.0)
     assert cfg.pedestrian_height == 1.1
 
     with pytest.raises(ValueError):
