@@ -113,3 +113,39 @@ deterministic reference oracle used only by tests, so it becomes a test-only fix
 
 Verified: 15 oracle tests pass (unchanged from baseline); full suite still collects
 (457 tests, no import errors); golden-master GREEN (4/4, max|diff|=0.0).
+
+---
+
+## Batch 4 — root-folder clutter · user-directed hard delete
+
+**Scope.** User instruction: "clear the root folder to have final clean repo" → chosen
+policy "hard delete clutter." Three top-level entries fail the KEEP TEST on **both**
+limbs — no import/read from `src/ tests/ examples/ tools/` (verified by grep: zero
+hits), and they reproduce no paper number. Recovery anchor for this batch is the
+annotated tag **`snapshot-pre-root-clear`** (9a7cd36), capturing the entire tree
+immediately before this deletion:
+
+```bash
+git show snapshot-pre-root-clear:<path>        # recover a file
+git checkout snapshot-pre-root-clear -- <path> # restore into the tree
+```
+
+| archived path | what it was | size | evidence it is safe to archive |
+|---|---|---|---|
+| `researchpaper/` (17 files) | external cited-literature PDF library | 147 MB | distinct from `research_paper_sol/` (the paper); `solaraeus.tex` cites via `\usepackage{cite}` keys that do not match these filenames and has no `\bibliography` path to them; zero refs in src/tests/examples/tools; reproduces no number |
+| `weekly_report/` (4 files) | weekly progress `.docx` reports | 296 KB | zero refs anywhere in code; no paper linkage |
+| `context.md` (1 file) | conversation / working-context dump | 236 KB | zero refs anywhere in code; no paper linkage |
+
+**Kept despite looking like clutter (push-back on over-deletion).** `scripts/`,
+`research_paper_sol/`, `PAPER_TRACE.md` kept under rule (b): `scripts/` is the
+generation pipeline that reproduces every `results/` artifact and the paper figures;
+`PAPER_TRACE.md` is the reproduction map the KEEP TEST names. `results/`, `data/`,
+`configs/`, `bengaluru_church_street_manual_handoff_v2/` kept under rule (a) (read by
+src loaders + tests + examples + tools; the handoff dir is scene_builder's default
+`handoff_dir`). `README.md` kept as the project entry doc. `DIAGNOSIS.md`,
+`NAMING_MAP.md`, `PROJECT_STRUCTURE.md`, `simulation_3d/` retained pending the final
+STEP-4 sweep (active cleanup working-docs / paper §VI viewer component); recoverable
+via the tag if dropped later.
+
+Verified: grep of `src tests examples tools` for the three names = 0 hits;
+golden-master GREEN (4/4, max|diff|=0.0) after this batch.
