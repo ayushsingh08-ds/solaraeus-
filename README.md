@@ -1,277 +1,544 @@
-# SOLARAEUS: Certified Incremental SOLWEIG-Compatible Urban Thermal-Comfort Simulation
+# SOLARAEUS
 
-An experimental, CPU-based research prototype for **Certified Incremental SOLWEIG-Compatible Urban Thermal-Comfort Updates**.
+> **A Physics-Based 3D Urban Microclimate Digital Twin with Certified Incremental Radiative Transfer, GPU Acceleration, and an AI Solver for Optimal Intervention Placement**
 
-The engine determines whether urban thermal-comfort fields can be safely reused after local 3D building edits while guaranteeing a computable, model-specific error bound against full recomputation:
-
-$$|\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)| \leq B_T(x) \leq \varepsilon_T$$
-
-where:
-- $\widetilde{T}_{\mathrm{mrt}}(x)$ is the incrementally updated Mean Radiant Temperature at pedestrian level ($z = 1.1\,\text{m}$).
-- $T_{\mathrm{mrt}}^{\mathrm{full}}(x)$ is the ground-truth field produced by full-domain recomputation.
-- $B_T(x)$ is a closed-form, conservative upper bound derived in $O(1)$ operations per cell *prior* to expensive recomputation.
-- $\varepsilon_T$ is the user-specified maximum acceptable error tolerance (in Kelvin).
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
+[![CUDA Accelerated](https://img.shields.io/badge/cuda-12.x-green.svg)](https://developer.nvidia.com/cuda-toolkit)
+[![Numerical Parity](https://img.shields.io/badge/golden--master-GREEN-brightgreen.svg)](#9-golden-master-parity--verification)
+[![Tests Passing](https://img.shields.io/badge/tests-471%20passed-success.svg)](#10-test-suite--reproducibility)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ---
 
-## 1. Scientific & Physical Formulation
-
-SOLARAEUS implements the core physics of the **SOLWEIG** (Solar and LongWave Environmental Irradiance Geometry) model for a single timestep over a discrete horizontal pedestrian grid:
-
-### 1.1 Stefan-Boltzmann Inversion
-Mean Radiant Temperature $T_{\mathrm{mrt}}$ is calculated by inverting the Stefan-Boltzmann law across total absorbed radiation flux density $S_{\mathrm{str}}$:
-$$T_{\mathrm{mrt}}(x) = \left( \frac{S_{\mathrm{str}}(x)}{\sigma} \right)^{1/4} - 273.15$$
-where $\sigma = 5.670374419 \times 10^{-8}\,\mathrm{W\,m^{-2}\,K^{-4}}$ is the Stefan-Boltzmann constant, and:
-$$S_{\mathrm{str}}(x) = \sum_{i=1}^6 F_i \cdot \left( a_k K_i(x) + a_l L_i(x) \right)$$
-
-### 1.2 Human Body Geometry & Absorption
-- Standard rotationally symmetric standing human cylinder:
-  - $F_{\mathrm{up}} = F_{\mathrm{down}} = 0.06$ (top and bottom horizontal view factors)
-  - $F_{\mathrm{north}} = F_{\mathrm{south}} = F_{\mathrm{east}} = F_{\mathrm{west}} = 0.22$ (cardinal side view factors)
-- Absorption coefficients:
-  - Shortwave absorptivity: $a_k = 0.70$
-  - Longwave emissivity: $a_l = 0.97$
-
-### 1.3 Shortwave Fluxes $K_i(x)$
-- **Direct Solar Radiation**:
-  $$K_{\mathrm{dir}, i}(x) = I_{\mathrm{dir}} \cdot S_{\mathrm{shadow}}(x) \cdot \cos(\theta_i)$$
-  where $S_{\mathrm{shadow}}(x) \in \{0, 1\}$ is the direct line-of-sight binary visibility mask evaluated via 3D ray-AABB slab intersection, and $\theta_i$ is the incident angle to surface normal $i$.
-- **Diffuse Sky Radiation**:
-  $$K_{\mathrm{diff}, i}(x) = D_{\mathrm{diff}} \cdot \psi_{\mathrm{svf}, i}(x)$$
-  where $\psi_{\mathrm{svf}}(x) \in [0, 1]$ is the Sky View Factor computed via multi-azimuth horizon elevation search.
-- **Reflected Shortwave from Ground and Walls**:
-  $$K_{\mathrm{refl, ground}}(x) = \alpha_{\mathrm{ground}} \cdot (I_{\mathrm{dir}} \sin(\alpha_{\mathrm{sun}}) S_{\mathrm{shadow}}(x) + D_{\mathrm{diff}})$$
-  $$K_{\mathrm{refl, wall}}(x) = \alpha_{\mathrm{wall}} \cdot (1 - \psi_{\mathrm{svf}}(x)) \cdot K_{\mathrm{avg}}$$
-
-### 1.4 Longwave Fluxes $L_i(x)$
-- **Atmospheric Sky Longwave**:
-  $$L_{\mathrm{sky}}(x) = \psi_{\mathrm{svf}}(x) \cdot \varepsilon_{\mathrm{air}} \sigma T_{\mathrm{air}}^4$$
-  with air emissivity $\varepsilon_{\mathrm{air}} = 1.24 \cdot (e_{\mathrm{vap}} / T_{\mathrm{air}})^{1/7}$ (Brutsaert equation).
-- **Building Wall Longwave**:
-  $$L_{\mathrm{wall}}(x) = (1 - \psi_{\mathrm{svf}}(x)) \cdot \varepsilon_{\mathrm{wall}} \sigma T_{\mathrm{wall}}^4$$
-- **Ground Longwave**:
-  $$L_{\mathrm{ground}}(x) = \varepsilon_{\mathrm{ground}} \sigma T_{\mathrm{ground}}^4$$
-
-### 1.5 Thermal Comfort
-Universal Thermal Climate Index (UTCI) is computed from $T_{\mathrm{mrt}}$, $T_{\mathrm{air}}$, relative humidity, and 10m wind speed using the validated standard polynomial model, mapped into 10 thermal stress categories (from Extreme Cold Stress to Extreme Heat Stress).
+## Table of Contents
+1. [Overview & Core Motivation](#1-overview--core-motivation)
+2. [Physics & Biometeorological Formulation](#2-physics--biometeorological-formulation)
+3. [Certified Incremental Radiative Transfer (Theorem 1)](#3-certified-incremental-radiative-transfer-theorem-1)
+4. [Dual-Backend Architecture (CPU & CUDA GPU)](#4-dual-backend-architecture-cpu--cuda-gpu)
+5. [AI Placement Solver & Active Learning](#5-ai-placement-solver--active-learning)
+6. [Real-World Case Study: Church Street, Bengaluru Digital Twin](#6-real-world-case-study-church-street-bengaluru-digital-twin)
+7. [Terrain (DTM) & Vegetation Extensions](#7-terrain-dtm--vegetation-extensions)
+8. [Interactive 3D WebGL Digital Twin](#8-interactive-3d-webgl-digital-twin)
+9. [Mathematical Symbol ↔ Code Token Trace](#9-mathematical-symbol--code-token-trace)
+10. [Repository Structure & Module Inventory](#10-repository-structure--module-inventory)
+11. [Installation & Requirements](#11-installation--requirements)
+12. [Quickstart & Execution Workflows](#12-quickstart--execution-workflows)
+13. [Golden-Master Parity & Verification](#13-golden-master-parity--verification)
+14. [Documented Limitations & Scientific Boundaries](#14-documented-limitations--scientific-boundaries)
 
 ---
 
-## 2. Mathematical Error Certificate Formulation
+## 1. Overview & Core Motivation
 
-The error certificate engine provides provable upper bounds on $\Delta T_{\mathrm{mrt}}(x)$ before recomputing any grid cells:
+Pedestrian heat stress poses an escalating public health crisis in rapidly densifying tropical metropolises. Traditional urban microclimate simulation packages suffer from fundamental computational bottlenecks:
+- **CFD Suites (e.g., ENVI-met)**: Simulate coupled Navier–Stokes turbulence and vegetative biology, but require hours to days of CPU processing for a single diurnal cycle, precluding iterative exploration.
+- **Decoupled Radiation Models (e.g., SOLWEIG / UMEP, RayMan, Ladybug)**: Substantially accelerate ray calculations, yet operate as monolithic batch programs: whenever a localized architectural alteration (e.g., a shade canopy or tree planting) is introduced, the engine discards the domain and recalculates all grid cells from scratch.
+- **Lack of Certified Error Bounds**: Heuristic spatial clipping methods lack a mathematically rigorous guarantee that untouched cells do not exceed an acceptable thermal tolerance ($|\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)| \le \varepsilon_T$).
+- **Absence of Autonomous AI Solvers**: Urban planners rely on manual trial-and-error placement because the multi-parameter combinatorial search space of 3D canopy coordinates, dimensions, orientations, and clearance constraints cannot be practically traversed by brute-force simulations.
 
-### 2.1 Total Radiation Perturbation Bound $\Delta S_{\max}(x)$
-$$\Delta S_{\max}(x) = \Delta S_{\mathrm{dir},\max}(x) + \Delta S_{\mathrm{diff},\max}(x) + \Delta S_{\mathrm{long},\max}(x)$$
-
-1. **Direct Shadow Error Bound $\Delta S_{\mathrm{dir},\max}(x)$**:
-   Direct beam visibility $S_{\mathrm{shadow}}(x)$ can only change if a cell lies inside the **candidate shadow plume** (the Minkowski sum of the initial geometry shadow, the edited geometry shadow, and a $2 \cdot \Delta x$ safety margin).
-   - If $x \notin \text{CandidatePlume}$: $\Delta S_{\mathrm{dir},\max}(x) = 0$.
-   - If $x \in \text{CandidatePlume}$: $\Delta S_{\mathrm{dir},\max}(x) = a_k \cdot I_{\mathrm{dir}} \cdot (f_{\mathrm{up}} \sin\alpha + f_{\mathrm{side}} \cos\theta_{\max} + f_{\mathrm{down}} \alpha_g \sin\alpha)$.
-
-2. **Sky View Factor Solid-Angle Distance Decay $\Delta \psi_{\mathrm{svf},\max}(x)$**:
-   For any point $x$ at Euclidean distance $r = \operatorname{dist}(x, \Omega_{\mathrm{edit}})$ from the modified building envelope of projected width $W_{\mathrm{proj}}$ and differential height change $|\Delta h|$:
-   $$\Delta \psi_{\mathrm{svf},\max}(x) \leq \min\left(1.0, \frac{W_{\mathrm{proj}} \cdot |\Delta h|}{2\pi r^2}\right)$$
-   For cells beyond the maximum horizon search distance ($r > r_{\max} + r_{\mathrm{bbox}}$), $\Delta \psi_{\mathrm{svf},\max}(x) \equiv 0$.
-
-3. **Diffuse and Longwave Bounds**:
-   $$\Delta S_{\mathrm{diff},\max}(x) = a_k \cdot C_{\mathrm{diff}} \cdot \Delta \psi_{\mathrm{svf},\max}(x)$$
-   $$\Delta S_{\mathrm{long},\max}(x) = a_l \cdot (f_{\mathrm{up}} + 2 f_{\mathrm{side}}) \cdot |\varepsilon_{\mathrm{air}} \sigma T_{\mathrm{air}}^4 - \varepsilon_w \sigma T_{\mathrm{wall}}^4| \cdot \Delta \psi_{\mathrm{svf},\max}(x)$$
-
-### 2.2 Concave Interval Stefan-Boltzmann Propagation
-Because the function $T(S) = (S/\sigma)^{1/4}$ is strictly concave on $S > 0$, its derivative $T'(S) = \frac{1}{4 \sigma^{1/4} S^{3/4}}$ is monotonically decreasing.
-Therefore, the downward interval perturbation strictly exceeds the upward perturbation:
-$$T(S^{(0)}) - T(S^{(0)} - \Delta S) \geq T(S^{(0)} + \Delta S) - T(S^{(0)})$$
-Thus, evaluating the lower interval endpoint yields a guaranteed upper bound for both warming and cooling perturbations:
-$$B_T(x) = \left( \frac{S^{(0)}(x)}{\sigma} \right)^{1/4} - \left( \frac{\max(1.0, \, S^{(0)}(x) - \Delta S_{\max}(x))}{\sigma} \right)^{1/4}$$
-
-### 2.3 Decision Rule for Selective Recomputation
-For each grid cell $x$:
-- If $B_T(x) \leq \varepsilon_T$: **Reuse cached $T_{\mathrm{mrt}}(x)$** (Certificate holds; zero recomputation).
-- If $B_T(x) > \varepsilon_T$: **Mark cell as dirty** (Recompute direct shadow, SVF, and fluxes only on dirty region).
+**SOLARAEUS** resolves these challenges by providing:
+1. **Certified Incremental Solver**: Formulates and proves a closed-form error bound ($B_T(x) \le \varepsilon_T = 0.50\,\mathrm{K}$) grounded in concave Stefan–Boltzmann linearization and solid-angle horizon truncation decay, reusing over **99.74%** of static grid cells.
+2. **Resident GPU Acceleration**: Executes high-throughput double-precision (FP64) CUDA C++ ray-triangle and horizon reduction kernels directly in GPU VRAM (NVIDIA RTX 4050), executing incremental updates in **$11.40\,\mathrm{ms}$** (**$500.87\times$ speedup** over full CPU recomputation; **$36.84\times$** over CPU incremental recomputation).
+3. **Active Learning AI Placement Solver**: Couples 5-stage geometric feasibility screening ($94.9\%$ pruning rate), a 20-dimensional permutation-invariant feature embedding, multi-target decision-tree ensembles (Random Forest / Extra-Trees), and Upper Confidence Bound (UCB) acquisition to autonomously discover Pareto-optimal shade installations.
+4. **Interactive 3D WebGL Digital Twin**: Connects typed JSON data contracts to a modern Three.js r128 browser runtime with real-time GLSL thermal shaders, diurnal timeline scrubbing, and pedestrian comfort HUDs.
 
 ---
 
-## 3. Supported 3D Geometric Edits
+## 2. Physics & Biometeorological Formulation
 
-The engine natively supports 4 atomic 3D geometric operations:
-1. **`AddBuildingEdit`**: Inserts a new opaque rectangular prism building into the scene.
-2. **`RemoveBuildingEdit`**: Removes an existing building, unmasking previously occluded sky and solar rays.
-3. **`ChangeHeightEdit`**: Modifies building height $h_0 \to h_1$, computing the exact differential volume slice $\Delta h = |h_1 - h_0|$.
-4. **`MoveBuildingEdit`**: Compound translation edit that shifts building footprint by $(\Delta x, \Delta y)$, updating both source and destination regions.
+SOLARAEUS models outdoor radiative transfer and human energy exchange across a discrete 2D pedestrian grid ($z_{\mathrm{ped}} = 1.1\,\mathrm{m}$ eye level):
+
+```
+       +-----------------------------------------------------------+
+       |             Astronomical Solar Vector Tracking            |
+       |                  (Altitude α_s, Azimuth φ_s)              |
+       +-----------------------------+-----------------------------+
+                                     |
+                                     v
+       +-----------------------------------------------------------+
+       |           Möller-Trumbore 3D Ray-Mesh Occlusion           |
+       |                Direct Shadow Mask S(u, v) ∈ {0, 1}        |
+       +-----------------------------+-----------------------------+
+                                     |
+                                     v
+       +-----------------------------------------------------------+
+       |             Steyn (1980) Sky View Factor (SVF)            |
+       |                32/36-Azimuth Radial Ray-Marching          |
+       +-----------------------------+-----------------------------+
+                                     |
+                                     v
+       +-----------------------------------------------------------+
+       |            6-Flux Shortwave (K_i) & Longwave (L_i)         |
+       |                Fanger Rotationally Symmetric Cylinder     |
+       +-----------------------------+-----------------------------+
+                                     |
+                                     v
+       +-----------------------------------------------------------+
+       |               Stefan-Boltzmann Inversion Law              |
+       |              Mean Radiant Temperature T_mrt (K)           |
+       +-----------------------------+-----------------------------+
+                                     |
+                                     v
+       +-----------------------------------------------------------+
+       |                 UTCI Biometeorological Stress             |
+       |                Universal Thermal Climate Index            |
+       +-----------------------------------------------------------+
+```
+
+### 2.1 Astronomical Solar Vector Tracking
+Using NOAA astronomical solar position algorithms, local solar altitude ($\alpha_s$) and True North solar azimuth ($\phi_s$) are evaluated for given timestamps, geographic coordinates, and local UTM grid convergence angles ($\gamma$).
+
+### 2.2 3D Möller–Trumbore Ray-Traced Direct Shadows
+Line-of-sight occlusions between each receptor point and the unit sun vector $\vec{s}$ are evaluated via double-precision Möller–Trumbore ray-triangle intersection:
+$$\begin{bmatrix} t \\ u_b \\ v_b \end{bmatrix} = \frac{1}{\vec{P} \cdot \vec{E}_1} \begin{bmatrix} \vec{Q} \cdot \vec{E}_2 \\ \vec{P} \cdot \vec{T} \\ \vec{Q} \cdot \vec{D} \end{bmatrix}$$
+yielding binary shadow mask $\mathcal{S}(u, v) \in \{0, 1\}$.
+
+### 2.3 Steyn (1980) Sky View Factor (SVF)
+Sky View Factor $\Psi_{\mathrm{svf}}(u, v) \in [0, 1]$ is computed across $N_\phi$ discrete azimuth search radials:
+$$\Psi_{\mathrm{svf}}(u, v) = \frac{1}{N_\phi} \sum_{j=1}^{N_\phi} \bigl(1 - \sin \beta(u, v, \phi_j)\bigr)$$
+where $\tan \beta(u, v, \phi_j) = \max_{r \in (0, R_{\max}]} \frac{z_{\mathrm{mesh}}(u_r, v_r) - z_{\mathrm{ped}}}{r}$.
+
+### 2.4 Six-Flux Human Radiation Balance
+Radiant flux density absorbed by a pedestrian is resolved on Fanger's cylindrical human geometry:
+$$\Phi_{\mathrm{tot}}(u, v) = \alpha_p \sum_{i=1}^6 F_i K_i(u, v) + \varepsilon_p \sum_{i=1}^6 F_i L_i(u, v)$$
+- Geometric view factors: $F_{\mathrm{up}} = F_{\mathrm{down}} = 0.06$, $F_{\mathrm{sides}} = 0.22$.
+- Human absorption properties: Shortwave absorptivity $\alpha_p = 0.70$, Longwave emissivity $\varepsilon_p = 0.97$.
+- Shortwave components ($K_i$): Direct beam $K_{\mathrm{dir}} = I_{\mathrm{dir}} \mathcal{S}$, diffuse sky $K_{\mathrm{diff}} = I_{\mathrm{diff}} \Psi_{\mathrm{svf}}$, and reflected fluxes from walls and ground pavements.
+- Longwave components ($L_i$): Atmospheric sky emission $L_{\mathrm{down}} = \Psi_{\mathrm{svf}} \varepsilon_{\mathrm{air}} \sigma T_{\mathrm{air}}^4 + (1 - \Psi_{\mathrm{svf}}) \varepsilon_{\mathrm{wall}} \sigma T_{\mathrm{wall}}^4$.
+
+### 2.5 Mean Radiant Temperature ($T_{\mathrm{mrt}}$)
+Inverting the Stefan–Boltzmann law across total absorbed radiant flux yields:
+$$T_{\mathrm{mrt}}(u, v) = \left( \frac{\Phi_{\mathrm{tot}}(u, v)}{\sigma} \right)^{1/4}$$
+where $\sigma = 5.670374419 \times 10^{-8}\,\mathrm{W/(m^2\,K^4)}$.
+
+### 2.6 Universal Thermal Climate Index (UTCI)
+Calculated via the operational multi-node human thermoregulation model polynomial from `pythermalcomfort`:
+$$\mathrm{UTCI} = f_{\mathrm{poly}}(T_a, T_{\mathrm{mrt}}, v_{1.1}, \mathrm{RH})$$
 
 ---
 
-## 4. Repository Architecture
+## 3. Certified Incremental Radiative Transfer (Theorem 1)
+
+When an urban intervention $\mathcal{P}$ (e.g., shade canopy or building alteration) is introduced, SOLARAEUS partitions the simulation domain into dirty cells $\Omega_{\mathrm{dirty}}$ and invariant clean cells $\Omega_{\mathrm{clean}} = \Omega \setminus \Omega_{\mathrm{dirty}}$ using closed-form error certificates.
+
+### Definition: Thermal Error Certificate
+An incremental update is **certified safe** with user tolerance $\varepsilon_T$ if:
+$$|\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)| \le B_T(x) \le \varepsilon_T, \quad \forall x \in \Omega_{\mathrm{clean}}$$
+
+### Theorem 1 (Closed-Form Stefan–Boltzmann Bound)
+Let $\Delta \Phi_{\max}(x)$ be an upper bound on radiant flux perturbation at cell $x$ caused by intervention $\mathcal{P}$, and let $T_{\min} \ge 273.15\,\mathrm{K}$. Then:
+$$B_T(x) = \frac{\Delta \Phi_{\max}(x)}{4 \sigma T_{\min}^3} \le \varepsilon_T$$
+
+**Proof:** Let $\Phi_1, \Phi_2$ denote baseline and intervention radiant fluxes at $x$. By the Mean Value Theorem on $g(\Phi) = (\Phi/\sigma)^{1/4}$:
+$$|T_{\mathrm{mrt}, 2} - T_{\mathrm{mrt}, 1}| = \frac{|\Delta \Phi|}{4 \sigma^{1/4} \xi^{3/4}} \le \frac{|\Delta \Phi_{\max}(x)|}{4 \sigma T_{\min}^3}$$
+since $\xi \ge \sigma T_{\min}^4$. Setting $\Delta \Phi_{\max}(x) \le 4 \sigma T_{\min}^3 \varepsilon_T$ guarantees the certificate. $\blacksquare$
+
+### Solid-Angle Horizon Distance Decay
+The flux perturbation decays quadratically with Euclidean distance $r(x) = \mathrm{dist}(x, \mathcal{P})$ according to the solid-angle horizon cutoff:
+$$\Delta \Psi_{\mathrm{svf}}(x) \le \min\left(1.0, \frac{W_{\mathcal{P}} H_{\mathcal{P}}}{2\pi r(x)^2}\right)$$
+
+Cells where $B_T(x) > \varepsilon_T$ or where direct solar rays intersect $\mathcal{P}$ form $\Omega_{\mathrm{dirty}}$; all remaining cells retain baseline values with certified zero error.
+
+### Empirical Parity & Work Avoidance (Church Street Intervention)
+| Evaluated Field | Unit | Documented Tolerance | Observed Max Error | Observed Mean Error | Parity Status |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Direct Shadow Mask** | - | $0.00$ | **$0.000000$** | $0.000000$ | **PASS (Bitwise Exact)** |
+| **Direct SW Flux** | $\mathrm{W/m^2}$ | $0.00$ | **$0.000000$** | $0.000000$ | **PASS (Bitwise Exact)** |
+| **Sky View Factor ($\Psi_{\mathrm{svf}}$)** | - | $0.01$ | **$0.004195$** | $2.01 \times 10^{-6}$ | **PASS** |
+| **Total Shortwave Flux** | $\mathrm{W/m^2}$ | $0.50$ | **$0.128809$** | $6.17 \times 10^{-5}$ | **PASS** |
+| **Total Longwave Flux** | $\mathrm{W/m^2}$ | $0.50$ | **$0.129326$** | $6.19 \times 10^{-5}$ | **PASS** |
+| **Mean Radiant Temp ($T_{\mathrm{mrt}}$)** | $\mathrm{K}$ | $0.50$ | **$0.028902$** | $1.39 \times 10^{-5}$ | **PASS** |
+| **UTCI Thermal Comfort** | $^{\circ}\mathrm{C}$ | $0.50$ | **$0.100000$** | $3.56 \times 10^{-6}$ | **PASS** |
+
+- **Recomputed Dirty Cells**: $72$ cells ($0.26\%$)
+- **Reused Clean Cells**: $28{,}048$ cells ($99.74\%$)
+- **Ray Work Avoidance**: $925{,}584$ rays avoided ($99.74\%$ reduction)
+- **Certificate Violations**: **0 (Zero across all audited proposals)**
+
+---
+
+## 4. Dual-Backend Architecture (CPU & CUDA GPU)
+
+The SOLARAEUS computational engine implements a clean backend abstraction (`solaraeus.backends`):
+
+```
+                      +------------------------+
+                      |    SimulationConfig    |
+                      | (backend: cpu/gpu/auto)|
+                      +-----------+------------+
+                                  |
+                                  v
+                      +------------------------+
+                      |   SimulationBackend    |
+                      +-----------+------------+
+                                  |
+               +------------------+------------------+
+               |                                     |
+               v                                     v
+      +-----------------+                   +-----------------+
+      |   CPUBackend    |                   |   GPUBackend    |
+      | (NumPy Ref.)    |                   | (CUDA C++ JIT)  |
+      +-----------------+                   +-----------------+
+               |                                     |
+               |                                     v
+               |                            +-----------------+
+               |                            | CuPy RawModule  |
+               |                            | - MT Shadow     |
+               |                            | - SVF Horizon   |
+               |                            +-----------------+
+               |                                     |
+               +------------------+------------------+
+                                  |
+                                  v
+                      +------------------------+
+                      |    SimulationResult    |
+                      +------------------------+
+```
+
+### 4.1 Backend Engine Details
+- **`CPUBackend`**: Vectorized NumPy and CPU Möller–Trumbore ray intersection. Serves as trusted reference ground truth.
+- **`GPUBackend`**: High-performance CUDA C++ ray-tracing engine executed via CuPy `RawModule` and JIT compilation. Employs full IEEE-754 64-bit Double Precision (`double` / FP64) inside kernels to maintain machine-level numerical parity ($10^{-14}$) with CPU reference.
+- **`GPUIncrementalEngine`**: Maintains static scene geometry (123 buildings, 2,136 triangles) and baseline fields permanently resident in device VRAM. Dynamic intervention meshes upload in $< 18\,\mathrm{ms}$. Active thread blocks evaluate CUDA kernels strictly over $\Omega_{\mathrm{dirty}}$.
+
+### 4.2 Multi-Trial Benchmark Telemetry (NVIDIA GeForce RTX 4050 Laptop GPU)
+| Execution Pathway | Total Pipeline (s) | Kernel Latency (ms) | Speedup vs CPU Full | Speedup vs CPU Incr | Work Avoided |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **CPU Full Recompute** | $5.71 \pm 0.04\,\mathrm{s}$ | - | $1.0\times$ (base) | - | $0.0\%$ |
+| **CPU Incremental** | $0.42 \pm 0.01\,\mathrm{s}$ | - | **$13.6\times$** | $1.0\times$ (base) | $99.74\%$ |
+| **GPU Full Recompute** | $0.133 \pm 0.01\,\mathrm{s}$ | $54.43\,\mathrm{ms}$ | **$69.1\times$** | $3.16\times$ | $0.0\%$ |
+| **GPU Incremental** | **$0.0114 \pm 0.001\,\mathrm{s}$** | **$11.40\,\mathrm{ms}$** | **$500.87\times$** | **$36.84\times$** | **$99.74\%$** |
+
+- **Peak Device VRAM**: $1{,}089.45\,\mathrm{MB}$
+
+---
+
+## 5. AI Placement Solver & Active Learning
+
+Identifying optimal shade structure coordinates, orientations, and dimensions across complex urban corridors constitutes a non-convex, constrained optimization problem. SOLARAEUS couples multi-target decision-tree ensembles with an active learning search loop.
+
+```
++--------------------------------------------------------------------------+
+|                  1. Candidate Proposal Generation                        |
+|   Single-Panel (p ∈ R^7) or Dual-Panel Multi-Intervention (p ∈ R^14)     |
++------------------------------------+-------------------------------------+
+                                     |
+                                     v
++--------------------------------------------------------------------------+
+|                  2. 5-Stage Geometric Feasibility Filter                 |
+|  Corridor Polygon, Facade Setback ≥ 1m, Clearance ≥ 3.5m, Sep ≥ 2m       |
+|                 (Prunes 94.9% of invalid candidates)                     |
++------------------------------------+-------------------------------------+
+                                     |
+                                     v
++--------------------------------------------------------------------------+
+|            3. Permutation-Invariant 20-D Feature Embedding               |
+|      Canonical Lexicographical Sorting + Interaction Metrics             |
++------------------------------------+-------------------------------------+
+                                     |
+                                     v
++--------------------------------------------------------------------------+
+|             4. Multi-Target Decision-Tree Ensemble Surrogate             |
+|        Random Forest / Extra-Trees (100 trees, 7 physical targets)        |
+|               Uncertainty σ^(p) without O(N^3) Matrix Inversion          |
++------------------------------------+-------------------------------------+
+                                     |
+                                     v
++--------------------------------------------------------------------------+
+|             5. Active Learning Acquisition & GPU Verification            |
+|       Upper Confidence Bound (UCB): α(p) = J^(p) + 1.96 · σ(p)           |
+|            Dispatches to Resident GPU Kernel (11.4 ms/eval)              |
++--------------------------------------------------------------------------+
+```
+
+### 5.1 Canonical Lexicographical Parameterization
+For dual-canopy configurations ($\mathbf{p} = [\mathbf{p}_1, \mathbf{p}_2] \in \mathbb{R}^{14}$), swapping panel indices $(\mathbf{p}_1 \leftrightarrow \mathbf{p}_2)$ represents identical physical reality. To eliminate combinatorial symmetry, the AI solver enforces canonical ordering ($x_1 < x_2$, or $y_1 < y_2$ when $|x_1 - x_2| < 0.1\,\mathrm{m}$).
+
+### 5.2 Geometric Feasibility Screening
+Before physical ray tracing, proposals undergo 5-stage geometric validation:
+1. **Corridor Polygon Containment**: All 4 vertices must lie inside the street boundary.
+2. **Facade Setback**: Minimum clearance to building walls $d_{\mathrm{facade}} \ge 1.0\,\mathrm{m}$ for emergency egress.
+3. **Vehicle Clearance**: Underside height $H_k \ge 3.5\,\mathrm{m}$.
+4. **Mutual Separation**: Panel centroids must maintain $d_{\mathrm{sep}} \ge 2.0\,\mathrm{m}$.
+5. **Area Budget**: Combined canopy footprint $A_1 + A_2 \le 30.0\,\mathrm{m}^2$.
+*Rejection rate: over **94.9%** of proposals are pruned upfront.*
+
+### 5.3 20-Dimensional Feature Embedding
+$$\mathbf{z}(\mathbf{p}) = [x_1, y_1, L_1, W_1, H_1, \theta_1, \alpha_1, A_1, x_2, y_2, L_2, W_2, H_2, \theta_2, \alpha_2, A_2, A_{\mathrm{tot}}, d_{\mathrm{center}}, d_{\mathrm{sep}}, \Delta H]^\top$$
+
+### 5.4 Multi-Target Ensemble Architecture
+Replaces $\mathcal{O}(N^3)$ Gaussian process inversion with randomized tree ensembles ($N_{\mathrm{trees}} = 100$, $D_{\max} = 12$) predicting 7 simultaneous physical metrics: composite score $\mathcal{J}$, corridor mean $T_{\mathrm{mrt}}$, 90th-percentile UTCI, mean UTCI, $\Delta T_{\mathrm{mrt}}$, peak localized cooling, and construction cost. Ensemble variance directly quantifies spatial epistemic uncertainty:
+$$\widehat{\sigma}^2(\mathbf{p}) = \frac{1}{N_{\mathrm{trees}}} \sum_{t=1}^{N_{\mathrm{trees}}} \bigl(\widehat{y}_t(\mathbf{p}) - \overline{y}(\mathbf{p})\bigr)^2$$
+
+### 5.5 Optimal Intervention Discovery
+Across $4{,}401$ evaluated dual-canopy proposals on Church Street:
+- **Optimal Dual-Canopy Winner (`CAND_4196_SURR`)**:
+  - Panel 1: Centroid $(124.02\,\mathrm{m}, 59.63\,\mathrm{m})$, $6.76\,\mathrm{m} \times 2.07\,\mathrm{m}$ at $3.79\,\mathrm{m}$ height, orientation $113.8^\circ$ ($14.01\,\mathrm{m}^2$).
+  - Panel 2: Centroid $(151.94\,\mathrm{m}, 59.04\,\mathrm{m})$, $3.85\,\mathrm{m} \times 2.30\,\mathrm{m}$ at $4.16\,\mathrm{m}$ height, orientation $93.7^\circ$ ($8.86\,\mathrm{m}^2$).
+  - Total Area: $22.87\,\mathrm{m}^2$, Mutual Separation: $22.45\,\mathrm{m}$.
+  - **Mutual Shadow Overlap**: **$0.0\,\mathrm{m}^2$ (Zero overlap)**.
+  - **Peak Localized $T_{\mathrm{mrt}}$ Reduction**: **$12.68\,\mathrm{K}$**.
+  - **Composite Objective Score $\mathcal{J}$**: **$56.57$**.
+
+---
+
+## 6. Real-World Case Study: Church Street, Bengaluru Digital Twin
+
+To evaluate SOLARAEUS on an authentic, high-density tropical pedestrian corridor, Church Street in central Bengaluru ($12.9749^\circ\,\mathrm{N}, 77.6054^\circ\,\mathrm{E}$) was selected.
+
+### 6.1 Geospatial Digital Twin Parameters
+| Parameter | Symbol | Value | Unit |
+| :--- | :---: | :---: | :---: |
+| Coordinate Reference System | CRS | UTM Zone 43N | EPSG:32643 |
+| Local Origin Coordinates | $(X_0, Y_0)$ | $(782{,}541.81, 1{,}435{,}736.11)$ | $\mathrm{m}$ |
+| Grid Convergence Angle | $\gamma$ | $+0.5854$ | $\mathrm{deg}$ |
+| Simulation Domain Extent | $\Omega$ | $380.0 \times 296.0$ | $\mathrm{m}$ |
+| Grid Resolution | $\Delta x, \Delta y$ | $2.0 \times 2.0$ | $\mathrm{m}$ |
+| Active Receptors | $N_{\mathrm{grid}}$ | $28{,}120$ | cells |
+| Total Buildings | $N_{\mathrm{bldg}}$ | 123 (37 core, 86 context) | structures |
+| Triangulated Watertight Meshes | $N_{\mathrm{tri}}$ | $2{,}136$ | triangles |
+| Solar Altitude | $\alpha_s$ | $57.9160$ | $\mathrm{deg}$ |
+| Solar Azimuth (Grid North) | $\phi_{\mathrm{grid}}$ | $267.5802$ | $\mathrm{deg}$ |
+| Ambient Air Temperature | $T_a$ | $35.0$ | $^{\circ}\mathrm{C}$ |
+| Relative Humidity | $\mathrm{RH}$ | $19.73$ | $\%$ |
+| Pedestrian Wind Speed ($1.1\,\mathrm{m}$) | $v_{1.1}$ | $1.1$ | $\mathrm{m/s}$ |
+| Global Horizontal Irradiance | $\mathrm{GHI}$ | $755.97$ | $\mathrm{W/m^2}$ |
+| Direct Normal Irradiance | $\mathrm{DNI}$ | $728.31$ | $\mathrm{W/m^2}$ |
+| Diffuse Horizontal Irradiance | $\mathrm{DHI}$ | $172.18$ | $\mathrm{W/m^2}$ |
+
+### 6.2 Baseline Heat Stress vs. Single Intervention Impact
+- **Baseline Corridor Conditions**: $97.0\%$ of corridor cells receive direct unshaded sun, yielding mean $T_{\mathrm{mrt}} = 45.81^\circ\mathrm{C}$ and UTCI $= 36.49^\circ\mathrm{C}$ (*Strong Heat Stress*).
+- **Single-Canopy Intervention (`BLR_SHADE_001`, $6.0\,\mathrm{m} \times 3.0\,\mathrm{m}$)**: Delivers average localized cooling of $-10.03\,\mathrm{K}$ $T_{\mathrm{mrt}}$ (peak **$-12.62\,\mathrm{K}$**) and average UTCI relief of $-2.43\,\mathrm{K}$ (peak **$-3.10\,\mathrm{K}$**), downgrading pedestrian sensation to *Moderate Heat Stress*.
+
+---
+
+## 7. Terrain (DTM) & Vegetation Extensions
+
+SOLARAEUS includes extensible scientific modules for non-flat topography and urban tree canopies:
+- **Digital Terrain Models (`solaraeus.extensions.terrain`)**: The [`TerrainGrid`](file:///c:/Users/AYUSH%20SINGH/Documents/GitHub/solaraeus/src/solaraeus/extensions/terrain/dtm.py) class supports regular elevation rasters, bilinear height interpolation, slope/aspect evaluation, and synthetic/FABDEM regional topography on both CPU and GPU backends.
+- **Level 1 Vegetation Geometry (`solaraeus.extensions.vegetation`)**: Street trees cataloged from Bruhat Bengaluru Mahanagara Palike (BBMP) census data are modeled in [`tree.py`](file:///c:/Users/AYUSH%20SINGH/Documents/GitHub/solaraeus/src/solaraeus/extensions/vegetation/tree.py) as cylindrical trunks and ellipsoidal crowns, incorporating Beer–Lambert shortwave canopy extinction priors.
+
+---
+
+## 8. Interactive 3D WebGL Digital Twin
+
+Located in [`simulation_3d/`](file:///c:/Users/AYUSH%20SINGH/Documents/GitHub/solaraeus/simulation_3d/):
+- **Core Engine**: Three.js (r128) WebGL application with OrbitControls.
+- **Custom Shaders**: Real-time GLSL thermal fragment shaders ([`heatmapShader.js`](file:///c:/Users/AYUSH%20SINGH/Documents/GitHub/solaraeus/simulation_3d/heatmapShader.js)) rendering continuous $T_{\mathrm{mrt}}$, UTCI, and cooling delta fields.
+- **Interactive Controls**: Diurnal solar timeline scrubber (06:00 to 18:00), scenario comparison toggles (`baseline`, `trees`, `panels`, `combined`), point-of-interest (POI) 3D pins, and avatar microclimate HUD.
+- **Serving the Viewer**:
+  ```bash
+  python -m http.server 8000 --directory simulation_3d
+  ```
+  Navigate to `http://localhost:8000` in any modern WebGL-compatible browser.
+
+---
+
+## 9. Mathematical Symbol ↔ Code Token Trace
+
+To ensure scientific transparency between publication manuscripts and software implementation, the following reconciliation table traces authoritative mathematical definitions to active source code tokens:
+
+| Paper Symbol | Formal Description | Code Location | Active Token Name |
+| :--- | :--- | :--- | :--- |
+| $\varepsilon_T$ | Thermal error tolerance (K) | `solaraeus/core/config.py` | `SimulationConfig.tmrt_tolerance_k` |
+| $B_T(x)$ | Closed-form error certificate bound (K) | `solaraeus/incremental/certificate.py` | `ErrorCertificate.predicted_error_bound_k` |
+| $\Psi_{\mathrm{svf}}$ | Sky View Factor in $[0, 1]$ | `solaraeus/physics/sky_view_factor.py` | `compute_sky_view_factor()` / `svf` |
+| $\vec{s}$ | 3D unit sun vector $(s_x, s_y, s_z)$ | `solaraeus/physics/solar_position.py` | `SolarPosition.sun_vector` |
+| $\mathcal{S}(u,v)$ | Direct binary shadow mask | `solaraeus/physics/shadow.py` | `compute_direct_shadow_mask()` |
+| $K_i, L_i$ | Shortwave / Longwave directional fluxes | `solaraeus/physics/shortwave.py`, `longwave.py` | `compute_shortwave_fluxes()`, `compute_longwave_fluxes()` |
+| $\Phi_{\mathrm{tot}}$ | Total absorbed radiant flux density ($S_{\mathrm{str}}$) | `solaraeus/physics/mean_radiant_temperature.py` | `RadiantState.s_str` |
+| $T_{\mathrm{mrt}}$ | Mean Radiant Temperature (Kelvin / Celsius) | `solaraeus/physics/mean_radiant_temperature.py` | `mean_radiant_temperature()` (`tmrt_k`, `tmrt_c`) |
+| $\mathrm{UTCI}$ | Universal Thermal Climate Index ($^{\circ}\mathrm{C}$) | `solaraeus/physics/utci.py` | `compute_utci()` |
+| $\Omega_{\mathrm{dirty}}$ | Candidate recomputation cells | `solaraeus/incremental/affected_region.py` | `AffectedRegionResult.candidate_mask` |
+| $\mathbf{p}_k$ | 7-D single-panel parameter vector | `solaraeus/placement/parameters.py` | `ShadePanelParams` |
+| $\mathbf{p}$ | 14-D dual-panel parameter vector | `solaraeus/placement/dual_panel_parameters.py`| `DualPanelParams` |
+| $\mathbf{z}(\mathbf{p})$ | 20-D permutation-invariant embedding | `solaraeus/placement/dual_panel_surrogate_model.py`| `extract_dual_panel_features()` |
+| $\mathcal{J}$ | Composite optimization objective score | `solaraeus/placement/dual_panel_objective.py` | `compute_dual_panel_objective()` |
+| $\alpha_{\mathrm{ucb}}$ | Upper Confidence Bound acquisition | `solaraeus/placement/acquisition.py` | `compute_lcb_score()` (sign-flipped UCB) |
+
+---
+
+## 10. Repository Structure & Module Inventory
 
 ```text
 solaraeus/
 ├── configs/                         # Canonical simulation and scene configurations
-├── data/                            # Verified geospatial and environmental datasets
-│   ├── benchmark/                   # Synthetic and triangular benchmark assets
-│   ├── interim/                     # Extracted terrain and vegetation vectors
-│   ├── processed/                   # Harmonized 1-m rasters and building footprints
-│   └── review/                      # Municipal census datasets and researcher signoffs
-├── docs/                            # In-depth architectural and mathematical documentation
-│   └── gpu_backend_architecture.md  # CUDA C++ / CuPy kernel execution and memory architecture
-├── examples/                        # Standalone evaluation and demonstration scripts
+│   └── baseline_scene.json          # Canonical test scene (80m × 80m domain)
+├── data/                            # Curated geospatial and environmental datasets
+│   ├── benchmark/                   # Benchmark elevation profiles & test geometries
+│   ├── processed/                   # Approved building footprints, heights, & signoffs
+│   └── review/                      # Municipal census datasets & uncertainty records
+├── examples/                        # Standalone evaluation & demonstration scripts
 │   ├── single_building.py           # Full reference simulation demonstration
-│   ├── compare_full_incremental.py  # End-to-end comparative benchmark script
-│   └── run_publication_validation.py# Complete audit and publication evaluation runner
-├── research_paper_sol/              # IEEE-style research conference publication package
-│   ├── solaraeus.tex                # Complete IEEE 2-column conference manuscript
-│   ├── fig1_architecture.png       # Publication-grade System Architecture diagram (300 DPI)
-│   ├── fig1_architecture.tex       # Standalone TikZ vector source for Architecture diagram
-│   ├── fig2_methodology.png         # Publication-grade Methodology & Dataflow diagram (300 DPI)
-│   ├── fig2_dataflow.tex           # Standalone TikZ vector source for Dataflow diagram
-│   └── fig2_methodology.tex        # Synced alias TikZ source
-├── results/                         # Frozen benchmarks, audit logs, and stage verification reports
-├── scripts/                         # Production pipelines, stage runners (Stages 05–38), & tools
-│   ├── execute_final_3d_integrated_simulation.py # Master 3D simulation pipeline
-│   ├── execute_stage_05_...py to execute_stage_38_...py # Certified stage solvers
-│   ├── generate_ieee_figures.py    # Generates 300 DPI publication figures
+│   ├── compare_full_incremental.py  # Comparative CPU benchmark runner
+│   └── run_publication_validation.py# Multi-trial publication verification runner
+├── research_paper_sol/              # IEEE conference publication package
+│   ├── solaraeus.tex                # Authoritative IEEE 2-column LaTeX manuscript
+│   ├── fig1_architecture.png / .tex# System architecture diagram & TikZ vector source
+│   ├── fig2_incremental.png         # Certified incremental workflow diagram
+│   ├── fig3_gpu_engine.png          # GPU resident-memory acceleration diagram
+│   └── fig4_optimization.png        # AI solver active learning workflow diagram
+├── results/                         # Frozen benchmarks, audit logs, & stage reports
+├── scripts/                         # Stage execution pipelines (Stages 05–38) & tooling
 │   ├── run_church_street_*.py       # High-resolution Church Street simulation workflows
-│   └── verify_ui_quality.py         # Automated UI contract and visual style validator
+│   └── generate_ieee_figures.py     # Publication figure generation script
 ├── simulation_3d/                   # Interactive Three.js 3D WebGL Digital Twin viewer
-│   ├── index.html                   # Cinematic web application entry point
-│   ├── index.css                    # Modern design system (glassmorphism, typography, HUD)
-│   ├── app.js                       # Three.js scene controller, ray-traced shadows, & comfort HUD
-│   ├── church_street_data.js        # High-resolution 3D geospatial geometry and comfort payload
-│   └── fonts/ & vendor/             # Self-contained fonts and Three.js client libraries
-├── src/urban_comfort/               # Core physics simulation engine
-│   ├── backend/                     # GPU acceleration (CUDA C++ kernels, CuPy resident solvers)
-│   ├── comfort/                     # UTCI evaluation and biometeorological stress categories
-│   ├── geometry/                    # 3D prisms, triangular meshes, BVH spatial trees
-│   ├── grid/                        # Discrete 1-m pedestrian grid mappings
-│   ├── incremental/                 # Certified incremental updates, error bounds & caching
-│   ├── optimization/                # Single/multi-panel spatial optimizers & surrogate models
-│   ├── radiation/                   # Stefan-Boltzmann inversion and multi-directional 6-fluxes
-│   ├── solar/                       # Solar position astronomical equations & shadow raytracing
-│   ├── terrain/                     # 3D bare-earth DEM, DTM, and topographic elevation models
-│   ├── vegetation/                  # Level-1 tree models and canopy shortwave attenuation
-│   └── visibility/                  # Steyn (1980) 36-radial Sky View Factor (SVF) engine
-└── tests/                           # Comprehensive test suite (457 tests, 100% pass rate)
+│   ├── index.html                   # Cinematic WebGL web application entry point
+│   ├── index.css                    # Design system (typography, glassmorphism, HUD)
+│   ├── app.js                       # Scene controller, Three.js shaders, & avatar HUD
+│   ├── heatmapShader.js             # Custom GLSL fragment thermal shader
+│   ├── church_street_data.json      # Church Street 3D meshes & simulation payload
+│   └── fonts/ & vendor/             # Self-contained web fonts and Three.js libraries
+├── src/solaraeus/                   # Core physics and simulation package
+│   ├── core/                        # Configs, materials, meshes, and pedestrian grids
+│   │   ├── config.py                # Weather, SimulationConfig, and Material schemas
+│   │   ├── geometry/                # TriangleMesh, Primitives, Scene data structures
+│   │   ├── pedestrian_grid.py       # Receptor grid coordinate mapping
+│   │   └── serialization_compat.py  # Backward-compatible physical unit alias shim
+│   ├── physics/                     # Physical transfer & biometeorological solvers
+│   │   ├── solar_position.py        # Astronomical solar vector equations
+│   │   ├── ray_intersection.py      # Möller–Trumbore ray-triangle & ray-AABB tests
+│   │   ├── shadow.py                # Direct solar shadow mask computation
+│   │   ├── sky_view_factor.py       # Steyn multi-azimuth SVF horizon search
+│   │   ├── shortwave.py             # 6-flux shortwave solar balance
+│   │   ├── longwave.py              # Atmospheric & surface longwave balance
+│   │   ├── mean_radiant_temperature.py # Stefan–Boltzmann inversion
+│   │   └── utci.py                  # Universal Thermal Climate Index
+│   ├── backends/                    # Dual-backend execution abstractions
+│   │   ├── base.py                  # SimulationBackend abstract base class
+│   │   ├── cpu.py                   # CPU reference backend (NumPy)
+│   │   ├── gpu.py                   # CUDA C++ kernels & CuPy backend
+│   │   └── gpu_incremental.py       # Resident VRAM GPU incremental engine
+│   ├── incremental/                 # Certified incremental recomputation engine
+│   │   ├── certificate.py           # Closed-form error bounds & audit contracts
+│   │   ├── affected_region.py       # Candidate shadow plume & horizon decay masks
+│   │   └── update.py                # Scene edit operations (Add, Remove, Height, Move)
+│   ├── placement/                   # AI Placement Solver & Active Learning
+│   │   ├── parameters.py            # Single- and dual-panel parameter schemas
+│   │   ├── feasibility.py           # 5-stage geometric and corridor feasibility filters
+│   │   ├── surrogate_model.py       # Multi-target decision-tree ensembles (RF/ExtraTrees)
+│   │   ├── acquisition.py           # Upper Confidence Bound acquisition policies
+│   │   ├── dual_panel_placement_solver.py # Dual-panel multi-intervention engine
+│   │   └── robustness.py            # Multi-seed & sensitivity evaluation suite
+│   ├── sites/                       # Real-world site adapters & builders
+│   │   └── church_street/           # Bengaluru Church Street coordinate transforms
+│   ├── extensions/                  # Extensible scientific modules
+│   │   ├── terrain/                 # Digital Terrain Models (DTM) & rasters
+│   │   └── vegetation/              # Level 1 tree trunks, ellipsoidal crowns, & BBMP census
+│   └── validation/                  # Independent audits, benchmarks, & metrics
+│       └── independent_audit.py     # Decoupled verification & mutation testing
+├── tools/                           # Development, testing, & golden-master tools
+│   ├── golden_master/               # Bitwise regression baseline capture & comparison
+│   └── robustness_plots.py          # Reporting & visualization plot utilities
+└── tests/                           # Exhaustive test suite (471 tests, 100% pass rate)
 ```
 
 ---
 
-## 5. Installation & Requirements
+## 11. Installation & Requirements
 
-### 5.1 Environment Prerequisites
-- Python 3.10+ (Tested on Python 3.12.6)
-- Core dependencies: `numpy`, `scipy`, `pytest`, `pythermalcomfort`, `shapely`, `matplotlib`
+### 11.1 Prerequisites
+- **Python**: 3.10+ (Tested on Python 3.12.6)
+- **Host OS**: Linux, macOS, or Windows 10/11
+- **GPU (Optional for GPU Backend)**: NVIDIA GPU with Compute Capability $\ge 6.0$ (Pascal through Ada Lovelace / Blackwell) with modern NVIDIA drivers ($\ge 525.60$).
 
-### 5.2 Setup
+### 11.2 Environment Setup
 Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/ayushsingh08-ds/solaraeus.git
 cd solaraeus
-pip install numpy scipy pytest pythermalcomfort shapely matplotlib
+pip install numpy scipy pytest shapely pythermalcomfort scikit-learn matplotlib pyproj trimesh
 ```
+
+### 11.3 GPU Dependencies (Optional)
+If running GPU-accelerated ray tracing:
+```bash
+pip install cupy-cuda12x nvidia-cuda-nvrtc-cu12 nvidia-cuda-runtime-cu12
+```
+*Note: No system-wide `nvcc` compiler installation is required; CuPy dynamically links via CUDA runtime wheels.*
 
 ---
 
-## 6. How to Run Tests and Examples
+## 12. Quickstart & Execution Workflows
 
-### 6.1 Run the Full Test Suite (94 Tests)
-To execute all 94 unit, integration, adversarial, and reference tests:
-```bash
-python -m pytest -o pythonpath=src -v
-```
-*Expected result: 94 passed with zero errors or failures.*
-
-### 6.2 Run the Master Publication Validation Suite
-To execute the comprehensive multi-trial benchmarking and validation suite (evaluates 34 experiments, 130 trials, repeated edits, baseline comparison, and tightness analysis):
-```bash
-python examples/run_publication_validation.py
-```
-Outputs complete CSV telemetry, JSON audit logs, and 9 publication-grade figures in `results/publication_validation_<timestamp>/`.
-
-### 6.3 Run the Single-Building Reference Example
+### 12.1 Single Building Simulation Example
+Run the reference simulation over an 80m canonical scene:
 ```bash
 python examples/single_building.py
 ```
-Outputs solar altitude, azimuth, direct shadow ratio, mean sunlit vs. shaded $T_{\mathrm{mrt}}$, UTCI thermal comfort categories, and execution timing breakdowns.
+Outputs solar position, shadow fraction, mean $T_{\mathrm{mrt}}$ in sun vs. shade, and UTCI comfort stress distributions.
 
-### 6.4 Run the Comparative Benchmark Experiment
+### 12.2 Comparative Incremental Benchmark
+Compare full-domain recomputation against certified incremental updates:
 ```bash
 python examples/compare_full_incremental.py
 ```
-This script executes the baseline comparative protocol on an $80\,\text{m} \times 80\,\text{m}$ urban domain, comparing full recomputation against certified incremental updates, auditing empirical soundness, and exporting evaluation artifacts into `results/`.
+Audits computational speedup, verified cell-reuse percentage, and certificate upper bounds.
+
+### 12.3 Church Street GPU Simulation
+Execute the full GPU simulation over Church Street, Bengaluru:
+```bash
+python scripts/run_church_street_gpu_simulation.py
+```
+
+### 12.4 AI Intervention Placement Discovery
+Run the surrogate-assisted dual-canopy placement solver:
+```bash
+python scripts/run_church_street_two_panel_optimization.py
+```
 
 ---
 
-## 7. Empirical Benchmark Results & Canonical Reconciliation
+## 13. Golden-Master Parity & Verification
 
-### 7.1 Canonical Benchmark Reconciliation Across Experimental Campaigns
+To guarantee that code refactorings, optimizations, or module relocations never introduce numerical drift, SOLARAEUS maintains a frozen **Golden-Master Regression Baseline** in `tools/golden_master/`.
 
-Performance speedups and safe cell-reuse fractions depend directly on the geometric perturbation footprint relative to the overall domain size. Across the three experimental campaigns conducted on the prototype, results reconcile as follows:
+### Running Golden-Master Comparison
+```bash
+python tools/golden_master/compare.py
+```
 
-| Experiment ID | Domain Size | Grid Cells | Edit Type & Magnitude | Reused Cells (%) | Full Recompute (s) | Incremental (s) | Measured Speedup | Max Error (K) | Violations |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`exp_80m_corner_infill`** | 80m x 80m | 6,400 | AddBuilding (corner quadrant) | 27.6% | 0.434s | 0.411s | **1.22x** | 0.000K | 0 |
-| **`exp_80m_central_infill`** | 80m x 80m | 6,400 | AddBuilding (18m center infill) | 3.1% | 0.580s | 0.530s | **1.09x** | 0.000K | 0 |
-| **`exp_80m_height_delta`** | 80m x 80m | 6,400 | ChangeHeight (20m -> 26m) | 69.5% | 0.274s | 0.218s | **1.53x** | 0.000K | 0 |
-| **`exp_160m_central_infill`** | 160m x 160m | 25,600 | AddBuilding (18m center infill) | 70.9% | 0.849s | 0.242s | **3.50x** | 0.000K | 0 |
-| **`exp_160m_height_delta`** | 160m x 160m | 25,600 | ChangeHeight (20m -> 26m) | 81.6% | 2.991s | 0.354s | **6.39x** | 0.019K | 0 |
-| **`exp_320m_central_infill`** | 320m x 320m | 102,400 | AddBuilding (18m center infill) | 92.7% | 43.75s | 3.009s | **14.54x** | 0.000K | 0 |
-| **`exp_320m_height_delta`** | 320m x 320m | 102,400 | ChangeHeight (20m -> 26m) | 96.5% | 35.96s | 1.368s | **23.14x** | 0.023K | 0 |
+Expected verification output:
+```text
+GOLDEN-MASTER COMPARE  (rtol=1e-09 atol=1e-12, gpu=True)
+------------------------------------------------------------------------
+  single_building_cpu  PASS        max|diff|=0.000e+00
+  incremental_cpu      PASS        max|diff|=0.000e+00
+  single_building_gpu  PASS        max|diff|=0.000e+00
+  incremental_gpu      PASS        max|diff|=0.000e+00
+------------------------------------------------------------------------
+RESULT: GREEN (behaviour preserved)
+```
 
-> **No certificate violations were observed in the evaluated configurations.**
-
-#### Physical Cause of Performance Variations:
-1. **Corner vs. Central Infill (80m)**: Placing an infill building at the domain boundary directs its shadow plume outside the evaluated mesh, leaving 27.6% of cells unperturbed (1.22x speedup). Placing the identical building at the center allows its 39.5m shadow plume and 30m SVF decay envelope to sweep across 96.9% of the compact grid, reducing clean cells to 3.1% (1.09x speedup).
-2. **Central Infill vs. Height Delta (80m–320m)**: Modifying the height of an existing building ($\Delta h = +6\,\text{m}$) modifies a smaller differential volume than inserting a completely new 18m structure from ground level. As a result, height deltas retain substantially larger clean fractions (69.5% on 80m, 96.5% on 320m), yielding speedups from **1.53x** up to **23.14x**.
-3. **Domain Expansion Amortization**: Because direct shadow and SVF horizon decays are bounded physical phenomena, expanding the domain quadratically expands the clean boundary area, scaling speedups from ~1.1x–1.5x at 80m to **14.5x–23.1x at 320m**.
-
-### 7.2 Multi-Trial Timing Overhead Breakdown
-The incremental pipeline records isolated wall-clock overhead across all phases:
-- **Dependency & Candidate Region**: $\le 0.0003\,\text{s}$ ($< 0.01\%$ of runtime).
-- **Certificate Evaluation**: $0.002\,\text{s} - 0.033\,\text{s}$ ($0.36\% - 1.43\%$ of incremental execution time).
-- **Result Assembly & Verification**: $< 0.0005\,\text{s}$ ($< 0.02\%$ of runtime).
-- **Total Overhead Ratio**: Total overhead constitutes **$\le 1.6\%$** of incremental execution time, confirming that bounding calculations introduce minimal computational penalty.
-
-### 7.3 Comparison with Non-Certified Dirty-Region Baseline
-
-| Method | Wall-Clock Time | Measured Speedup | Reused Cells | Max Actual Error | Violations Observed ($\varepsilon_T = 0.5\,\text{K}$) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Full Recomputation** | $0.434\,\text{s}$ | $1.00\times$ | $0$ ($0\%$) | $0.000\,\text{K}$ | 0 |
-| **Non-Certified Dirty Box (5m margin)** | $0.055\,\text{s}$ | $7.95\times$ | $5,775$ ($90.2\%$) | **$20.818\,\text{K}$** | **685 violations** |
-| **Exact Incremental** | $0.411\,\text{s}$ | $1.06\times$ | $448$ ($7.0\%$) | $0.000\,\text{K}$ | 0 |
-| **Certified Incremental** | $0.456\,\text{s}$ | $0.95\times$ | $200$ ($3.1\%$) | $0.000\,\text{K}$ | **0 (Zero)** |
+### Running the Full Test Suite
+The repository includes 471 automated tests across physics, geometry, GPU kernels, error certificates, and optimization solvers:
+```bash
+python -m pytest -o pythonpath=src -q
+```
+*Result: 471 passed with zero errors.*
 
 ---
 
-## 8. Documented Assumptions, Verification Tiers & Known Limitations
+## 14. Documented Limitations & Scientific Boundaries
 
-### 8.1 5-Tier Verification & Validation Taxonomy
-1. **Tier 1: Analytical Benchmark Verification**: Completed and passing. Geometric shadow length ($H/\tan\alpha$), Siegel & Howell finite vertical wall view factors, unobstructed SVF ($1.0$), and Stefan-Boltzmann radiant flux inversion match closed-form analytical solutions with errors $\le 10^{-7}$.
-2. **Tier 2: Internal Numerical Validation**: Completed and passing across 11 scaling and edit configurations (>185,000 cells checked). Maximum observed actual error is $\le 0.023\,\text{K}$, strictly bounded by certificates with zero violations.
-3. **Tier 3: External Compatibility Assessment**: Completed. The prototype formulation is conceptually aligned with SOLWEIG/UMEP v2023a conventions (Hoppe 1992 cylinder factors $0.06/0.06/0.22$, Brutsaert atmospheric emissivity), with input raster DSM adapters documented.
-4. **Tier 4: External Numerical Validation**: Not performed. Numerical cross-validation against official QGIS UMEP outputs requires installing QGIS and UMEP plugin desktop environments.
-5. **Tier 5: Field Validation**: Not performed. No in-situ microclimate sensor instrumentation or physical weather station campaigns have been conducted.
-
-### 8.2 Strict Scientific Boundaries & Limitations
-> **The certificate is conditional on the documented discrete grid, supported geometry, fixed materials, fixed surface temperatures, single timestep, and configured visibility horizon.**
-
-> **The prototype is compatible with selected SOLWEIG conventions but has not been numerically cross-validated against official SOLWEIG outputs.**
-
-> **UTCI is recomputed from the updated Tmrt under fixed air temperature, humidity, and wind inputs.**
-
-> **The core modules were exercised by the automated test suite.**
-
-1. **CPU-Only Execution**: The current prototype is implemented in pure Python with NumPy/SciPy vectorization.
-2. **Single Timestep**: Boundary weather conditions and solar astronomical angles are evaluated at a single static instant.
-3. **Flat Terrain & Axis-Aligned Prisms**: Ground elevation is currently modeled at $z = 0.0\,\text{m}$, and building footprints are axis-aligned rectangular bounding boxes.
-4. **Low-Sun Fallback**: At solar altitudes $\alpha < 5.0^\circ$, shadow lengths grow towards infinity ($h / \tan\alpha$), triggering an automatic, sound fallback to full-domain recomputation.
-5. **Physical Exclusions**: The model currently excludes computational fluid dynamics (CFD) wind fields, dynamic facade thermal mass, evapotranspiration, and vegetative canopies.
-6. **Artifact Provenance**: The historical artifact `results/independent_audit/` was generated under Indian Standard Time (UTC+05:30), where local time crossed midnight into October 6, 2026, while UTC was October 5, 2026. It is preserved untouched, and the official cleaned audit is established under `results/audit_cleanup_<timestamp_utc>/` with full UTC and Git provenance.
+In adherence to scientific integrity, the following boundaries and assumptions are formally documented:
+1. **Flat-Ground Datum Baseline**: Primary benchmarks evaluate terrain at flat datum $z = 0.0\,\mathrm{m}$ because measured, street-scale curb-and-gutter elevation surveys were unavailable (`FABDEM_REGIONAL_REFERENCE_ONLY`).
+2. **Provisional Tree Geometries**: Street vegetation models utilize Level 1 cylinder trunks and ellipsoid crowns parameterized from municipal BBMP counts and photographic estimation (`TREE_GEOMETRY_PHOTO_ESTIMATED_ONLY`), pending on-site laser scanning.
+3. **Decoupled Boundary Forcing**: Simulations evaluate modeled physical differences under fixed atmospheric boundary forcing rather than continuous multi-point in-situ sensor measurements (`FIELD_CALIBRATION_NOT_PERFORMED`).
+4. **Low-Sun Zenith Fallback**: At solar altitudes $\alpha_s < 5.0^\circ$, geometric shadow lengths grow towards infinity ($h / \tan\alpha_s$), triggering an automated, sound fallback to full-domain recomputation.
+5. **Fluid Dynamics Coupling**: Convective microscale wind flow fields are evaluated at fixed pedestrian reference velocities ($v_{1.1} = 1.1\,\mathrm{m/s}$) rather than coupled CFD Navier–Stokes equations.
 
 ---
 
-## 9. Future Acceleration Pathways
+## Citation
 
-- **WebGPU / CUDA Acceleration**: Multi-azimuth horizon elevation searches and shadow raycasting are embarrassingly parallel; migrating grid sweeps to compute shaders offers significant parallel acceleration potential on GPU hardware.
-- **Bounding Volume Hierarchies (BVH)**: Implementing a 2D/3D BVH (R-tree) will reduce shadow and SVF intersection tests from $O(N_{\mathrm{buildings}})$ to $O(\log N_{\mathrm{buildings}})$.
-- **Multi-Timestep Temporal Caching**: Extending the certificate bound across diurnal solar trajectories to reuse microclimate calculations across adjacent time steps.
-- **Non-Flat Topography & Arbitrary Meshes**: Generalizing the shadow frustum projection to digital elevation models (DEM) and arbitrary 3D triangular meshes.
+If you use SOLARAEUS in your research, please cite:
+
+```bibtex
+@inproceedings{singh2026solaraeus,
+  author    = {Singh, Ayush and Thomas, Jobin},
+  title     = {Solaraeus: A Physics-Based 3D Urban Microclimate Digital Twin with Certified Incremental Radiative Transfer, GPU Acceleration, and an AI Solver for Optimal Intervention Placement},
+  booktitle = {Proceedings of the IEEE Conference on Urban Informatics and Computing},
+  year      = {2026},
+  url       = {https://github.com/ayushsingh08-ds/solaraeus}
+}
+```
