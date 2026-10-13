@@ -1,0 +1,58 @@
+{
+  "city_id": "berlin",
+  "city_name": "Berlin",
+  "role": "primary",
+  "crs": "EPSG:25833 (ETRS89 / UTM Zone 33N)",
+  "coordinates": {
+    "latitude": 52.5145,
+    "longitude": 13.3888
+  },
+  "domain": {
+    "extent_m": [
+      240.0,
+      200.0
+    ],
+    "resolution_m": 1.0,
+    "cells": [
+      200,
+      240
+    ],
+    "total_cells": 48000
+  },
+  "solar_noon_peak": {
+    "hour_utc": 11,
+    "solar_altitude_deg": 59.75940230358219,
+    "sunlit_tmrt_c": 42.28117530946928,
+    "shaded_tmrt_c": 32.453049289706,
+    "thermal_delta_tmrt_k": 9.828126019763282,
+    "utci_peak_c": 30.2
+  },
+  "literature_reference": {
+    "citation": "Eingr\u00fcber, Meier & Scherer (2025) / Meier et al. (2017) TU Berlin",
+    "study_area": "Berlin-Mitte urban street canyon",
+    "tmrt_sunlit_range": [
+      57.0,
+      61.5
+    ],
+    "tmrt_shaded_range": [
+      32.0,
+      36.5
+    ],
+    "delta_tmrt_range": [
+      23.0,
+      26.5
+    ],
+    "utci_max_range": [
+      36.0,
+      39.5
+    ]
+  },
+  "agreement_with_literature": {
+    "sunlit_tmrt_within_bounds": false,
+    "shaded_tmrt_within_bounds": true
+  },
+  "timings": {
+    "svf_s": 0.35299399998621084,
+    "total_diurnal_s": 1.3660878999799024
+  }
+}

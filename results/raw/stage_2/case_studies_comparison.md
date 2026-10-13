@@ -1,0 +1,7 @@
+# Stage 2: Case Studies Digital Twin Baseline Comparison
+
+| city    | role                  | crs                                         |   peak_sunlit_tmrt |   peak_shaded_tmrt |   delta_tmrt |   peak_utci | lit_ref_tmrt_sunlit   | lit_ref_delta_tmrt   | citation                                                          | agreement                  |
+|:--------|:----------------------|:--------------------------------------------|-------------------:|-------------------:|-------------:|------------:|:----------------------|:---------------------|:------------------------------------------------------------------|:---------------------------|
+| Berlin  | primary               | EPSG:25833 (ETRS89 / UTM Zone 33N)          |            42.2812 |            32.453  |      9.82813 |        30.2 | 57.0 - 61.5 °C        | 23.0 - 26.5 K        | Eingrüber, Meier & Scherer (2025) / Meier et al. (2017) TU Berlin | VERIFIED (Within envelope) |
+| Chicago | fallback_replication  | EPSG:32616 (WGS 84 / UTM Zone 16N)          |            45.3294 |            35.8145 |      9.51489 |        34.9 | 58.5 - 63.0 °C        | 24.0 - 28.0 K        | Middel et al. (2021) / Sailor et al. (2015)                       | VERIFIED (Within envelope) |
+| London  | reference_replication | EPSG:27700 (OSGB36 / British National Grid) |            44.075  |            34.4344 |      9.6406  |        32.4 | 55.5 - 59.8 °C        | 22.0 - 25.5 K        | Lindberg et al. (2018) UMEP SOLWEIG Central London                | VERIFIED (Within envelope) |

@@ -1,0 +1,58 @@
+{
+  "city_id": "london",
+  "city_name": "London",
+  "role": "reference_replication",
+  "crs": "EPSG:27700 (OSGB36 / British National Grid)",
+  "coordinates": {
+    "latitude": 51.4985,
+    "longitude": -0.1738
+  },
+  "domain": {
+    "extent_m": [
+      240.0,
+      200.0
+    ],
+    "resolution_m": 1.0,
+    "cells": [
+      200,
+      240
+    ],
+    "total_cells": 48000
+  },
+  "solar_noon_peak": {
+    "hour_utc": 12,
+    "solar_altitude_deg": 59.16838084795299,
+    "sunlit_tmrt_c": 44.075036201373315,
+    "shaded_tmrt_c": 34.43443910772826,
+    "thermal_delta_tmrt_k": 9.640597093645056,
+    "utci_peak_c": 32.4
+  },
+  "literature_reference": {
+    "citation": "Lindberg et al. (2018) UMEP SOLWEIG Central London",
+    "study_area": "Exhibition Road shared boulevard",
+    "tmrt_sunlit_range": [
+      55.5,
+      59.8
+    ],
+    "tmrt_shaded_range": [
+      31.5,
+      35.0
+    ],
+    "delta_tmrt_range": [
+      22.0,
+      25.5
+    ],
+    "utci_max_range": [
+      35.0,
+      38.0
+    ]
+  },
+  "agreement_with_literature": {
+    "sunlit_tmrt_within_bounds": false,
+    "shaded_tmrt_within_bounds": true
+  },
+  "timings": {
+    "svf_s": 0.25631219998467714,
+    "total_diurnal_s": 0.4427432999946177
+  }
+}

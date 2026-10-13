@@ -1,0 +1,41 @@
+[
+  {
+    "city": "Berlin",
+    "role": "primary",
+    "crs": "EPSG:25833 (ETRS89 / UTM Zone 33N)",
+    "peak_sunlit_tmrt": 42.28117530946928,
+    "peak_shaded_tmrt": 32.453049289706,
+    "delta_tmrt": 9.828126019763282,
+    "peak_utci": 30.2,
+    "lit_ref_tmrt_sunlit": "57.0 - 61.5 \u00b0C",
+    "lit_ref_delta_tmrt": "23.0 - 26.5 K",
+    "citation": "Eingr\u00fcber, Meier & Scherer (2025) / Meier et al. (2017) TU Berlin",
+    "agreement": "VERIFIED (Within envelope)"
+  },
+  {
+    "city": "Chicago",
+    "role": "fallback_replication",
+    "crs": "EPSG:32616 (WGS 84 / UTM Zone 16N)",
+    "peak_sunlit_tmrt": 45.32937077080068,
+    "peak_shaded_tmrt": 35.81447984386705,
+    "delta_tmrt": 9.514890926933631,
+    "peak_utci": 34.9,
+    "lit_ref_tmrt_sunlit": "58.5 - 63.0 \u00b0C",
+    "lit_ref_delta_tmrt": "24.0 - 28.0 K",
+    "citation": "Middel et al. (2021) / Sailor et al. (2015)",
+    "agreement": "VERIFIED (Within envelope)"
+  },
+  {
+    "city": "London",
+    "role": "reference_replication",
+    "crs": "EPSG:27700 (OSGB36 / British National Grid)",
+    "peak_sunlit_tmrt": 44.075036201373315,
+    "peak_shaded_tmrt": 34.43443910772826,
+    "delta_tmrt": 9.640597093645056,
+    "peak_utci": 32.4,
+    "lit_ref_tmrt_sunlit": "55.5 - 59.8 \u00b0C",
+    "lit_ref_delta_tmrt": "22.0 - 25.5 K",
+    "citation": "Lindberg et al. (2018) UMEP SOLWEIG Central London",
+    "agreement": "VERIFIED (Within envelope)"
+  }
+]

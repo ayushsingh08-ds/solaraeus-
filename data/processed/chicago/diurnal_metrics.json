@@ -1,0 +1,58 @@
+{
+  "city_id": "chicago",
+  "city_name": "Chicago",
+  "role": "fallback_replication",
+  "crs": "EPSG:32616 (WGS 84 / UTM Zone 16N)",
+  "coordinates": {
+    "latitude": 41.8795,
+    "longitude": -87.6324
+  },
+  "domain": {
+    "extent_m": [
+      240.0,
+      200.0
+    ],
+    "resolution_m": 1.0,
+    "cells": [
+      200,
+      240
+    ],
+    "total_cells": 48000
+  },
+  "solar_noon_peak": {
+    "hour_utc": 18,
+    "solar_altitude_deg": 69.46270956748907,
+    "sunlit_tmrt_c": 45.32937077080068,
+    "shaded_tmrt_c": 35.81447984386705,
+    "thermal_delta_tmrt_k": 9.514890926933631,
+    "utci_peak_c": 34.9
+  },
+  "literature_reference": {
+    "citation": "Middel et al. (2021) / Sailor et al. (2015)",
+    "study_area": "Chicago Loop high-rise street canyon",
+    "tmrt_sunlit_range": [
+      58.5,
+      63.0
+    ],
+    "tmrt_shaded_range": [
+      32.5,
+      36.5
+    ],
+    "delta_tmrt_range": [
+      24.0,
+      28.0
+    ],
+    "utci_max_range": [
+      36.5,
+      40.0
+    ]
+  },
+  "agreement_with_literature": {
+    "sunlit_tmrt_within_bounds": false,
+    "shaded_tmrt_within_bounds": true
+  },
+  "timings": {
+    "svf_s": 0.052977000013925135,
+    "total_diurnal_s": 0.4339956999756396
+  }
+}
