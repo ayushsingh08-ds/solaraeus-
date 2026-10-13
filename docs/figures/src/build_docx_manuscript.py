@@ -67,14 +67,14 @@ def create_manuscript():
     p_authors = doc.add_paragraph()
     p_authors.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_authors.paragraph_format.space_after = Pt(2)
-    run_auth = p_authors.add_run("Ayush Singh")
+    run_auth = p_authors.add_run("Ayush Singh  |  Dr. Jobin Thomas")
     run_auth.font.size = Pt(12)
     run_auth.font.bold = True
 
     p_affil = doc.add_paragraph()
     p_affil.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_affil.paragraph_format.space_after = Pt(18)
-    run_affil = p_affil.add_run("Department of Data Science and Engineering, Computational Urban Climate Research Initiative\nAcademic Research Laboratory for Geospatial Informatics")
+    run_affil = p_affil.add_run("Department of Computational Science and Engineering (Data Science)\nDayananda Sagar University, Bengaluru, Karnataka, India")
     run_affil.font.size = Pt(9.5)
     run_affil.font.italic = True
     run_affil.font.color.rgb = RGBColor(0x44, 0x44, 0x44)
