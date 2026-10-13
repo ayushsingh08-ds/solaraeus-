@@ -781,32 +781,41 @@ def create_manuscript():
 
     p_disc1 = doc.add_paragraph()
     p_disc1.add_run(
-        "The empirical findings demonstrate that localized shade structures provide substantial local heat stress mitigation (+13.14 K to +15.66 K "
-        "Tmrt reduction; +3.40 K to +3.82 K UTCI relief) while inducing modest corridor-wide cooling (+0.40 K to +0.48 K). These values align with "
-        "recent findings by Eingrüber et al. (2025) using PALM-4U in Berlin, which reported localized vegetative cooling deltas between 12.0 K and 15.0 K "
-        "beneath dense tree canopies. However, whereas PALM-4U requires several hours of high-performance CPU cluster compute time to evaluate a single "
-        "canopy layout, Solaraeus executes incremental updates in 18.0 ms on a laptop GPU. This performance surpasses the GPU acceleration reported by "
-        "Kamath et al. (2026) for SOLWEIG-GPU by combining GPU ray tracing with certified mathematical spatial caching."
+        "The findings suggest that the localized shade structures are effective at alleviating local heat stress "
+        "(+13.14 K to +15.66 K Tmrt decrease; +3.40 K to +3.82 K UTCI improvement) despite causing mild corridor-wide cooling "
+        "(+0.40 K to +0.48 K). The findings support previous research by Eingrüber et al. (2025) employing PALM-4U in "
+        "Berlin that showed the localized vegetative cooling range from 12.0 K to 15.0 K under dense tree canopies. "
+        "However, unlike PALM-4U that requires several hours of high-performance CPU cluster computing time per one canopy "
+        "layout assessment, Solaraeus performs incremental updates in 18.0 ms on a laptop GPU. The performance is greater than "
+        "that of SOLWEIG-GPU reported by Kamath et al. (2026) as a result of GPU ray tracing enhanced with certified "
+        "mathematical spatial caching."
     )
 
     p_disc2 = doc.add_paragraph()
     p_disc2.add_run(
-        "The algorithmic comparison reveals critical implications for automated urban design. While active learning and Bayesian optimization "
-        "are widely advocated in engineering design (Tao et al. 2025; Qin et al. 2024), Active Learning did not statistically outperform simple Random Search "
-        "or Genetic Algorithms under tight evaluation budgets (Welch's t-test p = 0.514). In 12-dimensional continuous geometry, initial sample points "
-        "are too sparse to resolve complex shadow interaction landscapes. Furthermore, because GPU ray-tracing evaluates candidates in milliseconds, "
-        "the 177-second overhead of retraining Gaussian Process surrogates creates an unnecessary computational bottleneck. As Chen et al. (2024) noted, "
-        "municipal planners prioritize robust, rapid candidate screening over heavy surrogate training in early-stage design."
+        "The algorithm analysis shows some important implications for automated urban design. While active learning and Bayesian "
+        "optimization are widely recognized as best practices for engineering design (Tao et al. 2025; Qin et al. 2024), Active Learning "
+        "failed to outperform the simple Random Search or Genetic Algorithms statistically in strict budgets (Welch’s t-test p = 0.514). "
+        "In the case of 12-dimensional geometry, the first samples are too few to model complex interaction of shadows. Also, since GPU ray-tracing "
+        "takes only milliseconds to evaluate candidates, an additional 177-seconds computational burden of training Gaussian "
+        "Process surrogates appears to be redundant. As mentioned by Chen et al. (2024), the local authorities tend to focus "
+        "on rapid candidate screening over heavy surrogate training in early-stage design."
     )
+
+    # 6.1 Boundaries and Limitations
+    h7_1 = doc.add_heading(level=2)
+    r7_1 = h7_1.add_run("6.1 Boundaries and Limitations of the Science")
+    r7_1.font.size = Pt(11)
+    r7_1.font.bold = True
 
     p_disc3 = doc.add_paragraph()
     p_disc3.add_run(
-        "Scientific Boundaries and Limitations: Several physical boundaries must be explicitly noted. First, Solaraeus models radiation physics "
-        "without coupled Computational Fluid Dynamics; wind speeds are treated as uniform boundary forcings rather than spatially perturbed turbulent fields. "
-        "Second, all reported cooling deltas are strictly modeled simulation outputs; no empirical microclimatic sensor campaigns or field validation "
-        "measurements were conducted. Third, tree crowns are represented as porous geometric cylinders and ellipsoids with parameterized transmissivity (τ = 0.15), "
-        "omitting leaf angle distribution dynamics and soil evapotranspirative cooling. Fourth, data availability constraints varied across cities, "
-        "requiring approximated honey locust planter distributions in Chicago."
+        "Some physical limitations should be mentioned. Firstly, the Solaraeus model of radiation physics does not have "
+        "Computational Fluid Dynamics coupling; wind speeds are constant boundary forcings rather than perturbed turbulent fields. "
+        "Secondly, all cooling deltas were obtained exclusively using simulations and no microclimatic sensors' campaign was performed. "
+        "Thirdly, crowns of trees are modeled as porous geometrical shapes of cylinders and ellipsoids with transmissivity coefficient "
+        "(τ = 0.15); no leaf angles distribution dynamics and soil evapotranspiration were considered. Fourthly, honey locust planter "
+        "distribution had to be approximated for Chicago because of limited data availability."
     )
 
     # Section 8: Conclusion and Future Work
