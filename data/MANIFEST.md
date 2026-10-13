@@ -270,13 +270,50 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 - **Master Project README**: `README.md`
   - SHA256: `7f7e5d997de7bef71c7a9fed84d56f3ab54ee1f8291ec52a5f43834963b8ca6c`
 - **Clean Scientific Manuscript**: `research_paper_sol/solaraeus.tex`
-  - SHA256: `6cfffb747ddeb503c28370a2603ef637de152ea9ef6bf06a05fd0076fd0c7175`
+  - SHA256: `14145555516b35ba37b22ff71c3ba465f0ecdcc681f6706a79d42cedefc8d952`
 
 ---
 
-## 11. Deprecated / Legacy Sites Archive
+## 11. Stage 9 Journal Manuscript & Publication Artifacts
+
+- **Word Manuscript (.docx)**: `docs/solaraeus_manuscript.docx`
+  - SHA256: `4ac2a338e8bbeeaf2aac477b601743d0e21a7144c4cbbe963eeed84a57102ac9`
+  - Duplicate in Submission Folder: `research_paper_sol/solaraeus_manuscript.docx` (SHA256: `4ac2a338e8bbeeaf2aac477b601743d0e21a7144c4cbbe963eeed84a57102ac9`)
+- **LaTeX Source Manuscript**: `research_paper_sol/solaraeus.tex`
+  - SHA256: `14145555516b35ba37b22ff71c3ba465f0ecdcc681f6706a79d42cedefc8d952`
+- **Stage 9 Technical QA Report**: `docs/stage_9_report.md`
+  - SHA256: `8180ce3869870deff73c27339018bfad97adb23f17aa1e55fdf4e9ee7ae4f4a7`
+- **Word Document Builder**: `docs/figures/src/build_docx_manuscript.py`
+  - SHA256: `67b867b2e76b69d9aa404e3811f2690f8bdfae0422cca321db240bd535f6fd33`
+- **Publication Figures (docs/figures/)**:
+  - Fig. 1 (Methodology Workflow): `docs/figures/fig1_methodology_workflow.png` (SHA256: `594233cde3e5bded50ab4ea2639ecf41ecd37bd9d4c0d956a279d5f5be20a6a1`)
+  - Fig. 2 (System Architecture): `docs/figures/fig2_system_architecture.png` (SHA256: `0ad6a9e901387179910b7f1acb02a0dc8802ad76a3cab86b43119babf982ec2f`)
+  - Fig. 3 (Incremental Flowchart): `docs/figures/fig3_incremental_flowchart.png` (SHA256: `307cce912aee13b0e8369984eb5bf488551cc0e29063ef11e927d94f2324c984`)
+  - Fig. 4 (Optimization Loop): `docs/figures/fig4_optimization_loop.png` (SHA256: `159dc6331a3a744037b6a34ca563442f7709be342e74eace675e9455070d5bef`)
+  - Fig. 5 (Study Areas Cartography): `docs/figures/fig5_study_areas.png` (SHA256: `d0fa01b049458e7341bbfbe7f4f4556d1d3ae7e3bb22a60fe86dc89a2d38c126`)
+  - Fig. 6 (Physics Core Validation): `docs/figures/fig6_physics_validation.png` (SHA256: `329aad1e161ec3f17f46a92b04a0309f32ec9d1708061112b39c08aeb3e01998`)
+  - Fig. 7 (Incremental Error Distribution): `docs/figures/fig7_incremental_error_hist.png` (SHA256: `2708b510f8c8573530b0b665bd68b77a9cc9dce6e2c29a64e2c52b98b868424d`)
+  - Fig. 8 (Performance Latency Bars): `docs/figures/fig8_performance_grouped_bars.png` (SHA256: `938e9a6424367650f26cffdc6c4d7ef4a4d0cc27daf789e99567c8b6f2e30672`)
+  - Fig. 9 (Optimization Convergence): `docs/figures/fig9_optimization_convergence.png` (SHA256: `672c1afcdc498d9b321b4e1330049a542f399e54f78d39b254146190f5d2bbe6`)
+  - Fig. 10 (Spatial Before/After Maps): `docs/figures/fig10_before_after_maps.png` (SHA256: `b02c0ae88bd1bd1819cfd56cb52aff10114e3c4492fb66a491fd791c1c246f9e`)
+- **Figure Generators (docs/figures/src/)**:
+  - `generate_fig1_methodology.py` (SHA256: `5e45310ce04ef46e37115557264db32725326b131b94d4a184e56c8acfefec9e`)
+  - `generate_fig2_architecture.py` (SHA256: `224d3bca8b5d14f2306e15ad57a429997ced86052a4f588f95993f991c4592ea`)
+  - `generate_fig3_flowchart.py` (SHA256: `429090031d6b2d0cf3748d3f862f49a9001d51ec06af1c675d6b88fe0519619c`)
+  - `generate_fig4_opt_loop.py` (SHA256: `e62757409995c0de2e4f7cc484c8ca750a5087fffc5b1ad6c68637d49bdf994d`)
+  - `generate_fig5_study_areas.py` (SHA256: `49b4c2e8a14cc0af77d18bc261e4450a837bbe4ecd5e56e316b92069d60326d7`)
+  - `generate_fig6_physics_validation.py` (SHA256: `96ebe035ba82174dabe61033a5854ccd9634f3e192f283069b16037923271d57`)
+  - `generate_fig7_incremental_error.py` (SHA256: `8281df6f01228c1a9da1175b1c3acd7e7418ff8c620dd1d226baf2491cd24267`)
+  - `generate_fig8_performance_bars.py` (SHA256: `18926a97a316e3695ef10d8099d8d39d908c5df9c625555f8a12adf2e0b68950`)
+  - `generate_fig9_optimization_convergence.py` (SHA256: `d4a118851cb2d29b5952bdbaec7a43c563150119e556a65b5628fbc2872c9dc1`)
+  - `generate_fig10_before_after_maps.py` (SHA256: `b783de3f5bb1146863c60e63fb6880d6c368c21e8f352616ea89e2c5e96c02f9`)
+
+---
+
+## 12. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.
+
 
 
