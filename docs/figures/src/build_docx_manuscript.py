@@ -248,21 +248,22 @@ def create_manuscript():
         "recompute the entire domain from scratch whenever a local intervention (such as a fabric canopy or tree) is introduced."
     )
 
-    # 2.2 GPU Acceleration and Precomputed Transport Architectures
+    # 2.2 GPU Acceleration and Precomputed Transport Models
     h2_2 = doc.add_heading(level=2)
-    r2_2 = h2_2.add_run("2.2 GPU Acceleration and Precomputed Transport Architectures")
+    r2_2 = h2_2.add_run("2.2 GPU Acceleration and Precomputed Transport Models")
     r2_2.font.size = Pt(11)
     r2_2.font.bold = True
     r2_2.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
 
     p_lr2 = doc.add_paragraph()
     p_lr2.add_run(
-        "To accelerate large simulations, recent tools leverage GPU parallelism. Kamath et al. (2026) developed SOLWEIG-GPU for city-scale "
-        "comfort modeling via CUDA ray marching, while Mei et al. (2025) introduced GUST1.0 for GPU-based surface energy balances, and Nguyen et al. "
-        "(2023) applied parallel geospatial algorithms. In computer graphics, Freude et al. (2023, 2025) used precomputed radiative transport "
-        "matrices to simulate dynamic thermal exchange in real time. However, precomputed matrices assume stationary geometry; adding even a single "
-        "canopy alters the scene and invalidates the entire matrix. Existing GPU frameworks thus accelerate full recalculations rather than "
-        "incrementally reusing unaffected cells."
+        "To speed up big simulations, recent approaches have made use of GPU parallelization. Kamath et al. (2026) created "
+        "SOLWEIG-GPU for comfort simulation on the city scale through CUDA ray marching, whereas Mei et al. (2025) "
+        "created GUST1.0 for surface energy balance calculations with GPU, and Nguyen et al. (2023) employed geospatial "
+        "parallel algorithms. In computer graphics, Freude et al. (2023, 2025) utilized pre-computed transport matrices of "
+        "radiative transport in order to simulate dynamic thermal exchange in real-time. Nevertheless, pre-computed "
+        "matrices assume static geometry; by adding even just one canopy, the whole model becomes outdated. Hence, "
+        "existing GPU approaches accelerate full recalculation, but do not utilize unaffected cells incrementally."
     )
 
     # 2.3 Machine Learning Surrogates and Active Optimization
