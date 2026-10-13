@@ -505,17 +505,17 @@ def create_manuscript():
 
     # 5.1 Study Areas
     h6_1 = doc.add_heading(level=2)
-    r6_1 = h6_1.add_run("5.1 Urban Morphological Characteristics Across Study Areas")
+    r6_1 = h6_1.add_run("5.1 Urban Morphological Attributes in Study Locations")
     r6_1.font.size = Pt(11)
     r6_1.font.bold = True
 
     p_r1 = doc.add_paragraph()
     p_r1.add_run(
-        "Figure 5 displays the spatial layouts of the three evaluated urban corridors. Berlin Friedrichstraße represents a mid-density "
-        "European perimeter canyon (canyon width 24 m, building heights 21.5–24.0 m, aspect ratio H/W ≈ 1.2) flanked by 16 mature Tilia cordata "
-        "trees. Chicago S LaSalle Street constitutes a deep North American financial canyon (width 28 m, tower heights 48–110 m, aspect ratio H/W ≈ 3.5). "
-        "London Exhibition Road exemplifies a broad shared-space pedestrian boulevard (width 32 m, institutional limestone heights 22–32 m, aspect ratio H/W ≈ 0.9) "
-        "with 14 Platanus x hispanica trees."
+        "Figure 5 shows the urban forms of the three urban canyons studied. Berlin Friedrichstrasse is a mid-density "
+        "European perimeter canyon (canyon width 24 m, building height 21.5 to 24.0 m, ratio H/W 1.2), bordered by 16 Tilia cordata "
+        "trees. Chicago South LaSalle Street is a deep canyon of North America’s financial district (canyon width 28 m, height of towers 48 to 110 m, "
+        "ratio H/W 3.5). London Exhibition Road is a wide shared pedestrian canyon (canyon width 32 m, height of limestone institutions 22 to 32 m, "
+        "ratio H/W 0.9), with 14 Platanus x hispanica trees."
     )
 
     # Embed Figure 5
@@ -532,19 +532,19 @@ def create_manuscript():
 
     # 5.2 Physics Validation & SOLWEIG Parity
     h6_2 = doc.add_heading(level=2)
-    r6_2 = h6_2.add_run("5.2 Physical Model Validation and Independent Parity")
+    r6_2 = h6_2.add_run("5.2 Physical Accuracy Validation and Independent Parity Checks")
     r6_2.font.size = Pt(11)
     r6_2.font.bold = True
 
     p_r2 = doc.add_paragraph()
     p_r2.add_run(
-        "Physical accuracy was benchmarked against the reference SOLWEIG/UMEP model on a controlled 60 m × 60 m block of the Berlin corridor "
-        "(900 active street receptor cells). Figure 6 displays the correlation between reference SOLWEIG predictions and Solaraeus. Absorbed "
-        "cylindrical irradiance achieved near-perfect agreement (MAE = 3.07 W/m², RMSE = 3.09 W/m², R² = 0.9922). Mean Radiant Temperature achieved "
-        "MAE = 0.437 K, RMSE = 0.439 K, and maximum error = 0.613 K, confirming sub-degree biometeorological parity. Furthermore, five limiting-case "
-        "tests were verified: (a) isolated cube direct flux matched hand calculations exactly (error = 0.00 W/m²); (b) enclosed isothermal cavity "
-        "converged to boundary temperature with 0.0000 K error; (c) overcast sky attenuated Tmrt by 10.01 K; (d) ground albedo sweep demonstrated "
-        "monotonic upward flux response (+39.5 W/m²); and (e) optimizer-off simulations verified bitwise deterministic reproduction."
+        "Physical accuracy was verified by comparing to the reference SOLWEIG/UMEP model for a well-defined 60 × 60 m plot in the Berlin corridor "
+        "(900 street receptor cells). The correlation between reference SOLWEIG outputs and Solaraeus is shown in Figure 6. The absorbed "
+        "cylindrical irradiance agreed almost perfectly (MAE = 3.07 W/m², RMSE = 3.09 W/m², R² = 0.9922). MRT accuracy was checked as follows: "
+        "MAE = 0.437 K, RMSE = 0.439 K, maximum error = 0.613 K. Five limit cases were confirmed to be correct: (a) isolated cube direct flux "
+        "was perfectly reproduced from hand calculations (error = 0.00 W/m²); (b) isothermal enclosure converged to boundary temperature (error = 0.0000 K); "
+        "(c) overcast sky reduced Tmrt by 10.01 K; (d) ground albedo sweep showed perfect monotonic increase in flux (+39.5 W/m²); and (e) optimizer-off "
+        "simulations reproduced results bitwise deterministically."
     )
 
     # Embed Figure 6
@@ -567,11 +567,10 @@ def create_manuscript():
 
     p_r3 = doc.add_paragraph()
     p_r3.add_run(
-        "Figure 7 presents the per-cell error histogram across nine adversarial intervention scenarios on the Berlin corridor (street-edge canopies, "
-        "low sun angles, overlapping shadows, multi-canopy interactions, and morning/evening sun). Across more than 88,000 reused cell evaluations, "
-        "the maximum observed error was 0.1219 K, well below the declared 0.50 K certificate bound. The cell reuse ratio exceeded 98.3% across all "
-        "certified cases with zero bound violations. In extreme low sun conditions (< 5°), the engine automatically triggered full recomputation fallback, "
-        "guaranteeing complete certificate soundness."
+        "Figure 7 shows the histogram of error per cell for nine adversarial interventions in the Berlin Corridor (canopy edge, low sun angles, "
+        "shadows, canopy interaction, and early or late sun). Over more than 88,000 cell reuses, the largest error observed is 0.1219 K, which is "
+        "well within the claimed certificate limit of 0.50 K. The percentage of cell reuse was above 98.3% for all cases in which there were no "
+        "bound violations. For very low sun situations (< 5°), full recomputation falls back to ensure complete soundness of the certificate."
     )
 
     # Embed Figure 7
@@ -588,16 +587,16 @@ def create_manuscript():
 
     # 5.4 High-Performance Benchmarks
     h6_4 = doc.add_heading(level=2)
-    r6_4 = h6_4.add_run("5.4 Computational Scalability and GPU Acceleration Benchmarks")
+    r6_4 = h6_4.add_run("5.4 Computational Scalability and GPU Acceleration Performance Metrics")
     r6_4.font.size = Pt(11)
     r6_4.font.bold = True
 
     p_r4 = doc.add_paragraph()
     p_r4.add_run(
-        "Figure 8 benchmarks total latency across CPU Full, CPU Incremental, GPU Full, and GPU Incremental modes across three domain scales. "
-        "On the Berlin corridor (Scene B, 10,000 cells), CPU full recomputation required 708.5 ± 17.6 ms, whereas CUDA GPU incremental updates "
-        "completed in 18.0 ± 0.4 ms (39.4× speedup). On the 48,000-cell primary corridor (Table 3), GPU incremental updates execute in 18.2 ms "
-        "(>300× speedup over full CPU recomputation). Peak GPU memory was 1,064.5 MiB on the NVIDIA RTX 4050, confirming compatibility with edge hardware."
+        "Figure 8 provides benchmarking results for the total latency in CPU Full, CPU Incremental, GPU Full, and GPU Incremental modes for three domain sizes. "
+        "For the Berlin corridor (Scene B, 10,000 cells), CPU full re-computation took 708.5 ± 17.6 ms, whereas CUDA GPU incremental update took 18.0 ± 0.4 ms "
+        "(39.4× speed-up). For the 48,000 cells primary corridor (Table 3), GPU incremental updates take 18.2 ms (> 300× speed-up from CPU full re-computation). "
+        "The peak GPU memory usage was 1,064.5 MiB on the NVIDIA RTX 4050."
     )
 
     # Embed Figure 8
@@ -643,20 +642,20 @@ def create_manuscript():
 
     # 5.5 Optimization Benchmarks
     h6_5 = doc.add_heading(level=2)
-    r6_5 = h6_5.add_run("5.5 Optimization Methodologies Comparison")
+    r6_5 = h6_5.add_run("5.5 Comparison of Optimization Methodologies")
     r6_5.font.size = Pt(11)
     r6_5.font.bold = True
 
     p_r5 = doc.add_paragraph()
     p_r5.add_run(
-        "Figure 9 compares convergence trajectories across the four optimization methods (50 budget, 3 seeds). Direct Genetic Algorithm "
-        "search achieved the lowest final Mean Tmrt (42.6225 ± 0.0142 °C, +0.4405 K cooling, runtime 1.13 s), closely followed by Random Search "
-        "(42.6275 ± 0.0268 °C, +0.4355 K cooling, runtime 1.25 s). Active Learning achieved 42.6524 ± 0.0088 °C (+0.4106 K cooling) but required "
-        "177.93 s due to GP hyperparameter retraining. Welch's two-sample t-test between Active Learning and Random Search yielded t = 0.760, p = 0.514 "
-        "(p > 0.05), demonstrating that Active Learning did not beat Random Search with statistical significance. In 12 dimensions under tight simulation "
-        "budgets (N=50), Latin hypercube initialization (15^(1/12) ≈ 1.25 points per dimension) and over-exploration by GP-LCB impeded surrogate modeling. "
-        "Because GPU ray-tracing executes in milliseconds, direct evolutionary algorithms are faster and more robust than heavy GP surrogates in this setting. "
-        "Table 4 summarizes the benchmark results."
+        "Figure 9 shows the convergence profiles for the four optimization algorithms (50 simulations, 3 seeds). The Direct Genetic Algorithm "
+        "search reached the lowest Mean Tmrt of 42.6225 ± 0.0142°C (+0.4405 K cooling) in 1.13 seconds. The second lowest Mean Tmrt was achieved "
+        "by the Random Search algorithm at 42.6275 ± 0.0268°C (+0.4355 K cooling, 1.25 seconds). Active Learning achieved 42.6524 ± 0.0088°C "
+        "(+0.4106 K cooling) but took 177.93 seconds due to frequent hyperparameter tuning of the GP. A two-sample t-test between Active Learning and "
+        "Random Search yielded t = 0.760, p = 0.514 (p > 0.05), proving that Active Learning failed to defeat Random Search with statistical significance. "
+        "In 12-dimensional space with limited simulation budgets (N = 50), the Latin hypercube initialization (15^(1/12) ≈ 1.25 points per dimension) "
+        "and over-exploration by GP-LCB hindered the surrogate modeling process. As the GPU ray-tracing takes just milliseconds, the direct evolutionary "
+        "algorithms are more efficient than the heavy GP surrogates in this context. Table 4 summarizes the benchmark findings."
     )
 
     # Embed Figure 9
@@ -703,22 +702,22 @@ def create_manuscript():
 
     # 5.6 Spatial Before/After Evaluation & Multi-City Replication
     h6_6 = doc.add_heading(level=2)
-    r6_6 = h6_6.add_run("5.6 Microclimatic Spatial Distribution and Cross-City Replication")
+    r6_6 = h6_6.add_run("5.6 Spatial Distribution and Cross-City Replication of Microclimate Conditions")
     r6_6.font.size = Pt(11)
     r6_6.font.bold = True
 
     p_r6 = doc.add_paragraph()
     p_r6.add_run(
-        "Figure 10 maps the before, after, and delta microclimatic fields on the Berlin Friedrichstraße corridor. Baseline solar noon "
-        "conditions subject pedestrians to severe thermal stress (mean Tmrt = 43.0131 °C, peak Tmrt = 46.1273 °C, mean UTCI = 31.7132 °C). "
-        "The optimized dual-canopy installation (Canopy 1: 26.79 m² at y = 34.06 m; Canopy 2: 21.40 m² at y = -26.47 m; total 48.19 m²) "
-        "reduces corridor mean Tmrt to 42.5316 °C (cooling delta +0.4815 K). Directly beneath the structures, direct-beam shading delivers a peak "
-        "local cooling of +13.1371 K and a peak UTCI reduction of +3.4000 K, reducing sunlit receptor fraction by 3.56%.\n\n"
-        "Table 5 presents cross-city replication results. In the Chicago LaSalle financial canyon (H/W ≈ 3.5), tall building self-shading blocks "
-        "direct solar rays at pavement level, producing an unmitigated baseline Tmrt of 36.0355 °C; adding overhead canopies inside existing building "
-        "shadow yields negligible marginal cooling (+0.0045 K mean, +0.12 K peak). Conversely, in London Exhibition Road (H/W ≈ 0.9), wide boulevard "
-        "exposure subjects pedestrians to extreme radiation (baseline Tmrt = 44.8093 °C); the canopy intervention delivers +0.4004 K corridor-mean cooling "
-        "and a substantial peak local cooling of +15.6600 K (+3.82 K UTCI relief)."
+        "Figure 10 displays microclimatic fields “before,” “after,” and “delta” along the Berlin Friedrichstraße corridor. Baseline solar noon "
+        "conditions expose pedestrians to intense heat stress (mean Tmrt = 43.0131°C, max Tmrt = 46.1273°C, mean UTCI = 31.7132°C). "
+        "The optimized two-layered canopy system (Canopy 1: 26.79 m² at y = 34.06 m; Canopy 2: 21.40 m² at y = -26.47 m; total 48.19 m²) "
+        "lowers mean Tmrt of the corridor to 42.5316°C (cooling delta +0.4815 K). Within the shaded zones under these canopies, the peak cooling "
+        "due to direct-beam shading is +13.1371 K and the peak UTCI cooling is +3.4000 K. This decreases fraction of sunlit receptors by 3.56%.\n\n"
+        "Table 5 summarizes the cross-city results of the replication study. In Chicago LaSalle financial canyon (H/W ≈ 3.5), self-shading of tall "
+        "buildings prevents direct solar radiation on the pedestrian surface, resulting in an unmitigated baseline Tmrt value of 36.0355°C, whereas "
+        "the introduction of an overhead canopy within the building shade area provides insignificant additional cooling of +0.0045 K mean, +0.12 K peak. "
+        "On the contrary, in London Exhibition Road (H/W ≈ 0.9), a wide boulevard makes pedestrians experience intense radiative heat stress, i.e., "
+        "unmitigated baseline Tmrt = 44.8093°C; the canopy produces +0.4004 K mean cooling and +15.6600 K peak cooling."
     )
 
     # Embed Figure 10
@@ -764,12 +763,12 @@ def create_manuscript():
     # Sensitivity Analysis Narrative
     p_sens = doc.add_paragraph()
     p_sens.add_run(
-        "Sensitivity analysis across seven environmental scenarios identified three parameters shifting thermal metrics by more than 1.0 K: "
-        "(1) Removing mature roadside trees increased corridor mean Tmrt by +1.3812 K, proving the critical protective function of urban vegetation; "
-        "(2) Modulating wind speed by ±1.0 m/s altered peak UTCI by ∓1.0000 K through forced convective heat dissipation; and (3) A ±10% direct "
-        "beam irradiance shift induced a ±3.76 K change in peak Tmrt. Building height perturbations (±5%) induced negligible shifts (-0.06 K to +0.15 K) "
-        "because solar noon azimuth and altitude unoccluded the street floor directly.\n\n"
-        "Finally, geometric shade consistency verification confirmed that simulated ray-traced shadow centroids matched analytical trigonometry "
+        "Sensitivity analysis under seven environmental scenarios revealed three key parameters that caused changes in thermal indicators "
+        "exceeding 1.0 K: (1) Elimination of mature roadside trees resulted in +1.3812 K of corridor mean Tmrt, highlighting the importance "
+        "of the role of urban vegetation; (2) Changing wind speed by ±1.0 m/s resulted in peak UTCI changes of ∓1.0000 K via forced convection; "
+        "and (3) Changing direct beam irradiance by ±10% yielded ±3.76 K change of peak Tmrt. Changes in building heights by ±5% resulted in marginal "
+        "changes in thermal indicators ranging from -0.06 K to +0.15 K since the solar noon azimuth angle and altitude were clear to the street floor.\n\n"
+        "Finally, geometric consistency of shade analysis verified that simulated ray-tracing shadow centroids matched analytical trigonometry "
         "within 0.095 m (Canopy 1) and 0.006 m (Canopy 2), well within the 1.0 m grid cell resolution."
     )
 

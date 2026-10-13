@@ -212,8 +212,8 @@ Figure~\ref{fig:opt_loop} depicts the optimization loop for autonomous placement
 % =========================================================================
 \section{Results}
 
-\subsection{Urban Morphological Characteristics Across Study Areas}
-Figure~\ref{fig:study_areas} displays the spatial layouts of the three evaluated urban corridors. Berlin Friedrichstra{\ss}e represents a mid-density European perimeter canyon (canyon width 24~m, building heights 21.5--24.0~m, aspect ratio $H/W \approx 1.2$) flanked by 16 mature \textit{Tilia cordata} trees. Chicago S LaSalle Street constitutes a deep North American financial canyon (width 28~m, tower heights 48--110~m, aspect ratio $H/W \approx 3.5$). London Exhibition Road exemplifies a broad shared-space pedestrian boulevard (width 32~m, institutional limestone heights 22--32~m, aspect ratio $H/W \approx 0.9$) with 14 \textit{Platanus x hispanica} trees.
+\subsection{Urban Morphological Attributes in Study Locations}
+Figure~\ref{fig:study_areas} shows the urban forms of the three urban canyons studied. Berlin Friedrichstra{\ss}e is a mid-density European perimeter canyon (canyon width 24~m, building height 21.5 to 24.0~m, ratio $H/W \approx 1.2$), bordered by 16 \textit{Tilia cordata} trees. Chicago South LaSalle Street is a deep canyon of North America's financial district (canyon width 28~m, height of towers 48 to 110~m, ratio $H/W \approx 3.5$). London Exhibition Road is a wide shared pedestrian canyon (canyon width 32~m, height of limestone institutions 22 to 32~m, ratio $H/W \approx 0.9$), with 14 \textit{Platanus x hispanica} trees.
 
 \begin{figure*}[!t]
 \centering
@@ -222,8 +222,8 @@ Figure~\ref{fig:study_areas} displays the spatial layouts of the three evaluated
 \label{fig:study_areas}
 \end{figure*}
 
-\subsection{Physical Model Validation and Independent Parity}
-Physical accuracy was benchmarked against the reference SOLWEIG/UMEP model on a controlled $60\times 60$~m block of the Berlin corridor (900 active street receptor cells). Figure~\ref{fig:physics_val} displays the correlation between reference SOLWEIG predictions and Solaraeus. Absorbed cylindrical irradiance achieved near-perfect agreement ($\mathrm{MAE} = 3.07~\Wm$, $\mathrm{RMSE} = 3.09~\Wm$, $R^2 = 0.9922$). Mean Radiant Temperature achieved $\mathrm{MAE} = 0.437$~K, $\mathrm{RMSE} = 0.439$~K, and maximum error $= 0.613$~K, confirming sub-degree biometeorological parity. Furthermore, five limiting-case tests were verified: (a) isolated cube direct flux matched hand calculations exactly (error $= 0.00~\Wm$); (b) enclosed isothermal cavity converged to boundary temperature with 0.0000~K error; (c) overcast sky attenuated $\Tmrt$ by 10.01~K; (d) ground albedo sweep demonstrated monotonic upward flux response ($+39.5~\Wm$); and (e) optimizer-off simulations verified bitwise deterministic reproduction.
+\subsection{Physical Accuracy Validation and Independent Parity Checks}
+Physical accuracy was verified by comparing to the reference SOLWEIG/UMEP model for a well-defined $60 \times 60$~m plot in the Berlin corridor (900 street receptor cells). The correlation between reference SOLWEIG outputs and Solaraeus is shown in Figure~\ref{fig:physics_val}. The absorbed cylindrical irradiance agreed almost perfectly ($\mathrm{MAE} = 3.07~\Wm$, $\mathrm{RMSE} = 3.09~\Wm$, $R^2 = 0.9922$). $\Tmrt$ accuracy was checked as follows: $\mathrm{MAE} = 0.437$~K, $\mathrm{RMSE} = 0.439$~K, maximum error $= 0.613$~K. Five limit cases were confirmed to be correct: (a) isolated cube direct flux was perfectly reproduced from hand calculations (error $= 0.00~\Wm$); (b) isothermal enclosure converged to boundary temperature (error $= 0.0000$~K); (c) overcast sky reduced $\Tmrt$ by 10.01~K; (d) ground albedo sweep showed perfect monotonic increase in flux ($+39.5~\Wm$); and (e) optimizer-off simulations reproduced results bitwise deterministically.
 
 \begin{figure}[!t]
 \centering
@@ -233,7 +233,7 @@ Physical accuracy was benchmarked against the reference SOLWEIG/UMEP model on a 
 \end{figure}
 
 \subsection{Adversarial Stress Testing and Error Bound Certification}
-Figure~\ref{fig:incremental_err} presents the per-cell error histogram across nine adversarial intervention scenarios on the Berlin corridor (street-edge canopies, low sun angles, overlapping shadows, multi-canopy interactions, and morning/evening sun). Across more than 88,000 reused cell evaluations, the maximum observed error was 0.1219~K, well below the declared 0.50~K certificate bound. The cell reuse ratio exceeded 98.3\% across all certified cases with zero bound violations. In extreme low sun conditions ($< 5^\circ$), the engine automatically triggered full recomputation fallback, guaranteeing complete certificate soundness.
+Figure~\ref{fig:incremental_err} shows the histogram of error per cell for nine adversarial interventions in the Berlin Corridor (canopy edge, low sun angles, shadows, canopy interaction, and early or late sun). Over more than 88,000 cell reuses, the largest error observed is 0.1219~K, which is well within the claimed certificate limit of 0.50~K. The percentage of cell reuse was above 98.3\% for all cases in which there were no bound violations. For very low sun situations ($< 5^\circ$), full recomputation falls back to ensure complete soundness of the certificate.
 
 \begin{figure}[!t]
 \centering
@@ -242,8 +242,8 @@ Figure~\ref{fig:incremental_err} presents the per-cell error histogram across ni
 \label{fig:incremental_err}
 \end{figure}
 
-\subsection{Computational Scalability and GPU Acceleration Benchmarks}
-Figure~\ref{fig:perf_bars} benchmarks total latency across CPU Full, CPU Incremental, GPU Full, and GPU Incremental modes across three domain scales. On the Berlin corridor (Scene B, 10,000 cells), CPU full recomputation required $708.5 \pm 17.6$~ms, whereas CUDA GPU incremental updates completed in $18.0 \pm 0.4$~ms ($39.4\times$ speedup). On the 48,000-cell primary corridor (Table~\ref{tab:perf_benchmarks}), GPU incremental updates execute in 18.2~ms ($>300\times$ speedup over full CPU recomputation). Peak GPU memory was 1,064.5~MiB on the NVIDIA RTX 4050, confirming compatibility with consumer hardware.
+\subsection{Computational Scalability and GPU Acceleration Performance Metrics}
+Figure~\ref{fig:perf_bars} provides benchmarking results for the total latency in CPU Full, CPU Incremental, GPU Full, and GPU Incremental modes for three domain sizes. For the Berlin corridor (Scene B, 10,000 cells), CPU full re-computation took $708.5 \pm 17.6$~ms, whereas CUDA GPU incremental update took $18.0 \pm 0.4$~ms ($39.4\times$ speed-up). For the 48,000 cells primary corridor (Table~\ref{tab:perf_benchmarks}), GPU incremental updates take 18.2~ms ($> 300\times$ speed-up from CPU full re-computation). The peak GPU memory usage was 1,064.5~MiB on the NVIDIA RTX 4050.
 
 \begin{figure*}[!t]
 \centering
@@ -270,8 +270,8 @@ Berlin Master (Stage 7) & 48,000 & 5,712.0 & N/A & 2,032.0 & 18.2 & $313.8\times
 \end{tabular}
 \end{table*}
 
-\subsection{Optimization Methodologies Comparison}
-Figure~\ref{fig:opt_conv} compares convergence trajectories across the four optimization methods (50 budget, 3 seeds). Direct Genetic Algorithm search achieved the lowest final Mean $\Tmrt$ ($42.6225 \pm 0.0142^\circ\mathrm{C}$, $+0.4405$~K cooling, runtime 1.13~s), closely followed by Random Search ($42.6275 \pm 0.0268^\circ\mathrm{C}$, $+0.4355$~K cooling, runtime 1.25~s). Active Learning achieved $42.6524 \pm 0.0088^\circ\mathrm{C}$ ($+0.4106$~K cooling) but required 177.93~s due to GP hyperparameter retraining. Welch's two-sample t-test between Active Learning and Random Search yielded $t = 0.760, p = 0.514$ ($p > 0.05$), demonstrating that Active Learning did not beat Random Search with statistical significance. In 12 dimensions under tight simulation budgets ($N=50$), Latin hypercube initialization ($15^{1/12} \approx 1.25$ points per dimension) and over-exploration by GP-LCB impeded surrogate modeling. Because GPU ray-tracing executes in milliseconds, direct evolutionary algorithms are faster and more robust than heavy GP surrogates in this setting. Table~\ref{tab:opt_summary} summarizes the benchmark results.
+\subsection{Comparison of Optimization Methodologies}
+Figure~\ref{fig:opt_conv} shows the convergence profiles for the four optimization algorithms (50 simulations, 3 seeds). The Direct Genetic Algorithm search reached the lowest Mean $\Tmrt$ of $42.6225 \pm 0.0142^\circ\mathrm{C}$ ($+0.4405$~K cooling) in 1.13 seconds. The second lowest Mean $\Tmrt$ was achieved by the Random Search algorithm at $42.6275 \pm 0.0268^\circ\mathrm{C}$ ($+0.4355$~K cooling, 1.25 seconds). Active Learning achieved $42.6524 \pm 0.0088^\circ\mathrm{C}$ ($+0.4106$~K cooling) but took 177.93 seconds due to frequent hyperparameter tuning of the GP. A two-sample t-test between Active Learning and Random Search yielded $t = 0.760, p = 0.514$ ($p > 0.05$), proving that Active Learning failed to defeat Random Search with statistical significance. In 12-dimensional space with limited simulation budgets ($N = 50$), the Latin hypercube initialization ($15^{1/12} \approx 1.25$ points per dimension) and over-exploration by GP-LCB hindered the surrogate modeling process. As the GPU ray-tracing takes just milliseconds, the direct evolutionary algorithms are more efficient than the heavy GP surrogates in this context. Table~\ref{tab:opt_summary} summarizes the benchmark findings.
 
 \begin{figure}[!t]
 \centering
@@ -299,10 +299,10 @@ Tiny Problem Exhaustive Grid & $42.8094^\circ\mathrm{C}$ & 0.59\% & $+0.2537$~K 
 \end{tabular}
 \end{table*}
 
-\subsection{Microclimatic Spatial Distribution and Cross-City Replication}
-Figure~\ref{fig:before_after_maps} maps the before, after, and delta microclimatic fields on the Berlin Friedrichstra{\ss}e corridor. Baseline solar noon conditions subject pedestrians to severe thermal stress (mean $\Tmrt = 43.0131^\circ\mathrm{C}$, peak $\Tmrt = 46.1273^\circ\mathrm{C}$, mean $\UTCI = 31.7132^\circ\mathrm{C}$). The optimized dual-canopy installation (Canopy 1: $26.79~\mathrm{m}^2$ at $y = 34.06$~m; Canopy 2: $21.40~\mathrm{m}^2$ at $y = -26.47$~m; total $48.19~\mathrm{m}^2$) reduces corridor mean $\Tmrt$ to $42.5316^\circ\mathrm{C}$ (cooling delta $+0.4815$~K). Directly beneath the structures, direct-beam shading delivers a peak local cooling of $+13.1371$~K and a peak $\UTCI$ reduction of $+3.4000$~K, reducing sunlit receptor fraction by 3.56\%.
+\subsection{Spatial Distribution and Cross-City Replication of Microclimate Conditions}
+Figure~\ref{fig:before_after_maps} displays microclimatic fields ``before,'' ``after,'' and ``delta'' along the Berlin Friedrichstra{\ss}e corridor. Baseline solar noon conditions expose pedestrians to intense heat stress (mean $\Tmrt = 43.0131^\circ\mathrm{C}$, max $\Tmrt = 46.1273^\circ\mathrm{C}$, mean $\UTCI = 31.7132^\circ\mathrm{C}$). The optimized two-layered canopy system (Canopy 1: $26.79~\mathrm{m}^2$ at $y = 34.06$~m; Canopy 2: $21.40~\mathrm{m}^2$ at $y = -26.47$~m; total $48.19~\mathrm{m}^2$) lowers mean $\Tmrt$ of the corridor to $42.5316^\circ\mathrm{C}$ (cooling delta $+0.4815$~K). Within the shaded zones under these canopies, the peak cooling due to direct-beam shading is $+13.1371$~K and the peak $\UTCI$ cooling is $+3.4000$~K. This decreases fraction of sunlit receptors by 3.56\%.
 
-Table~\ref{tab:replication_summary} presents cross-city replication results. In the Chicago LaSalle financial canyon ($H/W \approx 3.5$), tall building self-shading blocks direct solar rays at pavement level, producing an unmitigated baseline $\Tmrt$ of $36.0355^\circ\mathrm{C}$; adding overhead canopies inside existing building shadow yields negligible marginal cooling ($+0.0045$~K mean, $+0.12$~K peak). Conversely, in London Exhibition Road ($H/W \approx 0.9$), wide boulevard exposure subjects pedestrians to extreme radiation (baseline $\Tmrt = 44.8093^\circ\mathrm{C}$); the canopy intervention delivers $+0.4004$~K corridor-mean cooling and a substantial peak local cooling of $+15.6600$~K ($+3.82$~K $\UTCI$ relief).
+Table~\ref{tab:replication_summary} summarizes the cross-city results of the replication study. In Chicago LaSalle financial canyon ($H/W \approx 3.5$), self-shading of tall buildings prevents direct solar radiation on the pedestrian surface, resulting in an unmitigated baseline $\Tmrt$ value of $36.0355^\circ\mathrm{C}$, whereas the introduction of an overhead canopy within the building shade area provides insignificant additional cooling of $+0.0045$~K mean, $+0.12$~K peak. On the contrary, in London Exhibition Road ($H/W \approx 0.9$), a wide boulevard makes pedestrians experience intense radiative heat stress, i.e., unmitigated baseline $\Tmrt = 44.8093^\circ\mathrm{C}$; the canopy produces $+0.4004$~K mean cooling and $+15.6600$~K peak cooling.
 
 \begin{figure*}[!t]
 \centering
@@ -328,7 +328,8 @@ London (Replication) & $\approx 0.9$ & $44.8093^\circ\mathrm{C}$ & $44.4089^\cir
 \end{tabular}
 \end{table*}
 
-Sensitivity analysis across seven environmental scenarios identified three parameters shifting thermal metrics by more than 1.0~K: (1) Removing mature roadside trees increased corridor mean $\Tmrt$ by $+1.3812$~K, proving the critical protective function of urban vegetation; (2) Modulating wind speed by $\pm 1.0$~m/s altered peak $\UTCI$ by $\mp 1.0000$~K through forced convective heat dissipation; and (3) A $\pm 10\%$ direct beam irradiance shift induced a $\pm 3.76$~K change in peak $\Tmrt$. Building height perturbations ($\pm 5\%$) induced negligible shifts ($-0.06$~K to $+0.15$~K) because solar noon azimuth and altitude unoccluded the street floor directly. Finally, geometric shade consistency verification confirmed that simulated ray-traced shadow centroids matched analytical trigonometry within 0.095~m (Canopy 1) and 0.006~m (Canopy 2), well within the 1.0~m grid cell resolution.
+Sensitivity analysis under seven environmental scenarios revealed three key parameters that caused changes in thermal indicators exceeding 1.0~K: (1) Elimination of mature roadside trees resulted in $+1.3812$~K of corridor mean $\Tmrt$, highlighting the importance of the role of urban vegetation; (2) Changing wind speed by $\pm 1.0$~m/s resulted in peak $\UTCI$ changes of $\mp 1.0000$~K via forced convection; and (3) Changing direct beam irradiance by $\pm 10\%$ yielded $\pm 3.76$~K change of peak $\Tmrt$. Changes in building heights by $\pm 5\%$ resulted in marginal changes in thermal indicators ranging from $-0.06$~K to $+0.15$~K since the solar noon azimuth angle and altitude were clear to the street floor.
+Finally, geometric consistency of shade analysis verified that simulated ray-tracing shadow centroids matched analytical trigonometry within 0.095~m (Canopy 1) and 0.006~m (Canopy 2), well within the 1.0~m grid cell resolution.
 
 % =========================================================================
 % 7. DISCUSSION (Compare with 4 papers, state limitations)
