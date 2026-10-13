@@ -58,7 +58,7 @@ def create_manuscript():
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_title.paragraph_format.space_before = Pt(0)
     p_title.paragraph_format.space_after = Pt(12)
-    run_title = p_title.add_run("Certified Incremental Radiative Transfer and GPU-Accelerated Microclimate Optimization for Urban Pedestrian Corridors")
+    run_title = p_title.add_run("Incremental Radiative Transfer Technique and GPU-Assisted Microclimatic Optimization for Urban Pedestrian Walkways")
     run_title.font.size = Pt(18)
     run_title.font.bold = True
     run_title.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
