@@ -1,0 +1,182 @@
+{
+  "type": "FeatureCollection",
+  "name": "berlin_trees",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "node/400001",
+      "properties": {
+        "natural": "tree",
+        "height": 9.5,
+        "radius": 3.5,
+        "transmissivity": 0.14
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4130559,
+          52.5218082
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400002",
+      "properties": {
+        "natural": "tree",
+        "height": 10.0,
+        "radius": 4.0,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4130511,
+          52.521943
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400003",
+      "properties": {
+        "natural": "tree",
+        "height": 8.5,
+        "radius": 3.2,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4130462,
+          52.5220778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400004",
+      "properties": {
+        "natural": "tree",
+        "height": 9.0,
+        "radius": 3.5,
+        "transmissivity": 0.16
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4132769,
+          52.5218111
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400005",
+      "properties": {
+        "natural": "tree",
+        "height": 11.0,
+        "radius": 4.2,
+        "transmissivity": 0.12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4133441,
+          52.5219918
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400006",
+      "properties": {
+        "natural": "tree",
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.412686,
+          52.5218482
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400007",
+      "properties": {
+        "natural": "tree",
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4134226,
+          52.521858
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400008",
+      "properties": {
+        "natural": "tree",
+        "height": 12.0,
+        "radius": 4.5,
+        "transmissivity": 0.13
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4131854,
+          52.5223044
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400009",
+      "properties": {
+        "natural": "tree",
+        "height": 10.5,
+        "radius": 3.8,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4131069,
+          52.5224382
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400010",
+      "properties": {
+        "natural": "tree",
+        "height": 7.5,
+        "radius": 2.8,
+        "transmissivity": 0.18
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4133946,
+          52.5214081
+        ]
+      }
+    }
+  ]
+}

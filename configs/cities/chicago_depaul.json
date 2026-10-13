@@ -1,0 +1,36 @@
+{
+  "city_id": "chicago_depaul",
+  "name": "Chicago \u2014 DePaul / Lincoln Park published study location",
+  "country": "United States",
+  "coordinates": {
+    "latitude": 41.92388888888889,
+    "longitude": -87.65722222222222,
+    "timezone": "America/Chicago",
+    "utc_offset_hours": -5
+  },
+  "crs": {
+    "geographic": "EPSG:4326",
+    "projected_metric": "EPSG:32616",
+    "utm_zone": "16N",
+    "local_frame": "EPSG:32616_LOCAL"
+  },
+  "data_paths": {
+    "raw_dir": "data/raw/chicago_depaul",
+    "processed_dir": "data/processed/chicago_depaul",
+    "buildings_geojson": "data/input/chicago_depaul/buildings.geojson",
+    "terrain_tif": "data/input/chicago_depaul/terrain.tif",
+    "trees_geojson": "data/input/chicago_depaul/trees.geojson",
+    "weather_csv": "data/input/chicago_depaul/weather_24h.csv"
+  },
+  "simulation_defaults": {
+    "pedestrian_height_m": 1.1,
+    "grid_resolution_m": 1.0,
+    "domain_extent_m": [
+      430.0,
+      438.0
+    ],
+    "sky_patch_configuration": 32,
+    "max_svf_search_dist_m": 120.0,
+    "tmrt_tolerance_k": 0.5
+  }
+}

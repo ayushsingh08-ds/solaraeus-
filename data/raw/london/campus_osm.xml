@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<osm version="0.6" generator="Overpass API 0.7.61.5">
+  <bounds minlat="51.5185377" minlon="-0.0949966" maxlat="51.5202623" maxlon="-0.0920033"/>
+  <node id="9000001" lat="51.5187586" lon="-0.0948384" version="1"/>
+  <node id="9000002" lat="51.5187318" lon="-0.0937588" version="1"/>
+  <node id="9000003" lat="51.5190910" lon="-0.0937359" version="1"/>
+  <node id="9000004" lat="51.5191178" lon="-0.0948155" version="1"/>
+  <way id="200201" version="1">
+    <nd ref="9000001"/>
+    <nd ref="9000002"/>
+    <nd ref="9000003"/>
+    <nd ref="9000004"/>
+    <nd ref="9000001"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Barbican Terrace South"/>
+    <tag k="building:levels" v="9"/>
+    <tag k="height" v="27.0"/>
+  </way>
+  <node id="9000005" lat="51.5186762" lon="-0.0933299" version="1"/>
+  <node id="9000006" lat="51.5186512" lon="-0.0923223" version="1"/>
+  <node id="9000007" lat="51.5191003" lon="-0.0922937" version="1"/>
+  <node id="9000008" lat="51.5191252" lon="-0.0933013" version="1"/>
+  <way id="200202" version="1">
+    <nd ref="9000005"/>
+    <nd ref="9000006"/>
+    <nd ref="9000007"/>
+    <nd ref="9000008"/>
+    <nd ref="9000005"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Moorgate Financial House"/>
+    <tag k="building:levels" v="14"/>
+    <tag k="height" v="42.0"/>
+  </way>
+  <node id="9000009" lat="51.5193405" lon="-0.0947292" version="1"/>
+  <node id="9000010" lat="51.5193191" lon="-0.0938656" version="1"/>
+  <node id="9000011" lat="51.5196783" lon="-0.0938427" version="1"/>
+  <node id="9000012" lat="51.5196997" lon="-0.0947063" version="1"/>
+  <way id="200203" version="1">
+    <nd ref="9000009"/>
+    <nd ref="9000010"/>
+    <nd ref="9000011"/>
+    <nd ref="9000012"/>
+    <nd ref="9000009"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Guildhall Canyon West"/>
+    <tag k="building:levels" v="7"/>
+    <tag k="height" v="21.0"/>
+  </way>
+  <node id="9000013" lat="51.5193480" lon="-0.0932150" version="1"/>
+  <node id="9000014" lat="51.5193265" lon="-0.0923513" version="1"/>
+  <node id="9000015" lat="51.5196857" lon="-0.0923284" version="1"/>
+  <node id="9000016" lat="51.5197072" lon="-0.0931921" version="1"/>
+  <way id="200204" version="1">
+    <nd ref="9000013"/>
+    <nd ref="9000014"/>
+    <nd ref="9000015"/>
+    <nd ref="9000016"/>
+    <nd ref="9000013"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="London Wall Office Block"/>
+    <tag k="building:levels" v="11"/>
+    <tag k="height" v="33.0"/>
+  </way>
+  <node id="9000017" lat="51.5198776" lon="-0.0946229" version="1"/>
+  <node id="9000018" lat="51.5198454" lon="-0.0933275" version="1"/>
+  <node id="9000019" lat="51.5201597" lon="-0.0933074" version="1"/>
+  <node id="9000020" lat="51.5201919" lon="-0.0946029" version="1"/>
+  <way id="200205" version="1">
+    <nd ref="9000017"/>
+    <nd ref="9000018"/>
+    <nd ref="9000019"/>
+    <nd ref="9000020"/>
+    <nd ref="9000017"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Cromwell Tower (Barbican Estate)"/>
+    <tag k="building:levels" v="42"/>
+    <tag k="height" v="122.0"/>
+  </way>
+  <node id="9000021" lat="51.5198850" lon="-0.0931087" version="1"/>
+  <node id="9000022" lat="51.5198636" lon="-0.0922450" version="1"/>
+  <node id="9000023" lat="51.5201330" lon="-0.0922278" version="1"/>
+  <node id="9000024" lat="51.5201544" lon="-0.0930915" version="1"/>
+  <way id="200206" version="1">
+    <nd ref="9000021"/>
+    <nd ref="9000022"/>
+    <nd ref="9000023"/>
+    <nd ref="9000024"/>
+    <nd ref="9000021"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Fore Street Low-Rise"/>
+  </way>
+  <node id="400001" lat="51.5192222" lon="-0.0935834" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="8.0"/>
+    <tag k="diameter_crown" v="6.0"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400002" lat="51.5193551" lon="-0.0935029" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="9.0"/>
+    <tag k="diameter_crown" v="7.0"/>
+    <tag k="transmissivity" v="0.14"/>
+  </node>
+  <node id="400003" lat="51.5195365" lon="-0.0935634" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="8.5"/>
+    <tag k="diameter_crown" v="6.4"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400004" lat="51.5196676" lon="-0.0934109" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="10.0"/>
+    <tag k="diameter_crown" v="7.6"/>
+    <tag k="transmissivity" v="0.13"/>
+  </node>
+  <node id="400005" lat="51.5197735" lon="-0.0940529" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="11.5"/>
+    <tag k="diameter_crown" v="9.0"/>
+    <tag k="transmissivity" v="0.12"/>
+  </node>
+  <node id="400006" lat="51.5197663" lon="-0.0937650" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="11.0"/>
+    <tag k="diameter_crown" v="8.4"/>
+    <tag k="transmissivity" v="0.12"/>
+  </node>
+  <node id="400007" lat="51.5197772" lon="-0.0934760" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="9.5"/>
+    <tag k="diameter_crown" v="7.2"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400008" lat="51.5189905" lon="-0.0933098" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="7.0"/>
+    <tag k="diameter_crown" v="5.0"/>
+    <tag k="transmissivity" v="0.17"/>
+  </node>
+</osm>

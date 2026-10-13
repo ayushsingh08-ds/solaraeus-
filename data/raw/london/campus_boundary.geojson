@@ -1,0 +1,54 @@
+{
+  "type": "FeatureCollection",
+  "name": "london_study_boundary",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "boundary/london",
+      "properties": {
+        "city_id": "london",
+        "name": "Barbican / Moorgate Street Canyon (UMEP Case Study)",
+        "domain_extent_m": [
+          200.0,
+          200.0
+        ],
+        "center_lat": 51.5194,
+        "center_lon": -0.0935,
+        "projected_crs": "EPSG:32630"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.0949966,
+              51.5185377
+            ],
+            [
+              -0.0920033,
+              51.5185377
+            ],
+            [
+              -0.0920033,
+              51.5202623
+            ],
+            [
+              -0.0949966,
+              51.5202623
+            ],
+            [
+              -0.0949966,
+              51.5185377
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

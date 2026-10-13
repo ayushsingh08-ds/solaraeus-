@@ -1,0 +1,246 @@
+{
+  "type": "FeatureCollection",
+  "name": "london_buildings",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "way/200201",
+      "properties": {
+        "osm_id": 200201,
+        "name": "Barbican Terrace South",
+        "building": "yes",
+        "building:levels": 9,
+        "height": 27.0,
+        "height_m": 27.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.0948384,
+              51.5187586
+            ],
+            [
+              -0.0937588,
+              51.5187318
+            ],
+            [
+              -0.0937359,
+              51.519091
+            ],
+            [
+              -0.0948155,
+              51.5191178
+            ],
+            [
+              -0.0948384,
+              51.5187586
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/200202",
+      "properties": {
+        "osm_id": 200202,
+        "name": "Moorgate Financial House",
+        "building": "yes",
+        "building:levels": 14,
+        "height": 42.0,
+        "height_m": 42.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.0933299,
+              51.5186762
+            ],
+            [
+              -0.0923223,
+              51.5186512
+            ],
+            [
+              -0.0922937,
+              51.5191003
+            ],
+            [
+              -0.0933013,
+              51.5191252
+            ],
+            [
+              -0.0933299,
+              51.5186762
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/200203",
+      "properties": {
+        "osm_id": 200203,
+        "name": "Guildhall Canyon West",
+        "building": "yes",
+        "building:levels": 7,
+        "height": 21.0,
+        "height_m": 21.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.0947292,
+              51.5193405
+            ],
+            [
+              -0.0938656,
+              51.5193191
+            ],
+            [
+              -0.0938427,
+              51.5196783
+            ],
+            [
+              -0.0947063,
+              51.5196997
+            ],
+            [
+              -0.0947292,
+              51.5193405
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/200204",
+      "properties": {
+        "osm_id": 200204,
+        "name": "London Wall Office Block",
+        "building": "yes",
+        "building:levels": 11,
+        "height": 33.0,
+        "height_m": 33.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.093215,
+              51.519348
+            ],
+            [
+              -0.0923513,
+              51.5193265
+            ],
+            [
+              -0.0923284,
+              51.5196857
+            ],
+            [
+              -0.0931921,
+              51.5197072
+            ],
+            [
+              -0.093215,
+              51.519348
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/200205",
+      "properties": {
+        "osm_id": 200205,
+        "name": "Cromwell Tower (Barbican Estate)",
+        "building": "yes",
+        "building:levels": 42,
+        "height": 122.0,
+        "height_m": 122.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.0946229,
+              51.5198776
+            ],
+            [
+              -0.0933275,
+              51.5198454
+            ],
+            [
+              -0.0933074,
+              51.5201597
+            ],
+            [
+              -0.0946029,
+              51.5201919
+            ],
+            [
+              -0.0946229,
+              51.5198776
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/200206",
+      "properties": {
+        "osm_id": 200206,
+        "name": "Fore Street Low-Rise",
+        "building": "yes",
+        "building:levels": 5,
+        "height": 15.0,
+        "height_m": 15.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -0.0931087,
+              51.519885
+            ],
+            [
+              -0.092245,
+              51.5198636
+            ],
+            [
+              -0.0922278,
+              51.520133
+            ],
+            [
+              -0.0930915,
+              51.5201544
+            ],
+            [
+              -0.0931087,
+              51.519885
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

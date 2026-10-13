@@ -2,10 +2,9 @@
   "city_id": "chicago",
   "name": "Chicago",
   "country": "United States",
-  "role": "fallback_replication",
   "coordinates": {
-    "latitude": 41.8781,
-    "longitude": -87.6298,
+    "latitude": 41.8842,
+    "longitude": -87.6303,
     "timezone": "America/Chicago",
     "utc_offset_hours": -5
   },
@@ -18,27 +17,20 @@
   "data_paths": {
     "raw_dir": "data/raw/chicago",
     "processed_dir": "data/processed/chicago",
-    "buildings_geojson": "data/raw/chicago/buildings.geojson",
-    "terrain_tif": "data/raw/chicago/terrain.tif",
-    "trees_geojson": "data/raw/chicago/trees.geojson",
-    "weather_csv": "data/raw/chicago/weather.csv"
+    "buildings_geojson": "data/input/chicago/buildings.geojson",
+    "terrain_tif": "data/input/chicago/terrain.tif",
+    "trees_geojson": "data/input/chicago/trees.geojson",
+    "weather_csv": "data/input/chicago/weather_24h.csv"
   },
   "simulation_defaults": {
     "pedestrian_height_m": 1.1,
     "grid_resolution_m": 1.0,
-    "domain_extent_m": [200.0, 200.0],
+    "domain_extent_m": [
+      200.0,
+      200.0
+    ],
     "sky_patch_configuration": 32,
-    "max_svf_search_dist_m": 100.0,
-    "tmrt_tolerance_k": 0.50
-  },
-  "weather_scenario_heatwave": {
-    "date": "2024-07-15",
-    "local_time": "14:00:00",
-    "air_temperature_c": 33.5,
-    "relative_humidity_pct": 52.0,
-    "wind_speed_ms": 3.8,
-    "wind_direction_deg": 190.0,
-    "direct_normal_irradiance_wm2": 820.0,
-    "diffuse_horizontal_irradiance_wm2": 190.0
+    "max_svf_search_dist_m": 120.0,
+    "tmrt_tolerance_k": 0.5
   }
 }

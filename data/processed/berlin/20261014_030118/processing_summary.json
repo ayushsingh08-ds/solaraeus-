@@ -1,0 +1,28 @@
+{
+  "area": "berlin",
+  "timestamp": "20261014_030118",
+  "status": "PROCESSED",
+  "processed_dir": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\data\\processed\\berlin\\20261014_030118",
+  "grid_resolution_m": 2.0,
+  "total_buildings": 7,
+  "scene_triangles": 84,
+  "grid_cells": 10000,
+  "grid_origin": [
+    -100.0,
+    -100.0
+  ],
+  "grid_extent": [
+    200.0,
+    200.0
+  ],
+  "grid_nx": 100,
+  "grid_ny": 100,
+  "baseline_tmrt_mean_c": 32.97197749405102,
+  "baseline_tmrt_max_c": 38.86155935722951,
+  "baseline_tmrt_min_c": 24.712293976365345,
+  "baseline_utci_mean_c": 12.31696,
+  "baseline_utci_max_c": 14.2,
+  "sunlit_cells_pct": 35.67,
+  "wall_time_sec": 2.089,
+  "created_at": "2026-10-14T03:01:20.550692"
+}

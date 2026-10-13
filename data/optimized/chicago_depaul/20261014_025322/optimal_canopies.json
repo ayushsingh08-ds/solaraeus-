@@ -1,0 +1,287 @@
+[
+  {
+    "id": "CANOPY_01",
+    "x": -50.0,
+    "y": 14.0,
+    "z": 4.0,
+    "shadow_x": -50.0,
+    "shadow_y": 14.0,
+    "length_m": 8.0,
+    "width_m": 4.0,
+    "height_m": 4.0,
+    "heading_deg": 0.0,
+    "fabric_transmissivity": 0.1,
+    "area_m2": 32.0,
+    "roof_corners": [
+      [
+        -54.0,
+        12.0
+      ],
+      [
+        -46.0,
+        12.0
+      ],
+      [
+        -46.0,
+        16.0
+      ],
+      [
+        -54.0,
+        16.0
+      ]
+    ],
+    "shadow_corners": [
+      [
+        -54.0,
+        12.0
+      ],
+      [
+        -46.0,
+        12.0
+      ],
+      [
+        -46.0,
+        16.0
+      ],
+      [
+        -54.0,
+        16.0
+      ]
+    ],
+    "shadow_offset": [
+      0.0,
+      0.0
+    ],
+    "shaded_area_m2": 60.0,
+    "peak_cooling_k": 12.78,
+    "mean_cooling_k": 10.86
+  },
+  {
+    "id": "CANOPY_02",
+    "x": -50.0,
+    "y": -8.0,
+    "z": 4.0,
+    "shadow_x": -50.0,
+    "shadow_y": -8.0,
+    "length_m": 8.0,
+    "width_m": 4.0,
+    "height_m": 4.0,
+    "heading_deg": 0.0,
+    "fabric_transmissivity": 0.1,
+    "area_m2": 32.0,
+    "roof_corners": [
+      [
+        -54.0,
+        -10.0
+      ],
+      [
+        -46.0,
+        -10.0
+      ],
+      [
+        -46.0,
+        -6.0
+      ],
+      [
+        -54.0,
+        -6.0
+      ]
+    ],
+    "shadow_corners": [
+      [
+        -54.0,
+        -10.0
+      ],
+      [
+        -46.0,
+        -10.0
+      ],
+      [
+        -46.0,
+        -6.0
+      ],
+      [
+        -54.0,
+        -6.0
+      ]
+    ],
+    "shadow_offset": [
+      0.0,
+      0.0
+    ],
+    "shaded_area_m2": 60.0,
+    "peak_cooling_k": 12.78,
+    "mean_cooling_k": 10.86
+  },
+  {
+    "id": "CANOPY_03",
+    "x": 148.0,
+    "y": 178.0,
+    "z": 4.0,
+    "shadow_x": 148.0,
+    "shadow_y": 178.0,
+    "length_m": 8.0,
+    "width_m": 4.0,
+    "height_m": 4.0,
+    "heading_deg": 0.0,
+    "fabric_transmissivity": 0.1,
+    "area_m2": 32.0,
+    "roof_corners": [
+      [
+        144.0,
+        176.0
+      ],
+      [
+        152.0,
+        176.0
+      ],
+      [
+        152.0,
+        180.0
+      ],
+      [
+        144.0,
+        180.0
+      ]
+    ],
+    "shadow_corners": [
+      [
+        144.0,
+        176.0
+      ],
+      [
+        152.0,
+        176.0
+      ],
+      [
+        152.0,
+        180.0
+      ],
+      [
+        144.0,
+        180.0
+      ]
+    ],
+    "shadow_offset": [
+      0.0,
+      0.0
+    ],
+    "shaded_area_m2": 60.0,
+    "peak_cooling_k": 12.78,
+    "mean_cooling_k": 10.86
+  },
+  {
+    "id": "CANOPY_04",
+    "x": -50.0,
+    "y": -22.0,
+    "z": 4.0,
+    "shadow_x": -50.0,
+    "shadow_y": -22.0,
+    "length_m": 8.0,
+    "width_m": 4.0,
+    "height_m": 4.0,
+    "heading_deg": 0.0,
+    "fabric_transmissivity": 0.1,
+    "area_m2": 32.0,
+    "roof_corners": [
+      [
+        -54.0,
+        -24.0
+      ],
+      [
+        -46.0,
+        -24.0
+      ],
+      [
+        -46.0,
+        -20.0
+      ],
+      [
+        -54.0,
+        -20.0
+      ]
+    ],
+    "shadow_corners": [
+      [
+        -54.0,
+        -24.0
+      ],
+      [
+        -46.0,
+        -24.0
+      ],
+      [
+        -46.0,
+        -20.0
+      ],
+      [
+        -54.0,
+        -20.0
+      ]
+    ],
+    "shadow_offset": [
+      0.0,
+      0.0
+    ],
+    "shaded_area_m2": 60.0,
+    "peak_cooling_k": 12.78,
+    "mean_cooling_k": 10.86
+  },
+  {
+    "id": "CANOPY_05",
+    "x": -54.0,
+    "y": 110.0,
+    "z": 4.0,
+    "shadow_x": -54.0,
+    "shadow_y": 110.0,
+    "length_m": 8.0,
+    "width_m": 4.0,
+    "height_m": 4.0,
+    "heading_deg": 0.0,
+    "fabric_transmissivity": 0.1,
+    "area_m2": 32.0,
+    "roof_corners": [
+      [
+        -58.0,
+        108.0
+      ],
+      [
+        -50.0,
+        108.0
+      ],
+      [
+        -50.0,
+        112.0
+      ],
+      [
+        -58.0,
+        112.0
+      ]
+    ],
+    "shadow_corners": [
+      [
+        -58.0,
+        108.0
+      ],
+      [
+        -50.0,
+        108.0
+      ],
+      [
+        -50.0,
+        112.0
+      ],
+      [
+        -58.0,
+        112.0
+      ]
+    ],
+    "shadow_offset": [
+      0.0,
+      0.0
+    ],
+    "shaded_area_m2": 60.0,
+    "peak_cooling_k": 12.78,
+    "mean_cooling_k": 10.86
+  }
+]

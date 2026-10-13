@@ -1,0 +1,285 @@
+{
+  "type": "FeatureCollection",
+  "name": "berlin_buildings",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "way/100101",
+      "properties": {
+        "osm_id": 100101,
+        "name": "Alexanderplatz Commercial Block A",
+        "building": "yes",
+        "building:levels": 12,
+        "height": 36.0,
+        "height_m": 36.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4119736,
+              52.5211643
+            ],
+            [
+              13.4128576,
+              52.5211761
+            ],
+            [
+              13.4128382,
+              52.5217153
+            ],
+            [
+              13.4119542,
+              52.5217035
+            ],
+            [
+              13.4119736,
+              52.5211643
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/100102",
+      "properties": {
+        "osm_id": 100102,
+        "name": "Mitte Office Tower South",
+        "building": "yes",
+        "building:levels": 15,
+        "height": 45.0,
+        "height_m": 45.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4134485,
+              52.5211391
+            ],
+            [
+              13.4144061,
+              52.5211519
+            ],
+            [
+              13.4143867,
+              52.5216911
+            ],
+            [
+              13.4134291,
+              52.5216783
+            ],
+            [
+              13.4134485,
+              52.5211391
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/100103",
+      "properties": {
+        "osm_id": 100103,
+        "name": "Rathausstrasse Mixed-Use Block",
+        "building": "yes",
+        "building:levels": 8,
+        "height": 24.0,
+        "height_m": 24.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4120165,
+              52.522019
+            ],
+            [
+              13.4129005,
+              52.5220308
+            ],
+            [
+              13.4128794,
+              52.522615
+            ],
+            [
+              13.4119954,
+              52.5226031
+            ],
+            [
+              13.4120165,
+              52.522019
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/100104",
+      "properties": {
+        "osm_id": 100104,
+        "name": "Park Inn High-Rise Canyon Block",
+        "building": "yes",
+        "building:levels": 41,
+        "height": 125.0,
+        "height_m": 125.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4134882,
+              52.5220837
+            ],
+            [
+              13.4144458,
+              52.5220965
+            ],
+            [
+              13.414428,
+              52.5225908
+            ],
+            [
+              13.4134704,
+              52.522578
+            ],
+            [
+              13.4134882,
+              52.5220837
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/100105",
+      "properties": {
+        "osm_id": 100105,
+        "name": "Transit Pavilion",
+        "building": "yes",
+        "building:levels": 6,
+        "height": 18.0,
+        "height_m": 18.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4130082,
+              52.5210882
+            ],
+            [
+              13.4133028,
+              52.5210922
+            ],
+            [
+              13.4132866,
+              52.5215415
+            ],
+            [
+              13.412992,
+              52.5215376
+            ],
+            [
+              13.4130082,
+              52.5210882
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/100106",
+      "properties": {
+        "osm_id": 100106,
+        "name": "West Canyon Annex",
+        "building": "yes",
+        "building:levels": 7,
+        "height": 21.0,
+        "height_m": 21.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4118773,
+              52.5217923
+            ],
+            [
+              13.4125403,
+              52.5218012
+            ],
+            [
+              13.4125354,
+              52.521936
+            ],
+            [
+              13.4118724,
+              52.5219271
+            ],
+            [
+              13.4118773,
+              52.5217923
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/100107",
+      "properties": {
+        "osm_id": 100107,
+        "name": "East Plaza Arcade",
+        "building": "yes",
+        "building:levels": 5,
+        "height": 15.0,
+        "height_m": 15.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.4136468,
+              52.5217711
+            ],
+            [
+              13.4144571,
+              52.521782
+            ],
+            [
+              13.4144491,
+              52.5220067
+            ],
+            [
+              13.4136387,
+              52.5219958
+            ],
+            [
+              13.4136468,
+              52.5217711
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

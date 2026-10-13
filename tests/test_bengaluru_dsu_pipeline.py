@@ -203,3 +203,39 @@ def test_real_building_geometry_loaded_no_silent_fallback():
     else:
         mesh_ids = [m.get("id") for m in raw_meshes if isinstance(m, dict)]
     assert "w_bldg" not in mesh_ids and "e_bldg" not in mesh_ids, "Silent fallback boxes detected!"
+
+
+def test_research_paper_metrics_plot_generation(tmp_path):
+    """Verifies that render_research_metrics_plot generates high-resolution figures without error."""
+    import sys
+    sys.path.insert(0, str(WORKSPACE_ROOT))
+    from run_cli import render_research_metrics_plot, render_baseline_metrics_plot
+
+    proc_base = WORKSPACE_ROOT / "data" / "processed" / "bengaluru_dsu_harohalli"
+    opt_base = WORKSPACE_ROOT / "data" / "optimized" / "bengaluru_dsu_harohalli"
+    assert proc_base.exists() and opt_base.exists()
+
+    latest_proc = sorted([d for d in proc_base.iterdir() if d.is_dir()])[-1]
+    latest_opt = sorted([d for d in opt_base.iterdir() if d.is_dir()])[-1]
+
+    # Test research metrics figure generation
+    test_metrics_png = tmp_path / "test_research_metrics.png"
+    out_metrics = render_research_metrics_plot(
+        area="bengaluru_dsu_harohalli",
+        target_proc_dir=latest_proc,
+        opt_dir=latest_opt,
+        output_png=test_metrics_png,
+    )
+    assert out_metrics.exists()
+    assert out_metrics.stat().st_size > 50_000, f"File size too small: {out_metrics.stat().st_size} bytes"
+
+    # Test baseline metrics figure generation
+    test_base_png = tmp_path / "test_baseline_metrics.png"
+    out_base = render_baseline_metrics_plot(
+        area="bengaluru_dsu_harohalli",
+        target_proc_dir=latest_proc,
+        output_png=test_base_png,
+    )
+    assert out_base.exists()
+    assert out_base.stat().st_size > 50_000, f"File size too small: {out_base.stat().st_size} bytes"
+

@@ -1,0 +1,21 @@
+{
+  "stage": "01_data_ingestion",
+  "status": "COMPLETED",
+  "area": "chicago_depaul",
+  "total_buildings": 265,
+  "total_scene_triangles": 6624,
+  "total_scene_vertices": 3842,
+  "pedestrian_grid_cells": 47085,
+  "grid_shape": [
+    219,
+    215
+  ],
+  "local_origin": [
+    445505.47556305846,
+    4641534.581092102
+  ],
+  "artifacts": {
+    "scene_mesh": "scene_mesh.json",
+    "pedestrian_grid": "pedestrian_grid.json"
+  }
+}

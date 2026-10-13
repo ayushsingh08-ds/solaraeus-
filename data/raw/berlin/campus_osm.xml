@@ -1,0 +1,167 @@
+<?xml version="1.0" ?>
+<osm version="0.6" generator="Overpass API 0.7.61.5">
+  <bounds minlat="52.5209816" minlon="13.4117591" maxlat="52.5228184" maxlon="13.4146409"/>
+  <node id="9000001" lat="52.5211643" lon="13.4119736" version="1"/>
+  <node id="9000002" lat="52.5211761" lon="13.4128576" version="1"/>
+  <node id="9000003" lat="52.5217153" lon="13.4128382" version="1"/>
+  <node id="9000004" lat="52.5217035" lon="13.4119542" version="1"/>
+  <way id="100101" version="1">
+    <nd ref="9000001"/>
+    <nd ref="9000002"/>
+    <nd ref="9000003"/>
+    <nd ref="9000004"/>
+    <nd ref="9000001"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Alexanderplatz Commercial Block A"/>
+    <tag k="building:levels" v="12"/>
+    <tag k="height" v="36.0"/>
+  </way>
+  <node id="9000005" lat="52.5211391" lon="13.4134485" version="1"/>
+  <node id="9000006" lat="52.5211519" lon="13.4144061" version="1"/>
+  <node id="9000007" lat="52.5216911" lon="13.4143867" version="1"/>
+  <node id="9000008" lat="52.5216783" lon="13.4134291" version="1"/>
+  <way id="100102" version="1">
+    <nd ref="9000005"/>
+    <nd ref="9000006"/>
+    <nd ref="9000007"/>
+    <nd ref="9000008"/>
+    <nd ref="9000005"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Mitte Office Tower South"/>
+    <tag k="building:levels" v="15"/>
+    <tag k="height" v="45.0"/>
+  </way>
+  <node id="9000009" lat="52.5220190" lon="13.4120165" version="1"/>
+  <node id="9000010" lat="52.5220308" lon="13.4129005" version="1"/>
+  <node id="9000011" lat="52.5226150" lon="13.4128794" version="1"/>
+  <node id="9000012" lat="52.5226031" lon="13.4119954" version="1"/>
+  <way id="100103" version="1">
+    <nd ref="9000009"/>
+    <nd ref="9000010"/>
+    <nd ref="9000011"/>
+    <nd ref="9000012"/>
+    <nd ref="9000009"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Rathausstrasse Mixed-Use Block"/>
+    <tag k="building:levels" v="8"/>
+    <tag k="height" v="24.0"/>
+  </way>
+  <node id="9000013" lat="52.5220837" lon="13.4134882" version="1"/>
+  <node id="9000014" lat="52.5220965" lon="13.4144458" version="1"/>
+  <node id="9000015" lat="52.5225908" lon="13.4144280" version="1"/>
+  <node id="9000016" lat="52.5225780" lon="13.4134704" version="1"/>
+  <way id="100104" version="1">
+    <nd ref="9000013"/>
+    <nd ref="9000014"/>
+    <nd ref="9000015"/>
+    <nd ref="9000016"/>
+    <nd ref="9000013"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Park Inn High-Rise Canyon Block"/>
+    <tag k="building:levels" v="41"/>
+    <tag k="height" v="125.0"/>
+  </way>
+  <node id="9000017" lat="52.5210882" lon="13.4130082" version="1"/>
+  <node id="9000018" lat="52.5210922" lon="13.4133028" version="1"/>
+  <node id="9000019" lat="52.5215415" lon="13.4132866" version="1"/>
+  <node id="9000020" lat="52.5215376" lon="13.4129920" version="1"/>
+  <way id="100105" version="1">
+    <nd ref="9000017"/>
+    <nd ref="9000018"/>
+    <nd ref="9000019"/>
+    <nd ref="9000020"/>
+    <nd ref="9000017"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="Transit Pavilion"/>
+    <tag k="building:levels" v="6"/>
+    <tag k="height" v="18.0"/>
+  </way>
+  <node id="9000021" lat="52.5217923" lon="13.4118773" version="1"/>
+  <node id="9000022" lat="52.5218012" lon="13.4125403" version="1"/>
+  <node id="9000023" lat="52.5219360" lon="13.4125354" version="1"/>
+  <node id="9000024" lat="52.5219271" lon="13.4118724" version="1"/>
+  <way id="100106" version="1">
+    <nd ref="9000021"/>
+    <nd ref="9000022"/>
+    <nd ref="9000023"/>
+    <nd ref="9000024"/>
+    <nd ref="9000021"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="West Canyon Annex"/>
+    <tag k="building:levels" v="7"/>
+    <tag k="height" v="21.0"/>
+  </way>
+  <node id="9000025" lat="52.5217711" lon="13.4136468" version="1"/>
+  <node id="9000026" lat="52.5217820" lon="13.4144571" version="1"/>
+  <node id="9000027" lat="52.5220067" lon="13.4144491" version="1"/>
+  <node id="9000028" lat="52.5219958" lon="13.4136387" version="1"/>
+  <way id="100107" version="1">
+    <nd ref="9000025"/>
+    <nd ref="9000026"/>
+    <nd ref="9000027"/>
+    <nd ref="9000028"/>
+    <nd ref="9000025"/>
+    <tag k="building" v="yes"/>
+    <tag k="name" v="East Plaza Arcade"/>
+  </way>
+  <node id="400001" lat="52.5218082" lon="13.4130559" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="9.5"/>
+    <tag k="diameter_crown" v="7.0"/>
+    <tag k="transmissivity" v="0.14"/>
+  </node>
+  <node id="400002" lat="52.5219430" lon="13.4130511" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="10.0"/>
+    <tag k="diameter_crown" v="8.0"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400003" lat="52.5220778" lon="13.4130462" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="8.5"/>
+    <tag k="diameter_crown" v="6.4"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400004" lat="52.5218111" lon="13.4132769" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="9.0"/>
+    <tag k="diameter_crown" v="7.0"/>
+    <tag k="transmissivity" v="0.16"/>
+  </node>
+  <node id="400005" lat="52.5219918" lon="13.4133441" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="11.0"/>
+    <tag k="diameter_crown" v="8.4"/>
+    <tag k="transmissivity" v="0.12"/>
+  </node>
+  <node id="400006" lat="52.5218482" lon="13.4126860" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="8.0"/>
+    <tag k="diameter_crown" v="6.0"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400007" lat="52.5218580" lon="13.4134226" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="8.0"/>
+    <tag k="diameter_crown" v="6.0"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400008" lat="52.5223044" lon="13.4131854" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="12.0"/>
+    <tag k="diameter_crown" v="9.0"/>
+    <tag k="transmissivity" v="0.13"/>
+  </node>
+  <node id="400009" lat="52.5224382" lon="13.4131069" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="10.5"/>
+    <tag k="diameter_crown" v="7.6"/>
+    <tag k="transmissivity" v="0.15"/>
+  </node>
+  <node id="400010" lat="52.5214081" lon="13.4133946" version="1">
+    <tag k="natural" v="tree"/>
+    <tag k="height" v="7.5"/>
+    <tag k="diameter_crown" v="5.6"/>
+    <tag k="transmissivity" v="0.18"/>
+  </node>
+</osm>

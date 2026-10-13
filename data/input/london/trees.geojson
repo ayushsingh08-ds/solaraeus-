@@ -1,0 +1,148 @@
+{
+  "type": "FeatureCollection",
+  "name": "london_trees",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "node/400001",
+      "properties": {
+        "natural": "tree",
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0935834,
+          51.5192222
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400002",
+      "properties": {
+        "natural": "tree",
+        "height": 9.0,
+        "radius": 3.5,
+        "transmissivity": 0.14
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0935029,
+          51.5193551
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400003",
+      "properties": {
+        "natural": "tree",
+        "height": 8.5,
+        "radius": 3.2,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0935634,
+          51.5195365
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400004",
+      "properties": {
+        "natural": "tree",
+        "height": 10.0,
+        "radius": 3.8,
+        "transmissivity": 0.13
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0934109,
+          51.5196676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400005",
+      "properties": {
+        "natural": "tree",
+        "height": 11.5,
+        "radius": 4.5,
+        "transmissivity": 0.12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0940529,
+          51.5197735
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400006",
+      "properties": {
+        "natural": "tree",
+        "height": 11.0,
+        "radius": 4.2,
+        "transmissivity": 0.12
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.093765,
+          51.5197663
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400007",
+      "properties": {
+        "natural": "tree",
+        "height": 9.5,
+        "radius": 3.6,
+        "transmissivity": 0.15
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.093476,
+          51.5197772
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/400008",
+      "properties": {
+        "natural": "tree",
+        "height": 7.0,
+        "radius": 2.5,
+        "transmissivity": 0.17
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0933098,
+          51.5189905
+        ]
+      }
+    }
+  ]
+}

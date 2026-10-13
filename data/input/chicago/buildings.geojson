@@ -1,0 +1,207 @@
+{
+  "type": "FeatureCollection",
+  "name": "chicago_buildings",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "way/300301",
+      "properties": {
+        "osm_id": 300301,
+        "name": "Richard J. Daley Center",
+        "building": "yes",
+        "building:levels": 31,
+        "height": 197.5,
+        "height_m": 197.5
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.6313169,
+              41.8834288
+            ],
+            [
+              -87.6304733,
+              41.8834335
+            ],
+            [
+              -87.6304795,
+              41.8840639
+            ],
+            [
+              -87.6313231,
+              41.8840593
+            ],
+            [
+              -87.6313169,
+              41.8834288
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/300302",
+      "properties": {
+        "osm_id": 300302,
+        "name": "Block 37 / 108 N State St",
+        "building": "yes",
+        "building:levels": 22,
+        "height": 118.0,
+        "height_m": 118.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.6300514,
+              41.8834358
+            ],
+            [
+              -87.6292681,
+              41.8834401
+            ],
+            [
+              -87.6292738,
+              41.8840255
+            ],
+            [
+              -87.6300572,
+              41.8840212
+            ],
+            [
+              -87.6300514,
+              41.8834358
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/300303",
+      "properties": {
+        "osm_id": 300303,
+        "name": "Chicago City Hall & County Building",
+        "building": "yes",
+        "building:levels": 11,
+        "height": 66.0,
+        "height_m": 66.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.6313262,
+              41.8843745
+            ],
+            [
+              -87.6305428,
+              41.8843788
+            ],
+            [
+              -87.6305486,
+              41.8849642
+            ],
+            [
+              -87.631332,
+              41.8849599
+            ],
+            [
+              -87.6313262,
+              41.8843745
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/300304",
+      "properties": {
+        "osm_id": 300304,
+        "name": "Grant Thornton Tower",
+        "building": "yes",
+        "building:levels": 50,
+        "height": 175.0,
+        "height_m": 175.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.6300607,
+              41.8843814
+            ],
+            [
+              -87.6292773,
+              41.8843857
+            ],
+            [
+              -87.6292831,
+              41.8849712
+            ],
+            [
+              -87.6300665,
+              41.8849669
+            ],
+            [
+              -87.6300607,
+              41.8843814
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/300305",
+      "properties": {
+        "osm_id": 300305,
+        "name": "Dearborn Corridor Pavilion",
+        "building": "yes",
+        "building:levels": 5,
+        "height": 15.0,
+        "height_m": 15.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -87.6304134,
+              41.8834788
+            ],
+            [
+              -87.6301724,
+              41.8834802
+            ],
+            [
+              -87.6301755,
+              41.8837954
+            ],
+            [
+              -87.6304165,
+              41.8837941
+            ],
+            [
+              -87.6304134,
+              41.8834788
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

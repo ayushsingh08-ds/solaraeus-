@@ -2,43 +2,35 @@
   "city_id": "berlin",
   "name": "Berlin",
   "country": "Germany",
-  "role": "primary",
   "coordinates": {
-    "latitude": 52.5200,
-    "longitude": 13.4050,
+    "latitude": 52.5219,
+    "longitude": 13.4132,
     "timezone": "Europe/Berlin",
     "utc_offset_hours": 2
   },
   "crs": {
     "geographic": "EPSG:4326",
-    "projected_metric": "EPSG:25833",
+    "projected_metric": "EPSG:32633",
     "utm_zone": "33N",
-    "local_frame": "EPSG:25833_LOCAL"
+    "local_frame": "EPSG:32633_LOCAL"
   },
   "data_paths": {
     "raw_dir": "data/raw/berlin",
     "processed_dir": "data/processed/berlin",
-    "buildings_geojson": "data/raw/berlin/buildings.geojson",
-    "terrain_tif": "data/raw/berlin/terrain.tif",
-    "trees_geojson": "data/raw/berlin/trees.geojson",
-    "weather_csv": "data/raw/berlin/weather.csv"
+    "buildings_geojson": "data/input/berlin/buildings.geojson",
+    "terrain_tif": "data/input/berlin/terrain.tif",
+    "trees_geojson": "data/input/berlin/trees.geojson",
+    "weather_csv": "data/input/berlin/weather_24h.csv"
   },
   "simulation_defaults": {
     "pedestrian_height_m": 1.1,
     "grid_resolution_m": 1.0,
-    "domain_extent_m": [200.0, 200.0],
+    "domain_extent_m": [
+      200.0,
+      200.0
+    ],
     "sky_patch_configuration": 32,
-    "max_svf_search_dist_m": 100.0,
-    "tmrt_tolerance_k": 0.50
-  },
-  "weather_scenario_heatwave": {
-    "date": "2024-07-20",
-    "local_time": "14:00:00",
-    "air_temperature_c": 34.2,
-    "relative_humidity_pct": 38.0,
-    "wind_speed_ms": 2.2,
-    "wind_direction_deg": 220.0,
-    "direct_normal_irradiance_wm2": 845.0,
-    "diffuse_horizontal_irradiance_wm2": 175.0
+    "max_svf_search_dist_m": 120.0,
+    "tmrt_tolerance_k": 0.5
   }
 }

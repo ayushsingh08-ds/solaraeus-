@@ -1,0 +1,28 @@
+{
+  "area": "chicago_depaul",
+  "timestamp": "20261014_025322",
+  "status": "PROCESSED",
+  "processed_dir": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\data\\processed\\chicago_depaul\\20261014_025322",
+  "grid_resolution_m": 2.0,
+  "total_buildings": 265,
+  "scene_triangles": 6624,
+  "grid_cells": 47085,
+  "grid_origin": [
+    -215.0,
+    -219.0
+  ],
+  "grid_extent": [
+    430.0,
+    438.0
+  ],
+  "grid_nx": 215,
+  "grid_ny": 219,
+  "baseline_tmrt_mean_c": 42.41799347816187,
+  "baseline_tmrt_max_c": 56.151635551563686,
+  "baseline_tmrt_min_c": 26.75251239757182,
+  "baseline_utci_mean_c": 22.623141127747687,
+  "baseline_utci_max_c": 26.4,
+  "sunlit_cells_pct": 40.08495274503557,
+  "wall_time_sec": 80.027,
+  "created_at": "2026-10-14T02:54:42.215115"
+}

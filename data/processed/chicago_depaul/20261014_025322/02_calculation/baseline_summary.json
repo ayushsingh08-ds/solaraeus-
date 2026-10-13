@@ -1,0 +1,46 @@
+{
+  "stage": "02_calculation",
+  "status": "COMPLETED",
+  "wall_time_sec": 79.429,
+  "simulation_timestamp": {
+    "date": "2026-10-10",
+    "local_time": "12:00:00",
+    "utc_time": "17:00:00",
+    "timezone": "America/Chicago",
+    "latitude": 41.92388888888889,
+    "longitude": -87.65722222222222
+  },
+  "weather_boundary_conditions": {
+    "air_temperature_c": 21.1,
+    "relative_humidity_pct": 65.0,
+    "wind_speed_ms": 4.1,
+    "wind_direction_deg": 171.0,
+    "direct_normal_irradiance_wm2": 735.6,
+    "diffuse_horizontal_irradiance_wm2": 133.0
+  },
+  "metrics": {
+    "tmrt_mean_c": 43.94821552884974,
+    "tmrt_min_c": 26.75251239757182,
+    "tmrt_max_c": 56.151635551563686,
+    "utci_mean_c": 23.058684407541005,
+    "utci_min_c": 18.2,
+    "utci_max_c": 26.4,
+    "svf_mean": 0.5966777837598382,
+    "sunlit_fraction": 0.6422786360852106,
+    "outdoor_pedestrian_cells": 29386,
+    "building_interior_cells": 17699
+  },
+  "timings": {
+    "timing_shadow_sec": 1.319109199976083,
+    "timing_svf_sec": 77.67056359999697,
+    "timing_radiation_sec": 0.003836899995803833,
+    "timing_utci_sec": 0.43416519998572767
+  },
+  "artifacts": {
+    "shadow": "baseline_shadow.npz",
+    "svf": "baseline_svf.npz",
+    "tmrt": "baseline_tmrt.npz",
+    "utci": "baseline_utci.npz",
+    "building_mask": "building_mask.npz"
+  }
+}
