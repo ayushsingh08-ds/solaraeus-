@@ -239,18 +239,13 @@ def create_manuscript():
 
     p_lr1 = doc.add_paragraph()
     p_lr1.add_run(
-        "Urban microclimate simulation has traditionally relied on coupled atmospheric and computational fluid dynamics (CFD) formulations, "
-        "such as ENVI-met (Bruse and Fleer 1998) or the LES-based PALM-4U model evaluated by Eingrüber et al. (2025) across Berlin street canyons. "
-        "While physically comprehensive, Navier–Stokes fluid modeling imposes heavy computational penalties, frequently consuming hours of multi-core "
-        "CPU cluster time per diurnal cycle and rendering iterative architectural exploration prohibitive (Krayenhoff et al. 2021). To alleviate this "
-        "overhead, decoupled radiation engines have emerged as the standard paradigm for pedestrian thermal comfort assessment. By decoupling shortwave "
-        "and longwave radiative flux calculations from convective fluid motion, the Solar and Longwave Environmental Irradiance Geometry (SOLWEIG) "
-        "engine (Lindberg et al. 2008, 2018) estimates human radiant exposure at sub-meter spatial resolutions in seconds. Recent investigations have "
-        "extended decoupled ray tracing to direct solar shading of building envelopes (Rayegan et al. 2025), urban canyon microclimate coupling "
-        "(Bourquin et al. 2025), retro-reflective pavement modeling (Yuan et al. 2025), and vegetative cooling assessments (Chen et al. 2024; "
-        "Baia et al. 2026). However, existing decoupled simulation engines operate strictly on monolithic batch principles: whenever a localized "
-        "intervention—such as an overhead fabric canopy or tree planter—is placed within the urban corridor, the solver discards all precomputed "
-        "spatial states and recomputes the entire digital twin from scratch, ignoring spatial sparsity and bounding properties."
+        "Urban microclimates have historically been simulated using coupled formulations like ENVI-met (Bruse and Fleer 1998) and PALM-4U "
+        "(Eingrüber et al. 2025). While physically comprehensive, full Navier–Stokes fluid simulations require hours on multi-core clusters "
+        "per diurnal cycle, making iterative design impractical (Krayenhoff et al. 2021). Decoupled radiation models like SOLWEIG (Lindberg et al. "
+        "2008, 2018) resolve this by computing shortwave and longwave fluxes separately from airflow, evaluating pedestrian thermal comfort in "
+        "seconds. Recent studies have extended decoupled modeling to solar shading (Rayegan et al. 2025), urban canyons (Bourquin et al. 2025), "
+        "retroreflective pavements (Yuan et al. 2025), and vegetative cooling (Baia et al. 2026; Chen et al. 2024). However, existing engines "
+        "recompute the entire domain from scratch whenever a local intervention (such as a fabric canopy or tree) is introduced."
     )
 
     # 2.2 GPU Acceleration and Precomputed Transport Architectures
@@ -262,17 +257,12 @@ def create_manuscript():
 
     p_lr2 = doc.add_paragraph()
     p_lr2.add_run(
-        "To accelerate high-resolution microclimatic calculations, recent literature has increasingly turned to massively parallel graphical "
-        "processing unit (GPU) computing. Kamath et al. (2026) developed SOLWEIG-GPU, achieving substantial runtime reductions for city-scale "
-        "digital twins by parallelizing discrete ray marching and shadow casting on CUDA architectures. Similarly, Mei et al. (2025) presented GUST1.0, "
-        "a GPU-accelerated energy balance engine that expedites 3D surface temperature modeling across complex building geometries, while parallel geospatial "
-        "algorithms in Earth informatics have demonstrated significant efficiency gains for multicriteria urban analysis (Nguyen et al. 2023). Beyond direct "
-        "ray tracing, precomputed radiative transfer techniques have been adapted from computer graphics to thermal simulation. Freude et al. (2023, 2025) "
-        "formulated precomputed radiative transport matrices to simulate dynamic longwave and shortwave exchanges and solve inverse thermal material "
-        "problems at interactive frame rates. Nonetheless, precomputation approaches suffer from a fundamental architectural limitation: they assume "
-        "stationary geometric boundary conditions. The introduction of even a single localized shading canopy alters the geometric horizon and view-factor "
-        "relationships, invalidating the precomputed transport matrices and necessitating an expensive full-domain rebuild. Crucially, prior GPU frameworks "
-        "accelerate full-domain recomputation rather than formulating incremental reuse mechanisms."
+        "To accelerate large simulations, recent tools leverage GPU parallelism. Kamath et al. (2026) developed SOLWEIG-GPU for city-scale "
+        "comfort modeling via CUDA ray marching, while Mei et al. (2025) introduced GUST1.0 for GPU-based surface energy balances, and Nguyen et al. "
+        "(2023) applied parallel geospatial algorithms. In computer graphics, Freude et al. (2023, 2025) used precomputed radiative transport "
+        "matrices to simulate dynamic thermal exchange in real time. However, precomputed matrices assume stationary geometry; adding even a single "
+        "canopy alters the scene and invalidates the entire matrix. Existing GPU frameworks thus accelerate full recalculations rather than "
+        "incrementally reusing unaffected cells."
     )
 
     # 2.3 Machine Learning Surrogates and Active Optimization
@@ -284,15 +274,11 @@ def create_manuscript():
 
     p_lr3 = doc.add_paragraph()
     p_lr3.add_run(
-        "Recognizing the computational friction of physics-based solvers, researchers have extensively explored machine learning surrogates for urban "
-        "heat island mitigation and microclimatic planning (Tao et al. 2025; Do et al. 2024). Deep learning surrogate architectures, such as the localized "
-        "Fourier Neural Operators developed by Qin et al. (2024), map geometric and atmospheric boundary conditions to full 3D microclimate fields in "
-        "milliseconds. However, machine learning surrogates introduce two severe limitations in design workflows: first, black-box neural networks lack "
-        "certified, closed-form physical error bounds, making them prone to uncertified extrapolation errors when evaluating novel intervention shapes or "
-        "extreme heatwave meteorology (Tao et al. 2025); second, static surrogates trained on fixed design distributions exhibit sharp accuracy degradation "
-        "in dense canyon environments where sharp shadow discontinuities dominate. While Bayesian active learning frameworks can iteratively refine surrogate "
-        "fidelity by balancing exploitation and exploration, their practical deployment requires an underlying physical simulation engine capable of "
-        "evaluating proposed interventions with sub-second latency and guaranteed numerical parity."
+        "Surrogate modeling has also emerged to bypass heavy physics simulations (Do et al. 2024; Tao et al. 2025). For example, Qin et al. "
+        "(2024) used localized Fourier Neural Operators to predict 3D microclimate fields in milliseconds. Yet neural surrogates lack certified "
+        "physical error bounds and struggle with sharp shadow boundaries in complex canyons (Tao et al. 2025). While Bayesian active learning balances "
+        "exploration and exploitation, it still requires an underlying physics engine that can evaluate candidate designs in sub-second time with "
+        "verified numerical accuracy."
     )
 
     # 2.4 Identified Research Gap
@@ -304,12 +290,10 @@ def create_manuscript():
 
     p_lr4 = doc.add_paragraph()
     p_lr4.add_run(
-        "A review of the surveyed literature points out a key research gap related to the integration between microclimate simulation and computational "
-        "urban design. While physics-based decoupled engines guarantee validated biometeorological accuracy, they cannot get rid of inefficient "
-        "monolithic recomputation cycles. While transport matrices and neural models can run computations in real time, they become invalid with the "
-        "changing geometry and are unable to deliver certified physical error bounds. The research gap lies in the lack of a framework that combines a "
-        "mathematically certified incremental radiative transfer engine (which ensures bounding of truncation errors to below a degree of tolerance "
-        "while reusing the majority of unaffected grid cells) with GPU acceleration and canopy optimization using active learning. Solaraeus bridges this research gap."
+        "In summary, current decoupled physics engines offer validated biometeorological accuracy but suffer from monolithic recalculation overhead. "
+        "Conversely, precomputed transport matrices and neural surrogates offer real-time speeds but break under geometric modifications or lack "
+        "physical error guarantees. A framework that unites mathematically certified incremental radiative transfer with resident GPU acceleration "
+        "and active canopy optimization has been missing. Solaraeus directly fills this gap."
     )
 
     # Section 3: Data Description
