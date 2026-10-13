@@ -55,13 +55,13 @@ class TerrainLoader:
 
     def __init__(self, data_root: Optional[Path] = None):
         self.data_root = data_root or Path(".")
-        self.fabdem_path = (
-            self.data_root / "data/interim/terrain/fabdem_local_reference.tif"
-        )
-        if not self.fabdem_path.exists():
-            self.fabdem_path = (
-                self.data_root / "data/interim/terrain/fabdem_clipped_utm43.tif"
-            )
+        candidate_paths = [
+            self.data_root / "data/church_street/terrain/fabdem_local_reference.tif",
+            self.data_root / "data/church_street/terrain/fabdem_clipped_utm43.tif",
+            self.data_root / "data/interim/terrain/fabdem_local_reference.tif",
+            self.data_root / "data/interim/terrain/fabdem_clipped_utm43.tif",
+        ]
+        self.fabdem_path = next((p for p in candidate_paths if p.exists()), candidate_paths[0])
 
         self._fabdem_raster = None
         self._fabdem_transform = None

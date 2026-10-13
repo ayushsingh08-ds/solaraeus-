@@ -38,15 +38,25 @@ class PreprocessingConfig:
     """Configuration parameters for Church Street preprocessing."""
 
     handoff_dir: Path = field(
-        default_factory=lambda: Path(
-            "bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed"
+        default_factory=lambda: (
+            Path("data/church_street")
+            if (Path("data/church_street") / "buildings_site.geojson").exists()
+            else Path("bengaluru_church_street_manual_handoff_v2/bengaluru_church_street_manual_handoff_v2/data/processed")
         )
     )
     approved_heights_path: Path = field(
-        default_factory=lambda: Path("data/processed/approved_building_heights.csv")
+        default_factory=lambda: (
+            Path("data/church_street/approved_building_heights.csv")
+            if Path("data/church_street/approved_building_heights.csv").exists()
+            else Path("data/processed/approved_building_heights.csv")
+        )
     )
     researcher_signoff_path: Path = field(
-        default_factory=lambda: Path("data/processed/researcher_signoff.json")
+        default_factory=lambda: (
+            Path("data/church_street/researcher_signoff.json")
+            if Path("data/church_street/researcher_signoff.json").exists()
+            else Path("data/processed/researcher_signoff.json")
+        )
     )
     source_crs: str = "EPSG:4326"
     metric_crs: str = "EPSG:32643"
@@ -98,14 +108,14 @@ class ChurchStreetAdapter:
             id="building_wall",
             albedo=self.config.wall_albedo,
             emissivity=self.config.wall_emissivity,
-            surface_temperature=self.config.wall_temp_k,
+            surface_temperature_k=self.config.wall_temp_k,
             is_opaque=True,
         )
         self.roof_material = Material(
             id="building_roof",
             albedo=self.config.roof_albedo,
             emissivity=self.config.roof_emissivity,
-            surface_temperature=self.config.roof_temp_k,
+            surface_temperature_k=self.config.roof_temp_k,
             is_opaque=True,
         )
 
@@ -556,7 +566,7 @@ class ChurchStreetAdapter:
             origin_x=-10.0,
             origin_y=-5.0,
             resolution=1.0,
-            pedestrian_height=1.1,
+            pedestrian_height_m=1.1,
         )
 
         main_scene = Scene(
@@ -584,7 +594,7 @@ class ChurchStreetAdapter:
             origin_x=-85.0,
             origin_y=-80.0,
             resolution=2.0,
-            pedestrian_height=1.1,
+            pedestrian_height_m=1.1,
         )
 
         shadow_context_scene = Scene(
