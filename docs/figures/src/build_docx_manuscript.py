@@ -209,17 +209,17 @@ def create_manuscript():
     for j, h in enumerate(headers):
         hdr_cells[j].text = h
         hdr_cells[j].paragraphs[0].runs[0].font.bold = True
-        hdr_cells[j].paragraphs[0].runs[0].font.size = Pt(8.5)
+        hdr_cells[j].paragraphs[0].runs[0].font.size = Pt(7.5)
         set_cell_background(hdr_cells[j], "EAEAEA")
-        set_cell_margins(hdr_cells[j], top=80, bottom=80, left=100, right=100)
+        set_cell_margins(hdr_cells[j], top=60, bottom=60, left=70, right=70)
 
     # Data Rows
     for i, row in enumerate(lit_data):
         row_cells = table_lit.rows[i + 1].cells
         for j, val in enumerate(row):
             row_cells[j].text = val
-            row_cells[j].paragraphs[0].runs[0].font.size = Pt(8.0)
-            set_cell_margins(row_cells[j], top=60, bottom=60, left=90, right=90)
+            row_cells[j].paragraphs[0].runs[0].font.size = Pt(7.0)
+            set_cell_margins(row_cells[j], top=40, bottom=40, left=60, right=60)
             if i % 2 == 1:
                 set_cell_background(row_cells[j], "FAFAFA")
 
@@ -334,16 +334,16 @@ def create_manuscript():
     for j, h in enumerate(d_headers):
         hdr_cells[j].text = h
         hdr_cells[j].paragraphs[0].runs[0].font.bold = True
-        hdr_cells[j].paragraphs[0].runs[0].font.size = Pt(8.0)
+        hdr_cells[j].paragraphs[0].runs[0].font.size = Pt(7.5)
         set_cell_background(hdr_cells[j], "EAEAEA")
-        set_cell_margins(hdr_cells[j], top=70, bottom=70, left=80, right=80)
+        set_cell_margins(hdr_cells[j], top=50, bottom=50, left=60, right=60)
 
     for i, row in enumerate(data_rows):
         row_cells = table_data.rows[i + 1].cells
         for j, val in enumerate(row):
             row_cells[j].text = val
-            row_cells[j].paragraphs[0].runs[0].font.size = Pt(7.5)
-            set_cell_margins(row_cells[j], top=50, bottom=50, left=70, right=70)
+            row_cells[j].paragraphs[0].runs[0].font.size = Pt(6.8)
+            set_cell_margins(row_cells[j], top=35, bottom=35, left=50, right=50)
             if i % 2 == 1:
                 set_cell_background(row_cells[j], "FAFAFA")
 
