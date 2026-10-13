@@ -160,7 +160,34 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 
 ---
 
-## 7. Deprecated / Legacy Sites Archive
+## 7. Stage 5 Performance & Scalability Artifacts
+
+- **Master Performance Metrics JSON**: `results/raw/stage_5/stage_5_performance_metrics.json`
+  - SHA256: `b8a787d36b9fcd8a4e3920207a4c340525b39bf5392a2e89327b6b9f22f388e8`
+- **Latency Breakdown Figure**: `results/raw/stage_5/stage_5_latency_breakdown.png`
+  - SHA256: `e015b7de51e899714725a57ddf0d85f961b2b8687afc2d39603c7f530c7d2fd7`
+- **Speedup Comparison Figure**: `results/raw/stage_5/stage_5_speedup_comparison.png`
+  - SHA256: `645b559a419690433984f9bea2924b47e4d36ed31cb9e8842242ebb1d57424f6`
+- **Reuse Fraction Sweep Figure**: `results/raw/stage_5/stage_5_reuse_sweep.png`
+  - SHA256: `ce98bf99eb9779d4f550a09eaec3c10b108ef1a905f380e3ec48b25fe0676dea`
+- **Master Benchmark Suite**: `benchmarks/run_stage_5_performance_suite.py`
+  - SHA256: `fbe9c714985e24abe3e5570c2efd5ba27be02fcc754570c721b014f0598fd1ad`
+- **GPU Benchmark CLI**: `benchmarks/benchmark_gpu.py`
+  - SHA256: `efb453a0f6f99cd209d655180e38e7ef5a8c10c10608feb2002ff9df2e53e7c7`
+- **CPU Benchmark CLI**: `benchmarks/benchmark_cpu.py`
+  - SHA256: `4caa1500fee4a6a937a3a2ac0f652504ecab0bee3c4c984b1b86afefe66e5c8b`
+- **POSIX CPU Benchmark Runner**: `benchmarks/benchmark_cpu.sh`
+  - SHA256: `af467aa28ff91dff8fabcb658125574e627cfa625a5158b8ba1f64bc4b2341f9`
+- **PowerShell CPU Benchmark Runner**: `benchmarks/benchmark_cpu.ps1`
+  - SHA256: `b88b46964926fd51b9f79d3ca30da93cd30de73045afa36edb2d993994a2aa7c`
+- **Stage 5 Performance Validation Suite**: `tests/test_stage_5_performance_validation.py`
+  - SHA256: `3f32b6063792a686e6656b6f3ac8fabe7c2fb62ca90b77f66365c6dde2675e52`
+- **Stage 5 Performance Engineering Report**: `docs/stage_5_report.md`
+  - SHA256: `f142097cb42ed88f15a519e1c3cb9d32dea331cc06d8a7dee21798e1927737b0`
+
+---
+
+## 8. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.
