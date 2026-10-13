@@ -840,25 +840,22 @@ def create_manuscript():
         "of India to study monsoon and pre-monsoon heatwaves dynamics."
     )
 
-    # Section 9: Declarations and Code/Data Availability
+    # Section 8: Declaration of Interests and Funding
     h9 = doc.add_heading(level=1)
-    r9 = h9.add_run("Declarations")
+    r9 = h9.add_run("Declaration of Interests and Funding")
     r9.font.size = Pt(13)
     r9.font.bold = True
     r9.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
 
     p_decl = doc.add_paragraph()
     p_decl.add_run(
-        "Funding: This research received no external grant funding.\n\n"
-        "Conflicts of Interest / Competing Interests: The authors declare that they have no competing financial or non-financial interests.\n\n"
-        "Ethical Approval: Not applicable. This study does not involve human participants or animal subjects.\n\n"
-        "Consent to Participate & Publish: Not applicable.\n\n"
-        "Author Contributions: A.S. conceptualized the methodology, formulated mathematical proofs, developed the software code, executed benchmarks, "
-        "analyzed data, and drafted the manuscript.\n\n"
-        "Code Availability: The complete source code, benchmark suites, and test pipelines are available under the open-source MIT License at: "
-        "https://github.com/ayushsingh08-ds/solaraeus. Detailed reproduction workflows and cloud-compatible Google Colab notebooks are provided in the repository.\n\n"
-        "Data Availability: All processed arrays (*.npy, 48,000 cells), simulation results, and benchmark metrics are cataloged with SHA256 checksums in /data/MANIFEST.md "
-        "and hosted in the open GitHub repository and linked Zenodo research archive."
+        "Funding: None.\n\n"
+        "Conflict of Interest: In this regard, we declare that there is no conflict of interest for the authors, either financially or otherwise.\n\n"
+        "Ethical Statement: None applicable. Neither human nor animal studies are part of this manuscript.\n\n"
+        "Consent to Participate and Publish: Not applicable.\n\n"
+        "Authors’ Contribution: Methodology was proposed by A.S., mathematical derivations were made, the code was written, benchmarked, results were analyzed, and the paper was prepared by A.S.\n\n"
+        "Availability of Code: Source code, benchmarking results and scripts are publicly available at GitHub as an MIT-licensed open-source project: https://github.com/ayushsingh08-ds/solaraeus. Detailed workflow and cloud ready Google Colab notebooks are provided in GitHub repository.\n\n"
+        "Data Availability: All datasets (*.npy, 48,000 cells), benchmarking results and performance metrics are provided in /data/MANIFEST.md and available on the open-source GitHub repository and Zenodo archive."
     )
 
     # Section 10: References (Numbered Springer Style, 10-15 genuine papers + 2 ESI papers)
