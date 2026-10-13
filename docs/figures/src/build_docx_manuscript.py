@@ -399,7 +399,7 @@ def create_manuscript():
     # Embed Figure 1
     fig1_path = Path("docs/figures/fig1_methodology_workflow.png")
     if fig1_path.exists():
-        doc.add_picture(str(fig1_path), width=Inches(6.5))
+        doc.add_picture(str(fig1_path), width=Inches(5.0))
         p_f1 = doc.add_paragraph()
         p_f1.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f1.paragraph_format.space_before = Pt(4)
@@ -427,7 +427,7 @@ def create_manuscript():
     # Embed Figure 2
     fig2_path = Path("docs/figures/fig2_system_architecture.png")
     if fig2_path.exists():
-        doc.add_picture(str(fig2_path), width=Inches(6.5))
+        doc.add_picture(str(fig2_path), width=Inches(5.0))
         p_f2 = doc.add_paragraph()
         p_f2.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f2.paragraph_format.space_before = Pt(4)
@@ -458,7 +458,7 @@ def create_manuscript():
     # Embed Figure 3
     fig3_path = Path("docs/figures/fig3_incremental_flowchart.png")
     if fig3_path.exists():
-        doc.add_picture(str(fig3_path), width=Inches(6.5))
+        doc.add_picture(str(fig3_path), width=Inches(5.0))
         p_f3 = doc.add_paragraph()
         p_f3.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f3.paragraph_format.space_before = Pt(4)
@@ -487,7 +487,7 @@ def create_manuscript():
     # Embed Figure 4
     fig4_path = Path("docs/figures/fig4_optimization_loop.png")
     if fig4_path.exists():
-        doc.add_picture(str(fig4_path), width=Inches(6.5))
+        doc.add_picture(str(fig4_path), width=Inches(5.0))
         p_f4 = doc.add_paragraph()
         p_f4.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f4.paragraph_format.space_before = Pt(4)
@@ -602,7 +602,7 @@ def create_manuscript():
     # Embed Figure 8
     fig8_path = Path("docs/figures/fig8_performance_grouped_bars.png")
     if fig8_path.exists():
-        doc.add_picture(str(fig8_path), width=Inches(6.5))
+        doc.add_picture(str(fig8_path), width=Inches(5.0))
         p_f8 = doc.add_paragraph()
         p_f8.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f8.paragraph_format.space_before = Pt(4)
