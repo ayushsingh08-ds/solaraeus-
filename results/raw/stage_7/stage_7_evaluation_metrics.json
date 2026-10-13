@@ -1,0 +1,465 @@
+{
+  "stage": 7,
+  "role": "project_lead_and_analyst",
+  "git_commit": "d71c4f20515b632e0b2d6f6fe46ed6c34e3814db",
+  "timestamp_utc": "2026-10-13T10:20:25.540188+00:00",
+  "hardware": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "cpu_model": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_version": "3.12.6",
+    "gpu_model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_driver": "616.92",
+    "vram_mb": 6140.5
+  },
+  "grid_specification": {
+    "resolution_m": 1.0,
+    "pedestrian_height_m": 1.1,
+    "extent_x_m": 240.0,
+    "extent_y_m": 200.0,
+    "total_cells": 48000,
+    "pedestrian_core_corridor": {
+      "x_range_m": [
+        -10.0,
+        10.0
+      ],
+      "y_range_m": [
+        -40.0,
+        40.0
+      ],
+      "cells_count": 1600,
+      "area_m2": 1600.0
+    }
+  },
+  "berlin_primary_evaluation": {
+    "site": "Berlin Friedrichstra\u00dfe / Gendarmenmarkt Corridor",
+    "crs": "EPSG:25833 (ETRS89 / UTM Zone 33N)",
+    "coordinates": {
+      "lat": 52.5145,
+      "lon": 13.3888
+    },
+    "timestamp_simulated": "2023-07-09 12:00:00 UTC",
+    "weather_forcing": {
+      "air_temperature_c": 30.5,
+      "relative_humidity_pct": 30.0,
+      "wind_speed_ms": 2.4,
+      "wind_direction_deg": 60.0,
+      "direct_normal_irradiance_wm2": 539.5,
+      "diffuse_horizontal_irradiance_wm2": 272.4,
+      "global_horizontal_irradiance_wm2": 732.1
+    },
+    "solar_angles": {
+      "altitude_deg": 58.44,
+      "azimuth_deg": 201.71
+    },
+    "baseline": {
+      "corridor": {
+        "cells_count": 1600,
+        "area_m2": 1600.0,
+        "mean_tmrt_c": 43.0131,
+        "max_tmrt_c": 46.1273,
+        "min_tmrt_c": 32.7709,
+        "p90_tmrt_c": 46.0341,
+        "std_tmrt_c": 5.1982,
+        "mean_utci_c": 31.7132,
+        "max_utci_c": 32.5,
+        "min_utci_c": 29.1,
+        "p90_utci_c": 32.5,
+        "sunlit_fraction": 0.7706,
+        "mean_svf": 0.4392
+      },
+      "domain": {
+        "total_cells": 48000,
+        "mean_tmrt_c": 35.3376,
+        "max_tmrt_c": 46.8968,
+        "min_tmrt_c": 32.7709,
+        "p90_tmrt_c": 46.0773,
+        "mean_utci_c": 29.7591,
+        "max_utci_c": 32.7,
+        "sunlit_fraction": 0.179,
+        "mean_svf": 0.169
+      }
+    },
+    "optimised": {
+      "corridor": {
+        "cells_count": 1600,
+        "area_m2": 1600.0,
+        "mean_tmrt_c": 42.5316,
+        "max_tmrt_c": 46.1208,
+        "min_tmrt_c": 32.7709,
+        "p90_tmrt_c": 46.0309,
+        "std_tmrt_c": 5.45,
+        "mean_utci_c": 31.5916,
+        "max_utci_c": 32.5,
+        "min_utci_c": 29.1,
+        "p90_utci_c": 32.5,
+        "sunlit_fraction": 0.735,
+        "mean_svf": 0.4146
+      },
+      "domain": {
+        "total_cells": 48000,
+        "mean_tmrt_c": 35.3215,
+        "max_tmrt_c": 46.8968,
+        "min_tmrt_c": 32.7709,
+        "p90_tmrt_c": 46.075,
+        "mean_utci_c": 29.755,
+        "max_utci_c": 32.7,
+        "sunlit_fraction": 0.1778,
+        "mean_svf": 0.1682
+      }
+    },
+    "cooling_deltas": {
+      "mean_cooling_delta_tmrt_k": 0.4815,
+      "max_local_cooling_delta_tmrt_k": 13.1371,
+      "p90_cooling_delta_tmrt_k": 0.1032,
+      "mean_cooling_delta_utci_k": 0.1216,
+      "max_local_cooling_delta_utci_k": 3.4,
+      "cooled_cells_tmrt_gt_1k": 77,
+      "cooled_cells_tmrt_gt_5k": 57,
+      "cooled_cells_tmrt_gt_10k": 57
+    }
+  },
+  "replication_evaluations": {
+    "chicago": {
+      "city_name": "Chicago",
+      "role": "fallback_replication",
+      "label": "Replication with documented assumptions",
+      "assumptions": [
+        "Building footprints and LoD1 heights from City of Chicago open data",
+        "Sidewalk planters modeled as 8 honey locust trees (height 5.0m, crown radius 2.0m)",
+        "Uniform tower wall albedo 0.25 (masonry/granite/glass envelope)",
+        "Planar terrain at z = 0.0m"
+      ],
+      "crs": "EPSG:32616 (WGS 84 / UTM Zone 16N)",
+      "coordinates": {
+        "lat": 41.8795,
+        "lon": -87.6324
+      },
+      "weather": {
+        "air_temperature_c": 30.2,
+        "relative_humidity_pct": 55.0,
+        "wind_speed_ms": 3.5,
+        "dni_wm2": 580.0,
+        "dhi_wm2": 180.0
+      },
+      "baseline": {
+        "corridor": {
+          "cells_count": 1920,
+          "area_m2": 1920.0,
+          "mean_tmrt_c": 32.3515,
+          "max_tmrt_c": 32.3905,
+          "min_tmrt_c": 32.2621,
+          "p90_tmrt_c": 32.373,
+          "std_tmrt_c": 0.0177,
+          "mean_utci_c": 29.4,
+          "max_utci_c": 29.4,
+          "min_utci_c": 29.4,
+          "p90_utci_c": 29.4,
+          "sunlit_fraction": 0.0,
+          "mean_svf": 0.2543
+        },
+        "domain": {
+          "total_cells": 48000,
+          "mean_tmrt_c": 33.4124,
+          "max_tmrt_c": 47.5186,
+          "min_tmrt_c": 32.2621,
+          "p90_tmrt_c": 32.4622,
+          "mean_utci_c": 29.6597,
+          "max_utci_c": 32.9,
+          "sunlit_fraction": 0.0742,
+          "mean_svf": 0.1089
+        }
+      },
+      "optimised": {
+        "corridor": {
+          "cells_count": 1920,
+          "area_m2": 1920.0,
+          "mean_tmrt_c": 32.347,
+          "max_tmrt_c": 32.3887,
+          "min_tmrt_c": 32.2621,
+          "p90_tmrt_c": 32.3685,
+          "std_tmrt_c": 0.0214,
+          "mean_utci_c": 29.4,
+          "max_utci_c": 29.4,
+          "min_utci_c": 29.4,
+          "p90_utci_c": 29.4,
+          "sunlit_fraction": 0.0,
+          "mean_svf": 0.2415
+        },
+        "domain": {
+          "total_cells": 48000,
+          "mean_tmrt_c": 33.4122,
+          "max_tmrt_c": 47.5186,
+          "min_tmrt_c": 32.2621,
+          "p90_tmrt_c": 32.4622,
+          "mean_utci_c": 29.6597,
+          "max_utci_c": 32.9,
+          "sunlit_fraction": 0.0742,
+          "mean_svf": 0.1084
+        }
+      },
+      "delta_tmrt_corridor_mean_k": 0.0045,
+      "delta_tmrt_max_local_k": 0.12,
+      "delta_utci_corridor_mean_k": 0.0,
+      "delta_utci_max_local_k": 0.0,
+      "wall_time_s": 0.14
+    },
+    "london": {
+      "city_name": "London",
+      "role": "reference_replication",
+      "label": "Replication with documented assumptions",
+      "assumptions": [
+        "Building footprints and heights from OS OpenMap Local and UK Environment Agency LiDAR",
+        "Street trees modeled as 14 London plane trees (height 11.0m, crown radius 4.0m)",
+        "Shared granite paving albedo 0.25, Portland stone facade albedo 0.35",
+        "Planar terrain at z = 0.0m"
+      ],
+      "crs": "EPSG:27700 (OSGB36 / British National Grid)",
+      "coordinates": {
+        "lat": 51.4985,
+        "lon": -0.1738
+      },
+      "weather": {
+        "air_temperature_c": 36.8,
+        "relative_humidity_pct": 28.0,
+        "wind_speed_ms": 4.2,
+        "dni_wm2": 650.0,
+        "dhi_wm2": 210.0
+      },
+      "baseline": {
+        "corridor": {
+          "cells_count": 2240,
+          "area_m2": 2240.0,
+          "mean_tmrt_c": 43.9591,
+          "max_tmrt_c": 48.8989,
+          "min_tmrt_c": 33.2402,
+          "p90_tmrt_c": 48.7741,
+          "std_tmrt_c": 6.8534,
+          "mean_utci_c": 37.0985,
+          "max_utci_c": 38.1,
+          "min_utci_c": 34.8,
+          "p90_utci_c": 38.1,
+          "sunlit_fraction": 0.6835,
+          "mean_svf": 0.423
+        },
+        "domain": {
+          "total_cells": 48000,
+          "mean_tmrt_c": 36.3483,
+          "max_tmrt_c": 49.4599,
+          "min_tmrt_c": 33.2402,
+          "p90_tmrt_c": 48.8176,
+          "mean_utci_c": 35.4674,
+          "max_utci_c": 38.3,
+          "sunlit_fraction": 0.1908,
+          "mean_svf": 0.1679
+        }
+      },
+      "optimised": {
+        "corridor": {
+          "cells_count": 2240,
+          "area_m2": 2240.0,
+          "mean_tmrt_c": 43.5587,
+          "max_tmrt_c": 48.8524,
+          "min_tmrt_c": 33.2402,
+          "p90_tmrt_c": 48.7209,
+          "std_tmrt_c": 6.9707,
+          "mean_utci_c": 37.0169,
+          "max_utci_c": 38.1,
+          "min_utci_c": 34.8,
+          "p90_utci_c": 38.1,
+          "sunlit_fraction": 0.6585,
+          "mean_svf": 0.4023
+        },
+        "domain": {
+          "total_cells": 48000,
+          "mean_tmrt_c": 36.3295,
+          "max_tmrt_c": 49.4599,
+          "min_tmrt_c": 33.2402,
+          "p90_tmrt_c": 48.8109,
+          "mean_utci_c": 35.4636,
+          "max_utci_c": 38.3,
+          "sunlit_fraction": 0.1896,
+          "mean_svf": 0.1668
+        }
+      },
+      "delta_tmrt_corridor_mean_k": 0.4004,
+      "delta_tmrt_max_local_k": 15.6587,
+      "delta_utci_corridor_mean_k": 0.0816,
+      "delta_utci_max_local_k": 3.3,
+      "wall_time_s": 0.14
+    }
+  },
+  "sensitivity_analysis": {
+    "nominal_corridor_mean_tmrt_c": 43.0131,
+    "nominal_corridor_max_tmrt_c": 46.1273,
+    "nominal_corridor_mean_utci_c": 31.7132,
+    "nominal_corridor_max_utci_c": 32.5,
+    "all_scenarios": [
+      {
+        "scenario_id": "S1_bldg_height_plus_5pct",
+        "factor": "Building Height",
+        "perturbation": "+5.0% (Heights: 22.6m to 25.2m)",
+        "mean_tmrt_c": 42.9557,
+        "max_tmrt_c": 46.0829,
+        "mean_utci_c": 31.6977,
+        "max_utci_c": 32.5,
+        "delta_mean_tmrt_k": -0.0574,
+        "delta_max_tmrt_k": -0.0444,
+        "delta_mean_utci_k": -0.0155,
+        "delta_max_utci_k": 0.0
+      },
+      {
+        "scenario_id": "S2_bldg_height_minus_5pct",
+        "factor": "Building Height",
+        "perturbation": "-5.0% (Heights: 20.4m to 22.8m)",
+        "mean_tmrt_c": 43.167,
+        "max_tmrt_c": 46.1742,
+        "mean_utci_c": 31.7575,
+        "max_utci_c": 32.5,
+        "delta_mean_tmrt_k": 0.1539,
+        "delta_max_tmrt_k": 0.0469,
+        "delta_mean_utci_k": 0.0443,
+        "delta_max_utci_k": 0.0
+      },
+      {
+        "scenario_id": "S3_trees_off",
+        "factor": "Street Vegetation",
+        "perturbation": "Trees OFF (0 municipal trees)",
+        "mean_tmrt_c": 44.3893,
+        "max_tmrt_c": 46.1356,
+        "mean_utci_c": 32.0602,
+        "max_utci_c": 32.5,
+        "delta_mean_tmrt_k": 1.3762,
+        "delta_max_tmrt_k": 0.0083,
+        "delta_mean_utci_k": 0.347,
+        "delta_max_utci_k": 0.0
+      },
+      {
+        "scenario_id": "S4_wind_low",
+        "factor": "Wind Speed",
+        "perturbation": "-1.0 m/s (1.4 m/s)",
+        "mean_tmrt_c": 43.0131,
+        "max_tmrt_c": 46.1273,
+        "mean_utci_c": 32.5005,
+        "max_utci_c": 33.3,
+        "delta_mean_tmrt_k": 0.0,
+        "delta_max_tmrt_k": 0.0,
+        "delta_mean_utci_k": 0.7873,
+        "delta_max_utci_k": 0.8
+      },
+      {
+        "scenario_id": "S5_wind_high",
+        "factor": "Wind Speed",
+        "perturbation": "+1.0 m/s (3.4 m/s)",
+        "mean_tmrt_c": 43.0131,
+        "max_tmrt_c": 46.1273,
+        "mean_utci_c": 30.7744,
+        "max_utci_c": 31.5,
+        "delta_mean_tmrt_k": 0.0,
+        "delta_max_tmrt_k": 0.0,
+        "delta_mean_utci_k": -0.9388,
+        "delta_max_utci_k": -1.0
+      },
+      {
+        "scenario_id": "S6_dni_plus_10pct",
+        "factor": "Solar Irradiance (DNI)",
+        "perturbation": "+10.0% (593.5 W/m2)",
+        "mean_tmrt_c": 46.3453,
+        "max_tmrt_c": 49.8838,
+        "mean_utci_c": 32.5699,
+        "max_utci_c": 33.5,
+        "delta_mean_tmrt_k": 3.3322,
+        "delta_max_tmrt_k": 3.7565,
+        "delta_mean_utci_k": 0.8567,
+        "delta_max_utci_k": 1.0
+      },
+      {
+        "scenario_id": "S7_dni_minus_10pct",
+        "factor": "Solar Irradiance (DNI)",
+        "perturbation": "-10.0% (485.6 W/m2)",
+        "mean_tmrt_c": 43.8682,
+        "max_tmrt_c": 46.3442,
+        "mean_utci_c": 31.9048,
+        "max_utci_c": 32.6,
+        "delta_mean_tmrt_k": 0.8551,
+        "delta_max_tmrt_k": 0.2169,
+        "delta_mean_utci_k": 0.1916,
+        "delta_max_utci_k": 0.1
+      }
+    ],
+    "factors_changing_metrics_gt_1k": [
+      {
+        "factor": "Street Vegetation",
+        "perturbation": "Trees OFF (0 municipal trees)",
+        "metric_impacted": "Tmrt",
+        "max_abs_change_k": 1.3762,
+        "summary": "Street Vegetation (Trees OFF (0 municipal trees)) shifted max/mean thermal index by 1.38 K"
+      },
+      {
+        "factor": "Wind Speed",
+        "perturbation": "+1.0 m/s (3.4 m/s)",
+        "metric_impacted": "UTCI",
+        "max_abs_change_k": 1.0,
+        "summary": "Wind Speed (+1.0 m/s (3.4 m/s)) shifted max/mean thermal index by 1.00 K"
+      },
+      {
+        "factor": "Solar Irradiance (DNI)",
+        "perturbation": "+10.0% (593.5 W/m2)",
+        "metric_impacted": "Tmrt",
+        "max_abs_change_k": 3.7565,
+        "summary": "Solar Irradiance (DNI) (+10.0% (593.5 W/m2)) shifted max/mean thermal index by 3.76 K"
+      }
+    ]
+  },
+  "consistency_check": {
+    "formula": "Delta_r = -Delta_z / tan(alt) * (sin(az), cos(az))",
+    "records": [
+      {
+        "canopy_id": "canopy_1",
+        "canopy_center_x": -1.73,
+        "canopy_center_y": 34.06,
+        "canopy_height_m": 4.28,
+        "relative_height_dz_m": 3.18,
+        "solar_altitude_deg": 58.44,
+        "solar_azimuth_deg": 201.71,
+        "analytical_offset_dx_m": 0.72,
+        "analytical_offset_dy_m": 1.81,
+        "predicted_shadow_center_x": -1.01,
+        "predicted_shadow_center_y": 35.87,
+        "simulated_shadow_center_x": -0.95,
+        "simulated_shadow_center_y": 35.95,
+        "centroid_discrepancy_m": 0.095,
+        "grid_resolution_m": 1.0,
+        "shadow_cells_cast": 29,
+        "shadow_area_m2": 29.0,
+        "is_physically_consistent": true
+      },
+      {
+        "canopy_id": "canopy_2",
+        "canopy_center_x": 1.92,
+        "canopy_center_y": -26.47,
+        "canopy_height_m": 3.68,
+        "relative_height_dz_m": 2.58,
+        "solar_altitude_deg": 58.44,
+        "solar_azimuth_deg": 201.71,
+        "analytical_offset_dx_m": 0.59,
+        "analytical_offset_dy_m": 1.47,
+        "predicted_shadow_center_x": 2.51,
+        "predicted_shadow_center_y": -25.0,
+        "simulated_shadow_center_x": 2.5,
+        "simulated_shadow_center_y": -25.0,
+        "centroid_discrepancy_m": 0.006,
+        "grid_resolution_m": 1.0,
+        "shadow_cells_cast": 28,
+        "shadow_area_m2": 28.0,
+        "is_physically_consistent": true
+      }
+    ],
+    "all_consistent": true
+  },
+  "acceptance_criteria": {
+    "every_input_documented": true,
+    "results_plausible_and_local": true,
+    "cooling_reported_as_modelled": true,
+    "stage_status": "PASS"
+  }
+}

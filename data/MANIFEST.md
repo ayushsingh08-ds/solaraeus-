@@ -214,8 +214,54 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 
 ---
 
-## 9. Deprecated / Legacy Sites Archive
+## 9. Stage 7 Comprehensive Evaluation & Replication Artifacts
+
+- **Master Evaluation Metrics JSON**: `results/raw/stage_7/stage_7_evaluation_metrics.json`
+  - SHA256: `3c3f62d4b31c23cfe04a541c2d3ba6d3a34148305bbd2bd4731040fcd4d3bc62`
+- **Berlin Corridor Cooling Maps Figure**: `results/raw/stage_7/stage_7_berlin_cooling_maps.png`
+  - SHA256: `8c83e8e101a35586ea88984286479c758cf0df97bb3905aa7c572e408451a9f7`
+- **Multi-City Replication Comparison Figure**: `results/raw/stage_7/stage_7_replication_comparison.png`
+  - SHA256: `b8331ae2949f31efbdca55f0941abb3614afe5c012def9b6c0b8d6c6b3f369fc`
+- **Sensitivity Tornado Diagram Figure**: `results/raw/stage_7/stage_7_sensitivity_tornado.png`
+  - SHA256: `ce0b2d1e2fc7f2a891be44519aadd008b84ce66d3e80259e4d30284d12aff7ed`
+- **Geometric Shade Consistency Figure**: `results/raw/stage_7/stage_7_shade_consistency.png`
+  - SHA256: `d824e4af1ad2f7d46807fe010d6fb149ca5dfe40fd9cf383cb12a4be810d1fe0`
+- **Berlin Baseline Tmrt Array**: `results/raw/stage_7/berlin_baseline_tmrt.npy`
+  - SHA256: `d99e834d7d5378fee29ee37017fe3ef40d861bf361234764f17c64d23ddbeff3`
+- **Berlin Baseline UTCI Array**: `results/raw/stage_7/berlin_baseline_utci.npy`
+  - SHA256: `305fdcb4c4b2b93195ce92ea784682fc910a11f2e7c16063286be1e621ffe171`
+- **Berlin Optimised Tmrt Array**: `results/raw/stage_7/berlin_optimised_tmrt.npy`
+  - SHA256: `60978ea613d220ae7747100e61456f7434fbe540c5cc6bcd78263918593005e6`
+- **Berlin Optimised UTCI Array**: `results/raw/stage_7/berlin_optimised_utci.npy`
+  - SHA256: `cfcc5b7558608bc6935c017df7c5007b53f75129e45f48751c81035c61009883`
+- **Berlin Delta Tmrt Array**: `results/raw/stage_7/berlin_delta_tmrt.npy`
+  - SHA256: `b52eaf19800566990d9daa011bdae387b0bc3f58f1f200df5beac9472d03ee7c`
+- **Berlin Delta UTCI Array**: `results/raw/stage_7/berlin_delta_utci.npy`
+  - SHA256: `c26099252eb66e0631d1d2c6c2abcd361f71e2e8c8ab30a14f9141e32d49af85`
+- **Chicago Baseline Tmrt Array**: `results/raw/stage_7/chicago_baseline_tmrt.npy`
+  - SHA256: `2c147bb293a15b0467a1b993cca5f6a6f9288d6863b57b6c5be9cdd4e4adb527`
+- **Chicago Optimised Tmrt Array**: `results/raw/stage_7/chicago_optimised_tmrt.npy`
+  - SHA256: `81f7b9eb43b963e8b771c1e06f32d9705fd2b441f26a1d75e710661b61980c11`
+- **Chicago Delta Tmrt Array**: `results/raw/stage_7/chicago_delta_tmrt.npy`
+  - SHA256: `e81a9f744e97382c4a032352c5bd1986118ef6af087cb786d3bafbaf5d9c0b07`
+- **London Baseline Tmrt Array**: `results/raw/stage_7/london_baseline_tmrt.npy`
+  - SHA256: `07929db74d5233bdc5a8ce9c9e22cc768597fd1fb3317c684d1aa16a9c89526c`
+- **London Optimised Tmrt Array**: `results/raw/stage_7/london_optimised_tmrt.npy`
+  - SHA256: `5cf8310fc8d2f03776fd59e50ca8bcb048fbbaaad91c4fc02eecaac6e12ac240`
+- **London Delta Tmrt Array**: `results/raw/stage_7/london_delta_tmrt.npy`
+  - SHA256: `786b0b35ccdc3cdb0e380a7cf959c1e0310a586a25cfa545ee1fdbe052e5ed99`
+- **Stage 7 Master Evaluation Pipeline**: `benchmarks/run_stage_7_pipeline.py`
+  - SHA256: `b8bc57fe4e0bc570dcf35ab76ac82cee65d4f4a8c62360a6a1b7fcebfd86a15f`
+- **Stage 7 Validation Test Suite**: `tests/test_stage_7_evaluation_validation.py`
+  - SHA256: `0a2d7dfce5d247aafdc27ce6365b8a550454f7ae8314a4e9aa9c4c7e05dae4ba`
+- **Stage 7 Comprehensive Evaluation Report**: `docs/stage_7_report.md`
+  - SHA256: `50254933c5ad9c4609c418e008214d24de608ebb528f16cf7334a8d17d1193ca`
+
+---
+
+## 10. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.
+
 
