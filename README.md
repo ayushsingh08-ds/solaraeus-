@@ -424,21 +424,26 @@ solaraeus/
 │   │   ├── acquisition.py           # Upper Confidence Bound acquisition policies
 │   │   ├── dual_panel_placement_solver.py # Dual-panel multi-intervention engine
 │   │   └── robustness.py            # Multi-seed & sensitivity evaluation suite
-│   ├── sites/                       # Real-world site adapters & builders
-│   │   └── church_street/           # Bengaluru Church Street coordinate transforms
-│   ├── extensions/                  # Extensible scientific modules
-│   │   ├── terrain/                 # Digital Terrain Models (DTM) & rasters
-│   │   └── vegetation/              # Level 1 tree trunks, ellipsoidal crowns, & BBMP census
-│   └── validation/                  # Independent audits, benchmarks, & metrics
-│       └── independent_audit.py     # Decoupled verification & mutation testing
-├── data/                            # Unified Data Directory segregated by geographic area
-│   └── church_street/               # Bengaluru Church Street GIS vectors, heights, weather, & rasters
-├── scripts/                         # Production workflow & pipeline execution scripts
-│   ├── run_pipeline.py              # CLI entry point: run 5-stage pipeline in a single call
-│   └── run_church_street_*.py       # Specific simulation, optimization, & robustness runners
-├── tools/                           # Plotting & analysis utilities
-│   └── robustness_plots.py          # Reporting & visualization plot utilities
-└── results/                         # Output destination directory for pipeline execution artifacts
+│   ├── server/                      # FastAPI engine REST backend & static mount
+│   │   ├── app.py                   # REST endpoints (/api/areas, /api/process, /api/optimize)
+│   │   └── __main__.py              # Server CLI entrypoint
+│   └── sites/                       # Real-world site adapters & builders
+│       └── church_street/           # Bengaluru Church Street coordinate transforms
+├── data/                            # Segregated Data Root
+│   ├── input/                       # Unified Input Data (case area named folders only)
+│   │   └── church_street/           # GIS vectors, heights, trees, terrain rasters, weather
+│   ├── processed/                   # Segregated Processed Data (<case_area>/<timestamp>/)
+│   │   └── church_street/           # 3D scene meshes, pedestrian grids, baseline Tmrt & UTCI
+│   └── optimized/                   # Segregated Optimization Data (<case_area>/<timestamp>/)
+│       └── church_street/           # Optimal canopies, cooling deltas, 3D intervention meshes
+├── simulation_3d/                   # Interactive 3D WebGL Digital Twin Web Interface
+│   ├── app.js                       # Three.js 3D viewport, shaders, & scene orchestration
+│   ├── segregated_engine.js         # Client-side engine controller & 3-data layer switcher
+│   ├── index.html                   # Observatory UI with 3-data controls & canopy prompt modal
+│   └── index.css                    # Modern glassmorphism theme & styling tokens
+├── run_app.py                       # Root launcher for engine server & interactive UI
+└── tools/                           # Plotting & analysis utilities
+    └── robustness_plots.py          # Reporting & visualization plot utilities
 ```
 
 ---
@@ -455,29 +460,27 @@ Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/ayushsingh08-ds/solaraeus.git
 cd solaraeus
-pip install numpy scipy shapely pythermalcomfort scikit-learn matplotlib pyproj trimesh
+pip install numpy scipy shapely pythermalcomfort scikit-learn matplotlib pyproj trimesh fastapi uvicorn
 ```
-
-### 11.3 GPU Dependencies (Optional)
-If running GPU-accelerated ray tracing:
-```bash
-pip install cupy-cuda12x nvidia-cuda-nvrtc-cu12 nvidia-cuda-runtime-cu12
-```
-*Note: No system-wide `nvcc` compiler installation is required; CuPy dynamically links via CUDA runtime wheels.*
 
 ---
 
 ## 12. Quickstart & Execution Workflows
 
-### 12.1 Unified 5-Stage Microclimate Pipeline (Recommended)
-Execute the complete, end-to-end urban microclimate pipeline in a single command:
+### 12.1 Interactive 3D Digital Twin Engine Web App (Recommended)
+Launch the unified server and web interface:
 ```bash
-python scripts/run_pipeline.py --area church_street --output results/church_street_run
+python run_app.py --port 8000
 ```
-
-This seamlessly executes the 5 sequential stages in one run:
-1. **Data Ingestion** (`01_data_ingestion/`): Ingests vector GIS layers, building heights, terrain rasters, and constructs watertight 3D meshes and the pedestrian analysis grid.
-2. **Calculation** (`02_calculation/`): Computes baseline microclimate simulation ($T_{\mathrm{mrt}}$, UTCI, SVF, shadow raycasting).
+Open `http://localhost:8000` in any web browser to interact with the full engine:
+1. **Select Data & Timestamp**: Choose your case area (e.g. `church_street`) from `data/input/` and specify a custom timestamp.
+2. **Process Data**: Click `⚡ Process Data` to construct 3D scene meshes, discrete pedestrian grids, and calculate baseline microclimate ($T_{\mathrm{mrt}}$, UTCI, SVF, shadows) into `data/processed/<area>/<timestamp>/`.
+3. **Canopy & Shade Optimization Prompt**: The UI prompts for the number of shade canopies (1–10), dimensions (length, width, height), and transmissivity. Click `🚀 Calculate Best Position Across Map` to run the AI solver, placing canopies at optimal coordinates and saving outputs to `data/optimized/<area>/<timestamp>/`.
+4. **Display 3 Data Layers**: Switch between:
+   - **`1. Baseline`**: Baseline $T_{\mathrm{mrt}}$ ($38^\circ\text{C}-58^\circ\text{C}$), UTCI thermal stress, baseline shadows.
+   - **`2. Canopies`**: 3D placed canopy structures rendered at optimal coordinates with tension fabric and support posts.
+   - **`3. Best Reduction`**: Cooling delta heatmap ($\Delta T_{\mathrm{mrt}}$ up to $-12.8\text{ K}$) and reduction scorecard.
+   - **`All 3 Layers`**: Simultaneous 3D buildings, placed canopies, and cooled thermal relief overlay.
 3. **Intervention** (`03_intervention/`): Integrates 3D urban canopy interventions and executes forward simulation to evaluate pedestrian cooling deltas.
 4. **Incremental Solver** (`04_incremental_solver/`): Executes certified incremental recomputation bounding the affected spatial cone and radiative horizon (typically achieving $\mathbf{10\times\text{--}30\times}$ speedup and $>99\%$ cell reuse with analytical error certificates $\le \varepsilon_T$).
 5. **AI Solver** (`05_ai_solver/`): Runs surrogate-assisted multi-objective optimization to discover Pareto-optimal shade interventions.

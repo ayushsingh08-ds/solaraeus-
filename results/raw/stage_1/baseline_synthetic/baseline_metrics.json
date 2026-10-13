@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "git_commit": "12dc47941b9e81cc0a2cd3f4828d444fea0e9de4",
+    "seed": 42,
+    "timestamp_utc": "2026-10-13T07:48:44.325475+00:00",
+    "os": "Windows-11-10.0.26300-SP0",
+    "cpu": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python": "3.12.6",
+    "gpu_info": {
+      "cupy_available": true,
+      "device_count": 1,
+      "device_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "driver_version": "616.92",
+      "compute_capability": "8.9",
+      "total_memory_bytes": 6438780928,
+      "nvidia_smi_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+      "total_vram_mib": 6141.0
+    },
+    "numpy": "2.2.6"
+  },
+  "scene": {
+    "cube_dimensions_m": [
+      10.0,
+      10.0,
+      10.0
+    ],
+    "domain_extent_m": [
+      50.0,
+      50.0
+    ],
+    "resolution_m": 0.5,
+    "grid_cells": [
+      100,
+      100
+    ],
+    "total_cells": 10000,
+    "pedestrian_height_m": 1.1,
+    "sun_altitude_deg": 45.0,
+    "sun_azimuth_deg": 180.0
+  },
+  "cpu_timings_seconds": {
+    "shadow_s": 0.004132700007176027,
+    "svf_s": 0.7139449999958742,
+    "radiation_s": 0.0005419999943114817,
+    "utci_s": 1.4979973000008613,
+    "total_s": 2.2166196000180207
+  },
+  "cpu_summary": {
+    "shadow_sunlit_fraction": 0.924,
+    "svf_mean": 0.9071210381778232,
+    "svf_min": 0.0,
+    "svf_max": 0.9971324330116658,
+    "tmrt_c_mean": 44.07193415348535,
+    "tmrt_c_min": 28.286587155506368,
+    "tmrt_c_max": 46.52241622390687,
+    "utci_c_mean": 33.57448,
+    "utci_c_min": 29.6,
+    "utci_c_max": 34.2
+  },
+  "gpu_timings_seconds": {
+    "shadow_s": 0.0020732000120915473,
+    "svf_s": 0.011767399992095307,
+    "radiation_s": 0.0014786999963689595,
+    "utci_s": 0.004288800002541393,
+    "total_s": 0.019611399999121204
+  },
+  "speedups": {
+    "shadow_speedup": 1.9933918498325462,
+    "svf_speedup": 60.67143128265065,
+    "total_speedup": 113.02709649068136
+  },
+  "numerical_parity": {
+    "shadow_max_abs_diff": 0.0,
+    "shadow_mean_abs_diff": 0.0,
+    "shadow_mismatch_cell_count": 0,
+    "svf_max_abs_diff": 1.1102230246251565e-16,
+    "svf_mean_abs_diff": 1.865174681370263e-18,
+    "tmrt_max_abs_diff_k": 5.684341886080802e-14,
+    "tmrt_mean_abs_diff_k": 1.4779288903810083e-16,
+    "utci_max_abs_diff_k": 0.0,
+    "utci_mean_abs_diff_k": 0.0
+  }
+}

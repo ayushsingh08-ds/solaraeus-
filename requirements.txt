@@ -1,0 +1,32 @@
+# SOLARAEUS Engine Dependencies
+# Python >= 3.10
+
+# Core Numerical & Scientific Computing
+numpy>=2.0.0
+scipy>=1.14.0
+pandas>=2.2.0
+
+# Geospatial & Geometry Processing
+shapely>=2.0.0
+pyproj>=3.6.0
+geopandas>=1.0.0
+rasterio>=1.4.0
+
+# GPU Acceleration (CUDA 12.x / NVIDIA Driver >= 525)
+cupy-cuda12x>=14.0.0
+
+# Machine Learning / Surrogate Modeling
+torch>=2.4.0
+
+# Scientific Visualization (Static Figures)
+matplotlib>=3.9.0
+
+# Testing & Quality Assurance
+pytest>=8.0.0
+pytest-cov>=5.0.0
+
+# Server & Serialization (Auxiliary API)
+fastapi>=0.115.0
+uvicorn>=0.30.0
+pydantic>=2.8.0
+pydantic-settings>=2.4.0

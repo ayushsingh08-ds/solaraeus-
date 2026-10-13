@@ -54,10 +54,10 @@ def run_stage_calculation(
         scene = Scene.from_dict(scene_data)
 
     # Standard urban materials
-    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
-    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature_k=308.15, is_opaque=True)
-    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
-    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature_k=308.15, is_opaque=True)
+    mat_wall = Material(id="building_wall", albedo=0.30, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_roof = Material(id="building_roof", albedo=0.20, emissivity=0.90, surface_temperature=308.15, is_opaque=True)
+    mat_ground = Material(id="ground", albedo=0.20, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
+    mat_pavement = Material(id="pavement", albedo=0.30, emissivity=0.95, surface_temperature=308.15, is_opaque=True)
 
     scene.materials = {
         "default_wall": mat_wall,
@@ -70,22 +70,22 @@ def run_stage_calculation(
 
     # Standard local weather (Bengaluru peak solar noon conditions)
     weather = Weather(
-        air_temperature_k=308.15,
+        air_temperature=308.15,
         relative_humidity=19.729,
-        wind_speed_ms=1.5,
-        wind_direction_deg=90.0,
-        direct_normal_irradiance_w_m2=728.31,
-        diffuse_horizontal_irradiance_w_m2=172.18,
+        wind_speed=1.5,
+        wind_direction=90.0,
+        direct_normal_irradiance=728.31,
+        diffuse_horizontal_irradiance=172.18,
     )
 
     sim_config = SimulationConfig(
-        latitude_deg=12.974900,
-        longitude_deg=77.605400,
+        latitude=12.974900,
+        longitude=77.605400,
         date="2024-04-15",
         local_time="09:00:00",
-        pedestrian_height_m=1.1,
-        grid_resolution_m=config.grid_resolution_m,
-        tmrt_tolerance_k=0.5,
+        pedestrian_height=1.1,
+        grid_resolution=config.grid_resolution_m,
+        tmrt_tolerance=0.5,
         sky_patch_configuration=32,
         max_svf_search_dist_m=120.0,
     )

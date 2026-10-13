@@ -1,0 +1,3505 @@
+{
+  "git": "12dc47941b9e81cc0a2cd3f4828d444fea0e9de4",
+  "modules": [
+    {
+      "file": "src/solaraeus/__init__.py",
+      "dotted": "solaraeus",
+      "doc": "Urban Comfort: Certified Incremental SOLWEIG-Compatible Urban Thermal-Comfort Engine.",
+      "classes": [],
+      "funcs": [],
+      "imports": [],
+      "loc": 5,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/backends/__init__.py",
+      "dotted": "solaraeus.backends",
+      "doc": "SOLARAEUS Simulation Backend Package.",
+      "classes": [],
+      "funcs": [
+        "is_gpu_available",
+        "get_backend"
+      ],
+      "imports": [
+        "__future__",
+        "typing",
+        "solaraeus.backends.base",
+        "solaraeus.backends.cpu",
+        "solaraeus.backends.gpu",
+        "solaraeus.backends.gpu_incremental"
+      ],
+      "loc": 61,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_gpu_backend.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/reference/full_recompute.py",
+        "tools/golden_master/capture.py",
+        "tools/golden_master/compare.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/backends/base.py",
+      "dotted": "solaraeus.backends.base",
+      "doc": "Simulation Backend Abstraction and Scene Geometry Flattening for SOLARAEUS.",
+      "classes": [
+        "FlattenedSceneGeometry",
+        "BackendProfileMetrics",
+        "SimulationBackend"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "abc",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.core.config"
+      ],
+      "loc": 262,
+      "fan_in": 7,
+      "tests": [
+        "tests/test_gpu_backend.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/__init__.py",
+        "src/solaraeus/backends/cpu.py",
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/reference/full_recompute.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/backends/cpu.py",
+      "dotted": "solaraeus.backends.cpu",
+      "doc": "CPU Reference Simulation Backend for SOLARAEUS.",
+      "classes": [
+        "CPUBackend"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.backends.base",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 109,
+      "fan_in": 5,
+      "tests": [
+        "tests/test_gpu_backend.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/__init__.py",
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/reference/full_recompute.py",
+        "tools/golden_master/capture.py",
+        "tools/golden_master/compare.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/backends/gpu.py",
+      "dotted": "solaraeus.backends.gpu",
+      "doc": "GPU Simulation Backend for SOLARAEUS using CUDA and CuPy.",
+      "classes": [
+        "GPUBackend"
+      ],
+      "funcs": [
+        "is_cupy_available"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.backends.base",
+        "solaraeus.backends.cpu",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.reference.full_recompute",
+        "cupy",
+        "cupy",
+        "cupy",
+        "datetime",
+        "cupy"
+      ],
+      "loc": 724,
+      "fan_in": 6,
+      "tests": [
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/__init__.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/extensions/terrain/gpu.py",
+        "src/solaraeus/reference/full_recompute.py",
+        "tools/golden_master/capture.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/backends/gpu_incremental.py",
+      "dotted": "solaraeus.backends.gpu_incremental",
+      "doc": "GPU-Accelerated Incremental Simulation Engine for SOLARAEUS.",
+      "classes": [
+        "GPUIncrementalProfileMetrics",
+        "GPUResidentState",
+        "GPUIncrementalEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "math",
+        "time",
+        "dataclasses",
+        "datetime",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.certificate",
+        "solaraeus.backends.base",
+        "solaraeus.backends.gpu",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "cupy",
+        "cupy",
+        "solaraeus.incremental.update",
+        "cupy",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.update"
+      ],
+      "loc": 634,
+      "fan_in": 11,
+      "tests": [
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/__init__.py",
+        "src/solaraeus/incremental/update.py",
+        "src/solaraeus/placement/candidate_validation.py",
+        "src/solaraeus/placement/dual_panel_candidate_validation.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/core/__init__.py",
+      "dotted": "solaraeus.core",
+      "doc": "Core subpackage: configuration, scene geometry, and the pedestrian grid.",
+      "classes": [],
+      "funcs": [],
+      "imports": [],
+      "loc": 3,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/core/config.py",
+      "dotted": "solaraeus.core.config",
+      "doc": "Configuration schemas, physical constants, and boundary condition data models.",
+      "classes": [
+        "Material",
+        "Weather",
+        "SimulationConfig"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "json"
+      ],
+      "loc": 103,
+      "fan_in": 43,
+      "tests": [
+        "tests/test_aabb_vs_mesh_benchmarks.py",
+        "tests/test_adversarial_cases.py",
+        "tests/test_affected_region.py",
+        "tests/test_cache_and_dependencies.py",
+        "tests/test_church_street_static_simulation.py",
+        "tests/test_error_bounds.py",
+        "tests/test_extended_adversarial.py",
+        "tests/test_full_recompute.py",
+        "tests/test_geometry.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_incremental_updates.py",
+        "tests/test_intervention_optimization.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_mesh_scaling_benchmarks.py",
+        "tests/test_mutation_audits.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py",
+        "tests/test_validation_comparisons.py"
+      ],
+      "importers_head": [
+        "examples/compare_full_incremental.py",
+        "examples/run_all_evaluations.py",
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py",
+        "examples/single_building.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/core/geometry/__init__.py",
+      "dotted": "solaraeus.core.geometry",
+      "doc": "Geometry subpackage for urban scenes, building primitives, and footprints.",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene"
+      ],
+      "loc": 20,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/core/geometry/mesh.py",
+      "dotted": "solaraeus.core.geometry.mesh",
+      "doc": "Triangular mesh representation and synthetic urban mesh constructors for SOLARAEUS.",
+      "classes": [
+        "TriangleMesh"
+      ],
+      "funcs": [
+        "create_box_mesh",
+        "create_rotated_box_mesh",
+        "create_pitched_roof_mesh",
+        "create_overhang_mesh",
+        "create_wall_mesh",
+        "create_l_shaped_mesh"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "typing",
+        "numpy"
+      ],
+      "loc": 597,
+      "fan_in": 16,
+      "tests": [
+        "tests/test_church_street_preprocessing.py",
+        "tests/test_church_street_shade_panel_simulation.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_intervention_optimization.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_geometry.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_mesh_shadows.py",
+        "tests/test_mesh_visibility.py",
+        "tests/test_ray_triangle_intersection.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/base.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/core/geometry/scene.py",
+        "src/solaraeus/incremental/mesh_affected_region.py",
+        "src/solaraeus/incremental/mesh_update.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/core/geometry/primitives.py",
+      "dotted": "solaraeus.core.geometry.primitives",
+      "doc": "Geometric primitives representing buildings, footprints, and bounding volumes.",
+      "classes": [
+        "BoundingBox2D",
+        "Building"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing"
+      ],
+      "loc": 99,
+      "fan_in": 17,
+      "tests": [
+        "tests/test_adversarial_cases.py",
+        "tests/test_affected_region.py",
+        "tests/test_cache_and_dependencies.py",
+        "tests/test_error_bounds.py",
+        "tests/test_extended_adversarial.py",
+        "tests/test_geometry.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_incremental_updates.py",
+        "tests/test_intervention_optimization.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_geometry.py",
+        "tests/test_mesh_shadows.py",
+        "tests/test_mesh_visibility.py",
+        "tests/test_shadows.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "examples/compare_full_incremental.py",
+        "examples/run_all_evaluations.py",
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py",
+        "src/solaraeus/core/geometry/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/core/geometry/scene.py",
+      "dotted": "solaraeus.core.geometry.scene",
+      "doc": "Scene graph and synthetic urban scene generators.",
+      "classes": [
+        "GroundPlane",
+        "PedestrianGridConfig",
+        "Scene"
+      ],
+      "funcs": [
+        "create_single_box_scene",
+        "create_canyon_scene",
+        "create_occlusion_scene"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "json",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.mesh"
+      ],
+      "loc": 285,
+      "fan_in": 48,
+      "tests": [
+        "tests/test_adversarial_cases.py",
+        "tests/test_affected_region.py",
+        "tests/test_cache_and_dependencies.py",
+        "tests/test_church_street_preprocessing.py",
+        "tests/test_church_street_static_simulation.py",
+        "tests/test_error_bounds.py",
+        "tests/test_extended_adversarial.py",
+        "tests/test_full_recompute.py",
+        "tests/test_geometry.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_incremental_updates.py",
+        "tests/test_intervention_optimization.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_geometry.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_mesh_shadows.py",
+        "tests/test_mesh_visibility.py",
+        "tests/test_pedestrian_grid.py",
+        "tests/test_shadows.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py",
+        "tests/test_validation_comparisons.py"
+      ],
+      "importers_head": [
+        "examples/compare_full_incremental.py",
+        "examples/run_all_evaluations.py",
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py",
+        "examples/single_building.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/core/pedestrian_grid.py",
+      "dotted": "solaraeus.core.pedestrian_grid",
+      "doc": "Pedestrian calculation grid representation and spatial coordinate mapping.",
+      "classes": [
+        "PedestrianGrid"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene"
+      ],
+      "loc": 95,
+      "fan_in": 29,
+      "tests": [
+        "tests/test_affected_region.py",
+        "tests/test_church_street_static_simulation.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_intervention_optimization.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_mesh_shadows.py",
+        "tests/test_mesh_visibility.py",
+        "tests/test_pedestrian_grid.py",
+        "tests/test_shadows.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "examples/run_independent_audit.py",
+        "src/solaraeus/backends/base.py",
+        "src/solaraeus/backends/cpu.py",
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/__init__.py",
+      "dotted": "solaraeus.extensions",
+      "doc": "Optional physics extensions layered on the core engine: terrain-aware and",
+      "classes": [],
+      "funcs": [],
+      "imports": [],
+      "loc": 5,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/extensions/mean_radiant_temperature_3d.py",
+      "dotted": "solaraeus.extensions.mean_radiant_temperature_3d",
+      "doc": "Authoritative 3D Mean Radiant Temperature (Tmrt) Engine for SOLARAEUS.",
+      "classes": [
+        "Tmrt3DResult",
+        "Tmrt3DEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "math",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.cloud_model",
+        "solaraeus.physics.solar_position"
+      ],
+      "loc": 221,
+      "fan_in": 0,
+      "tests": [
+        "tests/test_final_3d_tmrt.py"
+      ],
+      "importers_head": [],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/terrain/__init__.py",
+      "dotted": "solaraeus.extensions.terrain",
+      "doc": "SOLARAEUS Terrain Extension Module (Version 2.1.0-terrain).",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.extensions.terrain.dtm",
+        "solaraeus.extensions.terrain.scene",
+        "solaraeus.extensions.terrain.solver",
+        "solaraeus.extensions.terrain.gpu"
+      ],
+      "loc": 15,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/extensions/terrain/dtm.py",
+      "dotted": "solaraeus.extensions.terrain.dtm",
+      "doc": "Digital Terrain Model (DTM) representations and spatial interpolation utilities.",
+      "classes": [
+        "TerrainGrid"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.primitives"
+      ],
+      "loc": 150,
+      "fan_in": 3,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/terrain/__init__.py",
+        "src/solaraeus/extensions/terrain/scene.py",
+        "src/solaraeus/extensions/vegetation/scene.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/terrain/gpu.py",
+      "dotted": "solaraeus.extensions.terrain.gpu",
+      "doc": "Terrain-Aware GPU Simulation Backend and Incremental Recomputation (Version 2.1.0-gpu-terrain).",
+      "classes": [
+        "TerrainAwareGPUBackend"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.backends.gpu",
+        "solaraeus.extensions.terrain.scene",
+        "solaraeus.extensions.terrain.solver",
+        "cupy"
+      ],
+      "loc": 298,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/terrain/__init__.py",
+        "src/solaraeus/extensions/vegetation/gpu.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/terrain/loader.py",
+      "dotted": "solaraeus.extensions.terrain.loader",
+      "doc": "Authoritative Terrain Loader for SOLARAEUS 3D.",
+      "classes": [
+        "TerrainProfile",
+        "TerrainLoader"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "json",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "numpy",
+        "trimesh",
+        "rasterio"
+      ],
+      "loc": 183,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_final_3d_terrain_loading.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/geometry_builder.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/terrain/scene.py",
+      "dotted": "solaraeus.extensions.terrain.scene",
+      "doc": "Terrain-aware scene representations for SOLARAEUS 2.1.0-cpu-terrain extension.",
+      "classes": [
+        "TerrainAwareScene"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.extensions.terrain.dtm"
+      ],
+      "loc": 93,
+      "fan_in": 4,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/terrain/__init__.py",
+        "src/solaraeus/extensions/terrain/gpu.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/extensions/vegetation/scene.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/terrain/solver.py",
+      "dotted": "solaraeus.extensions.terrain.solver",
+      "doc": "Terrain-aware CPU reference solver (SOLARAEUS Version 2.1.0-cpu-terrain).",
+      "classes": [
+        "TerrainAwareCPUSolver"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "datetime",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.extensions.terrain.scene"
+      ],
+      "loc": 217,
+      "fan_in": 3,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/terrain/__init__.py",
+        "src/solaraeus/extensions/terrain/gpu.py",
+        "src/solaraeus/extensions/vegetation/solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/time_shadowing.py",
+      "dotted": "solaraeus.extensions.time_shadowing",
+      "doc": "Authoritative Time-Based Shadowing and Integration Engine for SOLARAEUS.",
+      "classes": [
+        "ShadowStepResult",
+        "TimeShadowingEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "math",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing",
+        "numpy",
+        "pandas",
+        "solaraeus.physics.sun_model",
+        "solaraeus.physics.cloud_model"
+      ],
+      "loc": 203,
+      "fan_in": 0,
+      "tests": [
+        "tests/test_final_3d_time_shadowing.py"
+      ],
+      "importers_head": [],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/utci_3d.py",
+      "dotted": "solaraeus.extensions.utci_3d",
+      "doc": "Authoritative 3D UTCI Engine for SOLARAEUS.",
+      "classes": [
+        "UTCI3DResult",
+        "UTCI3DEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.physics.utci"
+      ],
+      "loc": 73,
+      "fan_in": 0,
+      "tests": [
+        "tests/test_final_3d_utci.py"
+      ],
+      "importers_head": [],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/__init__.py",
+      "dotted": "solaraeus.extensions.vegetation",
+      "doc": "SOLARAEUS Vegetation & Tree Modeling Module (API Version 2.2.0-tree).",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.extensions.vegetation.tree",
+        "solaraeus.extensions.vegetation.scene",
+        "solaraeus.extensions.vegetation.solver",
+        "solaraeus.extensions.vegetation.gpu"
+      ],
+      "loc": 16,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/geometry_builder.py",
+      "dotted": "solaraeus.extensions.vegetation.geometry_builder",
+      "doc": "Authoritative 3D Tree Geometry Builder for SOLARAEUS.",
+      "classes": [
+        "TreeGeometryBuilder"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "typing",
+        "numpy",
+        "trimesh",
+        "solaraeus.extensions.vegetation.loader",
+        "solaraeus.extensions.terrain.loader"
+      ],
+      "loc": 97,
+      "fan_in": 0,
+      "tests": [
+        "tests/test_final_3d_tree_map_placement.py"
+      ],
+      "importers_head": [],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/gpu.py",
+      "dotted": "solaraeus.extensions.vegetation.gpu",
+      "doc": "SOLARAEUS Tree-Aware GPU Backend (Version 2.2.0-gpu-tree).",
+      "classes": [
+        "TreeAwareGPUBackend"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "datetime",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.extensions.terrain.gpu",
+        "solaraeus.extensions.vegetation.tree",
+        "solaraeus.extensions.vegetation.scene",
+        "solaraeus.extensions.vegetation.solver",
+        "cupy"
+      ],
+      "loc": 438,
+      "fan_in": 1,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/loader.py",
+      "dotted": "solaraeus.extensions.vegetation.loader",
+      "doc": "Authoritative Tree Loader for SOLARAEUS 3D.",
+      "classes": [
+        "TreeRecord",
+        "TreeLoader"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "csv",
+        "json",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "solaraeus.sites.church_street.coordinates"
+      ],
+      "loc": 247,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_final_3d_tree_map_placement.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/geometry_builder.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/scene.py",
+      "dotted": "solaraeus.extensions.vegetation.scene",
+      "doc": "SOLARAEUS Tree-Aware Scene Representation (API Version 2.2.0-tree).",
+      "classes": [
+        "TreeAwareScene"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.extensions.terrain.dtm",
+        "solaraeus.extensions.terrain.scene",
+        "solaraeus.extensions.vegetation.tree"
+      ],
+      "loc": 88,
+      "fan_in": 3,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/__init__.py",
+        "src/solaraeus/extensions/vegetation/gpu.py",
+        "src/solaraeus/extensions/vegetation/solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/solver.py",
+      "dotted": "solaraeus.extensions.vegetation.solver",
+      "doc": "SOLARAEUS Tree-Aware CPU Reference Solver (Version 2.2.0-cpu-tree).",
+      "classes": [
+        "TreeAwareCPUSolver"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "datetime",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.extensions.terrain.solver",
+        "solaraeus.extensions.vegetation.tree",
+        "solaraeus.extensions.vegetation.scene"
+      ],
+      "loc": 278,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/__init__.py",
+        "src/solaraeus/extensions/vegetation/gpu.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/extensions/vegetation/tree.py",
+      "dotted": "solaraeus.extensions.vegetation.tree",
+      "doc": "SOLARAEUS Vegetation Geometry Module",
+      "classes": [
+        "Tree"
+      ],
+      "funcs": [
+        "get_core_trees"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "dataclasses",
+        "typing",
+        "numpy"
+      ],
+      "loc": 222,
+      "fan_in": 4,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/__init__.py",
+        "src/solaraeus/extensions/vegetation/gpu.py",
+        "src/solaraeus/extensions/vegetation/scene.py",
+        "src/solaraeus/extensions/vegetation/solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/__init__.py",
+      "dotted": "solaraeus.incremental",
+      "doc": "Incremental computation subpackage for dependency tracking, caching, certificates, and updates.",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.incremental.dependency_graph",
+        "solaraeus.incremental.cache",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.affected_region",
+        "solaraeus.incremental.mesh_affected_region",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.incremental.certificate"
+      ],
+      "loc": 65,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/incremental/affected_region.py",
+      "dotted": "solaraeus.incremental.affected_region",
+      "doc": "Conservative candidate affected-region calculation for direct shadows.",
+      "classes": [
+        "AffectedRegionResult"
+      ],
+      "funcs": [
+        "project_box_shadow",
+        "compute_candidate_affected_region"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.mesh_affected_region",
+        "solaraeus.incremental.mesh_affected_region"
+      ],
+      "loc": 272,
+      "fan_in": 4,
+      "tests": [
+        "tests/test_adversarial_cases.py",
+        "tests/test_affected_region.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_two_panel_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/incremental/__init__.py",
+        "src/solaraeus/incremental/certificate.py",
+        "src/solaraeus/incremental/mesh_affected_region.py",
+        "src/solaraeus/validation/independent_audit.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/cache.py",
+      "dotted": "solaraeus.incremental.cache",
+      "doc": "Simulation cache and field metadata tracking for certified incremental reuse.",
+      "classes": [
+        "FieldMetadata",
+        "SimulationCache"
+      ],
+      "funcs": [
+        "compute_scene_hash",
+        "compute_weather_hash",
+        "compute_config_hash"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "hashlib",
+        "json",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.dependency_graph"
+      ],
+      "loc": 170,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_cache_and_dependencies.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/incremental/__init__.py",
+        "src/solaraeus/validation/harness.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/certificate.py",
+      "dotted": "solaraeus.incremental.certificate",
+      "doc": "Computable error certificate engine for certified incremental microclimate simulations.",
+      "classes": [
+        "CertificateViolationError",
+        "ErrorCertificate",
+        "CertificateVerification"
+      ],
+      "funcs": [
+        "compute_svf_decay_bound",
+        "generate_error_certificate",
+        "verify_certificate"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "math",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.longwave",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.affected_region",
+        "solaraeus.reference.full_recompute",
+        "time",
+        "solaraeus.core.config"
+      ],
+      "loc": 276,
+      "fan_in": 9,
+      "tests": [
+        "tests/test_adversarial_cases.py",
+        "tests/test_error_bounds.py",
+        "tests/test_extended_adversarial.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_two_panel_optimization.py"
+      ],
+      "importers_head": [
+        "examples/compare_full_incremental.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/incremental/__init__.py",
+        "src/solaraeus/incremental/update.py",
+        "src/solaraeus/validation/baseline_comparison.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/dependency_graph.py",
+      "dotted": "solaraeus.incremental.dependency_graph",
+      "doc": "Explicit dependency graph tracking data flow from input parameters to microclimatic fields.",
+      "classes": [
+        "DependencyGraph"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "typing",
+        "collections"
+      ],
+      "loc": 128,
+      "fan_in": 4,
+      "tests": [
+        "tests/test_cache_and_dependencies.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/incremental/__init__.py",
+        "src/solaraeus/incremental/cache.py",
+        "src/solaraeus/validation/harness.py",
+        "src/solaraeus/validation/independent_audit.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/mesh_affected_region.py",
+      "dotted": "solaraeus.incremental.mesh_affected_region",
+      "doc": "Conservative candidate affected-region calculation for triangular meshes.",
+      "classes": [],
+      "funcs": [
+        "project_mesh_shadow",
+        "compute_mesh_candidate_affected_region"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.incremental.affected_region"
+      ],
+      "loc": 194,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_mesh_affected_region.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/incremental/__init__.py",
+        "src/solaraeus/incremental/affected_region.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/mesh_update.py",
+      "dotted": "solaraeus.incremental.mesh_update",
+      "doc": "Incremental geometric edits for triangular meshes.",
+      "classes": [
+        "AddMeshEdit",
+        "AddMultiMeshEdit",
+        "RemoveMeshEdit",
+        "ReplaceMeshEdit",
+        "MoveMeshEdit",
+        "ChangeMeshHeightEdit"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.incremental.update"
+      ],
+      "loc": 185,
+      "fan_in": 9,
+      "tests": [
+        "tests/test_gpu_incremental.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/incremental/__init__.py",
+        "src/solaraeus/pipeline/stage4_incremental_solver.py",
+        "src/solaraeus/placement/candidate_validation.py",
+        "src/solaraeus/placement/dual_panel_candidate_validation.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/incremental/update.py",
+      "dotted": "solaraeus.incremental.update",
+      "doc": "Exact incremental recomputation engine for urban microclimate fields.",
+      "classes": [
+        "GeometricEdit",
+        "AddBuildingEdit",
+        "RemoveBuildingEdit",
+        "ChangeHeightEdit",
+        "MoveBuildingEdit",
+        "IncrementalUpdateResult"
+      ],
+      "funcs": [
+        "compute_exact_dirty_shadow_mask",
+        "compute_exact_dirty_svf_mask",
+        "incremental_update_exact",
+        "incremental_update_certified"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "math",
+        "time",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.reference.full_recompute",
+        "datetime",
+        "solaraeus.incremental.certificate",
+        "datetime",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 474,
+      "fan_in": 18,
+      "tests": [
+        "tests/test_adversarial_cases.py",
+        "tests/test_affected_region.py",
+        "tests/test_error_bounds.py",
+        "tests/test_extended_adversarial.py",
+        "tests/test_incremental_updates.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py"
+      ],
+      "importers_head": [
+        "examples/compare_full_incremental.py",
+        "examples/run_all_evaluations.py",
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py",
+        "src/solaraeus/backends/gpu_incremental.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/__init__.py",
+      "dotted": "solaraeus.physics",
+      "doc": "Physics subpackage: solar position, radiative transfer (shortwave, longwave,",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.physics.ray_intersection",
+        "solaraeus.physics.mesh_ray_intersection",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.mesh_shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.physics.mesh_sky_view_factor"
+      ],
+      "loc": 57,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/physics/cloud_model.py",
+      "dotted": "solaraeus.physics.cloud_model",
+      "doc": "Physical Parametric Cloud Model for SOLARAEUS.",
+      "classes": [
+        "CloudState",
+        "CloudModel"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "math",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "numpy"
+      ],
+      "loc": 248,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_final_3d_cloud_model.py",
+        "tests/test_final_3d_tmrt.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/extensions/mean_radiant_temperature_3d.py",
+        "src/solaraeus/extensions/time_shadowing.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/longwave.py",
+      "dotted": "solaraeus.physics.longwave",
+      "doc": "Longwave thermal radiation calculations from sky, walls, and ground onto a human cylinder.",
+      "classes": [
+        "LongwaveFluxes"
+      ],
+      "funcs": [
+        "compute_air_emissivity",
+        "compute_longwave_fluxes"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "solaraeus.core.config"
+      ],
+      "loc": 72,
+      "fan_in": 11,
+      "tests": [
+        "tests/test_mesh_mutation_audit.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/extensions/vegetation/gpu.py",
+        "src/solaraeus/extensions/vegetation/solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/mean_radiant_temperature.py",
+      "dotted": "solaraeus.physics.mean_radiant_temperature",
+      "doc": "Mean Radiant Temperature (T_mrt) calculation via Stefan-Boltzmann law inversion.",
+      "classes": [
+        "RadiantState"
+      ],
+      "funcs": [
+        "mean_radiant_temperature"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "numpy",
+        "solaraeus.core.config"
+      ],
+      "loc": 42,
+      "fan_in": 12,
+      "tests": [
+        "tests/test_mesh_mutation_audit.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/extensions/mean_radiant_temperature_3d.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/extensions/vegetation/gpu.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/mesh_ray_intersection.py",
+      "dotted": "solaraeus.physics.mesh_ray_intersection",
+      "doc": "Deterministic CPU Ray-Triangle Intersection routines for SOLARAEUS.",
+      "classes": [],
+      "funcs": [
+        "intersect_ray_triangle",
+        "intersect_ray_mesh",
+        "intersect_rays_mesh_batch",
+        "intersect_rays_scene_meshes"
+      ],
+      "imports": [
+        "__future__",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.physics.ray_intersection"
+      ],
+      "loc": 308,
+      "fan_in": 4,
+      "tests": [
+        "tests/test_mesh_adversarial.py",
+        "tests/test_ray_triangle_intersection.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/physics/__init__.py",
+        "src/solaraeus/physics/mesh_shadow.py",
+        "src/solaraeus/physics/mesh_sky_view_factor.py",
+        "src/solaraeus/physics/shadow.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/mesh_shadow.py",
+      "dotted": "solaraeus.physics.mesh_shadow",
+      "doc": "Direct solar shadow mask computation for triangular meshes across pedestrian grids.",
+      "classes": [],
+      "funcs": [
+        "compute_mesh_direct_shadow_mask"
+      ],
+      "imports": [
+        "__future__",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.mesh_ray_intersection"
+      ],
+      "loc": 73,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_mesh_shadows.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/physics/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/mesh_sky_view_factor.py",
+      "dotted": "solaraeus.physics.mesh_sky_view_factor",
+      "doc": "Directional visibility, horizon obstruction, and Sky View Factor (SVF) for triangular meshes.",
+      "classes": [],
+      "funcs": [
+        "rasterize_mesh_to_height_grid",
+        "rasterize_scene_meshes_to_height_grid",
+        "compute_mesh_sky_view_factor"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.mesh_ray_intersection"
+      ],
+      "loc": 201,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_mesh_visibility.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/physics/__init__.py",
+        "src/solaraeus/physics/sky_view_factor.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/ray_intersection.py",
+      "dotted": "solaraeus.physics.ray_intersection",
+      "doc": "CPU Ray-AABB intersection routines using the Kay-Kajiya slab method.",
+      "classes": [],
+      "funcs": [
+        "intersect_ray_aabb",
+        "intersect_rays_aabb_batch"
+      ],
+      "imports": [
+        "__future__",
+        "typing",
+        "numpy"
+      ],
+      "loc": 126,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_ray_intersections.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/physics/__init__.py",
+        "src/solaraeus/physics/mesh_ray_intersection.py",
+        "src/solaraeus/physics/shadow.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/shadow.py",
+      "dotted": "solaraeus.physics.shadow",
+      "doc": "Direct solar shadow mask computation across pedestrian grids.",
+      "classes": [],
+      "funcs": [
+        "compute_direct_shadow_mask"
+      ],
+      "imports": [
+        "__future__",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.ray_intersection",
+        "solaraeus.physics.mesh_ray_intersection"
+      ],
+      "loc": 88,
+      "fan_in": 8,
+      "tests": [
+        "tests/test_affected_region.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_shadows.py",
+        "tests/test_shadows.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/cpu.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/incremental/update.py",
+        "src/solaraeus/physics/__init__.py",
+        "src/solaraeus/reference/full_recompute.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/shortwave.py",
+      "dotted": "solaraeus.physics.shortwave",
+      "doc": "Shortwave radiation calculations on human standing cylinder.",
+      "classes": [
+        "ShortwaveFluxes"
+      ],
+      "funcs": [
+        "compute_shortwave_fluxes"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.physics.solar_position"
+      ],
+      "loc": 90,
+      "fan_in": 10,
+      "tests": [
+        "tests/test_mesh_mutation_audit.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/extensions/vegetation/gpu.py",
+        "src/solaraeus/extensions/vegetation/solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/sky_view_factor.py",
+      "dotted": "solaraeus.physics.sky_view_factor",
+      "doc": "Directional sky visibility and multi-azimuth Sky View Factor (SVF) calculation.",
+      "classes": [],
+      "funcs": [
+        "compute_sky_view_factor"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.mesh_sky_view_factor"
+      ],
+      "loc": 155,
+      "fan_in": 8,
+      "tests": [
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_visibility.py",
+        "tests/test_shadows.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/backends/cpu.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/incremental/update.py",
+        "src/solaraeus/physics/__init__.py",
+        "src/solaraeus/reference/full_recompute.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/solar_position.py",
+      "dotted": "solaraeus.physics.solar_position",
+      "doc": "Deterministic solar position calculation using NOAA astronomical formulas.",
+      "classes": [
+        "SolarPosition"
+      ],
+      "funcs": [
+        "calculate_julian_day",
+        "calculate_solar_position"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "math",
+        "typing",
+        "numpy"
+      ],
+      "loc": 149,
+      "fan_in": 27,
+      "tests": [
+        "tests/test_affected_region.py",
+        "tests/test_church_street_static_simulation.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_affected_region.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_mesh_shadows.py",
+        "tests/test_shadows.py",
+        "tests/test_solar_position.py",
+        "tests/test_two_panel_optimization.py"
+      ],
+      "importers_head": [
+        "examples/run_independent_audit.py",
+        "src/solaraeus/backends/base.py",
+        "src/solaraeus/backends/cpu.py",
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/sun_model.py",
+      "dotted": "solaraeus.physics.sun_model",
+      "doc": "Astronomical Sun Model for SOLARAEUS.",
+      "classes": [
+        "DailySolarProfile",
+        "SunModel"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "csv",
+        "math",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing",
+        "numpy",
+        "trimesh",
+        "solaraeus.physics.solar_position"
+      ],
+      "loc": 217,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_final_3d_sun_model.py",
+        "tests/test_final_3d_tmrt.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/extensions/time_shadowing.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/physics/utci.py",
+      "dotted": "solaraeus.physics.utci",
+      "doc": "Universal Thermal Climate Index (UTCI) calculation module.",
+      "classes": [],
+      "funcs": [
+        "compute_utci",
+        "get_thermal_stress_category"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "pythermalcomfort.models"
+      ],
+      "loc": 79,
+      "fan_in": 13,
+      "tests": [
+        "tests/test_mesh_mutation_audit.py"
+      ],
+      "importers_head": [
+        "examples/single_building.py",
+        "src/solaraeus/backends/gpu.py",
+        "src/solaraeus/backends/gpu_incremental.py",
+        "src/solaraeus/extensions/terrain/solver.py",
+        "src/solaraeus/extensions/utci_3d.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/config.py",
+      "dotted": "solaraeus.pipeline.config",
+      "doc": "Configuration schema for the SOLARAEUS segregated microclimate pipeline & engine.",
+      "classes": [
+        "PipelineConfig"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "pathlib",
+        "typing"
+      ],
+      "loc": 72,
+      "fan_in": 7,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/engine.py",
+        "src/solaraeus/pipeline/runner.py",
+        "src/solaraeus/pipeline/stage1_data_ingestion.py",
+        "src/solaraeus/pipeline/stage2_calculation.py",
+        "src/solaraeus/pipeline/stage3_intervention.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/engine.py",
+      "dotted": "solaraeus.pipeline.engine",
+      "doc": "SOLARAEUS Core Engine Interface.",
+      "classes": [],
+      "funcs": [
+        "get_available_case_areas",
+        "process_case_data",
+        "optimize_canopies"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "math",
+        "time",
+        "datetime",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.pipeline.config",
+        "solaraeus.pipeline.stage1_data_ingestion",
+        "solaraeus.pipeline.stage2_calculation",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 404,
+      "fan_in": 1,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/server/app.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/runner.py",
+      "dotted": "solaraeus.pipeline.runner",
+      "doc": "Unified Runner for SOLARAEUS 5-Stage Microclimate Pipeline Architecture:",
+      "classes": [],
+      "funcs": [
+        "run_pipeline"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "time",
+        "datetime",
+        "pathlib",
+        "typing",
+        "solaraeus.pipeline.config",
+        "solaraeus.pipeline.stage1_data_ingestion",
+        "solaraeus.pipeline.stage2_calculation",
+        "solaraeus.pipeline.stage3_intervention",
+        "solaraeus.pipeline.stage4_incremental_solver",
+        "solaraeus.pipeline.stage5_ai_solver"
+      ],
+      "loc": 165,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/stage1_data_ingestion.py",
+      "dotted": "solaraeus.pipeline.stage1_data_ingestion",
+      "doc": "Stage 1: Data Ingestion and Scene Preprocessing Pipeline.",
+      "classes": [],
+      "funcs": [
+        "run_stage_data_ingestion"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.pipeline.config",
+        "solaraeus.sites.church_street.scene_builder"
+      ],
+      "loc": 103,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/engine.py",
+        "src/solaraeus/pipeline/runner.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/stage2_calculation.py",
+      "dotted": "solaraeus.pipeline.stage2_calculation",
+      "doc": "Stage 2: Baseline Microclimate Calculation Pipeline.",
+      "classes": [],
+      "funcs": [
+        "run_stage_calculation"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "time",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.pipeline.config",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 144,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/engine.py",
+        "src/solaraeus/pipeline/runner.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/stage3_intervention.py",
+      "dotted": "solaraeus.pipeline.stage3_intervention",
+      "doc": "Stage 3: Intervention Simulation Pipeline.",
+      "classes": [],
+      "funcs": [
+        "create_shade_panel_mesh",
+        "run_stage_intervention"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "time",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.pipeline.config",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 222,
+      "fan_in": 1,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/runner.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/stage4_incremental_solver.py",
+      "dotted": "solaraeus.pipeline.stage4_incremental_solver",
+      "doc": "Stage 4: Certified Incremental Solver Pipeline.",
+      "classes": [],
+      "funcs": [
+        "run_stage_incremental_solver"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "time",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.incremental.update",
+        "solaraeus.pipeline.config",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 185,
+      "fan_in": 1,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/runner.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/pipeline/stage5_ai_solver.py",
+      "dotted": "solaraeus.pipeline.stage5_ai_solver",
+      "doc": "Stage 5: AI & Surrogate-Assisted Optimization Pipeline.",
+      "classes": [],
+      "funcs": [
+        "run_stage_ai_solver"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "time",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.pipeline.config",
+        "solaraeus.placement",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 263,
+      "fan_in": 1,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/runner.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/__init__.py",
+      "dotted": "solaraeus.placement",
+      "doc": "Geographically Constrained AI Intervention Optimization Package for SOLARAEUS.",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.feasibility",
+        "solaraeus.placement.objective",
+        "solaraeus.placement.evaluation_ledger",
+        "solaraeus.placement.placement_solver",
+        "solaraeus.placement.candidate_validation",
+        "solaraeus.placement.surrogate_model",
+        "solaraeus.placement.acquisition",
+        "solaraeus.placement.surrogate_placement_solver",
+        "solaraeus.placement.dual_panel_parameters",
+        "solaraeus.placement.dual_panel_feasibility",
+        "solaraeus.placement.dual_panel_objective",
+        "solaraeus.placement.dual_panel_evaluation_ledger",
+        "solaraeus.placement.dual_panel_surrogate_model",
+        "solaraeus.placement.dual_panel_acquisition",
+        "solaraeus.placement.dual_panel_placement_solver",
+        "solaraeus.placement.dual_panel_candidate_validation",
+        "solaraeus.placement.robustness"
+      ],
+      "loc": 150,
+      "fan_in": 1,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/acquisition.py",
+      "dotted": "solaraeus.placement.acquisition",
+      "doc": "Uncertainty-Aware Candidate Acquisition Engine for SOLARAEUS.",
+      "classes": [
+        "AcquisitionConfig",
+        "CandidateAcquisitionEngine"
+      ],
+      "funcs": [
+        "compute_lcb_score",
+        "compute_ei_score",
+        "compute_normalized_distance"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "typing",
+        "numpy",
+        "scipy.stats",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.feasibility",
+        "solaraeus.placement.surrogate_model"
+      ],
+      "loc": 379,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_surrogate_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/surrogate_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/candidate_validation.py",
+      "dotted": "solaraeus.placement.candidate_validation",
+      "doc": "Multi-Path Physical Solver Validation for Selected Intervention Candidates.",
+      "classes": [
+        "PathComparisonMetrics",
+        "CandidateValidationReport",
+        "MultiPathValidationSummary"
+      ],
+      "funcs": [
+        "_compare_results",
+        "validate_candidate_multi_path",
+        "run_multi_path_validation_suite"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.evaluation_ledger"
+      ],
+      "loc": 437,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_intervention_optimization.py",
+        "tests/test_surrogate_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_candidate_validation.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_acquisition.py",
+      "dotted": "solaraeus.placement.dual_panel_acquisition",
+      "doc": "Uncertainty-Aware Candidate Acquisition & Seed Generation for Two-Panel SOLARAEUS Optimization.",
+      "classes": [
+        "DualPanelAcquisitionConfig",
+        "DualPanelAcquisitionEngine"
+      ],
+      "funcs": [
+        "compute_normalized_dual_panel_distance",
+        "generate_dual_panel_seeds"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "json",
+        "math",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.dual_panel_parameters",
+        "solaraeus.placement.dual_panel_feasibility",
+        "solaraeus.placement.dual_panel_surrogate_model",
+        "solaraeus.placement.dual_panel_objective"
+      ],
+      "loc": 292,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_two_panel_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_candidate_validation.py",
+      "dotted": "solaraeus.placement.dual_panel_candidate_validation",
+      "doc": "Multi-Path Physical Solver Validation for Two-Panel Intervention Candidates.",
+      "classes": [
+        "DualPanelValidationReport",
+        "DualPanelMultiPathSummary"
+      ],
+      "funcs": [
+        "validate_dual_panel_multi_path"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.placement.dual_panel_parameters",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.candidate_validation"
+      ],
+      "loc": 226,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/robustness.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_evaluation_ledger.py",
+      "dotted": "solaraeus.placement.dual_panel_evaluation_ledger",
+      "doc": "Two-Panel Candidate Database & Evaluation Ledger.",
+      "classes": [
+        "DualPanelCandidateRecord",
+        "DualPanelCandidateLedger"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "csv",
+        "dataclasses",
+        "json",
+        "math",
+        "pathlib",
+        "typing",
+        "pandas",
+        "dataclasses"
+      ],
+      "loc": 231,
+      "fan_in": 5,
+      "tests": [
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py",
+        "src/solaraeus/placement/dual_panel_surrogate_model.py",
+        "src/solaraeus/placement/robustness.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_feasibility.py",
+      "dotted": "solaraeus.placement.dual_panel_feasibility",
+      "doc": "Geographic and Geometric Feasibility Validator for Two-Panel Interventions.",
+      "classes": [
+        "DualPanelRejectionReason",
+        "DualPanelFeasibilityResult",
+        "DualPanelConstraints"
+      ],
+      "funcs": [
+        "check_dual_panel_feasibility"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "enum",
+        "typing",
+        "shapely",
+        "shapely.geometry",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.feasibility",
+        "solaraeus.placement.dual_panel_parameters"
+      ],
+      "loc": 217,
+      "fan_in": 5,
+      "tests": [
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_acquisition.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py",
+        "src/solaraeus/placement/robustness.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_objective.py",
+      "dotted": "solaraeus.placement.dual_panel_objective",
+      "doc": "Thermal Comfort Multi-Objective Formulation for Two-Panel Interventions.",
+      "classes": [
+        "DualPanelComfortObjectiveConfig",
+        "DualPanelEvaluationMetrics"
+      ],
+      "funcs": [
+        "compute_dual_panel_objective",
+        "_extract_pareto_triplet",
+        "compute_pareto_front"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 281,
+      "fan_in": 5,
+      "tests": [
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_acquisition.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py",
+        "src/solaraeus/placement/robustness.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_parameters.py",
+      "dotted": "solaraeus.placement.dual_panel_parameters",
+      "doc": "Two-Panel Intervention Parameterization for Geographically Constrained AI Optimization.",
+      "classes": [
+        "DualPanelParams",
+        "DualPanelBounds"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "typing",
+        "numpy",
+        "shapely.geometry",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.placement.parameters"
+      ],
+      "loc": 282,
+      "fan_in": 8,
+      "tests": [
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_acquisition.py",
+        "src/solaraeus/placement/dual_panel_candidate_validation.py",
+        "src/solaraeus/placement/dual_panel_feasibility.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_placement_solver.py",
+      "dotted": "solaraeus.placement.dual_panel_placement_solver",
+      "doc": "Surrogate-Assisted Multi-Intervention (Two-Panel) Optimization Engine for SOLARAEUS.",
+      "classes": [
+        "DualPanelPlacementSolverConfig",
+        "DualPanelPlacementSolverEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "hashlib",
+        "json",
+        "math",
+        "pathlib",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.physics.solar_position",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.incremental.update",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.placement.dual_panel_parameters",
+        "solaraeus.placement.dual_panel_feasibility",
+        "solaraeus.placement.dual_panel_objective",
+        "solaraeus.placement.dual_panel_evaluation_ledger",
+        "solaraeus.placement.dual_panel_surrogate_model",
+        "solaraeus.placement.dual_panel_acquisition"
+      ],
+      "loc": 424,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/robustness.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/dual_panel_surrogate_model.py",
+      "dotted": "solaraeus.placement.dual_panel_surrogate_model",
+      "doc": "Configurable Tabular Surrogate Model for Two-Panel SOLARAEUS Intervention Optimization.",
+      "classes": [
+        "DualPanelSurrogateConfig",
+        "DualPanelSurrogatePrediction",
+        "DualPanelSurrogateModel"
+      ],
+      "funcs": [
+        "extract_dual_panel_features",
+        "extract_dual_panel_targets"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "hashlib",
+        "json",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.placement.dual_panel_parameters",
+        "solaraeus.placement.dual_panel_evaluation_ledger",
+        "sklearn.ensemble",
+        "sklearn.preprocessing",
+        "sklearn.metrics"
+      ],
+      "loc": 372,
+      "fan_in": 4,
+      "tests": [
+        "tests/test_two_panel_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/dual_panel_acquisition.py",
+        "src/solaraeus/placement/dual_panel_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/evaluation_ledger.py",
+      "dotted": "solaraeus.placement.evaluation_ledger",
+      "doc": "Candidate Database & Evaluation Ledger.",
+      "classes": [
+        "CandidateRecord",
+        "CandidateLedger"
+      ],
+      "funcs": [
+        "math_isfinite"
+      ],
+      "imports": [
+        "__future__",
+        "csv",
+        "dataclasses",
+        "json",
+        "pathlib",
+        "typing",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.feasibility",
+        "solaraeus.placement.objective",
+        "math"
+      ],
+      "loc": 143,
+      "fan_in": 6,
+      "tests": [
+        "tests/test_intervention_optimization.py",
+        "tests/test_surrogate_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/candidate_validation.py",
+        "src/solaraeus/placement/placement_solver.py",
+        "src/solaraeus/placement/surrogate_model.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/feasibility.py",
+      "dotted": "solaraeus.placement.feasibility",
+      "doc": "Geographic Feasibility Validator for Intervention Candidates.",
+      "classes": [
+        "RejectionReason",
+        "FeasibilityResult",
+        "FeasibilityConstraints"
+      ],
+      "funcs": [
+        "check_feasibility"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "enum",
+        "typing",
+        "numpy",
+        "shapely",
+        "shapely.geometry",
+        "shapely.ops",
+        "solaraeus.placement.parameters",
+        "solaraeus.core.geometry.scene",
+        "shapely.geometry"
+      ],
+      "loc": 235,
+      "fan_in": 7,
+      "tests": [
+        "tests/test_intervention_optimization.py",
+        "tests/test_stage_13_geographic_feasibility.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/acquisition.py",
+        "src/solaraeus/placement/dual_panel_feasibility.py",
+        "src/solaraeus/placement/evaluation_ledger.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/objective.py",
+      "dotted": "solaraeus.placement.objective",
+      "doc": "Thermal Comfort Objective Functions & Evaluation Metrics.",
+      "classes": [
+        "ComfortObjectiveConfig",
+        "EvaluationMetrics"
+      ],
+      "funcs": [
+        "compute_objective"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 159,
+      "fan_in": 5,
+      "tests": [
+        "tests/test_intervention_optimization.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/evaluation_ledger.py",
+        "src/solaraeus/placement/placement_solver.py",
+        "src/solaraeus/placement/surrogate_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/parameters.py",
+      "dotted": "solaraeus.placement.parameters",
+      "doc": "Intervention Parameterization for Geographically Constrained AI Optimization.",
+      "classes": [
+        "ShadePanelParams",
+        "ParameterBounds"
+      ],
+      "funcs": [
+        "build_panel_geometry"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "typing",
+        "numpy",
+        "shapely.geometry",
+        "solaraeus.core.geometry.mesh"
+      ],
+      "loc": 399,
+      "fan_in": 13,
+      "tests": [
+        "tests/test_intervention_optimization.py",
+        "tests/test_stage_13_geographic_feasibility.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/acquisition.py",
+        "src/solaraeus/placement/candidate_validation.py",
+        "src/solaraeus/placement/dual_panel_acquisition.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/placement_solver.py",
+      "dotted": "solaraeus.placement.placement_solver",
+      "doc": "Intervention Optimizer Engine.",
+      "classes": [
+        "PlacementSolverConfig",
+        "PlacementSolverEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "math",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.feasibility",
+        "solaraeus.placement.objective",
+        "solaraeus.placement.evaluation_ledger"
+      ],
+      "loc": 395,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_intervention_optimization.py",
+        "tests/test_surrogate_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/surrogate_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/robustness.py",
+      "dotted": "solaraeus.placement.robustness",
+      "doc": "Robustness and Sensitivity Analysis Suite for Two-Panel Interventions in SOLARAEUS.",
+      "classes": [
+        "WeatherScenario",
+        "SolarTimestampScenario",
+        "ObjectiveWeightScenario",
+        "ConstraintSensitivityScenario",
+        "RobustnessStudyConfig"
+      ],
+      "funcs": [
+        "get_standard_weather_scenarios",
+        "get_standard_solar_timestamps",
+        "get_standard_objective_scenarios",
+        "get_standard_constraint_scenarios",
+        "recompute_score_under_scenario",
+        "evaluate_candidate_at_condition"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "json",
+        "math",
+        "pathlib",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.physics.solar_position",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.placement.dual_panel_parameters",
+        "solaraeus.placement.dual_panel_feasibility",
+        "solaraeus.placement.dual_panel_objective",
+        "solaraeus.placement.dual_panel_evaluation_ledger",
+        "solaraeus.placement.dual_panel_placement_solver",
+        "solaraeus.placement.dual_panel_candidate_validation"
+      ],
+      "loc": 471,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_two_panel_robustness.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/surrogate_model.py",
+      "dotted": "solaraeus.placement.surrogate_model",
+      "doc": "Configurable Tabular Surrogate Model for SOLARAEUS Intervention Optimization.",
+      "classes": [
+        "SurrogateConfig",
+        "SurrogatePrediction",
+        "SurrogateModel",
+        "FallbackSurrogateModel"
+      ],
+      "funcs": [
+        "extract_features",
+        "extract_targets"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "hashlib",
+        "json",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.evaluation_ledger",
+        "sklearn.ensemble",
+        "sklearn.preprocessing",
+        "sklearn.metrics"
+      ],
+      "loc": 422,
+      "fan_in": 4,
+      "tests": [
+        "tests/test_surrogate_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py",
+        "src/solaraeus/placement/acquisition.py",
+        "src/solaraeus/placement/surrogate_placement_solver.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/placement/surrogate_placement_solver.py",
+      "dotted": "solaraeus.placement.surrogate_placement_solver",
+      "doc": "Surrogate-Assisted Geographically Constrained Intervention Optimizer.",
+      "classes": [
+        "SurrogatePlacementSolverConfig",
+        "SurrogatePlacementSolverEngine"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "hashlib",
+        "json",
+        "math",
+        "time",
+        "pathlib",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.backends.gpu_incremental",
+        "solaraeus.placement.parameters",
+        "solaraeus.placement.feasibility",
+        "solaraeus.placement.objective",
+        "solaraeus.placement.evaluation_ledger",
+        "solaraeus.placement.placement_solver",
+        "solaraeus.placement.surrogate_model",
+        "solaraeus.placement.acquisition"
+      ],
+      "loc": 325,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_surrogate_optimization.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage5_ai_solver.py",
+        "src/solaraeus/placement/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/reference/__init__.py",
+      "dotted": "solaraeus.reference",
+      "doc": "Reference subpackage for full recomputation of urban thermal comfort.",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 7,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/reference/full_recompute.py",
+      "dotted": "solaraeus.reference.full_recompute",
+      "doc": "Full reference recomputation path for single-timestep SOLWEIG-compatible urban thermal comfort.",
+      "classes": [
+        "SimulationResult"
+      ],
+      "funcs": [
+        "full_recompute"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "datetime",
+        "typing",
+        "time",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.backends.gpu",
+        "solaraeus.backends"
+      ],
+      "loc": 143,
+      "fan_in": 38,
+      "tests": [
+        "tests/test_adversarial_cases.py",
+        "tests/test_cache_and_dependencies.py",
+        "tests/test_error_bounds.py",
+        "tests/test_extended_adversarial.py",
+        "tests/test_full_recompute.py",
+        "tests/test_gpu_backend.py",
+        "tests/test_gpu_incremental.py",
+        "tests/test_incremental_updates.py",
+        "tests/test_intervention_optimization.py",
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_incremental_updates.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_surrogate_optimization.py",
+        "tests/test_two_panel_optimization.py",
+        "tests/test_two_panel_robustness.py",
+        "tests/test_validation_comparisons.py"
+      ],
+      "importers_head": [
+        "examples/compare_full_incremental.py",
+        "examples/run_all_evaluations.py",
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py",
+        "examples/single_building.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/server/__init__.py",
+      "dotted": "solaraeus.server",
+      "doc": "SOLARAEUS Server Module.",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.server.app"
+      ],
+      "loc": 7,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/server/__main__.py",
+      "dotted": "solaraeus.server.__main__",
+      "doc": "Entry point for python -m solaraeus.server",
+      "classes": [],
+      "funcs": [
+        "main"
+      ],
+      "imports": [
+        "argparse",
+        "solaraeus.server.app"
+      ],
+      "loc": 20,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/server/app.py",
+      "dotted": "solaraeus.server.app",
+      "doc": "FastAPI Server for SOLARAEUS Interactive Digital Twin Engine.",
+      "classes": [
+        "ProcessRequest",
+        "OptimizeRequest"
+      ],
+      "funcs": [
+        "list_areas",
+        "list_runs",
+        "api_process",
+        "api_optimize",
+        "get_case_data",
+        "run_server"
+      ],
+      "imports": [
+        "__future__",
+        "json",
+        "datetime",
+        "pathlib",
+        "typing",
+        "fastapi",
+        "fastapi.middleware.cors",
+        "fastapi.responses",
+        "fastapi.staticfiles",
+        "pydantic",
+        "solaraeus.pipeline.engine",
+        "numpy",
+        "uvicorn"
+      ],
+      "loc": 259,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "src/solaraeus/server/__init__.py",
+        "src/solaraeus/server/__main__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/sites/__init__.py",
+      "dotted": "solaraeus.sites",
+      "doc": "Site packages: real-world case-study geometries and their coordinate systems.",
+      "classes": [],
+      "funcs": [],
+      "imports": [],
+      "loc": 4,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/sites/church_street/__init__.py",
+      "dotted": "solaraeus.sites.church_street",
+      "doc": "Church Street, Bengaluru case study: coordinate-system definitions and the",
+      "classes": [],
+      "funcs": [],
+      "imports": [],
+      "loc": 4,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/sites/church_street/coordinates.py",
+      "dotted": "solaraeus.sites.church_street.coordinates",
+      "doc": "Authoritative coordinate transformation and validation pipeline for SOLARAEUS.",
+      "classes": [
+        "CoordinateSystemDefinition",
+        "CoordinateTransformer"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "json",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "numpy",
+        "pyproj"
+      ],
+      "loc": 133,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_final_3d_coordinate_alignment.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/extensions/vegetation/loader.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/sites/church_street/scene_builder.py",
+      "dotted": "solaraeus.sites.church_street.scene_builder",
+      "doc": "Church Street urban dataset adapter and geometric preprocessor for SOLARAEUS.",
+      "classes": [
+        "PreprocessingConfig",
+        "PreprocessedSceneResult",
+        "ChurchStreetAdapter"
+      ],
+      "funcs": [],
+      "imports": [
+        "__future__",
+        "csv",
+        "json",
+        "math",
+        "dataclasses",
+        "pathlib",
+        "typing",
+        "mapbox_earcut",
+        "numpy",
+        "pyproj",
+        "shapely.geometry",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene"
+      ],
+      "loc": 638,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_church_street_preprocessing.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/pipeline/stage1_data_ingestion.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/__init__.py",
+      "dotted": "solaraeus.validation",
+      "doc": "Validation subpackage: comparisons, error norms, and verification metrics, plus",
+      "classes": [],
+      "funcs": [],
+      "imports": [
+        "solaraeus.validation.comparisons",
+        "solaraeus.validation.metrics",
+        "solaraeus.validation.harness",
+        "solaraeus.validation.baseline_comparison",
+        "solaraeus.validation.repeated_edits",
+        "solaraeus.validation.tightness",
+        "solaraeus.validation.independent_audit",
+        "solaraeus.validation.mesh.mesh_certificate_audit",
+        "solaraeus.validation.mesh.aabb_vs_mesh_benchmark",
+        "solaraeus.validation.mesh.mesh_scaling_benchmark"
+      ],
+      "loc": 68,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/validation/baseline_comparison.py",
+      "dotted": "solaraeus.validation.baseline_comparison",
+      "doc": "Non-Certified Dirty-Region Baseline Comparison.",
+      "classes": [
+        "BaselineComparisonRecord"
+      ],
+      "funcs": [
+        "run_non_certified_dirty_region_update",
+        "compare_all_baselines"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "time",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.certificate",
+        "datetime"
+      ],
+      "loc": 236,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "examples/run_publication_validation.py",
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/comparisons.py",
+      "dotted": "solaraeus.validation.comparisons",
+      "doc": "Numerical comparison tools and pointwise error metrics between microclimate simulation results.",
+      "classes": [
+        "ComparisonMetrics"
+      ],
+      "funcs": [
+        "compare_arrays",
+        "compare_results",
+        "format_comparison_summary"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.reference.full_recompute"
+      ],
+      "loc": 120,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_incremental_updates.py",
+        "tests/test_validation_comparisons.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/harness.py",
+      "dotted": "solaraeus.validation.harness",
+      "doc": "Reproducible Benchmark Harness for Certified Incremental SOLWEIG Evaluation.",
+      "classes": [
+        "BenchmarkRecord",
+        "ReproducibilityRecord",
+        "TimingBreakdownRecord"
+      ],
+      "funcs": [
+        "get_current_rss_mb",
+        "compute_combined_hash",
+        "run_benchmark_trial",
+        "run_repeated_benchmark_trials"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "hashlib",
+        "json",
+        "time",
+        "os",
+        "psutil",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.certificate",
+        "solaraeus.incremental.cache",
+        "solaraeus.incremental.dependency_graph"
+      ],
+      "loc": 353,
+      "fan_in": 3,
+      "tests": [],
+      "importers_head": [
+        "examples/run_all_evaluations.py",
+        "examples/run_publication_validation.py",
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/independent_audit.py",
+      "dotted": "solaraeus.validation.independent_audit",
+      "doc": "Independent Audit Module for SOLARAEUS.",
+      "classes": [],
+      "funcs": [
+        "audit_certificate_independently",
+        "build_dependency_coverage_audit",
+        "run_mutation_tests",
+        "run_detailed_timing_audit",
+        "build_provenance_record",
+        "build_canonical_benchmark_table",
+        "build_timing_reconciliation_table",
+        "build_analytical_verification_table"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "json",
+        "math",
+        "os",
+        "platform",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.affected_region",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.physics.shortwave",
+        "solaraeus.physics.longwave",
+        "solaraeus.physics.mean_radiant_temperature",
+        "solaraeus.physics.utci",
+        "datetime",
+        "subprocess",
+        "datetime",
+        "solaraeus.incremental.dependency_graph",
+        "importlib.metadata"
+      ],
+      "loc": 927,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_mesh_adversarial.py",
+        "tests/test_mesh_mutation_audit.py",
+        "tests/test_mutation_audits.py"
+      ],
+      "importers_head": [
+        "examples/run_independent_audit.py",
+        "src/solaraeus/validation/__init__.py",
+        "src/solaraeus/validation/mesh/mesh_certificate_audit.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/independent_reference.py",
+      "dotted": "solaraeus.validation.independent_reference",
+      "doc": "Independent Reference Benchmarks & External SOLWEIG/UMEP Compatibility Audit.",
+      "classes": [
+        "AnalyticalBenchmarkResult"
+      ],
+      "funcs": [
+        "analytical_wall_shadow_length",
+        "analytical_view_factor_horizontal_to_vertical_wall",
+        "run_analytical_reference_suite",
+        "run_independent_reference_tests"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.physics.mean_radiant_temperature"
+      ],
+      "loc": 195,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "examples/run_all_evaluations.py",
+        "examples/run_publication_validation.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/mesh/__init__.py",
+      "dotted": "solaraeus.validation.mesh",
+      "doc": "Mesh-geometry validation: AABB-vs-mesh benchmarks, mesh certificate audits,",
+      "classes": [],
+      "funcs": [],
+      "imports": [],
+      "loc": 2,
+      "fan_in": 0,
+      "tests": [],
+      "importers_head": [],
+      "status": "UNUSED (no importer)"
+    },
+    {
+      "file": "src/solaraeus/validation/mesh/aabb_vs_mesh_benchmark.py",
+      "dotted": "solaraeus.validation.mesh.aabb_vs_mesh_benchmark",
+      "doc": "Comparative AABB vs Mesh Benchmarking Module.",
+      "classes": [
+        "BenchmarkSceneDef"
+      ],
+      "funcs": [
+        "get_canonical_benchmark_scenes",
+        "build_scene_pair",
+        "run_single_comparison",
+        "run_aabb_vs_mesh_benchmark"
+      ],
+      "imports": [
+        "__future__",
+        "csv",
+        "dataclasses",
+        "datetime",
+        "json",
+        "math",
+        "os",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.validation.metrics"
+      ],
+      "loc": 299,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_aabb_vs_mesh_benchmarks.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/mesh/mesh_certificate_audit.py",
+      "dotted": "solaraeus.validation.mesh.mesh_certificate_audit",
+      "doc": "Mesh Certificate Audit Module for SOLARAEUS.",
+      "classes": [
+        "MeshAuditScenario"
+      ],
+      "funcs": [
+        "_scenario_01_rotated_box",
+        "_scenario_02_pitched_roof",
+        "_scenario_03_overhang_canopy",
+        "_scenario_04_flat_to_pitched_replacement",
+        "_scenario_05_rotated_prism_translation",
+        "_scenario_06_pitched_roof_height_scaling",
+        "_scenario_07_l_shaped_mesh",
+        "_scenario_08_mesh_removal",
+        "run_mesh_certificate_audit"
+      ],
+      "imports": [
+        "__future__",
+        "csv",
+        "dataclasses",
+        "datetime",
+        "json",
+        "math",
+        "os",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.incremental.update",
+        "solaraeus.validation.independent_audit"
+      ],
+      "loc": 266,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_mesh_certificate_audits.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/mesh/mesh_scaling_benchmark.py",
+      "dotted": "solaraeus.validation.mesh.mesh_scaling_benchmark",
+      "doc": "Mesh Scaling Benchmark Module for SOLARAEUS.",
+      "classes": [],
+      "funcs": [
+        "create_mesh_scaling_scene",
+        "run_scaling_trial",
+        "run_mesh_scaling_benchmark"
+      ],
+      "imports": [
+        "__future__",
+        "csv",
+        "dataclasses",
+        "datetime",
+        "json",
+        "math",
+        "os",
+        "time",
+        "tracemalloc",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.mesh",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.core.pedestrian_grid",
+        "solaraeus.physics.solar_position",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.physics.shadow",
+        "solaraeus.physics.sky_view_factor",
+        "solaraeus.incremental.mesh_update",
+        "solaraeus.incremental.update",
+        "datetime"
+      ],
+      "loc": 293,
+      "fan_in": 1,
+      "tests": [
+        "tests/test_mesh_scaling_benchmarks.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/metrics.py",
+      "dotted": "solaraeus.validation.metrics",
+      "doc": "Domain-specific biometeorological and geometric validation metrics.",
+      "classes": [],
+      "funcs": [
+        "compute_shadow_iou",
+        "compute_utci_category_agreement",
+        "compute_error_percentiles"
+      ],
+      "imports": [
+        "__future__",
+        "typing",
+        "numpy",
+        "solaraeus.physics.utci"
+      ],
+      "loc": 56,
+      "fan_in": 2,
+      "tests": [
+        "tests/test_validation_comparisons.py"
+      ],
+      "importers_head": [
+        "src/solaraeus/validation/__init__.py",
+        "src/solaraeus/validation/mesh/aabb_vs_mesh_benchmark.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/repeated_edits.py",
+      "dotted": "solaraeus.validation.repeated_edits",
+      "doc": "Repeated-Edit Error Accumulation Evaluation.",
+      "classes": [
+        "RepeatedEditRecord"
+      ],
+      "funcs": [
+        "run_repeated_edit_sequence"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "time",
+        "typing",
+        "numpy",
+        "solaraeus.core.config",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene",
+        "solaraeus.reference.full_recompute",
+        "solaraeus.incremental.update",
+        "solaraeus.incremental.certificate"
+      ],
+      "loc": 156,
+      "fan_in": 3,
+      "tests": [],
+      "importers_head": [
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py",
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/scenes.py",
+      "dotted": "solaraeus.validation.scenes",
+      "doc": "Synthetic Parametric Scene Generators for Scaling and Density Benchmarks.",
+      "classes": [],
+      "funcs": [
+        "create_scaling_scene"
+      ],
+      "imports": [
+        "__future__",
+        "math",
+        "typing",
+        "numpy",
+        "solaraeus.core.geometry.primitives",
+        "solaraeus.core.geometry.scene"
+      ],
+      "loc": 80,
+      "fan_in": 3,
+      "tests": [
+        "tests/test_mutation_audits.py"
+      ],
+      "importers_head": [
+        "examples/run_all_evaluations.py",
+        "examples/run_independent_audit.py",
+        "examples/run_publication_validation.py"
+      ],
+      "status": "works (imported)"
+    },
+    {
+      "file": "src/solaraeus/validation/tightness.py",
+      "dotted": "solaraeus.validation.tightness",
+      "doc": "Certificate Conservatism and Tightness Quantifier.",
+      "classes": [
+        "CertificateTightnessMetrics"
+      ],
+      "funcs": [
+        "evaluate_certificate_tightness"
+      ],
+      "imports": [
+        "__future__",
+        "dataclasses",
+        "typing",
+        "numpy",
+        "solaraeus.incremental.certificate"
+      ],
+      "loc": 105,
+      "fan_in": 2,
+      "tests": [],
+      "importers_head": [
+        "examples/run_publication_validation.py",
+        "src/solaraeus/validation/__init__.py"
+      ],
+      "status": "works (imported)"
+    }
+  ],
+  "legacy_files": [
+    ".gitignore",
+    "README.md",
+    "research_paper_sol/solaraeus.tex",
+    "simulation_3d/app.js",
+    "simulation_3d/church_street_data.js",
+    "simulation_3d/church_street_data.json",
+    "simulation_3d/index.html",
+    "simulation_3d/segregated_engine.js",
+    "src/solaraeus/extensions/mean_radiant_temperature_3d.py",
+    "src/solaraeus/extensions/terrain/loader.py",
+    "src/solaraeus/extensions/time_shadowing.py",
+    "src/solaraeus/extensions/vegetation/loader.py",
+    "src/solaraeus/extensions/vegetation/tree.py",
+    "src/solaraeus/physics/sun_model.py",
+    "src/solaraeus/pipeline/config.py",
+    "src/solaraeus/pipeline/engine.py",
+    "src/solaraeus/pipeline/runner.py",
+    "src/solaraeus/pipeline/stage1_data_ingestion.py",
+    "src/solaraeus/pipeline/stage2_calculation.py",
+    "src/solaraeus/pipeline/stage3_intervention.py",
+    "src/solaraeus/pipeline/stage4_incremental_solver.py",
+    "src/solaraeus/pipeline/stage5_ai_solver.py",
+    "src/solaraeus/placement/dual_panel_acquisition.py",
+    "src/solaraeus/placement/dual_panel_parameters.py",
+    "src/solaraeus/placement/dual_panel_placement_solver.py",
+    "src/solaraeus/placement/parameters.py",
+    "src/solaraeus/placement/placement_solver.py",
+    "src/solaraeus/placement/robustness.py",
+    "src/solaraeus/placement/surrogate_placement_solver.py",
+    "src/solaraeus/server/app.py",
+    "src/solaraeus/sites/church_street/__init__.py",
+    "src/solaraeus/sites/church_street/coordinates.py",
+    "src/solaraeus/sites/church_street/scene_builder.py",
+    "tests/test_church_street_preprocessing.py",
+    "tests/test_church_street_shade_panel_simulation.py",
+    "tests/test_church_street_static_simulation.py",
+    "tests/test_final_3d_coordinate_alignment.py",
+    "tests/test_final_3d_sun_model.py",
+    "tests/test_gpu_backend.py",
+    "tests/test_gpu_incremental.py",
+    "tests/test_intervention_optimization.py",
+    "tests/test_stage_22_cpu_terrain_extension.py",
+    "tests/test_surrogate_optimization.py",
+    "tests/test_two_panel_optimization.py",
+    "tests/test_two_panel_robustness.py",
+    "tools/stage1_inventory.py"
+  ],
+  "viewer_files": [
+    "README.md",
+    "research_paper_sol/fig1_architecture.tex",
+    "research_paper_sol/fig2_dataflow.tex",
+    "research_paper_sol/fig2_methodology.tex",
+    "research_paper_sol/solaraeus.tex",
+    "run_app.py",
+    "simulation_3d/app.js",
+    "simulation_3d/dataColormaps.js",
+    "simulation_3d/heatmapShader.js",
+    "simulation_3d/index.html",
+    "simulation_3d/segregated_engine.js",
+    "simulation_3d/vendor/three.min.js",
+    "src/solaraeus/server/app.py",
+    "src/solaraeus/sites/church_street/coordinates.py",
+    "tests/test_final_3d_coordinate_alignment.py",
+    "tools/stage1_inventory.py"
+  ]
+}

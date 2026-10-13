@@ -1,0 +1,44 @@
+{
+  "city_id": "london",
+  "name": "London",
+  "country": "United Kingdom",
+  "role": "reference_replication",
+  "coordinates": {
+    "latitude": 51.5074,
+    "longitude": -0.1278,
+    "timezone": "Europe/London",
+    "utc_offset_hours": 1
+  },
+  "crs": {
+    "geographic": "EPSG:4326",
+    "projected_metric": "EPSG:27700",
+    "utm_zone": "30N",
+    "local_frame": "EPSG:27700_LOCAL"
+  },
+  "data_paths": {
+    "raw_dir": "data/raw/london",
+    "processed_dir": "data/processed/london",
+    "buildings_geojson": "data/raw/london/buildings.geojson",
+    "terrain_tif": "data/raw/london/terrain.tif",
+    "trees_geojson": "data/raw/london/trees.geojson",
+    "weather_csv": "data/raw/london/weather.csv"
+  },
+  "simulation_defaults": {
+    "pedestrian_height_m": 1.1,
+    "grid_resolution_m": 1.0,
+    "domain_extent_m": [200.0, 200.0],
+    "sky_patch_configuration": 32,
+    "max_svf_search_dist_m": 100.0,
+    "tmrt_tolerance_k": 0.50
+  },
+  "weather_scenario_heatwave": {
+    "date": "2024-07-19",
+    "local_time": "13:30:00",
+    "air_temperature_c": 31.8,
+    "relative_humidity_pct": 42.0,
+    "wind_speed_ms": 2.6,
+    "wind_direction_deg": 210.0,
+    "direct_normal_irradiance_wm2": 810.0,
+    "diffuse_horizontal_irradiance_wm2": 165.0
+  }
+}
