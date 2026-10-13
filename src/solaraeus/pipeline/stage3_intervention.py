@@ -59,7 +59,7 @@ def create_shade_panel_mesh(panel_def: Dict[str, Any]) -> TriangleMesh:
     triangles_3d = np.array(triangles_list, dtype=np.int64)
 
     return TriangleMesh(
-        id=panel_def.get("intervention_id", "BLR_SHADE_001"),
+        id=panel_def.get("intervention_id", "SHADE_PANEL_001"),
         vertices=vertices_3d,
         triangles=triangles_3d,
         material_id="SHADE_PANEL_ASSUMED_001",

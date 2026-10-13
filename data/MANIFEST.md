@@ -185,9 +185,36 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 - **Stage 5 Performance Engineering Report**: `docs/stage_5_report.md`
   - SHA256: `f142097cb42ed88f15a519e1c3cb9d32dea331cc06d8a7dee21798e1927737b0`
 
+## 8. Stage 6 Optimization & Active Learning Artifacts
+
+- **Master Optimization Metrics JSON**: `results/raw/stage_6/stage_6_optimization_metrics.json`
+  - SHA256: `46ddd041a3a5edb6bbe7608ee88466ca944a53015133ed17505a11beb5289982`
+- **Optimization Convergence Figure**: `results/raw/stage_6/stage_6_convergence_comparison.png`
+  - SHA256: `b9d194f0f778f0b88d6f057f45e0c14dab9371386b7aac09dc506755e4e3d349`
+- **Method Comparison Benchmarks Figure**: `results/raw/stage_6/stage_6_method_benchmarks.png`
+  - SHA256: `8c66ccf9d8c7b94069205aed47d9db0fbbb39932437def52bb8391e7bca47323`
+- **Tiny Problem Landscape Optimality Figure**: `results/raw/stage_6/stage_6_tiny_problem_optimality.png`
+  - SHA256: `5c02ebd2023267366e12ef2a1719f7eb9379aa817d2d07dade409e32ef25b95d`
+- **Optimal Canopy Layout Spatial Map**: `results/raw/stage_6/stage_6_optimal_layout_map.png`
+  - SHA256: `e94c640f539f98d8e0315568ddd5bd3f97ab0f08e9c31f40776c8c27e7338a94`
+- **Surrogate Parity Scatter Plot**: `results/raw/stage_6/stage_6_surrogate_parity.png`
+  - SHA256: `b0f247c1cc74d9a22c4ebd92843c46872fc42304f8bcbd44494acf9ac5423331`
+- **Optimization Problem Formulation Module**: `src/solaraeus/optimizer/problem.py`
+  - SHA256: `0764fc9785d2c69bbdb22bd1801036531d63ee5fb31e3b78963251ea8a7412cf`
+- **Optimization Algorithms Implementation**: `src/solaraeus/optimizer/algorithms.py`
+  - SHA256: `e142f717420d3996b5f64856fb7bf469c4f8eb3287af1813f068fbc40ea18f2e`
+- **Optimizer Package Initialization**: `src/solaraeus/optimizer/__init__.py`
+  - SHA256: `a2e0df02b651a5a9aa1b095096c02c58c7457638561844be083c60d15b17a890`
+- **Stage 6 Master Benchmark Suite**: `benchmarks/run_stage_6_optimization_suite.py`
+  - SHA256: `9d1ee3eff4eb39aac4971e694a05ad0a53f6bc4e820790fb9df455d6edf2e77e`
+- **Stage 6 Optimization Validation Suite**: `tests/test_stage_6_optimization_validation.py`
+  - SHA256: `9bb984db5cf395a68ab1cdab1f8cc22453706a57eb630a9c745d9fdb500d4c5e`
+- **Stage 6 Optimization Engineering Report**: `docs/stage_6_report.md`
+  - SHA256: `7369dd3610c01d5ef1a068396a0543bffe911f457ad92b7ba91d07fa1cc3899b`
+
 ---
 
-## 8. Deprecated / Legacy Sites Archive
+## 9. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.
