@@ -226,7 +226,7 @@ def create_manuscript():
     p_lit_cap = doc.add_paragraph()
     p_lit_cap.paragraph_format.space_before = Pt(4)
     p_lit_cap.paragraph_format.space_after = Pt(14)
-    r_lcap = p_lit_cap.add_run("Table 1. Systematic literature review of microclimate modeling, GPU acceleration, and optimization frameworks.")
+    r_lcap = p_lit_cap.add_run("Table 1. Systematic literature review of microclimate modelling, GPU acceleration, and optimization platforms.")
     r_lcap.font.size = Pt(8.5)
     r_lcap.font.italic = True
 
@@ -351,7 +351,7 @@ def create_manuscript():
     p_dcap = doc.add_paragraph()
     p_dcap.paragraph_format.space_before = Pt(4)
     p_dcap.paragraph_format.space_after = Pt(14)
-    r_dcap = p_dcap.add_run("Table 2. Geospatial and meteorological data specifications across Berlin, Chicago, and London case studies.")
+    r_dcap = p_dcap.add_run("Table 2. Geospatial and meteorological data characteristics in Berlin, Chicago, and London example studies.")
     r_dcap.font.size = Pt(8.5)
     r_dcap.font.italic = True
 
@@ -389,7 +389,7 @@ def create_manuscript():
         p_f1.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f1.paragraph_format.space_before = Pt(4)
         p_f1.paragraph_format.space_after = Pt(12)
-        r_f1 = p_f1.add_run("Figure 1. End-to-end methodology workflow block diagram of the Solaraeus microclimate platform.")
+        r_f1 = p_f1.add_run("Figure 1. Block diagram of methodology pipeline for Solaraeus microclimate platform end-to-end.")
         r_f1.font.size = Pt(8.5)
         r_f1.font.italic = True
 
@@ -417,7 +417,7 @@ def create_manuscript():
         p_f2.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f2.paragraph_format.space_before = Pt(4)
         p_f2.paragraph_format.space_after = Pt(12)
-        r_f2 = p_f2.add_run("Figure 2. Module-level system architecture and data interface diagram.")
+        r_f2 = p_f2.add_run("Figure 2. System architecture with modules diagram and interface diagram.")
         r_f2.font.size = Pt(8.5)
         r_f2.font.italic = True
 
@@ -448,7 +448,7 @@ def create_manuscript():
         p_f3.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f3.paragraph_format.space_before = Pt(4)
         p_f3.paragraph_format.space_after = Pt(12)
-        r_f3 = p_f3.add_run("Figure 3. Incremental update operational flowchart delineating proved error certificate stages from empirical components.")
+        r_f3 = p_f3.add_run("Figure 3. Flow chart for incremental update process with proved error certificate steps from empirical components.")
         r_f3.font.size = Pt(8.5)
         r_f3.font.italic = True
 
@@ -477,7 +477,7 @@ def create_manuscript():
         p_f4.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f4.paragraph_format.space_before = Pt(4)
         p_f4.paragraph_format.space_after = Pt(12)
-        r_f4 = p_f4.add_run("Figure 4. Active learning Bayesian optimization loop with surrogate training and full-physics verification.")
+        r_f4 = p_f4.add_run("Figure 4. Active learning process of Bayesian optimization using training of surrogate model and validation through full physics.")
         r_f4.font.size = Pt(8.5)
         r_f4.font.italic = True
 
@@ -511,7 +511,7 @@ def create_manuscript():
         p_f5.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f5.paragraph_format.space_before = Pt(4)
         p_f5.paragraph_format.space_after = Pt(12)
-        r_f5 = p_f5.add_run("Figure 5. Spatial layouts, building heights, tree canopies, and cartographic projections for Berlin (a), Chicago (b), and London (c).")
+        r_f5 = p_f5.add_run("Figure 5. Geometries of spatial configuration, buildings, tree canopies, and projections for Berlin (a), Chicago (b), and London (c).")
         r_f5.font.size = Pt(8.5)
         r_f5.font.italic = True
 
@@ -540,7 +540,7 @@ def create_manuscript():
         p_f6.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f6.paragraph_format.space_before = Pt(4)
         p_f6.paragraph_format.space_after = Pt(12)
-        r_f6 = p_f6.add_run("Figure 6. Parity scatter plot of Solaraeus predicted Tmrt versus reference SOLWEIG across 900 street receptor cells.")
+        r_f6 = p_f6.add_run("Figure 6. Parity plot of Solaraeus predicted Tmrt and reference SOLWEIG predictions on 900 street receptors.")
         r_f6.font.size = Pt(8.5)
         r_f6.font.italic = True
 
@@ -566,7 +566,7 @@ def create_manuscript():
         p_f7.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f7.paragraph_format.space_before = Pt(4)
         p_f7.paragraph_format.space_after = Pt(12)
-        r_f7 = p_f7.add_run("Figure 7. Logarithmic histogram of per-cell temperature error across adversarial stress tests relative to the 0.50 K declared bound.")
+        r_f7 = p_f7.add_run("Figure 7. Logarithmic histogram of per-cell temperature prediction error under adversarial setting versus the 0.50 K bound claimed.")
         r_f7.font.size = Pt(8.5)
         r_f7.font.italic = True
 
@@ -592,7 +592,7 @@ def create_manuscript():
         p_f8.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f8.paragraph_format.space_before = Pt(4)
         p_f8.paragraph_format.space_after = Pt(12)
-        r_f8 = p_f8.add_run("Figure 8. Latency comparison across four computational modes on an NVIDIA RTX 4050 GPU across three domain scales.")
+        r_f8 = p_f8.add_run("Figure 8. Comparison of latency in four computational settings in an NVIDIA RTX 4050 GPU in three domains.")
         r_f8.font.size = Pt(8.5)
         r_f8.font.italic = True
 
@@ -621,7 +621,7 @@ def create_manuscript():
     p_pcap = doc.add_paragraph()
     p_pcap.paragraph_format.space_before = Pt(4)
     p_pcap.paragraph_format.space_after = Pt(12)
-    r_pcap = p_pcap.add_run("Table 3. Computational execution latency and acceleration factors across domain scales (NVIDIA RTX 4050).")
+    r_pcap = p_pcap.add_run("Table 3. Computational execution delay and acceleration ratios across domains (NVIDIA RTX 4050).")
     r_pcap.font.size = Pt(8.5)
     r_pcap.font.italic = True
 
@@ -651,7 +651,7 @@ def create_manuscript():
         p_f9.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f9.paragraph_format.space_before = Pt(4)
         p_f9.paragraph_format.space_after = Pt(12)
-        r_f9 = p_f9.add_run("Figure 9. Optimization convergence trajectories across 50 simulation evaluations for four algorithmic strategies.")
+        r_f9 = p_f9.add_run("Figure 9. Convergence plots for four optimization techniques for 50 simulation iterations.")
         r_f9.font.size = Pt(8.5)
         r_f9.font.italic = True
 
@@ -681,7 +681,7 @@ def create_manuscript():
     p_ocap = doc.add_paragraph()
     p_ocap.paragraph_format.space_before = Pt(4)
     p_ocap.paragraph_format.space_after = Pt(12)
-    r_ocap = p_ocap.add_run("Table 4. Quantitative optimization performance comparison across methodologies (Budget = 50 Physics Evaluations).")
+    r_ocap = p_ocap.add_run("Table 4. Optimization efficiency statistical analysis across strategies (Cost = 50 Physics Evaluations).")
     r_ocap.font.size = Pt(8.5)
     r_ocap.font.italic = True
 
@@ -713,7 +713,7 @@ def create_manuscript():
         p_f10.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_f10.paragraph_format.space_before = Pt(4)
         p_f10.paragraph_format.space_after = Pt(12)
-        r_f10 = p_f10.add_run("Figure 10. Spatial distributions of baseline Tmrt (a), optimised Tmrt (b), and cooling delta ΔTmrt (c) on the Berlin Friedrichstraße corridor.")
+        r_f10 = p_f10.add_run("Figure 10. Baseline distribution of Tmrt (a), optimized Tmrt (b), and cooling delta ΔTmrt (c) on Berlin Friedrichstraße street canyon.")
         r_f10.font.size = Pt(8.5)
         r_f10.font.italic = True
 
@@ -741,7 +741,7 @@ def create_manuscript():
     p_rcap = doc.add_paragraph()
     p_rcap.paragraph_format.space_before = Pt(4)
     p_rcap.paragraph_format.space_after = Pt(12)
-    r_rcap = p_rcap.add_run("Table 5. Before/after microclimatic performance and multi-city morphological replication comparison.")
+    r_rcap = p_rcap.add_run("Table 5. Pre/post microclimatic efficiency and multiple cities morphology replica analysis.")
     r_rcap.font.size = Pt(8.5)
     r_rcap.font.italic = True
 

@@ -86,7 +86,7 @@ To overcome these obstacles, this project aims at achieving two main goals:
 The design of heat reduction interventions in cities calls for the combination of physical microclimatic modeling, high-performance computing, and automated spatial optimization. Table~\ref{tab:lit_review} provides a summary of recently published peer-reviewed research in these three areas, presenting core approaches and associated computational challenges in 14 current studies.
 
 \begin{table*}[!t]
-\caption{Systematic Literature Review of Microclimate Modeling, GPU Acceleration, and Optimization Frameworks}
+\caption{Systematic Literature Review of Microclimate Modelling, GPU Acceleration, and Optimization Platforms}
 \label{tab:lit_review}
 \centering
 \scriptsize
@@ -134,7 +134,7 @@ In summary, current decoupled physics engines offer validated biometeorological 
 All datasets involving geometry, weather, and vegetation used in Solaraeus were obtained from legitimate open-source databases and recorded using SHA256 cryptographic hash values in the repository index. Table~\ref{tab:datasets} outlines the sources of the data used in all three case studies.
 
 \begin{table*}[!t]
-\caption{Geospatial and Meteorological Data Specifications Across Berlin, Chicago, and London Case Studies}
+\caption{Geospatial and Meteorological Data Characteristics in Berlin, Chicago, and London Example Studies}
 \label{tab:datasets}
 \centering
 \scriptsize
@@ -171,7 +171,7 @@ Figure~\ref{fig:methodology} shows the entire end-to-end workflow of Solaraeus. 
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{docs/figures/fig1_methodology_workflow.png}
-\caption{End-to-end methodology workflow block diagram of the Solaraeus microclimate platform.}
+\caption{Block diagram of methodology pipeline for Solaraeus microclimate platform end-to-end.}
 \label{fig:methodology}
 \end{figure*}
 
@@ -181,7 +181,7 @@ Figure~\ref{fig:architecture} provides the architecture of our modular system an
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{docs/figures/fig2_system_architecture.png}
-\caption{Module-level system architecture and data interface diagram.}
+\caption{System architecture with modules diagram and interface diagram.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -195,7 +195,7 @@ This inequality is derived using three physical components: (1) bounds on the di
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{docs/figures/fig3_incremental_flowchart.png}
-\caption{Incremental update operational flowchart delineating proved error certificate stages from empirical components.}
+\caption{Flow chart for incremental update process with proved error certificate steps from empirical components.}
 \label{fig:flowchart}
 \end{figure*}
 
@@ -205,7 +205,7 @@ Figure~\ref{fig:opt_loop} depicts the optimization loop for autonomous placement
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{docs/figures/fig4_optimization_loop.png}
-\caption{Active learning Bayesian optimization loop with surrogate training and full-physics verification.}
+\caption{Active learning process of Bayesian optimization using training of surrogate model and validation through full physics.}
 \label{fig:opt_loop}
 \end{figure*}
 
@@ -220,7 +220,7 @@ Figure~\ref{fig:study_areas} shows the urban forms of the three urban canyons st
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.95\textwidth]{docs/figures/fig5_study_areas.png}
-\caption{Spatial layouts, building heights, tree canopies, and cartographic projections for Berlin (a), Chicago (b), and London (c).}
+\caption{Geometries of spatial configuration, buildings, tree canopies, and projections for Berlin (a), Chicago (b), and London (c).}
 \label{fig:study_areas}
 \end{figure*}
 
@@ -230,7 +230,7 @@ Physical accuracy was verified by comparing to the reference SOLWEIG/UMEP model 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.48\textwidth]{docs/figures/fig6_physics_validation.png}
-\caption{Parity scatter plot of Solaraeus predicted $\Tmrt$ versus reference SOLWEIG across 900 street receptor cells.}
+\caption{Parity plot of Solaraeus predicted $\Tmrt$ and reference SOLWEIG predictions on 900 street receptors.}
 \label{fig:physics_val}
 \end{figure}
 
@@ -240,7 +240,7 @@ Figure~\ref{fig:incremental_err} shows the histogram of error per cell for nine 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.48\textwidth]{docs/figures/fig7_incremental_error_hist.png}
-\caption{Logarithmic histogram of per-cell temperature error across adversarial stress tests relative to the 0.50~K declared bound.}
+\caption{Logarithmic histogram of per-cell temperature prediction error under adversarial setting versus the 0.50~K bound claimed.}
 \label{fig:incremental_err}
 \end{figure}
 
@@ -250,12 +250,12 @@ Figure~\ref{fig:perf_bars} provides benchmarking results for the total latency i
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.72\textwidth]{docs/figures/fig8_performance_grouped_bars.png}
-\caption{Latency comparison across four computational modes on an NVIDIA RTX 4050 GPU across three domain scales.}
+\caption{Comparison of latency in four computational settings in an NVIDIA RTX 4050 GPU in three domains.}
 \label{fig:perf_bars}
 \end{figure*}
 
 \begin{table*}[!t]
-\caption{Computational Execution Latency and Acceleration Factors Across Domain Scales (NVIDIA RTX 4050)}
+\caption{Computational Execution Delay and Acceleration Ratios Across Domains (NVIDIA RTX 4050)}
 \label{tab:perf_benchmarks}
 \centering
 \renewcommand{\arraystretch}{1.12}
@@ -278,12 +278,12 @@ Figure~\ref{fig:opt_conv} shows the convergence profiles for the four optimizati
 \begin{figure}[!t]
 \centering
 \includegraphics[width=0.48\textwidth]{docs/figures/fig9_optimization_convergence.png}
-\caption{Optimization convergence trajectories across 50 simulation evaluations for four algorithmic strategies.}
+\caption{Convergence plots for four optimization techniques for 50 simulation iterations.}
 \label{fig:opt_conv}
 \end{figure}
 
 \begin{table*}[!t]
-\caption{Quantitative Optimization Performance Comparison Across Methodologies (Budget = 50 Physics Evaluations)}
+\caption{Optimization Efficiency Statistical Analysis Across Strategies (Cost = 50 Physics Evaluations)}
 \label{tab:opt_summary}
 \centering
 \renewcommand{\arraystretch}{1.12}
@@ -309,12 +309,12 @@ Table~\ref{tab:replication_summary} summarizes the cross-city results of the rep
 \begin{figure*}[!t]
 \centering
 \includegraphics[width=0.95\textwidth]{docs/figures/fig10_before_after_maps.png}
-\caption{Spatial distributions of baseline $\Tmrt$ (a), optimised $\Tmrt$ (b), and cooling delta $\Delta\Tmrt$ (c) on the Berlin Friedrichstra{\ss}e corridor.}
+\caption{Baseline distribution of $\Tmrt$ (a), optimized $\Tmrt$ (b), and cooling delta $\Delta\Tmrt$ (c) on Berlin Friedrichstra{\ss}e street canyon.}
 \label{fig:before_after_maps}
 \end{figure*}
 
 \begin{table*}[!t]
-\caption{Before/After Microclimatic Performance and Multi-City Morphological Replication Comparison}
+\caption{Pre/Post Microclimatic Efficiency and Multiple Cities Morphology Replica Analysis}
 \label{tab:replication_summary}
 \centering
 \renewcommand{\arraystretch}{1.12}
