@@ -235,6 +235,88 @@ def create_manuscript():
     r_lcap.font.size = Pt(8.5)
     r_lcap.font.italic = True
 
+    # 2.1 Radiative Transfer Modeling and Decoupled Microclimate Engines
+    h2_1 = doc.add_heading(level=2)
+    r2_1 = h2_1.add_run("2.1 Radiative Transfer Modeling and Decoupled Microclimate Engines")
+    r2_1.font.size = Pt(11)
+    r2_1.font.bold = True
+    r2_1.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
+
+    p_lr1 = doc.add_paragraph()
+    p_lr1.add_run(
+        "Urban microclimate simulation has traditionally relied on coupled atmospheric and computational fluid dynamics (CFD) formulations, "
+        "such as ENVI-met (Bruse and Fleer 1998) or the LES-based PALM-4U model evaluated by Eingrüber et al. (2025) across Berlin street canyons. "
+        "While physically comprehensive, Navier–Stokes fluid modeling imposes heavy computational penalties, frequently consuming hours of multi-core "
+        "CPU cluster time per diurnal cycle and rendering iterative architectural exploration prohibitive (Krayenhoff et al. 2021). To alleviate this "
+        "overhead, decoupled radiation engines have emerged as the standard paradigm for pedestrian thermal comfort assessment. By decoupling shortwave "
+        "and longwave radiative flux calculations from convective fluid motion, the Solar and Longwave Environmental Irradiance Geometry (SOLWEIG) "
+        "engine (Lindberg et al. 2008, 2018) estimates human radiant exposure at sub-meter spatial resolutions in seconds. Recent investigations have "
+        "extended decoupled ray tracing to direct solar shading of building envelopes (Rayegan et al. 2025), urban canyon microclimate coupling "
+        "(Bourquin et al. 2025), retro-reflective pavement modeling (Yuan et al. 2025), and vegetative cooling assessments (Chen et al. 2024; "
+        "Baia et al. 2026). However, existing decoupled simulation engines operate strictly on monolithic batch principles: whenever a localized "
+        "intervention—such as an overhead fabric canopy or tree planter—is placed within the urban corridor, the solver discards all precomputed "
+        "spatial states and recomputes the entire digital twin from scratch, ignoring spatial sparsity and bounding properties."
+    )
+
+    # 2.2 GPU Acceleration and Precomputed Transport Architectures
+    h2_2 = doc.add_heading(level=2)
+    r2_2 = h2_2.add_run("2.2 GPU Acceleration and Precomputed Transport Architectures")
+    r2_2.font.size = Pt(11)
+    r2_2.font.bold = True
+    r2_2.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
+
+    p_lr2 = doc.add_paragraph()
+    p_lr2.add_run(
+        "To accelerate high-resolution microclimatic calculations, recent literature has increasingly turned to massively parallel graphical "
+        "processing unit (GPU) computing. Kamath et al. (2026) developed SOLWEIG-GPU, achieving substantial runtime reductions for city-scale "
+        "digital twins by parallelizing discrete ray marching and shadow casting on CUDA architectures. Similarly, Mei et al. (2025) presented GUST1.0, "
+        "a GPU-accelerated energy balance engine that expedites 3D surface temperature modeling across complex building geometries, while parallel geospatial "
+        "algorithms in Earth informatics have demonstrated significant efficiency gains for multicriteria urban analysis (Nguyen et al. 2023). Beyond direct "
+        "ray tracing, precomputed radiative transfer techniques have been adapted from computer graphics to thermal simulation. Freude et al. (2023, 2025) "
+        "formulated precomputed radiative transport matrices to simulate dynamic longwave and shortwave exchanges and solve inverse thermal material "
+        "problems at interactive frame rates. Nonetheless, precomputation approaches suffer from a fundamental architectural limitation: they assume "
+        "stationary geometric boundary conditions. The introduction of even a single localized shading canopy alters the geometric horizon and view-factor "
+        "relationships, invalidating the precomputed transport matrices and necessitating an expensive full-domain rebuild. Crucially, prior GPU frameworks "
+        "accelerate full-domain recomputation rather than formulating incremental reuse mechanisms."
+    )
+
+    # 2.3 Machine Learning Surrogates and Active Optimization
+    h2_3 = doc.add_heading(level=2)
+    r2_3 = h2_3.add_run("2.3 Machine Learning Surrogates and Active Optimization")
+    r2_3.font.size = Pt(11)
+    r2_3.font.bold = True
+    r2_3.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
+
+    p_lr3 = doc.add_paragraph()
+    p_lr3.add_run(
+        "Recognizing the computational friction of physics-based solvers, researchers have extensively explored machine learning surrogates for urban "
+        "heat island mitigation and microclimatic planning (Tao et al. 2025; Do et al. 2024). Deep learning surrogate architectures, such as the localized "
+        "Fourier Neural Operators developed by Qin et al. (2024), map geometric and atmospheric boundary conditions to full 3D microclimate fields in "
+        "milliseconds. However, machine learning surrogates introduce two severe limitations in design workflows: first, black-box neural networks lack "
+        "certified, closed-form physical error bounds, making them prone to uncertified extrapolation errors when evaluating novel intervention shapes or "
+        "extreme heatwave meteorology (Tao et al. 2025); second, static surrogates trained on fixed design distributions exhibit sharp accuracy degradation "
+        "in dense canyon environments where sharp shadow discontinuities dominate. While Bayesian active learning frameworks can iteratively refine surrogate "
+        "fidelity by balancing exploitation and exploration, their practical deployment requires an underlying physical simulation engine capable of "
+        "evaluating proposed interventions with sub-second latency and guaranteed numerical parity."
+    )
+
+    # 2.4 Identified Research Gap
+    h2_4 = doc.add_heading(level=2)
+    r2_4 = h2_4.add_run("2.4 Identified Research Gap")
+    r2_4.font.size = Pt(11)
+    r2_4.font.bold = True
+    r2_4.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
+
+    p_lr4 = doc.add_paragraph()
+    p_lr4.add_run(
+        "A synthesis of the surveyed literature reveals a critical methodological gap at the intersection of microclimate simulation and computational "
+        "urban design. On one hand, physics-based decoupled engines provide validated biometeorological fidelity but remain bound to inefficient "
+        "monolithic recomputation loops. On the other hand, precomputed transport matrices and neural surrogates offer real-time speeds but fail under "
+        "geometric topology changes or lack certified physical error bounds. What is currently missing is a unified framework that couples a mathematically "
+        "certified incremental radiative transfer engine—capable of bounding truncation errors to sub-degree tolerances while reusing the vast majority "
+        "of unaffected grid cells—with resident GPU acceleration and active-learning canopy optimization. Solaraeus is engineered specifically to bridge this gap."
+    )
+
     # Section 4: Description of Data
     h4 = doc.add_heading(level=1)
     r4 = h4.add_run("3. Description of Data")
@@ -816,12 +898,20 @@ def create_manuscript():
         run_r = p_r.add_run(ref)
         run_r.font.size = Pt(8.5)
 
-    # Save to docs/ and research_paper_sol/
-    out_docx_docs = Path("docs/solaraeus_manuscript.docx")
+    # Save to research_paper_sol/ and docs/
     out_docx_paper = Path("research_paper_sol/solaraeus_manuscript.docx")
-    doc.save(str(out_docx_docs))
-    shutil.copyfile(str(out_docx_docs), str(out_docx_paper))
-    print(f"Manuscript saved successfully to {out_docx_docs} and {out_docx_paper}")
+    out_docx_docs = Path("docs/solaraeus_manuscript.docx")
+    
+    doc.save(str(out_docx_paper))
+    print(f"Manuscript saved successfully to {out_docx_paper}")
+    
+    try:
+        shutil.copyfile(str(out_docx_paper), str(out_docx_docs))
+        print(f"Manuscript copied successfully to {out_docx_docs}")
+    except PermissionError:
+        out_updated = Path("docs/solaraeus_manuscript_updated.docx")
+        shutil.copyfile(str(out_docx_paper), str(out_updated))
+        print(f"Notice: {out_docx_docs} is currently open in Word. Saved updated copy to {out_updated} and {out_docx_paper}")
 
 if __name__ == '__main__':
     create_manuscript()
