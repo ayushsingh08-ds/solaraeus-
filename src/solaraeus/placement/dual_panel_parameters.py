@@ -200,7 +200,7 @@ class DualPanelBounds:
     """
     Configurable bounds and construction constraints for two-panel optimization.
     """
-    panel_bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_church_street_bounds)
+    panel_bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_corridor_bounds)
     min_separation_m: float = 2.0
     max_individual_area_m2: float = 40.0
     max_total_area_m2: float = 60.0
@@ -271,12 +271,16 @@ class DualPanelBounds:
         return result
 
     @classmethod
-    def get_canonical_church_street_bounds(cls) -> DualPanelBounds:
-        """Preconfigured realistic bounds for Church Street two-panel optimization."""
+    def get_canonical_corridor_bounds(cls) -> DualPanelBounds:
+        """Preconfigured realistic bounds for urban corridor two-panel optimization."""
         return cls(
-            panel_bounds=ParameterBounds.get_canonical_church_street_bounds(),
+            panel_bounds=ParameterBounds.get_canonical_corridor_bounds(),
             min_separation_m=2.0,
             max_individual_area_m2=40.0,
             max_total_area_m2=60.0,
             min_total_area_m2=10.0,
         )
+
+    @classmethod
+    def get_canonical_church_street_bounds(cls) -> DualPanelBounds:
+        return cls.get_canonical_corridor_bounds()

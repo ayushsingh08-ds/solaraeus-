@@ -65,7 +65,7 @@ def get_available_case_areas() -> List[Dict[str, Any]]:
 
 
 def process_case_data(
-    area: str = "church_street",
+    area: str = "berlin",
     timestamp: Optional[str] = None,
     grid_resolution_m: float = 2.0,
     use_gpu: bool = False,
@@ -138,7 +138,7 @@ def process_case_data(
 
 
 def optimize_canopies(
-    area: str = "church_street",
+    area: str = "berlin",
     timestamp: Optional[str] = None,
     num_shades: int = 2,
     canopy_width: float = 4.0,

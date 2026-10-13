@@ -69,7 +69,7 @@ class DualPanelPlacementSolverConfig:
     num_iterations: int = 3              # Number of surrogate propose-eval-retrain iterations
     batch_size: int = 5                  # Number of candidates proposed per iteration
     seed_budget: int = 10                # Number of initial physical seed candidates
-    bounds: DualPanelBounds = field(default_factory=DualPanelBounds.get_canonical_church_street_bounds)
+    bounds: DualPanelBounds = field(default_factory=DualPanelBounds.get_canonical_corridor_bounds)
     surrogate_config: DualPanelSurrogateConfig = field(default_factory=DualPanelSurrogateConfig)
     acquisition_config: DualPanelAcquisitionConfig = field(default_factory=DualPanelAcquisitionConfig)
     objective_config: DualPanelComfortObjectiveConfig = field(default_factory=DualPanelComfortObjectiveConfig)

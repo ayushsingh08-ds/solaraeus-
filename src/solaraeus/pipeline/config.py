@@ -14,7 +14,7 @@ from typing import List, Optional
 class PipelineConfig:
     """End-to-end execution settings for SOLARAEUS engine & segregated directories."""
 
-    area: str = "church_street"
+    area: str = "berlin"
     timestamp: Optional[str] = None
     input_dir: Optional[Path] = None
     processed_dir: Optional[Path] = None

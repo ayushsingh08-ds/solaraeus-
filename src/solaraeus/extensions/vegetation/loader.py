@@ -25,7 +25,7 @@ from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-from solaraeus.sites.church_street.coordinates import transformer
+from solaraeus.core.coordinates import transformer
 
 
 @dataclass

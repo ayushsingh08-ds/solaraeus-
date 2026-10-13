@@ -287,37 +287,45 @@ class ParameterBounds:
         }
 
     @classmethod
-    def get_canonical_church_street_bounds(cls) -> ParameterBounds:
-        """Preconfigured realistic intervention bounds for Church Street pedestrian corridor."""
+    def get_canonical_corridor_bounds(cls) -> ParameterBounds:
+        """Preconfigured realistic intervention bounds for urban pedestrian corridors."""
         return cls(
-            x_min=110.0,
-            x_max=155.0,
-            y_min=55.0,
-            y_max=72.0,
+            x_min=-15.0,
+            x_max=15.0,
+            y_min=-30.0,
+            y_max=30.0,
             length_min=3.0,
             length_max=12.0,
             width_min=2.0,
             width_max=4.5,
             height_min=2.8,
             height_max=4.5,
-            heading_min=90.0,
-            heading_max=115.0,
+            heading_min=0.0,
+            heading_max=180.0,
             albedo_min=0.20,
             albedo_max=0.85,
         )
 
     @classmethod
-    def get_canonical_church_street_baseline_params(cls) -> ShadePanelParams:
-        """Parameters corresponding to canonical CANOPY_001 / BLR_SHADE_001 intervention."""
+    def get_canonical_corridor_baseline_params(cls) -> ShadePanelParams:
+        """Parameters corresponding to canonical corridor overhead shade canopy."""
         return ShadePanelParams(
-            x=131.789,
-            y=64.007,
+            x=0.0,
+            y=0.0,
             length=6.0,
             width=3.0,
             height=3.5,
-            heading_deg=102.44,
+            heading_deg=0.0,
             albedo=0.60,
         )
+
+    @classmethod
+    def get_canonical_church_street_bounds(cls) -> ParameterBounds:
+        return cls.get_canonical_corridor_bounds()
+
+    @classmethod
+    def get_canonical_church_street_baseline_params(cls) -> ShadePanelParams:
+        return cls.get_canonical_corridor_baseline_params()
 
 
 def build_panel_geometry(params: ShadePanelParams,

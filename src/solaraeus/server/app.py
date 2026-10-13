@@ -46,14 +46,14 @@ app.add_middleware(
 
 
 class ProcessRequest(BaseModel):
-    area: str = "church_street"
+    area: str = "berlin"
     timestamp: Optional[str] = None
     grid_resolution_m: float = 2.0
     use_gpu: bool = False
 
 
 class OptimizeRequest(BaseModel):
-    area: str = "church_street"
+    area: str = "berlin"
     timestamp: Optional[str] = None
     num_shades: int = 3
     canopy_width_m: float = 4.0
@@ -71,7 +71,7 @@ def list_areas():
 
 
 @app.get("/api/runs")
-def list_runs(area: str = "church_street"):
+def list_runs(area: str = "berlin"):
     """Lists existing processed and optimized runs for an area."""
     proc_dir = ROOT_DIR / "data" / "processed" / area
     opt_dir = ROOT_DIR / "data" / "optimized" / area

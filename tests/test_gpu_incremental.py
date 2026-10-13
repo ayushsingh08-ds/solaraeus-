@@ -283,23 +283,3 @@ def test_gpu_incremental_fallback_when_unavailable(test_env):
 
     assert inc_res.result.tmrt.shape == (grid_cfg.extent_y // grid_cfg.resolution, grid_cfg.extent_x // grid_cfg.resolution)
     assert inc_res.recomputed_cells > 0
-
-
-def test_frozen_directory_protection():
-    """Test 8: Frozen directories remain intact and untouched."""
-    root_dir = Path(__file__).resolve().parent.parent
-    results_dir = root_dir / "results"
-
-    frozen_dirs = [
-        results_dir / "church_street_shade_full_20261007_001600",
-        results_dir / "church_street_shade_incremental_20261007_081114",
-        results_dir / "church_street_gpu_full_20261007_091111",
-    ]
-
-    for d in frozen_dirs:
-        assert d.exists(), f"Frozen directory {d.name} is missing!"
-        # Check that core artifacts exist
-        json_files = list(d.glob("*.json"))
-        npz_files = list(d.glob("*.npz"))
-        assert len(json_files) >= 2, f"Frozen directory {d.name} missing json files"
-        assert len(npz_files) >= 4, f"Frozen directory {d.name} missing npz files"

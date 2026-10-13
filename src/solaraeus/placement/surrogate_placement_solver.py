@@ -38,7 +38,7 @@ class SurrogatePlacementSolverConfig:
     seed: int = 42
     num_iterations: int = 4              # Number of surrogate propose-eval-retrain iterations
     batch_size: int = 5                  # Number of candidates proposed per iteration (total budget = num_iterations * batch_size)
-    bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_church_street_bounds)
+    bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_corridor_bounds)
     surrogate_config: SurrogateConfig = field(default_factory=SurrogateConfig)
     acquisition_config: AcquisitionConfig = field(default_factory=AcquisitionConfig)
     objective_config: ComfortObjectiveConfig = field(default_factory=ComfortObjectiveConfig)

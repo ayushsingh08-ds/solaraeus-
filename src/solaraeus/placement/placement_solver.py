@@ -37,7 +37,7 @@ class PlacementSolverConfig:
     mutation_factor: float = 0.5
     crossover_prob: float = 0.7
     max_total_evaluations: int = 75
-    bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_church_street_bounds)
+    bounds: ParameterBounds = field(default_factory=ParameterBounds.get_canonical_corridor_bounds)
     objective_config: ComfortObjectiveConfig = field(default_factory=ComfortObjectiveConfig)
     fallback_to_cpu: bool = False
 
@@ -246,8 +246,8 @@ class PlacementSolverEngine:
         return record
 
     def run_deterministic_baseline(self) -> CandidateRecord:
-        """Evaluates canonical CANOPY_001 / BLR_SHADE_001 reference candidate."""
-        canon_params = ParameterBounds.get_canonical_church_street_baseline_params()
+        """Evaluates canonical reference candidate."""
+        canon_params = ParameterBounds.get_canonical_corridor_baseline_params()
         return self.evaluate_candidate(canon_params, method="deterministic_baseline")
 
     def run_random_search(self, n_samples: int) -> List[CandidateRecord]:
