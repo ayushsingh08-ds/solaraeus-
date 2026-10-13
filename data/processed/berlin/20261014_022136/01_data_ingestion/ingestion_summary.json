@@ -1,0 +1,21 @@
+{
+  "stage": "01_data_ingestion",
+  "status": "COMPLETED",
+  "area": "berlin",
+  "total_buildings": 2,
+  "total_scene_triangles": 24,
+  "total_scene_vertices": 16,
+  "pedestrian_grid_cells": 2500,
+  "grid_shape": [
+    50,
+    50
+  ],
+  "local_origin": [
+    0.0,
+    0.0
+  ],
+  "artifacts": {
+    "scene_mesh": "scene_mesh.json",
+    "pedestrian_grid": "pedestrian_grid.json"
+  }
+}

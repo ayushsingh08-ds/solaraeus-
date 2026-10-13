@@ -1,0 +1,16 @@
+{
+  "origin_x_m": -50.0,
+  "origin_y_m": -50.0,
+  "extent_x_m": 100.0,
+  "extent_y_m": 100.0,
+  "resolution_m": 2.0,
+  "nx": 50,
+  "ny": 50,
+  "total_cells": 2500,
+  "sensor_height_z_m": 1.1,
+  "local_origin": [
+    0.0,
+    0.0
+  ],
+  "projected_metric_crs": "EPSG:32643"
+}

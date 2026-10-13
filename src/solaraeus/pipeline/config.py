@@ -50,6 +50,8 @@ class PipelineConfig:
                 self.input_dir = Path(self.data_dir)
             elif (root / "data" / "input" / self.area).exists():
                 self.input_dir = root / "data" / "input" / self.area
+            elif (root / "data" / "raw" / self.area).exists():
+                self.input_dir = root / "data" / "raw" / self.area
             elif (root / "data" / self.area).exists():
                 self.input_dir = root / "data" / self.area
             else:

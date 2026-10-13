@@ -1,0 +1,28 @@
+{
+  "area": "bengaluru_dsu_harohalli",
+  "timestamp": "20261014_014549",
+  "status": "PROCESSED",
+  "processed_dir": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\data\\processed\\bengaluru_dsu_harohalli\\20261014_014549",
+  "grid_resolution_m": 2.0,
+  "total_buildings": 2,
+  "scene_triangles": 24,
+  "grid_cells": 2500,
+  "grid_origin": [
+    -50.0,
+    -50.0
+  ],
+  "grid_extent": [
+    100.0,
+    100.0
+  ],
+  "grid_nx": 50,
+  "grid_ny": 50,
+  "baseline_tmrt_mean_c": 41.69650060588688,
+  "baseline_tmrt_max_c": 53.159478612260955,
+  "baseline_tmrt_min_c": 34.51868831249533,
+  "baseline_utci_mean_c": 35.455760000000005,
+  "baseline_utci_max_c": 38.3,
+  "sunlit_cells_pct": 20.8,
+  "wall_time_sec": 0.48,
+  "created_at": "2026-10-14T01:45:49.571312"
+}

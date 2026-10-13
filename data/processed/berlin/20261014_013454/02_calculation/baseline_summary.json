@@ -1,0 +1,27 @@
+{
+  "stage": "02_calculation",
+  "status": "COMPLETED",
+  "wall_time_sec": 0.941,
+  "metrics": {
+    "tmrt_mean_c": 41.69650060588688,
+    "tmrt_min_c": 34.51868831249533,
+    "tmrt_max_c": 53.159478612260955,
+    "utci_mean_c": 35.455760000000005,
+    "utci_min_c": 33.7,
+    "utci_max_c": 38.3,
+    "svf_mean": 0.17798618298460034,
+    "sunlit_fraction": 0.208
+  },
+  "timings": {
+    "timing_shadow_sec": 0.010749500012025237,
+    "timing_svf_sec": 0.384537600009935,
+    "timing_radiation_sec": 0.00038059998769313097,
+    "timing_utci_sec": 0.5377409000066109
+  },
+  "artifacts": {
+    "shadow": "baseline_shadow.npz",
+    "svf": "baseline_svf.npz",
+    "tmrt": "baseline_tmrt.npz",
+    "utci": "baseline_utci.npz"
+  }
+}

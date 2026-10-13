@@ -1,0 +1,46 @@
+{
+  "stage": "02_calculation",
+  "status": "COMPLETED",
+  "wall_time_sec": 87.587,
+  "simulation_timestamp": {
+    "date": "2026-10-13",
+    "local_time": "12:00:00",
+    "utc_time": "06:30:00",
+    "timezone": "Asia/Kolkata",
+    "latitude": 12.659931202772443,
+    "longitude": 77.45118947225944
+  },
+  "weather_boundary_conditions": {
+    "air_temperature_c": 32.6,
+    "relative_humidity_pct": 31.0,
+    "wind_speed_ms": 4.37,
+    "wind_direction_deg": 59.0,
+    "direct_normal_irradiance_wm2": 885.8,
+    "diffuse_horizontal_irradiance_wm2": 140.0
+  },
+  "metrics": {
+    "tmrt_mean_c": 44.89852472888433,
+    "tmrt_min_c": 32.630457088635524,
+    "tmrt_max_c": 52.294981685686025,
+    "utci_mean_c": 32.694758617686134,
+    "utci_min_c": 29.9,
+    "utci_max_c": 34.4,
+    "svf_mean": 0.924314412231435,
+    "sunlit_fraction": 0.9429784639505259,
+    "outdoor_pedestrian_cells": 229615,
+    "building_interior_cells": 11945
+  },
+  "timings": {
+    "timing_shadow_sec": 2.1682126999949105,
+    "timing_svf_sec": 84.88703189999796,
+    "timing_radiation_sec": 0.0401205999951344,
+    "timing_utci_sec": 0.4822072999959346
+  },
+  "artifacts": {
+    "shadow": "baseline_shadow.npz",
+    "svf": "baseline_svf.npz",
+    "tmrt": "baseline_tmrt.npz",
+    "utci": "baseline_utci.npz",
+    "building_mask": "building_mask.npz"
+  }
+}

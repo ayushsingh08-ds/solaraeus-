@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (3964680 spike-06.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="248459859" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9699937" lon="77.5926324"/>
+ <node id="248459860" visible="true" version="6" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9691069" lon="77.5927967"/>
+ <node id="248459861" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9687507" lon="77.5930533"/>
+ <node id="248459862" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9686372" lon="77.5932332"/>
+ <node id="248459863" visible="true" version="6" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9685922" lon="77.5937037"/>
+ <node id="248459864" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9688101" lon="77.5941227"/>
+ <node id="248459865" visible="true" version="7" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9689569" lon="77.5942375"/>
+ <node id="248459867" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9702797" lon="77.5941499"/>
+ <node id="248459868" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9705257" lon="77.5940280"/>
+ <node id="248459869" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9706917" lon="77.5937949"/>
+ <node id="248459870" visible="true" version="6" changeset="15380388" timestamp="2013-03-16T06:01:22Z" user="docaneesh" uid="492742" lat="12.9707676" lon="77.5933474"/>
+ <node id="248459871" visible="true" version="6" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9705206" lon="77.5928277"/>
+ <node id="248459872" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9703879" lon="77.5927311"/>
+ <node id="663313899" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9685723" lon="77.5935471"/>
+ <node id="663313900" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9689322" lon="77.5928894"/>
+ <node id="663313902" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9686992" lon="77.5939962"/>
+ <node id="663313903" visible="true" version="6" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9691026" lon="77.5943083"/>
+ <node id="663313904" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9707456" lon="77.5936341"/>
+ <node id="663313905" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9706892" lon="77.5930547"/>
+ <node id="663313906" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9702046" lon="77.5926528"/>
+ <node id="663313907" visible="true" version="5" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9704187" lon="77.5940988"/>
+ <node id="663321276" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9687695" lon="77.5937298"/>
+ <node id="663321277" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9687479" lon="77.5935648"/>
+ <node id="663321279" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9687688" lon="77.5934195"/>
+ <node id="663321280" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9688036" lon="77.5933025"/>
+ <node id="663321281" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9688845" lon="77.5931917"/>
+ <node id="663321282" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:24Z" user="docaneesh" uid="492742" lat="12.9689525" lon="77.5931167"/>
+ <node id="663321283" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:24Z" user="docaneesh" uid="492742" lat="12.9690534" lon="77.5930357"/>
+ <node id="663321284" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9691805" lon="77.5929817"/>
+ <node id="663321285" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9693314" lon="77.5941541"/>
+ <node id="663321286" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9692267" lon="77.5941417"/>
+ <node id="663321287" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9690479" lon="77.5940733"/>
+ <node id="663321288" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9689664" lon="77.5940171"/>
+ <node id="663321290" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9688295" lon="77.5938525"/>
+ <node id="663321324" visible="true" version="4" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9700109" lon="77.5928375"/>
+ <node id="663321327" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9702765" lon="77.5928847"/>
+ <node id="663321328" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9703854" lon="77.5929523"/>
+ <node id="663321330" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9704859" lon="77.5930486"/>
+ <node id="663321332" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:24Z" user="docaneesh" uid="492742" lat="12.9705904" lon="77.5933010"/>
+ <node id="663321334" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9705938" lon="77.5934951"/>
+ <node id="663321336" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9705372" lon="77.5936773"/>
+ <node id="663321338" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9704363" lon="77.5938299"/>
+ <node id="663321339" visible="true" version="4" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9703085" lon="77.5939288"/>
+ <node id="663321341" visible="true" version="5" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9701623" lon="77.5939757"/>
+ <node id="1446276718" visible="true" version="4" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9692845" lon="77.5943414"/>
+ <node id="1446276723" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9706126" lon="77.5939240"/>
+ <node id="1446278984" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9707351" lon="77.5931934"/>
+ <node id="1446278986" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:24Z" user="docaneesh" uid="492742" lat="12.9707687" lon="77.5934960"/>
+ <node id="1446278987" visible="true" version="4" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9691296" lon="77.5941140"/>
+ <node id="1446278993" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9705422" lon="77.5931631"/>
+ <node id="1446278995" visible="true" version="4" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9701684" lon="77.5928412"/>
+ <node id="1446278997" visible="true" version="4" changeset="65662473" timestamp="2018-12-21T08:50:39Z" user="stadiaarcadia" uid="8570285" lat="12.9688964" lon="77.5939420"/>
+ <node id="1446278999" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9686201" lon="77.5938475"/>
+ <node id="1446279001" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:23Z" user="docaneesh" uid="492742" lat="12.9685926" lon="77.5933757"/>
+ <node id="1446279002" visible="true" version="3" changeset="15380388" timestamp="2013-03-16T06:01:24Z" user="docaneesh" uid="492742" lat="12.9706133" lon="77.5929260"/>
+ <node id="3943327558" visible="true" version="1" changeset="36546710" timestamp="2016-01-13T10:45:38Z" user="PlaneMad" uid="1306" lat="12.9693922" lon="77.5925639"/>
+ <node id="3943327559" visible="true" version="1" changeset="36546710" timestamp="2016-01-13T10:45:38Z" user="PlaneMad" uid="1306" lat="12.9694220" lon="77.5927365"/>
+ <node id="3943327561" visible="true" version="1" changeset="36546710" timestamp="2016-01-13T10:45:38Z" user="PlaneMad" uid="1306" lat="12.9695322" lon="77.5925384"/>
+ <node id="3943327562" visible="true" version="1" changeset="36546710" timestamp="2016-01-13T10:45:38Z" user="PlaneMad" uid="1306" lat="12.9695620" lon="77.5927110"/>
+ <way id="23029713" visible="true" version="10" changeset="65662473" timestamp="2018-12-21T08:50:40Z" user="stadiaarcadia" uid="8570285">
+  <nd ref="248459859"/>
+  <nd ref="3943327562"/>
+  <nd ref="3943327561"/>
+  <nd ref="3943327558"/>
+  <nd ref="3943327559"/>
+  <nd ref="248459860"/>
+  <nd ref="663313900"/>
+  <nd ref="248459861"/>
+  <nd ref="248459862"/>
+  <nd ref="1446279001"/>
+  <nd ref="663313899"/>
+  <nd ref="248459863"/>
+  <nd ref="1446278999"/>
+  <nd ref="663313902"/>
+  <nd ref="248459864"/>
+  <nd ref="248459865"/>
+  <nd ref="663313903"/>
+  <nd ref="1446276718"/>
+  <nd ref="248459867"/>
+  <nd ref="663313907"/>
+  <nd ref="248459868"/>
+  <nd ref="1446276723"/>
+  <nd ref="248459869"/>
+  <nd ref="663313904"/>
+  <nd ref="1446278986"/>
+  <nd ref="248459870"/>
+  <nd ref="1446278984"/>
+  <nd ref="663313905"/>
+  <nd ref="1446279002"/>
+  <nd ref="248459871"/>
+  <nd ref="248459872"/>
+  <nd ref="663313906"/>
+  <nd ref="248459859"/>
+ </way>
+ <way id="52033920" visible="true" version="11" changeset="65662473" timestamp="2018-12-21T08:50:40Z" user="stadiaarcadia" uid="8570285">
+  <nd ref="663321324"/>
+  <nd ref="1446278995"/>
+  <nd ref="663321327"/>
+  <nd ref="663321328"/>
+  <nd ref="663321330"/>
+  <nd ref="1446278993"/>
+  <nd ref="663321332"/>
+  <nd ref="663321334"/>
+  <nd ref="663321336"/>
+  <nd ref="663321338"/>
+  <nd ref="663321339"/>
+  <nd ref="663321341"/>
+  <nd ref="663321285"/>
+  <nd ref="663321286"/>
+  <nd ref="1446278987"/>
+  <nd ref="663321287"/>
+  <nd ref="663321288"/>
+  <nd ref="1446278997"/>
+  <nd ref="663321290"/>
+  <nd ref="663321276"/>
+  <nd ref="663321277"/>
+  <nd ref="663321279"/>
+  <nd ref="663321280"/>
+  <nd ref="663321281"/>
+  <nd ref="663321282"/>
+  <nd ref="663321283"/>
+  <nd ref="663321284"/>
+  <nd ref="663321324"/>
+ </way>
+ <relation id="446504" visible="true" version="6" changeset="190127227" timestamp="2026-10-07T06:54:22Z" user="stadiaarcadia" uid="8570285">
+  <member type="way" ref="52033920" role="inner"/>
+  <member type="way" ref="23029713" role="outer"/>
+  <tag k="building" v="stadium"/>
+  <tag k="name" v="Sree Kanteerava Outdoor Stadium"/>
+  <tag k="name:kn" v="ಶ್ರೀ ಕಂಠೀರವ ಹೊರಾಂಗಣ ಕ್ರೀಡಾಂಗಣ"/>
+  <tag k="type" v="multipolygon"/>
+ </relation>
+</osm>

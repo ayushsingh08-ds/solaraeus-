@@ -1,0 +1,1201 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "way/1239461164/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1239461164,
+        "osm_tags": {
+          "building": "yes",
+          "building:levels": "5",
+          "name": "DSU School of Engineering"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4505275,
+              12.6624517
+            ],
+            [
+              77.4507593,
+              12.6621674
+            ],
+            [
+              77.4507429,
+              12.6620673
+            ],
+            [
+              77.4507713,
+              12.6620247
+            ],
+            [
+              77.4507751,
+              12.6620167
+            ],
+            [
+              77.4508168,
+              12.6619512
+            ],
+            [
+              77.450747,
+              12.6612444
+            ],
+            [
+              77.450587,
+              12.6612104
+            ],
+            [
+              77.4505131,
+              12.6611724
+            ],
+            [
+              77.4503264,
+              12.6614186
+            ],
+            [
+              77.4504598,
+              12.6615207
+            ],
+            [
+              77.4505028,
+              12.6618651
+            ],
+            [
+              77.4504064,
+              12.6619612
+            ],
+            [
+              77.4504433,
+              12.6619992
+            ],
+            [
+              77.4504267,
+              12.6620228
+            ],
+            [
+              77.45027,
+              12.6619031
+            ],
+            [
+              77.4501009,
+              12.6621151
+            ],
+            [
+              77.4505275,
+              12.6624517
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1239461165/0",
+      "properties": {
+        "height": 21.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1239461165,
+        "osm_tags": {
+          "amenity": "college",
+          "building": "yes",
+          "building:levels": "7",
+          "education": "college",
+          "name": "CD Simer"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4495411,
+              12.6616499
+            ],
+            [
+              77.4497131,
+              12.6614482
+            ],
+            [
+              77.449589,
+              12.6613471
+            ],
+            [
+              77.4496912,
+              12.6612061
+            ],
+            [
+              77.4500254,
+              12.6611662
+            ],
+            [
+              77.4501276,
+              12.6612431
+            ],
+            [
+              77.4501626,
+              12.661199
+            ],
+            [
+              77.450205,
+              12.6612318
+            ],
+            [
+              77.4503538,
+              12.6610381
+            ],
+            [
+              77.4502706,
+              12.6609384
+            ],
+            [
+              77.4502429,
+              12.6608401
+            ],
+            [
+              77.4494956,
+              12.6609227
+            ],
+            [
+              77.4494488,
+              12.6609734
+            ],
+            [
+              77.4494067,
+              12.661019
+            ],
+            [
+              77.4493233,
+              12.6611093
+            ],
+            [
+              77.4493584,
+              12.6611406
+            ],
+            [
+              77.4493365,
+              12.6611563
+            ],
+            [
+              77.449281,
+              12.6611064
+            ],
+            [
+              77.4491004,
+              12.6613276
+            ],
+            [
+              77.4495338,
+              12.6616585
+            ],
+            [
+              77.4495411,
+              12.6616499
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1239461167/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1239461167,
+        "osm_tags": {
+          "building": "yes",
+          "building:levels": "5",
+          "name": "CD Simer Hospital"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4499642,
+              12.6602836
+            ],
+            [
+              77.4499989,
+              12.6603136
+            ],
+            [
+              77.4499899,
+              12.6603349
+            ],
+            [
+              77.4499642,
+              12.6603174
+            ],
+            [
+              77.4497048,
+              12.6603348
+            ],
+            [
+              77.4496921,
+              12.6602805
+            ],
+            [
+              77.449796,
+              12.6601643
+            ],
+            [
+              77.4498289,
+              12.6601915
+            ],
+            [
+              77.4499201,
+              12.6600704
+            ],
+            [
+              77.4496769,
+              12.6598777
+            ],
+            [
+              77.4494384,
+              12.6601695
+            ],
+            [
+              77.449178,
+              12.6604881
+            ],
+            [
+              77.4492866,
+              12.6605692
+            ],
+            [
+              77.4494921,
+              12.6607228
+            ],
+            [
+              77.4501961,
+              12.660619
+            ],
+            [
+              77.4502721,
+              12.6603546
+            ],
+            [
+              77.4500214,
+              12.6601668
+            ],
+            [
+              77.4499642,
+              12.6602836
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1239461168/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1239461168,
+        "osm_tags": {
+          "building": "yes"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.448715,
+              12.6595446
+            ],
+            [
+              77.4482081,
+              12.6591441
+            ],
+            [
+              77.4477795,
+              12.6596603
+            ],
+            [
+              77.4482864,
+              12.6600609
+            ],
+            [
+              77.448715,
+              12.6595446
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1239461169/0",
+      "properties": {
+        "height": 12.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1239461169,
+        "osm_tags": {
+          "building": "yes",
+          "building:levels": "4",
+          "name": "School of Health Sciences"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4495268,
+              12.6593232
+            ],
+            [
+              77.449885,
+              12.6588732
+            ],
+            [
+              77.4496615,
+              12.6587038
+            ],
+            [
+              77.4495123,
+              12.6588911
+            ],
+            [
+              77.4493031,
+              12.6591537
+            ],
+            [
+              77.4495268,
+              12.6593232
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1239461170/0",
+      "properties": {
+        "height": 9.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1239461170,
+        "osm_tags": {
+          "amenity": "mortuary",
+          "building": "yes",
+          "building:levels": "3"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4493406,
+              12.6595658
+            ],
+            [
+              77.4490871,
+              12.659379
+            ],
+            [
+              77.4490414,
+              12.659438
+            ],
+            [
+              77.4490026,
+              12.6594881
+            ],
+            [
+              77.4492562,
+              12.6596749
+            ],
+            [
+              77.4493406,
+              12.6595658
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1280769785/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1280769785,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Boys Hostels"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4476935,
+              12.6577913
+            ],
+            [
+              77.4477689,
+              12.6576981
+            ],
+            [
+              77.4472861,
+              12.6573265
+            ],
+            [
+              77.4472107,
+              12.6574197
+            ],
+            [
+              77.4476935,
+              12.6577913
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1280769786/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1280769786,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Boys Hostels"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4475113,
+              12.6580195
+            ],
+            [
+              77.4475866,
+              12.6579263
+            ],
+            [
+              77.4471038,
+              12.6575547
+            ],
+            [
+              77.4470285,
+              12.6576479
+            ],
+            [
+              77.4475113,
+              12.6580195
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1280769787/0",
+      "properties": {
+        "height": 6.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1280769787,
+        "osm_tags": {
+          "building": "yes",
+          "building:levels": "2"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4519347,
+              12.6623688
+            ],
+            [
+              77.452088,
+              12.6621723
+            ],
+            [
+              77.4518801,
+              12.6620179
+            ],
+            [
+              77.4517269,
+              12.6622143
+            ],
+            [
+              77.4519347,
+              12.6623688
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1280769790/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1280769790,
+        "osm_tags": {
+          "building": "yes",
+          "name": "CD Simer Staff Quarter"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4515898,
+              12.6589934
+            ],
+            [
+              77.4516391,
+              12.6588456
+            ],
+            [
+              77.450957,
+              12.6586298
+            ],
+            [
+              77.4509143,
+              12.6587919
+            ],
+            [
+              77.4515898,
+              12.6589934
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1335606493/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1335606493,
+        "osm_tags": {
+          "amenity": "fast_food",
+          "building": "yes",
+          "fast_food": "cafeteria",
+          "name": "Tummy Trails"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4527126,
+              12.6606041
+            ],
+            [
+              77.4528807,
+              12.6601029
+            ],
+            [
+              77.4527826,
+              12.6600437
+            ],
+            [
+              77.4524604,
+              12.6604082
+            ],
+            [
+              77.4527126,
+              12.6606041
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913280/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913280,
+        "osm_tags": {
+          "amenity": "canteen",
+          "building": "yes",
+          "name": "Hostel Mess"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": false
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4464905,
+              12.6580255
+            ],
+            [
+              77.4465403,
+              12.6579705
+            ],
+            [
+              77.4462782,
+              12.6577849
+            ],
+            [
+              77.4462292,
+              12.6578462
+            ],
+            [
+              77.4464905,
+              12.6580255
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913285/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913285,
+        "osm_tags": {
+          "building": "yes",
+          "construction": "education",
+          "landuse": "construction",
+          "name": "Construction"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4503227,
+              12.6602414
+            ],
+            [
+              77.4506094,
+              12.6599471
+            ],
+            [
+              77.4505339,
+              12.6593142
+            ],
+            [
+              77.4502021,
+              12.6591081
+            ],
+            [
+              77.4497382,
+              12.6598036
+            ],
+            [
+              77.4503227,
+              12.6602414
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913289/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913289,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Pharamacy Department"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4523064,
+              12.6597484
+            ],
+            [
+              77.4521027,
+              12.6599802
+            ],
+            [
+              77.452378,
+              12.6602377
+            ],
+            [
+              77.4526382,
+              12.6599434
+            ],
+            [
+              77.4523818,
+              12.6593399
+            ],
+            [
+              77.4523064,
+              12.6597484
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913291/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913291,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Girsls Hostel 2"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4472946,
+              12.6583029
+            ],
+            [
+              77.4473699,
+              12.6582097
+            ],
+            [
+              77.4468871,
+              12.6578381
+            ],
+            [
+              77.4468118,
+              12.6579313
+            ],
+            [
+              77.4472946,
+              12.6583029
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913292/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913292,
+        "osm_tags": {
+          "building": "yes"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4495704,
+              12.6584146
+            ],
+            [
+              77.4495779,
+              12.6583814
+            ],
+            [
+              77.4495629,
+              12.658363
+            ],
+            [
+              77.4495402,
+              12.6583704
+            ],
+            [
+              77.4495233,
+              12.658387
+            ],
+            [
+              77.4494893,
+              12.6583667
+            ],
+            [
+              77.4494818,
+              12.6583465
+            ],
+            [
+              77.4494591,
+              12.6583281
+            ],
+            [
+              77.4494384,
+              12.6583428
+            ],
+            [
+              77.449412,
+              12.6583502
+            ],
+            [
+              77.4493573,
+              12.658398
+            ],
+            [
+              77.4494082,
+              12.6584421
+            ],
+            [
+              77.4493818,
+              12.6584716
+            ],
+            [
+              77.4494101,
+              12.6584937
+            ],
+            [
+              77.449395,
+              12.6585084
+            ],
+            [
+              77.4494252,
+              12.6585415
+            ],
+            [
+              77.4495704,
+              12.6584146
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913293/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913293,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Boys Hostels"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4481675,
+              12.6585709
+            ],
+            [
+              77.4482222,
+              12.6585047
+            ],
+            [
+              77.4481901,
+              12.6584771
+            ],
+            [
+              77.4482109,
+              12.6584495
+            ],
+            [
+              77.4481788,
+              12.6584237
+            ],
+            [
+              77.4482147,
+              12.6583943
+            ],
+            [
+              77.4479884,
+              12.6582011
+            ],
+            [
+              77.4480544,
+              12.6581257
+            ],
+            [
+              77.4479281,
+              12.6580116
+            ],
+            [
+              77.4477942,
+              12.6581533
+            ],
+            [
+              77.4478507,
+              12.6582085
+            ],
+            [
+              77.4478432,
+              12.6582453
+            ],
+            [
+              77.4477791,
+              12.6582729
+            ],
+            [
+              77.4481675,
+              12.6585709
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913294/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913294,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Animal House and Laundry"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4477721,
+              12.6584181
+            ],
+            [
+              77.4476159,
+              12.6582921
+            ],
+            [
+              77.4475509,
+              12.6582398
+            ],
+            [
+              77.4473775,
+              12.6584513
+            ],
+            [
+              77.4478262,
+              12.658788
+            ],
+            [
+              77.4479978,
+              12.6585746
+            ],
+            [
+              77.4477721,
+              12.6584181
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913295/0",
+      "properties": {
+        "height": 15.0,
+        "height_source": "default_15m_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913295,
+        "osm_tags": {
+          "building": "yes",
+          "name": "Girls Hostel"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4488786,
+              12.6590983
+            ],
+            [
+              77.4489306,
+              12.6590257
+            ],
+            [
+              77.4489928,
+              12.6590887
+            ],
+            [
+              77.4491951,
+              12.6588436
+            ],
+            [
+              77.4491103,
+              12.6587735
+            ],
+            [
+              77.4489862,
+              12.6588786
+            ],
+            [
+              77.4488753,
+              12.6588372
+            ],
+            [
+              77.4487709,
+              12.6587544
+            ],
+            [
+              77.4487448,
+              12.658592
+            ],
+            [
+              77.4487219,
+              12.658471
+            ],
+            [
+              77.4485294,
+              12.6584742
+            ],
+            [
+              77.4485392,
+              12.6587544
+            ],
+            [
+              77.4486077,
+              12.6587512
+            ],
+            [
+              77.4486077,
+              12.658799
+            ],
+            [
+              77.4485228,
+              12.6588244
+            ],
+            [
+              77.4488786,
+              12.6590983
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "way/1451913297/0",
+      "properties": {
+        "height": 9.0,
+        "height_source": "levels_times_3_estimate",
+        "osm_type": "way",
+        "osm_id": 1451913297,
+        "osm_tags": {
+          "amenity": "DSU College of Nursing Sciences",
+          "building": "yes",
+          "building:levels": "3",
+          "name": "Nursing sciences"
+        },
+        "source": "OpenStreetMap",
+        "campus_intersects": true
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.4487284,
+              12.6602127
+            ],
+            [
+              77.4488876,
+              12.6600108
+            ],
+            [
+              77.4490874,
+              12.6597574
+            ],
+            [
+              77.4488753,
+              12.6596236
+            ],
+            [
+              77.4485065,
+              12.6600758
+            ],
+            [
+              77.4487284,
+              12.6602127
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,312 @@
+{
+  "coordinate_system": "EPSG:25833_LOCAL",
+  "metadata": {},
+  "ground": {
+    "z_elevation": 0.0,
+    "material_id": "default_ground"
+  },
+  "pedestrian_grid": {
+    "extent_x": 100.0,
+    "extent_y": 100.0,
+    "origin_x": -50.0,
+    "origin_y": -50.0,
+    "resolution": 2.0,
+    "pedestrian_height": 1.1
+  },
+  "materials": {
+    "default_wall": {
+      "id": "default_wall",
+      "albedo": 0.2,
+      "emissivity": 0.9,
+      "surface_temperature": 305.15,
+      "is_opaque": true
+    },
+    "default_ground": {
+      "id": "default_ground",
+      "albedo": 0.15,
+      "emissivity": 0.95,
+      "surface_temperature": 308.15,
+      "is_opaque": true
+    }
+  },
+  "buildings": [
+    {
+      "id": "w_bldg",
+      "footprint": {
+        "xmin": -45.0,
+        "xmax": -10.0,
+        "ymin": -45.0,
+        "ymax": 45.0
+      },
+      "height": 22.0,
+      "position": [
+        "W",
+        "e",
+        "s",
+        "t",
+        " ",
+        "F",
+        "a",
+        "c",
+        "a",
+        "d",
+        "e"
+      ],
+      "material_id": "default_wall",
+      "enabled": true
+    },
+    {
+      "id": "e_bldg",
+      "footprint": {
+        "xmin": 10.0,
+        "xmax": 45.0,
+        "ymin": -45.0,
+        "ymax": 45.0
+      },
+      "height": 22.5,
+      "position": [
+        "E",
+        "a",
+        "s",
+        "t",
+        " ",
+        "F",
+        "a",
+        "c",
+        "a",
+        "d",
+        "e"
+      ],
+      "material_id": "default_wall",
+      "enabled": true
+    }
+  ],
+  "meshes": [
+    {
+      "id": "w_bldg",
+      "material_id": "default_wall",
+      "enabled": true,
+      "metadata": {
+        "generator": "create_box_mesh",
+        "type": "axis_aligned_box"
+      },
+      "vertices": [
+        [
+          -45.0,
+          -45.0,
+          0.0
+        ],
+        [
+          -10.0,
+          -45.0,
+          0.0
+        ],
+        [
+          -10.0,
+          45.0,
+          0.0
+        ],
+        [
+          -45.0,
+          45.0,
+          0.0
+        ],
+        [
+          -45.0,
+          -45.0,
+          22.0
+        ],
+        [
+          -10.0,
+          -45.0,
+          22.0
+        ],
+        [
+          -10.0,
+          45.0,
+          22.0
+        ],
+        [
+          -45.0,
+          45.0,
+          22.0
+        ]
+      ],
+      "triangles": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          4,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ]
+    },
+    {
+      "id": "e_bldg",
+      "material_id": "default_wall",
+      "enabled": true,
+      "metadata": {
+        "generator": "create_box_mesh",
+        "type": "axis_aligned_box"
+      },
+      "vertices": [
+        [
+          10.0,
+          -45.0,
+          0.0
+        ],
+        [
+          45.0,
+          -45.0,
+          0.0
+        ],
+        [
+          45.0,
+          45.0,
+          0.0
+        ],
+        [
+          10.0,
+          45.0,
+          0.0
+        ],
+        [
+          10.0,
+          -45.0,
+          22.5
+        ],
+        [
+          45.0,
+          -45.0,
+          22.5
+        ],
+        [
+          45.0,
+          45.0,
+          22.5
+        ],
+        [
+          10.0,
+          45.0,
+          22.5
+        ]
+      ],
+      "triangles": [
+        [
+          0,
+          2,
+          1
+        ],
+        [
+          0,
+          3,
+          2
+        ],
+        [
+          4,
+          5,
+          6
+        ],
+        [
+          4,
+          6,
+          7
+        ],
+        [
+          0,
+          1,
+          5
+        ],
+        [
+          0,
+          5,
+          4
+        ],
+        [
+          1,
+          2,
+          6
+        ],
+        [
+          1,
+          6,
+          5
+        ],
+        [
+          2,
+          3,
+          7
+        ],
+        [
+          2,
+          7,
+          6
+        ],
+        [
+          3,
+          0,
+          4
+        ],
+        [
+          3,
+          4,
+          7
+        ]
+      ]
+    }
+  ]
+}

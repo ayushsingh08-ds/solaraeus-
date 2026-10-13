@@ -595,3 +595,159 @@ def create_l_shaped_mesh(building_id: str,
         material_id=material_id,
         metadata={"generator": "create_l_shaped_mesh", "type": "concave_l_shape"}
     )
+
+
+def triangulate_simple_polygon(pts: np.ndarray) -> np.ndarray:
+    """
+    Triangulates a simple 2D polygon into triangles using ear clipping.
+
+    Parameters:
+        pts: Shape (N, 2) array of counter-clockwise or clockwise 2D coordinates.
+
+    Returns:
+        Shape (N-2, 3) integer array of 0-based vertex indices into original pts.
+    """
+    pts = np.asarray(pts, dtype=np.float64)
+    if len(pts) > 0 and np.allclose(pts[0], pts[-1]):
+        pts = pts[:-1]
+    n = len(pts)
+    if n < 3:
+        return np.empty((0, 3), dtype=np.int64)
+    if n == 3:
+        return np.array([[0, 1, 2]], dtype=np.int64)
+
+    # Shoelace signed area to test orientation
+    x, y = pts[:, 0], pts[:, 1]
+    signed_area2 = np.sum(x * np.roll(y, -1) - y * np.roll(x, -1))
+    if signed_area2 < 0:
+        pts_ccw = pts[::-1]
+        reversal = True
+    else:
+        pts_ccw = pts.copy()
+        reversal = False
+
+    def is_convex(p0, p1, p2):
+        return ((p1[0] - p0[0]) * (p2[1] - p1[1]) - (p1[1] - p0[1]) * (p2[0] - p0[0])) > 1e-9
+
+    def point_in_tri(pt, p0, p1, p2):
+        v0, v1, v2 = p2 - p0, p1 - p0, pt - p0
+        dot00 = np.dot(v0, v0)
+        dot01 = np.dot(v0, v1)
+        dot02 = np.dot(v0, v2)
+        dot11 = np.dot(v1, v1)
+        dot12 = np.dot(v1, v2)
+        denom = dot00 * dot11 - dot01 * dot01
+        if abs(denom) < 1e-12:
+            return False
+        inv = 1.0 / denom
+        u = (dot11 * dot02 - dot01 * dot12) * inv
+        v = (dot00 * dot12 - dot01 * dot02) * inv
+        return (u >= -1e-7) and (v >= -1e-7) and (u + v <= 1.0 + 1e-7)
+
+    triangles = []
+    poly_idx = list(range(n))
+    poly_pts = pts_ccw.copy()
+    limit = 4 * n
+    count = 0
+
+    while len(poly_idx) > 3 and count < limit:
+        count += 1
+        m = len(poly_idx)
+        ear_found = False
+        for i in range(m):
+            prev_i = (i - 1 + m) % m
+            next_i = (i + 1) % m
+            p_prev = poly_pts[prev_i]
+            p_curr = poly_pts[i]
+            p_next = poly_pts[next_i]
+
+            if not is_convex(p_prev, p_curr, p_next):
+                continue
+
+            has_inside = any(
+                j not in (prev_i, i, next_i) and point_in_tri(poly_pts[j], p_prev, p_curr, p_next)
+                for j in range(m)
+            )
+            if not has_inside:
+                op = (n - 1 - poly_idx[prev_i]) if reversal else poly_idx[prev_i]
+                oc = (n - 1 - poly_idx[i]) if reversal else poly_idx[i]
+                on = (n - 1 - poly_idx[next_i]) if reversal else poly_idx[next_i]
+                triangles.append([op, oc, on])
+                poly_idx.pop(i)
+                poly_pts = np.delete(poly_pts, i, axis=0)
+                ear_found = True
+                break
+
+        if not ear_found:
+            op = (n - 1 - poly_idx[0]) if reversal else poly_idx[0]
+            oc = (n - 1 - poly_idx[1]) if reversal else poly_idx[1]
+            on = (n - 1 - poly_idx[2]) if reversal else poly_idx[2]
+            triangles.append([op, oc, on])
+            poly_idx.pop(1)
+            poly_pts = np.delete(poly_pts, 1, axis=0)
+
+    if len(poly_idx) == 3:
+        op = (n - 1 - poly_idx[0]) if reversal else poly_idx[0]
+        oc = (n - 1 - poly_idx[1]) if reversal else poly_idx[1]
+        on = (n - 1 - poly_idx[2]) if reversal else poly_idx[2]
+        triangles.append([op, oc, on])
+
+    return np.array(triangles, dtype=np.int64)
+
+
+def create_extruded_polygon_mesh(poly_id: str,
+                                 coords: Any,
+                                 height: float,
+                                 zmin: float = 0.0,
+                                 material_id: str = "default_wall") -> TriangleMesh:
+    """
+    Constructs a watertight 3D prismatic mesh by extruding a 2D footprint polygon vertically.
+
+    Parameters:
+        poly_id: Unique identifier for the mesh.
+        coords: Sequence of (x, y) 2D coordinates defining the polygon perimeter.
+        height: Extrusion height in meters (zmax = zmin + height).
+        zmin: Base elevation in meters.
+        material_id: Material identifier.
+
+    Returns:
+        Validated watertight TriangleMesh.
+    """
+    pts = np.asarray(coords, dtype=np.float64)
+    if len(pts) > 0 and np.allclose(pts[0], pts[-1]):
+        pts = pts[:-1]
+    n = len(pts)
+    if n < 3:
+        raise ValueError(f"Extruded polygon must have at least 3 vertices, got {n}.")
+
+    # Ensure counter-clockwise ordering for outward-facing normals
+    x, y = pts[:, 0], pts[:, 1]
+    if np.sum(x * np.roll(y, -1) - y * np.roll(x, -1)) < 0:
+        pts = pts[::-1]
+
+    zmax = zmin + height
+    v_bottom = np.column_stack([pts, np.full(n, zmin)])
+    v_top = np.column_stack([pts, np.full(n, zmax)])
+    vertices = np.vstack([v_bottom, v_top])
+
+    tri_2d = triangulate_simple_polygon(pts)
+    tri_top = tri_2d + n
+    tri_bottom = np.column_stack([tri_2d[:, 0], tri_2d[:, 2], tri_2d[:, 1]])
+
+    side_tris = []
+    for i in range(n):
+        i_next = (i + 1) % n
+        b0, b1 = i, i_next
+        t0, t1 = i + n, i_next + n
+        side_tris.append([b0, b1, t1])
+        side_tris.append([b0, t1, t0])
+
+    all_triangles = np.vstack([tri_bottom, tri_top, np.array(side_tris, dtype=np.int64)])
+    return TriangleMesh(
+        id=poly_id,
+        vertices=vertices,
+        triangles=all_triangles,
+        material_id=material_id,
+        metadata={"generator": "create_extruded_polygon_mesh", "height_m": height, "num_vertices": n}
+    )
+

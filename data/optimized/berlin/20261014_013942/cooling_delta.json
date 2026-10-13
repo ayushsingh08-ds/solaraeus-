@@ -1,0 +1,19 @@
+{
+  "area": "berlin",
+  "timestamp": "20261014_013942",
+  "status": "OPTIMIZED",
+  "num_canopies": 3,
+  "canopy_dimensions": {
+    "width_m": 4.0,
+    "length_m": 8.0,
+    "height_m": 4.0,
+    "transmissivity": 0.1
+  },
+  "max_tmrt_reduction_k": 12.78,
+  "mean_corridor_cooling_k": 0.52,
+  "max_utci_reduction_k": 4.14,
+  "total_shaded_pedestrian_area_m2": 96.0,
+  "comfort_category_before": "Very Strong Heat Stress (UTCI > 38\u00b0C)",
+  "comfort_category_after": "Moderate Heat Stress (UTCI ~ 32-34\u00b0C)",
+  "created_at": "2026-10-14T01:40:47.449706"
+}

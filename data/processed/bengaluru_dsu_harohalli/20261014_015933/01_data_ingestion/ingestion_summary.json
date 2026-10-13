@@ -1,0 +1,21 @@
+{
+  "stage": "01_data_ingestion",
+  "status": "COMPLETED",
+  "area": "bengaluru_dsu_harohalli",
+  "total_buildings": 20,
+  "total_scene_triangles": 564,
+  "total_scene_vertices": 322,
+  "pedestrian_grid_cells": 241560,
+  "grid_shape": [
+    396,
+    610
+  ],
+  "local_origin": [
+    766241.5,
+    1400778.0
+  ],
+  "artifacts": {
+    "scene_mesh": "scene_mesh.json",
+    "pedestrian_grid": "pedestrian_grid.json"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "area": "bengaluru_ub_city",
+  "timestamp": "20261014_022916",
+  "status": "PROCESSED",
+  "processed_dir": "C:\\Users\\AYUSH SINGH\\Documents\\GitHub\\solaraeus\\data\\processed\\bengaluru_ub_city\\20261014_022916",
+  "grid_resolution_m": 2.0,
+  "total_buildings": 203,
+  "scene_triangles": 4384,
+  "grid_cells": 107623,
+  "grid_origin": [
+    -383.0,
+    -281.0
+  ],
+  "grid_extent": [
+    766.0,
+    562.0
+  ],
+  "grid_nx": 383,
+  "grid_ny": 281,
+  "baseline_tmrt_mean_c": 43.75088109070999,
+  "baseline_tmrt_max_c": 53.79167487472341,
+  "baseline_tmrt_min_c": 32.00931458676382,
+  "baseline_utci_mean_c": 30.196340001672503,
+  "baseline_utci_max_c": 32.7,
+  "sunlit_cells_pct": 55.20102580303467,
+  "wall_time_sec": 163.153,
+  "created_at": "2026-10-14T02:31:59.166835"
+}

@@ -1,0 +1,61 @@
+{
+  "city_id": "bengaluru_dsu_harohalli",
+  "name": "Bengaluru — Dayananda Sagar University, Harohalli",
+  "country": "India",
+  "timezone": "Asia/Kolkata",
+  "utc_offset_hours": 5.5,
+  "coordinates": {
+    "latitude": 12.659931202772443,
+    "longitude": 77.45118947225944,
+    "timezone": "Asia/Kolkata",
+    "utc_offset_hours": 5.5
+  },
+  "crs": {
+    "geographic": "EPSG:4326",
+    "projected_metric": "EPSG:32643",
+    "utm_zone": "43N",
+    "local_frame": "EPSG:32643_LOCAL"
+  },
+  "local_origin": {
+    "x_origin": 766241.5,
+    "y_origin": 1400778.0
+  },
+  "extent_x": 1219.0,
+  "extent_y": 792.0,
+  "origin_x": -609.5,
+  "origin_y": -396.0,
+  "data_paths": {
+    "raw_dir": "data/raw/bengaluru_dsu_harohalli",
+    "processed_dir": "data/processed/bengaluru_dsu_harohalli",
+    "buildings_geojson": "data/input/bengaluru_dsu_harohalli/buildings.geojson",
+    "terrain_tif": "data/input/bengaluru_dsu_harohalli/terrain.tif",
+    "trees_geojson": "data/input/bengaluru_dsu_harohalli/trees.geojson",
+    "weather_csv": "data/input/bengaluru_dsu_harohalli/weather_24h.csv"
+  },
+  "simulation_defaults": {
+    "pedestrian_height_m": 1.1,
+    "grid_resolution_m": 2.0,
+    "domain_extent_m": [
+      1219.0,
+      792.0
+    ],
+    "sky_patch_configuration": 32,
+    "max_svf_search_dist_m": 120.0,
+    "tmrt_tolerance_k": 0.5
+  },
+  "simulation_weather": {
+    "date": "2026-10-13",
+    "local_time": "12:00:00",
+    "air_temperature_c": 32.6,
+    "relative_humidity_pct": 45.0,
+    "wind_speed_ms": 4.37,
+    "wind_direction_deg": 90.0,
+    "direct_normal_irradiance_wm2": 885.8,
+    "diffuse_horizontal_irradiance_wm2": 140.0
+  },
+  "scientific_limitations": {
+    "building_heights": "Estimated from OSM building:levels (levels * 3.0m)",
+    "terrain": "Synthetic flat DTM (z = 0.0 m AGL)",
+    "vegetation": "Unmapped in OpenStreetMap (0 trees present in OSM query)"
+  }
+}

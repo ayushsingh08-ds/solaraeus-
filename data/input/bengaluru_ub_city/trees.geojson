@@ -1,0 +1,173 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "node/12118053124",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12118053124,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5977215,
+          12.9718427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12118059792",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12118059792,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5941062,
+          12.9710078
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12118059793",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12118059793,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5940703,
+          12.9711842
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12118059794",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12118059794,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.594042,
+          12.9712998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12118089608",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12118089608,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5941649,
+          12.9707216
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12118089609",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12118089609,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5941496,
+          12.9707881
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12525844637",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12525844637,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5936503,
+          12.9733355
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "node/12669651423",
+      "properties": {
+        "height": 8.0,
+        "radius": 3.0,
+        "transmissivity": 0.15,
+        "height_source": "default_8m_estimate",
+        "radius_source": "default_3m_estimate",
+        "transmissivity_source": "default_assumption",
+        "osm_id": 12669651423,
+        "source": "OpenStreetMap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.5924887,
+          12.9713547
+        ]
+      }
+    }
+  ]
+}

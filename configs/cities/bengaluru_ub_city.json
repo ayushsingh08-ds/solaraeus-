@@ -1,0 +1,46 @@
+{
+  "city_id": "bengaluru_ub_city",
+  "name": "Bengaluru — UB City / Vittal Mallya Road",
+  "country": "India",
+  "timezone": "Asia/Kolkata",
+  "utc_offset_hours": 5.5,
+  "coordinates": {
+    "latitude": 12.971496985505471,
+    "longitude": 77.59550151692032,
+    "timezone": "Asia/Kolkata",
+    "utc_offset_hours": 5.5
+  },
+  "crs": {
+    "geographic": "EPSG:4326",
+    "projected_metric": "EPSG:32643",
+    "utm_zone": "43N",
+    "local_frame": "EPSG:32643_LOCAL"
+  },
+  "local_origin": {
+    "x_origin": 781579.0,
+    "y_origin": 1435416.0
+  },
+  "extent_x": 766.0,
+  "extent_y": 562.0,
+  "origin_x": -383.0,
+  "origin_y": -281.0,
+  "data_paths": {
+    "raw_dir": "data/raw/bengaluru_ub_city",
+    "processed_dir": "data/processed/bengaluru_ub_city",
+    "buildings_geojson": "data/input/bengaluru_ub_city/buildings.geojson",
+    "terrain_tif": "data/input/bengaluru_ub_city/terrain.tif",
+    "trees_geojson": "data/input/bengaluru_ub_city/trees.geojson",
+    "weather_csv": "data/input/bengaluru_ub_city/weather_24h.csv"
+  },
+  "simulation_defaults": {
+    "pedestrian_height_m": 1.1,
+    "grid_resolution_m": 2.0,
+    "domain_extent_m": [
+      766.0,
+      562.0
+    ],
+    "sky_patch_configuration": 32,
+    "max_svf_search_dist_m": 120.0,
+    "tmrt_tolerance_k": 0.5
+  }
+}

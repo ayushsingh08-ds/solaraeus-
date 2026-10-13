@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "source": "selected study rectangle"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.599,
+              12.969
+            ],
+            [
+              77.599,
+              12.974
+            ],
+            [
+              77.592,
+              12.974
+            ],
+            [
+              77.592,
+              12.969
+            ],
+            [
+              77.599,
+              12.969
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

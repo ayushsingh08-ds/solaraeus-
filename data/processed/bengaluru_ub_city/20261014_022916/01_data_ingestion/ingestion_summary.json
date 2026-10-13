@@ -1,0 +1,21 @@
+{
+  "stage": "01_data_ingestion",
+  "status": "COMPLETED",
+  "area": "bengaluru_ub_city",
+  "total_buildings": 203,
+  "total_scene_triangles": 4384,
+  "total_scene_vertices": 2598,
+  "pedestrian_grid_cells": 107623,
+  "grid_shape": [
+    281,
+    383
+  ],
+  "local_origin": [
+    781579.0,
+    1435416.0
+  ],
+  "artifacts": {
+    "scene_mesh": "scene_mesh.json",
+    "pedestrian_grid": "pedestrian_grid.json"
+  }
+}
