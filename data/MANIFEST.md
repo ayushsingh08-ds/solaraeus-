@@ -143,9 +143,24 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 - **Stage 3 Research Report**: `docs/stage_3_report.md`
   - SHA256: `ac994d604cf5ee70a8e9bb524241839e0a0b9793fbf41780b7082bc5c67d4fb2`
 
+## 6. Stage 4 Adversarial Stress & Certification Artifacts
+
+- **Adversarial Error & Recomputation Maps Figure**: `results/raw/stage_4/adversarial_error_maps.png`
+  - SHA256: `3a11708f5a9bccb06c6052fc484c266fb7d0ea7943bd18b8bb89e301ee7cb613`
+- **Certificate Soundness Scatter Figure**: `results/raw/stage_4/bound_soundness_scatter.png`
+  - SHA256: `28aac51777875898138ba8c5a557c67e98de6e003145ac8583b702a106a6a1b3`
+- **Stage 4 Quantitative Metrics Summary JSON**: `results/raw/stage_4/stage_4_metrics.json`
+  - SHA256: `ffd51d4edeed8079958a97bac0d55274f9c14d2e6766976371995d651842ec40`
+- **Stage 4 Adversarial Validation Test Suite**: `tests/test_stage_4_adversarial_validation.py`
+  - SHA256: `9ba55601d24cafd186e5fbdf34b3e22a0e2a007687d3788ed737ebe746fb14a0`
+- **Stage 4 Adversarial Benchmark Runner**: `benchmarks/run_stage_4_adversarial_suite.py`
+  - SHA256: `4bcf96a0f23fc7e4c1b02137a94a2ff4923ae36cbf0a439507d9899686f28b46`
+- **Stage 4 Research Report**: `docs/stage_4_report.md`
+  - SHA256: `e477487729c1db42022be566b1717d36ec707c2acb13c1691eb8a0e36d9c965b`
+
 ---
 
-## 6. Deprecated / Legacy Sites Archive
+## 7. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.

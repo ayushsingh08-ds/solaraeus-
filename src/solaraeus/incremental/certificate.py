@@ -194,13 +194,14 @@ def generate_error_certificate(scene_before: Scene,
     delta_s_total = delta_s_dir + delta_s_diff + delta_s_long
 
     # 5. Concave Interval Stefan-Boltzmann propagation:
-    # S_cached = sigma * (T_mrt_cached + 273.15)^4
-    s_cached = SIGMA * ((cached_result.tmrt + 273.15) ** 4)
+    # S_cached = a_l * sigma * (T_mrt_cached + 273.15)^4
+    s_cached = a_l * SIGMA * ((cached_result.tmrt + 273.15) ** 4)
     s_lower = np.maximum(1.0, s_cached - delta_s_total)
 
-    t_cached = np.power(s_cached / SIGMA, 0.25)
-    t_lower = np.power(s_lower / SIGMA, 0.25)
+    t_cached = np.power(s_cached / (a_l * SIGMA), 0.25)
+    t_lower = np.power(s_lower / (a_l * SIGMA), 0.25)
     thermal_error_bound_k = t_cached - t_lower  # Conservative bound in Kelvin
+
 
     # Dirty mask: cells where bound exceeds tolerance
     dirty_mask = thermal_error_bound_k > float(tolerance_k)
