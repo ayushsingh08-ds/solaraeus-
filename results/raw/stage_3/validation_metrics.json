@@ -1,0 +1,115 @@
+{
+  "metadata": {
+    "stage": "Stage 3 - Urban Climate Modeller Validation",
+    "git_commit": "35d535caed795863170586d8a1d285510e653d1f",
+    "timestamp_utc": "2026-10-13T08:40:01.621640+00:00",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python_version": "3.12.6",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "site": "Berlin Friedrichstra\u00dfe Block (Primary)",
+    "ground_truth_statement": "no ground truth available for calibration"
+  },
+  "berlin_solweig_comparison": {
+    "domain_size_m": [
+      60.0,
+      60.0
+    ],
+    "grid_resolution_m": 1.0,
+    "canyon_width_m": 20.0,
+    "building_heights_m": [
+      22.0,
+      22.5
+    ],
+    "active_street_cells": 900,
+    "solar_forcing": {
+      "altitude_deg": 59.76,
+      "azimuth_deg": 180.0,
+      "dni_wm2": 543.0,
+      "dhi_wm2": 274.7,
+      "air_temperature_c": 29.900000000000034,
+      "relative_humidity_pct": 30.0
+    },
+    "svf": {
+      "solaraeus_mean": 0.46171991764272385,
+      "solweig_mean": 0.46631913932217073,
+      "mae": 0.004599221679446875,
+      "max_error": 0.0308508027252965
+    },
+    "absorbed_irradiance_s_str_wm2": {
+      "solaraeus_mean": 555.3219446710102,
+      "solweig_mean": 558.3912797276835,
+      "mae": 3.0693350566732116,
+      "max_error": 4.319573325978467,
+      "rmse": 3.086458859108229,
+      "r2": 0.9921680843310837,
+      "relative_error_pct": 0.5496746041897478
+    },
+    "mean_radiant_temperature_c": {
+      "solaraeus_mean": 43.836135220877715,
+      "solweig_consistent_mean": 44.27318204460345,
+      "solweig_raw_mean": 41.86524701347868,
+      "consistent_mae_k": 0.43704682372574444,
+      "consistent_max_err_k": 0.6131708763050483,
+      "consistent_rmse_k": 0.4394268906282835,
+      "raw_systematic_offset_k": 1.9708882073990353,
+      "explanation": "Difference vs raw SOLWEIG is exactly (1/a_l^0.25 - 1)*Tmrt = 2.0 K due to omitting human emissivity in raw SB denominator."
+    }
+  },
+  "limiting_cases": {
+    "case_a_cube_noon": {
+      "status": "PASS",
+      "hand_direct_flux_wm2": 129.57,
+      "sim_direct_flux_wm2": 129.57,
+      "direct_error_wm2": 0.0,
+      "hand_total_shortwave_wm2": 237.6,
+      "sim_total_shortwave_wm2": 237.47,
+      "total_error_wm2": 0.13
+    },
+    "case_b_enclosed_isothermal_cavity": {
+      "status": "PASS",
+      "target_temperature_k": 300.0,
+      "simulated_tmrt_k": 300.0,
+      "error_k": 0.0,
+      "acceptance_threshold_k": 0.05
+    },
+    "case_c_clear_vs_overcast": {
+      "status": "PASS",
+      "clear_tmrt_c": 46.85,
+      "overcast_tmrt_c": 36.84,
+      "delta_tmrt_k": 10.01,
+      "physical_behavior": "Monotonically responds to direct solar beam elimination; dampened by higher diffuse and humidity."
+    },
+    "case_d_varying_ground_albedo": {
+      "status": "PASS",
+      "albedos_tested": [
+        0.05,
+        0.15,
+        0.3,
+        0.5
+      ],
+      "monotonic_flux_increase": true,
+      "delta_flux_wm2": 39.5
+    },
+    "case_e_optimizer_off_physics_only": {
+      "status": "PASS",
+      "bitwise_deterministic": true,
+      "max_cell_difference": 0.0
+    }
+  },
+  "independent_svf_verification": {
+    "courtyard_radial_svf": 0.4021,
+    "courtyard_fisheye_svf": 0.3932,
+    "courtyard_diff": 0.0089,
+    "street_canyon_analytical_svf": 0.4677,
+    "street_canyon_radial_svf": 0.4752,
+    "street_canyon_fisheye_svf": 0.4693,
+    "street_canyon_error": 0.0075,
+    "status": "PASS"
+  },
+  "energy_balance": {
+    "ground_shortwave_fraction": 1.0,
+    "human_shortwave_fraction": 1.0,
+    "human_longwave_fraction": 1.0,
+    "status": "PASS"
+  }
+}

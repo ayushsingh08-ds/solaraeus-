@@ -128,9 +128,25 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 - **London Diurnal Metrics**: `data/processed/london/diurnal_metrics.json`
   - SHA256: `f577c8f1645ce785ddb0d8fd39d7213189088df423865fb14565e946ca3bcbfe`
 
+## 5. Stage 3 Physics Validation & Benchmark Artifacts
+
+- **Berlin SOLWEIG Comparison Figure**: `results/raw/stage_3/berlin_solweig_comparison.png`
+  - SHA256: `08abe0ffe315e4297b3f7fc01b0c7dc1677ab1b9fba968365e5ddeb1048e0a4b`
+- **Limiting-Cases Summary Figure**: `results/raw/stage_3/limiting_cases_validation.png`
+  - SHA256: `52113800d68d9369c1a69593756c901c68083d1ce1419b7d0a74942d604a55a3`
+- **Validation Metrics Summary JSON**: `results/raw/stage_3/validation_metrics.json`
+  - SHA256: `77c155bb96e84d5d08c38a4cd36bebbd77cfad149d7c3461c997eebabb910b10`
+- **Stage 3 Validation Test Suite**: `tests/test_stage_3_physics_validation.py`
+  - SHA256: `d760420cce25e641c2948a920331dc81f5dd6e6510aa6aaa62f89fc7d138e084`
+- **Stage 3 Benchmark Runner**: `benchmarks/run_stage_3_solweig_comparison.py`
+  - SHA256: `0ec11a8a8cf0dc5ebf61e3e40cb16387139a9b3e671c71f89d029cd476845c21`
+- **Stage 3 Research Report**: `docs/stage_3_report.md`
+  - SHA256: `ac994d604cf5ee70a8e9bb524241839e0a0b9793fbf41780b7082bc5c67d4fb2`
+
 ---
 
-## 5. Deprecated / Legacy Sites Archive
+## 6. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.
+

@@ -33,10 +33,12 @@ def mean_radiant_temperature(k_total: np.ndarray, l_total: np.ndarray,
     """
     s_str = a_k * k_total + a_l * l_total
 
-    # Stefan-Boltzmann inversion: T_mrt = (S_str / sigma)^0.25
+    # Stefan-Boltzmann inversion: T_mrt = (S_str / (a_l * sigma))^0.25
+    # Reference: VDI 3787 Part 2; Lindberg et al. (2008) Eq. 1; Höppe (1992)
     # Enforce minimum positive flux to prevent numerical instability
     safe_s = np.maximum(1.0, s_str)
-    tmrt_k = np.power(safe_s / SIGMA, 0.25)
+    tmrt_k = np.power(safe_s / (a_l * SIGMA), 0.25)
     tmrt_c = tmrt_k - 273.15
 
     return RadiantState(s_str=s_str, tmrt_c=tmrt_c, tmrt_k=tmrt_k)
+
