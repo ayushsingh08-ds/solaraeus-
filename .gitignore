@@ -6,6 +6,11 @@
 .env.*
 *.env
 !.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.flaskenv
 
 # Authentication, Private Keys, Certificates, & Tokens
 *.pem
@@ -15,28 +20,90 @@
 *.pfx
 *.p12
 *.pub
+*.der
+*.csr
+*.pkcs12
+*.jks
+*.keystore
 id_rsa*
 id_ed25519*
+id_dsa*
+id_ecdsa*
+known_hosts
+authorized_keys
+*.gpg
+*.pgp
+*.asc
+secring.*
+pubring.*
+
+# Secrets, Keyrings & API Keys
 secrets.*
 *.secret
 *.secret.*
 *.secrets
+secrets/
+private/
+confidential/
+*api_key*
+*apikey*
+*.kdbx
 
-# Cloud Provider & OAuth Credentials
+# Cloud Provider, Service Accounts & OAuth Credentials
 credentials.json
+credentials.*
 client_secret*.json
+client_secrets*.json
 google_credentials.json
 firebase-*.json
+firebase_*.json
 service-account*.json
+service_account*.json
+serviceAccount*.json
 .aws/
 .gcp/
 .azure/
+.google/
+gcloud/
 
-# Token / Auth storage
+# Package Manager, Repository & Tool Auth Configs
+.pypirc
+.npmrc
+.yarnrc
+.yarnrc.yml
+.netrc
+.psqlrc
+.dockercfg
+.docker/config.json
+docker/config.json
+
+# Infrastructure & Container Orchestration Credentials
+.kube/
+kubeconfig*
+*.kubeconfig
+terraform.tfvars
+terraform.tfvars.json
+*.tfvars
+*.tfvars.json
+
+# Token, Session & Auth Storage
 *.token
 *.auth
 auth.json
 token.json
+session.json
+session.*
+*.session
+*.ovpn
+
+# Shell & Interpreter History Files (prevent accidental commit of terminal logs with tokens)
+.*_history
+.bash_history
+.zsh_history
+.python_history
+.node_repl_history
+.psql_history
+.mysql_history
 
 # ==============================================================================
 # PYTHON CACHES, BYTECODE & RUNTIMES
