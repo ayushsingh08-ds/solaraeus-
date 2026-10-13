@@ -235,3 +235,25 @@ $RECYCLE.BIN/
 scratch/
 tmp/
 temp/
+
+# ==============================================================================
+# RESEARCH PAPER, MANUSCRIPT & ACADEMIC ARTIFACTS
+# ==============================================================================
+research_paper_sol/
+research_paper*/
+*manuscript*
+docs/*manuscript*
+docs/figures/src/build_docx_manuscript.py
+
+# LaTeX compilation artifacts
+*.tex
+*.bib
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
