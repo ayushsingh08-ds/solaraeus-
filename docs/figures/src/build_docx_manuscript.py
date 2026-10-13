@@ -379,21 +379,21 @@ def create_manuscript():
 
     # 4.1 Complete Workflow
     h5_1 = doc.add_heading(level=2)
-    r5_1 = h5_1.add_run("4.1 Complete Simulation and Optimization Workflow")
+    r5_1 = h5_1.add_run("4.1 Complete Simulation and Optimization Pipeline")
     r5_1.font.size = Pt(11)
     r5_1.font.bold = True
 
     p_m1 = doc.add_paragraph()
     p_m1.add_run(
-        "Figure 1 illustrates the end-to-end operational pipeline of Solaraeus. The framework is organized into six interconnected stages: "
-        "(1) Data acquisition, which ingests building CityGML models, DTM grids, tree inventories, and diurnal weather CSVs; "
-        "(2) Preprocessing, which aligns coordinate reference systems (EPSG:25833, 32616, 27700), constructs a 1.0 m pedestrian evaluation grid "
-        "at 1.1 m eye level, and assigns material albedo (α = 0.15–0.30) and emissivity (ε = 0.90–0.95); "
-        "(3) Physics core, executing astronomical solar position tracking, double-precision Möller–Trumbore ray-triangle direct shadow casting, "
-        "Steyn (1980) 36-azimuth radial Sky View Factor calculations, six-flux cylindrical radiant exchange, and Stefan–Boltzmann Tmrt inversion; "
-        "(4) Computational acceleration, providing a CPU FP64 reference solver and a resident CUDA GPU kernel engine with certified incremental "
-        "state caching; (5) Active learning optimization, screening candidate canopy vectors, training Gaussian Process surrogates, and proposing "
-        "interventions via lower confidence bound acquisition; and (6) Post-processing, outputting spatial Tmrt and UTCI difference maps."
+        "Figure 1 shows the entire end-to-end workflow of Solaraeus. The framework consists of six interdependent phases: "
+        "(1) Data input, taking in building CityGML models, DTM grids, tree inventories, and hourly weather CSVs; "
+        "(2) Preprocessing, involving the alignment of coordinate reference systems (EPSG:25833, 32616, 27700), creation of a 1.0 m "
+        "pedestrian assessment grid at 1.1 m eye height, and setting of material albedo (α = 0.15–0.30) and emissivity (ε = 0.90–0.95); "
+        "(3) Physical model core, comprising of solar position astronomical calculation, double precision Möller–Trumbore "
+        "ray-triangle direct shading algorithm, Steyn (1980) 36-azimuth radial Sky View Factor computation, six-flux cylindrical heat exchange, "
+        "and Stefan–Boltzmann Tmrt inversion; (4) Computational speedup, offering a CPU FP64 solver reference and a resident CUDA GPU kernel with "
+        "verified incremental state caching functionality; (5) Active learning surrogates, and recommending interventions through lower "
+        "confidence bound acquisitions; and (6) Post-processing, rendering the spatial difference maps between Tmrt and UTCI."
     )
 
     # Embed Figure 1
@@ -410,18 +410,18 @@ def create_manuscript():
 
     # 4.2 System Architecture
     h5_2 = doc.add_heading(level=2)
-    r5_2 = h5_2.add_run("4.2 System Architecture and Module Interfaces")
+    r5_2 = h5_2.add_run("4.2 System Architecture and Module Interactions")
     r5_2.font.size = Pt(11)
     r5_2.font.bold = True
 
     p_m2 = doc.add_paragraph()
     p_m2.add_run(
-        "Figure 2 details the modular system architecture and data interfaces across the core codebase (/src). Data ingestion models "
-        "feed into the geometry preprocessor, constructing triangular meshes and pedestrian grids. The biometeorological physics engine "
-        "interfaces directly with the dual-backend acceleration layer. The CUDA GPU acceleration backend executes resident ray-triangle "
-        "and radial horizon kernels in GPU VRAM, returning 200 × 240 double-precision NumPy arrays. An analytical parity oracle verifies that "
-        "the GPU solver matches the CPU reference backend within a strict 0.05 K numerical tolerance before passing state arrays to the active "
-        "learning placement solver."
+        "Figure 2 provides the architecture of our modular system and the data flow among the modules of the code base (/src). "
+        "Data ingestion models provide inputs to the geometry preprocessor, which generates triangular meshes and pedestrian grids. "
+        "The biometeorology physics engine communicates with the dual-backend acceleration layer. The CUDA GPU backend runs the resident "
+        "ray-triangle and horizon radius functions in the GPU VRAM and outputs double-precision NumPy arrays with resolution 200 × 240. "
+        "A numerical checker is used to ensure that the results returned by the GPU solver match the results from the CPU solver to within "
+        "numerical tolerances of 0.05 K."
     )
 
     # Embed Figure 2
@@ -444,15 +444,15 @@ def create_manuscript():
 
     p_m3 = doc.add_paragraph()
     p_m3.add_run(
-        "Figure 3 details the operational flowchart of the certified incremental solver, delineating mathematically proved components from "
-        "empirically calibrated stages. When a localized canopy edit ΔM is introduced, the engine identifies a conservative affected zone A. "
-        "Theorem 1 establishes that for any receptor point x outside A, the Mean Radiant Temperature approximation error satisfies:\n\n"
+        "Figure 3 illustrates the flow chart of the certified incremental algorithm, specifying the mathematically proven elements from "
+        "those that are calibrated empirically. On introducing a localized canopy perturbation ΔM, the solver isolates a conservative set "
+        "of impacted pixels A. By Theorem 1, for every receptor pixel x ∉ A, the Mean Radiant Temperature approximation error is bounded by:\n\n"
         "|T̃mrt(x) - Tmrt^full(x)| ≤ B_T(x) ≤ ε_T = 0.50 K\n\n"
-        "The proof couples three physical components: (1) direct solar beam bounding guarantees zero direct shadow changes outside the dilated "
-        "projection cone; (2) solid-angle horizon truncation establishes that sky view factor perturbations decay quadratically with distance d as "
-        "ΔΨ ≤ (H_canopy · W_canopy) / (2π d²); and (3) concave Stefan–Boltzmann linearization bounds temperature variations via "
-        "ΔTmrt ≤ ΔΦ / (4 ε_p σ (T_min)³). If the sun altitude drops below 5° or the declared bound exceeds ε_T, the engine falls back to full "
-        "domain recomputation, ensuring zero certificate violations."
+        "This inequality is derived using three physical components: (1) bounds on the direct beam guaranteeing no change to the direct "
+        "shadows outside the dilated projection cone; (2) solid angle horizon truncation demonstrating quadratic decrease of the sky view "
+        "factor perturbation with respect to distance d, ΔΨ ≤ (H_canopy · W_canopy) / (2π d²); and (3) concavity of the Stefan–Boltzmann law "
+        "limiting temperature perturbations by ΔTmrt ≤ ΔΦ / (4 ε_p σ (T_min)³). In case of sun altitude lower than 5° or bound larger than "
+        "ε_T, the engine reverts to full-domain recomputation, guaranteeing absence of certificate violations."
     )
 
     # Embed Figure 3
@@ -469,18 +469,19 @@ def create_manuscript():
 
     # 4.4 Optimization and Active Learning Loop
     h5_4 = doc.add_heading(level=2)
-    r5_4 = h5_4.add_run("4.4 Multi-Method Optimization and Active Learning Loop")
+    r5_4 = h5_4.add_run("4.4 Multiple Optimization Techniques and Active Learning Loop")
     r5_4.font.size = Pt(11)
     r5_4.font.bold = True
 
     p_m4 = doc.add_paragraph()
     p_m4.add_run(
-        "Figure 4 illustrates the optimization loop for autonomous canopy placement. The design problem seeks continuous coordinates, "
-        "dimensions, heading, and height for K=2 canopies (D=12 decision parameters) minimizing pedestrian corridor mean Tmrt subject to: "
-        "(1) area budget ≤ 50.0 m²; (2) pairwise non-overlap; (3) building facade setbacks ≥ 1.0 m; and (4) underside clearance ≥ 3.0 m. "
-        "Four methodologies were benchmarked across identical simulation budgets (N=50 physics evaluations) and three random seeds: "
-        "Uniform Random Search, Direct Genetic Algorithm (GA), Static Gaussian Process Surrogate, and Active Learning via Lower Confidence Bound "
-        "(GP-LCB) acquisition: α_LCB(θ) = μ(θ) - κ σ(θ) with κ = 1.96. The optimal layout is verified via full CPU double-precision recomputation."
+        "Figure 4 depicts the optimization loop for autonomous placement of the canopy. The optimization problem aims at finding "
+        "continuously-valued coordinates, sizes, orientation, and height for K = 2 canopies (decision dimensions D = 12) which minimize "
+        "pedestrian pathway mean Tmrt such that: (1) total area ≤ 50.0 m²; (2) no pairwise overlap; (3) setback from building walls ≥ 1.0 m; "
+        "and (4) clearance under the canopies ≥ 3.0 m. Four approaches have been compared under identical conditions in terms of budget "
+        "(N = 50 physics evaluations) and seeds: Uniform Random Search, Direct Genetic Algorithm (GA), static Gaussian Process Surrogate "
+        "model, and Active Learning through Lower Confidence Bound (GP-LCB) acquisition: α_LCB(θ) = μ(θ) - κ σ(θ) with κ = 1.96. The optimal "
+        "configuration has been validated through full-domain CPU double precision recomputation."
     )
 
     # Embed Figure 4

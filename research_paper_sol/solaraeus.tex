@@ -163,8 +163,8 @@ London & Weather & UK Met Office MIDAS Open Heathrow EGLL (2024-07-19) & \url{ht
 % =========================================================================
 \section{Methodology}
 
-\subsection{Complete Simulation and Optimization Workflow}
-Figure~\ref{fig:methodology} illustrates the end-to-end operational pipeline of Solaraeus. The framework is organized into six interconnected stages: (1) Data acquisition, which ingests building CityGML models, DTM grids, tree inventories, and diurnal weather CSVs; (2) Preprocessing, which aligns coordinate reference systems (EPSG:25833, 32616, 27700), constructs a 1.0~m pedestrian evaluation grid at 1.1~m eye level, and assigns material albedo ($\alpha = 0.15\text{--}0.30$) and emissivity ($\varepsilon = 0.90\text{--}0.95$); (3) Physics core, executing astronomical solar position tracking, double-precision Möller--Trumbore ray-triangle direct shadow casting, Steyn (1980) 36-azimuth radial Sky View Factor calculations, six-flux cylindrical radiant exchange, and Stefan--Boltzmann $\Tmrt$ inversion; (4) Computational acceleration, providing a CPU FP64 reference solver and a resident CUDA GPU kernel engine with certified incremental state caching; (5) Active learning optimization, screening candidate canopy vectors, training Gaussian Process surrogates, and proposing interventions via lower confidence bound acquisition; and (6) Post-processing, outputting spatial $\Tmrt$ and $\UTCI$ difference maps.
+\subsection{Complete Simulation and Optimization Pipeline}
+Figure~\ref{fig:methodology} shows the entire end-to-end workflow of Solaraeus. The framework consists of six interdependent phases: (1) Data input, taking in building CityGML models, DTM grids, tree inventories, and hourly weather CSVs; (2) Preprocessing, involving the alignment of coordinate reference systems (EPSG:25833, 32616, 27700), creation of a 1.0~m pedestrian assessment grid at 1.1~m eye height, and setting of material albedo ($\alpha = 0.15\text{--}0.30$) and emissivity ($\varepsilon = 0.90\text{--}0.95$); (3) Physical model core, comprising of solar position astronomical calculation, double precision M{\"o}ller--Trumbore ray-triangle direct shading algorithm, Steyn (1980) 36-azimuth radial Sky View Factor computation, six-flux cylindrical heat exchange, and Stefan--Boltzmann $\Tmrt$ inversion; (4) Computational speedup, offering a CPU FP64 solver reference and a resident CUDA GPU kernel with verified incremental state caching functionality; (5) Active learning surrogates, and recommending interventions through lower confidence bound acquisitions; and (6) Post-processing, rendering the spatial difference maps between $\Tmrt$ and $\UTCI$.
 
 \begin{figure*}[!t]
 \centering
@@ -173,8 +173,8 @@ Figure~\ref{fig:methodology} illustrates the end-to-end operational pipeline of 
 \label{fig:methodology}
 \end{figure*}
 
-\subsection{System Architecture and Module Interfaces}
-Figure~\ref{fig:architecture} details the modular system architecture and data interfaces across the core codebase (\texttt{/src}). Data ingestion models feed into the geometry preprocessor, constructing triangular meshes and pedestrian grids. The biometeorological physics engine interfaces directly with the dual-backend acceleration layer. The CUDA GPU acceleration backend executes resident ray-triangle and radial horizon kernels in GPU VRAM, returning $200\times 240$ double-precision NumPy arrays. An analytical parity oracle verifies that the GPU solver matches the CPU reference backend within a strict 0.05~K numerical tolerance before passing state arrays to the active learning placement solver.
+\subsection{System Architecture and Module Interactions}
+Figure~\ref{fig:architecture} provides the architecture of our modular system and the data flow among the modules of the code base (\texttt{/src}). Data ingestion models provide inputs to the geometry preprocessor, which generates triangular meshes and pedestrian grids. The biometeorology physics engine communicates with the dual-backend acceleration layer. The CUDA GPU backend runs the resident ray-triangle and horizon radius functions in the GPU VRAM and outputs double-precision NumPy arrays with resolution $200 \times 240$. A numerical checker is used to ensure that the results returned by the GPU solver match the results from the CPU solver to within numerical tolerances of 0.05~K.
 
 \begin{figure*}[!t]
 \centering
@@ -184,11 +184,11 @@ Figure~\ref{fig:architecture} details the modular system architecture and data i
 \end{figure*}
 
 \subsection{Certified Incremental Radiative Transfer Formulation}
-Figure~\ref{fig:flowchart} details the operational flowchart of the certified incremental solver, delineating mathematically proved components from empirically calibrated stages. When a localized canopy edit $\Delta\mathcal{M}$ is introduced, the engine identifies a conservative affected zone $\mathcal{A}$. Theorem~1 establishes that for any receptor point $x$ outside $\mathcal{A}$, the Mean Radiant Temperature approximation error satisfies:
+Figure~\ref{fig:flowchart} illustrates the flow chart of the certified incremental algorithm, specifying the mathematically proven elements from those that are calibrated empirically. On introducing a localized canopy perturbation $\Delta\mathcal{M}$, the solver isolates a conservative set of impacted pixels $\mathcal{A}$. By Theorem~1, for every receptor pixel $x \notin \mathcal{A}$, the Mean Radiant Temperature approximation error is bounded by:
 \begin{equation}
 |\widetilde{T}_{\mathrm{mrt}}(x) - T_{\mathrm{mrt}}^{\mathrm{full}}(x)| \le B_T(x) \le \varepsilon_T = 0.50\,\mathrm{K}
 \end{equation}
-The proof couples three physical components: (1) direct solar beam bounding guarantees zero direct shadow changes outside the dilated projection cone; (2) solid-angle horizon truncation establishes that sky view factor perturbations decay quadratically with distance $d$ as $\Delta\Psi \le (H_{\mathrm{canopy}}\cdot W_{\mathrm{canopy}}) / (2\pi d^2)$; and (3) concave Stefan--Boltzmann linearization bounds temperature variations via $\Delta\Tmrt \le \Delta\Phi / (4\varepsilon_p\sigma (T_{\min})^3)$. If the sun altitude drops below $5^\circ$ or the declared bound exceeds $\varepsilon_T$, the engine falls back to full domain recomputation, ensuring zero certificate violations.
+This inequality is derived using three physical components: (1) bounds on the direct beam guaranteeing no change to the direct shadows outside the dilated projection cone; (2) solid angle horizon truncation demonstrating quadratic decrease of the sky view factor perturbation with respect to distance $d$, $\Delta\Psi \le (H_{\mathrm{canopy}} \cdot W_{\mathrm{canopy}})/(2\pi d^2)$; and (3) concavity of the Stefan--Boltzmann law limiting temperature perturbations by $\Delta\Tmrt \le \Delta\Phi/(4\varepsilon_p\sigma(T_{\min})^3)$. In case of sun altitude lower than $5^\circ$ or bound larger than $\varepsilon_T$, the engine reverts to full-domain recomputation, guaranteeing absence of certificate violations.
 
 \begin{figure*}[!t]
 \centering
@@ -197,8 +197,8 @@ The proof couples three physical components: (1) direct solar beam bounding guar
 \label{fig:flowchart}
 \end{figure*}
 
-\subsection{Multi-Method Optimization and Active Learning Loop}
-Figure~\ref{fig:opt_loop} illustrates the optimization loop for autonomous canopy placement. The design problem seeks continuous coordinates, dimensions, heading, and height for $K=2$ canopies ($D=12$ decision parameters) minimizing pedestrian corridor mean $\Tmrt$ subject to: (1) area budget $\le 50.0~\mathrm{m}^2$; (2) pairwise non-overlap; (3) building facade setbacks $\ge 1.0$~m; and (4) underside clearance $\ge 3.0$~m. Four methodologies were benchmarked across identical simulation budgets ($N=50$ physics evaluations) and three random seeds: Uniform Random Search, Direct Genetic Algorithm (GA), Static Gaussian Process Surrogate, and Active Learning via Lower Confidence Bound (GP-LCB) acquisition: $\alpha_{\mathrm{LCB}}(\theta) = \mu(\theta) - \kappa \sigma(\theta)$ with $\kappa = 1.96$. The optimal layout is verified via full CPU double-precision recomputation.
+\subsection{Multiple Optimization Techniques and Active Learning Loop}
+Figure~\ref{fig:opt_loop} depicts the optimization loop for autonomous placement of the canopy. The optimization problem aims at finding continuously-valued coordinates, sizes, orientation, and height for $K = 2$ canopies (decision dimensions $D = 12$) which minimize pedestrian pathway mean $\Tmrt$ such that: (1) total area $\le 50.0~\mathrm{m}^2$; (2) no pairwise overlap; (3) setback from building walls $\ge 1.0$~m; and (4) clearance under the canopies $\ge 3.0$~m. Four approaches have been compared under identical conditions in terms of budget ($N = 50$ physics evaluations) and seeds: Uniform Random Search, Direct Genetic Algorithm (GA), static Gaussian Process Surrogate model, and Active Learning through Lower Confidence Bound (GP-LCB) acquisition: $\alpha_{\mathrm{LCB}}(\theta) = \mu(\theta) - \kappa\sigma(\theta)$ with $\kappa = 1.96$. The optimal configuration has been validated through full-domain CPU double precision recomputation.
 
 \begin{figure*}[!t]
 \centering
