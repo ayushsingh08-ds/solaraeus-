@@ -52,7 +52,7 @@ Bengaluru, Karnataka, India}
 % 1. ABSTRACT (ONE PARAGRAPH ONLY, major results only)
 % =========================================================================
 \begin{abstract}
-Decoupled urban microclimate simulations traditionally recompute entire domains from scratch upon introducing localized shading interventions, creating a major computational bottleneck for iterative design. We present Solaraeus, a 3D microclimate modeling platform that resolves this recomputation overhead through mathematically certified incremental radiative transfer and resident CUDA GPU acceleration. By bounding solid-angle decay and Stefan--Boltzmann linearization within a declared thermal tolerance (0.50~K), the engine safely reuses over 98\% of grid cells. On the primary Berlin Friedrichstra{\ss}e corridor ($240\times 200$~m, 1.0~m resolution), GPU incremental updates execute in 18~ms, achieving over $300\times$ speedup relative to full CPU recomputation. Integrated Bayesian active learning identifies canopy layouts providing up to 13.14~K of localized radiant cooling (0.86~K corridor-wide mean). Cross-city replications indicate that while deep high-rise canyons exhibit minimal canopy efficacy due to architectural self-shading (Chicago), wide boulevards achieve substantial cooling relief (London, up to 11.05~K peak). These results demonstrate that certified incremental simulation enables real-time microclimatic design without compromising physical accuracy.
+The traditional approach in decoupled urban microclimate simulations requires complete recalculating the domain when implementing local shading interventions, thus forming a considerable computational bottleneck for iterations. In this work, we introduce Solaraeus, which is a 3D microclimate modeling platform addressing this recomputation overhead via certified by math incrementation of radiative transfer algorithm with CUDA GPU acceleration. By constraining solid angle decay and Stefan--Boltzmann linearization within the declared thermal tolerance (0.50~K), the engine is able to reuse over 98\% of grid cells. For the main corridor in Berlin Friedrichstra{\ss}e ($240\times 200$~m, 1.0~m resolution), GPU incrementation works in 18~ms, resulting in more than $300\times$ speedup compared to full CPU recomputation. The integrated Bayesian active learning finds the canopy configurations that deliver up to 13.14~K of locally cooled radiation with the mean corridor temperature reduction of 0.86~K. Replications across multiple cities reveal that while the deep high-rise canyons demonstrate limited canopy efficiency due to the architecture self-shading effect (Chicago), the wide boulevards bring significant relief of cooling (London, 11.05~K).
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -166,7 +166,7 @@ Figure~\ref{fig:methodology} illustrates the end-to-end operational pipeline of 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig1_methodology_workflow.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig1_methodology_workflow.png}
 \caption{End-to-end methodology workflow block diagram of the Solaraeus microclimate platform.}
 \label{fig:methodology}
 \end{figure*}
@@ -176,7 +176,7 @@ Figure~\ref{fig:architecture} details the modular system architecture and data i
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig2_system_architecture.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig2_system_architecture.png}
 \caption{Module-level system architecture and data interface diagram.}
 \label{fig:architecture}
 \end{figure*}
@@ -190,7 +190,7 @@ The proof couples three physical components: (1) direct solar beam bounding guar
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig3_incremental_flowchart.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig3_incremental_flowchart.png}
 \caption{Incremental update operational flowchart delineating proved error certificate stages from empirical components.}
 \label{fig:flowchart}
 \end{figure*}
@@ -200,7 +200,7 @@ Figure~\ref{fig:opt_loop} illustrates the optimization loop for autonomous canop
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig4_optimization_loop.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig4_optimization_loop.png}
 \caption{Active learning Bayesian optimization loop with surrogate training and full-physics verification.}
 \label{fig:opt_loop}
 \end{figure*}
@@ -215,7 +215,7 @@ Figure~\ref{fig:study_areas} displays the spatial layouts of the three evaluated
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig5_study_areas.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig5_study_areas.png}
 \caption{Spatial layouts, building heights, tree canopies, and cartographic projections for Berlin (a), Chicago (b), and London (c).}
 \label{fig:study_areas}
 \end{figure*}
@@ -225,7 +225,7 @@ Physical accuracy was benchmarked against the reference SOLWEIG/UMEP model on a 
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.48\textwidth]{../docs/figures/fig6_physics_validation.png}
+\includegraphics[width=0.48\textwidth]{docs/figures/fig6_physics_validation.png}
 \caption{Parity scatter plot of Solaraeus predicted $\Tmrt$ versus reference SOLWEIG across 900 street receptor cells.}
 \label{fig:physics_val}
 \end{figure}
@@ -235,7 +235,7 @@ Figure~\ref{fig:incremental_err} presents the per-cell error histogram across ni
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.48\textwidth]{../docs/figures/fig7_incremental_error_hist.png}
+\includegraphics[width=0.48\textwidth]{docs/figures/fig7_incremental_error_hist.png}
 \caption{Logarithmic histogram of per-cell temperature error across adversarial stress tests relative to the 0.50~K declared bound.}
 \label{fig:incremental_err}
 \end{figure}
@@ -245,7 +245,7 @@ Figure~\ref{fig:perf_bars} benchmarks total latency across CPU Full, CPU Increme
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig8_performance_grouped_bars.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig8_performance_grouped_bars.png}
 \caption{Latency comparison across four computational modes on an NVIDIA RTX 4050 GPU across three domain scales.}
 \label{fig:perf_bars}
 \end{figure*}
@@ -273,7 +273,7 @@ Figure~\ref{fig:opt_conv} compares convergence trajectories across the four opti
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=0.48\textwidth]{../docs/figures/fig9_optimization_convergence.png}
+\includegraphics[width=0.48\textwidth]{docs/figures/fig9_optimization_convergence.png}
 \caption{Optimization convergence trajectories across 50 simulation evaluations for four algorithmic strategies.}
 \label{fig:opt_conv}
 \end{figure}
@@ -304,7 +304,7 @@ Table~\ref{tab:replication_summary} presents cross-city replication results. In 
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.95\textwidth]{../docs/figures/fig10_before_after_maps.png}
+\includegraphics[width=0.95\textwidth]{docs/figures/fig10_before_after_maps.png}
 \caption{Spatial distributions of baseline $\Tmrt$ (a), optimised $\Tmrt$ (b), and cooling delta $\Delta\Tmrt$ (c) on the Berlin Friedrichstra{\ss}e corridor.}
 \label{fig:before_after_maps}
 \end{figure*}

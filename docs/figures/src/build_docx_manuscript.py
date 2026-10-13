@@ -98,16 +98,16 @@ def create_manuscript():
     p_abs = doc.add_paragraph()
     p_abs.paragraph_format.space_after = Pt(10)
     p_abs.add_run(
-        "Decoupled urban microclimate simulations traditionally recompute entire domains from scratch upon introducing localized shading "
-        "interventions, creating a major computational bottleneck for iterative design. We present Solaraeus, a 3D microclimate modeling "
-        "platform that resolves this recomputation overhead through mathematically certified incremental radiative transfer and resident "
-        "CUDA GPU acceleration. By bounding solid-angle decay and Stefan–Boltzmann linearization within a declared thermal tolerance (0.50 K), "
-        "the engine safely reuses over 98% of grid cells. On the primary Berlin Friedrichstraße corridor (240 m × 200 m, 1.0 m resolution), "
-        "GPU incremental updates execute in 18 ms, achieving over 300× speedup relative to full CPU recomputation. Integrated Bayesian active "
-        "learning identifies canopy layouts providing up to 13.14 K of localized radiant cooling (0.86 K corridor-wide mean). Cross-city replications "
-        "indicate that while deep high-rise canyons exhibit minimal canopy efficacy due to architectural self-shading (Chicago), wide boulevards "
-        "achieve substantial cooling relief (London, up to 11.05 K peak). These results demonstrate that certified incremental simulation enables "
-        "real-time microclimatic design without compromising physical accuracy."
+        "The traditional approach in decoupled urban microclimate simulations requires complete recalculating the domain when implementing "
+        "local shading interventions, thus forming a considerable computational bottleneck for iterations. In this work, we introduce "
+        "Solaraeus, which is a 3D microclimate modeling platform addressing this recomputation overhead via certified by math incrementation "
+        "of radiative transfer algorithm with CUDA GPU acceleration. By constraining solid angle decay and Stefan–Boltzmann linearization "
+        "within the declared thermal tolerance (0.50 K), the engine is able to reuse over 98% of grid cells. For the main corridor in Berlin "
+        "Friedrichstraße (240×200 m, 1.0 m resolution), GPU incrementation works in 18 ms, resulting in more than 300x speedup compared to "
+        "full CPU recomputation. The integrated Bayesian active learning finds the canopy configurations that deliver up to 13.14 K of locally "
+        "cooled radiation with the mean corridor temperature reduction of 0.86 K. Replications across multiple cities reveal that while the "
+        "deep high-rise canyons demonstrate limited canopy efficiency due to the architecture self-shading effect (Chicago), the wide boulevards "
+        "bring significant relief of cooling (London, 11.05 K)."
     )
 
     p_kw = doc.add_paragraph()
