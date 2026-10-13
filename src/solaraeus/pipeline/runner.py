@@ -29,7 +29,7 @@ def run_pipeline(config: Optional[PipelineConfig] = None) -> Dict[str, Any]:
     Executes the unified 5-stage SOLARAEUS pipeline in one run.
 
     Args:
-        config: Optional pipeline configuration (defaults to Church Street).
+        config: Optional pipeline configuration (defaults to study corridor).
 
     Returns:
         Manifest dictionary of execution status, timings, and results across all 5 stages.

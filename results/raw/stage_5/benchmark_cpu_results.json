@@ -1,0 +1,82 @@
+{
+  "backend": "cpu",
+  "git_commit": "314bd1074b4ba10f05f2056895284cd95f717dbf",
+  "hardware": {
+    "os": "Windows-11-10.0.26300-SP0",
+    "cpu_model": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python_version": "3.12.6",
+    "gpu_model": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "gpu_driver": "616.92",
+    "vram_mb": 6140.5
+  },
+  "benchmarks": [
+    {
+      "scene_id": "scene_b",
+      "scene_name": "Scene B: Berlin Friedrichstra\u00dfe Corridor",
+      "domain_cells": 10000,
+      "ray_count": 330000,
+      "modes": {
+        "full": {
+          "mode": "cpu_full",
+          "initialisation_s": {
+            "median": 0.00022,
+            "std": 1e-05
+          },
+          "ray_tracing_s": {
+            "median": 1.29197,
+            "std": 0.02245
+          },
+          "data_transfer_s": {
+            "median": 0.0,
+            "std": 0.0
+          },
+          "radiation_comfort_s": {
+            "median": 0.0061,
+            "std": 0.0016
+          },
+          "total_end_to_end_s": {
+            "median": 1.29872,
+            "std": 0.02407
+          },
+          "peak_gpu_memory_mb": 0.0,
+          "cells_per_second": 7699.9,
+          "rays_per_second": 254095.5,
+          "reused_percent": 0.0,
+          "recomputed_cells": 10000,
+          "reused_cells": 0,
+          "max_tmrt_diff_vs_full_k": 0.0
+        },
+        "inc": {
+          "mode": "cpu_inc",
+          "initialisation_s": {
+            "median": 0.0002,
+            "std": 8e-05
+          },
+          "ray_tracing_s": {
+            "median": 0.05121,
+            "std": 0.0023
+          },
+          "data_transfer_s": {
+            "median": 0.0,
+            "std": 0.0
+          },
+          "radiation_comfort_s": {
+            "median": 0.00306,
+            "std": 0.00059
+          },
+          "total_end_to_end_s": {
+            "median": 0.05447,
+            "std": 0.00162
+          },
+          "peak_gpu_memory_mb": 0.0,
+          "cells_per_second": 183598.4,
+          "rays_per_second": 6058747.8,
+          "reused_percent": 98.29,
+          "recomputed_cells": 171,
+          "reused_cells": 9829,
+          "max_tmrt_diff_vs_full_k": 0.041009
+        }
+      }
+    }
+  ]
+}

@@ -105,7 +105,7 @@ class TimeShadowingEngine:
         cumulative_irradiation_wh_m2 = np.zeros((self.ny, self.nx), dtype=np.float32)
 
         records = []
-        canyon_center_y = 75.0  # Main Church Street canyon axis
+        canyon_center_y = 75.0  # Main corridor canyon axis
 
         for h in hours:
             pos = sun_model.compute_position(target_date, h)
@@ -120,7 +120,7 @@ class TimeShadowingEngine:
                 dni_clear = 0.0
 
             # 2. Geometric Shadow: Canyon building facades cast shadows across the street
-            # For Church Street (East-West corridor with buildings on North and South):
+            # For an East-West corridor with buildings on North and South:
             # When sun is South (azimuth ~ 130° - 230°), South buildings cast shadow onto street.
             # Shadow distance across street = H / tan(alt) * |cos(az - 180°)|
             geom_shadow = np.zeros((self.ny, self.nx), dtype=np.float32)

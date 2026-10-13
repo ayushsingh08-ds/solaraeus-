@@ -159,7 +159,7 @@ def get_standard_weather_scenarios(nominal_weather: Weather) -> Dict[str, Weathe
     return {
         "nominal": WeatherScenario(
             name="nominal",
-            description="Nominal Church Street summer conditions (35°C, 19.7% RH, 1.5 m/s wind, 728.3 W/m² DNI)",
+            description="Nominal peak summer heatwave conditions",
             weather=Weather(
                 air_temperature=nominal_weather.air_temperature,
                 relative_humidity=nominal_weather.relative_humidity,

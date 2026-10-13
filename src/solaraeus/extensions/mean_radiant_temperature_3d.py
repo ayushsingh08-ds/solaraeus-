@@ -89,7 +89,7 @@ class Tmrt3DEngine:
         gx, gy = np.meshgrid(xs, ys)
 
         # 1. Sky View Factor (SVF) field for canyon:
-        # Church Street is ~14-18m wide with 18m tall buildings. Canyon SVF along centerline is ~0.45,
+        # Urban canyon is ~14-18m wide with 18m tall buildings. Canyon SVF along centerline is ~0.45,
         # approaching 0.28 near curbs, and ~0.90 in open areas.
         dist_to_canyon_center = np.abs(gy - 75.0)
         svf = np.clip(0.38 + 0.02 * dist_to_canyon_center, 0.28, 0.85)

@@ -319,14 +319,6 @@ class ParameterBounds:
             albedo=0.60,
         )
 
-    @classmethod
-    def get_canonical_church_street_bounds(cls) -> ParameterBounds:
-        return cls.get_canonical_corridor_bounds()
-
-    @classmethod
-    def get_canonical_church_street_baseline_params(cls) -> ShadePanelParams:
-        return cls.get_canonical_corridor_baseline_params()
-
 
 def build_panel_geometry(params: ShadePanelParams,
                          thickness_m: float = 0.1,

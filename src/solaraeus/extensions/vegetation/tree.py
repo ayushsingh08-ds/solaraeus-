@@ -121,7 +121,7 @@ def get_core_trees(
     transmissivity: float = 0.0,
 ) -> List[Tree]:
     """
-    Returns the six Church Street core trees (T08 to T13) in the requested geometric state.
+    Returns the core street trees (T08 to T13) in the requested geometric state.
     States:
       - 'CONSERVATIVE_SMALL' (min bounds)
       - 'NOMINAL_PROVISIONAL' (central estimates)

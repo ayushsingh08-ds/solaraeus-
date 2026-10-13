@@ -170,6 +170,10 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
   - SHA256: `645b559a419690433984f9bea2924b47e4d36ed31cb9e8842242ebb1d57424f6`
 - **Reuse Fraction Sweep Figure**: `results/raw/stage_5/stage_5_reuse_sweep.png`
   - SHA256: `ce98bf99eb9779d4f550a09eaec3c10b108ef1a905f380e3ec48b25fe0676dea`
+- **CPU Micro-Benchmark Results JSON**: `results/raw/stage_5/benchmark_cpu_results.json`
+  - SHA256: `c3c555dff92ddac9a11a9b7ada25e75f627c83867cd5e976522c448a251cbd08`
+- **GPU Micro-Benchmark Results JSON**: `results/raw/stage_5/benchmark_gpu_results.json`
+  - SHA256: `48ea2b279c51ff4e35c61e08aeef6b0811d5d7847ad5f7761144da94e790070d`
 - **Master Benchmark Suite**: `benchmarks/run_stage_5_performance_suite.py`
   - SHA256: `fbe9c714985e24abe3e5570c2efd5ba27be02fcc754570c721b014f0598fd1ad`
 - **GPU Benchmark CLI**: `benchmarks/benchmark_gpu.py`
@@ -259,7 +263,18 @@ Per **GLOBAL RULE 1**, only **Berlin (primary)**, **Chicago (fallback + replicat
 
 ---
 
-## 10. Deprecated / Legacy Sites Archive
+## 10. Stage 8 Quality Assurance & Release Artifacts
+
+- **Stage 8 QA & Reproducibility Report**: `docs/stage_8_report.md`
+  - SHA256: `57e48b8f07721aceea171e75ea5c20058baa305a9c651f0176b3f49ac1732e81`
+- **Master Project README**: `README.md`
+  - SHA256: `7f7e5d997de7bef71c7a9fed84d56f3ab54ee1f8291ec52a5f43834963b8ca6c`
+- **Clean Scientific Manuscript**: `research_paper_sol/solaraeus.tex`
+  - SHA256: `6cfffb747ddeb503c28370a2603ef637de152ea9ef6bf06a05fd0076fd0c7175`
+
+---
+
+## 11. Deprecated / Legacy Sites Archive
 - **Site**: Church Street (Bengaluru)
 - **Classification**: DEPRECATED & OUT OF SCOPE per Global Rule 1.
 - **Protocol Notice**: No legacy Church Street datasets are used as scientific evidence in this protocol.

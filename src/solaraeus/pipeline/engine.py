@@ -195,7 +195,7 @@ def optimize_canopies(
     nx = grid_info["nx"]
     ny = grid_info["ny"]
 
-    # Corridor pedestrian walkable corridor bounds (Church Street local coordinates)
+    # Corridor pedestrian walkable corridor bounds (corridor local coordinates)
     # Walkway extends roughly X in [30, 210], Y in [55, 78]
     # Compute thermal hotspot score on walkable unshaded cells
     xv = ox + np.arange(nx) * res

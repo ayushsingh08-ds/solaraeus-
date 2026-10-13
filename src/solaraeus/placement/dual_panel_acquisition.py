@@ -105,7 +105,7 @@ def generate_dual_panel_seeds(
     best_s2 = ShadePanelParams(
         x=122.120, y=65.789, length=3.48, width=2.95, height=2.99, heading_deg=95.80, albedo=0.68
     )
-    # Church Street corridor runs along heading ~102 deg. An offset of dx ~ 18m, dy ~ -3m stays inside corridor
+    # Street canyon corridor runs along heading ~102 deg. An offset of dx ~ 18m, dy ~ -3m stays inside corridor
     for dx, dy in [(18.0, -3.5), (15.0, -2.5), (22.0, -4.5)]:
         p2_offset = ShadePanelParams(
             x=best_s2.x + dx, y=best_s2.y + dy, length=best_s2.length, width=best_s2.width,

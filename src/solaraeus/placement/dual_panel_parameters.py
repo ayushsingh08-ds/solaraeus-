@@ -280,7 +280,3 @@ class DualPanelBounds:
             max_total_area_m2=60.0,
             min_total_area_m2=10.0,
         )
-
-    @classmethod
-    def get_canonical_church_street_bounds(cls) -> DualPanelBounds:
-        return cls.get_canonical_corridor_bounds()

@@ -1,8 +1,8 @@
 {
   "stage": 4,
   "protocol_version": "1.0",
-  "git_commit": "33eaa1310d2a4dc1025e4659f9317a5513794850",
-  "timestamp_utc": "2026-10-13T08:55:39.663961+00:00",
+  "git_commit": "314bd1074b4ba10f05f2056895284cd95f717dbf",
+  "timestamp_utc": "2026-10-13T10:38:33.061643+00:00",
   "hardware": {
     "platform": "Windows-11-10.0.26300-SP0",
     "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
@@ -47,9 +47,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 23.92,
-      "time_full_s": 0.868,
-      "time_inc_s": 0.036
+      "speedup": 24.18,
+      "time_full_s": 0.708,
+      "time_inc_s": 0.029
     },
     {
       "id": "case_2_low_sun_angle",
@@ -69,9 +69,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 6.27,
-      "time_full_s": 0.811,
-      "time_inc_s": 0.129
+      "speedup": 8.89,
+      "time_full_s": 0.712,
+      "time_inc_s": 0.08
     },
     {
       "id": "case_3_extreme_low_sun_fallback",
@@ -91,9 +91,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 0.93,
-      "time_full_s": 0.798,
-      "time_inc_s": 0.86
+      "speedup": 1.01,
+      "time_full_s": 0.717,
+      "time_inc_s": 0.71
     },
     {
       "id": "case_4_overlapping_shadows",
@@ -113,9 +113,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 26.21,
-      "time_full_s": 0.775,
-      "time_inc_s": 0.03
+      "speedup": 27.63,
+      "time_full_s": 0.713,
+      "time_inc_s": 0.026
     },
     {
       "id": "case_5_far_away_canopy_decay",
@@ -135,9 +135,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 24.17,
-      "time_full_s": 0.612,
-      "time_inc_s": 0.025
+      "speedup": 26.78,
+      "time_full_s": 0.531,
+      "time_inc_s": 0.02
     },
     {
       "id": "case_6_multiple_interacting_canopies",
@@ -157,9 +157,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 9.45,
-      "time_full_s": 0.924,
-      "time_inc_s": 0.098
+      "speedup": 10.29,
+      "time_full_s": 1.412,
+      "time_inc_s": 0.137
     },
     {
       "id": "case_7_morning_oblique_sun",
@@ -179,9 +179,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 26.9,
-      "time_full_s": 0.875,
-      "time_inc_s": 0.033
+      "speedup": 35.91,
+      "time_full_s": 1.217,
+      "time_inc_s": 0.034
     },
     {
       "id": "case_8_evening_oblique_sun",
@@ -201,9 +201,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 26.77,
-      "time_full_s": 0.774,
-      "time_inc_s": 0.029
+      "speedup": 36.51,
+      "time_full_s": 1.102,
+      "time_inc_s": 0.03
     },
     {
       "id": "case_9_realistic_pedestrian_canopy",
@@ -223,9 +223,9 @@
       "tolerance_k": 0.5,
       "bound_violations": 0,
       "tolerance_violations": 0,
-      "speedup": 22.22,
-      "time_full_s": 0.816,
-      "time_inc_s": 0.037
+      "speedup": 19.4,
+      "time_full_s": 1.024,
+      "time_inc_s": 0.053
     }
   ]
 }

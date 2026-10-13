@@ -101,7 +101,7 @@ def run_stage_ai_solver(
         max_svf_search_dist_m=120.0,
     )
 
-    # Search space parameter bounds along Church Street pedestrian corridor
+    # Search space parameter bounds along pedestrian corridor
     opt_bounds = ParameterBounds(
         x_min=100.0,
         x_max=160.0,
