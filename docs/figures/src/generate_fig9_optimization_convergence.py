@@ -48,21 +48,21 @@ def create_fig9():
                         color=color, alpha=0.15, edgecolor='none')
 
     ax.set_xlim(1, 50)
-    ax.set_ylim(42.55, 43.10)
+    ax.set_ylim(42.56, 43.22)
     ax.set_xlabel('Simulation Evaluation Budget ($N$)', fontsize=8.5)
     ax.set_ylabel('Core Corridor Mean $T_{\\mathrm{mrt}}$ (°C)', fontsize=8.5)
     ax.set_title('Optimization Convergence (3 Seeds, Budget=50)', fontsize=9.2, fontweight='bold', pad=6)
 
-    # Welch's t-test statistical annotation
+    # Welch's t-test statistical annotation placed cleanly in open space
     stat_text = (
         "Welch's $t$-test (AL vs Random):\n"
         "$t = 0.760,\\; p = 0.514\\; (p > 0.05)$\n"
         "Direct GA achieves lowest $T_{\\mathrm{mrt}}$ ($42.62^\\circ\\mathrm{C}$)"
     )
-    ax.text(0.04, 0.06, stat_text, transform=ax.transAxes, fontsize=6.5, va='bottom', ha='left',
+    ax.text(0.18, 0.44, stat_text, transform=ax.transAxes, fontsize=6.2, va='center', ha='left',
             bbox=dict(boxstyle='round,pad=0.35', facecolor='white', edgecolor='#AAAAAA', alpha=0.92, lw=0.5))
 
-    ax.legend(loc='upper right', fontsize=6.2, framealpha=0.9)
+    ax.legend(loc='upper right', fontsize=6.0, framealpha=0.92)
     ax.grid(True, linestyle=':', alpha=0.5)
 
     plt.tight_layout(pad=0.3)

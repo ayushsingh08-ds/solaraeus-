@@ -65,9 +65,10 @@ def create_fig8():
     gpu_inc_b = medians["gpu_inc"][1]
     speedup_b = cpu_full_b / gpu_inc_b
     ax.annotate(f"{speedup_b:.1f}× Speedup", xy=(x[1] + 1.5*width, gpu_inc_b),
-                xytext=(x[1] + 1.5*width + 0.15, gpu_inc_b * 3.5),
-                arrowprops=dict(arrowstyle="->", color='#0072B2', lw=1.1),
-                fontsize=7.2, fontweight='bold', color='#0072B2')
+                xytext=(x[1] + 1.5*width, gpu_inc_b * 5.5),
+                ha='center', va='bottom',
+                arrowprops=dict(arrowstyle="->", color='#0072B2', lw=1.2),
+                fontsize=7.5, fontweight='bold', color='#0072B2')
 
     # Logarithmic scale for wide dynamic range
     ax.set_yscale('log')

@@ -83,9 +83,9 @@ def create_fig5():
 
     # Labels & Cartography
     draw_north_arrow(ax, 95, 65, 16)
-    draw_scale_bar(ax, -100, -88, 50)
-    ax.text(0, -96, "EPSG:25833 (UTM 33N)\nDatum: DHHN2016 (z=34.2m)", ha='center', va='bottom', fontsize=5.8,
-            bbox=dict(boxstyle="square,pad=0.2", facecolor='white', alpha=0.85, lw=0.4))
+    draw_scale_bar(ax, -110, -90, 40)
+    ax.text(112, -94, "EPSG:25833 (UTM 33N)\nDatum: DHHN2016 (z=34.2m)", ha='right', va='bottom', fontsize=5.2,
+            bbox=dict(boxstyle="square,pad=0.2", facecolor='white', alpha=0.92, lw=0.4))
 
     # (b) CHICAGO
     ax = axes[1]
@@ -124,9 +124,9 @@ def create_fig5():
     ax.add_patch(canopy2_c)
 
     draw_north_arrow(ax, 95, 65, 16)
-    draw_scale_bar(ax, -100, -88, 50)
-    ax.text(0, -96, "EPSG:32616 (UTM 16N)\nDatum: NAVD88 (z=181.5m)", ha='center', va='bottom', fontsize=5.8,
-            bbox=dict(boxstyle="square,pad=0.2", facecolor='white', alpha=0.85, lw=0.4))
+    draw_scale_bar(ax, -110, -90, 40)
+    ax.text(112, -94, "EPSG:32616 (UTM 16N)\nDatum: NAVD88 (z=181.5m)", ha='right', va='bottom', fontsize=5.2,
+            bbox=dict(boxstyle="square,pad=0.2", facecolor='white', alpha=0.92, lw=0.4))
 
     # (c) LONDON
     ax = axes[2]
@@ -165,9 +165,9 @@ def create_fig5():
     ax.add_patch(canopy2_l)
 
     draw_north_arrow(ax, 95, 65, 16)
-    draw_scale_bar(ax, -100, -88, 50)
-    ax.text(0, -96, "EPSG:27700 (BNG)\nDatum: ODN (z=21.0m)", ha='center', va='bottom', fontsize=5.8,
-            bbox=dict(boxstyle="square,pad=0.2", facecolor='white', alpha=0.85, lw=0.4))
+    draw_scale_bar(ax, -110, -90, 40)
+    ax.text(112, -94, "EPSG:27700 (BNG)\nDatum: ODN (z=21.0m)", ha='right', va='bottom', fontsize=5.2,
+            bbox=dict(boxstyle="square,pad=0.2", facecolor='white', alpha=0.92, lw=0.4))
 
     for ax in axes:
         ax.set_aspect('equal')

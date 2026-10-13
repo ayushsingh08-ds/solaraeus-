@@ -33,8 +33,10 @@ def create_fig10():
     o_sub = o_tmrt[y_slice, x_slice]
     d_sub = d_tmrt[y_slice, x_slice]
 
-    # Width: double-column (175 mm = 6.89 in), height: 3.6 in
-    fig, axes = plt.subplots(1, 3, figsize=(6.89, 3.6), dpi=300)
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+    # Width: double-column (175 mm = 6.89 in), height: 3.2 in
+    fig, axes = plt.subplots(1, 3, figsize=(6.89, 3.2), dpi=300)
 
     # Panels 1 & 2 share thermal colormap (inferno, 32 to 47 °C)
     vmin_t, vmax_t = 32.0, 47.0
@@ -42,12 +44,12 @@ def create_fig10():
 
     # (a) Baseline Tmrt
     im0 = axes[0].imshow(b_sub, origin='lower', extent=extent, cmap=cmap_t, vmin=vmin_t, vmax=vmax_t)
-    axes[0].set_title("(a) Baseline $T_{\\mathrm{mrt}}$\n(No Canopies)", fontsize=8.5, fontweight='bold', pad=4)
-    axes[0].set_ylabel("Local Y (m)", fontsize=8.0)
+    axes[0].set_title(r"(a) Baseline $T_{\mathrm{mrt}}$" + "\n(No Canopies)", fontsize=8.2, fontweight='bold', pad=4)
+    axes[0].set_ylabel("Local Y (m)", fontsize=7.8)
 
     # (b) Optimised Tmrt
     im1 = axes[1].imshow(o_sub, origin='lower', extent=extent, cmap=cmap_t, vmin=vmin_t, vmax=vmax_t)
-    axes[1].set_title("(b) Optimised $T_{\\mathrm{mrt}}$\n(Dual Canopies: 48.2 m²)", fontsize=8.5, fontweight='bold', pad=4)
+    axes[1].set_title(r"(b) Optimised $T_{\mathrm{mrt}}$" + "\n(Dual Canopies: 48.2 m²)", fontsize=8.2, fontweight='bold', pad=4)
 
     # Overlay canopy outlines on panel (b)
     c1 = patches.Rectangle((-1.73 - 1.95, 34.06 - 3.43), 3.90, 6.87, fill=False, edgecolor='#00FFCC', lw=1.2, linestyle='-')
@@ -55,11 +57,10 @@ def create_fig10():
     axes[1].add_patch(c1)
     axes[1].add_patch(c2)
 
-    # (c) Cooling Delta Tmrt (Diverging/Sequential)
-    # Colormap: YlOrRd or viridis
+    # (c) Cooling Delta Tmrt
     im2 = axes[2].imshow(d_sub, origin='lower', extent=extent, cmap='viridis', vmin=0.0, vmax=14.0)
-    axes[2].set_title("(c) Cooling Delta $\\Delta T_{\\mathrm{mrt}}$\n($T_{\\mathrm{mrt}}^{\\mathrm{base}} - T_{\\mathrm{mrt}}^{\\mathrm{opt}}$)",
-                      fontsize=8.5, fontweight='bold', pad=4)
+    axes[2].set_title(r"(c) Cooling Delta $\Delta T_{\mathrm{mrt}}$" + "\n" + r"($T_{\mathrm{mrt}}^{\mathrm{base}} - T_{\mathrm{mrt}}^{\mathrm{opt}}$)",
+                      fontsize=8.2, fontweight='bold', pad=4)
 
     # Overlay canopy outlines on panel (c)
     c1_d = patches.Rectangle((-1.73 - 1.95, 34.06 - 3.43), 3.90, 6.87, fill=False, edgecolor='white', lw=1.2, linestyle='--')
@@ -67,27 +68,35 @@ def create_fig10():
     axes[2].add_patch(c1_d)
     axes[2].add_patch(c2_d)
 
-    # Colorbars
-    cb_t = fig.colorbar(im0, ax=axes[:2], location='bottom', fraction=0.046, pad=0.14)
-    cb_t.set_label('Mean Radiant Temperature $T_{\\mathrm{mrt}}$ [°C]', fontsize=7.8)
-    cb_t.ax.tick_params(labelsize=6.8)
-
-    cb_d = fig.colorbar(im2, ax=axes[2], location='bottom', fraction=0.046, pad=0.14)
-    cb_d.set_label('Cooling Delta $\\Delta T_{\\mathrm{mrt}}$ [K]', fontsize=7.8)
-    cb_d.ax.tick_params(labelsize=6.8)
-
     # Annotation on Panel (c)
-    axes[2].text(0.05, 0.95, "Peak Shading Relief:\n$\\mathbf{+13.14\\,\\mathrm{K}}$",
-                 transform=axes[2].transAxes, fontsize=6.8, va='top', ha='left',
-                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.88, lw=0.4))
+    axes[2].text(0.05, 0.95, "Peak Shading Relief:\n" + r"$\mathbf{+13.14\,\mathrm{K}}$",
+                 transform=axes[2].transAxes, fontsize=6.5, va='top', ha='left',
+                 bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.90, lw=0.4))
 
     for ax in axes:
-        ax.set_xlabel("Local X (m)", fontsize=8.0)
-        ax.tick_params(labelsize=7.0)
+        ax.set_xlabel("Local X (m)", fontsize=7.8)
+        ax.tick_params(labelsize=6.8)
         ax.set_xlim(-35, 35)
         ax.set_ylim(-60, 60)
 
-    plt.tight_layout(pad=0.3)
+    # Equalize axis widths and attach vertical colorbars to eliminate collision with x-axis labels
+    divider0 = make_axes_locatable(axes[0])
+    cax0 = divider0.append_axes('right', size='5%', pad=0.08)
+    cax0.axis('off')
+
+    divider1 = make_axes_locatable(axes[1])
+    cax1 = divider1.append_axes('right', size='5%', pad=0.08)
+    cb_t = fig.colorbar(im1, cax=cax1)
+    cb_t.set_label(r'$T_{\mathrm{mrt}}$ [°C]', fontsize=7.5)
+    cb_t.ax.tick_params(labelsize=6.5)
+
+    divider2 = make_axes_locatable(axes[2])
+    cax2 = divider2.append_axes('right', size='5%', pad=0.08)
+    cb_d = fig.colorbar(im2, cax=cax2)
+    cb_d.set_label(r'$\Delta T_{\mathrm{mrt}}$ [K]', fontsize=7.5)
+    cb_d.ax.tick_params(labelsize=6.5)
+
+    plt.tight_layout(pad=0.4)
     out_dir = Path("docs/figures")
     out_dir.mkdir(parents=True, exist_ok=True)
     plt.savefig(out_dir / "fig10_before_after_maps.png", dpi=300, bbox_inches='tight')
