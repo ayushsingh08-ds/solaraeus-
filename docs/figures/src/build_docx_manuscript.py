@@ -304,25 +304,26 @@ def create_manuscript():
 
     p_lr4 = doc.add_paragraph()
     p_lr4.add_run(
-        "A synthesis of the surveyed literature reveals a critical methodological gap at the intersection of microclimate simulation and computational "
-        "urban design. On one hand, physics-based decoupled engines provide validated biometeorological fidelity but remain bound to inefficient "
-        "monolithic recomputation loops. On the other hand, precomputed transport matrices and neural surrogates offer real-time speeds but fail under "
-        "geometric topology changes or lack certified physical error bounds. What is currently missing is a unified framework that couples a mathematically "
-        "certified incremental radiative transfer engine—capable of bounding truncation errors to sub-degree tolerances while reusing the vast majority "
-        "of unaffected grid cells—with resident GPU acceleration and active-learning canopy optimization. Solaraeus is engineered specifically to bridge this gap."
+        "A review of the surveyed literature points out a key research gap related to the integration between microclimate simulation and computational "
+        "urban design. While physics-based decoupled engines guarantee validated biometeorological accuracy, they cannot get rid of inefficient "
+        "monolithic recomputation cycles. While transport matrices and neural models can run computations in real time, they become invalid with the "
+        "changing geometry and are unable to deliver certified physical error bounds. The research gap lies in the lack of a framework that combines a "
+        "mathematically certified incremental radiative transfer engine (which ensures bounding of truncation errors to below a degree of tolerance "
+        "while reusing the majority of unaffected grid cells) with GPU acceleration and canopy optimization using active learning. Solaraeus bridges this research gap."
     )
 
-    # Section 4: Description of Data
+    # Section 3: Data Description
     h4 = doc.add_heading(level=1)
-    r4 = h4.add_run("3. Description of Data")
+    r4 = h4.add_run("3. Data Description")
     r4.font.size = Pt(13)
     r4.font.bold = True
     r4.font.color.rgb = RGBColor(0x00, 0x33, 0x66)
 
     p_data_intro = doc.add_paragraph()
     p_data_intro.add_run(
-        "All geometric, meteorological, and vegetative datasets used in Solaraeus were acquired from verified open-access repositories "
-        "and cataloged with cryptographic SHA256 checksums in the repository manifest. Table 2 details the data sources across the three case studies."
+        "All datasets involving geometry, weather, and vegetation used in Solaraeus were obtained from legitimate open-source "
+        "databases and recorded using SHA256 cryptographic hash values in the repository index. Table 2 outlines the sources of the data "
+        "used in all three case studies."
     )
 
     data_rows = [
